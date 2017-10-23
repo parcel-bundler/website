@@ -5,7 +5,7 @@ Parcel is a web application bundler, differentiated by its developer experience.
 To get started, first install with npm or yarn:
 
 ```bash
-yarn global add parcel
+yarn global add parcel-bundler
 ```
 
 Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If you link your main JavaScript file in the HTML using a relative path, Parcel will also process it for you, and replace the reference with a URL to the output file.
