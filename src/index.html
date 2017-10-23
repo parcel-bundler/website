@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📦 Parcel</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+      background:#fefefe;
+    }
+
+    header {
+      background: #21374B;
+      color: #E7DACB;
+      text-align: center;
+      padding: 100px 0 50px 0;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .logo {
+      width: 70%;
+      max-width: 300px;
+      margin-bottom: 30px;
+    }
+
+    header h2 {
+      font-weight: 400;
+      line-height: 1em;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .parcel {
+      display: block;
+      max-width: 650px;
+      margin: 0 auto;
+      margin-top: 140px;
+      position: relative;
+    }
+
+    .parcel img {
+      width: 100%;
+    }
+
+    .parcel .icons {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+    }
+
+    .parcel img:last-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .icon {
+      width: 50px;
+      height: 65px;
+      background-size: cover;
+      position: absolute;
+      left: 0;
+      animation: animate 3s ease-in-out;
+      opacity: 0;
+    }
+
+    @keyframes animate {
+      from {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate3d(0, 450%, 0) scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    .get-started {
+      display: block;
+      padding: 8px 20px;
+      width: 180px;
+      margin: 20px auto;
+      color: #E7DACB;
+      border: 1px solid #E7DACB;
+      border-radius: 3px;
+      text-decoration: none;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      transition: background 200ms, color 200ms;
+    }
+
+    .get-started:hover {
+      background: #E7DACB;
+      color: #21374B;
+    }
+
+    header .links {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 20px;
+    }
+
+    header .links a {
+      color: #E7DACB;
+      text-decoration: none;
+      padding-left: 20px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      header {
+        padding-top: 60px;
+        padding-bottom: 15px;
+      }
+
+      header h2 {
+        font-size: 1.2em;
+        padding: 0 40px;
+      }
+
+      .logo {
+        margin-bottom: 10px;
+      }
+
+      .parcel {
+        margin-top: 120px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 52px;
+      }
+
+      .get-started {
+        margin-top: 0;
+      }
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      max-width: 1000px;
+      margin: 0 auto;
+      color:#444;
+      font-size:16px;
+      line-height:1.5em;
+    }
+
+    main section {
+      width: 333px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    main h2 {
+      font-weight:400;
+      color:#111;
+      line-height:1em;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size:1.5em;
+    }
+
+    pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
+    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
+
+    p code {
+      font-size: 0.95em;
+      background-color: #f8f8f8;
+      border-radius: 3px;
+      padding: 0 0.2em;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="assets/logo.svg" alt="Parcel">
+    <h2>Blazing fast, zero configuration web application bundler</h2>
+    <div class="parcel">
+      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
+      <div class="icons"></div>
+      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
+    </div>
+    <a class="get-started" href="getting_started.html">Get Started</a>
+
+    <div class="links">
+      <a href="getting_started.html">Documentation</a>
+      <a href="https://github.com/devongovett/bundler">Github</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>🚀 Blazing fast bundle times</h2>
+      <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+    </section>
+    <section>
+      <h2>📦 Bundle all your assets</h2>
+      <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+    </section>
+    <section>
+      <h2>🐠 Automatic transforms</h2>
+      <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
+    </section>
+    <section>
+      <h2>✂️ Zero config code splitting</h2>
+      <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
+    </section>
+    <section>
+      <h2>🔥 Hot module replacement</h2>
+      <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
+    </section>
+    <section>
+      <h2>🚨 Friendly error logging</h2>
+      <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
+    </section>
+  </main>
+
+  <script>
+    var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw'];
+    var container = document.querySelector('.icons');
+
+    function spawn() {
+      var icon = icons[Math.floor(Math.random() * icons.length)];
+      var svg = document.createElementNS("http://www.w3.org/2000/svg","svg")
+      svg.style.left = (25 + Math.random() * 50) + '%';
+      svg.setAttribute('class', "icon");
+      var use = document.createElementNS("http://www.w3.org/2000/svg","use")
+      use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'assets/icons.svg#' + icon);
+      svg.appendChild(use);
+      container.appendChild(svg);
+
+      setTimeout(function () {
+        container.removeChild(svg);
+      }, 3000);
+    }
+
+    setTimeout(function run() {
+      spawn();
+      setTimeout(run, 500 + Math.random() * 400);
+    }, 500 + Math.random() * 400);
+
+    spawn();
+  </script>
+</body>
+</html>

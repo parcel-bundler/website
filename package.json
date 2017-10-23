@@ -1,0 +1,25 @@
+{
+  "name": "parcel-website",
+  "version": "1.0.0",
+  "description": "The parcel website",
+  "main": "index.js",
+  "repository": "git://git@github.com:parcel-bundler/website.git",
+  "author": "Devon Govett <devongovett@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^6.3.1"
+  },
+  "devDependencies": {
+    "markdown-styles": "^3.1.10",
+    "now": "^8.3.10",
+    "npm-run-all": "^4.1.1"
+  },
+  "scripts": {
+    "build": "npm-run-all clean build:*",
+    "clean": "rm -rf dist",
+    "build:docs": "generate-md --layout ./src/layout --input src/docs/ --output dist/",
+    "build:index": "cp src/index.html dist/index.html",
+    "start": "serve dist",
+    "deploy": "now"
+  }
+}
