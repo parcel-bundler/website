@@ -12,7 +12,7 @@ import('./pages/about').then(function (page) {
 });
 ```
 
-Because `import()` returns a Promise, you can also use async/await syntax. You probaly need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
+Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
 
 ```javascript
 const page = await import('./pages/about');

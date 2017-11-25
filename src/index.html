@@ -12,33 +12,46 @@
       background:#fefefe;
     }
 
+    h1,h2,h3,h4,h5,h6{
+    font-weight:400;
+    color:#111;
+    line-height:1em;
+    font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    h4,h5,h6{ font-weight: bold; }
+    h1{ font-size:3.2em; }
+    h2{ font-size:2em; }
+    h3{ font-size:1.5em; }
+    h4{ font-size:1.2em; }
+    h5{ font-size:1em; }
+    h6{ font-size:0.9em; }
+
     header {
       background: #21374B;
       color: #E7DACB;
       text-align: center;
-      padding: 100px 0 50px 0;
+      padding: 80px 0 50px 0;
       font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     .logo {
       width: 70%;
       max-width: 300px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     header h2 {
-      font-weight: 400;
-      line-height: 1em;
-      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 0;
       font-size: 1.5em;
+      color: #E7DACB;
     }
 
     .parcel {
       display: block;
-      max-width: 650px;
+      max-width: 600px;
       margin: 0 auto;
-      margin-top: 140px;
+      margin-top: 120px;
+      margin-bottom: -20px;
       position: relative;
     }
 
@@ -60,7 +73,7 @@
     }
 
     .icon {
-      width: 50px;
+      width: 42px;
       height: 65px;
       background-size: cover;
       position: absolute;
@@ -89,21 +102,26 @@
       }
     }
 
-    .get-started {
-      display: block;
-      padding: 8px 20px;
+    .button {
+      display: inline-block;
+      padding: 8px 0;
       width: 180px;
-      margin: 20px auto;
       color: #E7DACB;
       border: 1px solid #E7DACB;
-      border-radius: 3px;
+      border-radius: 50px;
       text-decoration: none;
       font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 24px;
-      transition: background 200ms, color 200ms;
+      font-size: 20px;
+      transition: opacity 200ms;
+      text-align: center;
+      margin: 0 5px;
     }
 
-    .get-started:hover {
+    .button:hover {
+      opacity: 1;
+    }
+
+    .get-started {
       background: #E7DACB;
       color: #21374B;
     }
@@ -119,6 +137,148 @@
       color: #E7DACB;
       text-decoration: none;
       padding-left: 20px;
+      transition: color 125ms;
+    }
+
+    header .links a:hover {
+      color: #27ae60;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      color:#444;
+      font-size:16px;
+      line-height:1.5em;
+    }
+
+    main section {
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    main > section {
+      padding-top: 10px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-top: 20px;
+    }
+
+    .features section {
+      width: 333px;
+      padding: 0 20px;
+    }
+
+    pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
+    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
+
+    p code {
+      font-size: 0.95em;
+      background-color: #f8f8f8;
+      border-radius: 3px;
+      padding: 0 0.2em;
+      display: inline-block;
+    }
+
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+
+    tr:nth-child(2n + 1) {
+      background: #efefef;
+    }
+
+    td, th {
+      padding: 5px 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .examples {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .example {
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .example:nth-child(2n) {
+      padding-left: 20px;
+    }
+
+    footer {
+      background: #21374B;
+      color: #E7DACB;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding: 40px 0 20px 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    footer .content {
+      display: flex;
+      max-width: 960px;
+      justify-content: center;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    footer nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      padding-right: 80px;
+    }
+
+    footer nav a,
+    footer .copyright a {
+      color: #E7DACB;
+      text-decoration: none;
+      transition: color 125ms;
+      line-height: 1.7em;
+    }
+
+    footer nav a:hover,
+    footer .copyright a:hover {
+      color: #27ae60;
+    }
+
+    footer .button {
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
+
+    footer h3 {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 13px;
+      opacity: 0.7;
+      color: #E7DACB;
+    }
+
+    footer .copyright {
+      margin-top: 40px;
+      color: rgba(231, 218, 203, 0.7);
+      font-size: 14px;
+    }
+
+    footer .copyright a {
+      color: rgba(231, 218, 203, 0.7);
+    }
+
+    @media only screen and (max-width: 770px) {
+      .example {
+        width: 100%;
+        padding-left: 0 !important;
+      }
     }
 
     @media only screen and (max-width: 480px) {
@@ -145,48 +305,27 @@
         height: 52px;
       }
 
-      .get-started {
+      .button {
         margin-top: 0;
       }
+
+      footer .content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      footer nav ul {
+        padding-right: 0;
+        display: block;
+        width: 200px;
+      }
+
+      footer nav {
+        padding-bottom: 20px;
+      }
     }
-
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      max-width: 1000px;
-      margin: 0 auto;
-      color:#444;
-      font-size:16px;
-      line-height:1.5em;
-    }
-
-    main section {
-      width: 333px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    main h2 {
-      font-weight:400;
-      color:#111;
-      line-height:1em;
-      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size:1.5em;
-    }
-
-    pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
-
-    p code {
-      font-size: 0.95em;
-      background-color: #f8f8f8;
-      border-radius: 3px;
-      padding: 0 0.2em;
-      display: inline-block;
-    }
-
   </style>
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
 </head>
 <body>
   <header>
@@ -197,40 +336,147 @@
       <div class="icons"></div>
       <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
     </div>
-    <a class="get-started" href="getting_started.html">Get Started</a>
+    <a class="button get-started" href="getting_started.html">Get Started</a>
+    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">Github</a>
 
-    <div class="links">
+    <nav class="links">
       <a href="getting_started.html">Documentation</a>
-      <a href="https://github.com/devongovett/bundler">Github</a>
-    </div>
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">Github</a>
+    </nav>
   </header>
 
   <main>
+    <div class="features">
+      <section>
+        <h3>🚀 Blazing fast bundle times</h3>
+        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+      </section>
+      <section>
+        <h3>📦 Bundle all your assets</h3>
+        <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+      </section>
+      <section>
+        <h3>🐠 Automatic transforms</h3>
+        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
+      </section>
+      <section>
+        <h3>✂️ Zero config code splitting</h3>
+        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
+      </section>
+      <section>
+        <h3>🔥 Hot module replacement</h3>
+        <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
+      </section>
+      <section>
+        <h3>🚨 Friendly error logging</h3>
+        <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
+      </section>
+    </div>
+
     <section>
-      <h2>🚀 Blazing fast bundle times</h2>
-      <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+      <h2>Hello World</h2>
+      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
+      <div class="examples">
+      <div class="example">
+        <p><strong>✏️ index.html</strong></p>
+        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>🛠 index.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+<span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
+
+main();</code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>🛠 main.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+<span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.css'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+  <span class="hljs-built_in">console</span>.log(classes.main);
+};</code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>💅 main.css</strong></p>
+        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+  <span class="hljs-comment">/* Reference an image file */</span>
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
+  <span class="hljs-attribute">color</span>: red;
+}</code></pre></div>
+      </div>
+
+      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
     </section>
+
     <section>
-      <h2>📦 Bundle all your assets</h2>
-      <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
-    </section>
-    <section>
-      <h2>🐠 Automatic transforms</h2>
-      <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
-    </section>
-    <section>
-      <h2>✂️ Zero config code splitting</h2>
-      <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
-    </section>
-    <section>
-      <h2>🔥 Hot module replacement</h2>
-      <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
-    </section>
-    <section>
-      <h2>🚨 Friendly error logging</h2>
-      <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
+      <h2>Benchmarks</h2>
+      <table>
+        <tr>
+          <th>Bundler</th>
+          <th>Time</th>
+        </tr>
+        <tr>
+          <td>browserify</td>
+          <td>22.98s</td>
+        </tr>
+        <tr>
+          <td>webpack</td>
+          <td>20.71s</td>
+        </tr>
+        <tr>
+          <td><strong>parcel</strong></td>
+          <td><strong>9.98s</strong></td>
+        </tr>
+        <tr>
+          <td><strong>parcel - with cache</strong></td>
+          <td><strong>2.64s</strong></td>
+        </tr>
+      </table>
+      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical CPUs.</p>
     </section>
   </main>
+
+  <footer>
+    <a class="button" href="getting_started.html">Get Started</a>
+    <div class="content">
+      <nav>
+        <h3>Documentation</h3>
+        <div>
+          <ul>
+            <li><a href="getting_started.html">🚀 Getting Started</a></li>
+            <li><a href="assets.html">📦 Assets</a></li>
+            <li><a href="transforms.html">🐠 Transforms</a></li>
+          </ul>
+          <ul>
+            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+            <li><a href="production.html">✨ Production</a></li>
+          </ul>
+        </div>
+      </nav>
+      <nav>
+        <h3>Links</h3>
+        <ul>
+          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">Github</a></li>
+          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="copyright">
+      Copyright ©
+      <script>document.write(new Date().getFullYear())</script>
+      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+    </div>
+  </footer>
 
   <script>
     var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw'];
