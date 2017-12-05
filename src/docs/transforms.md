@@ -39,13 +39,20 @@ Then, create a `.postcssrc`:
   "modules": true,
   "plugins": {
     "autoprefixer": {
-      "browsers": ["last 2 versions"]
+      "grid" true
     }
   }
 }
 ```
 
 Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+
+Target browsers for Autoprefixer, cssnext and other tools can be specified in `.browserslistrc` file:
+
+```
+> 1%
+last 2 versions
+```
 
 CSS Modules are enabled slightly differently using the a top-level `modules` key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install `postcss-modules` in your project.
 
