@@ -14,8 +14,12 @@ npm:
 npm install -g parcel-bundler
 ```
 
-Create a package.json file in your project directory using this command:
+Create a package.json file in your project directory using:
 
+```bash
+yarn init -y
+```
+or 
 ```bash
 npm init -y
 ```
