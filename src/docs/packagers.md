@@ -25,9 +25,9 @@ class MyPackager extends Packager {
 }
 ```
 
-## Registering an Asset Type
+## Registering a Packager
 
-You can register your asset type with a bundler using the `addPackager` method. It accepts a file type to register, and the path to your packager module.
+You can register your packager with a bundler using the `addPackager` method. It accepts a file type to register, and the path to your packager module.
 
 ```javascript
 const Bundler = require('parcel-bundler');
