@@ -26,7 +26,7 @@ parcel index.html
 
 Now open http://localhost:1234/ in your browser. If needed, you can also override the default port with the `-p` option.
 
-The development server when you don't have your own server, or your app is entirely client rendered. In case you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports HMR, but doesn't start a web server.
+The development server is for when you don't have your own server, or your app is entirely client rendered. In case you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports HMR, but doesn't start a web server.
 
 ```bash
 parcel watch index.html
