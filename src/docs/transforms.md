@@ -39,7 +39,7 @@ Then, create a `.postcssrc`:
   "modules": true,
   "plugins": {
     "autoprefixer": {
-      "grid" true
+      "grid": true
     }
   }
 }
