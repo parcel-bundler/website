@@ -35,3 +35,14 @@ async function renderPage(page) {
   return render();
 }
 ```
+
+If you decide to go for the async/await syntax remember to load babel-polyfill (tranform-runtime in case of libraries) and to relocate the code containing the async function into a separate module.
+
+```bash
+yarn add babel-polyfill
+```
+
+```javascript
+import "babel-polyfill";
+import "./app";
+```
