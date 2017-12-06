@@ -8,7 +8,7 @@ Parcel takes as input a single entry asset, which could be any type: a JS file, 
 
 ### 2. Constructing the Bundle Tree
 
-Once the asset tree as been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
 
 Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
 
