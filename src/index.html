@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,27 +9,60 @@
   <meta property="og:type" content="website" />
   <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
   <title>📦 Parcel</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16" />
+
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
-      font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-      background:#fefefe;
+      font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+      background: #fefefe;
     }
 
-    h1,h2,h3,h4,h5,h6{
-    font-weight:400;
-    color:#111;
-    line-height:1em;
-    font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+      color: #111;
+      line-height: 1em;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
-    h4,h5,h6{ font-weight: bold; }
-    h1{ font-size:3.2em; }
-    h2{ font-size:2em; }
-    h3{ font-size:1.5em; }
-    h4{ font-size:1.2em; }
-    h5{ font-size:1em; }
-    h6{ font-size:0.9em; }
+
+    h4,
+    h5,
+    h6 {
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 3.2em;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 1.2em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 0.9em;
+    }
 
     header {
       background: #21374B;
@@ -151,9 +185,9 @@
     main {
       max-width: 1000px;
       margin: 0 auto;
-      color:#444;
-      font-size:16px;
-      line-height:1.5em;
+      color: #444;
+      font-size: 16px;
+      line-height: 1.5em;
     }
 
     main section {
@@ -161,7 +195,7 @@
       box-sizing: border-box;
     }
 
-    main > section {
+    main>section {
       padding-top: 10px;
     }
 
@@ -177,8 +211,21 @@
       padding: 0 20px;
     }
 
-    pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
+    pre,
+    code,
+    kbd,
+    samp {
+      color: #000;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size: 0.98em;
+    }
+
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 12px;
+    }
 
     p code {
       font-size: 0.95em;
@@ -197,7 +244,8 @@
       background: #efefef;
     }
 
-    td, th {
+    td,
+    th {
       padding: 5px 10px;
       text-align: left;
       border: 1px solid #ddd;
@@ -342,15 +390,16 @@
       }
     }
   </style>
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
   </script>
 </head>
+
 <body>
   <header>
     <img class="logo" src="assets/logo.svg" alt="Parcel">
@@ -373,7 +422,8 @@
     <div class="features">
       <section>
         <h3>🚀 Blazing fast bundle times</h3>
-        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after
+          a restart.</p>
       </section>
       <section>
         <h3>📦 Bundle all your assets</h3>
@@ -381,11 +431,13 @@
       </section>
       <section>
         <h3>🐠 Automatic transforms</h3>
-        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
+        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even
+          <code>node_modules</code>.</p>
       </section>
       <section>
         <h3>✂️ Zero config code splitting</h3>
-        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
+        <p>Using the dynamic
+          <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
       </section>
       <section>
         <h3>🔥 Hot module replacement</h3>
@@ -399,45 +451,57 @@
 
     <section>
       <h2>Hello World</h2>
-      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
+      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole
+        app.
+      </p>
       <div class="examples">
-      <div class="example">
-        <p><strong>✏️ index.html</strong></p>
-        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+        <div class="example">
+          <p>
+            <strong>✏️ index.html</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-      </div>
+        </div>
 
-      <div class="example">
-        <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+        <div class="example">
+          <p>
+            <strong>🛠 index.js</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-      </div>
+        </div>
 
-      <div class="example">
-        <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+        <div class="example">
+          <p>
+            <strong>🛠 main.js</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-      </div>
+        </div>
 
-      <div class="example">
-        <p><strong>💅 main.css</strong></p>
-        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+        <div class="example">
+          <p>
+            <strong>💅 main.css</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
   <span class="hljs-comment">/* Reference an image file */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
-}</code></pre></div>
+}</code></pre>
+        </div>
       </div>
 
-      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
+      <p>Just run
+        <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
     </section>
 
     <section>
@@ -456,15 +520,25 @@ main();</code></pre>
           <td>20.71s</td>
         </tr>
         <tr>
-          <td><strong>parcel</strong></td>
-          <td><strong>9.98s</strong></td>
+          <td>
+            <strong>parcel</strong>
+          </td>
+          <td>
+            <strong>9.98s</strong>
+          </td>
         </tr>
         <tr>
-          <td><strong>parcel - with cache</strong></td>
-          <td><strong>2.64s</strong></td>
+          <td>
+            <strong>parcel - with cache</strong>
+          </td>
+          <td>
+            <strong>2.64s</strong>
+          </td>
         </tr>
       </table>
-      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical CPUs.</p>
+      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical
+        CPUs.
+      </p>
     </section>
   </main>
 
@@ -475,30 +549,48 @@ main();</code></pre>
         <h3>Documentation</h3>
         <div>
           <ul>
-            <li><a href="getting_started.html">🚀 Getting Started</a></li>
-            <li><a href="assets.html">📦 Assets</a></li>
-            <li><a href="transforms.html">🐠 Transforms</a></li>
+            <li>
+              <a href="getting_started.html">🚀 Getting Started</a>
+            </li>
+            <li>
+              <a href="assets.html">📦 Assets</a>
+            </li>
+            <li>
+              <a href="transforms.html">🐠 Transforms</a>
+            </li>
           </ul>
           <ul>
-            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-            <li><a href="production.html">✨ Production</a></li>
+            <li>
+              <a href="code_splitting.html">✂️ Code Splitting</a>
+            </li>
+            <li>
+              <a href="hmr.html">🔥 Hot Module Replacement</a>
+            </li>
+            <li>
+              <a href="production.html">✨ Production</a>
+            </li>
           </ul>
         </div>
       </nav>
       <nav>
         <h3>Links</h3>
         <ul>
-          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
-          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+          <li>
+            <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/parceljs" target="_blank">Twitter</a>
+          </li>
         </ul>
       </nav>
     </div>
     <div class="copyright">
       Copyright ©
-      <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+      <script>document.write(new Date().getFullYear())</script> Devon Govett. This website is
+      <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
     </div>
   </footer>
 
@@ -508,10 +600,10 @@ main();</code></pre>
 
     function spawn() {
       var icon = icons[Math.floor(Math.random() * icons.length)];
-      var svg = document.createElementNS("http://www.w3.org/2000/svg","svg")
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
       svg.style.left = (25 + Math.random() * 50) + '%';
       svg.setAttribute('class', "icon");
-      var use = document.createElementNS("http://www.w3.org/2000/svg","use")
+      var use = document.createElementNS("http://www.w3.org/2000/svg", "use")
       use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'assets/icons.svg#' + icon);
       svg.appendChild(use);
       container.appendChild(svg);
@@ -529,4 +621,5 @@ main();</code></pre>
     spawn();
   </script>
 </body>
+
 </html>
