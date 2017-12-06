@@ -13,9 +13,9 @@ h3:hover .header-link:before,
 h4:hover .header-link:before,
 h5:hover .header-link:before,
 h6:hover .header-link:before {
-    content: "\00B6";/* pilcrow */
-    color: #888;
-    font-size: smaller;
+  content: "\00B6"; /* pilcrow */
+  color: #888;
+  font-size: smaller;
 }
 
 .header-link {
