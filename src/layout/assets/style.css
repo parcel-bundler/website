@@ -12,6 +12,10 @@ box-sizing: border-box;
 width: 100%;
 }
 
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 header {
   position: -webkit-sticky;
   position: sticky;
