@@ -5,11 +5,13 @@ Parcel is a web application bundler, differentiated by its developer experience.
 First install Parcel using Yarn or npm:
 
 Yarn:
+
 ```bash
 yarn global add parcel-bundler
 ```
 
 npm:
+
 ```bash
 npm install -g parcel-bundler
 ```
@@ -19,7 +21,9 @@ Create a package.json file in your project directory using:
 ```bash
 yarn init -y
 ```
-or 
+
+or
+
 ```bash
 npm init -y
 ```

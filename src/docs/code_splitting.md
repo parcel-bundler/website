@@ -7,7 +7,7 @@ Code splitting is controlled by use of the dynamic `import()` function [syntax p
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
 ```javascript
-import('./pages/about').then(function (page) {
+import("./pages/about").then(function(page) {
   // Render page
 });
 ```
@@ -25,8 +25,8 @@ Dynamic imports are also lazily loaded in Parcel, so you can still put all your 
 // Setup a map of page names to dynamic imports.
 // These are not loaded until they are used.
 const pages = {
-  about: import('./pages/about'),
-  blog: import('./pages/blog')
+  about: import("./pages/about"),
+  blog: import("./pages/blog")
 };
 
 async function renderPage(page) {

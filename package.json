@@ -10,16 +10,27 @@
     "serve": "^6.3.1"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
     "markdown-styles": "^3.1.10",
     "now": "^8.3.10",
-    "npm-run-all": "^4.1.1"
+    "npm-run-all": "^4.1.1",
+    "prettier": "^1.9.1"
   },
   "scripts": {
+    "format": "prettier --write './src/**/*.{js,md,css}'",
+    "precommit": "lint-staged",
     "build": "npm-run-all clean build:*",
     "clean": "rm -rf dist",
     "build:docs": "generate-md --layout ./src/layout --input src/docs/ --output dist/",
     "build:index": "cp src/index.html dist/index.html",
     "start": "serve dist",
     "deploy": "now"
+  },
+  "lint-staged": {
+    "*.{js,md,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
