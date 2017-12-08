@@ -7,19 +7,25 @@
   "author": "Devon Govett <devongovett@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cssnano": "^3.10.0",
     "serve": "^6.3.1"
   },
   "devDependencies": {
     "markdown-styles": "^3.1.10",
     "now": "^8.3.10",
     "now-travis": "^1.2.0",
-    "npm-run-all": "^4.1.1"
+    "npm-run-all": "^4.1.1",
+    "postcss": "^6.0.14",
+    "postcss-cli": "^4.1.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0"
   },
   "scripts": {
     "build": "npm-run-all clean build:*",
     "clean": "rm -rf dist",
     "build:docs": "generate-md --layout ./src/layout --input src/docs/ --output dist/",
     "build:index": "cp src/index.html dist/index.html",
+    "build:css": "postcss src/styles/*.pcss --dir dist/styles -x css -c postcss.config.js --no-map",
     "start": "serve dist",
     "deploy": "now"
   }

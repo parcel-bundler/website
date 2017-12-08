@@ -1,0 +1,29 @@
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+
+  &:hover {
+    & .header-link {
+
+      display: inline-block;
+      text-decoration: none;
+
+      &:before {
+        content: "\00B6"; /* pilcrow */
+        color: #888;
+        font-size: smaller;
+      }
+    }
+
+  }
+
+}
+
+
+.header-link {
+  user-select: none;
+  position: absolute;
+  top: -0.11em;
+  left: -0.7em;
+  display: block;
+  padding-right: 1em;
+}

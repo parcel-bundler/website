@@ -1,531 +1,214 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="📦 Parcel" />
-  <meta property="og:url" content="https://parceljs.org/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
-  <title>📦 Parcel</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-      background:#fefefe;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="📦 Parcel"/>
+    <meta property="og:url" content="https://parceljs.org/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Blazing fast, zero configuration web application bundler"/>
+    <title>📦 Parcel</title>
+    <link type="text/css" rel="stylesheet" href="styles/hljs-github.css"/>
+    <link type="text/css" rel="stylesheet" href="styles/home.css"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
 
-    h1,h2,h3,h4,h5,h6{
-    font-weight:400;
-    color:#111;
-    line-height:1em;
-    font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-    h4,h5,h6{ font-weight: bold; }
-    h1{ font-size:3.2em; }
-    h2{ font-size:2em; }
-    h3{ font-size:1.5em; }
-    h4{ font-size:1.2em; }
-    h5{ font-size:1em; }
-    h6{ font-size:0.9em; }
+      function gtag () {dataLayer.push(arguments)}
 
-    header {
-      background: #21374B;
-      color: #E7DACB;
-      text-align: center;
-      padding: 80px 0 50px 0;
-      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-    .logo {
-      width: 70%;
-      max-width: 300px;
-      margin-bottom: 10px;
-    }
-
-    header h2 {
-      margin: 0;
-      font-size: 1.5em;
-      color: #E7DACB;
-    }
-
-    .parcel {
-      display: block;
-      max-width: 600px;
-      margin: 0 auto;
-      margin-top: 120px;
-      position: relative;
-    }
-
-    .parcel img {
-      width: 100%;
-    }
-
-    .parcel .icons {
-      position: absolute;
-      top: -100px;
-      left: 0;
-      width: 100%;
-    }
-
-    .parcel img:last-child {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .icon {
-      width: 42px;
-      height: 65px;
-      background-size: cover;
-      position: absolute;
-      left: 0;
-      animation: animate 3s ease-in-out;
-      opacity: 0;
-    }
-
-    @keyframes animate {
-      from {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-      }
-
-      25% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      to {
-        transform: translate3d(0, 450%, 0) scale(0.9);
-        opacity: 0;
-      }
-    }
-
-    .button {
-      display: inline-block;
-      padding: 8px 0;
-      width: 180px;
-      color: #E7DACB;
-      border: 1px solid #E7DACB;
-      border-radius: 50px;
-      text-decoration: none;
-      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 20px;
-      transition: opacity 200ms;
-      text-align: center;
-      margin: 0 5px;
-    }
-
-    .button:hover {
-      opacity: 1;
-    }
-
-    .get-started {
-      background: #E7DACB;
-      color: #21374B;
-    }
-
-    header .links {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 20px;
-    }
-
-    header .links a {
-      color: #E7DACB;
-      text-decoration: none;
-      padding-left: 20px;
-      transition: color 125ms;
-    }
-
-    header .links a:hover {
-      color: #27ae60;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      color:#444;
-      font-size:16px;
-      line-height:1.5em;
-    }
-
-    main section {
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    main > section {
-      padding-top: 10px;
-    }
-
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      margin-top: 20px;
-    }
-
-    .features section {
-      width: 333px;
-      padding: 0 20px;
-    }
-
-    pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
-
-    p code {
-      font-size: 0.95em;
-      background-color: #f8f8f8;
-      border-radius: 3px;
-      padding: 0 0.2em;
-      display: inline-block;
-    }
-
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-    }
-
-    tr:nth-child(2n + 1) {
-      background: #efefef;
-    }
-
-    td, th {
-      padding: 5px 10px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-
-    .examples {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .example {
-      width: 50%;
-      box-sizing: border-box;
-    }
-
-    .example:nth-child(2n) {
-      padding-left: 20px;
-    }
-
-    footer {
-      background: #21374B;
-      color: #E7DACB;
-      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      padding: 40px 0 20px 0;
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    footer .content {
-      display: flex;
-      max-width: 960px;
-      justify-content: center;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    footer nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: inline-block;
-      padding-right: 80px;
-    }
-
-    footer nav a,
-    footer .copyright a {
-      color: #E7DACB;
-      text-decoration: none;
-      transition: color 125ms;
-      line-height: 1.7em;
-    }
-
-    footer nav a:hover,
-    footer .copyright a:hover {
-      color: #27ae60;
-    }
-
-    footer .button {
-      margin-bottom: 40px;
-      font-size: 20px;
-    }
-
-    footer h3 {
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 13px;
-      opacity: 0.7;
-      color: #E7DACB;
-    }
-
-    footer .copyright {
-      margin-top: 40px;
-      color: rgba(231, 218, 203, 0.7);
-      font-size: 14px;
-    }
-
-    footer .copyright a {
-      color: rgba(231, 218, 203, 0.7);
-    }
-
-    @media only screen and (max-width: 770px) {
-      .example {
-        width: 100%;
-        padding-left: 0 !important;
-      }
-    }
-
-    @media only screen and (max-width: 480px) {
-      header {
-        padding-top: 60px;
-        padding-bottom: 15px;
-      }
-
-      header h2 {
-        font-size: 1.2em;
-        padding: 0 40px;
-      }
-
-      header .button {
-        margin: 5px;
-      }
-
-      .logo {
-        margin-bottom: 10px;
-      }
-
-      .parcel {
-        margin-top: 120px;
-      }
-
-      .icon {
-        width: 40px;
-        height: 52px;
-      }
-
-      .button {
-        margin-top: 0;
-      }
-
-      .features section {
-        padding: 0;
-      }
-
-      footer .content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      footer nav ul {
-        padding-right: 0;
-        display: block;
-        width: 200px;
-      }
-
-      footer nav {
-        padding-bottom: 20px;
-      }
-
-      footer .copyright {
-        width: 200px;
-        margin: 0 auto;
-      }
-    }
-  </style>
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
 </head>
 <body>
-  <header>
+<header>
     <img class="logo" src="assets/logo.svg" alt="Parcel">
     <h2>Blazing fast, zero configuration web application bundler</h2>
     <div class="parcel">
-      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
-      <div class="icons"></div>
-      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
+        <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
+        <div class="icons"></div>
+        <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
     </div>
     <a class="button get-started" href="getting_started.html">Get Started</a>
     <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
     <nav class="links">
-      <a href="getting_started.html">Documentation</a>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+        <a href="getting_started.html">Documentation</a>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
     </nav>
-  </header>
+</header>
 
-  <main>
+<main>
     <div class="features">
-      <section>
-        <h3>🚀 Blazing fast bundle times</h3>
-        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
-      </section>
-      <section>
-        <h3>📦 Bundle all your assets</h3>
-        <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
-      </section>
-      <section>
-        <h3>🐠 Automatic transforms</h3>
-        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
-      </section>
-      <section>
-        <h3>✂️ Zero config code splitting</h3>
-        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
-      </section>
-      <section>
-        <h3>🔥 Hot module replacement</h3>
-        <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
-      </section>
-      <section>
-        <h3>🚨 Friendly error logging</h3>
-        <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
-      </section>
+        <section>
+            <h3>🚀 Blazing fast bundle times</h3>
+            <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast
+                rebuilds even after a restart.</p>
+        </section>
+        <section>
+            <h3>📦 Bundle all your assets</h3>
+            <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+        </section>
+        <section>
+            <h3>🐠 Automatic transforms</h3>
+            <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.
+            </p>
+        </section>
+        <section>
+            <h3>✂️ Zero config code splitting</h3>
+            <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what
+                is needed on initial load.</p>
+        </section>
+        <section>
+            <h3>🔥 Hot module replacement</h3>
+            <p>Parcel automatically updates modules in the browser as you make changes during development, no
+                configuration needed.</p>
+        </section>
+        <section>
+            <h3>🚨 Friendly error logging</h3>
+            <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the
+                problem.</p>
+        </section>
     </div>
 
     <section>
-      <h2>Hello World</h2>
-      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
-      <div class="examples">
-      <div class="example">
-        <p><strong>✏️ index.html</strong></p>
-        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+        <h2>Hello World</h2>
+        <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your
+            whole app.</p>
+        <div class="examples">
+            <div class="example">
+                <p><strong>✏️ index.html</strong></p>
+                <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span
+          class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span
+                            class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-      </div>
+            </div>
 
-      <div class="example">
-        <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
-<span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
+            <div class="example">
+                <p><strong>🛠 index.js</strong></p>
+                <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+<span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span
+                            class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-      </div>
+            </div>
 
-      <div class="example">
-        <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+            <div class="example">
+                <p><strong>🛠 main.js</strong></p>
+                <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-      </div>
+            </div>
 
-      <div class="example">
-        <p><strong>💅 main.css</strong></p>
-        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+            <div class="example">
+                <p><strong>💅 main.css</strong></p>
+                <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
   <span class="hljs-comment">/* Reference an image file */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
-}</code></pre></div>
-      </div>
+}</code></pre>
+            </div>
+        </div>
 
-      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
+        <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more
+            just works! 👌</p>
     </section>
 
     <section>
-      <h2>Benchmarks</h2>
-      <table>
-        <tr>
-          <th>Bundler</th>
-          <th>Time</th>
-        </tr>
-        <tr>
-          <td>browserify</td>
-          <td>22.98s</td>
-        </tr>
-        <tr>
-          <td>webpack</td>
-          <td>20.71s</td>
-        </tr>
-        <tr>
-          <td><strong>parcel</strong></td>
-          <td><strong>9.98s</strong></td>
-        </tr>
-        <tr>
-          <td><strong>parcel - with cache</strong></td>
-          <td><strong>2.64s</strong></td>
-        </tr>
-      </table>
-      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical CPUs.</p>
+        <h2>Benchmarks</h2>
+        <table>
+            <tr>
+                <th>Bundler</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <td>browserify</td>
+                <td>22.98s</td>
+            </tr>
+            <tr>
+                <td>webpack</td>
+                <td>20.71s</td>
+            </tr>
+            <tr>
+                <td><strong>parcel</strong></td>
+                <td><strong>9.98s</strong></td>
+            </tr>
+            <tr>
+                <td><strong>parcel - with cache</strong></td>
+                <td><strong>2.64s</strong></td>
+            </tr>
+        </table>
+        <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with
+            4 physical CPUs.</p>
     </section>
-  </main>
+</main>
 
-  <footer>
+<footer>
     <a class="button" href="getting_started.html">Get Started</a>
     <div class="content">
-      <nav>
-        <h3>Documentation</h3>
-        <div>
-          <ul>
-            <li><a href="getting_started.html">🚀 Getting Started</a></li>
-            <li><a href="assets.html">📦 Assets</a></li>
-            <li><a href="transforms.html">🐠 Transforms</a></li>
-          </ul>
-          <ul>
-            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-            <li><a href="production.html">✨ Production</a></li>
-          </ul>
-        </div>
-      </nav>
-      <nav>
-        <h3>Links</h3>
-        <ul>
-          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
-          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
-        </ul>
-      </nav>
+        <nav>
+            <h3>Documentation</h3>
+            <div>
+                <ul>
+                    <li><a href="getting_started.html">🚀 Getting Started</a></li>
+                    <li><a href="assets.html">📦 Assets</a></li>
+                    <li><a href="transforms.html">🐠 Transforms</a></li>
+                </ul>
+                <ul>
+                    <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+                    <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+                    <li><a href="production.html">✨ Production</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav>
+            <h3>Links</h3>
+            <ul>
+                <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+                <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+                <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="copyright">
-      Copyright ©
-      <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+        Copyright ©
+        <script>document.write(new Date().getFullYear())</script>
+        Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open
+        source</a>.
     </div>
-  </footer>
+</footer>
 
-  <script>
-    var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw'];
-    var container = document.querySelector('.icons');
+<script>
+  var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw']
+  var container = document.querySelector('.icons')
 
-    function spawn() {
-      var icon = icons[Math.floor(Math.random() * icons.length)];
-      var svg = document.createElementNS("http://www.w3.org/2000/svg","svg")
-      svg.style.left = (25 + Math.random() * 50) + '%';
-      svg.setAttribute('class', "icon");
-      var use = document.createElementNS("http://www.w3.org/2000/svg","use")
-      use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'assets/icons.svg#' + icon);
-      svg.appendChild(use);
-      container.appendChild(svg);
+  function spawn () {
+    var icon = icons[Math.floor(Math.random() * icons.length)]
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svg.style.left = (25 + Math.random() * 50) + '%'
+    svg.setAttribute('class', 'icon')
+    var use = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'assets/icons.svg#' + icon)
+    svg.appendChild(use)
+    container.appendChild(svg)
 
-      setTimeout(function () {
-        container.removeChild(svg);
-      }, 3000);
-    }
+    setTimeout(function () {
+      container.removeChild(svg)
+    }, 3000)
+  }
 
-    setTimeout(function run() {
-      spawn();
-      setTimeout(run, 500 + Math.random() * 400);
-    }, 500 + Math.random() * 400);
+  setTimeout(function run () {
+    spawn()
+    setTimeout(run, 500 + Math.random() * 400)
+  }, 500 + Math.random() * 400)
 
-    spawn();
-  </script>
+  spawn()
+</script>
 </body>
 </html>
