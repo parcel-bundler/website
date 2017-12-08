@@ -10,7 +10,7 @@ Parcel plugins are very simple. They are simply modules that export a single fun
 
 ```javascript
 module.exports = function (bundler) {
-  bundler.addAssetType('ext', require.resolve('./MyAsset'));
+  bundler.addAssetType('.ext', require.resolve('./MyAsset'));
   bundler.addPackager('foo', require.resolve('./MyPackager'));
 };
 ```
