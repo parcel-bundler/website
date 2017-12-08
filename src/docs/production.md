@@ -6,10 +6,12 @@ When it comes time to bundle your application for production, you can use Parcel
 parcel build entry.js
 ```
 
-To change the default destination, add the desired location at the end of the command.
+To change the output directory that bundles are written to, you can pass `--out-dir [directory]`
 
 ```bash
-parcel build entry.js -d destination_folder
+parcel build entry.js --out-dir dist
+# or -d for short:
+parcel build entry.js -d dist
 ```
 
 This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are [uglify-js](https://github.com/mishoo/UglifyJS2/) for JavaScript, [cssnano](http://cssnano.co) for CSS, and [htmlnano](https://github.com/posthtml/htmlnano) for HTML.
