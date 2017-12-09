@@ -9,6 +9,7 @@ The following example shows how you might use dynamic imports to load a sub-page
 ```javascript
 import('./pages/about').then(function (page) {
   // Render page
+  page.default();
 });
 ```
 
@@ -17,6 +18,7 @@ Because `import()` returns a Promise, you can also use async/await syntax. You p
 ```javascript
 const page = await import('./pages/about');
 // Render page
+page.default();
 ```
 
 Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
@@ -29,10 +31,10 @@ const pages = {
   blog: import('./pages/blog')
 };
 
-async function renderPage(page) {
+async function renderPage(name) {
   // Lazily load the requested page.
-  const render = await pages[page];
-  return render();
+  const page = await pages[name];
+  return page.default();
 }
 ```
 
