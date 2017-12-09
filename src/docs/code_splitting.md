@@ -7,9 +7,15 @@ Code splitting is controlled by use of the dynamic `import()` function [syntax p
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
 ```javascript
+// pages/about.js
+export function render() {
+  // Render the page
+}
+```
+```javascript
 import('./pages/about').then(function (page) {
   // Render page
-  page.default();
+  page.render();
 });
 ```
 
@@ -18,7 +24,7 @@ Because `import()` returns a Promise, you can also use async/await syntax. You p
 ```javascript
 const page = await import('./pages/about');
 // Render page
-page.default();
+page.render();
 ```
 
 Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
@@ -34,7 +40,7 @@ const pages = {
 async function renderPage(name) {
   // Lazily load the requested page.
   const page = await pages[name];
-  return page.default();
+  return page.render();
 }
 ```
 
