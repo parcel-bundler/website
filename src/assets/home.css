@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  min-width: 250px;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
   background:#fefefe;
 }
@@ -325,7 +326,7 @@ footer .copyright a {
   }
 
   .features section {
-    padding: 0;
+    padding: 0 1rem;
   }
 
   footer .content {
@@ -341,6 +342,8 @@ footer .copyright a {
 
   footer nav {
     padding-bottom: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   footer .copyright {
