@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link type="text/css" rel="stylesheet" href="{{asset 'style.css'}}" />
-  <link type="text/css" rel="stylesheet" href="{{asset 'pilcrow.css'}}" />
-  <link type="text/css" rel="stylesheet" href="{{asset 'hljs-github.min.css'}}"/>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="styles/pilocrow.css"/>
+    <link type="text/css" rel="stylesheet" href="styles/hljs-github.css"/>
+    <link type="text/css" rel="stylesheet" href="styles/page.css"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+
+      function gtag () {dataLayer.push(arguments)}
+
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
 </head>
 <body>
-  <header>
+<header>
     <a class="logo" href="/">
-      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
-      <img class="type" src="assets/logo.svg" alt="Parcel">
+        <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x"
+             height="30">
+        <img class="type" src="assets/logo.svg" alt="Parcel">
     </a>
     <div class="links">
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
     </div>
-  </header>
-  <div class="content">
+</header>
+<div class="content">
     <nav>
-      <ul>
-        <li><a href="getting_started.html">🚀 Getting Started</a></li>
-        <li><a href="assets.html">📦 Assets</a></li>
-        <li><a href="transforms.html">🐠 Transforms</a></li>
-        <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-        <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-        <li><a href="production.html">✨ Production</a></li>
-      </ul>
-      <h3>Advanced</h3>
-      <ul>
-        <li><a href="how_it_works.html">🛠 How It Works</a></li>
-        <li><a href="asset_types.html">📝 Asset Types</a></li>
-        <li><a href="packagers.html">📦 Packagers</a></li>
-        <li><a href="plugins.html">🔌 Plugins</a></li>
-      </ul>
+        <ul>
+            <li><a href="getting_started.html">🚀 Getting Started</a></li>
+            <li><a href="assets.html">📦 Assets</a></li>
+            <li><a href="transforms.html">🐠 Transforms</a></li>
+            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+            <li><a href="production.html">✨ Production</a></li>
+        </ul>
+        <h3>Advanced</h3>
+        <ul>
+            <li><a href="how_it_works.html">🛠 How It Works</a></li>
+            <li><a href="asset_types.html">📝 Asset Types</a></li>
+            <li><a href="packagers.html">📦 Packagers</a></li>
+            <li><a href="plugins.html">🔌 Plugins</a></li>
+        </ul>
     </nav>
     <main>
-      {{~> content}}
+        {{~> content}}
     </main>
-  </div>
-  <script>
-    (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+</div>
+<script>
+  (function () {
+    var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+      return a.href === window.location.href
+    })
 
-      activeLink.classList.add('selected');
-    })();
-  </script>
+    activeLink.classList.add('selected')
+  })()
+</script>
 </body>
 </html>
