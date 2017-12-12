@@ -1,0 +1,615 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="📦 Parcel" />
+  <meta property="og:url" content="https://parceljs.org/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
+  <title>📦 Parcel 한국어판</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+      background: #fefefe;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 400;
+      color: #111;
+      line-height: 1em;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    h4,
+    h5,
+    h6 {
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 3.2em;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    h4 {
+      font-size: 1.2em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 0.9em;
+    }
+
+    header {
+      background: #21374B;
+      color: #E7DACB;
+      text-align: center;
+      padding: 80px 0 50px 0;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .logo {
+      width: 70%;
+      max-width: 300px;
+      margin-bottom: 10px;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #E7DACB;
+    }
+
+    .parcel {
+      display: block;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 120px;
+      position: relative;
+    }
+
+    .parcel img {
+      width: 100%;
+    }
+
+    .parcel .icons {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+    }
+
+    .parcel img:last-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .icon {
+      width: 42px;
+      height: 65px;
+      background-size: cover;
+      position: absolute;
+      left: 0;
+      animation: animate 3s ease-in-out;
+      opacity: 0;
+    }
+
+    @keyframes animate {
+      from {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate3d(0, 450%, 0) scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    .button {
+      display: inline-block;
+      padding: 8px 0;
+      width: 180px;
+      color: #E7DACB;
+      border: 1px solid #E7DACB;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 20px;
+      transition: opacity 200ms;
+      text-align: center;
+      margin: 0 5px;
+    }
+
+    .button:hover {
+      opacity: 1;
+    }
+
+    .get-started {
+      background: #E7DACB;
+      color: #21374B;
+    }
+
+    header .links {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 20px;
+    }
+
+    header .links a {
+      color: #E7DACB;
+      text-decoration: none;
+      padding-left: 20px;
+      transition: color 125ms;
+    }
+
+    header .links a:hover {
+      color: #27ae60;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      color: #444;
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+
+    main section {
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    main>section {
+      padding-top: 10px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-top: 20px;
+    }
+
+    .features section {
+      width: 333px;
+      padding: 0 20px;
+    }
+
+    pre,
+    code,
+    kbd,
+    samp {
+      color: #000;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size: 0.98em;
+    }
+
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 12px;
+    }
+
+    p code {
+      font-size: 0.95em;
+      background-color: #f8f8f8;
+      border-radius: 3px;
+      padding: 0 0.2em;
+      display: inline-block;
+    }
+
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+
+    tr:nth-child(2n + 1) {
+      background: #efefef;
+    }
+
+    td,
+    th {
+      padding: 5px 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .examples {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .example {
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .example:nth-child(2n) {
+      padding-left: 20px;
+    }
+
+    footer {
+      background: #21374B;
+      color: #E7DACB;
+      font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding: 40px 0 20px 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    footer .content {
+      display: flex;
+      max-width: 960px;
+      justify-content: center;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    footer nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      padding-right: 80px;
+    }
+
+    footer nav a,
+    footer .copyright a {
+      color: #E7DACB;
+      text-decoration: none;
+      transition: color 125ms;
+      line-height: 1.7em;
+    }
+
+    footer nav a:hover,
+    footer .copyright a:hover {
+      color: #27ae60;
+    }
+
+    footer .button {
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
+
+    footer h3 {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 13px;
+      opacity: 0.7;
+      color: #E7DACB;
+    }
+
+    footer .copyright {
+      margin-top: 40px;
+      color: rgba(231, 218, 203, 0.7);
+      font-size: 14px;
+    }
+
+    footer .copyright a {
+      color: rgba(231, 218, 203, 0.7);
+    }
+
+    @media only screen and (max-width: 770px) {
+      .example {
+        width: 100%;
+        padding-left: 0 !important;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      header {
+        padding-top: 60px;
+        padding-bottom: 15px;
+      }
+
+      header h2 {
+        font-size: 1.2em;
+        padding: 0 40px;
+      }
+
+      header .button {
+        margin: 5px;
+      }
+
+      .logo {
+        margin-bottom: 10px;
+      }
+
+      .parcel {
+        margin-top: 120px;
+      }
+
+      .icon {
+        width: 40px;
+        height: 52px;
+      }
+
+      .button {
+        margin-top: 0;
+      }
+
+      .features section {
+        padding: 0;
+      }
+
+      footer .content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      footer nav ul {
+        padding-right: 0;
+        display: block;
+        width: 200px;
+      }
+
+      footer nav {
+        padding-bottom: 20px;
+      }
+
+      footer .copyright {
+        width: 200px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+
+<body>
+  <header>
+    <img class="logo" src="assets/logo.svg" alt="Parcel">
+    <h2>불꽃 튀게 빠른, 설정 없는 웹 애플리케이션 번들러</h2>
+    <div class="parcel">
+      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
+      <div class="icons"></div>
+      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
+    </div>
+    <a class="button get-started" href="getting_started.html">시작하기</a>
+    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+
+    <nav class="links">
+      <a href="getting_started.html">문서</a>
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="features">
+      <section>
+        <h3>🚀 불꽃 튀게 빠른 번들</h3>
+        <p>Parcel은 워커 프로세스를 이용하여 멀티코어 컴파일을 가능케 하고, 심지어 재시작 후라 해도 빠른 리빌드를 할 수 있도록 파일시스템 캐시를 갖고 있습니다.</p>
+      </section>
+      <section>
+        <h3>📦 모든 애셋 번들</h3>
+        <p>Parcel은 JS, CSS, HTML, 파일 애셋, 그 외 많은 것들에 대한 지원을 즉시 제공합니다 - 플러그인 없이요.</p>
+      </section>
+      <section>
+        <h3>🐠 자동 변환</h3>
+        <p>필요하다면 Babel, PostCSS, PostHTML을 사용하는 코드는 자동으로 변환됩니다 - 심지어
+          <code>node_modules</code>까지도.</p>
+      </section>
+      <section>
+        <h3>✂️ 설정 없는 코드 분할</h3>
+        <p>Parcel은 동적
+          <code>import()</code>문을 사용해서 출력 번들을 분할 할 수 있습니다. 이를 통해 초기 로드시 필요한 것들만 로드할 수 있습니다.</p>
+      </section>
+      <section>
+        <h3>🔥 핫 모듈 리플레이스먼트</h3>
+        <p>Parcel은 설정 없이 자동으로 개발중의 변화를 갱신하여 브라우저에 나타냅니다.</p>
+      </section>
+      <section>
+        <h3>🚨 친절한 에러 로그</h3>
+        <p>Parcel은 오류 발생시 도움이 되도록 문제를 정확히 집어주는 구문 강조 코드 프레임을 출력합니다.</p>
+      </section>
+    </div>
+
+    <section>
+      <h2>Hello World</h2>
+      <p>애플리케이션을 위한 진입 HTML 파일로 시작하세요. Parcel이 의존성을 따라 전체 앱을 빌드합니다.</p>
+      <div class="examples">
+        <div class="example">
+          <p>
+            <strong>✏️ index.html</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+        </div>
+
+        <div class="example">
+          <p>
+            <strong>🛠 index.js</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-comment">// 다른 컴포넌트 임포트</span>
+<span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
+
+main();</code></pre>
+        </div>
+
+        <div class="example">
+          <p>
+            <strong>🛠 main.js</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-comment">// CSS 모듈 임포트</span>
+<span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+  <span class="hljs-built_in">console</span>.log(classes.main);
+};</code></pre>
+        </div>
+
+        <div class="example">
+          <p>
+            <strong>💅 main.css</strong>
+          </p>
+          <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+  <span class="hljs-comment">/* 이미지 파일 참조 */</span>
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
+  <span class="hljs-attribute">color</span>: red;
+}</code></pre>
+        </div>
+      </div>
+
+      <p>
+        <code>parcel index.html</code>로 개발용 서버를 구동하세요. JavaScript, CSS, images, 그 밖에 다양한 것들이 제대로 임포트 될겁니다! 👌</p>
+    </section>
+
+    <section>
+      <h2>벤치마크</h2>
+      <table>
+        <tr>
+          <th>번들러</th>
+          <th>시간</th>
+        </tr>
+        <tr>
+          <td>browserify</td>
+          <td>22.98초</td>
+        </tr>
+        <tr>
+          <td>webpack</td>
+          <td>20.71초</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>parcel</strong>
+          </td>
+          <td>
+            <strong>9.98초</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>parcel - 캐시</strong>
+          </td>
+          <td>
+            <strong>2.64초</strong>
+          </td>
+        </tr>
+      </table>
+      <p>무리 없는 크기, 1726개의 module을 포함한, 미 압축 6.5M의 app 기준. 4개의 물리 CPU가 있는 2016형 MacBook Pro에서 빌드됨.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="button" href="getting_started.html">시작하기</a>
+    <div class="content">
+      <nav>
+        <h3>문서</h3>
+        <div>
+          <ul>
+            <li>
+              <a href="getting_started.html">🚀 시작하기</a>
+            </li>
+            <li>
+              <a href="assets.html">📦 애셋</a>
+            </li>
+            <li>
+              <a href="transforms.html">🐠 변환</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="code_splitting.html">✂️ 코드 분할</a>
+            </li>
+            <li>
+              <a href="hmr.html">🔥 핫 모듈 리플레이스먼트</a>
+            </li>
+            <li>
+              <a href="production.html">✨ 프로덕션</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav>
+        <h3>링크</h3>
+        <ul>
+          <li>
+            <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/parceljs" target="_blank">Twitter</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="copyright">
+      Copyright ©
+      <script>document.write(new Date().getFullYear())</script> Devon Govett. 이 웹사이트는
+      <a href="https://github.com/parcel-bundler/website" target="_blank">오픈 소스</a>입니다.
+    </div>
+  </footer>
+
+  <script>
+    var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw'];
+    var container = document.querySelector('.icons');
+
+    function spawn() {
+      var icon = icons[Math.floor(Math.random() * icons.length)];
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+      svg.style.left = (25 + Math.random() * 50) + '%';
+      svg.setAttribute('class', "icon");
+      var use = document.createElementNS("http://www.w3.org/2000/svg", "use")
+      use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'assets/icons.svg#' + icon);
+      svg.appendChild(use);
+      container.appendChild(svg);
+
+      setTimeout(function () {
+        container.removeChild(svg);
+      }, 3000);
+    }
+
+    setTimeout(function run() {
+      spawn();
+      setTimeout(run, 500 + Math.random() * 400);
+    }, 500 + Math.random() * 400);
+
+    spawn();
+  </script>
+</body>
+
+</html>

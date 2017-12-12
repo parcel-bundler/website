@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="{{asset 'style.css'}}" />
+  <link type="text/css" rel="stylesheet" href="{{asset 'pilcrow.css'}}" />
+  <link type="text/css" rel="stylesheet" href="{{asset 'hljs-github.min.css'}}" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li>
+          <a href="getting_started.html">🚀 시작하기</a>
+        </li>
+        <li>
+          <a href="assets.html">📦 애셋</a>
+        </li>
+        <li>
+          <a href="transforms.html">🐠 변환</a>
+        </li>
+        <li>
+          <a href="code_splitting.html">✂️ 코드 분할</a>
+        </li>
+        <li>
+          <a href="hmr.html">🔥 핫 모듈 리플레이스먼트</a>
+        </li>
+        <li>
+          <a href="production.html">✨ 프로덕션</a>
+        </li>
+      </ul>
+      <h3>Advanced</h3>
+      <ul>
+        <li>
+          <a href="how_it_works.html">🛠 어떻게 동작하는가</a>
+        </li>
+        <li>
+          <a href="asset_types.html">📝 애셋 유형</a>
+        </li>
+        <li>
+          <a href="packagers.html">📦 패키저</a>
+        </li>
+        <li>
+          <a href="plugins.html">🔌 플러그인</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      {{~> content}}
+    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+
+</html>
