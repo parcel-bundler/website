@@ -55,6 +55,17 @@ CSS assets can be imported from a JavaScript or HTML file, and can contain depen
 
 In addition to plain CSS, other compile-to-CSS languages like LESS, SASS, and Stylus are also supported, and work the same way.
 
+## SCSS
+SCSS compilation needs `node-sass` module. To install it with npm:
+```
+npm install node-sass
+```
+Once you have `node-sass` installed you can import SCSS files from JavaScript files.
+```
+import './custom.scss'
+```
+Dependencies in the SCSS files can be used with the `@import` statements.
+
 ## HTML
 
 HTML assets are often the entry file that you provide to Parcel, but can also be referenced by JavaScript files, e.g. to provide links to other pages. URLs to scripts, styles, media, and other HTML files are extracted and compiled as described above. The references are rewritten in the HTML so that they link to the correct output files. All filenames should be relative to the current HTML file.
