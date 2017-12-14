@@ -49,6 +49,52 @@ header .links a {
   font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.language-dropdown {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 22px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.language-dropdown ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #E7DACB;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.language-dropdown li {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.language-dropdown li a {
+  padding: 0;
+}
+
+.language-dropdown li:hover {
+  background-color: #27ae60;
+}
+
+.language-dropdown:hover {
+  background-color: #E7DACB;
+  border-radius: 4px 4px 0 0;
+}
+
+.language-dropdown:hover ul {
+  display: block;
+}
+
 .content {
   display: flex;
   width: 100%;

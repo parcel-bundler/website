@@ -20,7 +20,7 @@ Default: "dist"
 ```bash
 parcel build entry.js --out-dir build/output
 or
-parcel build entry.js -d build/output 
+parcel build entry.js -d build/output
 ```
 
 ```base
@@ -45,12 +45,12 @@ will output:
 or
 <script src="e5f6g7h8.js"></script>
 ```
-    
-    
-#### Disable minification    
+
+
+#### Disable minification
 
 Default: minification enabled
-    
+
 ```
 parcel build entry.js --no-minify
 ```
