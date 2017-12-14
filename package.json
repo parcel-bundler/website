@@ -7,7 +7,7 @@
   "author": "Devon Govett <devongovett@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "serve": "^6.3.1"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "markdown-styles": "^3.1.10",
@@ -16,11 +16,9 @@
     "npm-run-all": "^4.1.1"
   },
   "scripts": {
-    "build": "npm-run-all clean build:*",
+    "build": "./build.sh",
     "clean": "rm -rf dist",
-    "build:docs": "generate-md --layout ./src/layout --input src/docs/ --output dist/",
-    "build:index": "cp src/index.html dist/index.html",
-    "start": "serve dist",
+    "start": "node src/server.js",
     "deploy": "now"
   }
 }

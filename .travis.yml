@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - 8
 after_script:
-  - NOW_ALIAS=parceljs.org node_modules/.bin/now-travis
+  - node_modules/.bin/now-travis
+  - now alias
 branches:
   only:
     - master
