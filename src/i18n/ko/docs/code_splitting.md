@@ -32,13 +32,13 @@ const pages = {
 };
 
 async function renderPage(name) {
-  // 요청 페이지 로드 지연 
+  // 요청 페이지 로드 지연
   const page = await pages[name];
   return page.default();
 }
 ```
 
-**주의:** 만약 브라우저에서 async/await를 사용하고 싶다면, `babel-polyfill`을 앱에 포함시키거나 `babel-runtime` + `babel-plugin-transform-runtime`이 라이브러리에 있어야 합니다. 그냥 사용하려고 마세요.
+**주의:** 만약 브라우저에서 async/await를 사용하고 싶다면, `babel-polyfill`을 앱에 포함시키거나 `babel-runtime` + `babel-plugin-transform-runtime`이 라이브러리에 있어야 합니다. 그냥 사용하려고 하지 마세요.
 
 ```bash
 yarn add babel-polyfill
@@ -49,4 +49,4 @@ import "babel-polyfill";
 import "./app";
 ```
 
-[babel-polyfill](http://babeljs.io/docs/usage/polyfill)와 [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime)를 읽어보십시오.
+[babel-polyfill](http://babeljs.io/docs/usage/polyfill)와 [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime)를 읽어보세요.
