@@ -1,49 +1,49 @@
-# 📝 Asset Types
+# 📝 Типы ассетов
 
-As described in the [Assets documentation](assets.html), Parcel represents each input file as an `Asset`. Asset types are represented as classes inheriting from the base `Asset` class and implementing the required interface to parse, analyze dependencies, transform, and code generate.
+Как описано в [документации ассетов](assets.html), Parcel представляет каждый входной файл как `Ассет`. Типы активов представлены как классы, наследующиеся от базового `Ассет` класса и и реализации требуемого интерфейса для синтаксического анализа, анализа зависимостей, трансформации и генерации кода.
 
-Because Parcel processes assets in parallel across multiple processor cores, the transforms that asset types can perform are limited to those that operate on a single file at a time. For transforms across multiple files, a custom [Packager](packagers.html) can be used.
+Так как Parcel обрабатывает ассеты параллельно по нескольким процессорным ядрам, трансформации, которые могут выполнять типы ассетов, ограничены теми, которые работают в одном файле за раз. Для преобразований по нескольким файлам, используйте кастомный [Упаковщик](packagers.html).
 
-## Asset Interface
+## Интерфейс ассета
 
 ```javascript
 const {Asset} = require('parcel-bundler');
 
 class MyAsset extends Asset {
-  type = 'foo'; // set the main output type.
+  type = 'foo'; // устанавливаем основной тип вывода.
 
   parse(code) {
-    // parse code to an AST
+    // парсинг кода в AST.
     return ast;
   }
 
   pretransform() {
-    // optional. transform prior to collecting dependencies.
+    // (опционально) преобразовать до сбора зависимостей.
   }
 
   collectDependencies() {
-    // analyze dependencies
+    // анализ зависимостей.
     this.addDependency('my-dep');
   }
 
   transform() {
-    // optional. transform after collecting dependencies.
+    // (опционально) преобразовать после сбора зависимостей.
   }
 
   generate() {
-    // code generate. you can return multiple renditions if needed.
-    // results are passed to the appropriate packagers to generate final bundles.
+    // генерация кода, при необходимости вы можете возвращать несколько расширений.
+    // результаты передаются соответствующим упаковщикам для создания окончательных бандлов.
     return {
-      foo: 'my stuff here', // main output
-      js: 'some javascript' // alternative rendition to be placed in JS bundle if needed
+      foo: 'my stuff here', // основной вывод.
+      js: 'some javascript' // альтернативное исполнение для размещения в JS бандле, если необходимо.
     };
   }
 }
 ```
 
-## Registering an Asset Type
+## Регистрация типа ассета
 
-You can register your asset type with a bundler using the `addAssetType` method. It accepts a file extension to register, and the path to your asset type module. It is a path rather than the actual object so that it can be passed to worker processes.
+Вы можете регистрировать ваш тип ассетв, используя метод `addAssetType`. Он принимает расширение файла для регистрации и путь к модулю вашего типа ассета. Это путь, а не фактический объект, чтобы он мог передаваться рабочим процессам.
 
 ```javascript
 const Bundler = require('parcel-bundler');
