@@ -7,38 +7,48 @@
   <meta property="og:url" content="https://parceljs.org/" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
-  <title>📦 Parcel</title>
+  <title>📦 Parcel 中文网</title>
   <link type="text/css" rel="stylesheet" href="assets/home.css"/>
   <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
+  </script> -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
   </script>
 </head>
 <body>
   <header>
     <img class="logo" src="assets/logo.svg" alt="Parcel">
-    <h2>Blazing fast, zero configuration web application bundler</h2>
+    <h2>极速零配置Web应用打包工具</h2>
     <div class="parcel">
       <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
       <div class="icons"></div>
       <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
     </div>
-    <a class="button get-started" href="getting_started.html">Get Started</a>
+    <a class="button get-started" href="getting_started.html">快速开始</a>
     <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
     <nav class="links">
-      <div class="language-dropdown">
-        <span>🇺🇸</span>
-        <ul>
-          <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
-          <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
-        </ul>
-      </div>
-      <a href="getting_started.html">Documentation</a>
+        <div class="language-dropdown">
+            <span>🇨🇳</span>
+            <ul>
+              <li><a href="https://en.parceljs.org">🇺🇸</a></li>
+              <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
+            </ul>
+          </div>
+      <a href="getting_started.html">文档</a>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
     </nav>
   </header>
@@ -46,34 +56,34 @@
   <main>
     <div class="features">
       <section>
-        <h3>🚀 Blazing fast bundle times</h3>
-        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+        <h3>🚀 极速打包时间</h3>
+        <p>Parcel 使用 worker 进程去启用多核编译。同时有文件系统缓存，即使在重启构建后也能快速再编译。</p>
       </section>
       <section>
-        <h3>📦 Bundle all your assets</h3>
-        <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+        <h3>📦 将你所有的资源打包</h3>
+        <p>Parcel 具备开箱即用的对  JS, CSS, HTML, 文件 及更多的支持，而且不需要插件。</p>
       </section>
       <section>
-        <h3>🐠 Automatic transforms</h3>
-        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
+        <h3>🐠 自动转换</h3>
+        <p>如若有需要，Babel, PostCSS, 和PostHTML甚至 <code>node_modules</code> 包会被用于自动转换代码.</p>
       </section>
       <section>
-        <h3>✂️ Zero config code splitting</h3>
-        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
+        <h3>✂️ 零配置代码分拆</h3>
+        <p>使用动态 <code>import()</code> 语法, Parcel 将你的输出文件束(bundles)分拆，因此你只需要在初次加载时加载你所需要的代码。</p>
       </section>
       <section>
-        <h3>🔥 Hot module replacement</h3>
-        <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
+        <h3>🔥 热模块替换</h3>
+        <p>Parcel 无需配置，在开发环境的时候会自动在浏览器内随着你的代码更改而去更新模块。</p>
       </section>
       <section>
-        <h3>🚨 Friendly error logging</h3>
-        <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
+        <h3>🚨 友好的错误日志</h3>
+        <p>当遇到错误时，Parcel 会输出 语法高亮的代码片段，帮助你定位问题。</p>
       </section>
     </div>
 
     <section>
       <h2>Hello World</h2>
-      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
+      <p>先你应用的从入口 HTML 文件开始。Parcel 跟随着文件的依赖去构建你的整个应用。</p>
       <div class="examples">
       <div class="example">
         <p><strong>✏️ index.html</strong></p>
@@ -86,7 +96,7 @@
 
       <div class="example">
         <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+        <pre class="hljs"><code><span class="hljs-comment">// 引入另一个组件</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
@@ -94,7 +104,7 @@ main();</code></pre>
 
       <div class="example">
         <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+        <pre class="hljs"><code><span class="hljs-comment">// 引入一个 CSS 模块</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
@@ -105,21 +115,21 @@ main();</code></pre>
       <div class="example">
         <p><strong>💅 main.css</strong></p>
         <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
-  <span class="hljs-comment">/* Reference an image file */</span>
+  <span class="hljs-comment">/* 引用一张图片 */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
 }</code></pre></div>
       </div>
 
-      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
+      <p>只需要运行 <code>parcel index.html</code> 去启动一个开发服务器。引入 JavaScript, CSS, images, 和更多的资源，然后便大功告成！ 👌</p>
     </section>
 
     <section>
-      <h2>Benchmarks</h2>
+      <h2>基准</h2>
       <table>
         <tr>
-          <th>Bundler</th>
-          <th>Time</th>
+          <th>打包工具</th>
+          <th>时间</th>
         </tr>
         <tr>
           <td>browserify</td>
@@ -138,25 +148,25 @@ main();</code></pre>
           <td><strong>2.64s</strong></td>
         </tr>
       </table>
-      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical CPUs.</p>
+      <p>基于一个合理大小的应用，包含1726个模块， 6.5M 未压缩大小. 在一台有4个物理 CPU 的 2016 MacBook Pro 上构建。</p>
     </section>
   </main>
 
   <footer>
-    <a class="button" href="getting_started.html">Get Started</a>
+    <a class="button" href="getting_started.html">快速开始</a>
     <div class="content">
       <nav>
-        <h3>Documentation</h3>
+        <h3>文档</h3>
         <div>
           <ul>
-            <li><a href="getting_started.html">🚀 Getting Started</a></li>
-            <li><a href="assets.html">📦 Assets</a></li>
-            <li><a href="transforms.html">🐠 Transforms</a></li>
+            <li><a href="getting_started.html">🚀 快速开始</a></li>
+            <li><a href="assets.html">📦 资源</a></li>
+            <li><a href="transforms.html">🐠 转换</a></li>
           </ul>
           <ul>
-            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-            <li><a href="production.html">✨ Production</a></li>
+            <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
+            <li><a href="hmr.html">🔥 热模块替换</a></li>
+            <li><a href="production.html">✨ 生产环境</a></li>
           </ul>
         </div>
       </nav>
@@ -172,7 +182,7 @@ main();</code></pre>
     <div class="copyright">
       Copyright ©
       <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+      Devon Govett. 此网站 <a href="https://github.com/parcel-bundler/website" target="_blank">开源</a>.
     </div>
   </footer>
 
