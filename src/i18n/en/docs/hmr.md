@@ -17,3 +17,5 @@ if (module.hot) {
   });
 }
 ```
+
+Note: HMR will be available in the application if it contains at least one JS file. Parcel will not inject the necessary JS code in your page otherwise.
