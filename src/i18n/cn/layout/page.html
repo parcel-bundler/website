@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,15 +8,23 @@
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
   <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
-  </script>
+  </script>-->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>    
 </head>
-
 <body>
   <header>
     <a class="logo" href="/">
@@ -26,10 +33,10 @@
     </a>
     <div class="links">
       <div class="language-dropdown">
-        <span>🇰🇷</span>
+        <span>🇨🇳</span>
         <ul>
-          <li><a href="https://cn.parceljs.org">🇨🇳</a></li>
           <li><a href="https://en.parceljs.org">🇺🇸</a></li>
+          <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
         </ul>
       </div>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -38,39 +45,20 @@
   <div class="content">
     <nav>
       <ul>
-        <li>
-          <a href="getting_started.html">🚀 시작하기</a>
-        </li>
-        <li>
-          <a href="assets.html">📦 애셋</a>
-        </li>
-        <li>
-          <a href="transforms.html">🐠 변환</a>
-        </li>
-        <li>
-          <a href="code_splitting.html">✂️ 코드 분할</a>
-        </li>
-        <li>
-          <a href="hmr.html">🔥 핫 모듈 리플레이스먼트</a>
-        </li>
-        <li>
-          <a href="production.html">✨ 프로덕션</a>
-        </li>
+        <li><a href="getting_started.html">🚀 快速开始</a></li>
+        <li><a href="assets.html">📦 资源</a></li>
+        <li><a href="transforms.html">🐠 转换</a></li>
+        <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
+        <li><a href="hmr.html">🔥 热模块替换</a></li>
+        <li><a href="production.html">✨ 生产环境</a></li>
+        <li><a href="recipes.html">🍰 配方</a></li>
       </ul>
-      <h3>Advanced</h3>
+      <h3>进阶</h3>
       <ul>
-        <li>
-          <a href="how_it_works.html">🛠 어떻게 동작하는가</a>
-        </li>
-        <li>
-          <a href="asset_types.html">📝 애셋 유형</a>
-        </li>
-        <li>
-          <a href="packagers.html">📦 패키저</a>
-        </li>
-        <li>
-          <a href="plugins.html">🔌 플러그인</a>
-        </li>
+        <li><a href="how_it_works.html">🛠 它如何运作</a></li>
+        <li><a href="asset_types.html">📝 资源类型</a></li>
+        <li><a href="packagers.html">📦 Packagers</a></li>
+        <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
     <main>
@@ -87,5 +75,4 @@
     })();
   </script>
 </body>
-
 </html>
