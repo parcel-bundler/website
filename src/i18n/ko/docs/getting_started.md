@@ -2,7 +2,7 @@
 
 Parcel`[파설, /parsəl/]`은 개발 경험에서 차이를 느낄수 있는 웹 애플리케이션 번들러 입니다. 멀티코어 프로세싱으로 불꽃 튀게 빠른 성능을 제공하고 그 어떤 설정을 요구하지 않습니다.
 
-먼저 Yarn이나 npm으로 Parcel을 설치하세요:
+먼저 Yarn이나 npm으로 Parcel을 설치하세요.
 
 Yarn:
 ```bash
@@ -14,17 +14,17 @@ npm:
 npm install -g parcel-bundler
 ```
 
-package.json파일을 프로젝트 디렉토리에 만드세요:
+그 다음, package.json파일을 프로젝트 디렉토리에 만드세요.
 
 ```bash
 yarn init -y
 ```
-또는 
+또는
 ```bash
 npm init -y
 ```
 
-Parcel은 어떤 유형의 파일이라도 진입점으로 취할 수 있습니다만, HTML이나 JavaScript 파일이 좋습니다. 만약 HTML 파일 내에 상대경로로 메인 JavaScript 파일을 연결 했다면, Parcel은 이 또한 처리 할 것이고, 출력 파일로의 URL 참조를 교체할 겁니다.
+Parcel은 어떤 유형의 파일이라도 진입점으로 취할 수 있지만 HTML이나 JavaScript 파일이 좋습니다. 만약 HTML 파일 내에 상대경로로 메인 JavaScript 파일을 연결 했다면, Parcel은 이 또한 처리 할 것이고, 출력 파일로의 URL 참조를 교체할 겁니다.
 
 그럼, index.html과 index.js파일을 만들어 봅시다.
 
