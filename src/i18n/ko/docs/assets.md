@@ -55,6 +55,20 @@ CSS 애셋은 JavaScript나 HTML 파일로부터 임포트 될 수 있습니다.
 
 평범한 CSS 외에 LESS, SASS, Stylus 같은 다른 컴파일-투-CSS 언어 역시 지원하며 같은 방식으로 동작합니다.
 
+## SCSS
+
+SCSS를 컴파일 하기 위해서는 `node-sass` 모듈이 필요합니다. 다음 명령어로 설치해주세요.
+```
+npm install node-sass
+```
+`node-sass`를 설치했다면 이제 SCSS 파일을 JavaScript 파일에서 import 할 수 있습니다.
+```
+import './custom.scss'
+```
+
+SCSS에서 `@import` 구문으로 포함된 의존성도 처리됩니다.
+
+
 ## HTML
 
 HTML 애셋은 주로 Parcel 진입 파일로 사용됩니다. 그렇지만 JavaScript 파일에 의해서, 예로 다른 페이지로의 링크를 제공하기위해 참조 될 수도 있습니다. 스크립트, 스타일, 미디어, 그리고 다른 HTML 파일의 URL은 위에서 설명한것 처럼 추출되고 컴파일됩니다. 참조는 HTML 안에서 재작성 됨으로써 적확한 출력 파일로 연결 됩니다. 모든 파일 이름은 현재의 HTML 파일과 관련 있어야 합니다.
