@@ -1,12 +1,12 @@
-# 🔌 Plugins
+# 🔌 Плагины
 
-Parcel takes a slightly different approach from many other tools in that many common formats are included out of the box without the need to install and configure additional plugins. However, there are cases where you might want to extend Parcel in a nonstandard way, and for those times, plugins are supported. Installed plugins are automatically detected and loaded based on `package.json` dependencies.
+Parcel использует немного другой подход из многих инструментов, поскольку многие распространенные форматы включены в комплект без необходимости установки и настройки дополнительных плагинов. Однако есть случаи, когда вы захотите расширить Parcel нестандартным способом. Для этих случаев поддерживаются плагины. Установленные плагины автоматически обнаруживаются и загружаются на основе зависимостей в `package.json`.
 
-When adding support for a new file format to Parcel, you should first consider how widespread it is, and how standardized the implementation is. If it is sufficiently widespread and standard, the format should probably be added to Parcel core rather than as a plugin that users need to install. If you have any doubts, [GitHub](https://github.com/parcel-bundler/parcel/issues) is the right place to discuss.
+При добавлении поддержки для нового формата файла в Parcel вы должны сначала рассмотреть, насколько это широко распространено и как стандартизирована реализация. Если он достаточно распространен и стандартен, вероятно, должен быть добавлен в ядро Parcel (а не как плагин, который необходимо установить пользователем). Если у вас есть какие-либо сомнения, [GitHub](https://github.com/parcel-bundler/parcel/issues)&nbsp;&mdash; это подходящее место для обсуждения.
 
-## Plugin API
+## API для плагинов
 
-Parcel plugins are very simple. They are simply modules that export a single function, which is called by Parcel automatically during initialization. The function receives as input the `Bundler` object, and can do configuration such as registering asset types and packagers.
+Плагины для Parcel очень просты. Это просто модули, которые экспортируют одну функцию, которая автоматически вызывается в Parcel во время инициализации. Функция получает, в качестве входной, объект `Бандл` и может выполнять такую конфигурацию, как регистрация типов ассетов и упаковщиков.
 
 ```javascript
 module.exports = function (bundler) {
@@ -15,8 +15,8 @@ module.exports = function (bundler) {
 };
 ```
 
-Publish this package on npm using the `parcel-plugin-` prefix, and it will be automatically detected and loaded as described below.
+Опубликуйте этот пакет на npm, используя префикс `parcel-plugin-`, и он будет автоматически обнаружен и загружен, как описано ниже.
 
-## Using Plugins
+## Использование плагинов
 
-Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-`, e.g. `parcel-plugin-foo`. Any dependencies listed in `package.json` with this prefix will be automatically loaded during initialization.
+Использование плагинов в Parcel не может быть проще. Все, что вам нужно сделать, это установить и сохранить их в своем `package.json`. Плагины должны иметь префикс `parcel-plugin-` (например, `parcel-plugin-foo`). Любые зависимости, указанные в `package.json` с этим префиксом, будут автоматически загружены при инициализации.
