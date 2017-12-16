@@ -1,33 +1,33 @@
-# 📦 Packagers
+# 📦 Упаковщики
 
-In Parcel, a `Packager` combines multiple `Asset`s together into a final output bundle. This happens in the main process after all assets have been processed, and a bundle tree has been created. Packagers are registered based on output file type, and assets that have generated that output type are sent to that packager for production of the final output file.
+В Parcel `Упаковщик` объединяет несколько `Ассетов` вместе в конечный выходной пакет. Это происходит в основном процессе после того, как все ассеты обработаны и создано дерево бандлов. Упаковщики регистрируются на основе типа выходного файла, а ассеты, которые сгенерировали этот тип вывода, отправляются этому пакету для создания окончательного выходного файла.
 
-## Packager Interface
+## Интерфейс упаковщика
 
 ```javascript
 const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // optional. write file header if needed.
+    // (опционально) запишите заголовок файла, если это необходимо.
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // required. write the asset to the output file.
+    // запишите ассет в выходной файл.
     await this.dest.write(asset.generated.foo);
   }
 
   async end() {
-    // optional. write file trailer if needed.
+    // (опционально) при необходимости напишите файл трейлера.
     await this.dest.end(trailer);
   }
 }
 ```
 
-## Registering a Packager
+## Регистрация упаковщика
 
-You can register your packager with a bundler using the `addPackager` method. It accepts a file type to register, and the path to your packager module.
+Вы можете зарегистрировать упаковщик с помощью метода `addPackager`. Он принимает тип файла для регистрации и путь к вашему модулю упаковщика.
 
 ```javascript
 const Bundler = require('parcel-bundler');
