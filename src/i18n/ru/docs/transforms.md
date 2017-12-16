@@ -1,20 +1,20 @@
-# 🐠 Transforms
+# 🐠 Трансформации
 
-While many bundlers require you to install and configure plugins to transform assets, Parcel has support for many common transforms and transpilers built in out of the box. You can transform JavaScript using [Babel](https://babeljs.io), CSS using [PostCSS](http://postcss.org), and HTML using [PostHTML](https://github.com/posthtml/posthtml). Parcel automatically runs these transforms when it finds a configuration file (e.g. `.babelrc`, `.postcssrc`) in a module.
+Хотя многие коммутаторы требуют установки и настройки плагинов для трансформации ассетов, Parcel имеет поддержку многих распространенных трансформаций и транспайлеров из коробки. Вы можете трансформировать JavaScript, используя [Babel](https://babeljs.io), CSS с помощью [PostCSS](http://postcss.org) и HTML через [PostHTML](https://github.com/posthtml/posthtml). Parcel автоматически запускает эти трансформации, когда находит файл конфигурации (например, `.babelrc`, `.postcssrc`) в модулях.
 
-This even works in third-party `node_modules`: if a configuration file is published as part of the package, the transform is automatically turned on for that module only. This keeps bundling fast since only modules that need to be transformed are processed. It also means that you don't need to manually configure the transforms to include and exclude certain files, or know how third party code is built in order to use it in your application.
+Это даже работает в сторонних `node_modules` модулях: если файл конфигурации публикуется как часть пакета, преобразование автоматически включается только для этого модуля. При этом, обрабатываются только модули, которые необходимо преобразовать. Это означает, что вам не нужно вручную настраивать трансформацию для включения и исключения определенных файлов или знать, как создается сторонний код для его использования в вашем приложении.
 
 ## Babel
 
-[Babel](https://babeljs.io) is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.
+[Babel](https://babeljs.io) является популярным транспайлером для JavaScript с большой экосистемой плагинов. Использование Babel с Parcel работает так же, как использование его отдельно или с другими упаковщиками.
 
-Install presets and plugins in your app:
+Установка пресетов и плагинов в приложении:
 
 ```bash
 yarn add babel-preset-env
 ```
 
-Then, create a `.babelrc`:
+Далее, создайте `.babelrc`:
 
 ```json
 {
@@ -24,15 +24,15 @@ Then, create a `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) is a tool for transforming CSS with plugins, like [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), and [CSS Modules](https://github.com/css-modules/css-modules). You can configure PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`.
+[PostCSS](http://postcss.org) является инструментом для преобразования CSS с плагинами, например [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) и [CSS Modules](https://github.com/css-modules/css-modules). Вы можете настроить PostCSS с помощью Parcel, создав файл конфигурации, используя одно из следующих имен: `.postcssrc` (JSON), `.postcssrc.js` или `postcss.config.js`.
 
-Install plugins in your app:
+Установка плагинов в приложении:
 
 ```bash
 yarn add postcss-modules autoprefixer
 ```
 
-Then, create a `.postcssrc`:
+Далее, создайте `.postcssrc`:
 
 ```json
 {
@@ -45,28 +45,28 @@ Then, create a `.postcssrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Плагины указываются в объекте `plugins` как ключи, а опции определяются с использованием значений объекта. Если для плагина нет параметров, просто установите вместо этого значение `true`.
 
-Target browsers for Autoprefixer, cssnext and other tools can be specified in `.browserslistrc` file:
+Целевые браузеры для Autoprefixer, cssnext и других подобных инструментов, указываются в файле `.browserslistrc`:
 
 ```
 > 1%
 last 2 versions
 ```
 
-CSS Modules are enabled slightly differently using the a top-level `modules` key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install `postcss-modules` in your project.
+Модули CSS поддерживаются несколько иначе, используя верхний уровень ключей `modules`. Это связано с тем, что Parcel нуждается в специальной поддержке CSS-модулей, поскольку они экспортируют объект, который также будет включен в JavaScript бандл. Обратите внимание, что вам все равно необходимо установить `postcss-modules` в ваш проект.
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) является инструментом для преобразования HTML с плагинами. Вы можете настроить PostHTML с помощью Parcel, создав файл конфигурации, используя одно из следующих имен: `.posthtmlrc` (JSON), `posthtmlrc.js` или `posthtml.config.js`.
 
-Install plugins in your app:
+Установка плагинов в приложении:
 
 ```bash
 yarn add posthtml-img-autosize
 ```
 
-Then, create a `.posthtmlrc`:
+Далее, создайте `.posthtmlrc`:
 
 ```json
 {
@@ -78,4 +78,4 @@ Then, create a `.posthtmlrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Плагины указываются в объекте `plugins` как ключи, а опции определяются с использованием значений объекта. Если для плагина нет параметров, просто установите вместо этого значение `true`.
