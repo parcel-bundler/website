@@ -1,8 +1,8 @@
-# 🚀 Getting Started
+# 🚀 Primeiros Passos
 
-Parcel is a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration.
+Parcel é um agregador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance absurdamente rápida utilizando processamento multicore, sem a necessidade de configuração.
 
-First install Parcel using Yarn or npm:
+Primeiro, instale o Parcel usando Yarn ou npm:
 
 Yarn:
 ```bash
@@ -14,19 +14,19 @@ npm:
 npm install -g parcel-bundler
 ```
 
-Create a package.json file in your project directory using:
+Crie o arquivo package.json no diretório do seu projeto executando:
 
 ```bash
 yarn init -y
 ```
-or 
+ou
 ```bash
 npm init -y
 ```
 
-Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If you link your main JavaScript file in the HTML using a relative path, Parcel will also process it for you, and replace the reference with a URL to the output file.
+Parcel pode receber qualquer tipo de arquivo como ponto de entrada, embora um arquivo HTML ou JavaScript sejam as melhores opções para começar. Se você referenciar seu arquivo JavaScript principal dentro do seu arquivo HTML utilizando caminho relativo, o Parcel também processará esse arquivo para você e substituirá a referência no caminho do arquivo de saída.
 
-Next, create an index.html and index.js file.
+Depois, crie os arquivos index.html e index.js.
 
 ```html
 <html>
@@ -37,21 +37,21 @@ Next, create an index.html and index.js file.
 ```
 
 ```javascript
-console.log("hello world");
+console.log("olá mundo");
 ```
 
-Parcel has a development server built in, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development. Just point it at your entry file:
+Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vá alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmt.html) para acelerar o desenvolvimento. Apenas aponte à ele seu arquivo de entrada:
 
 ```bash
 parcel index.html
 ```
 
-Now open http://localhost:1234/ in your browser. You can also override the default port with the `-p <port number>` option.
+Agora, abra seu navegador em http://localhost:1234/. Você também pode alterar a porta padrão utilizando a opção `-p <port number>`.
 
-Use the development server when you don't have your own server, or your app is entirely client rendered. If you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports hot module replacement, but doesn't start a web server.
+Utilize o servidor de desenvolvimento caso você não tenha seu próprio sevidor, ou sua aplicação será inteiramente renderizada no cliente. Caso você possua seu próprio servidor, você pode utilizar o Parcel em modo `watch`. Essa opção continua reconstruindo sua aplicação à medida que você vá alterando os arquivos e suporta Substituição de Módulos à Quente, mas não irá iniciar um servidor.
 
 ```bash
 parcel watch index.html
 ```
 
-When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
+Quando você estiver pronto para enviar sua aplicação para produção, o modo `build` desativa a opção `watch` e constrói seus arquivos uma única vez. Veja a seção [Produção](production.html) para mais detalhes.

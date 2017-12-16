@@ -1,84 +1,84 @@
-# 📦 Assets
+# 📦 Recursos
 
-Parcel is based around assets. An asset can represent any file, but Parcel has special support for certain types of assets like JavaScript, CSS, and HTML files. Parcel automatically analyzes the dependencies referenced in these files and includes them in the output bundle. Assets of similar types are grouped together into the same output bundle. If you import an asset of a different type (for example, if you imported a CSS file from JS), it starts a child bundle and leaves a reference to it in the parent. This will be illustrated in the following sections.
+Parcel é baseado em recursos. Um recurso pode ser qualquer arquivo, mas o Parcel tem suporte especial para alguns tipos de arquivos como JavaScript, CSS e HTML. Parcel analisa automaticamente as dependências referenciadas nesses arquivos e os inclui no arquivo de saída. Tipos de recursos similares são agrupados no mesmo arquivo de saída. Se você importar um tipo de recurso diferente (por exemplo, se você importar um arquivo CSS à partir de um arquivo JS), ele inicia a construção de um segundo arquivo e adiciona uma referência no arquivo de saída principal. Isso será demonstrado nas próxima seções.
 
 ## JavaScript
 
-The most traditional file type for web bundlers is JavaScript. Parcel supports both CommonJS and ES6 module syntax for importing files. It also supports dynamic `import()` function syntax to load modules asynchronously, which is discussed in the [Code Splitting](code_splitting.html) section.
+O tipo de arquivo mais utilizado pelos agregadores é o JavaScript. Parcel suporta tanto CommonJS como módulos ES6 para importar os arquivos. Ele também suporta a função `import()` para carregar os módulos de forma assíncrona, o qual será discutido na seção [Separação do Código](code_splitting.html).
 
 ```javascript
-// Import a module using CommonJS syntax
+// Importar um módulo utilizando CommonJS
 const dep = require('./path/to/dep');
 
-// Import a module using ES6 import syntax
+// Importar um módulo utilizando ES6
 import dep from './path/to/dep';
 ```
 
-You can also import non-JavaScript assets from a JavaScript file, e.g. CSS or even an image file. When you import one of these files, it is not inlined as in some other bundlers. Instead, it is placed in a separate bundle (e.g. a CSS file) along with all of its dependencies. When using [CSS Modules](https://github.com/css-modules/css-modules), the exported classes are placed in the JavaScript bundle. Other asset types export a URL to the output file in the JavaScript bundle so you can reference them in your code.
+Você também pode importar outros tipos de recursos que não sejam arquivos JavaScript, como um arquivo CSS ou mesmo uma imagem. Quando você importar um desses tipos de arquivos, eles não serão incluídos no arquivo principal assim como é feito com os outros agregadores. Na verdade, eles serão adicionados em arquivos separados (por exemplo, um arquivo CSS) junto com suas dependências. Quando você utilizar [CSS Modules](https://github.com/css-modules/css-modules), as classes exportadas são adicionadas no arquivo de saída JavaScript. Outros tipos de recursos exportam a referência no arquivo de saída JavaScript para que você possa referenciar no seu código.
 
 ```javascript
-// Import a CSS file
+// Importar um arquivo CSS
 import './test.css';
 
-// Import a CSS file with CSS modules
+// Importar um arquivo CSS com CSS modules
 import classNames from './test.css';
 
-// Import the URL to an image file
+// Importar o endereço de uma imagem
 import imageURL from './test.png';
 ```
 
-If you want to inline a file into the JavaScript bundle instead of reference it by URL, you can use the Node.js `fs.readFileSync` API to do that. The URL must be statically analyzable, meaning it cannot have any variables in it (other than `__dirname` and `__filename`).
+Caso você queira adicionar um arquivo dentro do arquivo de saída JavaScript, ao invés de referenciar o endereço, você pode utilizar a API `fs.readFileSync` do Node.js para fazer isso. O endereço precisa ser estaticamente analisado, ou seja, ele não pode conter variáveis (diferente de `__dirname` e `__filename`).
 
 ```javascript
 import fs from 'fs';
 
-// Read contents as a string
+// Ler o conteúdo como uma string
 const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 
-// Read contents as a Buffer
+// Ler o coteúdo como um Buffer
 const buffer = fs.readFileSync(__dirname + '/test.png');
 ```
 
 ## CSS
 
-CSS assets can be imported from a JavaScript or HTML file, and can contain dependencies referenced by `@import` syntax as well as references to images, fonts, etc. via the `url()` function. Other CSS files that are `@import`ed are inlined into the same CSS bundle, and `url()` references are rewritten to their output filenames. All filenames should be relative to the current CSS file.
+Os arquivos CSS podem ser importados à partir de um arquivo JavaScript ou HTML e podem conter referências de dependências utilizando `@import` assim como referências para imagens, fontes e etc, através da função `url()`. Outros arquivos CSS que forem importados utilizando `import()` serão adicionados no mesmo arquivo, e referências utilizando `url()` serão reescritas em seus respectivos nomes. Todos os nomes de arquivos precisam ser relativos ao arquivo CSS principal.
 
 ```css
-/* Import another CSS file */
+/* Importar outro arquivo CSS */
 @import './other.css';
 
 .test {
-  /* Reference an image file */
+  /* Referenciar um arquivo de imagem */
   background: url('./images/background.png');
 }
 ```
 
-In addition to plain CSS, other compile-to-CSS languages like LESS, SASS, and Stylus are also supported, and work the same way.
+Além de apenas arquivos CSS, outras linguagens que compilam para CSS, como LESS, SASS e Stylus, também são suportadas e funcionam da mesma maneira.
 
 ## SCSS
-SCSS compilation needs `node-sass` module. To install it with npm:
+Para utilizar SCSS é necessário utilizar o módulo `node-sass`. Para instalar, utilize o npm:
 ```
 npm install node-sass
 ```
-Once you have `node-sass` installed you can import SCSS files from JavaScript files.
+Assim que você tiver o `node-sass` instalado, você já pode importar os arquivos SCSS no seu arquivo JavaScript.
 ```
 import './custom.scss'
 ```
-Dependencies in the SCSS files can be used with the `@import` statements.
+As dependências nos arquivos SCSS podem utilizar `@import()`.
 
 ## HTML
 
-HTML assets are often the entry file that you provide to Parcel, but can also be referenced by JavaScript files, e.g. to provide links to other pages. URLs to scripts, styles, media, and other HTML files are extracted and compiled as described above. The references are rewritten in the HTML so that they link to the correct output files. All filenames should be relative to the current HTML file.
+Arquivos HTML são frequentemente utilizados como ponto de entrada para o Parcel, mas também podem ser referenciados pelos arquivos JavaScript, por exemplo, para fornecer links para outras páginas. Os endereços dos scripts, estilos, mídias e outros arquivos HTML são extraídos e compilados como descrito acima. As referências são reescritas no HTML para que elas sejam referenciadas corretamente. Todos os nomes dos arquivos devem ser relativos ao arquivo HTML principal.
 
 ```html
 <html>
 <body>
-  <!-- reference an image file -->
+  <!-- Referenciar uma imagem -->
   <img src="./images/header.png">
 
-  <a href="./other.html">Link to another page</a>
+  <a href="./other.html">Link para outra página</a>
 
-  <!-- import a JavaScript bundle -->
+  <!-- Importar o arquivo de saída JavaScript -->
   <script src="./index.js"></script>
 </body>
 </html>

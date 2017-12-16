@@ -1,19 +1,19 @@
-# 🛠 How It Works
+# 🛠 Como Funciona
 
-Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
+O Parcel converte uma árvore de **recursos** em uma árvore de **pacotes**. Várias outras ferramentas de agrupamento de código são baseadas em arquivos de JavaScript, com outros formatos abordados - por exemplo, adicionadas como strings em arquivos JS. O Parcel é agnóstico à tipos de arquivo: ele funcionará com qualquer tipo de arquivos da maneira que você gostaria, sem configuração. Há três etapas para o processo de agrupamento no Parcel.
 
-### 1. Constructing the Asset Tree
+### 1. Construção da Árvore de Recursos
 
-Parcel takes as input a single entry asset, which could be any type: a JS file, HTML, CSS, image, etc. There are various [asset types](asset_types.html) defined in Parcel which know how to handle specific file types. The assets are parsed, their dependencies are  extracted, and they are transformed to their final compiled form. This creates a tree of assets.
+Parcel aceita um único recurso como entrada, que pode ser qualquer tipo: um arquivo JS, HTML, CSS, imagem, etc. Existem vários [Tipos de Recursos](asset_types.html) definidos no Parcel que sabem como lidar com tipos de arquivos específicos. Os recursos são analisados, suas dependências são extraídas e são convertidos em sua forma compilada final. Isso cria uma árvore de recursos.
 
-### 2. Constructing the Bundle Tree
+### 2. Contrução da Árvore de Pacotes
 
-Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+Uma vez que a árvore de recursos foi construída, esses recursos são colocados em uma árvore de pacotes. Um pacote é criado para o recurso de entrada e os pacotes secundários são criados para serem utilizados com `import()`s, que causam a separação do código.
 
-Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
+Os pacotes semelhantes são criados quando os ativos de um tipo diferente são importados, por exemplo, se você importou um arquivo CSS do JavaScript, ele seria colocado em um pacote semelhante para o JavaScript correspondente.
 
-If an asset is required in more than one bundle, it is hoisted up to the nearest common ancestor in the bundle tree so it is not included more than once.
+Se um recurso for exigido em mais de um pacote, ele será levado até o pacote comum mais próximo na árvore do pacote, com isso ele não será incluído mais de uma vez.
 
-### 3. Packaging
+### 3. Empacotamento
 
-After the bundle tree is constructed, each bundle is written to a file by a [packager](packagers.html) specific to the file type. The packagers know how to combine the code from each asset together into the final file that is loaded by a browser.
+Depois que a árvore do pacote é construída, cada pacote é criado em um arquivo por um [Empacotador](packagers.html) específico para o tipo de arquivo. Os empacotadores sabem como combinar o código de cada recurso em conjunto no arquivo final que é carregado por um navegador.

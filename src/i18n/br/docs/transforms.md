@@ -1,20 +1,20 @@
-# 🐠 Transforms
+# 🐠 Conversões
 
-While many bundlers require you to install and configure plugins to transform assets, Parcel has support for many common transforms and transpilers built in out of the box. You can transform JavaScript using [Babel](https://babeljs.io), CSS using [PostCSS](http://postcss.org), and HTML using [PostHTML](https://github.com/posthtml/posthtml). Parcel automatically runs these transforms when it finds a configuration file (e.g. `.babelrc`, `.postcssrc`) in a module.
+Enquanto muitos agregadores exigem que você instale e configure plugins para converter arquivos, o Parcel tem suporte para a maioria dos conversores e transpiladores fora-da-caixa. Você pode converter JavaScript utilizando [Babel](https://babeljs.io), CSS utilizando [PostCSS](http://postcss.org), e HTML utilizando [PostHTML](https://github.com/posthtml/posthtml). Parcel utilizará esses conversores automaticamente se ele encontrar um arquivo de configuração em um módulo (por exemplo, `.babelrc`, `.postcssrc`).
 
-This even works in third-party `node_modules`: if a configuration file is published as part of the package, the transform is automatically turned on for that module only. This keeps bundling fast since only modules that need to be transformed are processed. It also means that you don't need to manually configure the transforms to include and exclude certain files, or know how third party code is built in order to use it in your application.
+Isso funciona mesmo em módulos externos (`node_modules`): se um arquivo de configuração é publicado como parte da distribuição do pacote, a conversão é feita automaticamente apenas para aquele módulo. Isso mantém o agrupamento rápido, já que apenas os módulos que precisam ser convertidos são processados. Isso também significa que você não precisa configurar manualmente as conversões para incluir e excluir determinados arquivos, ou saber como o código de outra pessoa foi criado para usá-lo em sua aplicação.
 
 ## Babel
 
-[Babel](https://babeljs.io) is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.
+[Babel](https://babeljs.io) é o conversor de JavaScript mais popular que conta com um grande ecossistema de plugins. Usar o Babel com o Parcel funciona da mesma maneira que utilizá-lo sozinho ou com outros empacotadores.
 
-Install presets and plugins in your app:
+Instale as predefinições e plugins na sua aplicação:
 
 ```bash
 yarn add babel-preset-env
 ```
 
-Then, create a `.babelrc`:
+Crie o arquivo `.babelrc`:
 
 ```json
 {
@@ -24,15 +24,15 @@ Then, create a `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) is a tool for transforming CSS with plugins, like [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), and [CSS Modules](https://github.com/css-modules/css-modules). You can configure PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`.
+[PostCSS](http://postcss.org) é uma ferramenta para conveter CSS com o auxílio de plugins como [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), e [CSS Modules](https://github.com/css-modules/css-modules). Você pode configurar o PostCSS com o Parcel criando um arquivo de configuração com um desses nomes: `.postcssrc` (JSON), `.postcssrc.js`, ou `postcss.config.js`.
 
-Install plugins in your app:
+Instale os plugins na sua aplicação:
 
 ```bash
 yarn add postcss-modules autoprefixer
 ```
 
-Then, create a `.postcssrc`:
+Crie o arquivo `.postcssrc`:
 
 ```json
 {
@@ -45,28 +45,28 @@ Then, create a `.postcssrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Os plugins são especificados no objeto `plugins` como chaves e as opções são definidas usando valores. Se um plugin não possuir opções, apenas configure o seu valor para `true`.
 
-Target browsers for Autoprefixer, cssnext and other tools can be specified in `.browserslistrc` file:
+As configurações de browser para o Autoprefixer, cssnext e outras ferramentas podem ser especificadas no arquivo `.browserslistrc`:
 
 ```
 > 1%
 last 2 versions
 ```
 
-CSS Modules are enabled slightly differently using the a top-level `modules` key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install `postcss-modules` in your project.
+Os CSS Modules são habilitados de uma forma um pouco diferente usando a chave de "módulos" de um nível superior. Isso ocorre porque o Parcel precisa ter um suporte especial para os CSS Modules, uma vez que eles exportam um objeto a ser incluído no pacote JavaScript também. Observe que você ainda precisa instalar `postcss-modules` em seu projeto.
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) é uma ferramenta para converter HTML com o auxílio de plugins. Você pode configurar o PostHTML com Parcel criando um arquivo de configuração usando um desses nomes: `.posthtmlrc` (JSON),` posthtmlrc.js` ou `posthtml.config.js`.
 
-Install plugins in your app:
+Instale os plugins na sua aplicação:
 
 ```bash
 yarn add posthtml-img-autosize
 ```
 
-Then, create a `.posthtmlrc`:
+Crie o arquivo `.posthtmlrc`:
 
 ```json
 {
@@ -78,4 +78,4 @@ Then, create a `.posthtmlrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Os plugins são especificados no objeto `plugins` como chaves e as opções são definidas usando valores. Se um plugin não possuir opções, apenas configure o seu valor para `true`.
