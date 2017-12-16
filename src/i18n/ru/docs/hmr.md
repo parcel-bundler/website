@@ -1,19 +1,19 @@
-# 🔥 Hot Module Replacement
+# 🔥 Горячая замена модуля
 
-Hot Module Replacement (HMR) improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things. Parcel's HMR implementation supports both JavaScript and CSS assets out of the box. HMR is automatically disabled when bundling in production mode.
+Горячая замена модуля (HMR) улучшает опыт разработки, автоматически обновляя модули в браузере во время выполнения без необходимости обновления всей страницы. Это означает, что состояние приложения может сохраняться при изменении мелочей. Реализация HMR в Parcel поддерживает как JavaScript, так и CSS-ресурсы из коробки. HMR автоматически отключается для продакшен бандла.
 
-As you save files, Parcel rebuilds what changed and sends an update to any running clients containing the new code. The new code then replaces the old version, and is re-evaluated along with all parents. You can hook into this process using the `module.hot` API, which can notify your code when a module is about to be disposed, or when a new version comes in. Projects like [react-hot-loader](https://github.com/gaearon/react-hot-loader) can help with this process, and work out of the box with Parcel.
+Когда вы сохраняете файлы, Parcel восстанавливает измененное и отправляет обновление всем работающим клиентам, содержащим новый код. Затем новый код заменяет старую версию и повторно оценивается вместе со всеми родителями. Вы можете подключиться к этому процессу, используя `module.hot` API, который может уведомить ваш код, когда модуль собирается быть удаленным или когда приходит новая версия. Проекты, подобные [react-hot-loader](https://github.com/gaearon/react-hot-loader) могут облегчить этот процесс и работают с Parcel из коробки.
 
-There are two methods to know about: `module.hot.accept` and `module.hot.dispose`. You call `module.hot.accept` with a callback function which is executed when that module or any of its dependencies are updated. `module.hot.dispose` accepts a callback which is called when that module is about to be replaced.
+Есть два способа узнать о: `module.hot.accept` и `module.hot.dispose`. Вы вызываете `module.hot.accept` с функцией обратного вызова, которая выполняется при обновлении этого модуля или любых его зависимостей. `module.hot.dispose` принимает обратный вызов, который вызывается, когда этот модуль будет заменен.
 
 ```javascript
 if (module.hot) {
   module.hot.dispose(function () {
-    // module is about to be replaced
+    // модуль будет заменен.
   });
 
   module.hot.accept(function () {
-    // module or one of its dependencies was just updated
+    // модуль или одна из его зависимостей была только что обновлена.
   });
 }
 ```
