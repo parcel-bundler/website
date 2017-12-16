@@ -1,25 +1,24 @@
-# ✨ Production
+# ✨ Работа в продакшене
 
-When it comes time to bundle your application for production, you can use Parcel's production mode.
+Когда придет время выпустить ваше приложение в продакшен, используйте `production` режим.
 
 ```bash
 parcel build entry.js
 ```
 
-This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) for JavaScript, [cssnano](http://cssnano.co) for CSS, and [htmlnano](https://github.com/posthtml/htmlnano) for HTML.
+Это отключает режим просмотра и горячую замену модулей и ваше приложение будет построено только один раз и позволяет минимизировать все выходные бандлы для уменьшения размера файла. Минификаторы, используемые Parcel, это: [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) для JavaScript, [cssnano](http://cssnano.co) для CSS и [htmlnano](https://github.com/posthtml/htmlnano) для HTML.
 
-Enabling production mode also sets the `NODE_ENV=production` environment variable. Large libraries like React have development only debugging features which are disabled by setting this environment variable, which results in smaller and faster builds for production.
+Включение продакшен режима также устанавливает `NODE_ENV=production` для переменной среды. Большие библиотеки, такие как React, имеют только отладочные функции разработки, которые отключены, устанавливая эту переменную среды, что приводит к меньшим и быстрым сборкам для продакшена.
 
+### Опции
 
-### Options
+#### Задайте выходную директорию
 
-#### Set the output directory
-
-Default: "dist"
+По-умолчанию: "dist"
 
 ```bash
 parcel build entry.js --out-dir build/output
-or
+# или
 parcel build entry.js -d build/output
 ```
 
@@ -30,33 +29,34 @@ root
 - - - entry.js
 ```
 
-#### Set the public URL to serve on
+#### Установите общедоступный URL-адрес
 
-Default: --out-dir option
+По-умолчанию: --out-dir option
 
 ```bash
 parcel build entry.js --public-url ./
 ```
 
-will output:
+На выходе будет:
 
 ```html
 <link rel="stylesheet" type="text/css" href="1a2b3c4d.css">
-or
+<!-- или -->
 <script src="e5f6g7h8.js"></script>
 ```
 
 
-#### Disable minification
+#### Отключение минификации
 
-Default: minification enabled
+По-умолчанию: включено
 
 ```
 parcel build entry.js --no-minify
 ```
 
-#### Disable the filesystem cache
-Default: cache enabled
+#### Отключение кэша файловой системы
+
+По-умолчанию: включено
 
 ```bash
 parcel build entry.js --no-cache
