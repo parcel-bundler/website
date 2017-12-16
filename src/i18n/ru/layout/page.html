@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <div class="language-dropdown">
+        <span>🇺🇸</span>
+        <ul>
+          <li><a href="https://en.parceljs.org">🇺🇸</a></li>
+          <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
+          <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
+        </ul>
+      </div>
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 Начиная работу с Parcel</a></li>
+        <li><a href="assets.html">📦 Ассеты</a></li>
+        <li><a href="transforms.html">🐠 Трансформации</a></li>
+        <li><a href="code_splitting.html">✂️ Разделение кода</a></li>
+        <li><a href="hmr.html">🔥 Горячая замена модуля</a></li>
+        <li><a href="production.html">✨ Работа в продакшене</a></li>
+        <li><a href="recipes.html">🍰 Рецепты</a></li>
+      </ul>
+      <h3>Advanced</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 Как это работает?</a></li>
+        <li><a href="asset_types.html">📝 Типы ассетов</a></li>
+        <li><a href="packagers.html">📦 Упаковщики</a></li>
+        <li><a href="plugins.html">🔌 Плагины</a></li>
+      </ul>
+    </nav>
+    <main>
+      {{~> content}}
+    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>
