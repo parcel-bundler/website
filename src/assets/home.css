@@ -6,10 +6,10 @@ html, body {
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-weight:400;
-  color:#111;
-  line-height:1em;
-  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-weight:400;
+color:#111;
+line-height:1em;
+font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h4,h5,h6{ font-weight: bold; }
 h1{ font-size:3.2em; }
