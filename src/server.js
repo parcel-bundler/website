@@ -6,10 +6,9 @@ const languages = fs.readdirSync(__dirname + '/../dist');
 
 app.use(function (req, res, next) {
   // autodetect language
-  let lang = req.subdomains[0] || req.acceptsLanguages(...languages) || 'en';
-  if (!languages.includes(lang)) {
-    lang = 'en';
-  }
+  let lang = [req.query.locale, req.subdomains[0], req.acceptsLanguages(...languages), 'en'].find(function(lang) {
+    return languages.includes(lang);
+  });
 
   req.url = '/' + lang + req.url;
   res.setHeader('Content-Language', lang);
