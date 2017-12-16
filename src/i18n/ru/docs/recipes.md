@@ -1,8 +1,8 @@
-# 🍰 Recipes
+# 🍰 Рецепты
 
 ## React
 
-First need to install the dependencies for React.
+Сначала необходимо установить зависимости для React.
 
 [Blog Post](http://blog.jakoblind.no/react-parcel/)
 
@@ -14,7 +14,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-react
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```
 yarn add react
@@ -24,7 +24,7 @@ yarn add --dev babel-preset-env
 yarn add --dev babel-preset-react
 ```
 
-Then make sure the following Babel config is present.
+Затем убедитесь, что присутствует следующая конфигурация Babel.
 
 ```javascript
  // .babelrc
@@ -33,7 +33,7 @@ Then make sure the following Babel config is present.
 }
 ```
 
-Add Start script to `package.json`
+Добавьте скрипт запуска в `package.json`
 
 ```javascript
 // package.json
@@ -44,7 +44,7 @@ Add Start script to `package.json`
 
 ## Preact
 
-First we need to install the dependencies for Preact.
+Сначала нам нужно установить зависимости для Preact.
 
 ```
 npm install --save preact
@@ -54,7 +54,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```
 yarn add preact
@@ -64,7 +64,7 @@ yarn add --dev babel-preset-env
 yarn add --dev babel-preset-preact
 ```
 
-Then make sure the following Babel config is present.
+Затем убедитесь, что присутствует следующая конфигурация Babel.
 
 ```javascript
 // .babelrc
@@ -73,7 +73,7 @@ Then make sure the following Babel config is present.
 }
 ```
 
-Add Start script to `package.json`
+Добавьте скрипт запуска в `package.json`
 
 ```javascript
 // package.json
