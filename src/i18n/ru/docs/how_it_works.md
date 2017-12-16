@@ -1,19 +1,19 @@
-# 🛠 How It Works
+# 🛠 Как это работает?
 
-Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
+Parcel преобразует дерево **ассетов** в дерево **бандлов**. Множество других упаковщиков основываются на свойствах JavaScript, с другими форматами закрепленными, например, в виде строк в файлы JS. Parcel является агностическим файловым типом&nbsp;&mdash; он будет работать с любыми типами ассетов так, как вы ожидали, без конфигурации. Существует три шага для процесса комплектации бандла в Parcel.
 
-### 1. Constructing the Asset Tree
+### 1. Построение дерева ассетов
 
-Parcel takes as input a single entry asset, which could be any type: a JS file, HTML, CSS, image, etc. There are various [asset types](asset_types.html) defined in Parcel which know how to handle specific file types. The assets are parsed, their dependencies are  extracted, and they are transformed to their final compiled form. This creates a tree of assets.
+Parcel принимает в качестве входных данных один элемент записи, который может быть любого типа: JS-файл, HTML, CSS, изображение и так далее. Существуют различные [типы ассетов](asset_types.html), определенные в Parcel, которые знают, как обрабатывать конкретные типы файлов. Ассеты анализируются, их зависимости извлекаются и они преобразуются в их окончательную скомпилированную форму. Это создает дерево ассетов.
 
-### 2. Constructing the Bundle Tree
+### 2. Построение дерева бандлов
 
-Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+После того как дерево ассетов было построено, ассеты помещаются в дерево бандлов. Для исходного ассета создается бандл, а дочерние бандлы создаются для динамического `import()`, которые вызывают разделение кода.
 
-Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
+Родственные бандлы создаются при импорте асетов другого типа, например, если вы импортировали CSS-файл из JavaScript, он будет помещен в соседний бандл.
 
-If an asset is required in more than one bundle, it is hoisted up to the nearest common ancestor in the bundle tree so it is not included more than once.
+Если ассет требуется более чем в одном пакете, он поднимается до ближайшего общего предка в дереве бандлов, поэтому он не включается более одного раза.
 
-### 3. Packaging
+### 3. Упаковка
 
-After the bundle tree is constructed, each bundle is written to a file by a [packager](packagers.html) specific to the file type. The packagers know how to combine the code from each asset together into the final file that is loaded by a browser.
+После построения дерева бандлов, каждый бандл записывается в файл посредством [упаковщика](packagers.html), специфичного для этого типа файла. Упаковщики знают, как объединить код из каждого ассета в конечный файл, загруженный браузером.
