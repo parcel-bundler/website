@@ -1,6 +1,6 @@
 # 🔌 Plugins
 
-Parcel consiste em uma abordagem um pouco diferente de outras ferramentas semelhantes, onde muitos formatos comuns são incluídos fora-da-caixa sem a necessidade de instalar e configurar plugins adicionais. No entanto, existem casos em que você queira estender o Parcel de uma maneira não convencional, e por esses motivos o Parcel tem suporte a plugins. Os plugins instalados são automaticamente detectados e carregados com base nas dependências do arquivo `package.json`.
+Parcel consiste em uma abordagem um pouco diferente de outras ferramentas semelhantes, onde muitos formatos comuns são incluídos de fábrica sem a necessidade de instalar e configurar plugins adicionais. No entanto, existem casos em que você queira estender o Parcel de uma maneira não convencional, e por esses motivos o Parcel tem suporte a plugins. Os plugins instalados são automaticamente detectados e carregados com base nas dependências do arquivo `package.json`.
 
 Ao adicionar suporte para um novo formato de arquivo para o Parcel, você deve primeiro considerar o quão generalizado é e como é padronizada a implementação desse novo formato. Se for bem difundido e padronizado, o formato provavelmente deve ser adicionado ao núcleo do Parcel e não como um plugin que os usuários precisam instalar. Se tiver dúvidas, o [GitHub](https://github.com/parcel-bundler/parcel/issues) é o lugar ideal para discutir sobre isso.
 

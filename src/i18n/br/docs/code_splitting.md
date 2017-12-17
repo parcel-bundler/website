@@ -1,6 +1,6 @@
 # ✂️ Separação do Código
 
-Parcel suporta separação do código sem nenhuma configuração, fora-da-caixa. Isso permite que você divida o código da sua aplicação em arquivos separados, que podem ser carregados sob demanda, o que significa tamanhos de arquivos iniciais menores e tempos de carregamento mais rápidos. À medida que o usuário navega em sua aplicação e os módulos são carregados, o Parcel automaticamente se encarrega de carregar os demais módulos sob demanda.
+Parcel suporta separação do código sem nenhuma configuração, de fábrica. Isso permite que você divida o código da sua aplicação em arquivos separados, que podem ser carregados sob demanda, o que significa tamanhos de arquivos iniciais menores e tempos de carregamento mais rápidos. À medida que o usuário navega em sua aplicação e os módulos são carregados, o Parcel automaticamente se encarrega de carregar os demais módulos sob demanda.
 
 A separação do código é controlada pelo uso da função dinâmica `import ()` [syntax proposal](https://github.com/tc39/proposal-dynamic-import), que funciona como a declaração de `import` ou a função `require`, mas retorna uma Promise. Isso significa que o módulo é carregado de forma assíncrona.
 
