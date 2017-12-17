@@ -1,5 +1,6 @@
 var icons = [
   'js',
+  'ts',
   'json',
   'css',
   'sass',
