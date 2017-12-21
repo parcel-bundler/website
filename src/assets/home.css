@@ -161,11 +161,16 @@ header .links a:hover {
 
 .language-dropdown li {
   margin: 0;
-  padding: 0 10px;
+  transition: background-color 125ms;
 }
 
 .language-dropdown li a {
-  padding: 0;
+  padding: 0 10px;
+  color: #27ae60;
+}
+
+.language-dropdown li a:hover {
+  color: #E7DACB;
 }
 
 .language-dropdown li:hover {
