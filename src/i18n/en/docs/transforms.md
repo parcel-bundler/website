@@ -79,3 +79,24 @@ Then, create a `.posthtmlrc`:
 ```
 
 Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+
+## TypeScript
+[TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles down to plain JavaScript, which also supports modern ES2015+ features. Transforming TypeScript works out of the box without any additional configuration.
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./index.ts"></script>
+</body>
+</html>
+```
+```typescript
+// index.ts
+import message from "./message";
+console.log(message);
+```
+```typescript
+// message.ts
+export default "Hello, world";
+```
