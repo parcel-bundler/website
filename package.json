@@ -10,6 +10,7 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "commander": "^2.12.2",
     "markdown-styles": "^3.1.10",
     "now": "^8.3.10",
     "now-travis": "^1.2.0",
