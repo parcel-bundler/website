@@ -40,7 +40,7 @@ Depois, crie os arquivos index.html e index.js.
 console.log("olá mundo");
 ```
 
-Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vá alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmt.html) para acelerar o desenvolvimento. Apenas aponte à ele seu arquivo de entrada:
+Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vá alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmr.html) para acelerar o desenvolvimento. Apenas aponte à ele seu arquivo de entrada:
 
 ```bash
 parcel index.html
