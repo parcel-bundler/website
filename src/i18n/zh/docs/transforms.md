@@ -79,3 +79,24 @@ yarn add posthtml-img-autosize
 ```
 
 Plugins 在 `plugins` 对象中指定为 key，并且选项使用对象值定义。如果插件没有选项，只需将其设置为 `true` 即可。
+
+## TypeScript
+[TypeScript](https://www.typescriptlang.org/) 是 JavaScript 类型的超集，它可以编译成普通的 JavaScript，同时也支持现代 ES2015+ 的特性。转换 TypeScript 无需任何额外配置，开箱即用。
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./index.ts"></script>
+</body>
+</html>
+```
+```typescript
+// index.ts
+import message from "./message";
+console.log(message);
+```
+```typescript
+// message.ts
+export default "Hello, world";
+```
