@@ -1,6 +1,6 @@
 # 📦 Packagers
 
-En Parcel, un `Packager` combina multiples `recursos` en un paquete final. Esto ocurre en el proceso principal despues de que todos los recursos han sido procesados, y un árbol de contenedores ha sido creado. Los Packagers son registrados en base a un tipo de archivo de salida, y los recursos que generaron ese tipo de salida son enviados a ese packager para producir el archivo de salida final.
+En Parcel, un `Packager` combina multiples `Asset`s en un paquete de salida final. Esto ocurre en el proceso principal despues de que todos los recursos han sido procesados, y un árbol de paquetes ha sido creado. Los `packagers` son registrados en base a un tipo de archivo de salida, y los recursos que generaron ese tipo de salida son enviados a ese packager para la producción del archivo de salida final.
 
 ## Interfaz de Packager
 
@@ -9,17 +9,17 @@ const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // optional. write file header if needed.
+    // opcional. escribir cabeceras de archivo si es necesario.
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // required. write the asset to the output file.
+    // requerido. escribir el recurso al archivo de salida.
     await this.dest.write(asset.generated.foo);
   }
 
   async end() {
-    // optional. write file trailer if needed.
+    // opcional. escribir el trailer del archivo si es necesario.
     await this.dest.end(trailer);
   }
 }
