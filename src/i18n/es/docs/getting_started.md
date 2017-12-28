@@ -1,6 +1,6 @@
 # 🚀 Empezar
 
-Parcel es un empaquetador de aplicaciones web, el cual se diferencia por la experiencia ofrecida a los desarrolladores. Ofrece una performance ultra-rápido, utilizando procesamiento multinúcleo, y no requiere configuración.
+Parcel es un empaquetador de aplicaciones web, que se diferencia por la experiencia ofrecida a los desarrolladores. Ofrece un rendimiento ultra-rápido, utilizando procesamiento multinúcleo, y no requiere configuración.
 
 Primero instale Parcel utilizando Yarn or npm:
 
@@ -14,7 +14,7 @@ npm:
 npm install -g parcel-bundler
 ```
 
-Crear un archivo package.json en el directorio de su proyecto, usando:
+Cree un archivo package.json en el directorio de su proyecto, usando:
 
 ```bash
 yarn init -y
@@ -24,7 +24,7 @@ o
 npm init -y
 ```
 
-Parcel puede utilizar cualquier tipo de archivo como punto de entrada, pero un archivo HTML o JavaScript es un buen lugar para comenzar. Si enlaza su archivo JavaScript principal en el HTML usando rutas relativas, entonces Parcel lo procesara por usted, y reemplazara la referencia con una URL al archivo de salida.
+Parcel puede utilizar cualquier tipo de archivo como punto de entrada, pero un archivo HTML o JavaScript es un buen lugar para comenzar. Si enlaza su archivo JavaScript principal en el HTML usando rutas relativas, entonces Parcel lo procesará por usted, y reemplazará la referencia con una URL al archivo de salida.
 
 A continuación, crear los archivos index.html y index.js.
 
@@ -48,7 +48,7 @@ parcel index.html
 
 Ahora, abra http://localhost:1234/ en su navegador. También puede reemplazar el puerto por defecto usando la opción `-p <port number>`.
 
-Utilice el servidor de desarrollo cuando no tenga su propio servidor, o su aplicación sea completamente renderizada en el lado del cliente. Si no cuenta con su propio servidor, puede ejecutar Parcel en modo `watch`. Esto seguirá reconstruyendo la aplicación automáticamente cuando haga cambios en sus archivos y sigue soportando reemplazo de módulos en caliente, pero no inicia un servidor web.
+Utilice el servidor de desarrollo cuando no tenga su propio servidor, o su aplicación sea completamente renderizada en el lado del cliente. Si no cuenta con su propio servidor, puede ejecutar Parcel en modo `watch`. Este modo seguirá reconstruyendo la aplicación automáticamente cuando haga cambios en sus archivos y seguirá soportando reemplazo de módulos en caliente, pero no iniciará un servidor web.
 
 ```bash
 parcel watch index.html
