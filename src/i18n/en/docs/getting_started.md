@@ -2,7 +2,7 @@
 
 Parcel is a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration.
 
-First be sure to be using [Node 8.0.0 or greater](https://nodejs.org). Need to run multiple versions of Node? Use [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
+First be sure to be using [Node 6.0.0 or greater](https://nodejs.org). Need to run multiple versions of Node? Use [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
 
 Then install Parcel using Yarn or npm:
 
