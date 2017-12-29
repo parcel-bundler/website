@@ -54,7 +54,7 @@ En el archivo `.browserslistrc` puedes especificar qué navegadores soporta tu a
 last 2 versions
 ```
 
-Para habilitar el uso de [CSS Modules](https://github.com/css-modules/css-modules) el procedimiento es ligeramente diferente, usando la llavel `modules` en el primero nivel, en lugar de dentro de `plugins`. Esto es debido a que Parcel trata los "CSS Modules" de manera especial, puesto que estos exportan un objeto que debe ser incluido en el paquete de JavaScript. Además necesitas instalar `postcss-modules` en tu proyecto.
+Para habilitar el uso de [CSS Modules](https://github.com/css-modules/css-modules) el procedimiento es ligeramente diferente, usando la llave `modules` en el primer nivel, en lugar de dentro de `plugins`. Esto es debido a que Parcel trata los "CSS Modules" de manera especial, puesto que estos exportan un objeto que debe ser incluido en el paquete de JavaScript. Además necesitas instalar `postcss-modules` en tu proyecto.
 
 ## PostHTML
 
@@ -82,7 +82,7 @@ Los plugins deben ser declarados en el objecto `plugins` como llaves, y las opci
 
 ## TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) es un superconjunto de JavaScript que añade información tipos de datos, y que compila a JavaScript simple, y también soporta todas las funcionalidades y sintáxis de ES2015+. Transformar TypeScript funciona sin necesidad de configurar ni instalar nada adicional.
+[TypeScript](https://www.typescriptlang.org/) es un superconjunto de JavaScript que añade información de tipos de datos, y que compila a JavaScript simple, y también soporta todas las funcionalidades y sintáxis de ES2015+. Transformar TypeScript funciona sin necesidad de configurar ni instalar nada adicional.
 
 ```html
 <!-- index.html -->
