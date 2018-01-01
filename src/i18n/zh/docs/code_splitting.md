@@ -2,7 +2,7 @@
 
 Parcel 支持零配置代码拆分，并且开箱即用。这允许您将应用程序的代码拆分成单独的包，这些包可以按需加载，这意味着更小的初始包大小和更短的加载时间。随着用户在应用程序中浏览相应的模块需要加载，Parcel 会自动负责按需加载子捆绑包。
 
-代码拆分时通过使用动态 `import()` 函数的[语法提案](https://github.com/tc39/proposal-dynamic-import)来控制的，该提案与普通 `import` 语句或 `require` 函数的类似，但返回一个 Promise 对象。这意味着模块时异步加载的。
+代码拆分时通过使用动态 `import()` 函数的[语法提案](https://github.com/tc39/proposal-dynamic-import)来控制的，该提案与普通 `import` 语句或 `require` 函数的类似，但返回一个 Promise 对象。这意味着模块是异步加载的。
 
 以下示例展示了如何使用动态导入(dynamic import)来按需加载应用程序的子页面。
 
@@ -44,7 +44,7 @@ async function renderPage(page) {
 }
 ```
 
-**注意:** 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 `babel-polyfill` 或在你的库中引入 `babel-runtime` + `babel-plugin-transform-runtime` 。
+**注意：** 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 `babel-polyfill` 或在你的库中引入 `babel-runtime` + `babel-plugin-transform-runtime` 。
 
 ```bash
 yarn add babel-polyfill

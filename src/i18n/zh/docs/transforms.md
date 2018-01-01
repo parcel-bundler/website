@@ -1,8 +1,8 @@
 # 🐠 转换(Transforms)
 
-许多打包工具需要你安装和配置插件来转换资源，Parcel 支持许多开箱即用的转换器和内置的编译器。您可以使用 [Babel](https://babeljs.cn) 转换 JavaScript ，使用 [PostCSS](http://postcss.org) 转换 CSS ，使用 [PostHTML](https://github.com/posthtml/posthtml) 转换 HTML。Parcel 在模块中找到配置文件 (例如 .babelrc, .postcssrc) 时会自动运行并进行转换。
+许多打包工具需要你安装和配置插件来转换资源，Parcel 支持许多开箱即用的转换器和内置的编译器。您可以使用 [Babel](https://babeljs.cn) 转换 JavaScript ，使用 [PostCSS](http://postcss.org) 转换 CSS ，使用 [PostHTML](https://github.com/posthtml/posthtml) 转换 HTML。Parcel 在模块中找到配置文件 (例如 .babelrc ，.postcssrc) 时会自动运行并进行转换。
 
-这甚至可以在第三方 `node_modules` 中运行: 如果配置文件作为程序包的一部分发布，则仅为该模块自动启用转换。由于只需要处理需要转换的模块，因此可以快速打包。这也意味着你不需要手动配置转换，使其包含和排除某些文件，也不需要知道如何构建第三方代码，以便在你的应用程序中使用它。
+这甚至可以在第三方 `node_modules` 中运行：如果配置文件作为程序包的一部分发布，则仅为该模块自动启用转换。由于只需要处理需要转换的模块，因此可以快速打包。这也意味着你不需要手动配置转换，使其包含和排除某些文件，也不需要知道如何构建第三方代码，以便在你的应用程序中使用它。
 
 ## Babel
 
@@ -14,7 +14,7 @@
 yarn add babel-preset-env
 ```
 
-接着， 创建一个 `.babelrc`:
+接着，创建一个 `.babelrc`:
 
 ```json
 {
@@ -24,15 +24,15 @@ yarn add babel-preset-env
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) 是一个使用插件转换 CSS 的工具， 例如 [autoprefixer](https://github.com/postcss/autoprefixer)，[cssnext](http://cssnext.io/) 以及 [CSS Modules](https://github.com/css-modules/css-modules) 。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostCSS 的目的: `.postcssrc` (JSON)，`.postcssrc.js`， 或 `postcss.config.js`.
+[PostCSS](http://postcss.org) 是一个使用插件转换 CSS 的工具，例如 [autoprefixer](https://github.com/postcss/autoprefixer)，[cssnext](http://cssnext.io/) 以及 [CSS Modules](https://github.com/css-modules/css-modules) 。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostCSS 的目的： `.postcssrc` (JSON)，`.postcssrc.js`，或 `postcss.config.js`。
 
-在你应用程序中安装 plugins:
+在你应用程序中安装 plugins ：
 
 ```bash
 yarn add postcss-modules autoprefixer
 ```
 
-接着，创建一个 `.postcssrc` 文件:
+接着，创建一个 `.postcssrc` 文件：
 
 ```json
 {
@@ -58,15 +58,15 @@ last 2 versions
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的: `.posthtmlrc` (JSON) ，`posthtmlrc.js` ，或者 `posthtml.config.js`。
+[PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的： `.posthtmlrc` (JSON) ，`posthtmlrc.js` ，或者 `posthtml.config.js`。
 
-在你的应用程序中安装 plugin:
+在你的应用程序中安装 plugin ：
 
 ```bash
 yarn add posthtml-img-autosize
 ```
 
-接着，创建一个 `.posthtmlrc`:
+接着，创建一个 `.posthtmlrc` ：
 
 ```json
 {

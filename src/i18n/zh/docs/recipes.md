@@ -44,7 +44,7 @@ yarn add --dev babel-preset-react
 
 ## Preact
 
-首先需要安装 Preact 相关的依赖.
+首先需要安装 Preact 相关的依赖。
 
 ```
 npm install --save preact
