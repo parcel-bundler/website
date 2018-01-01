@@ -24,7 +24,7 @@ or
 npm init -y
 ```
 
-Parcel może użyć dowolnego pliku jako plik wejściowy, ale dobrym pomysłem zacząć jest od pliku HTML lub JavaScript. Jeśli zalinkujesz główny plik JavaScript w HTML za pomocą relatywnej ścieżki, Parcel przetworzy ją za Ciebie i zamieni referencję na URL do pliku wyjściowego.
+Parcel może użyć dowolnego pliku jako plik wejściowy, ale dobrym pomysłem zacząć jest od pliku HTML lub JavaScript. Jeśli zalinkujesz główny plik JavaScript w HTML za pomocą relatywnej ścieżki, Parcel przetworzy ją za Ciebie i zamieni odwołanie na URL do pliku wyjściowego.
 
 Następnie utwórz pliki index.html i index.js.
 
