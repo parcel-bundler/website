@@ -14,7 +14,7 @@ const dep = require('./path/to/dep');
 import dep from './path/to/dep';
 ```
 
-Możesz również importować zasoby nie-JavaScriptowe z pliku JavaScript, np. pliki CSS lub obrazy. Kiedy importujesz taki plik, nie jest on wstawiany w kod, jak ma to miejsce w innych programach pakujących. Zamiast tego, taki zasób umieszczany jest w osobnej paczce (np. w pliku CSS) razem z wszystkimi jego zależnościami. W [modułach CSS](https://github.com/css-modules/css-modules), eksportowane klasy są umieszczane w paczce JavaScript. Inne typy zasobów eksportują URL do pliku wyjściowego w paczce JavaScript, by odwołanie do niego mogło zostać umieszczone w kodzie.
+Możesz również importować zasoby nie-JavaScriptowe z pliku JavaScript, np. pliki CSS lub obrazy. Kiedy importujesz taki plik, nie jest on wstawiany w kod, jak ma to miejsce w innych programach pakujących. Zamiast tego, taki zasób umieszczany jest w osobnej paczce (np. w pliku CSS) razem z wszystkimi jego zależnościami. W [modułach CSS](https://github.com/css-modules/css-modules), eksportowane klasy są umieszczane w paczce JavaScript. Inne typy zasobów eksportują URL do pliku wyjściowego w paczce JavaScript, by odwołanie do niego mogło zostać wstawione w kod.
 
 ```javascript
 // Importuj plik CSS
