@@ -1,6 +1,6 @@
 # 🚀 Wprowadzenie
 
-Pracel to program pakujący do stron sieci web, wyróżniający się dzięki doświadczeniu jego deweloperów. Oferuje oszałamiającą szybkość dzięki procesowaniu na wielu rdzeniach procesora i nie wymaga żadnej konfiguracji.
+Parcel to program tworzący pakiety do stron sieci web, wyróżniający się dzięki doświadczeniu jego deweloperów. Oferuje oszałamiającą szybkość dzięki procesowaniu na wielu rdzeniach procesora i nie wymaga żadnej konfiguracji.
 
 Zainstaluj Parcel za pomocą Yarn lub npm:
 

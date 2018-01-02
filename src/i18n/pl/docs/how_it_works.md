@@ -1,6 +1,6 @@
 # 🛠 Jak To Działa
 
-Parcel transformuje drzewo **zasobów** do drzewa **paczek**. Wiele innych programów pakujących jest zorientowana na zasoby JavaScript, a zasoby innego typu są "przyczepione", np. wstawiane w kod JavaScript jako stringi. Parcel jest neutralny w stosunku do typu pliku - będzie działać tak samo dobrze z dowolnymi typami zasobów, bez żadnej konfiguracji. Są trzy etapy procesu pakowania Parcel.
+Parcel transformuje drzewo **zasobów** do drzewa **paczek**. Wiele innych programów tworzących pakiety jest zorientowana na zasoby JavaScript, a zasoby innego typu są "przyczepione", np. wstawiane w kod JavaScript jako stringi. Parcel jest neutralny w stosunku do typu pliku - będzie działać tak samo dobrze z dowolnymi typami zasobów, bez żadnej konfiguracji. Są trzy etapy procesu pakowania Parcel.
 
 ### 1. Konstruowanie Drzewa Zasobów
 
