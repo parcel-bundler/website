@@ -1,10 +1,10 @@
 # 📦 Assets
 
-Parcel está basado en recursos. Un recurso puede ser cualquier archivo, sin embargo, parcel tiene soporte especial para algunos tipos de archivos como JavaScript, CSS, y HTML. Parcel analiza automáticamente las dependencias referenciadas en estos archivos y los incluye en el paquete de salida. Recursos similares son agrupados en un mismo paquete de salida. Si importas un tipo de recurso diferente (Por ejemplo, si importas un archivo CSS a partir de un archivo JS), empieza la construcción de un segundo archivo y añade una referencia al paquete de salida principal. Esto será demostrado en las próximas secciones.
+Parcel está basado en recursos. Un recurso puede ser cualquier archivo, sin embargo, parcel tiene soporte especial para algunos tipos de archivos como JavaScript, CSS, y HTML. Parcel analiza automáticamente las dependencias referenciadas en estos archivos y los incluye en el paquete de salida. Recursos similares son agrupados en un mismo paquete de salida. Si importas un tipo de recurso diferente (por ejemplo, si importas un archivo CSS a partir de un archivo JS), empieza la construcción de un segundo archivo y añade una referencia al paquete de salida principal. Esto será demostrado en las próximas secciones.
 
 ## JavaScript
 
-El tipo de archivo más común en los empaquetadores web es Javascript. Parcel soporta tanto CommonJS como módulos en ES6 para importar archivos. También soporta la funcion `import()` para cargar cargar los módulos de manera asíncrona, el cual será detallado en la sección [Code Splitting](code_splitting.html).
+El tipo de archivo más común en los empaquetadores web es JavaScript. Parcel soporta tanto CommonJS como módulos en ES6 para importar archivos. También soporta la funcion `import()` para cargar los módulos de manera asíncrona, lo cual se muestra en detalle en la sección [Separación de Código](code_splitting.html).
 
 ```javascript
 // importa un módulo utilizando CommonJS
@@ -14,7 +14,7 @@ const dep = require('./path/to/dep');
 import dep from './path/to/dep';
 ```
 
-También puedes importar otros tipos de recursos que no sean Javascript desde un archivo Javacript como por ejemplo CSS o incluso una imagen. Cuando importas alguno de estos tipos de archivos, estos no serán insertados inline como sucede con otros empaquetadores. En vez de eso, este se colocará en un paquete diferente (por ejemplo. un archivo CSS) junto con todas sus dependencias. Cuando se usa [CSS Modules](https://github.com/css-modules/css-modules), las clases exportadas serán añadidas al paquete de salida Javascript. Otros tipos de recursos exportan una URL al paquete de salida JavaScript para que puedas referenciarlo en tu código.
+También puedes importar otros tipos de recursos que no sean JavaScript desde un archivo JavaScript como por ejemplo CSS o incluso una imagen. Cuando importas alguno de estos tipos de archivos, estos no serán insertados inline como sucede con otros empaquetadores. En vez de eso, este se colocará en un paquete diferente (por ejemplo. un archivo CSS) junto con todas sus dependencias. Cuando se usa [CSS Modules](https://github.com/css-modules/css-modules), las clases exportadas serán añadidas al paquete de salida JavaScript. Otros tipos de recursos exportan una URL al paquete de salida JavaScript para que puedas referenciarlo en tu código.
 
 ```javascript
 // Importa un archivo CSS
@@ -41,7 +41,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 
 ## CSS
 
-Los archivos CSS pueden ser importados a partir de un archivo Javascript o HTML, y pueden tener referencias de dependencias utilizando  `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()` . Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo empaquetado CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
+Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML, y pueden tener referencias de dependencias utilizando  `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()` . Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo empaquetado CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
 
 ```css
 /* Importa otro archivo CSS */
@@ -78,7 +78,7 @@ Los archivos HTML son frecuentemente utilizados como punto de entrada para Parce
 
   <a href="./other.html">Link a otra página</a>
 
-  <!-- Importa un paquete Javacript -->
+  <!-- Importa un paquete JavaScript -->
   <script src="./index.js"></script>
 </body>
 </html>
