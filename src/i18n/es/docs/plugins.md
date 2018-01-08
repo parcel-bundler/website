@@ -19,4 +19,4 @@ Publique este paquete en npm usando el prefijo `parcel-plugin-`, y se detectará
 
 ## Usando Complementos
 
-Usar complementos en Parcel no podría ser más simple. Todo lo que necesita hacer es instalarlos y guardarlos en su `package.json`. Los complementos deben nombrarse con el prefijo `parcel-plugin-`, p. Ej. `parcel-plugin-foo`. Cualquier dependencia enumerada en `package.json` con este prefijo se cargará automáticamente durante la inicialización.
+Usar complementos en Parcel no podría ser más simple. Todo lo que necesita hacer es instalarlos y guardarlos en su `package.json`. Los complementos deben nombrarse con el prefijo `parcel-plugin-`, por ejemplo `parcel-plugin-foo`. Cualquier dependencia enumerada en `package.json` con este prefijo se cargará automáticamente durante la inicialización.
