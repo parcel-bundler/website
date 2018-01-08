@@ -79,3 +79,25 @@ yarn add posthtml-img-autosize
 ```
 
 플러그인은 `plugins` 객체에 키로 지정되고 옵션은 객체의 값으로 정의 됩니다. 만약 플러그인에 옵션이 없다면, 대신 `true`로 설정하세요.
+
+
+## TypeScript
+[TypeScript](https://www.typescriptlang.org/)는 타입이 추가된 JavaScript의 Superset 언어로, 컴파일하면 일반 JavaScript로 변환되며 최신 ES2015+ 기능들도 지원합니다. TypeScript의 변환 작업은 추가적인 설정 없이 가능합니다.
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./index.ts"></script>
+</body>
+</html>
+```
+```typescript
+// index.ts
+import message from "./message";
+console.log(message);
+```
+```typescript
+// message.ts
+export default "Hello, world";
+```
