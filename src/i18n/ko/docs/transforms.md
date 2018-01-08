@@ -82,7 +82,7 @@ yarn add posthtml-img-autosize
 
 
 ## TypeScript
-[TypeScript](https://www.typescriptlang.org/)는 타입이 추가된 JavaScript의 Superset 언어로, 컴파일하면 일반 JavaScript로 변환되며 최신 ES2015+ 기능들도 지원합니다. TypeScript의 변환은 별도의 추가적인 설정 없이 가능합니다.
+[TypeScript](https://www.typescriptlang.org/)는 타입이 추가된 JavaScript의 Superset 언어로, 컴파일하면 일반 JavaScript로 변환되며 최신 ES2015+ 기능들도 지원합니다. TypeScript의 변환 작업은 추가적인 설정 없이 가능합니다.
 
 ```html
 <!-- index.html -->
