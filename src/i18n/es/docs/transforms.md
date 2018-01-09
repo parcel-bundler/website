@@ -45,7 +45,7 @@ Luego, crea un archivo `.postcssrc`:
 }
 ```
 
-Los plugins deben ser declarados en el objecto `plugins` como llaves, y las opciones correspondientes son especificadas usando un objecto como valor de esa llave. Si no hay opciones que especificar para un plugin, simplemente usa `true` como valor.
+Los plugins deben ser declarados en el objeto `plugins` como llaves, y las opciones correspondientes son especificadas usando un objeto como valor de esa llave. Si no hay opciones que especificar para un plugin, simplemente usa `true` como valor.
 
 En el archivo `.browserslistrc` puedes especificar qué navegadores soporta tu app. Esta información es utilizada por Autoprefixer, cssnext y otras herramientas.
 
@@ -78,7 +78,7 @@ Luego, crea un archivo `.posthtmlrc`:
 }
 ```
 
-Los plugins deben ser declarados en el objecto `plugins` como llaves, y las opciones correspondientes son especificadas usando un objecto como valor de esa llave. Si no hay opciones que especificar para un plugin, simplemente usa `true` como valor.
+Los plugins deben ser declarados en el objeto `plugins` como llaves, y las opciones correspondientes son especificadas usando un objeto como valor de esa llave. Si no hay opciones que especificar para un plugin, simplemente usa `true` como valor.
 
 ## TypeScript
 
