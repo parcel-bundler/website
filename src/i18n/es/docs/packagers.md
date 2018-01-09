@@ -1,6 +1,6 @@
 # 📦 Empaquetadores
 
-En Parcel, un `Packager` combina multiples `Asset`s en un paquete de salida final. Esto ocurre en el proceso principal despues de que todos los recursos han sido procesados, y un árbol de paquetes ha sido creado. Los `packagers` son registrados en base a un tipo de archivo de salida, y los recursos que generaron ese tipo de salida son enviados a ese packager para la producción del archivo de salida final.
+En Parcel, un `Packager` combina multiples `Asset`s en un paquete de salida final. Esto ocurre en el proceso principal después de que todos los recursos han sido procesados, y un árbol de paquetes ha sido creado. Los `packagers` son registrados en base a un tipo de archivo de salida, y los recursos que generaron ese tipo de salida son enviados a ese packager para la producción del archivo de salida final.
 
 ## Interfaz de Packager
 

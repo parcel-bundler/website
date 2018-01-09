@@ -2,7 +2,7 @@
 
 Parcel soporta separación de código sin necesidad de configuración. Esto permite separar el código de tu aplicación en paquetes separados que pueden ser cargados bajo demanda, lo que significa paquetes iniciales de menor tamaño y tiempos de carga más rápido. A medida que el usuario navega por tu aplicación y los módulos son requeridos, Parcel automáticamente se encarga de cargar los demás paquetes bajo demanda.
 
-La separación de código es controlada por la función dinámica [propuesta](https://github.com/tc39/proposal-dynamic-import) `import()`  , que funciona como la declaración `import` o la función `require`, con la diferencia de que esta retorna un promesa. Esto significa que el módulo es cargado de forma asíncrona.
+La separación de código es controlada por la función dinámica [propuesta](https://github.com/tc39/proposal-dynamic-import) `import()`, que funciona como la declaración `import` o la función `require`, con la diferencia de que esta retorna un promesa. Esto significa que el módulo es cargado de forma asíncrona.
 
 El siguiente ejemplo muestra como podrías usar las importaciones dinámicas para cargar una página de tu aplicación bajo demanda.
 

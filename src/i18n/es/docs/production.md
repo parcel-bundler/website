@@ -1,6 +1,6 @@
 # ✨ Producción
 
-Cuando llegue el momento de empaquetar su aplicación para producción, puede usar el modo producción de Parcel
+Cuando llegue el momento de empaquetar tu aplicación para producción, puedes usar el modo producción de Parcel
 
 ```bash
 parcel build entry.js
