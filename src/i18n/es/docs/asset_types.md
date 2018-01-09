@@ -22,7 +22,7 @@ class MyAsset extends Asset {
   }
 
   collectDependencies() {
-    // analyzar dependencias
+    // analizar dependencias
     this.addDependency('my-dep');
   }
 
