@@ -1,5 +1,6 @@
 # 📝 Tipos de archivos
 
+
 Como se describe en la [Documentación de archivos](assets.html), Parcel representa cada archivo de entrada como un `Asset`. Los tipos de archivo se representan como clases que heredan de la clase base `Asset` e implementan la interfaz requerida para leer, analizar dependencias, transformar y generar código.
 
 Debido a que Parcel procesa los activos en paralelo en múltiples núcleos de CPU, las transformaciones que pueden realizar los tipos de activos se limitan a las que operan en un solo archivo a la vez. Para transformaciones en varios archivos, se puede usar un [Packager](packagesrs.html) personalizado.
