@@ -15,7 +15,7 @@ module.exports = function (bundler) {
 };
 ```
 
-Publiqua este paquete en npm usando el prefijo `parcel-plugin-`, y se detectará y cargará automáticamente como se describe a continuación.
+Publica este paquete en npm usando el prefijo `parcel-plugin-`, y se detectará y cargará automáticamente como se describe a continuación.
 
 ## Usando Complementos
 

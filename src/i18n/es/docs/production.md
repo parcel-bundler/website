@@ -47,7 +47,7 @@ or
 
 #### Deshabilitar la minificacion
 
-Por defecto: minificacion habilitada
+Por defecto: minificación habilitada
 
 ```bash
 parcel build entry.js --no-minify

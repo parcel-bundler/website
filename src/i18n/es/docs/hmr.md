@@ -4,7 +4,7 @@ El Reemplazo de Módulos en Caliente (HMR por sus siglas en inglés) mejora la e
 
 Mientras guardas los archivos, Parcel recontruye lo que haya cambiado y envía una actualización a cualquier cliente en ejecución que contenga el código a actualizar. El nuevo código reemplaza la versión antigua, y es re-evaluado con todas sus dependencias. Puedes engancharte a este evento usando el API `module.hot`, el cual puede notificar a tu código cuando un módulo está a punto de ser eliminado, o cuando viene una nueva versión. Proyectos como [react-hot-loader](https://github.com/gaearon/react-hot-loader) ayudan con este proceso, y funcionan sin necesidad de configuración con Parcel.
 
-Hay dos métodos que se deben conocer: `module.hot.accept` y `module.hot.dispose`. El método `module.hot.accept` necesita una función de retorno que será llamada cuando ese módulo o alguna de sus dependencias hayan sido actualizados. Por otro lado `module.hot.dispose` también necesita una función de retorno que será llamada cuando el modulo esté a punto de ser reemplazado.
+Hay dos métodos que se deben conocer: `module.hot.accept` y `module.hot.dispose`. El método `module.hot.accept` necesita una función de retorno que será llamada cuando ese módulo o alguna de sus dependencias hayan sido actualizados. Por otro lado `module.hot.dispose` también necesita una función de retorno que será llamada cuando el módulo esté a punto de ser reemplazado.
 
 ```javascript
 if (module.hot) {

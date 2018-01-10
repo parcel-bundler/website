@@ -27,15 +27,15 @@ class MyAsset extends Asset {
   }
 
   transform() {
-    // opcional. transformar despues de recolectar dependencias.
+    // opcional. transformar después de recolectar dependencias.
   }
 
   generate() {
-    // generar codigo. Puedes devolver varias representaciones si lo necesitas.
+    // generar código. Puedes devolver varias representaciones si lo necesitas.
     // los resultados son enviados al empaquetador apropiado para generar los paquetes finales.
     return {
       foo: 'my stuff here', // salida principal
-      js: 'some javascript' // representacion alternativa para ser colocada en el paquete de JS si es necesario.
+      js: 'some javascript' // representación alternativa para ser colocada en el paquete de JS si es necesario.
     };
   }
 }
