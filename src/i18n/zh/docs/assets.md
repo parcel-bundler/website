@@ -57,11 +57,11 @@ JavaScript 文件或 HTML 文件都能导入 CSS 资源，并且能通过 `@impo
 
 ## SCSS
 编译 SCSS 需要 `node-sass` 模块. 通过 npm 安装它:
-```
+```bash
 npm install node-sass
 ```
 一旦安装了 `node-sass`，你就可以在 JavaScript 文件中引入 SCSS 文件。
-```
+```javascript
 import './custom.scss'
 ```
 SCSS 文件中的依赖可以使用 `@import` 语句。

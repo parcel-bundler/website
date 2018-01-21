@@ -6,7 +6,7 @@
 
 [博客](http://blog.jakoblind.no/react-parcel/)
 
-```
+```bash
 npm install --save react
 npm install --save react-dom
 npm install --save-dev parcel-bundler
@@ -16,7 +16,7 @@ npm install --save-dev babel-preset-react
 
 <sub>或者如果你安装了 Yarn 包管理器</sub>
 
-```
+```bash
 yarn add react
 yarn add react-dom
 yarn add --dev parcel-bundler
@@ -46,7 +46,7 @@ yarn add --dev babel-preset-react
 
 首先需要安装 Preact 相关的依赖。
 
-```
+```bash
 npm install --save preact
 npm install --save preact-compat
 npm install --save-dev parcel-bundler
@@ -56,7 +56,7 @@ npm install --save-dev babel-preset-preact
 
 <sub>或者如果你安装了 Yarn 包管理器</sub>
 
-```
+```bash
 yarn add preact
 yarn add preact-compat
 yarn add --dev parcel-bundler
