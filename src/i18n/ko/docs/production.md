@@ -58,7 +58,7 @@ or
 
 기본값: 활성화
 
-```
+```bash
 parcel build entry.js --no-minify
 ```
 

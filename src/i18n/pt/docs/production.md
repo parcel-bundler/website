@@ -49,7 +49,7 @@ ou
 
 Padrão: minificação habilitada
 
-```
+```bash
 parcel build entry.js --no-minify
 ```
 
