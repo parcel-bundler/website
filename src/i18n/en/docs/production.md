@@ -48,7 +48,7 @@ or
 
 #### Disable source-maps
 
-Default: "enabled"
+Default: source-maps enabled
 
 ```bash
 parcel build entry.js --no-source-maps
