@@ -3,3 +3,4 @@ node_modules/
 .idea/
 yarn.lock
 .DS_Store
+yarn-error.log
