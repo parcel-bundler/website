@@ -17,3 +17,13 @@ if (module.hot) {
   });
 }
 ```
+
+## Safe Write
+Some text editors and IDE's have a feature called `safe write` this basically prevents data loss, by taking a copy of the file and renaming it when saved.
+
+When using Hot Module Reload (HMR) this feature blocks the automatic detection of file updates, to disable `safe write` use the options provided below:
+
+* `Sublime Text 3` add atomic_save: "false" to your user preferences.
+* `IntelliJ` use search in the preferences to find "safe write" and disable it.
+* `Vim` add :set backupcopy=yes to your settings.
+* `WebStorm` uncheck Use "safe write" in Preferences > Appearance & Behavior > System Settings.
