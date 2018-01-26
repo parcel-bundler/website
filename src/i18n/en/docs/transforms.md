@@ -56,6 +56,10 @@ last 2 versions
 
 CSS Modules are enabled slightly differently using the a top-level `modules` key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install `postcss-modules` in your project.
 
+### Usage with existing CSS libraries
+
+For CSS Modules to work properly with existing modules they need to specify this support in their own `.postcssrc`.
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
@@ -81,6 +85,7 @@ Then, create a `.posthtmlrc`:
 Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
 ## TypeScript
+
 [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles down to plain JavaScript, which also supports modern ES2015+ features. Transforming TypeScript works out of the box without any additional configuration.
 
 ```html
@@ -91,11 +96,13 @@ Plugins are specified in the `plugins` object as keys, and options are defined u
 </body>
 </html>
 ```
+
 ```typescript
 // index.ts
 import message from "./message";
 console.log(message);
 ```
+
 ```typescript
 // message.ts
 export default "Hello, world";
