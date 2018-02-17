@@ -70,9 +70,8 @@
   </div>
   <script>
     (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
     })();
