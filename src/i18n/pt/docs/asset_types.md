@@ -43,7 +43,7 @@ class MyAsset extends Asset {
 
 ## Registrando um Tipo de Recurso
 
-Você pode registrar seu tipo de recurso com um agregador usando o método `addAssetType`. Ele aceita uma extensão de arquivo para se registrar e o caminho para seu módulo do tipo de recurso. É apenas um caminho e não o objeto real, para que ele possa ser enviado para os processos.
+Você pode registrar seu tipo de recurso com um empacotador usando o método `addAssetType`. Ele aceita uma extensão de arquivo para se registrar e o caminho para seu módulo do tipo de recurso. É apenas um caminho e não o objeto real, para que ele possa ser enviado para os processos.
 
 ```javascript
 const Bundler = require('parcel-bundler');

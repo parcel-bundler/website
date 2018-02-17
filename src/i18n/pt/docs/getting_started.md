@@ -1,6 +1,6 @@
 # 🚀 Primeiros Passos
 
-Parcel é um agregador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance absurdamente rápida utilizando processamento multicore, sem a necessidade de configuração.
+Parcel é um empacotador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance ultra-rápida utilizando processamento multicore, sem a necessidade de configuração.
 
 Primeiro, instale o Parcel usando Yarn ou npm:
 
