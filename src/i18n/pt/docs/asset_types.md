@@ -1,6 +1,6 @@
 # 📝 Tipos de Recursos
 
-Conforme descrito na [Documentação de Recursos](assets.html), o Parcel identifica cada arquivo de entrada como um `Asset` (Interface). Os tipos de recursos são representados como classes que herdam da classe básica 'Asset` e implementam a interface necessária para analisar dependências, converter e gerar código.
+Conforme descrito na [documentação dos Recursos](assets.html), o Parcel identifica cada arquivo de entrada como um `Asset` (Interface). Os tipos de recursos são representados como classes que herdam da classe básica 'Asset` e implementam a interface necessária para analisar dependências, converter e gerar código.
 
 Como o Parcel processa recursos em paralelo através de vários núcleos do processador, as conversões que os tipos de recursos podem executar são limitadas às que operam em um único arquivo de cada vez. Para conversões em vários arquivos, um [Empacotador](packagers.html) personalizado pode ser utilizado.
 

@@ -1,6 +1,6 @@
 # 🚀 Primeiros Passos
 
-Parcel é um empacotador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance ultra-rápida utilizando processamento multicore, sem a necessidade de configuração.
+Parcel é um empacotador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance extremamente rápida utilizando processamento multicore, sem a necessidade de configuração.
 
 Primeiro, instale o Parcel usando Yarn ou npm:
 
@@ -24,7 +24,7 @@ ou
 npm init -y
 ```
 
-Parcel pode receber qualquer tipo de arquivo como ponto de entrada, embora um arquivo HTML ou JavaScript sejam as melhores opções para começar. Se você referenciar seu arquivo JavaScript principal dentro do seu arquivo HTML utilizando caminho relativo, o Parcel também processará esse arquivo para você e substituirá a referência no caminho do arquivo de saída.
+Parcel pode receber qualquer tipo de arquivo como ponto de entrada, embora um arquivo HTML ou JavaScript seja as melhor opção para começar. Se você referenciar seu arquivo JavaScript principal dentro do seu arquivo HTML utilizando caminho relativo, o Parcel também processará esse arquivo para você e substituirá a referência no caminho do arquivo de saída.
 
 Depois, crie os arquivos index.html e index.js.
 
@@ -37,10 +37,10 @@ Depois, crie os arquivos index.html e index.js.
 ```
 
 ```javascript
-console.log("olá mundo");
+console.log("Olá, mundo!");
 ```
 
-Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vá alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmr.html) para acelerar o desenvolvimento. Apenas aponte à ele seu arquivo de entrada:
+Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vai alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmr.html) para acelerar o desenvolvimento. Apenas aponte a ele seu arquivo de entrada:
 
 ```bash
 parcel index.html

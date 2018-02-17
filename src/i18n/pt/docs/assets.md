@@ -1,6 +1,6 @@
 # 📦 Recursos
 
-Parcel é baseado em recursos. Um recurso pode ser qualquer arquivo, mas o Parcel tem suporte especial para alguns tipos de arquivos como JavaScript, CSS e HTML. Parcel analisa automaticamente as dependências referenciadas nesses arquivos e os inclui no arquivo de saída. Tipos de recursos similares são agrupados no mesmo arquivo de saída. Se você importar um tipo de recurso diferente (por exemplo, se você importar um arquivo CSS à partir de um arquivo JS), ele inicia a construção de um segundo arquivo e adiciona uma referência no arquivo de saída principal. Isso será demonstrado nas próxima seções.
+Parcel é baseado em recursos. Um recurso pode ser qualquer arquivo, mas o Parcel tem suporte especial para alguns tipos de arquivos como JavaScript, CSS e HTML. Parcel analisa automaticamente as dependências referenciadas nesses arquivos e os inclui no arquivo de saída. Tipos de recursos similares são agrupados no mesmo arquivo de saída. Se você importar um tipo de recurso diferente (por exemplo, se você importar um arquivo CSS a partir de um arquivo JS), ele inicia a construção de um segundo arquivo e adiciona uma referência no arquivo de saída principal. Isso será demonstrado nas próxima seções.
 
 ## JavaScript
 
@@ -41,7 +41,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 
 ## CSS
 
-Os arquivos CSS podem ser importados à partir de um arquivo JavaScript ou HTML e podem conter referências de dependências utilizando `@import` assim como referências para imagens, fontes e etc, através da função `url()`. Outros arquivos CSS que forem importados utilizando `import()` serão adicionados no mesmo arquivo, e referências utilizando `url()` serão reescritas em seus respectivos nomes. Todos os nomes de arquivos precisam ser relativos ao arquivo CSS principal.
+Os arquivos CSS podem ser importados a partir de um arquivo JavaScript ou HTML e podem conter referências de dependências utilizando `@import` assim como referências para imagens, fontes e etc, através da função `url()`. Outros arquivos CSS que forem importados utilizando `import()` serão adicionados no mesmo arquivo, e referências utilizando `url()` serão reescritas em seus respectivos nomes. Todos os nomes de arquivos precisam ser relativos ao arquivo CSS principal.
 
 ```css
 /* Importar outro arquivo CSS */
@@ -53,7 +53,7 @@ Os arquivos CSS podem ser importados à partir de um arquivo JavaScript ou HTML 
 }
 ```
 
-Além de apenas arquivos CSS, outras linguagens que compilam para CSS, como LESS, SASS e Stylus, também são suportadas e funcionam da mesma maneira.
+Além de somente CSS, outras linguagens que transpilam para ele, como LESS, SASS e Stylus, também são suportadas e funcionam da mesma maneira.
 
 ## SCSS
 Para utilizar SCSS é necessário utilizar o módulo `node-sass`. Para instalar, utilize o npm:
