@@ -40,7 +40,7 @@ Depois, crie os arquivos index.html e index.js.
 console.log("Olá, mundo!");
 ```
 
-Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vai alterando os arquivos. Ele suporta [Substituição de Módulos à Quente](hmr.html) para acelerar o desenvolvimento. Apenas aponte a ele seu arquivo de entrada:
+Parcel possui um servidor de desenvolvimento embutido, o qual irá reconstruir sua aplicação automaticamente à medida que você vai alterando os arquivos. Ele suporta [Hot Module Replacement](hmr.html) para acelerar o desenvolvimento. Apenas aponte a ele seu arquivo de entrada:
 
 ```bash
 parcel index.html
@@ -48,7 +48,7 @@ parcel index.html
 
 Agora, abra seu navegador em http://localhost:1234/. Você também pode alterar a porta padrão utilizando a opção `-p <port number>`.
 
-Utilize o servidor de desenvolvimento caso você não tenha seu próprio sevidor, ou sua aplicação será inteiramente renderizada no cliente. Caso você possua seu próprio servidor, você pode utilizar o Parcel em modo `watch`. Essa opção continua reconstruindo sua aplicação à medida que você vai alterando os arquivos e suporta Substituição de Módulos à Quente, mas não irá iniciar um servidor.
+Utilize o servidor de desenvolvimento caso você não tenha seu próprio sevidor, ou sua aplicação será inteiramente renderizada no cliente. Caso você possua seu próprio servidor, você pode utilizar o Parcel em modo `watch`. Essa opção continua reconstruindo sua aplicação à medida que você vai alterando os arquivos e suporta Hot Module Replacement, mas não irá iniciar um servidor.
 
 ```bash
 parcel watch index.html
