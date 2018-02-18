@@ -1,6 +1,5 @@
 var icons = [
   'js',
-  'ts',
   'json',
   'css',
   'sass',
@@ -13,6 +12,7 @@ var icons = [
   'svg',
   'raw',
   'rs',
+  'ts'
 ]
 
 var container = document.querySelector('.icons')
