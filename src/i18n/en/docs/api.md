@@ -13,19 +13,18 @@ const file = Path.join(__dirname, './index.html');
 
 // Bundler options
 const options = {
-  production: false, // build or watch, defaults to process.env.NODE_ENV === 'production'
   outDir: './dist', // The out directory to put the build files in, defaults to dist
   outFile: 'index.html', // The name of the outputFile
   publicUrl: './', // The url to server on, defaults to dist
-  watch: true, // whether to watch the files and rebuild them on change, defaults to !production
+  watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
   cache: true, // Enabled or disables caching, defaults to true
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
-  minify: false, // Minify files, defaults to minifying if production is true
-  target: 'browser', // browser/node/electron, defaults to 
-  https: false, // Server files over https or http, defaults to browser
+  minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
+  target: 'browser', // browser/node/electron, defaults to browser
+  https: false, // Server files over https or http, defaults to false
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
   hmrPort: 0, // The port the hmr socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
-  sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in production builds yet)
+  sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
   hmrHostname: '', // A hostname for hot module reload, default to ''
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
@@ -42,8 +41,7 @@ const bundle = await bundler.bundle();
 
 This is a list of all bundler events
 
-`bundled` gets called once parcel has succesfully finished bundling, it has the main [bundle](#bundle) as a parameter
-
+* `bundled` gets called once parcel has succesfully finished bundling, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('bundled', (bundle) => {
@@ -51,12 +49,11 @@ bundle.on('bundled', (bundle) => {
 });
 ```
 
-`buildEnd` gets called after each build, this also emits if an error accured
-
+* `buildEnd` gets called after each build, this also emits if an error accured
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('buildEnd', () => {
-
+  // Do something...
 });
 ```
 
@@ -78,12 +75,12 @@ A `Bundle` is what parcel uses to bundle assets together, this also contains chi
 
 #### Tree
 
-The `Bundle` contains `parentBundle`, `childBundles` and `siblingBundles`, all these properties together create a fast to iterate bundle tree.
+The `Bundle` contains a `parentBundle`, `childBundles` and `siblingBundles`, all these properties together create a fast to iterate bundle tree.
 
 
 A very basic example of an asset tree and it's generated bundle Tree
 
-Asset tree:
+##### Asset tree:
 
 `index.html` requires `index.js` and `index.css`.
 
@@ -97,7 +94,7 @@ index.html
 -- index.css
 ```
 
-Bundle Tree:
+##### Bundle Tree:
 
 `index.html` gets used as an entry asset for the main bundle, this main bundle creates two child bundles one for `index.js` and one for `index.css` this because they both are different from the `html` type.
 
@@ -107,7 +104,9 @@ Bundle Tree:
 
 `test.txt` creates a new bundle and gets added as a child of the `index.js` bundle as it is a different assetType than `index.js`
 
-`index.css` has no requires and therefore only contains it's entry Asset
+`index.css` has no requires and therefore only contains it's entry Asset.
+
+`index.css` and `index.js` bundles are siblingBundles of each other as they share the same parent.
 
 ```Text
 index.html
