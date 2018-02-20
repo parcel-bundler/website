@@ -1,6 +1,6 @@
 # 📝 Tipos de Recursos
 
-Conforme descrito na [Documentação de Recursos](assets.html), o Parcel identifica cada arquivo de entrada como um `Asset` (Interface). Os tipos de recursos são representados como classes que herdam da classe básica 'Asset` e implementam a interface necessária para analisar dependências, converter e gerar código.
+Conforme descrito na [documentação dos Recursos](assets.html), o Parcel identifica cada arquivo de entrada como um `Asset` (Interface). Os tipos de recursos são representados como classes que herdam da classe básica 'Asset` e implementam a interface necessária para analisar dependências, converter e gerar código.
 
 Como o Parcel processa recursos em paralelo através de vários núcleos do processador, as conversões que os tipos de recursos podem executar são limitadas às que operam em um único arquivo de cada vez. Para conversões em vários arquivos, um [Empacotador](packagers.html) personalizado pode ser utilizado.
 
@@ -43,7 +43,7 @@ class MyAsset extends Asset {
 
 ## Registrando um Tipo de Recurso
 
-Você pode registrar seu tipo de recurso com um agregador usando o método `addAssetType`. Ele aceita uma extensão de arquivo para se registrar e o caminho para seu módulo do tipo de recurso. É apenas um caminho e não o objeto real, para que ele possa ser enviado para os processos.
+Você pode registrar seu tipo de recurso com um empacotador usando o método `addAssetType`. Ele aceita uma extensão de arquivo para se registrar e o caminho para seu módulo do tipo de recurso. É apenas um caminho e não o objeto real, para que ele possa ser enviado para os processos.
 
 ```javascript
 const Bundler = require('parcel-bundler');

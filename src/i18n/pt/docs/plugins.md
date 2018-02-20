@@ -19,4 +19,4 @@ Publique este pacote no npm usando o prefixo `parcel-plugin-` e ele será automa
 
 ## Usando Plugins
 
-Usar plugins no Parcel não poderia ser mais simples. Tudo o que você precisa fazer é instalá-los e salvá-los no arquivo `package.json`. Os nomes do plugins devem começar com o prefixo `parcel-plugin-`, por exemplo `parcel-plugin-foo`. Todas as dependências listadas no arquivo `package.json` com este prefixo serão carregadas automaticamente durante a inicialização.
+Usar plugins no Parcel não poderia ser mais simples. Tudo o que você precisa fazer é instalá-los e salvá-los no arquivo `package.json`. Os nomes dos plugins devem começar com o prefixo `parcel-plugin-`, por exemplo `parcel-plugin-foo`. Todas as dependências listadas no arquivo `package.json` com este prefixo serão carregadas automaticamente durante a inicialização.
