@@ -46,6 +46,13 @@ or
 <script src="e5f6g7h8.js"></script>
 ```
 
+#### Disable source-maps
+
+Default: source-maps enabled
+
+```bash
+parcel build entry.js --no-source-maps
+```
 
 #### Disable minification
 
