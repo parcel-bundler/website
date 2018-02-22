@@ -24,7 +24,7 @@ ou
 npm init -y
 ```
 
-Parcel pode receber qualquer tipo de arquivo como ponto de entrada, embora um arquivo HTML ou JavaScript seja as melhor opção para começar. Se você referenciar seu arquivo JavaScript principal dentro do seu arquivo HTML utilizando caminho relativo, o Parcel também processará esse arquivo para você e substituirá a referência no caminho do arquivo de saída.
+Parcel pode receber qualquer tipo de arquivo como ponto de entrada, embora um arquivo HTML ou JavaScript seja a melhor opção para começar. Se você referenciar seu arquivo JavaScript principal dentro do seu arquivo HTML utilizando caminho relativo, o Parcel também processará esse arquivo para você e substituirá a referência no caminho do arquivo de saída.
 
 Depois, crie os arquivos index.html e index.js.
 

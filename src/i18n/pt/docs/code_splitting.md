@@ -30,7 +30,7 @@ page.render();
 As importações dinâmicas também são carregadas sob demanda no Parcel, assim você ainda pode colocar todas as suas chamadas `import()` no topo do seu arquivo e os pacotes secundários não serão carregados até serem utilizados. O exemplo a seguir mostra como você poderia carregar outras páginas da sua aplicação de forma dinâmica.
 
 ```javascript
-// Configure um array de nomes de páginas a serem importadas
+// Configure um array de nomes de páginas para serem importadas
 // Essas páginas não serão carregadas até que sejam utilizadas
 const pages = {
   about: import('./pages/about'),
