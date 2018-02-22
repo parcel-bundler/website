@@ -41,7 +41,7 @@ const bundle = await bundler.bundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once parcel has succesfully finished bundling, the main [bundle](#bundle) gets passed to the callback
+* `bundled` gets called once parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('bundled', (bundle) => {
@@ -49,7 +49,7 @@ bundle.on('bundled', (bundle) => {
 });
 ```
 
-* `buildEnd` gets called after each build, this also emits if an error accured
+* `buildEnd` gets called after each build, this also emits if an error occurred
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('buildEnd', () => {
