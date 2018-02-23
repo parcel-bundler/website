@@ -11,7 +11,7 @@ const Path = require('path');
 // 진입점 파일 위치
 const file = Path.join(__dirname, './index.html');
 
-// 번들러 옶션
+// 번들러 옵션
 const options = {
   outDir: './dist', // 빌드 결과물이 저장될 디렉토리. 기본값은 dist
   outFile: 'index.html', // 결과물의 파일명
@@ -23,10 +23,10 @@ const options = {
   target: 'browser', // browser/node/electron, 기본값은 browser
   https: false, // 파일을 https로 서빙할지 http로 할지 여부. 기본값은 false
   logLevel: 3, // 3 = 모든것을 로깅, 2 = 경고와 에러를 로깅, 1 = 에러만 로깅
-  hmrPort: 0, // hmr 소켓이 돌아갈 포틑번호. 기본값은 무작위의 빈 포트 (node.js에서 0은 무작위의 빈 포트로 배정됨)
+  hmrPort: 0, // hmr 소켓이 돌아갈 포트번호. 기본값은 무작위의 빈 포트 (node.js에서 0은 무작위의 빈 포트로 배정됨)
   sourceMaps: true, // 소스맵을 활성화할지 여부. 기본값은 활성화 (아직 미니파이드 빌드에선 지원되지 않음)
   hmrHostname: '', // 핫 모듈 리플레이스먼트를 위한 hostname.기본값은 ''
-  detailedReport: false // 번들, 에셋, 파이리 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
+  detailedReport: false // 번들, 애셋, 파일 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
 };
 
 // 진입점 위치와 옵션을 제공해서 번들러를 초기화
@@ -45,7 +45,7 @@ const bundle = await bundler.bundle();
 ```js
 const bundle = new Bundler(...);
 bundle.on('bundled', (bundle) => {
-  // bundle은 모든 에셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
+  // bundle은 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
 });
 ```
 
@@ -59,28 +59,28 @@ bundle.on('buildEnd', () => {
 
 ### 번들
 
-`Bundle`은 parcel이 에셋을 함께 번들링 하기 위해 사용하는 것으로, 번들 트리를 빌드하기 위해 자식, 형제 번들을 포함합니다.
+`Bundle`은 parcel이 애셋을 함께 번들링하기 위해 사용하며, 번들 트리를 빌드하기 위해 자식, 형제 번들을 포함합니다.
 
 #### 속성들
 
-* `type`: 에셋이 포함한 자신의 종류 (e.g. js, css, map, ...)
+* `type`: 애셋의 종류 (e.g. js, css, map, ...)
 * `name`: 번들의 이름 (`entryAsset`의 `Asset.generateBundleName()`로 생성)
 * `parentBundle`: 부모 번들. 진입점 번들일 경우 null
-* `entryAsset`: 번들의 진입점. name의 생성 및 에셋 수집에 사용.
-* `assets`: 번들 안에 있는 모든 에셋의 집합(`Set`)
+* `entryAsset`: 번들의 진입점. name의 생성 및 애셋 수집에 사용.
+* `assets`: 번들 안에 있는 모든 애셋의 집합(`Set`)
 * `childBundles`: 모든 자식 번들의 `Set`
 * `siblingBundles`: 모든 형제 번들의 `Set`
 * `siblingBundlesMap`: 모든 형제 번들의 `Map<String(Type: js, css, map, ...), Bundle>`
-* `offsets`: 번들 안의 에셋 속의 모든 위치의 `Map<Asset, number(bundle 안의 줄 번호)>`. 정확한 소스맵 생성을 위해 사용됨
+* `offsets`: 번들 안의 애셋 속의 모든 위치의 `Map<Asset, number(bundle 안의 줄 번호)>`. 정확한 소스맵 생성을 위해 사용됨
 
 #### Tree
 
 `Bundle`은 `parentBundle`, `childBundles`, `siblingBundles`을 포함하고, 이 모든 속성은 빠르게 번들트리를 순회하여 만들어집니다.
 
 
-매우 기본적인 에셋 트리로 번들 트리를 생성합니다.
+매우 기본적인 애셋 트리로 번들 트리를 생성합니다.
 
-##### 에셋 트리
+##### 애셋 트리
 
 `index.html`는 `index.js`와 `index.css`를 필요로 합니다.
 
@@ -96,21 +96,21 @@ index.html
 
 ##### 번들 트리:
 
-`index.html`은 메인 번들을 위해 진입 에셋으로 사용됩니다. 이 메인 번들은 `index.js`과 `index.css` 2개의 자식 번들을 만듭니다. 둘 다 `html`과 다른 타입이기 때문입니다.
+`index.html`은 메인 번들을 위해 진입 애셋으로 사용됩니다. 이 메인 번들은 `index.js`과 `index.css` 2개의 자식 번들을 만듭니다. 둘 다 `html`과 다른 타입이기 때문입니다.
 
-`index.js`는 두 개의 파일이 필요합니다. `test.js`와 `test.txt` 가요.
+`index.js`는 `test.js`, `test.txt` 두 파일을 필요로 합니다.
 
 `test.js`은 `index.js` 번들의 애셋으로 추가됩니다. `index.js`와 같은 에샛 타입이기 때문입니다.
 
-`test.txt`는 새 번들을 생성하고 `index.js` bundle의 자식으로 추가됩니다. `index.js`와 다른 에셋 타입이기 때문입니다.
+`test.txt`는 `index.js`와 다른 애셋 타입이기 때문에 이를 위해 새 번들이 생성되고, 해당 번들은 `index.js` 번들의 자식으로 추가됩니다.
 
-`index.css`는 다른 의존성이 없고, 엔트리 에셋에서만 쓰입니다.
+`index.css`는 다른 의존성이 없고, 엔트리 애셋에서만 쓰입니다.
 
-`index.css`와 `index.js` 번들은 같은 부모를 가지므로 서로의 siblingBundles 입니다.
+`index.css`와 `index.js` 번들은 같은 부모를 가지므로 서로의 형제 번들 입니다.
 
 ```Text
 index.html
--- index.js (index.js과 test.js를 포함)
+-- index.js (index.js와 test.js를 포함)
  |--- test.txt (test.txt를 포함)
 -- index.css (index.css를 포함)
 ```
@@ -127,7 +127,7 @@ const app = require('express')();
 // 파일과 옵션을 사용해 번들러를 초기화합니다 (옵션과 파일에 대해서는 번들러 문서를 참조하세요.)
 const bundler = new Bundler(file, options);
 
-// express가 번들러 미들웨어를 사용할 수 있게 합니다. 이로 인해 parcel이 express server를 거치는 매 요청을 핸들링 할 것입니다.
+// express가 번들러 미들웨어를 사용할 수 있게 합니다. 그러면 express server를 거치는 매 요청을 parcel이 처리할 것입니다.
 app.use(bundler.middleware());
 
 // 8080포트로 listen을 시작합니다.
