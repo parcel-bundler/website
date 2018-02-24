@@ -148,6 +148,11 @@ header .links a:hover {
   font-family: inherit;
   font-size: inherit;
   text-align: right;
+  outline: none;
+}
+
+.language-dropdown:hover {
+  color: #27ae60;
 }
 
 main {
