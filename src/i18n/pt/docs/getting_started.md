@@ -2,7 +2,9 @@
 
 Parcel é um empacotador de aplicações web, diferenciado pela experiência do desenvolvedor. Ele oferece uma performance extremamente rápida utilizando processamento multicore, sem a necessidade de configuração.
 
-Primeiro, instale o Parcel usando Yarn ou npm:
+Primeiro, certifique-se de usar [Node 6.0.0 ou superior] (https://nodejs.org). Precisa executar várias versões do Node? Use [nvm] (https://github.com/creationix/nvm) ou [n] (https://github.com/tj/n).
+
+Depois, instale o Parcel usando Yarn ou npm:
 
 Yarn:
 ```bash
