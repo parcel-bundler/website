@@ -59,13 +59,13 @@ Oprócz czystego CSS, inne języki kompilowalne-do-CSS jak LESS, SASS i Stylus s
 
 Kompilacja SCSS wymaga modułu `node-sass`. By zainstalować go za pomocą npm, wykonaj:
 
-```
+```bash
 npm install node-sass
 ```
 
 Kiedy `node-sass` będzie zainstalowany, możesz importować pliki SCSS z plików JavaScript.
 
-```
+```javascript
 import './custom.scss'
 ```
 

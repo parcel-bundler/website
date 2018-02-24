@@ -6,7 +6,7 @@ First need to install the dependencies for React.
 
 [Blog Post](http://blog.jakoblind.no/react-parcel/)
 
-```
+```bash
 npm install --save react
 npm install --save react-dom
 npm install --save-dev parcel-bundler
@@ -16,7 +16,7 @@ npm install --save-dev babel-preset-react
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
-```
+```bash
 yarn add react
 yarn add react-dom
 yarn add --dev parcel-bundler
@@ -46,7 +46,7 @@ Add Start script to `package.json`
 
 First we need to install the dependencies for Preact.
 
-```
+```bash
 npm install --save preact
 npm install --save preact-compat
 npm install --save-dev parcel-bundler
@@ -56,7 +56,7 @@ npm install --save-dev babel-preset-preact
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
-```
+```bash
 yarn add preact
 yarn add preact-compat
 yarn add --dev parcel-bundler

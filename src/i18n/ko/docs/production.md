@@ -53,12 +53,20 @@ or
 <script src="e5f6g7h8.js"></script>
 ```
 
+#### 소스맵 비활성화
+
+Default: 소스맵 활성화
+
+```bash
+parcel build entry.js --no-source-maps
+```
+
 
 #### 미니파이케이션 비활성화
 
 기본값: 활성화
 
-```
+```bash
 parcel build entry.js --no-minify
 ```
 

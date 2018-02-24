@@ -32,6 +32,7 @@
           <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
           <li><a href="https://ru.parceljs.org">🇷🇺</a></li>
           <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
+          <li><a href="https://es.parceljs.org">🇪🇸</a></li>
         </ul>
       </div>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -53,7 +54,7 @@
           <a href="code_splitting.html">✂️ Separação do Código</a>
         </li>
         <li>
-          <a href="hmr.html">🔥 Substituição de Módulo à Quente</a>
+          <a href="hmr.html">🔥 Hot Module Replacement</a>
         </li>
         <li>
           <a href="production.html">✨ Produção</a>
@@ -84,9 +85,8 @@
   </div>
   <script>
     (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
     })();

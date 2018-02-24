@@ -50,7 +50,7 @@ parcel build entry.js --public-url ./
 
 По-умолчанию: включено
 
-```
+```bash
 parcel build entry.js --no-minify
 ```
 

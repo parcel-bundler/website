@@ -32,6 +32,7 @@
           <li><a href="https://pt.parceljs.org">🇧🇷</a></li>
           <li><a href="https://ru.parceljs.org">🇷🇺</a></li>
           <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
+          <li><a href="https://es.parceljs.org">🇪🇸</a></li>
         </ul>
       </div>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -71,6 +72,9 @@
           <a href="asset_types.html">📝 애셋 유형</a>
         </li>
         <li>
+          <a href="api.html">📚 API</a>
+        </li>
+        <li>
           <a href="packagers.html">📦 패키저</a>
         </li>
         <li>
@@ -84,9 +88,8 @@
   </div>
   <script>
     (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
     })();

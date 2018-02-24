@@ -57,11 +57,11 @@ In addition to plain CSS, other compile-to-CSS languages like LESS, SASS, and St
 
 ## SCSS
 SCSS compilation needs `node-sass` module. To install it with npm:
-```
+```bash
 npm install node-sass
 ```
 Once you have `node-sass` installed you can import SCSS files from JavaScript files.
-```
+```javascript
 import './custom.scss'
 ```
 Dependencies in the SCSS files can be used with the `@import` statements.

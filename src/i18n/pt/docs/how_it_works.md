@@ -1,6 +1,6 @@
 # 🛠 Como Funciona
 
-O Parcel converte uma árvore de **recursos** em uma árvore de **pacotes**. Várias outras ferramentas de agrupamento de código são baseadas em arquivos de JavaScript, com outros formatos abordados - por exemplo, adicionadas como strings em arquivos JS. O Parcel é agnóstico a tipos de arquivo: ele funcionará com qualquer tipo de arquivos da maneira que você gostaria, sem configuração. Há três etapas para o processo de agrupamento no Parcel.
+O Parcel converte uma árvore de **recursos** em uma árvore de **pacotes**. Várias outras ferramentas de empacotamento de código são baseadas em arquivos de JavaScript, com outros formatos abordados - por exemplo, adicionadas como strings em arquivos JS. O Parcel é agnóstico a tipos de arquivo: ele funcionará com qualquer tipo de arquivos da maneira que você gostaria, sem configuração. Há três etapas para o processo de empacotamento no Parcel.
 
 ### 1. Construção da Árvore de Recursos
 

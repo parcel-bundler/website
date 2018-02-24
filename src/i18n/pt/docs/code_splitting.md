@@ -30,7 +30,7 @@ page.render();
 As importações dinâmicas também são carregadas sob demanda no Parcel, assim você ainda pode colocar todas as suas chamadas `import()` no topo do seu arquivo e os pacotes secundários não serão carregados até serem utilizados. O exemplo a seguir mostra como você poderia carregar outras páginas da sua aplicação de forma dinâmica.
 
 ```javascript
-// Configure um array de nomes de páginas à serem importadas
+// Configure um array de nomes de páginas para serem importadas
 // Essas páginas não serão carregadas até que sejam utilizadas
 const pages = {
   about: import('./pages/about'),
@@ -44,7 +44,7 @@ async function renderPage(name) {
 }
 ```
 
-**Nota:** Se você quiser utilizar async/await em navegadores que não têm suporte nativo, lembre-se de incluir `babel-polyfill` em sua aplicação ou` babel-runtime` + `babel-plugin-transform-runtime` nas bibliotecas).
+**Nota:** Se você quiser utilizar async/await em navegadores que não têm suporte nativo, lembre-se de incluir `babel-polyfill` em sua aplicação ou `babel-runtime` + `babel-plugin-transform-runtime` nas bibliotecas).
 
 ```bash
 yarn add babel-polyfill

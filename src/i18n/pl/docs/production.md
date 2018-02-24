@@ -51,7 +51,7 @@ lub
 
 Domyślnie: minifikacja włączona
 
-```
+```bash
 parcel build entry.js --no-minify
 ```
 

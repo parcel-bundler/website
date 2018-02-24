@@ -30,6 +30,7 @@
           <li><a href="https://pt.parceljs.org">🇧🇷</a></li>
           <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
           <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
+          <li><a href="https://es.parceljs.org">🇪🇸</a></li>
         </ul>
       </div>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -60,9 +61,8 @@
   </div>
   <script>
     (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
     })();

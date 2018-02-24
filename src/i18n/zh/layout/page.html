@@ -8,13 +8,13 @@
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
   <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
-  </script>-->
+  </script> -->
   <script>
     var _hmt = _hmt || [];
     (function() {
@@ -39,6 +39,7 @@
           <li><a href="https://pt.parceljs.org">🇧🇷</a></li>
           <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
           <li><a href="https://ru.parceljs.org">🇷🇺</a></li>
+          <li><a href="https://es.parceljs.org">🇪🇸</a></li>
         </ul>
       </div>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -51,7 +52,7 @@
         <li><a href="assets.html">📦 资源</a></li>
         <li><a href="transforms.html">🐠 转换</a></li>
         <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
-        <li><a href="hmr.html">🔥 热模块替换</a></li>
+        <li><a href="hmr.html">🔥 热模块重载</a></li>
         <li><a href="production.html">✨ 生产环境</a></li>
         <li><a href="recipes.html">🍰 配方</a></li>
       </ul>
@@ -59,6 +60,7 @@
       <ul>
         <li><a href="how_it_works.html">🛠 它如何运作</a></li>
         <li><a href="asset_types.html">📝 资源类型</a></li>
+        <li><a href="api.html">📚 API</a></li>
         <li><a href="packagers.html">📦 Packagers</a></li>
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
@@ -69,9 +71,8 @@
   </div>
   <script>
     (function () {
-      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
-        return a.href === window.location.href;
-      });
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
     })();
