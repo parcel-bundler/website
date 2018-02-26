@@ -56,6 +56,10 @@ last 2 versions
 
 使用顶级 `modules` 键时，CSS 模块启用方式稍有不同。这是因为 Parcel 需要对 CSS 模块提供特殊支持，因为它们也导出一个包含在 JavaScript 包中的对象。请注意，你仍然需要在你的项目中安装 `postcss-modules` 。
 
+### 使用现有 CSS 库
+
+为了使 CSS 模块能够与现有模块一起正常工作，则需在自己的 `.postcssrc` 中指定这种支持。
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的： `.posthtmlrc` (JSON) ，`posthtmlrc.js` ，或者 `posthtml.config.js`。
@@ -81,6 +85,7 @@ yarn add posthtml-img-autosize
 Plugins 在 `plugins` 对象中指定为 key，并且选项使用对象值定义。如果插件没有选项，只需将其设置为 `true` 即可。
 
 ## TypeScript
+
 [TypeScript](https://www.typescriptlang.org/) 是 JavaScript 类型的超集，它可以编译成普通的 JavaScript，同时也支持现代 ES2015+ 的特性。转换 TypeScript 无需任何额外配置，开箱即用。
 
 ```html
@@ -91,11 +96,13 @@ Plugins 在 `plugins` 对象中指定为 key，并且选项使用对象值定义
 </body>
 </html>
 ```
+
 ```typescript
 // index.ts
 import message from "./message";
 console.log(message);
 ```
+
 ```typescript
 // message.ts
 export default "Hello, world";
