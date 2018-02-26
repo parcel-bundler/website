@@ -100,3 +100,50 @@ console.log(message);
 // message.ts
 export default "Hello, world";
 ```
+
+## ReasonML/BuckleScript
+
+[ReasonML](https://reasonml.github.io/) 利用 [BuckleScript](https://bucklescript.github.io) 把 OCaml 编译为可执行的 JavaScript. 只需要安装依赖以及创建 `bsconfig.json`：
+
+```bash
+$ yarn add bs-platform --dev
+```
+
+```json
+// bsconfig.json
+// from https://github.com/BuckleScript/bucklescript/blob/master/jscomp/bsb/templates/basic-reason/bsconfig.json
+
+{
+  "name": "whatever",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+  ],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```reason
+// src/index.re
+print_endline("Hello World");
+```
