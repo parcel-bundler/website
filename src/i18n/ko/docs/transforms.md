@@ -106,3 +106,126 @@ console.log(message);
 // message.ts
 export default "Hello, world";
 ```
+
+
+## ReasonML/BuckleScript
+
+[ReasonML](https://reasonml.github.io/)은 [BuckleScript](https://bucklescript.github.io)를 이용해 OCaml을 JavaScript로 컴파일합니다. 의존성을 설치하고 `bsconfig.json`을 만들면 ReasonML을 사용하실 수 있습니다.
+
+```bash
+$ yarn add bs-platform --dev
+```
+
+```json
+// bsconfig.json
+// from https://github.com/BuckleScript/bucklescript/blob/master/jscomp/bsb/templates/basic-reason/bsconfig.json
+
+{
+  "name": "whatever",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+  ],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```reason
+/* src/index.re */
+print_endline("Hello World");
+```
+
+### ReasonReact
+
+[ReasonReact](https://reasonml.github.io/reason-react/)는 ReasonML의 React 바인딩입니다. 역시 Parcel과 함께 이용 가능합니다.
+
+```bash
+$ yarn add react react-dom reason-react
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```diff
+// bsconfig.json
+
+{
+  "name": "whatever",
++ "reason": {
++   "react-jsx": 2
++ },
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
++   "reason-react"
+  ],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <div id="app"></div>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```reason
+/* src/Greeting.re */
+
+let component = ReasonReact.statelessComponent("Greeting");
+
+let make = (~name, _children) => {
+  ...component,
+  render: _self =>
+    <div>
+      {ReasonReact.stringToElement("Hello! " ++ name)}
+    </div>
+};
+```
+
+```reason
+/* src/index.re */
+
+ReactDOMRe.renderToElementWithId(<Greeting name="Parcel" />, "app");
+```
