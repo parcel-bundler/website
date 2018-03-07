@@ -56,6 +56,11 @@ last 2 versions
 
 CSS Modules은 최상위 `modules` 키를 사용하여 약간 다른 방식으로 활성화 됩니다. CSS Modules은 JavaScript 번들에 포함될 객체를 내보내므로 Parcel로 하여금 특별한 지원을 필요로 하기 때문입니다. `postcss-modules`가 프로젝트 안에 설치되어야 함을 주의하세요.
 
+### CSS 라이브러리와 같이 사용하기
+
+CSS 라이브러리와와 같이 CSS Module을 사용하기 위해서는 그 라이브러리 안의 `.postcssrc` 에서 지원이 되어야 합니다.
+
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) 플러그인으로 HTML을 변환하기 위한 도구입니다. `.posthtmlrc` (JSON), `posthtmlrc.js`, `posthtml.config.js` 중 하나의 파일을 작성하여 Parcel에 PostHTML을 설정할 수 있습니다.
