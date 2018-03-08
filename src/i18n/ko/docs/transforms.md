@@ -58,7 +58,7 @@ CSS Modules은 최상위 `modules` 키를 사용하여 약간 다른 방식으�
 
 ### CSS 라이브러리와 같이 사용하기
 
-CSS 라이브러리와와 같이 CSS Module을 사용하기 위해서는 그 라이브러리 안의 `.postcssrc` 에서 지원이 되어야 합니다.
+CSS 라이브러리와와 같이 사용하기 위해서는 그 라이브러리 안의 `.postcssrc` 에서 CSS Module을 지원해야 합니다.
 
 
 ## PostHTML
