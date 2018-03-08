@@ -56,6 +56,11 @@ last 2 versions
 
 CSS Modules은 최상위 `modules` 키를 사용하여 약간 다른 방식으로 활성화 됩니다. CSS Modules은 JavaScript 번들에 포함될 객체를 내보내므로 Parcel로 하여금 특별한 지원을 필요로 하기 때문입니다. `postcss-modules`가 프로젝트 안에 설치되어야 함을 주의하세요.
 
+### CSS 라이브러리와 같이 사용하기
+
+CSS 라이브러리와와 같이 사용하기 위해서는 그 라이브러리 안의 `.postcssrc` 에서 CSS Module을 지원해야 합니다.
+
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) 플러그인으로 HTML을 변환하기 위한 도구입니다. `.posthtmlrc` (JSON), `posthtmlrc.js`, `posthtml.config.js` 중 하나의 파일을 작성하여 Parcel에 PostHTML을 설정할 수 있습니다.
@@ -100,4 +105,127 @@ console.log(message);
 ```typescript
 // message.ts
 export default "Hello, world";
+```
+
+
+## ReasonML/BuckleScript
+
+[ReasonML](https://reasonml.github.io/)은 [BuckleScript](https://bucklescript.github.io)를 이용해 OCaml을 JavaScript로 컴파일합니다. 의존성을 설치하고 `bsconfig.json`을 만들면 ReasonML을 사용하실 수 있습니다.
+
+```bash
+$ yarn add bs-platform --dev
+```
+
+```json
+// bsconfig.json
+// from https://github.com/BuckleScript/bucklescript/blob/master/jscomp/bsb/templates/basic-reason/bsconfig.json
+
+{
+  "name": "whatever",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+  ],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```reason
+/* src/index.re */
+print_endline("Hello World");
+```
+
+### ReasonReact
+
+[ReasonReact](https://reasonml.github.io/reason-react/)는 ReasonML의 React 바인딩입니다. 역시 Parcel과 함께 이용 가능합니다.
+
+```bash
+$ yarn add react react-dom reason-react
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```diff
+// bsconfig.json
+
+{
+  "name": "whatever",
++ "reason": {
++   "react-jsx": 2
++ },
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
++   "reason-react"
+  ],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": true,
+  "refmt": 3
+}
+```
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <div id="app"></div>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
+```reason
+/* src/Greeting.re */
+
+let component = ReasonReact.statelessComponent("Greeting");
+
+let make = (~name, _children) => {
+  ...component,
+  render: _self =>
+    <div>
+      {ReasonReact.stringToElement("Hello! " ++ name)}
+    </div>
+};
+```
+
+```reason
+/* src/index.re */
+
+ReactDOMRe.renderToElementWithId(<Greeting name="Parcel" />, "app");
 ```
