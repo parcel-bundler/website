@@ -33,7 +33,7 @@ header {
   margin-bottom: 10px;
 }
 
-header h2 {
+header .subtitle {
   margin: 0;
   font-size: 1.5em;
   color: #E7DACB;
@@ -122,7 +122,9 @@ header .links {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 20px;
+  display: flex;
+  margin: 20px;
+  align-items: center;  
 }
 
 header .links a {
@@ -137,53 +139,20 @@ header .links a:hover {
 }
 
 .language-dropdown {
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  padding: 0 10px;
-  border-radius: 4px;
-  font-size: 22px;
-  vertical-align: middle;
-}
-
-.language-dropdown ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #E7DACB;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  border-radius: 0 0 4px 4px;
-  overflow: hidden;
-}
-
-.language-dropdown li {
-  margin: 0;
-  transition: background-color 125ms;
-}
-
-.language-dropdown li a {
-  padding: 0 10px;
-  color: #27ae60;
-}
-
-.language-dropdown li a:hover {
-  color: #E7DACB;
-}
-
-.language-dropdown li:hover {
-  background-color: #27ae60;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: right;
+  outline: none;
 }
 
 .language-dropdown:hover {
-  background-color: #E7DACB;
-  border-radius: 4px 4px 0 0;
-}
-
-.language-dropdown:hover ul {
-  display: block;
+  color: #27ae60;
 }
 
 main {

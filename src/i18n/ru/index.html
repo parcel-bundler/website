@@ -21,8 +21,10 @@
 </head>
 <body>
   <header>
-    <img class="logo" src="assets/logo.svg" alt="Parcel">
-    <h2>Молниеносно быстрый упаковщик для веб-приложений без настроек</h2>
+    <h1>
+      <img class="logo" src="assets/logo.svg" alt="Parcel">
+    </h1>
+    <p class="subtitle">Молниеносно быстрый упаковщик для веб-приложений без настроек</p>
     <div class="parcel">
       <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
       <div class="icons"></div>
@@ -32,17 +34,17 @@
     <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
     <nav class="links">
-      <div class="language-dropdown">
-        <span>🇷🇺</span>
-        <ul>
-          <li><a href="https://en.parceljs.org">🇺🇸</a></li>
-          <li><a href="https://pt.parceljs.org">🇧🇷</a></li>
-          <li><a href="https://ko.parceljs.org">🇰🇷</a></li>
-          <li><a href="https://pl.parceljs.org">🇵🇱</a></li>
-          <li><a href="https://zh.parceljs.org">🇨🇳</a></li>
-          <li><a href="https://es.parceljs.org">🇪🇸</a></li>
-        </ul>
-      </div>
+      <form class="languages">
+        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+          <option class="ru" value="https://ru.parceljs.org">🇷🇺 русский</option>
+          <option class="en" value="https://parceljs.org">🇺🇸 English</option>
+          <option class="pt" value="https://pt.parceljs.org">🇧🇷 Português</option>
+          <option class="ko" value="https://ko.parceljs.org">🇰🇷 한국어</option>
+          <option class="pl" value="https://pl.parceljs.org">🇵🇱 Polskie</option>
+          <option class="zh" value="https://zh.parceljs.org">🇨🇳 俄语</option>
+          <option class="es" value="https://es.parceljs.org">🇪🇸 Español</option>
+        </select>
+      </form>
       <a href="getting_started.html">Документация</a>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
     </nav>
