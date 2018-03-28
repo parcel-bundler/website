@@ -81,3 +81,41 @@ Add Start script to `package.json`
   "start": "parcel index.html"
 }
 ```
+
+## Vue
+
+First we need to install the dependencies for Vue.
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+npm install --save-dev babel-preset-env
+npm install --save-dev babel-preset-vue
+```
+
+<sub>Or if you have the optional Yarn package manager installed</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+yarn add --dev babel-preset-env
+yarn add --dev babel-preset-vue
+```
+
+Then make sure the following Babel config is present.
+
+```javascript
+// .babelrc
+{
+  "presets": ["env", "vue"]
+}
+```
+
+Add Start script to `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
