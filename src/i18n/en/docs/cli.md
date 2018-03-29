@@ -55,7 +55,7 @@ root
 - - - entry.js
 ```
 
-#### Set the public URL to serve on
+### Set the public URL to serve on
 
 Default: "/"
 
@@ -73,7 +73,7 @@ or
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
-#### Target
+### Target
 
 Default: browser
 
@@ -85,7 +85,7 @@ parcel build entry.js --target node
 
 Possible targets: node, browser and electron
 
-#### Change Log level
+### Change Log level
 
 Default: 3
 
@@ -102,7 +102,7 @@ parcel build entry.js --log-level 1
 | 2        | Log errors and warnings   |
 | 3        | Log everything            |
 
-#### HMR Hostname
+### HMR Hostname
 
 Default: `location.hostname` of current window
 
@@ -112,7 +112,7 @@ Available in: `serve`, `watch`
 parcel build entry.js --hmr-hostname parceljs.org
 ```
 
-#### HMR Port
+### HMR Port
 
 Default: A random available port
 
@@ -122,7 +122,7 @@ Available in: `serve`, `watch`
 parcel build entry.js --hmr-port 8080
 ```
 
-#### Output filename
+### Output filename
 
 Default: Original filename
 
@@ -134,7 +134,7 @@ parcel build entry.js --out-file output.html
 
 This changes the output filename of the entrypoint bundle
 
-#### Print a detailed report
+### Print a detailed report
 
 Default: Minimal report
 
@@ -144,7 +144,7 @@ Available in: `build`
 parcel build entry.js --detailed-report
 ```
 
-#### Set a custom certificate
+### Set a custom certificate
 
 Default: Generates a certificate
 
@@ -154,7 +154,7 @@ Available in: `serve`
 parcel build entry.js --cert certificate.cert --key private.key
 ```
 
-#### Open in browser
+### Open in browser
 
 Default: open disabled
 
@@ -164,7 +164,7 @@ Available in: `serve`
 parcel build entry.js --open
 ```
 
-#### Disable source-maps
+### Disable source-maps
 
 Default: source-maps enabled
 
@@ -174,7 +174,7 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --no-source-maps
 ```
 
-#### Disable autoinstall
+### Disable autoinstall
 
 Default: autoinstall enabled
 
@@ -184,7 +184,7 @@ Available in: `serve`, `watch`
 parcel build entry.js --no-autoinstall
 ```
 
-#### Disable HMR
+### Disable HMR
 
 Default: HMR enabled
 
@@ -194,7 +194,7 @@ Available in: `serve`, `watch`
 parcel build entry.js --no-hmr
 ```
 
-#### Disable minification
+### Disable minification
 
 Default: minification enabled
 
@@ -204,7 +204,7 @@ Available in: `build`
 parcel build entry.js --no-minify
 ```
 
-#### Disable the filesystem cache
+### Disable the filesystem cache
 
 Default: cache enabled
 
