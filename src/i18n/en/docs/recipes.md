@@ -81,3 +81,28 @@ Add Start script to `package.json`
   "start": "parcel index.html"
 }
 ```
+
+## Vue
+
+First we need to install the dependencies for Vue.
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+```
+
+<sub>Or if you have the optional Yarn package manager installed</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+```
+
+Add Start script to `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
