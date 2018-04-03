@@ -12,12 +12,12 @@ const {Asset} = require('parcel-bundler');
 class MyAsset extends Asset {
   type = 'foo'; // 设置主要输出类型
 
-  parse(code) {
-    // 将代码解析为AST树
+  async parse(code) {
+    // 将代码解析为 AST 树
     return ast;
   }
 
-  pretransform() {
+  async pretransform() {
     // 可选。在收集依赖之前转换。
   }
 
@@ -26,17 +26,29 @@ class MyAsset extends Asset {
     this.addDependency('my-dep');
   }
 
-  transform() {
+  async transform() {
     // 可选。在收集依赖之后转换。
   }
 
-  generate() {
+  async generate() {
     // 生成做对。如有需要，可返回多个转换(renditions)。
     // 结果会传到合适的 packagers 去生成最终的文件束
-    return {
-      foo: 'my stuff here', // 主输出
-      js: 'some javascript' // 如若需要，此转换内容可被放到 JS 文件束中
-    };
+    return [
+      {
+        type: 'foo',
+        value: 'my stuff here' // 主输出
+      },
+      {
+        type: 'js',
+        value: 'some javascript', // 如若需要，此转换内容可被放到 JS 文件束中
+        sourceMap
+      }
+    ];
+  }
+
+  async postProcess(generated) {
+    // 所有代码生成后的过程
+    // 可用于组合多种类型资源
   }
 }
 ```
