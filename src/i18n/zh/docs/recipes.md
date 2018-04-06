@@ -41,7 +41,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>或者如果你安装了 Yarn 包管理器</sub>
+<sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add preact
@@ -60,7 +60,7 @@ yarn add --dev babel-preset-preact
 }
 ```
 
-在 `package.json` 中添加 start 命令
+向 `package.json` 的 scripts 中添加 start 脚本。
 
 ```javascript
 // package.json
@@ -78,14 +78,14 @@ npm install --save vue
 npm install --save-dev parcel-bundler
 ```
 
-<sub>或者如果说你安装了 Yarn 包管理器</sub>
+<sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add vue
 yarn add --dev parcel-bundler
 ```
 
-添加 start 指令到 `package.json`
+向 `package.json` 的 scripts 中添加 start 脚本。
 
 ```javascript
 // package.json

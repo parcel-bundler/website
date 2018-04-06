@@ -4,7 +4,7 @@
 
 ### 服务
 
-通过服务开启一个开发服务器，且支持 [热模块替换](hmr.html) 以实现快速开发。当你更改文件时，该服务器将自动重新构建你的应用程序。
+serve 命令启用一个开发服务器，且支持 [热模块替换](hmr.html) 以实现快速开发。当你更改文件时，该服务器将自动重新构建你的应用程序。
 
 ```bash
 parcel index.html
@@ -12,7 +12,7 @@ parcel index.html
 
 ### 构建（Build）
 
-构建一次资源的 build，它还启用了压缩功能，并将 NODE_ENV 变量设置为生产环境。详见[生产环境](production.html)
+build 命令会一次性构建资源，它还启用了压缩功能，并将 NODE_ENV 变量设置为生产环境。详见[生产环境](production.html)
 
 ```bash
 parcel build index.html
@@ -97,7 +97,7 @@ parcel build entry.js --log-level 1
 
 | 日志等级 | 效果                 |
 |---       |---                 |
-| 0        | 记录被禁用           |
+| 0        | 禁用记录             |
 | 1        | 只记录错误           |
 | 2        | 记录错误和警告        |
 | 3        | 记录一切             |
@@ -114,7 +114,7 @@ parcel build entry.js --hmr-hostname parceljs.org
 
 ### HMR 端口
 
-默认为：随机可以用的端口
+默认为：可访问的随机端口
 
 可用于：`serve`, `watch`
 
@@ -132,7 +132,7 @@ parcel build entry.js --hmr-port 8080
 parcel build entry.js --out-file output.html
 ```
 
-这改变了入口包的输出文件名。
+这改变了入口 bundle 的输出文件名。
 
 ### 打印详细的报告
 
@@ -156,7 +156,7 @@ parcel build entry.js --cert certificate.cert --key private.key
 
 ### 在浏览器中打开
 
-默认为：禁用
+默认为：禁用开启
 
 可用于：`serve`
 
@@ -166,7 +166,7 @@ parcel build entry.js --open
 
 ### 禁用 source-maps
 
-默认为：source-maps enabled
+默认为：source-maps 启用
 
 可用于：`serve`，`watch`，`build`
 

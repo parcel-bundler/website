@@ -31,8 +31,8 @@ class MyAsset extends Asset {
   }
 
   async generate() {
-    // 生成做对。如有需要，可返回多个转换(renditions)。
-    // 结果会传到合适的 packagers 去生成最终的文件束
+    // 生成代码。如有需要，可返回多个转换(renditions)。
+    // 结果会传到合适的 packagers 去生成最终的 bundles
     return [
       {
         type: 'foo',
@@ -40,7 +40,7 @@ class MyAsset extends Asset {
       },
       {
         type: 'js',
-        value: 'some javascript', // 如若需要，此转换内容可被放到 JS 文件束中
+        value: 'some javascript', // 如若需要，此转换内容可被放到 JS 的 bundle 中
         sourceMap
       }
     ];
