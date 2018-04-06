@@ -40,7 +40,7 @@ class MyAsset extends Asset {
       },
       {
         type: 'js',
-        value: 'some javascript' // alternative rendition to be placed in JS bundle if needed
+        value: 'some javascript', // alternative rendition to be placed in JS bundle if needed
         sourceMap
       }
     ];
