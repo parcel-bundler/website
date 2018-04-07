@@ -81,3 +81,29 @@ yarn add --dev babel-preset-preact
   "start": "parcel index.html"
 }
 ```
+
+
+## Vue
+
+먼저, Vue를 사용하기 위해 의존성을 설치합니다.
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+```
+
+<sub>혹시 yarn 패키지 매니저를 사용하신다면 다음의 명령어로 설치할 수 있습니다.</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+```
+
+`package.json`에 시작 스크립트를 작성해주세요.
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
