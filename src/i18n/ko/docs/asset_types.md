@@ -12,12 +12,12 @@ const {Asset} = require('parcel-bundler');
 class MyAsset extends Asset {
   type = 'foo'; // 주 출력 유형 설정
 
-  parse(code) {
+  async parse(code) {
     // AST에 코드 구문 분석
     return ast;
   }
 
-  pretransform() {
+  async pretransform() {
     // 옵션. 의존성 수집 이전의 변환.
   }
 
@@ -26,17 +26,29 @@ class MyAsset extends Asset {
     this.addDependency('my-dep');
   }
 
-  transform() {
+  async transform() {
     // 옵션. 의존성 수집 이전의 변환.
   }
 
-  generate() {
+  async generate() {
     // 코드 생성. 필요하다면 다수의 표현(rendition)을 반환할 수 있음.
     // 결과물은 적절한 패키저로 전달되어 최종 번들을 생성.
-    return {
-      foo: 'my stuff here', // 메인 출력
-      js: 'some javascript' // 필요하다면 JS 번들에 배치할 대체 표현(rendition)
-    };
+    return [
+      {
+        type: 'foo',
+        value: 'my stuff here' // 메인 출력
+      },
+      {
+        type: 'js',
+        value: 'some javascript', // 필요하다면 JS 번들에 배치할 대체 표현(rendition)
+        sourceMap
+      }
+    ];
+  }
+
+  async postProcess(generated) {
+    // 모든 코드 생성이 완료된 뒤 실행될 작업
+    // 여러 애셋 타입을 합치는 등에 사용 가능
   }
 }
 ```
