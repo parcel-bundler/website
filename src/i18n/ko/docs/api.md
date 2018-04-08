@@ -25,7 +25,7 @@ const options = {
   logLevel: 3, // 3 = 모든것을 로깅, 2 = 경고와 에러를 로깅, 1 = 에러만 로깅
   hmrPort: 0, // hmr 소켓이 돌아갈 포트번호. 기본값은 무작위의 빈 포트 (node.js에서 0은 무작위의 빈 포트로 배정됨)
   sourceMaps: true, // 소스맵을 활성화할지 여부. 기본값은 활성화 (아직 미니파이드 빌드에선 지원되지 않음)
-  hmrHostname: '', // 핫 모듈 리플레이스먼트를 위한 hostname.기본값은 ''
+  hmrHostname: '', // 빠른 모듈 교체를 위한 hostname.기본값은 ''
   detailedReport: false // 번들, 애셋, 파일 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
 };
 
