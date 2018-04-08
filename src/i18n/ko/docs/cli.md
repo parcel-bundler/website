@@ -4,7 +4,7 @@
 
 ### Serve
 
-Serve는 개발용 서버를 시작합니다. 앱이 수정되면 자동으로 다시 빌드하고, 빠른 개발을 위해 [핫 모듈 리플레이스먼트](hmr.html)를 지원합니다.
+Serve는 개발용 서버를 시작합니다. 앱이 수정되면 자동으로 다시 빌드하고, 빠른 개발을 위해 [빠른 모듈 교체](hmr.html)를 지원합니다.
 
 ```bash
 parcel index.html
@@ -102,7 +102,7 @@ parcel build entry.js --log-level 1
 | 2        | 에러와 경고를 로그           |
 | 3        | 모두 로깅                  |
 
-### 핫 모듈 리플레이스먼트 호스트네임
+### 빠른 모듈 교체 호스트네임
 
 기본값: 현재 창의 `location.hostname`
 
@@ -112,7 +112,7 @@ parcel build entry.js --log-level 1
 parcel build entry.js --hmr-hostname parceljs.org
 ```
 
-### 핫 모듈 리플레이스먼트 포트
+### 빠른 모듈 교체 포트
 
 기본값: 사용 가능한 랜덤 포트
 
@@ -184,7 +184,7 @@ parcel build entry.js --no-source-maps
 parcel build entry.js --no-autoinstall
 ```
 
-### 핫 모듈 리플레이스먼트 비활성화
+### 빠른 모듈 교체 비활성화
 
 기본값: HMR 활성
 
