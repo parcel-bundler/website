@@ -1,50 +1,50 @@
-# ✂️ Code Splitting
+# ✂️ Découpage du code
 
-Parcel supports zero configuration code splitting out of the box. This allows you to split your application code into separate bundles which can be loaded on demand, which means smaller initial bundle sizes and faster load times. As the user navigates around in your application and modules are required, Parcel automatically takes care of loading child bundles on demand.
+Parcel prend en charge le découpage de code sans aucune configuration. Cela vous permet de diviser le code de votre application en plusieurs paquets pouvant être chargés à la demande, ce qui signifie des paquets initiaux plus petits et des temps de chargement plus rapides. Au fur et à mesure que l'utilisateur navigue dans votre application et que des modules sont nécessaires, Parcel s'occupe automatiquement du chargement des paquets enfants lors de la demande.
 
-Code splitting is controlled by use of the dynamic `import()` function [syntax proposal](https://github.com/tc39/proposal-dynamic-import), which works like the normal `import` statement or `require` function, but returns a Promise. This means that the module is loaded asynchronously.
+Le découpage du code est contrôlé par l'utilisation de la fonction dynamique `import()` décrite par la [proposition de syntaxe](https://github.com/tc39/proposal-dynamic-import), qui fonctionne comme l'instruction normale `import` ou la fonction `require`, mais retourne une promesse. Cela signifie que le module est chargé de manière asynchrone.
 
-The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
+L'exemple suivant montre comment utiliser les importations dynamiques pour charger une sous-page de votre application à la demande.
 
 ```javascript
 // pages/about.js
 export function render() {
-  // Render the page
+  // Donne le rendu de la page
 }
 ```
 ```javascript
 import('./pages/about').then(function (page) {
-  // Render page
+  // Donne le rendu de la page
   page.render();
 });
 ```
 
-Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
+Comme `import()` renvoie une promesse, vous pouvez aussi utiliser la syntaxe async/await. Vous aurez probablement besoin de configurer Babel pour transpiler la syntaxe, pour qu'elle soit supportée par la plupart des navigateurs.
 
 ```javascript
 const page = await import('./pages/about');
-// Render page
+// Donne le rendu de la page
 page.render();
 ```
 
-Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
+Les importations dynamiques sont également chargées à la volée dans Parcel, donc vous pouvez toujours mettre tous vos appels `import()` en haut de votre fichier et les paquets enfants ne seront pas chargés tant qu'ils ne seront pas utilisés. L'exemple suivant montre comment charger à la volée des sous-pages d'une application.
 
 ```javascript
-// Setup a map of page names to dynamic imports.
-// These are not loaded until they are used.
+// Configure une map des noms de page pour les importations dynamiques.
+// Celles-ci ne sont pas chargées tant qu'elles ne seront pas utilisées
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
 };
 
 async function renderPage(name) {
-  // Lazily load the requested page.
+  // Charge à la volée la page demandée.
   const page = await pages[name];
   return page.render();
 }
 ```
 
-**Note:** If you would like to use async/await in browsers that don't support it natively, remember to include `babel-polyfill` in your app or `babel-runtime` + `babel-plugin-transform-runtime` in libraries).
+**Remarque :** Si vous souhaitez utiliser async/await dans les navigateurs qui ne le supportent pas nativement, n'oubliez pas d'inclure `babel-polyfill` dans votre application ou `babel-runtime` + `babel-plugin-transform-runtime` en librairies.
 
 ```bash
 yarn add babel-polyfill
@@ -55,4 +55,4 @@ import "babel-polyfill";
 import "./app";
 ```
 
-Read the docs on [babel-polyfill](http://babeljs.io/docs/usage/polyfill) and [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+Consultez les docs sur [babel-polyfill](http://babeljs.io/docs/usage/polyfill) et [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).

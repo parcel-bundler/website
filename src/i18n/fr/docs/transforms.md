@@ -1,20 +1,20 @@
-# 🐠 Transforms
+# 🐠 Transformations
 
-While many bundlers require you to install and configure plugins to transform assets, Parcel has support for many common transforms and transpilers built in out of the box. You can transform JavaScript using [Babel](https://babeljs.io), CSS using [PostCSS](http://postcss.org), and HTML using [PostHTML](https://github.com/posthtml/posthtml). Parcel automatically runs these transforms when it finds a configuration file (e.g. `.babelrc`, `.postcssrc`) in a module.
+Alors que de nombreux empaqueteurs vous demandent d'installer et de configurer des plugins pour transformer les ressources, Parcel a un support prêt à l'emploi pour de nombreuses transformations et transpileurs. Vous pouvez transformer du JavaScript en utilisant [Babel](https://babeljs.io), du CSS à l'aide de [PostCSS](http://postcss.org) et du HTML en utilisant [PostHTML](https://github.com/posthtml/posthtml). Parcel exécute automatiquement ces transformations lorsqu'il trouve un fichier de configuration (par exemple `.babelrc`, `.postcssrc`) dans un module.
 
-This even works in third-party `node_modules`: if a configuration file is published as part of the package, the transform is automatically turned on for that module only. This keeps bundling fast since only modules that need to be transformed are processed. It also means that you don't need to manually configure the transforms to include and exclude certain files, or know how third party code is built in order to use it in your application.
+Cela fonctionne même dans des `node_modules` tiers : si un fichier de configuration est publié comme une partie du package, la transformation est automatiquement activée pour ce module uniquement. Cela permet de maintenir un empaquetage rapide puisque seuls les modules devant être transformés sont traités. Cela signifie également que vous n'avez pas besoin de configurer manuellement les transformations pour inclure et exclure certains fichiers ou savoir comment un code tiers est construit pour l'utiliser dans votre application.
 
 ## Babel
 
-[Babel](https://babeljs.io) is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.
+[Babel](https://babeljs.io) est un transpileur populaire pour JavaScript, avec un grand écosystème de plugin. L'utilisation de Babel avec Parcel fonctionne de la même manière que l'utilisation autonome ou avec d'autres empaqueteurs.
 
-Install presets and plugins in your app:
+Installez les presets et les plugins dans votre application :
 
 ```bash
 yarn add babel-preset-env
 ```
 
-Then, create a `.babelrc`:
+Ensuite, créez un `.babelrc`:
 
 ```json
 {
@@ -24,15 +24,15 @@ Then, create a `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) is a tool for transforming CSS with plugins, like [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), and [CSS Modules](https://github.com/css-modules/css-modules). You can configure PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc` (JSON), `.postcssrc.js`, or `postcss.config.js`.
+[PostCSS](http://postcss.org) est un outil pour transformer du CSS avec des plugins, comme [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), et [CSS Modules](https://github.com/css-modules/css-modules). Vous pouvez configurer PostCSS avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.postcssrc` (JSON), `.postcssrc.js` ou `postcss.config.js`.
 
-Install plugins in your app:
+Installez les plugins dans votre application :
 
 ```bash
 yarn add postcss-modules autoprefixer
 ```
 
-Then, create a `.postcssrc`:
+Ensuite, créez un `.postcssrc`:
 
 ```json
 {
@@ -45,32 +45,32 @@ Then, create a `.postcssrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Les plugins sont spécifiés dans l'objet `plugins` en tant que clés et les options sont définies en utilisant des valeurs d'objet. S'il n'y a pas d'options pour un plugin, définissez-le simplement à `true`.
 
-Target browsers for Autoprefixer, cssnext and other tools can be specified in `.browserslistrc` file:
+Les navigateurs ciblés pour Autoprefixer, cssnext et d'autres outils peuvent être spécifiés dans le fichier `.browserslistrc` :
 
 ```
 > 1%
 last 2 versions
 ```
 
-CSS Modules are enabled slightly differently using the a top-level `modules` key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install `postcss-modules` in your project.
+Les modules CSS sont activés légèrement différemment en utilisant la clé `modules` du niveau supérieur. C'est parce que Parcel doit avoir un support spécial pour les modules CSS car ils exportent un objet à inclure dans le paquet JavaScript. Notez que vous devez toujours installer `postcss-modules` dans votre projet.
 
-### Usage with existing CSS libraries
+### Utilisation avec les bibliothèques CSS existantes
 
-For CSS Modules to work properly with existing modules they need to specify this support in their own `.postcssrc`.
+Pour que les modules CSS fonctionnent correctement avec les modules existants, ils doivent spécifier ce support dans leur propre `.postcssrc`.
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) est un outil pour transformer du HTML avec des plugins. Vous pouvez configurer PostHTML avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.posthtmlrc` (JSON), `posthtmlrc.js` ou `posthtml.config.js`.
 
-Install plugins in your app:
+Installez des plugins dans votre application :
 
 ```bash
 yarn add posthtml-img-autosize
 ```
 
-Then, create a `.posthtmlrc`:
+Ensuite, créez un `.posthtmlrc`:
 
 ```json
 {
@@ -82,11 +82,11 @@ Then, create a `.posthtmlrc`:
 }
 ```
 
-Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Les plugins sont spécifiés dans l'objet `plugins` en tant que clés, et les options sont définies en utilisant des valeurs d'objets. S'il n'y a pas d'options pour un plugin, définissez-le simplement à `true`.
 
 ## TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles down to plain JavaScript, which also supports modern ES2015+ features. Transforming TypeScript works out of the box without any additional configuration.
+[TypeScript](https://www.typescriptlang.org/) est un sur-ensemble typé du JavaScript qui compile en JavaScript simple, qui prend également en charge les fonctionnalités modernes ES2015+. La transformation TypeScript fonctionne sans aucune configuration supplémentaire.
 
 ```html
 <!-- index.html -->
@@ -110,8 +110,7 @@ export default "Hello, world";
 
 ## ReasonML/BuckleScript
 
-[ReasonML](https://reasonml.github.io/) compiles OCaml to JavaScript with the help of [BuckleScript](https://bucklescript.github.io). You can use ReasonML by installing dependencies and creating `bsconfig.json`:
-
+[ReasonML](https://reasonml.github.io/) compile du OCaml en JavaScript à l'aide de [BuckleScript](https://bucklescript.github.io). Vous pouvez utiliser ReasonML en installant des dépendances et en créant `bsconfig.json` :
 ```bash
 $ yarn add bs-platform --dev
 ```
@@ -157,7 +156,7 @@ print_endline("Hello World");
 
 ### ReasonReact
 
-[ReasonReact](https://reasonml.github.io/reason-react/) is React binding for ReasonML. You can use it with Parcel too:
+[ReasonReact](https://reasonml.github.io/reason-react/) est une liaison de React pour ReasonML. Vous pouvez l'utiliser aussi avec Parcel :
 
 ```bash
 $ yarn add react react-dom reason-react

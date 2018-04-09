@@ -2,89 +2,89 @@
 
 ## Bundler
 
-Instead of the cli you can also use the API to initialise a bundler, for more advanced use-cases (e.g. custom processing after every build).
-A watch example with every option explained:
+Au lieu du cli, vous pouvez également utiliser l'API pour initialiser un paquet (bundler), pour des cas d'utilisation plus avancés (par exemple, un traitement personnalisé après chaque construction).
+Un exemple de watch avec chaque option expliquée :
 ```Javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 
-// Entrypoint file location
+// Emplacement du fichier d'entrée
 const file = Path.join(__dirname, './index.html');
 
-// Bundler options
+// Options du paquet
 const options = {
-  outDir: './dist', // The out directory to put the build files in, defaults to dist
-  outFile: 'index.html', // The name of the outputFile
-  publicUrl: './', // The url to server on, defaults to dist
-  watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
-  cache: true, // Enabled or disables caching, defaults to true
-  cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
-  minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
-  target: 'browser', // browser/node/electron, defaults to browser
-  https: false, // Server files over https or http, defaults to false
-  logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
-  hmrPort: 0, // The port the hmr socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
-  sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
-  hmrHostname: '', // A hostname for hot module reload, default to ''
-  detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
+  outDir: './dist', // Le répertoire out pour mettre les fichiers de construction, par défaut dist
+  outFile: 'index.html', // Le nom du fichier de sortie
+  publicUrl: './', // L'URL du serveur, par défaut à dist
+  watch: true, // pour regarder les fichiers et les reconstruire si changement, par défaut pour process.env.NODE_ENV !== 'production'
+  cache: true, // Activé ou désactivé la mise en cache, la valeur par défaut est true
+  cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
+  minify: false, // Minifie les fichiers, activé si process.env.NODE_ENV === 'production'
+  target: 'browser', // browser/node/electron, par défaut browser
+  https: false, // Les fichiers du serveur sur https ou http, par défaut à false
+  logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
+  hmrPort: 0, // Le port sur lequel la socket hmr fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
+  sourceMaps: true, // Active ou désactive sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
+  hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
+  detailedReport: false // Affichee un rapport détaillé des paquets, des ressources, des tailles des fichhiers et des durées, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivée
 };
 
-// Initialises a bundler using the entrypoint location and options provided
+// Initialise un paquet (bundler) en utilisant l'emplacement de l'entrée et les options fournies
 const bundler = new Bundler(file, options);
 
-// Run the bundler, this returns the main bundle
-// Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
+// Exécute le paquet, cela renvoie le paquet principal
+// Utilise les événements si vous utilisez le mode watch car cette promesse ne se déclenchera qu'une fois et pas pour chaque reconstruction
 const bundle = await bundler.bundle();
 ```
 
-### Events
+### Événements
 
-This is a list of all bundler events
+Ceci est une liste de tous les événements d'un paquet
 
-* `bundled` gets called once parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
+* `bundled` est appelé une fois, Parcel a terminé avec succès l'empaquetage, le [bundle](#bundle) principal est passé à la fonction de rappel
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('bundled', (bundle) => {
-  // bundle contains all assets and bundles, see documentation for details
+  // bundle contient tous les ressources et les paquets, voir la documentation pour plus de détails.
 });
 ```
 
-* `buildEnd` gets called after each build, this also emits if an error occurred
+* `buildEnd` est appelé après chaque construction, cela est également émis si une erreur s'est produite
 ```Javascript
 const bundle = new Bundler(...);
 bundle.on('buildEnd', () => {
-  // Do something...
+  // Faire quelque chose...
 });
 ```
 
 ### Bundle
 
-A `Bundle` is what parcel uses to bundle assets together, this also contains child and sibling bundles to be able to build a bundle tree.
+Un `Bundle` est ce que Parcel utilise pour regrouper les paquets, ce qui inclut également les paquets enfants et frères pour pouvoir créer une arborescence.
 
-#### Properties
+#### Propriétés
 
-* `type`: The type of assets it contains (e.g. js, css, map, ...)
-* `name`: The name of the bundle (generated using `Asset.generateBundleName()` of `entryAsset`)
-* `parentBundle`: The parent bundle, is null in case of the entry bundle
-* `entryAsset`: The entryPoint of the bundle, used for generating the name and gathering assets.
-* `assets`: A `Set` of all assets inside the bundle
-* `childBundles`: A `Set` of all child bundles
-* `siblingBundles`: A `Set` of all sibling bundles
-* `siblingBundlesMap`: A `Map<String(Type: js, css, map, ...), Bundle>` of all sibling bundles
-* `offsets`: A `Map<Asset, number(line number inside the bundle)>` of all the locations of the assets inside the bundle, used to generate accurate source maps
+* `type`: Le type de ressource qu'il contient (par exemple js, css, map, ...)
+* `name`: Le nom du paquet (généré en utilisant `Asset.generateBundleName()` de `entryAsset`)
+* `parentBundle`: Le paquet parent, à null dans le cas du paquet d'entrée
+* `entryAsset`: Le point d"entrée du paquet, utilisé pour générer le nom et rassembler des ressources.
+* `assets`: Un `Set` de toutes les ressources à l'intérieur du paquet
+* `childBundles`: Un `Set` de tous les paquets enfants
+* `siblingBundles`: Un `Set` de tous les paquets frères
+* `siblingBundlesMap`: Un `Map<String(Type: js, css, map, ...), Bundle>` de tous les paquets frères
+* `offsets`: Un `Map<Asset, number(line number inside the bundle)>` de tous les emplacements des ressources à l'intérieur, utilisé pour générer des sources maps précises
 
-#### Tree
+#### Arborescence
 
-The `Bundle` contains a `parentBundle`, `childBundles` and `siblingBundles`, all these properties together create a fast to iterate bundle tree.
+Le `Bundle` contient un `parentBundle`, un `childBundles` et un `siblingBundles`, toutes ces propriétés créent ensemble une arborescence du paquet rapide à itérer.
 
 
-A very basic example of an asset tree and it's generated bundle Tree
+Un exemple très basique d'une arborescence de ressource et la génération de l'arborescence du paquet
 
-##### Asset tree:
+##### Arborescence de ressource :
 
-`index.html` requires `index.js` and `index.css`.
+`index.html` a besoin de `index.js` et `index.css`.
 
-`index.js` requires `test.js` and `test.txt`
+`index.js` a besoin de `test.js` et `test.txt`
 
 ```Text
 index.html
@@ -94,42 +94,42 @@ index.html
 -- index.css
 ```
 
-##### Bundle Tree:
+##### Arborescence du paquet :
 
-`index.html` gets used as an entry asset for the main bundle, this main bundle creates two child bundles one for `index.js` and one for `index.css` this because they both are different from the `html` type.
+`index.html` est utilisé comme ressource d'entrée pour le paquet principal, ce paquet principal crée deux paquets enfants un pour `index.js` et un autre pour `index.css`, car ils sont tous les deux différents du type `html`.
 
-`index.js` requires two files, `test.js` and `test.txt`.
+`index.js` a besoin de deux fichiers, `test.js` et `test.txt`.
 
-`test.js` gets added to the assets of the `index.js` bundle, as it is of the same type as `index.js`
+`test.js` est ajouté aux ressources du paquet `index.js`, car il est du même type que `index.js`
 
-`test.txt` creates a new bundle and gets added as a child of the `index.js` bundle as it is a different assetType than `index.js`
+`test.txt` crée un nouveau paquet et est ajouté comme enfant du paquet `index.js`, car son type est différent de `index.js`
 
-`index.css` has no requires and therefore only contains it's entry Asset.
+`index.css` n'a pas de besoin et ne contient donc que son entrée.
 
-`index.css` and `index.js` bundles are siblingBundles of each other as they share the same parent.
+Les paquets `index.css` et `index.js` sont des paquets frères l'un de l'autre car ils partagent le même parent.
 
 ```Text
 index.html
--- index.js (includes index.js and test.js)
- |--- test.txt (includes test.txt)
--- index.css (includes index.css)
+-- index.js (inclus index.js et test.js)
+ |--- test.txt (inclus test.txt)
+-- index.css (inclus index.css)
 ```
 
 ### Middleware
 
-Middleware can be used to hook into a http server (e.g. `express` or node `http`).
+Le middleware peut être utilisé pour se connecter à un serveur http (par exemple `express` ou `http` de node).
 
-An example of using the parcel middleware with express
+Un exemple d'utilisation du middleware de Parcel avec express
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-// Initialise a new bundler using a file and options (for options and file see the bundler documentation)
+// Initialise un nouveau bundler en utilisant un fichier et des options (pour les options et le fichier, voir la documentation du bundler)
 const bundler = new Bundler(file, options);
 
-// Let express use the bundler middleware, this will let parcel handle every request over your express server
+// express utilise le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
 app.use(bundler.middleware());
 
-// Listen on port 8080
+// Ecoute du port 8080
 app.listen(8080);
 ```

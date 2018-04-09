@@ -1,29 +1,29 @@
-# 🔥 Hot Module Replacement
+# 🔥 Remplacement de module à chaud
 
-Hot Module Replacement (HMR) improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things. Parcel's HMR implementation supports both JavaScript and CSS assets out of the box. HMR is automatically disabled when bundling in production mode.
+Le remplacement de module à chaud (Hot Module Replacement : HMR) améliore l'expérience de développement en mettant à jour automatiquement les modules dans le navigateur lors de l'exécution sans nécessiter une actualisation complète de la page. Cela signifie que l'état de l'application peut être conservé lorsque vous changez de petites choses. L'implémentation HMR de Parcel supporte à la fois les ressources JavaScript et CSS. HMR est automatiquement désactivé lors de l'empaquetage en mode production.
 
-As you save files, Parcel rebuilds what changed and sends an update to any running clients containing the new code. The new code then replaces the old version, and is re-evaluated along with all parents. You can hook into this process using the `module.hot` API, which can notify your code when a module is about to be disposed, or when a new version comes in. Projects like [react-hot-loader](https://github.com/gaearon/react-hot-loader) can help with this process, and work out of the box with Parcel.
+Lorsque vous enregistrez des fichiers, Parcel reconstruit les éléments modifiés et envoie une mise à jour à tous les clients en cours d'exécution contenant le nouveau code. Le nouveau code remplace alors l'ancienne version et il est réévalué avec tous les parents. Vous pouvez vous connecter à ce processus en utilisant l'API `module.hot`, qui peut notifier votre code quand un module est sur le point d'être éliminé, ou quand une nouvelle version arrive. Des projets comme [react-hot-loader](https://github.com/gaearon/react-hot-loader) peuvent aider pour ce processus et fonctionne immédiatement avec Parcel.
 
-There are two methods to know about: `module.hot.accept` and `module.hot.dispose`. You call `module.hot.accept` with a callback function which is executed when that module or any of its dependencies are updated. `module.hot.dispose` accepts a callback which is called when that module is about to be replaced.
+Il y a deux méthodes à connaître : `module.hot.accept` et `module.hot.dispose`. Vous appelez `module.hot.accept` avec une fonction de rappel qui est exécutée lorsque ce module ou l'une de ses dépendances sont mis à jour. `module.hot.dispose` accepte une fonction de rappel qui est appelée lorsque ce module est sur le point d'être remplacé.
 
 ```javascript
 if (module.hot) {
   module.hot.dispose(function () {
-    // module is about to be replaced
+    // le module est sur le point d'être remplacé
   });
 
   module.hot.accept(function () {
-    // module or one of its dependencies was just updated
+    // le module ou l'une de ses dépendances vient d'être mis à jour
   });
 }
 ```
 
 ## Safe Write
-Some text editors and IDE's have a feature called `safe write` this basically prevents data loss, by taking a copy of the file and renaming it when saved.
+Certains éditeurs de texte et IDE ont une fonctionnalité appelée `safe write` qui évite la perte de données, en prenant une copie du fichier et en le renommant lors de l'enregistrement.
 
-When using Hot Module Reload (HMR) this feature blocks the automatic detection of file updates, to disable `safe write` use the options provided below:
+Lors de l'utilisation du Hot Module Reload (HMR), cette fonctionnalité bloque la détection automatique des mises à jour de fichiers, pour désactiver `safe write` utilisez les options fournies ci-dessous :
 
-* `Sublime Text 3` add atomic_save: "false" to your user preferences.
-* `IntelliJ` use search in the preferences to find "safe write" and disable it.
-* `Vim` add :set backupcopy=yes to your settings.
-* `WebStorm` uncheck Use "safe write" in Preferences > Appearance & Behavior > System Settings.
+* `Sublime Text 3` ajoutez atomic_save: "false" à vos préférences utilisateur.
+* `IntelliJ` utilisez la recherche dans les préférences pour trouver "safe write" et désactivez-le.
+* `Vim` ajoutez :set backupcopy=yes à vos paramètres.
+* `WebStorm` décochez Use "safe write" dans Preferences > Appearance & Behavior > System Settings.

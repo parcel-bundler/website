@@ -1,22 +1,22 @@
 # 🔌 Plugins
 
-Parcel takes a slightly different approach from many other tools in that many common formats are included out of the box without the need to install and configure additional plugins. However, there are cases where you might want to extend Parcel in a nonstandard way, and for those times, plugins are supported. Installed plugins are automatically detected and loaded based on `package.json` dependencies.
+Parcel adopte une approche légèrement différente de beaucoup d'autres outils dans la mesure où de nombreux formats courants sont inclus sans avoir besoin d'installer et de configurer des plugins supplémentaires. Cependant, il y a des cas où vous auriez besoin d'étendre Parcel d'une manière non standard, et pour ces cas, les plugins sont supportés. Les plugins installés sont automatiquement détectés et chargés en fonction des dépendances du `package.json`.
 
-When adding support for a new file format to Parcel, you should first consider how widespread it is, and how standardized the implementation is. If it is sufficiently widespread and standard, the format should probably be added to Parcel core rather than as a plugin that users need to install. If you have any doubts, [GitHub](https://github.com/parcel-bundler/parcel/issues) is the right place to discuss.
+Lors de l'ajout du support pour un nouveau format de fichier à Parcel, vous devez d'abord considérer à quel point il est répandu et comment la mise en œuvre est standardisée. S'il est suffisamment répandu et standard, le format devra probablement être ajouté au cœur de Parcel au lieu d'un plugin que les utilisateurs devront installer. Si vous avez des doutes, [GitHub](https://github.com/parcel-bundler/parcel/issues) est le bon endroit pour en discuter.
 
-## Plugin API
+## API du plugin
 
-Parcel plugins are very simple. They are simply modules that export a single function, which is called by Parcel automatically during initialization. The function receives as input the `Bundler` object, and can do configuration such as registering asset types and packagers.
+Les plugins de Parcel sont très simples. C'est simplement des modules qui exportent une seule fonction, qui est appelée automatiquement par Parcel lors de l'initialisation. La fonction reçoit en entrée l'objet `Bundler` et peut faire la configuration telle que l'enregistrement des types de ressource et des packagers.
 
 ```javascript
 module.exports = function (bundler) {
-  bundler.addAssetType('ext', require.resolve('./MyAsset'));
-  bundler.addPackager('foo', require.resolve('./MyPackager'));
+  bundler.addAssetType('ext', require.resolve('./MonAsset'));
+  bundler.addPackager('foo', require.resolve('./MonPackager'));
 };
 ```
 
-Publish this package on npm using the `parcel-plugin-` prefix, and it will be automatically detected and loaded as described below.
+Publiez ce paquet sur npm en utilisant le préfixe `parcel-plugin-` et il sera automatiquement détecté et chargé comme décrit ci-dessous.
 
-## Using Plugins
+## Utilisations des Plugins
 
-Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-`, e.g. `parcel-plugin-foo`. Any dependencies listed in `package.json` with this prefix will be automatically loaded during initialization.
+L'utilisation de plugins dans Parcel ne pouvait pas être plus simple. Tout ce que vous avez à faire est de les installer et de les enregistrer dans votre `package.json`. Les plugins doivent être nommés avec le préfixe `parcel-plugin-`, par exemple `parcel-plugin-foo`. Toutes les dépendances répertoriées dans `package.json` avec ce préfixe seront automatiquement chargés lors de l'initialisation.

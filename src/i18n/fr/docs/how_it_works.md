@@ -1,19 +1,19 @@
-# 🛠 How It Works
+# 🛠 Comment ça marche
 
-Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
+Parcel transforme un arborescence de **ressources** en un arborescence de **paquets**. La plupart des autres empaqueteurs sont fondamentalement basés sur les ressources JavaScript, avec d'autres formats intégrés à l'intérieur - par exemple intégrés en tant que Strings dans les fichiers JS. Parcel est agnostique du type de fichier - il fonctionnera avec n'importe quel type de ressource que vous souhaitez, sans configuration. Le processus d'empaquetage de Parcel comporte trois étapes.
 
-### 1. Constructing the Asset Tree
+### 1. Construction de l'arborescence des ressources
 
-Parcel takes as input a single entry asset, which could be any type: a JS file, HTML, CSS, image, etc. There are various [asset types](asset_types.html) defined in Parcel which know how to handle specific file types. The assets are parsed, their dependencies are  extracted, and they are transformed to their final compiled form. This creates a tree of assets.
+Parcel prend en entrée un seul élément ressource, qui peut être de n'importe quel type : un fichier JS, HTML, CSS, image, etc. Il y a plusieurs [types de ressources](asset_types.html) définis dans Parcel et il sait comment gérer les types de fichiers spécifiques. Les ressources sont analysés, leurs dépendances sont extraites et elles sont transformées en leur forme finale compilée. Cela crée une arborescence des ressources.
 
-### 2. Constructing the Bundle Tree
+### 2. Construction de l'arborescence des paquets
 
-Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+Une fois que l'arborescence des ressources a été construite, les ressources sont placées dans une arborescence de paquet. Un paquet est créé pour l'élément en entrée et les paquets enfants sont créés pour les `import()` dynamiques, ce qui provoque le découpage du code.
 
-Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
+Les paquets d'une fratrie sont créés lorsque les ressources d'un type différent sont importées, par exemple, si vous avez importé un fichier CSS à partir du JavaScript, il sera placé dans un paquet frère au JavaScript correspondant.
 
-If an asset is required in more than one bundle, it is hoisted up to the nearest common ancestor in the bundle tree so it is not included more than once.
+Si une ressource est requise dans plusieurs paquets, elle est remontée à l'ancêtre commun le plus proche dans l'arborescence des paquets ainsi elle n'est incluse qu'une fois.
 
-### 3. Packaging
+### 3. Empaquetage
 
-After the bundle tree is constructed, each bundle is written to a file by a [packager](packagers.html) specific to the file type. The packagers know how to combine the code from each asset together into the final file that is loaded by a browser.
+Après la construction de l'arborescence des paquets, chaque paquet est écrit dans un fichier par un [packager](packagers.html) spécifique au type de fichier. Les packagers savent comment combiner le code de chaque ressource dans le fichier final chargé par un navigateur.

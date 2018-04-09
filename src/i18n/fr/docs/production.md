@@ -1,11 +1,11 @@
 # ✨ Production
 
-When it comes time to bundle your application for production, you can use Parcel's production mode.
+Quand vient le temps d'empaqueter votre application pour la production, vous pouvez utiliser le mode de production de Parcel.
 
 ```bash
 parcel build entry.js
 ```
 
-This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) for JavaScript, [cssnano](http://cssnano.co) for CSS, and [htmlnano](https://github.com/posthtml/htmlnano) for HTML.
+Cela désactive le mode watch et le remplacement de module à chaud, de sorte qu'il ne sera construit qu'une seule fois. Cela permet également de minifier tous les paquets en sortie pour réduire la taille du fichier. Les minifieurs utilisés par Parcel sont [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) pour JavaScript, [cssnano](http://cssnano.co) pour CSS et [htmlnano](https://github.com/posthtml/htmlnano) pour HTML.
 
-Enabling production mode also sets the `NODE_ENV=production` environment variable. Large libraries like React have development only debugging features which are disabled by setting this environment variable, which results in smaller and faster builds for production.
+L'activation du mode production définit également la variable d'environnement `NODE_ENV=production`. Les grandes bibliothèques comme React ont des fonctionnalités de débogage uniquement pour le développement qui sont désactivés en définissant cette variable d'environnement, ce qui se traduit par des constructions plus petites et plus rapides pour la production.

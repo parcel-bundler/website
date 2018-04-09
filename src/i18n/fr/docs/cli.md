@@ -1,10 +1,10 @@
 # 🖥 CLI
 
-## Commands
+## Commandes
 
 ### Serve
 
-Serve starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development.
+Serve démarre un serveur de développement, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et prend en charge [le remplacement de module à chaud](hmr.html) pour un développement plus rapide.
 
 ```bash
 parcel index.html
@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build builds the assets once, it also enabled minification and sets the NODE_ENV variable to production. [Production](production.html)
+Build construit les ressources une fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
 
 ```bash
 parcel build index.html
@@ -20,7 +20,7 @@ parcel build index.html
 
 ### Watch
 
-The watch command is similar to serve, with the main difference being it doesn't start up a server.
+La commande watch est similaire à serve, sauf que la commande watch ne démarre pas un serveur.
 
 ```bash
 parcel watch index.html
@@ -28,7 +28,7 @@ parcel watch index.html
 
 ### Help
 
-Displays all possible cli options
+Affiche toutes les options possibles de la cli.
 
 ```bash
 parcel help
@@ -36,15 +36,15 @@ parcel help
 
 ## Options
 
-### Output directory
+### Répertoire de sortie
 
-Default: "dist"
+Par défaut : "dist"
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
-or
+ou
 parcel build entry.js -d build/output
 ```
 
@@ -55,160 +55,160 @@ root
 - - - entry.js
 ```
 
-### Set the public URL to serve on
+### Définit l'URL publique à appliquer
 
-Default: "/"
+Par défaut : "/"
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --public-url ./dist/
 ```
 
-will output:
+Cela produira :
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
-or
+ou
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
-### Target
+### La cible (target)
 
-Default: browser
+Par défaut : browser
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node
 ```
 
-Possible targets: node, browser and electron
+Les cibles possibles sont : node, browser et electron
 
-### Change Log level
+### Change le niveau de journalisation
 
-Default: 3
+Par défaut : 3
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --log-level 1
 ```
 
-| Loglevel | Effect                    |
-|---       |---                        |
-| 0        | Logging disabled          |
-| 1        | Only log errors           |
-| 2        | Log errors and warnings   |
-| 3        | Log everything            |
+| Loglevel | Effet                                       |
+|---       |---                                          |
+| 0        | Journal désactivé                           |
+| 1        | Consigner uniquement les erreurs            |
+| 2        | Consigner les erreurs et les avertissements |
+| 3        | Tout consigner                              |
 
-### HMR Hostname
+### Nom d'hôte du HMR
 
-Default: `location.hostname` of current window
+Par défaut : `location.hostname` du windows courant
 
-Available in: `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel build entry.js --hmr-hostname parceljs.org
 ```
 
-### HMR Port
+### Port du HMR
 
-Default: A random available port
+Par défaut : Un port disponible au hasard
 
-Available in: `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel build entry.js --hmr-port 8080
 ```
 
-### Output filename
+### Nom de fichier en sortie
 
-Default: Original filename
+Par défaut : Nom du fichier original
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-file output.html
 ```
 
-This changes the output filename of the entrypoint bundle
+Cela modifie le nom du fichier de sortie du paquet
 
-### Print a detailed report
+### Imprime un rapport détaillé
 
-Default: Minimal report
+Par défaut : rapport minimal
 
-Available in: `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --detailed-report
 ```
 
-### Set a custom certificate
+### Définit un certificat personnalisé
 
-Default: Generates a certificate
+Par défaut : génère un certificat
 
-Available in: `serve`
+Disponible dans : `serve`
 
 ```bash
 parcel build entry.js --cert certificate.cert --key private.key
 ```
 
-### Open in browser
+### Ouvre dans le navigateur
 
-Default: open disabled
+Par défaut : ouverture désactivée
 
-Available in: `serve`
+Disponible dans : `serve`
 
 ```bash
 parcel build entry.js --open
 ```
 
-### Disable source-maps
+### Désactive source-maps
 
-Default: source-maps enabled
+Par défaut : source-maps activé
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
 ```
 
-### Disable autoinstall
+### Désactive autoinstall
 
-Default: autoinstall enabled
+Par défaut : autoinstall activé
 
-Available in: `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel build entry.js --no-autoinstall
 ```
 
-### Disable HMR
+### Désactive le HMR
 
-Default: HMR enabled
+Par défaut : HMR activé
 
-Available in: `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel build entry.js --no-hmr
 ```
 
-### Disable minification
+### Désactive la minification
 
-Default: minification enabled
+Par défaut : minification activée
 
-Available in: `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --no-minify
 ```
 
-### Disable the filesystem cache
+### Désactive le cache du système de fichiers
 
-Default: cache enabled
+Par défaut : cache activé
 
-Available in: `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-cache

@@ -1,6 +1,6 @@
 # 📦 Packagers
 
-In Parcel, a `Packager` combines multiple `Asset`s together into a final output bundle. This happens in the main process after all assets have been processed, and a bundle tree has been created. Packagers are registered based on output file type, and assets that have generated that output type are sent to that packager for production of the final output file.
+Dans Parcel, un `Packager` combine plusieurs `Asset` ensemble dans un paquet final en sortie. Cela se produit dans le processus principal après que toutes les ressources ont été traitées et qu'une arborescence du paquet a été créé. Les packagers sont enregistrés en fonction du type de fichier de sortie et les ressources générées par ce type de sortie sont envoyées à ce packager pour la production finale du fichier en sortie.
 
 ## Packager Interface
 
@@ -9,29 +9,29 @@ const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // optional. write file header if needed.
+    // optionnel. Ecrit l'entête du fichier si besoin.
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // required. write the asset to the output file.
+    // obligatoire. Ecrit la ressource dans le fichier de sortie.
     await this.dest.write(asset.generated.foo);
   }
 
   async end() {
-    // optional. write file trailer if needed.
+    // optionnel. Ecrit la fin du fichier si besoin.
     await this.dest.end(trailer);
   }
 }
 ```
 
-## Registering a Packager
+## Enregistrement d'un packager
 
-You can register your packager with a bundler using the `addPackager` method. It accepts a file type to register, and the path to your packager module.
+Vous pouvez enregistrer votre packager avec un bundler en utilisant la méthode `addPackager`. Il accepte un type de fichier pour s'enregistrer et le chemin vers votre module packager.
 
 ```javascript
 const Bundler = require('parcel-bundler');
 
 let bundler = new Bundler('input.js');
-bundler.addPackager('foo', require.resolve('./MyPackager'));
+bundler.addPackager('foo', require.resolve('./MonPackager'));
 ```
