@@ -16,7 +16,7 @@ const options = {
   outDir: './dist', // Le répertoire out pour mettre les fichiers de construction, par défaut dist
   outFile: 'index.html', // Le nom du fichier de sortie
   publicUrl: './', // L'URL du serveur, par défaut à dist
-  watch: true, // pour regarder les fichiers et les reconstruire si changement, par défaut pour process.env.NODE_ENV !== 'production'
+  watch: true, // Surveiller les fichiers et les reconstruire lors d'un changement, par défaut pour process.env.NODE_ENV !== 'production'
   cache: true, // Activé ou désactivé la mise en cache, la valeur par défaut est true
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   minify: false, // Minifie les fichiers, activé si process.env.NODE_ENV === 'production'
@@ -26,14 +26,14 @@ const options = {
   hmrPort: 0, // Le port sur lequel la socket hmr fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
-  detailedReport: false // Affichee un rapport détaillé des paquets, des ressources, des tailles des fichhiers et des durées, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivée
+  detailedReport: false // Affiche un rapport détaillé des paquets, des ressources, des tailles des fichiers et des durées, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivée
 };
 
-// Initialise un paquet (bundler) en utilisant l'emplacement de l'entrée et les options fournies
+// Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
 const bundler = new Bundler(file, options);
 
 // Exécute le paquet, cela renvoie le paquet principal
-// Utilise les événements si vous utilisez le mode watch car cette promesse ne se déclenchera qu'une fois et pas pour chaque reconstruction
+// Utilisez les événements si vous utilisez le mode watch car cette promesse ne se déclenchera qu'une fois et pas pour chaque reconstruction
 const bundle = await bundler.bundle();
 ```
 
@@ -66,7 +66,7 @@ Un `Bundle` est ce que Parcel utilise pour regrouper les paquets, ce qui inclut 
 * `type`: Le type de ressource qu'il contient (par exemple js, css, map, ...)
 * `name`: Le nom du paquet (généré en utilisant `Asset.generateBundleName()` de `entryAsset`)
 * `parentBundle`: Le paquet parent, à null dans le cas du paquet d'entrée
-* `entryAsset`: Le point d"entrée du paquet, utilisé pour générer le nom et rassembler des ressources.
+* `entryAsset`: Le point d'entrée du paquet, utilisé pour générer le nom et rassembler des ressources.
 * `assets`: Un `Set` de toutes les ressources à l'intérieur du paquet
 * `childBundles`: Un `Set` de tous les paquets enfants
 * `siblingBundles`: Un `Set` de tous les paquets frères

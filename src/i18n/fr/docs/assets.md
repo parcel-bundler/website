@@ -14,7 +14,7 @@ const dep = require('./path/to/dep');
 import dep from './path/to/dep';
 ```
 
-Vous pouvez également importer des éléments non JavaScript à partir d'un fichier JavaScript, par exemple du CSS ou même un fichier image. Lorsque vous importez l'un de ces fichiers, il n'est pas intégré comme dans d'autres empaqueteurs. Au lieu de cela, Parcel le place dans un paquet séparé (par exemple un fichier CSS) avec toutes ses dépendances. Lors de l'utilisation de [Modules CSS](https://github.com/css-modules/css-modules), les classes exportées sont placées dans le paquet JavaScript. Les autres types de ressource exportent une URL vers le fichier de sortie dans le paquet JavaScript afin que vous puissiez les référencer dans votre code.
+Vous pouvez également importer des éléments non JavaScript à partir d'un fichier JavaScript, par exemple du CSS ou même un fichier image. Lorsque vous importez l'un de ces fichiers, il n'est pas intégré comme dans d'autres empaqueteurs. Au lieu de cela, Parcel le place dans un paquet séparé (par exemple un fichier CSS) avec toutes ses dépendances. Lors de l'utilisation des [Modules CSS](https://github.com/css-modules/css-modules), les classes exportées sont placées dans le paquet JavaScript. Les autres types de ressource exportent une URL vers le fichier de sortie dans le paquet JavaScript afin que vous puissiez les référencer dans votre code.
 
 ```javascript
 // Importe un fichier CSS
@@ -53,7 +53,7 @@ Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou
 }
 ```
 
-En plus des simples CSS, d'autres langages de compilation CSS comme LESS, SASS et Stylus sont également supportés, et fonctionnent de la même manière.
+En plus des simples CSS, d'autres langages compilés vers CSS comme LESS, SASS et Stylus sont également supportés, et fonctionnent de la même manière.
 
 ## SCSS
 La compilation SCSS nécessite un module `node-sass`. Pour l'installer avec npm :

@@ -55,7 +55,7 @@ class MyAsset extends Asset {
 
 ## Enregistrement d'un type d'Asset
 
-Vous pouvez enregistrer votre type de ressource avec un paquet (bundler) en utilisant la méthode `addAssetType`. Il accepte une extension de fichier à enregistrer et le chemin d'accès à votre module de type de ressource. C'est un chemin plutôt que l'objet réel afin qu'il puisse être transmis aux processus de travail.
+Vous pouvez enregistrer votre type de ressource avec un empaqueteur (bundler) en utilisant la méthode `addAssetType`. Elle accepte une extension de fichier à enregistrer et le chemin d'accès à votre module de type de ressource. C'est un chemin plutôt que l'objet réel afin qu'il puisse être transmis aux processus de travail.
 
 ```javascript
 const Bundler = require('parcel-bundler');
