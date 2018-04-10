@@ -1,8 +1,8 @@
 # 🚀 Commencer
 
-Parcel est un empaqueteur d'application web, qui se différencie par son expérience de développeur. Il offre des performances ultra-rapides grâce au traitement multicœur et ne nécessite aucune configuration.
+Parcel est un empaqueteur d'application web, qui se différencie par son expérience de développement. Il offre des performances ultra-rapides grâce au traitement multicœur et ne nécessite aucune configuration.
 
-Veuillez d'abord installer Parcel en utilisant Yarn ou npm :
+Commencez par installer Parcel en utilisant Yarn ou npm :
 
 Yarn :
 ```bash
@@ -48,10 +48,10 @@ parcel index.html
 
 Maintenant ouvrez http://localhost:1234/ dans votre navigateur. Vous pouvez également remplacer le port par défaut avec l'option `-p <numéro de port>`.
 
-Utilisez le serveur de développement lorsque vous n'avez pas votre propre serveur ou si votre application est entièrement rendue par le client. Si vous avez votre propre serveur, vous pouvez exécuter à la place Parcel en mode `watch`. Cela permet de reconstruire automatiquement lorsque les fichiers changent et ça prend en charge le remplacement de module à chaud, mais ça ne démarre pas un serveur Web.
+Utilisez le serveur de développement lorsque vous n'avez pas votre propre serveur ou si votre application est entièrement exécutée côté client. Si vous avez votre propre serveur, vous pouvez lancer Parcel en mode `watch` à la place. Cela permet de reconstruire automatiquement lorsque les fichiers changent et de prendre en charge le remplacement de module à chaud, mais ne démarre pas un serveur Web.
 
 ```bash
 parcel watch index.html
 ```
 
-Lorsque vous êtes prêt à construire pour la production, le mode `build` arrête de scruter les modifications et construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
+Lorsque vous êtes prêt à construire les fichiers finals utilisés pour la production, le mode `build` arrête de scruter les modifications et ne construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
