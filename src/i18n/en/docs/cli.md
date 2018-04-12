@@ -144,9 +144,21 @@ Available in: `build`
 parcel build entry.js --detailed-report
 ```
 
+### Enable https
+
+Default: https disabled
+
+Available in: `server`
+
+```bash
+parcel build entry.js --https
+```
+
+⚠️ This flag generates a self-signed certificate, you might have to configure your browser to allow self-signed certificates for localhost.
+
 ### Set a custom certificate
 
-Default: Generates a certificate
+Default: https disabled
 
 Available in: `serve`
 
