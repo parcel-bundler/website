@@ -10,8 +10,6 @@
 npm install --save react
 npm install --save react-dom
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
-npm install --save-dev babel-preset-react
 ```
 
 <sub>或者如果你安装了 Yarn 包管理器</sub>
@@ -20,20 +18,9 @@ npm install --save-dev babel-preset-react
 yarn add react
 yarn add react-dom
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
-yarn add --dev babel-preset-react
 ```
 
-然后确保以下 Babel 预设存在。
-
-```javascript
- // .babelrc
-{
-  "presets": ["env", "react"]
-}
-```
-
-在 `package.json` 中添加 start 命令
+添加 start 指令到 `package.json`
 
 ```javascript
 // package.json
@@ -54,7 +41,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>或者如果你安装了 Yarn 包管理器</sub>
+<sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add preact
@@ -73,7 +60,32 @@ yarn add --dev babel-preset-preact
 }
 ```
 
-在 `package.json` 中添加 start 命令
+向 `package.json` 的 scripts 中添加 start 脚本。
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+## Vue
+
+首先，我们需要安装 Vue 的依赖关系。
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+```
+
+<sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+```
+
+向 `package.json` 的 scripts 中添加 start 脚本。
 
 ```javascript
 // package.json

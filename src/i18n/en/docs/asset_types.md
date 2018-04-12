@@ -12,12 +12,12 @@ const {Asset} = require('parcel-bundler');
 class MyAsset extends Asset {
   type = 'foo'; // set the main output type.
 
-  parse(code) {
+  async parse(code) {
     // parse code to an AST
     return ast;
   }
 
-  pretransform() {
+  async pretransform() {
     // optional. transform prior to collecting dependencies.
   }
 
@@ -26,17 +26,29 @@ class MyAsset extends Asset {
     this.addDependency('my-dep');
   }
 
-  transform() {
+  async transform() {
     // optional. transform after collecting dependencies.
   }
 
-  generate() {
+  async generate() {
     // code generate. you can return multiple renditions if needed.
     // results are passed to the appropriate packagers to generate final bundles.
-    return {
-      foo: 'my stuff here', // main output
-      js: 'some javascript' // alternative rendition to be placed in JS bundle if needed
-    };
+    return [
+      {
+        type: 'foo',
+        value: 'my stuff here' // main output
+      },
+      {
+        type: 'js',
+        value: 'some javascript', // alternative rendition to be placed in JS bundle if needed
+        sourceMap
+      }
+    ];
+  }
+
+  async postProcess(generated) {
+    // Process after all code generating has been done
+    // Can be used for combining multiple asset types
   }
 }
 ```
