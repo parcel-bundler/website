@@ -148,7 +148,7 @@ parcel build entry.js --detailed-report
 
 Default: https disabled
 
-Available in: `server`
+Available in: `serve`
 
 ```bash
 parcel build entry.js --https
