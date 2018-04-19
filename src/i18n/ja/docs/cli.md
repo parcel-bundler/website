@@ -1,46 +1,46 @@
 # 🖥 CLI
 
-## Commands
+## コマンド
 
-### Serve
+### サーブ(Serve)
 
-Serve starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development.
+サーブは開発用サーバーを立ち上げます。ファイルの変更があると自動で再ビルドを行い、素早い開発のために[ホットモジュールリプレースメント](hmr.html)をサポートします。
 
 ```bash
 parcel index.html
 ```
 
-### Build
+### ビルド(Build)
 
-Build builds the assets once, it also enabled minification and sets the NODE_ENV variable to production. [Production](production.html)
+ビルドはアセットを一度だけビルドします、またコードの最小化と NODE_ENV を productionにセットします。[本番](production.html)
 
 ```bash
 parcel build index.html
 ```
 
-### Watch
+### ウォッチ(Watch)
 
-The watch command is similar to serve, with the main difference being it doesn't start up a server.
+ウォッチコマンドはサーブと似ていますが、サーバーを立ち上げないところが主に異なります。
 
 ```bash
 parcel watch index.html
 ```
 
-### Help
+### ヘルプ(Help)
 
-Displays all possible cli options
+cliの全てのオプションを表示します
 
 ```bash
 parcel help
 ```
 
-## Options
+## オプション
 
-### Output directory
+### 出力先ディレクトリ
 
-Default: "dist"
+デフォルト："dist"
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
@@ -55,17 +55,17 @@ root
 - - - entry.js
 ```
 
-### Set the public URL to serve on
+### サーブするパブリックURLを設定する
 
-Default: "/"
+デフォルト："/"
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --public-url ./dist/
 ```
 
-will output:
+は以下のように出力されます：
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
@@ -73,154 +73,154 @@ or
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
-### Target
+### ターゲット
 
-Default: browser
+デフォルト：browser
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node
 ```
 
-Possible targets: node, browser and electron
+利用可能なターゲット: node, browser, electron
 
-### Change Log level
+### ログレベルを変更する
 
-Default: 3
+デフォルト：3
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --log-level 1
 ```
 
-| Loglevel | Effect                    |
-|---       |---                        |
-| 0        | Logging disabled          |
-| 1        | Only log errors           |
-| 2        | Log errors and warnings   |
-| 3        | Log everything            |
+| ログレベル | 効果             |
+|---       |---               |
+| 0        | ログを無効化します  |
+| 1        | エラーのみ         |
+| 2        | エラーと警告のみ    |
+| 3        | 全て              |
 
-### HMR Hostname
+### HMR ホスト名
 
-Default: `location.hostname` of current window
+デフォルト：現在のウィンドウの`location.hostname`
 
-Available in: `serve`, `watch`
+次で利用可能：`serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-hostname parceljs.org
 ```
 
-### HMR Port
+### HMR ポート
 
-Default: A random available port
+デフォルト： 利用可能なランダムなポート
 
-Available in: `serve`, `watch`
+次で利用可能：`serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-port 8080
 ```
 
-### Output filename
+### 出力ファイル名
 
-Default: Original filename
+デフォルト： オリジナルのファイル名
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-file output.html
 ```
 
-This changes the output filename of the entrypoint bundle
+これを設定すると、エントリーポイントバンドルの出力ファイル名を変更します
 
-### Print a detailed report
+### 詳細なレポートを出力する
 
-Default: Minimal report
+デフォルト：最小限のレポート
 
-Available in: `build`
+次で利用可能：`build`
 
 ```bash
 parcel build entry.js --detailed-report
 ```
 
-### Enable https
+### httpsを有効にする
 
-Default: https disabled
+デフォルト：httpsは無効です
 
-Available in: `server`
+次で利用可能：`server`
 
 ```bash
 parcel build entry.js --https
 ```
 
-⚠️ This flag generates a self-signed certificate, you might have to configure your browser to allow self-signed certificates for localhost.
+⚠️ このフラグは自己署名証明書を生成します。ブラウザの設定でlocalhostに対して、自己署名証明書を許可する必要があるかもしれません。
 
-### Set a custom certificate
+### 任意の証明書を設定する
 
-Default: https disabled
+デフォルト：httpsは無効
 
-Available in: `serve`
+次で利用可能：`serve`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
 ```
 
-### Open in browser
+### ブラウザで開く
 
-Default: open disabled
+デフォルト：ブラウザは開きません
 
-Available in: `serve`
+次で利用可能：`serve`
 
 ```bash
 parcel entry.js --open
 ```
 
-### Disable source-maps
+### ソースマップを無効にする
 
-Default: source-maps enabled
+デフォルト：ソースマップは有効
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
 ```
 
-### Disable autoinstall
+### 自動インストールを無効にする
 
-Default: autoinstall enabled
+デフォルト：自動インストールは有効
 
-Available in: `serve`, `watch`
+次で利用可能：`serve`, `watch`
 
 ```bash
 parcel entry.js --no-autoinstall
 ```
 
-### Disable HMR
+### HMRを無効にする
 
-Default: HMR enabled
+デフォルト：HMRは有効です
 
-Available in: `serve`, `watch`
+次で利用可能：`serve`, `watch`
 
 ```bash
 parcel entry.js --no-hmr
 ```
 
-### Disable minification
+### 最小化を無効にする
 
-Default: minification enabled
+デフォルト：最小化は有効です
 
-Available in: `build`
+次で利用可能：`build`
 
 ```bash
 parcel build entry.js --no-minify
 ```
 
-### Disable the filesystem cache
+### ファイルシステムキャッシュを無効にする
 
-Default: cache enabled
+デフォルト：キャッシュは有効です
 
-Available in: `serve`, `watch`, `build`
+次で利用可能：`serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-cache
