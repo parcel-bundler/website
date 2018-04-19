@@ -1,8 +1,8 @@
-# 🚀 Getting Started
+# 🚀 はじめに
 
-Parcel is a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration.
+Parcelは、開発者の経験によって生まれたWebアプリケーションバンドラです。設定不要で、マルチコア処理を利用した驚異的な高速パフォーマンスを提供します。
 
-First install Parcel using Yarn or npm:
+まずはYarnまたはnpmでParcelをインストールしましょう。
 
 Yarn:
 ```bash
@@ -14,19 +14,20 @@ npm:
 npm install -g parcel-bundler
 ```
 
-Create a package.json file in your project directory using:
+あなたのプロジェクトディレクトリに以下のコマンドを使ってpackage.jsonを作成しましょう。
 
 ```bash
 yarn init -y
 ```
-or 
+または
 ```bash
 npm init -y
 ```
 
-Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If you link your main JavaScript file in the HTML using a relative path, Parcel will also process it for you, and replace the reference with a URL to the output file.
+Parcelはどんな種類のファイルでもエントリーポイントとして扱うことができますが、HTMLまたはJavaScriptファイルから始めるのに適しています。  
+HTMLファイルから相対パスでメインとなるJavaScriptファイルをリンクすると、Parcelはそれを処理し、参照を出力ファイルのURLに置き換えます。
 
-Next, create an index.html and index.js file.
+次に、index.htmlとindex.jsファイルを作成しましょう。
 
 ```html
 <html>
@@ -40,18 +41,21 @@ Next, create an index.html and index.js file.
 console.log("hello world");
 ```
 
-Parcel has a development server built in, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development. Just point it at your entry file:
+Parcelは開発用サーバを内蔵しています。それはあなたがファイルを変更すると自動で再ビルドを行い、素早い開発のために[ホットモジュールリプレースメント](hmr.html)をサポートしています。  
+次のようにエントリーファイルを指定してみましょう。
 
 ```bash
 parcel index.html
 ```
 
-Now open http://localhost:1234/ in your browser. You can also override the default port with the `-p <port number>` option.
+では、ブラウザで http://localhost:1234/ を開いてみましょう。 `-p <ポート番号>` オプションを使うことでデフォルトのポート番号を上書きすることができます。
 
-Use the development server when you don't have your own server, or your app is entirely client rendered. If you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports hot module replacement, but doesn't start a web server.
+自分でサーバーを持っていない場合、あるいはあなたのアプリケーションがすべてクライアントで動く場合には開発用サーバを使いましょう。  
+自分でサーバーを持っている場合には、代わりにParcelを `watch` モードで実行することができます。
+ファイルが変更されると自動で再ビルドを行い、ホットモジュールリプレースメントをサポートしますが、Webサーバーは起動しません。
 
 ```bash
 parcel watch index.html
 ```
 
-When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
+本番用のビルドを行う準備ができたら、 `build` でモードファイルの監視を無効にして、一度だけビルドします。 詳細は[本番](production.html)を参照してください。 
