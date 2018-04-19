@@ -1,84 +1,85 @@
-# 📦 Assets
+# 📦 アセット
 
-Parcel is based around assets. An asset can represent any file, but Parcel has special support for certain types of assets like JavaScript, CSS, and HTML files. Parcel automatically analyzes the dependencies referenced in these files and includes them in the output bundle. Assets of similar types are grouped together into the same output bundle. If you import an asset of a different type (for example, if you imported a CSS file from JS), it starts a child bundle and leaves a reference to it in the parent. This will be illustrated in the following sections.
+Parcelはアセットに基づいています。 どんなファイルでもアセットになることができますが、ParcelはJavaScript、CSS、HTMLなどの特別なタイプのアセットを特別にサポートしています。Parcelはこれらのファイルから参照されている依存を自動で解析して出力するバンドルに含めます。似た種類のアセットは同じバンドルにまとめられます。異なるタイプのアセットをインポートすると（たとえば、JSファイルからCSSファイルをインポートした場合）、子バンドルが開始され、親バンドルへの参照が残ります。これについては、次のセクションで説明します。
 
 ## JavaScript
 
-The most traditional file type for web bundlers is JavaScript. Parcel supports both CommonJS and ES6 module syntax for importing files. It also supports dynamic `import()` function syntax to load modules asynchronously, which is discussed in the [Code Splitting](code_splitting.html) section.
+Webバンドルの最も一般的なファイルタイプはJavaScriptです。 Parcelは、ファイルをインポートするためのCommonJSとES6の両方のモジュール構文をサポートしています。
+また、モジュールを非同期にロードするための動的な `import（）`関数構文もサポートしています。これについては、[コード分割](code_splitting.html)の項目で説明しています。
 
 ```javascript
-// Import a module using CommonJS syntax
+// CommonJS syntaxを使ったモジュールのインポート
 const dep = require('./path/to/dep');
 
-// Import a module using ES6 import syntax
+// ES6 import syntaxを使ったモジュールのインポート
 import dep from './path/to/dep';
 ```
 
-You can also import non-JavaScript assets from a JavaScript file, e.g. CSS or even an image file. When you import one of these files, it is not inlined as in some other bundlers. Instead, it is placed in a separate bundle (e.g. a CSS file) along with all of its dependencies. When using [CSS Modules](https://github.com/css-modules/css-modules), the exported classes are placed in the JavaScript bundle. Other asset types export a URL to the output file in the JavaScript bundle so you can reference them in your code.
+JavaScript以外のアセットをJavaScriptファイルからインポートすることもできます（例：CSS、または画像ファイルなど）。これらのファイルのいずれかをインポートすると、他のバンドルのようにインライン化されません。
+代わりに、すべての依存関係とともに別のバンドル（CSSファイルなど）に配置されます。[CSS Modules](https://github.com/css-modules/css-modules)を使用する場合、エクスポートされたクラスはJavaScriptバンドルに配置されます。他のアセットタイプはJavaScriptバンドル内の出力ファイルにURLをエクスポートし、コード内でそれらを参照できます。
 
 ```javascript
-// Import a CSS file
+// CSS ファイルをインポートする
 import './test.css';
 
-// Import a CSS file with CSS modules
+// CSS ファイルを CSS modules でインポートする
 import classNames from './test.css';
 
-// Import the URL to an image file
+// 画像ファイルへのURLをインポートする
 import imageURL from './test.png';
 ```
 
-If you want to inline a file into the JavaScript bundle instead of reference it by URL, you can use the Node.js `fs.readFileSync` API to do that. The URL must be statically analyzable, meaning it cannot have any variables in it (other than `__dirname` and `__filename`).
+ファイルをURLで参照するのではなく、JavaScriptバンドルにインライン展開するには、Node.js `fs.readFileSync` APIを使用します。 URLは静的に解析可能でなければなりません。つまり、 `__dirname`や` __filename` 以外の変数を使うことはできません。
 
 ```javascript
 import fs from 'fs';
 
-// Read contents as a string
+// コンテンツを文字列として読み込む
 const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 
-// Read contents as a Buffer
+// コンテンツをバッファとして読み込む
 const buffer = fs.readFileSync(__dirname + '/test.png');
 ```
 
 ## CSS
 
-CSS assets can be imported from a JavaScript or HTML file, and can contain dependencies referenced by `@import` syntax as well as references to images, fonts, etc. via the `url()` function. Other CSS files that are `@import`ed are inlined into the same CSS bundle, and `url()` references are rewritten to their output filenames. All filenames should be relative to the current CSS file.
+CSSアセットは、JavaScriptやHTMLファイルからインポートすることができ、 `@import` 構文で参照される依存関係や `url()` 関数によるイメージ、フォントなどへの参照を含むことができます。 `@import` された他のCSSファイルは同じCSSバンドルにインライン展開され、`url()` 参照は出力ファイル名に書き換えられます。すべてのファイル名は、そのCSSファイルとの相対的なものでなければなりません。
 
 ```css
-/* Import another CSS file */
+/* 別の CSS ファイルを読み込む */
 @import './other.css';
 
 .test {
-  /* Reference an image file */
+  /* 画像ファイルを参照する */
   background: url('./images/background.png');
 }
 ```
 
-In addition to plain CSS, other compile-to-CSS languages like LESS, SASS, and Stylus are also supported, and work the same way.
+普通のCSSに加えて、LESS、SASS、およびStylusのような他のコンパイルからCSSへの言語もサポートされており、同じように動作します。
 
 ## SCSS
-SCSS compilation needs `node-sass` module. To install it with npm:
+SCSSコンパイルには `node-sass`モジュールが必要です。 npmでインストールするには:
 ```bash
 npm install node-sass
 ```
-Once you have `node-sass` installed you can import SCSS files from JavaScript files.
+`node-sass`がインストールされると、JavaScriptファイルからSCSSファイルをインポートできます。
 ```javascript
 import './custom.scss'
 ```
-Dependencies in the SCSS files can be used with the `@import` statements.
+SCSSファイルの依存関係は `@import` 記法を使うことができます。
 
 ## HTML
-
-HTML assets are often the entry file that you provide to Parcel, but can also be referenced by JavaScript files, e.g. to provide links to other pages. URLs to scripts, styles, media, and other HTML files are extracted and compiled as described above. The references are rewritten in the HTML so that they link to the correct output files. All filenames should be relative to the current HTML file.
+HTMLアセットは多くの場合、Parcelに提供するためのエントリファイルですが、JavaScriptファイルなどで参照することもできます。(例：他のページへのリンクを提供する場合など）上記のように、スクリプト、スタイル、メディア、その他のHTMLファイルへのURLが抽出され、コンパイルされます。これらの参照は、正しい出力ファイルにリンクするようにHTMLに書き換えられます。すべてのファイル名は、そのHTMLファイルと相対的でなければなりません。
 
 ```html
 <html>
 <body>
-  <!-- reference an image file -->
+  <!-- 画像ファイルを参照する -->
   <img src="./images/header.png">
 
-  <a href="./other.html">Link to another page</a>
+  <a href="./other.html">他のページへのリンク</a>
 
-  <!-- import a JavaScript bundle -->
+  <!-- JavaScriptバンドルをインポートする -->
   <script src="./index.js"></script>
 </body>
 </html>
