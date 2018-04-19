@@ -1,10 +1,10 @@
-# 🍰 Recipes
+# 🍰 レシピ
 
 ## React
 
-First need to install the dependencies for React.
+まずはReactの依存関係をインストールする必要があります。
 
-[Blog Post](http://blog.jakoblind.no/react-parcel/)
+[ブログ記事](http://blog.jakoblind.no/react-parcel/)
 
 ```bash
 npm install --save react
@@ -12,7 +12,7 @@ npm install --save react-dom
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>またはYarnパッケージマネージャがインストールされている場合</sub>
 
 ```bash
 yarn add react
@@ -20,7 +20,7 @@ yarn add react-dom
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+`package.json`にスタートスクリプトを登録します。
 
 ```javascript
 // package.json
@@ -31,7 +31,7 @@ Add Start script to `package.json`
 
 ## Preact
 
-First we need to install the dependencies for Preact.
+まずはPreactの依存関係をインストールする必要があります。
 
 ```bash
 npm install --save preact
@@ -41,7 +41,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>またはYarnパッケージマネージャがインストールされている場合</sub>
 
 ```bash
 yarn add preact
@@ -51,7 +51,7 @@ yarn add --dev babel-preset-env
 yarn add --dev babel-preset-preact
 ```
 
-Then make sure the following Babel config is present.
+次に、以下のBabel設定が存在することを確認します。
 
 ```javascript
 // .babelrc
@@ -60,7 +60,7 @@ Then make sure the following Babel config is present.
 }
 ```
 
-Add Start script to `package.json`
+`package.json`にスタートスクリプトを登録します。
 
 ```javascript
 // package.json
@@ -71,21 +71,21 @@ Add Start script to `package.json`
 
 ## Vue
 
-First we need to install the dependencies for Vue.
+まずはVueの依存関係をインストールする必要があります。
 
 ```bash
 npm install --save vue
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>またはYarnパッケージマネージャがインストールされている場合</sub>
 
 ```bash
 yarn add vue
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+`package.json`にスタートスクリプトを登録します。
 
 ```javascript
 // package.json
