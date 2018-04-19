@@ -62,7 +62,7 @@ For CSS Modules to work properly with existing modules they need to specify this
 
 ### Set cssnano minify config
 
-Parcel adds [cssnano](http://cssnano.co) to postcss in order to minify css in production build, where custom configuration can be set by creating `cssnano.config.js` file:
+Parcel adds [cssnano](http://cssnano.co) to PostCSS in order to minify css in production build, where custom configuration can be set by creating `cssnano.config.js` file:
 
 ```js
 module.exports = {
