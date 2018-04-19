@@ -1,14 +1,14 @@
 <!doctype html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Parcel" />
+  <meta property="og:title" content="📦 Parcel" />
   <meta property="og:url" content="https://parceljs.org/" />
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
+  <meta property="og:description" content="とても速く, 設定不要のWebアプリケーションバンドラ" />
   <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
-  <title>Parcel</title>
+  <title>📦 Parcel</title>
   <link type="text/css" rel="stylesheet" href="assets/home.css"/>
   <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
@@ -23,32 +23,34 @@
 <body>
   <header>
     <h1>
-      <img class="logo" src="assets/logo.svg" alt="Parcel">
-    </h1>
-    <p class="subtitle">Blazing fast, zero configuration web application bundler</p>
+        <img class="logo" src="assets/logo.svg" alt="Parcel">
+      </h1>
+      <p class="subtitle">Blazing fast, zero configuration web application bundler</p>
+    
+    <h2>とても速く, 設定不要のWebアプリケーションバンドラ</h2>
     <div class="parcel">
       <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
       <div class="icons"></div>
       <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
     </div>
-    <a class="button get-started" href="getting_started.html">Get Started</a>
+    <a class="button get-started" href="getting_started.html">はじめに</a>
     <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
     <nav class="links">
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
-          <option class="en" value="https://en.parceljs.org" selected>🇺🇸 English</option>
-          <option class="es" value="https://es.parceljs.org">🇪🇸 Español</option>
-          <option class="fr" value="https://fr.parceljs.org">🇫🇷 Français</option>
-          <option class="it" value="https://it.parceljs.org">🇮🇹 Italiano</option>
-          <option class="ko" value="https://ko.parceljs.org">🇰🇷 한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">🇵🇱 Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">🇧🇷 Português</option>
-          <option class="ru" value="https://ru.parceljs.org">🇷🇺 русский</option>
-          <option class="zh" value="https://zh.parceljs.org">🇨🇳 中文</option>
-        </select>
-      </form>
-      <a href="getting_started.html">Documentation</a>
+        <form class="languages">
+            <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+              <option class="en" value="https://en.parceljs.org" selected>🇺🇸 English</option>
+              <option class="es" value="https://es.parceljs.org">🇪🇸 Español</option>
+              <option class="fr" value="https://fr.parceljs.org">🇫🇷 Français</option>
+              <option class="it" value="https://it.parceljs.org">🇮🇹 Italiano</option>
+              <option class="ko" value="https://ko.parceljs.org">🇰🇷 한국어</option>
+              <option class="pl" value="https://pl.parceljs.org">🇵🇱 Polskie</option>
+              <option class="pt" value="https://pt.parceljs.org">🇧🇷 Português</option>
+              <option class="ru" value="https://ru.parceljs.org">🇷🇺 русский</option>
+              <option class="zh" value="https://zh.parceljs.org">🇨🇳 中文</option>
+            </select>
+          </form>
+          <a href="getting_started.html">ドキュメント</a>  
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
     </nav>
   </header>
@@ -56,34 +58,34 @@
   <main>
     <div class="features">
       <section>
-        <h3>🚀 Blazing fast bundle times</h3>
-        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
+        <h3>🚀 とても速いバンドル</h3>
+        <p>Parcel はマルチコアコンパイルを行うために、ワーカープロセスを使用します。そしてファイルシステムキャッシュを持つため、再起動後の再ビルドも高速です。</p>
       </section>
       <section>
-        <h3>📦 Bundle all your assets</h3>
-        <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+        <h3>📦 あなたの全てのアセットをバンドル</h3>
+        <p>Parcel はインストール直後からJS、CSS、HTML、ファイルアセットなどをサポートしています。プラグインは必要ありません。</p>
       </section>
       <section>
-        <h3>🐠 Automatic transforms</h3>
-        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
+        <h3>🐠 自動で変換</h3>
+        <p>コードはBabel、PostCSS、PostHTMLを使って自動で変換されます。必要であれば<code>node_modules</code>も。</p>
       </section>
       <section>
-        <h3>✂️ Zero config code splitting</h3>
-        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
+        <h3>✂️ 設定なしのコード分割</h3>
+        <p>動的な <code>import()</code> 記法で、Parcelは出力結果を分割します。最初の読み込みに必要なファイルだけをバンドルすることができます。</p>
       </section>
       <section>
-        <h3>🔥 Hot module replacement</h3>
-        <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
+        <h3>🔥 ホット モジュール リプレースメント</h3>
+        <p>あなたが開発中に変更を加えると、Parcelは自動的にブラウザに読み込まれたモジュールを更新します。設定は必要ありません。</p>
       </section>
       <section>
-        <h3>🚨 Friendly error logging</h3>
-        <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
+        <h3>🚨 親切なエラーロギング</h3>
+        <p>Parcelはエラーが発生した場合に、あなたが読みやすいシンタックスハイライトされたコードを出力します。原因の特定を助けます。</p>
       </section>
     </div>
 
     <section>
       <h2>Hello World</h2>
-      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
+      <p>あなたのアプリケーションの起点となるHTMLファイルからはじめましょう。Parcelはそこからあなたのアプリケーション全体を構築する依存関係に従います。</p>
       <div class="examples">
       <div class="example">
         <p><strong>✏️ index.html</strong></p>
@@ -96,7 +98,7 @@
 
       <div class="example">
         <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+        <pre class="hljs"><code><span class="hljs-comment">// 別のコンポーネントをimport</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
@@ -104,7 +106,7 @@ main();</code></pre>
 
       <div class="example">
         <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+        <pre class="hljs"><code><span class="hljs-comment">// CSS moduleをインポート</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
@@ -115,21 +117,21 @@ main();</code></pre>
       <div class="example">
         <p><strong>💅 main.css</strong></p>
         <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
-  <span class="hljs-comment">/* Reference an image file */</span>
+  <span class="hljs-comment">/* 画像ファイルを参照します */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
 }</code></pre></div>
       </div>
 
-      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
+      <p>ただ <code>parcel index.html</code> と入力するだけで開発用サーバが起動します。JavaScript、CSS、画像、その他のインポートがうまくいきます！ 👌</p>
     </section>
 
     <section>
-      <h2>Benchmarks</h2>
+      <h2>ベンチマーク</h2>
       <table>
         <tr>
-          <th>Bundler</th>
-          <th>Time</th>
+          <th>バンドラ</th>
+          <th>時間</th>
         </tr>
         <tr>
           <td>browserify</td>
@@ -144,34 +146,34 @@ main();</code></pre>
           <td><strong>9.98s</strong></td>
         </tr>
         <tr>
-          <td><strong>parcel - with cache</strong></td>
+          <td><strong>parcel - キャッシュ有効</strong></td>
           <td><strong>2.64s</strong></td>
         </tr>
       </table>
-      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical cores.</p>
+      <p>一般的なサイズのアプリ（1726モジュール、非圧縮で6.5M）を、4つの物理CPUを搭載した2016年のMacBook Proでビルドした結果です。</p>
     </section>
   </main>
 
   <footer>
-    <a class="button" href="getting_started.html">Get Started</a>
+    <a class="button" href="getting_started.html">はじめに</a>
     <div class="content">
       <nav>
-        <h3>Documentation</h3>
+        <h3>ドキュメント</h3>
         <div>
           <ul>
-            <li><a href="getting_started.html">🚀 Getting Started</a></li>
-            <li><a href="assets.html">📦 Assets</a></li>
-            <li><a href="transforms.html">🐠 Transforms</a></li>
+            <li><a href="getting_started.html">🚀 はじめに</a></li>
+            <li><a href="assets.html">📦 アセット</a></li>
+            <li><a href="transforms.html">🐠 変換</a></li>
           </ul>
           <ul>
-            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-            <li><a href="production.html">✨ Production</a></li>
+            <li><a href="code_splitting.html">✂️ コード分割</a></li>
+            <li><a href="hmr.html">🔥 ホットモジュールリプレースメント</a></li>
+            <li><a href="production.html">✨ 本番</a></li>
           </ul>
         </div>
       </nav>
       <nav>
-        <h3>Links</h3>
+        <h3>リンク</h3>
         <ul>
           <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
           <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
@@ -182,7 +184,7 @@ main();</code></pre>
     <div class="copyright">
       Copyright ©
       <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+      Devon Govett. このウェブサイトは<a href="https://github.com/parcel-bundler/website" target="_blank">オープンソース</a>です。
     </div>
   </footer>
 
