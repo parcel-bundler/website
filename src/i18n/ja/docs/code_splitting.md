@@ -1,25 +1,25 @@
-# ✂️ Code Splitting
+# ✂️ コード分割
 
-Parcel supports zero configuration code splitting out of the box. This allows you to split your application code into separate bundles which can be loaded on demand, which means smaller initial bundle sizes and faster load times. As the user navigates around in your application and modules are required, Parcel automatically takes care of loading child bundles on demand.
+Parcelでは設定不要のコード分割をサポートしています。これによってあなたのアプリケーションコードをいくつかのバンドルに分けて、必要なときに読み込ませることができます。初回読み込みのバンドルサイズを小さくして、高速な読み込みができるようになります。ユーザーがアプリケーション内を移動してモジュールが必要になると、Parcelは必要に応じて子バンドルを自動的にロードします。
 
-Code splitting is controlled by use of the dynamic `import()` function [syntax proposal](https://github.com/tc39/proposal-dynamic-import), which works like the normal `import` statement or `require` function, but returns a Promise. This means that the module is loaded asynchronously.
+コード分割は動的な`import()`関数の [構文提案](https://github.com/tc39/proposal-dynamic-import)を使うことでコントロールできます。通常の`import`構文や`require`関数と同じように動作しますが、Promiseを返します。これは、モジュールが非同期で読み込まれることを意味します。
 
-The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
+次の例は、動的インポートを使用して、必要に応じてアプリケーションのサブページを読み込む方法を示しています。
 
 ```javascript
 // pages/about.js
 export function render() {
-  // Render the page
+  // ページをレンダリングする
 }
 ```
 ```javascript
 import('./pages/about').then(function (page) {
-  // Render page
+  // ページをレンダリングする
   page.render();
 });
 ```
 
-Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
+`import()`がPromiseを返すので、async/await構文を使うこともできます。ブラウザでより広くサポートされるまでは、おそらくBabelで変換するように設定する必要があります。
 
 ```javascript
 const page = await import('./pages/about');
@@ -27,24 +27,24 @@ const page = await import('./pages/about');
 page.render();
 ```
 
-Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
+動的インポートはParcelに遅延させて読み込まれるため、あなたの`import（`呼び出しはファイルの先頭に置くことができ、子バンドルは使用されるまで読み込まれません。次の例は、アプリケーションのサブページを遅延読み込みする方法を示しています。
 
 ```javascript
-// Setup a map of page names to dynamic imports.
-// These are not loaded until they are used.
+// 動的なインポートにページ名のマップを設定します。
+// 実際に使われるまでは読み込まれることはありません。
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
 };
 
 async function renderPage(name) {
-  // Lazily load the requested page.
+  // 必要なページを遅延させて読み込む
   const page = await pages[name];
   return page.render();
 }
 ```
 
-**Note:** If you would like to use async/await in browsers that don't support it natively, remember to include `babel-polyfill` in your app or `babel-runtime` + `babel-plugin-transform-runtime` in libraries).
+**注意：** ネイティブにサポートしていないブラウザでasync/awaitを使用する場合は、アプリケーションに `babel-polyfill`（またはライブラリに` babel-runtime` + `babel-plugin-transform-runtime`）を含めてください。
 
 ```bash
 yarn add babel-polyfill
@@ -55,4 +55,4 @@ import "babel-polyfill";
 import "./app";
 ```
 
-Read the docs on [babel-polyfill](http://babeljs.io/docs/usage/polyfill) and [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+[babel-polyfill](http://babeljs.io/docs/usage/polyfill) と [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime)のドキュメントを参照してください。
