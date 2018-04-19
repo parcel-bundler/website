@@ -1,11 +1,12 @@
-# ✨ Production
+# ✨ 本番
 
-When it comes time to bundle your application for production, you can use Parcel's production mode.
+本番用にアプリケーションをバンドルするときは、Parcelのプロダクションモードを使用できます。
 
 ```bash
 parcel build entry.js
 ```
 
-This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) for JavaScript, [cssnano](http://cssnano.co) for CSS, and [htmlnano](https://github.com/posthtml/htmlnano) for HTML.
 
-Enabling production mode also sets the `NODE_ENV=production` environment variable. Large libraries like React have development only debugging features which are disabled by setting this environment variable, which results in smaller and faster builds for production.
+これはウォッチモードとホットモジュールリプレースメントを無効にするので、1度しかビルドされません。また、ミニファイアが有効になりすべての出力バンドルのファイルサイズを縮小できます。Parcelで使用されるミニファイアは、JavaScriptの場合は[uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony)、CSSの場合は[cssnano](http://cssnano.co)、HTMLの場合は[htmlnano](https://github.com/posthtml/htmlnano)です。
+
+プロダクションモードを有効にすると、`NODE_ENV = production`環境変数も設定されます。 Reactのような大規模なライブラリには、この環境変数を設定することによって無効にされる開発専用のデバッグ機能があり、その結果、本番用のビルドがより小さくて速くなります。
