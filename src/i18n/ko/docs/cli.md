@@ -144,9 +144,21 @@ parcel build entry.js --out-file output.html
 parcel build entry.js --detailed-report
 ```
 
+### HTTPS 활성화
+
+기본값: https 비활성
+
+같이 사용 가능한 명령어: `serve`
+
+```bash
+parcel entry.js --https
+```
+
+⚠️ 이 옵션은 자가서명된 인증서를 생성하므로 사용을 위해서는 브라우저에서 localhost에 대해 자가서명된 인증서를 허용하도록 설정할 필요가 있습니다.
+
 ### 임의의 인증서 설정
 
-기본값: 인증서 생성
+기본값: https 비활성
 
 같이 사용 가능한 명령어: `serve`
 
