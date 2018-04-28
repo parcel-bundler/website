@@ -62,7 +62,7 @@ Default: "/"
 Available in: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --public-url ./dist/
+parcel entry.js --public-url ./dist/
 ```
 
 will output:
@@ -92,7 +92,7 @@ Default: 3
 Available in: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --log-level 1
+parcel entry.js --log-level 1
 ```
 
 | Loglevel | Effect                    |
@@ -109,7 +109,7 @@ Default: `location.hostname` of current window
 Available in: `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-hostname parceljs.org
+parcel entry.js --hmr-hostname parceljs.org
 ```
 
 ### HMR Port
@@ -119,7 +119,7 @@ Default: A random available port
 Available in: `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-port 8080
+parcel entry.js --hmr-port 8080
 ```
 
 ### Output filename
@@ -144,14 +144,26 @@ Available in: `build`
 parcel build entry.js --detailed-report
 ```
 
-### Set a custom certificate
+### Enable https
 
-Default: Generates a certificate
+Default: https disabled
 
 Available in: `serve`
 
 ```bash
-parcel build entry.js --cert certificate.cert --key private.key
+parcel build entry.js --https
+```
+
+⚠️ This flag generates a self-signed certificate, you might have to configure your browser to allow self-signed certificates for localhost.
+
+### Set a custom certificate
+
+Default: https disabled
+
+Available in: `serve`
+
+```bash
+parcel entry.js --cert certificate.cert --key private.key
 ```
 
 ### Open in browser
@@ -161,7 +173,7 @@ Default: open disabled
 Available in: `serve`
 
 ```bash
-parcel build entry.js --open
+parcel entry.js --open
 ```
 
 ### Disable source-maps
@@ -181,7 +193,7 @@ Default: autoinstall enabled
 Available in: `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-autoinstall
+parcel entry.js --no-autoinstall
 ```
 
 ### Disable HMR
@@ -191,7 +203,7 @@ Default: HMR enabled
 Available in: `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-hmr
+parcel entry.js --no-hmr
 ```
 
 ### Disable minification

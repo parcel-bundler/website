@@ -124,12 +124,19 @@ An example of using the parcel middleware with express
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-// Initialise a new bundler using a file and options (for options and file see the bundler documentation)
-const bundler = new Bundler(file, options);
+async function start() {
+  const file = 'index.html'; // Pass an absolute path to the entrypoint here
+  const options = {}; // See options section of api docs, for the possibilities
 
-// Let express use the bundler middleware, this will let parcel handle every request over your express server
-app.use(bundler.middleware());
+  // Initialise a new bundler using a file and options
+  const bundler = new Bundler(file, options);
 
-// Listen on port 8080
-app.listen(8080);
+  // Let express use the bundler middleware, this will let parcel handle every request over your express server
+  app.use(bundler.middleware());
+
+  // Listen on port 8080
+  app.listen(8080);
+}
+
+start();
 ```

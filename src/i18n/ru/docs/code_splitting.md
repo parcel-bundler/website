@@ -56,4 +56,4 @@ import "babel-polyfill";
 import "./app";
 ```
 
-Прочитайте докупентацию [babel-polyfill](http://babeljs.io/docs/usage/polyfill) и [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+Прочитайте документацию [babel-polyfill](http://babeljs.io/docs/usage/polyfill) и [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).

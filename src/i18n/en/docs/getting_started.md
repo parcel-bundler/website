@@ -46,7 +46,7 @@ Parcel has a development server built in, which will automatically rebuild your 
 parcel index.html
 ```
 
-Now open http://localhost:1234/ in your browser. You can also override the default port with the `-p <port number>` option.
+Now open http://localhost:1234/ in your browser. If hot module replacement isn't working you may need to [configure your editor](hmr.html#safe-write). You can also override the default port with the `-p <port number>` option.
 
 Use the development server when you don't have your own server, or your app is entirely client rendered. If you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports hot module replacement, but doesn't start a web server.
 
