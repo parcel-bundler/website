@@ -124,12 +124,19 @@ Parcel 미들웨어를 express와 사용하는 예제입니다.
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-// 파일과 옵션을 사용해 번들러를 초기화합니다 (옵션과 파일에 대해서는 번들러 문서를 참조하세요.)
-const bundler = new Bundler(file, options);
+async function start() {
+  const file = 'index.html'; // 엔트리 포인트로 쓰일 절대경로를 적습니다
+  const options = {}; // 가능한 옵션은 API 문서를 참조하세요
 
-// express가 번들러 미들웨어를 사용할 수 있게 합니다. 그러면 express server를 거치는 매 요청을 parcel이 처리할 것입니다.
-app.use(bundler.middleware());
+  // 파일과 옵션을 사용해 번들러를 초기화합니다
+  const bundler = new Bundler(file, options);
 
-// 8080포트로 listen을 시작합니다.
-app.listen(8080);
+  // express가 번들러 미들웨어를 사용할 수 있게 합니다. 그러면 express server를 거치는 매 요청을 parcel이 처리할 것입니다.
+  app.use(bundler.middleware());
+
+  // 8080포트로 listen을 시작합니다.
+  app.listen(8080);
+}
+
+start();
 ```

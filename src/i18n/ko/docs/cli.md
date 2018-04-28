@@ -62,7 +62,7 @@ root
 같이 사용 가능한 명령어: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --public-url ./dist/
+parcel entry.js --public-url ./dist/
 ```
 
 결과물은 다음과 같이 나옵니다.
@@ -92,7 +92,7 @@ parcel build entry.js --target node
 같이 사용 가능한 명령어: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --log-level 1
+parcel entry.js --log-level 1
 ```
 
 | 로그 레벨 | 효과                       |
@@ -109,7 +109,7 @@ parcel build entry.js --log-level 1
 같이 사용 가능한 명령어: `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-hostname parceljs.org
+parcel entry.js --hmr-hostname parceljs.org
 ```
 
 ### 빠른 모듈 교체 포트
@@ -119,7 +119,7 @@ parcel build entry.js --hmr-hostname parceljs.org
 같이 사용 가능한 명령어: `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-port 8080
+parcel entry.js --hmr-port 8080
 ```
 
 ### 결과물 파일명
@@ -144,14 +144,26 @@ parcel build entry.js --out-file output.html
 parcel build entry.js --detailed-report
 ```
 
-### 임의의 인증서 설정
+### HTTPS 활성화
 
-기본값: 인증서 생성
+기본값: https 비활성
 
 같이 사용 가능한 명령어: `serve`
 
 ```bash
-parcel build entry.js --cert certificate.cert --key private.key
+parcel entry.js --https
+```
+
+⚠️ 이 옵션은 자가서명된 인증서를 생성하므로 사용을 위해서는 브라우저에서 localhost에 대해 자가서명된 인증서를 허용하도록 설정할 필요가 있습니다.
+
+### 임의의 인증서 설정
+
+기본값: https 비활성
+
+같이 사용 가능한 명령어: `serve`
+
+```bash
+parcel entry.js --cert certificate.cert --key private.key
 ```
 
 ### 브라우저에서 열기
@@ -161,7 +173,7 @@ parcel build entry.js --cert certificate.cert --key private.key
 같이 사용 가능한 명령어: `serve`
 
 ```bash
-parcel build entry.js --open
+parcel entry.js --open
 ```
 
 ### 소스맵 비활성화
@@ -181,7 +193,7 @@ parcel build entry.js --no-source-maps
 같이 사용 가능한 명령어: `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-autoinstall
+parcel entry.js --no-autoinstall
 ```
 
 ### 빠른 모듈 교체 비활성화
@@ -191,7 +203,7 @@ parcel build entry.js --no-autoinstall
 같이 사용 가능한 명령어: `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-hmr
+parcel entry.js --no-hmr
 ```
 
 ### 소스 최소화(미니파이케이션) 비활성화
