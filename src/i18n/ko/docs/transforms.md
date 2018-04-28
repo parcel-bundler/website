@@ -60,6 +60,19 @@ CSS Modules은 최상위 `modules` 키를 사용하여 약간 다른 방식으�
 
 CSS 라이브러리와와 같이 사용하기 위해서는 그 라이브러리 안의 `.postcssrc` 에서 CSS Module을 지원해야 합니다.
 
+### cssnano 코드 최소화 설정하기
+
+Parcel은 프로덕션 빌드를 할 때 [cssnano](http://cssnano.co)를 추가로 사용합니다. 기본 설정을 변경하고 싶다면 `cssnano.config.js` 파일을 생성해주세요.
+
+```js
+module.exports = {
+  calc: false,
+  discardComments: {
+    removeAll: true,
+  }
+};
+```
+
 
 ## PostHTML
 
