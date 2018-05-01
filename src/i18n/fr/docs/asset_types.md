@@ -31,8 +31,8 @@ class MyAsset extends Asset {
   }
 
   async generate() {
-    // génère le code. vous pouvez renvoyer plusieurs rendus si nécessaire.
-    // Les résultats sont transmis aux packagers appropriés pour générer les paquets finaux.
+    // génère le code : vous pouvez retourner plusieurs rendus si nécessaire.
+    // Les résultats sont transmis aux packagers appropriés pour générer les paquets finals.
     return [
       {
         type: 'foo',

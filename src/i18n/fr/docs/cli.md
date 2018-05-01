@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build construit les ressources une fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
+Build construit les ressources une seule fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
 
 ```bash
 parcel build index.html
@@ -28,7 +28,7 @@ parcel watch index.html
 
 ### Help
 
-Affiche toutes les options possibles de la cli.
+Affiche toutes les options possibles de l'outil en ligne de commande (CLI).
 
 ```bash
 parcel help
@@ -55,7 +55,7 @@ root
 - - - entry.js
 ```
 
-### Définit l'URL publique à appliquer
+### Définir l'URL publique à appliquer
 
 Par défaut : "/"
 
@@ -85,7 +85,7 @@ parcel build entry.js --target node
 
 Les cibles possibles sont : node, browser et electron
 
-### Change le niveau de journalisation
+### Changer le niveau de journalisation
 
 Par défaut : 3
 
@@ -134,7 +134,7 @@ parcel build entry.js --out-file output.html
 
 Cela modifie le nom du fichier de sortie du paquet
 
-### Imprime un rapport détaillé
+### Imprimer un rapport détaillé
 
 Par défaut : rapport minimal
 
@@ -166,7 +166,7 @@ Disponible dans : `serve`
 parcel entry.js --cert certificate.cert --key private.key
 ```
 
-### Ouvre dans le navigateur
+### Ouvrir dans le navigateur
 
 Par défaut : ouverture désactivée
 
@@ -176,7 +176,7 @@ Disponible dans : `serve`
 parcel entry.js --open
 ```
 
-### Désactive source-maps
+### Désactiver source-maps
 
 Par défaut : source-maps activé
 
@@ -186,7 +186,7 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --no-source-maps
 ```
 
-### Désactive autoinstall
+### Désactiver l'installation automatique de dépendances
 
 Par défaut : autoinstall activé
 
@@ -196,7 +196,7 @@ Disponible dans : `serve`, `watch`
 parcel entry.js --no-autoinstall
 ```
 
-### Désactive le HMR
+### Désactiver le HMR
 
 Par défaut : HMR activé
 
@@ -206,7 +206,7 @@ Disponible dans : `serve`, `watch`
 parcel entry.js --no-hmr
 ```
 
-### Désactive la minification
+### Désactiver la minification
 
 Par défaut : minification activée
 
@@ -216,7 +216,7 @@ Disponible dans : `build`
 parcel build entry.js --no-minify
 ```
 
-### Désactive le cache du système de fichiers
+### Désactiver le cache du système de fichiers
 
 Par défaut : cache activé
 

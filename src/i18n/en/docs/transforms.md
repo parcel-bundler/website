@@ -60,6 +60,19 @@ CSS Modules are enabled slightly differently using the a top-level `modules` key
 
 For CSS Modules to work properly with existing modules they need to specify this support in their own `.postcssrc`.
 
+### Set cssnano minify config
+
+Parcel adds [cssnano](http://cssnano.co) to postcss in order to minify css in production build, where custom configuration can be set by creating `cssnano.config.js` file:
+
+```js
+module.exports = {
+  calc: false,
+  discardComments: {
+    removeAll: true,
+  }
+};
+```
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.

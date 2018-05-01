@@ -1,6 +1,6 @@
 # ✂️ Découpage du code
 
-Parcel prend en charge le découpage de code sans aucune configuration. Cela vous permet de diviser le code de votre application en plusieurs paquets pouvant être chargés à la demande, ce qui signifie des paquets initiaux plus petits et des temps de chargement plus rapides. Au fur et à mesure que l'utilisateur navigue dans votre application et que des modules sont nécessaires, Parcel s'occupe automatiquement du chargement des paquets enfants lors de la demande.
+Parcel prend en charge le découpage de code sans aucune configuration. Cela vous permet de diviser le code de votre application en plusieurs paquets pouvant être chargés à la demande, ce qui signifie des paquets initiaux plus petits et des temps de chargement plus rapides. Au fur et à mesure que l'utilisateur navigue dans votre application et que des modules sont nécessaires, Parcel s'occupe de charger automatiquement les paquets enfant à la demande.
 
 Le découpage du code est contrôlé par l'utilisation de la fonction dynamique `import()` décrite par la [proposition de syntaxe](https://github.com/tc39/proposal-dynamic-import), qui fonctionne comme l'instruction normale `import` ou la fonction `require`, mais retourne une promesse. Cela signifie que le module est chargé de manière asynchrone.
 
@@ -44,7 +44,7 @@ async function renderPage(name) {
 }
 ```
 
-**Remarque :** Si vous souhaitez utiliser async/await dans les navigateurs qui ne le supportent pas nativement, n'oubliez pas d'inclure `babel-polyfill` dans votre application ou `babel-runtime` + `babel-plugin-transform-runtime` en librairies.
+**Remarque :** Si vous souhaitez utiliser async/await dans les navigateurs qui ne le supportent pas nativement, n'oubliez pas d'inclure `babel-polyfill` dans votre application ou `babel-runtime` + `babel-plugin-transform-runtime` en bibliothèques.
 
 ```bash
 yarn add babel-polyfill
