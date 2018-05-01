@@ -62,7 +62,7 @@ Par défaut : "/"
 Disponible dans : `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --public-url ./dist/
+parcel entry.js --public-url ./dist/
 ```
 
 Cela produira :
@@ -92,7 +92,7 @@ Par défaut : 3
 Disponible dans : `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --log-level 1
+parcel entry.js --log-level 1
 ```
 
 | Loglevel | Effet                                       |
@@ -109,7 +109,7 @@ Par défaut : `location.hostname` du windows courant
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-hostname parceljs.org
+parcel entry.js --hmr-hostname parceljs.org
 ```
 
 ### Port du HMR
@@ -119,7 +119,7 @@ Par défaut : Un port disponible au hasard
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-port 8080
+parcel entry.js --hmr-port 8080
 ```
 
 ### Nom de fichier en sortie
@@ -144,14 +144,26 @@ Disponible dans : `build`
 parcel build entry.js --detailed-report
 ```
 
-### Définit un certificat personnalisé
+### Désactive https
 
-Par défaut : génère un certificat
+Par défaut : https désactivé
 
 Disponible dans : `serve`
 
 ```bash
-parcel build entry.js --cert certificate.cert --key private.key
+parcel build entry.js --https
+```
+
+⚠️ Cet indicateur génère un certificat auto-signé. Vous devrez peut-être configurer votre navigateur pour autoriser les certificats auto-signés pour localhost.
+
+### Définit un certificat personnalisé
+
+Par défaut : https désactivé
+
+Disponible dans : `serve`
+
+```bash
+parcel entry.js --cert certificate.cert --key private.key
 ```
 
 ### Ouvre dans le navigateur
@@ -161,7 +173,7 @@ Par défaut : ouverture désactivée
 Disponible dans : `serve`
 
 ```bash
-parcel build entry.js --open
+parcel entry.js --open
 ```
 
 ### Désactive source-maps
@@ -181,7 +193,7 @@ Par défaut : autoinstall activé
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-autoinstall
+parcel entry.js --no-autoinstall
 ```
 
 ### Désactive le HMR
@@ -191,7 +203,7 @@ Par défaut : HMR activé
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-hmr
+parcel entry.js --no-hmr
 ```
 
 ### Désactive la minification

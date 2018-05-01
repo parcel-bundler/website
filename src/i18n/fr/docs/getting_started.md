@@ -46,7 +46,7 @@ Parcel a un serveur de développement intégré, qui reconstruira automatiquemen
 parcel index.html
 ```
 
-Maintenant ouvrez http://localhost:1234/ dans votre navigateur. Vous pouvez également remplacer le port par défaut avec l'option `-p <numéro de port>`.
+Maintenant ouvrez http://localhost:1234/ dans votre navigateur. Si le remplacement de module à chaud ne fonctionne pas, vous devez peut-être [configurer votre éditeur](hmr.html#safe-write). Vous pouvez également remplacer le port par défaut avec l'option `-p <numéro de port>`.
 
 Utilisez le serveur de développement lorsque vous n'avez pas votre propre serveur ou si votre application est entièrement rendue par le client. Si vous avez votre propre serveur, vous pouvez exécuter à la place Parcel en mode `watch`. Cela permet de reconstruire automatiquement lorsque les fichiers changent et ça prend en charge le remplacement de module à chaud, mais ça ne démarre pas un serveur Web.
 
