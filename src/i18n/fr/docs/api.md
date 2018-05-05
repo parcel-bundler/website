@@ -124,12 +124,19 @@ Un exemple d'utilisation du middleware de Parcel avec express
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-// Initialise un nouveau empaqueteur (bundler) en utilisant un fichier et des options (pour les options et le fichier, voir la documentation du bundler)
-const bundler = new Bundler(file, options);
+async function start() {
+  const file = 'index.html'; // Passe un chemin absolu vers le point d'entrée ici
+  const options = {}; // Voir la section des options de la doc de l'api, pour les possibilités
 
-// express utilise le middleware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
-app.use(bundler.middleware());
+  // Initialise un nouveau bundler en utilisant un fichier et des options
+  const bundler = new Bundler(file, options);
 
-// Ecoute du port 8080
-app.listen(8080);
+  // Permet à express d'utiliser le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
+  app.use(bundler.middleware());
+
+  // Écoute du port 8080
+  app.listen(8080);
+}
+
+start();
 ```
