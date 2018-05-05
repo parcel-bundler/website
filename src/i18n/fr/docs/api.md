@@ -131,10 +131,10 @@ async function start() {
   // Initialise un nouveau bundler en utilisant un fichier et des options
   const bundler = new Bundler(file, options);
 
-  // express utilise le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
+  // Permet à express d'utiliser le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
   app.use(bundler.middleware());
 
-  // Ecoute du port 8080
+  // Écoute du port 8080
   app.listen(8080);
 }
 
