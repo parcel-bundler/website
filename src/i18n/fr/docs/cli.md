@@ -144,7 +144,7 @@ Disponible dans : `build`
 parcel build entry.js --detailed-report
 ```
 
-### Désactive https
+### Désactiver https
 
 Par défaut : https désactivé
 
@@ -156,7 +156,7 @@ parcel build entry.js --https
 
 ⚠️ Cet indicateur génère un certificat auto-signé. Vous devrez peut-être configurer votre navigateur pour autoriser les certificats auto-signés pour localhost.
 
-### Définit un certificat personnalisé
+### Définir un certificat personnalisé
 
 Par défaut : https désactivé
 
