@@ -43,16 +43,16 @@ This is a list of all bundler events
 
 * `bundled` gets called once parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('bundled', (bundle) => {
-  // bundle contains all assets and bundles, see documentation for details
+const bundler = new Bundler(...);
+bundler.on('bundled', (bundler) => {
+  // bundler contains all assets and bundles, see documentation for details
 });
 ```
 
 * `buildEnd` gets called after each build, this also emits if an error occurred
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('buildEnd', () => {
+const bundler = new Bundler(...);
+bundler.on('buildEnd', () => {
   // Do something...
 });
 ```

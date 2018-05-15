@@ -43,16 +43,16 @@ Ceci est une liste de tous les événements d'un empaqueteur
 
 * `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage. Le [bundle](#bundle) principal est passé à la fonction de rappel
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('bundled', (bundle) => {
-  // bundle contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
+const bundler = new Bundler(...);
+bundler.on('bundled', (bundler) => {
+  // bundler contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
 });
 ```
 
 * `buildEnd` est appelé après chaque construction, cela est également émis si une erreur s'est produite
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('buildEnd', () => {
+const bundler = new Bundler(...);
+bundler.on('buildEnd', () => {
   // Faire quelque chose...
 });
 ```

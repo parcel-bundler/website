@@ -43,16 +43,16 @@ const bundle = await bundler.bundle();
 
 * 一旦 parcel 完成打包，会调用 `bundled`，主 [bundle](#bundle) 会作为参数传递到该 callback
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('bundled', (bundle) => {
-  // bundle 包含所有资源和 bundle，如需了解更多请查看文档
+const bundler = new Bundler(...);
+bundler.on('bundled', (bundler) => {
+  // bundler 包含所有资源和 bundle，如需了解更多请查看文档
 });
 ```
 
 * 每次构建结束后，都会调用 `buildEnd`，即使发生错误它也仍然会被触发
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('buildEnd', () => {
+const bundler = new Bundler(...);
+bundler.on('buildEnd', () => {
   // 做一些操作……
 });
 ```
