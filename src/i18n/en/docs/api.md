@@ -29,12 +29,16 @@ const options = {
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
-// Initialises a bundler using the entrypoint location and options provided
-const bundler = new Bundler(file, options);
+async runBundle() {
+  // Initialises a bundler using the entrypoint location and options provided
+  const bundler = new Bundler(file, options);
 
-// Run the bundler, this returns the main bundle
-// Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
-const bundle = await bundler.bundle();
+  // Run the bundler, this returns the main bundle
+  // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
+  const bundle = await bundler.bundle();
+}
+
+runBundle();
 ```
 
 ### Events
@@ -124,19 +128,15 @@ An example of using the parcel middleware with express
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-async function start() {
-  const file = 'index.html'; // Pass an absolute path to the entrypoint here
-  const options = {}; // See options section of api docs, for the possibilities
+const file = 'index.html'; // Pass an absolute path to the entrypoint here
+const options = {}; // See options section of api docs, for the possibilities
 
-  // Initialise a new bundler using a file and options
-  const bundler = new Bundler(file, options);
+// Initialise a new bundler using a file and options
+const bundler = new Bundler(file, options);
 
-  // Let express use the bundler middleware, this will let parcel handle every request over your express server
-  app.use(bundler.middleware());
+// Let express use the bundler middleware, this will let parcel handle every request over your express server
+app.use(bundler.middleware());
 
-  // Listen on port 8080
-  app.listen(8080);
-}
-
-start();
+// Listen on port 8080
+app.listen(8080);
 ```
