@@ -29,12 +29,16 @@ const options = {
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
-// Initialises a bundler using the entrypoint location and options provided
-const bundler = new Bundler(file, options);
+async runBundle() {
+  // Initialises a bundler using the entrypoint location and options provided
+  const bundler = new Bundler(file, options);
 
-// Run the bundler, this returns the main bundle
-// Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
-const bundle = await bundler.bundle();
+  // Run the bundler, this returns the main bundle
+  // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
+  const bundle = await bundler.bundle();
+}
+
+runBundle();
 ```
 
 ### Events
