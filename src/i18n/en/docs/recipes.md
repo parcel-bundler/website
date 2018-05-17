@@ -69,6 +69,8 @@ Add Start script to `package.json`
 }
 ```
 
+You may wish to try [create-react-app-parcel](https://github.com/sw-yx/create-react-app-parcel) to automate the setup for you similar to `create-react-app`.
+
 ## Vue
 
 First we need to install the dependencies for Vue.
