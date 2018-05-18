@@ -29,12 +29,16 @@ const options = {
   detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
 };
 
-// Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
-const bundler = new Bundler(file, options);
+async runBundle() {
+  // Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
+  const bundler = new Bundler(file, options);
 
-// Démarre l'empaqueteur, cela renvoie le paquet principal
-// Utilisez les événements si vous êtes en mode watch, car cette Promise n'est résolue qu'une seule fois et non à chaque reconstruction
-const bundle = await bundler.bundle();
+  // Démarre l'empaqueteur, cela renvoie le paquet principal
+  // Utilisez les événements si vous êtes en mode watch, car cette Promise n'est résolue qu'une seule fois et non à chaque reconstruction
+  const bundle = await bundler.bundle();
+}
+
+runBundle();
 ```
 
 ### Événements
@@ -124,19 +128,15 @@ Un exemple d'utilisation du middleware de Parcel avec express
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-async function start() {
-  const file = 'index.html'; // Passe un chemin absolu vers le point d'entrée ici
-  const options = {}; // Voir la section des options de la doc de l'api, pour les possibilités
+const file = 'index.html'; // Passe ici un chemin absolu vers le point d'entrée
+const options = {}; // Voir la section des options de la doc de l'api, pour les possibilités
 
-  // Initialise un nouveau bundler en utilisant un fichier et des options
-  const bundler = new Bundler(file, options);
+// Initialise un nouveau bundler en utilisant un fichier et des options
+const bundler = new Bundler(file, options);
 
-  // Permet à express d'utiliser le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
-  app.use(bundler.middleware());
+// Permet à express d'utiliser le middelware de bundler, cela permettra à Parcel de gérer chaque requête sur votre serveur express
+app.use(bundler.middleware());
 
-  // Écoute du port 8080
-  app.listen(8080);
-}
-
-start();
+// Écoute du port 8080
+app.listen(8080);
 ```
