@@ -24,9 +24,9 @@ yarn add babel-preset-env
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) - это инструмент для преобразования CSS с помощью плагинами, таких как [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) и [CSS Modules](https://github.com/css-modules/css-modules). Вы можете настроить PostCSS с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.postcssrc` (JSON), `.postcssrc.js` или `postcss.config.js`.
+[PostCSS](http://postcss.org) - это инструмент для преобразования CSS с помощью плагинов, таких как [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) и [CSS Modules](https://github.com/css-modules/css-modules). Вы можете настроить PostCSS с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.postcssrc` (JSON), `.postcssrc.js` или `postcss.config.js`.
 
-Установка плагины в приложении:
+Установка плагинов в приложении:
 
 ```bash
 yarn add postcss-modules autoprefixer
@@ -58,7 +58,7 @@ last 2 versions
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) - инструмент для преобразования HTML с помощью плагинами. Вы можете настроить PostHTML с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.posthtmlrc` (JSON), `posthtmlrc.js` или `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) - инструмент для преобразования HTML с помощью плагинов. Вы можете настроить PostHTML с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.posthtmlrc` (JSON), `posthtmlrc.js` или `posthtml.config.js`.
 
 Установка плагинов в приложении:
 

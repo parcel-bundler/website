@@ -9,12 +9,12 @@ const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // (опционально) записать заголовок файла, если это необходимо.
+    // (опционально) запись заголовока файла, если это необходимо.
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // записать ресурс в выходной файл.
+    // запись ресурса в выходной файл.
     await this.dest.write(asset.generated.foo);
   }
 

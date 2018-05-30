@@ -14,7 +14,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-react
 ```
 
-<sub>Или, если у вас установлен необязательный менеджер пакетов Yarn</sub>
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```bash
 yarn add react
@@ -45,7 +45,7 @@ npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>Или, если у вас установлен необязательный менеджер пакетов Yarn</sub>
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```bash
 yarn add preact
@@ -82,7 +82,7 @@ npm install --save vue
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Или, если у вас установлен необязательный менеджер пакетов Yarn</sub>
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```bash
 yarn add vue
