@@ -4,7 +4,7 @@
 
 Сначала необходимо установить зависимости для React.
 
-[Blog Post](http://blog.jakoblind.no/react-parcel/)
+[Запись в блоге](http://blog.jakoblind.no/react-parcel/)
 
 ```bash
 npm install --save react
@@ -24,16 +24,7 @@ yarn add --dev babel-preset-env
 yarn add --dev babel-preset-react
 ```
 
-Затем убедитесь, что присутствует следующая конфигурация Babel.
-
-```javascript
- // .babelrc
-{
-  "presets": ["env", "react"]
-}
-```
-
-Добавьте скрипт запуска в `package.json`
+Затем добавьте скрипт запуска в `package.json`
 
 ```javascript
 // package.json
@@ -73,7 +64,32 @@ yarn add --dev babel-preset-preact
 }
 ```
 
-Добавьте скрипт запуска в `package.json`
+Затем добавьте скрипт запуска в `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+## Vue
+
+Сначала нам нужно установить зависимости для Vue.
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+```
+
+<sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+```
+
+Затем добавьте скрипт запуска в `package.json`
 
 ```javascript
 // package.json
