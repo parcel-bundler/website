@@ -4,7 +4,7 @@
 
 ### Serve
 
-Serve starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development.
+Starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development.
 
 ```bash
 parcel index.html
@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build builds the assets once, it also enabled minification and sets the NODE_ENV variable to production. [Production](production.html)
+Builds the assets once, it also enabled minification and sets the `NODE_ENV=production` environment variable. See [Production](production.html) for more details.
 
 ```bash
 parcel build index.html
@@ -20,7 +20,7 @@ parcel build index.html
 
 ### Watch
 
-The watch command is similar to serve, with the main difference being it doesn't start up a server.
+The `watch` command is similar to `serve`, with the main difference being it doesn't start up a server.
 
 ```bash
 parcel watch index.html
@@ -44,7 +44,7 @@ Available in: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
-or
+# or
 parcel build entry.js -d build/output
 ```
 
@@ -69,7 +69,7 @@ will output:
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
-or
+<!-- or -->
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
@@ -83,7 +83,7 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-Possible targets: node, browser and electron
+Possible targets: `node`, `browser`, `electron`
 
 ### Change Log level
 
