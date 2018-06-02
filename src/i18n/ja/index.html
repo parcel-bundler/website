@@ -60,10 +60,10 @@
     <div class="features">
       <section>
         <h3>🚀 とても速いバンドル</h3>
-        <p>Parcel はマルチコアコンパイルを行うために、ワーカープロセスを使用します。そしてファイルシステムキャッシュを持つため、再起動後の再ビルドも高速です。</p>
+        <p>Parcelはワーカープロセスを利用してマルチコアコンパイルを可能にし、再起動後のビルドを高速化するためのファイルシステムキャッシュも備えています。</p>
       </section>
       <section>
-        <h3>📦 あなたの全てのアセットをバンドル</h3>
+        <h3>📦 全てのアセットをバンドル</h3>
         <p>Parcel はインストール直後からJS、CSS、HTML、ファイルアセットなどをサポートしています。プラグインは必要ありません。</p>
       </section>
       <section>
@@ -75,18 +75,18 @@
         <p>動的な <code>import()</code> 記法で、Parcelは出力結果を分割します。最初の読み込みに必要なファイルだけをバンドルすることができます。</p>
       </section>
       <section>
-        <h3>🔥 ホット モジュール リプレースメント</h3>
+        <h3>🔥 ホットモジュールリプレースメント</h3>
         <p>あなたが開発中に変更を加えると、Parcelは自動的にブラウザに読み込まれたモジュールを更新します。設定は必要ありません。</p>
       </section>
       <section>
-        <h3>🚨 親切なエラーロギング</h3>
-        <p>Parcelはエラーが発生した場合に、あなたが読みやすいシンタックスハイライトされたコードを出力します。原因の特定を助けます。</p>
+        <h3>🚨 分かりやすいエラーログ</h3>
+        <p>Parcelはエラーが発生した場合、シンタックスハイライトされたコードを出力する事で問題を特定しやすくします。</p>
       </section>
     </div>
 
     <section>
       <h2>Hello World</h2>
-      <p>あなたのアプリケーションの起点となるHTMLファイルからはじめましょう。Parcelはそこからあなたのアプリケーション全体を構築する依存関係に従います。</p>
+      <p>HTMLファイルからはじめましょう。Parcelはそこから依存関係にしたがって、アプリ全体をビルドします。</p>
       <div class="examples">
       <div class="example">
         <p><strong>✏️ index.html</strong></p>
@@ -99,7 +99,7 @@
 
       <div class="example">
         <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// 別のコンポーネントをimport</span>
+        <pre class="hljs"><code><span class="hljs-comment">// 別のコンポーネントをインポート</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
@@ -124,7 +124,7 @@ main();</code></pre>
 }</code></pre></div>
       </div>
 
-      <p>ただ <code>parcel index.html</code> と入力するだけで開発用サーバが起動します。JavaScript、CSS、画像、その他のインポートがうまくいきます！ 👌</p>
+      <p><code>parcel index.html</code>を実行するだけで開発用サーバーが起動します。JavaScript、CSS、画像などをインポートすることが出来ます！👌</p>
     </section>
 
     <section>
@@ -147,11 +147,11 @@ main();</code></pre>
           <td><strong>9.98s</strong></td>
         </tr>
         <tr>
-          <td><strong>parcel - キャッシュ有効</strong></td>
+          <td><strong>parcel - キャッシュを利用</strong></td>
           <td><strong>2.64s</strong></td>
         </tr>
       </table>
-      <p>一般的なサイズのアプリ（1726モジュール、非圧縮で6.5M）を、4つの物理CPUを搭載した2016年のMacBook Proでビルドした結果です。</p>
+      <p>一般的なサイズのアプリ（1726モジュール、非圧縮で6.5M）を、4つの物理コアを搭載した2016年のMacBook Proでビルドした結果です。</p>
     </section>
   </main>
 

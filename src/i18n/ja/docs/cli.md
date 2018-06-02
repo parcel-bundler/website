@@ -2,33 +2,33 @@
 
 ## コマンド
 
-### サーブ(Serve)
+### Serve
 
-サーブは開発用サーバーを立ち上げます。ファイルの変更があると自動で再ビルドを行い、素早い開発のために[ホットモジュールリプレースメント](hmr.html)をサポートします。
+Serveは開発用サーバーを立ち上げます。ファイルの変更があると自動で再ビルドを行い、素早い開発のために[ホットモジュールリプレースメント](hmr.html)をサポートしています。
 
 ```bash
 parcel index.html
 ```
 
-### ビルド(Build)
+### Build
 
-ビルドはアセットを一度だけビルドします、またコードの最小化と NODE_ENV を productionにセットします。[本番](production.html)
+Buildは一度だけアセットをビルドし、コードの最小化とNODE_ENVをproductionにセットします。[本番](production.html)
 
 ```bash
 parcel build index.html
 ```
 
-### ウォッチ(Watch)
+### Watch
 
-ウォッチコマンドはサーブと似ていますが、サーバーを立ち上げないところが主に異なります。
+WatchはServeと似ていますが、主な違いはサーバーを起動しないところです。
 
 ```bash
 parcel watch index.html
 ```
 
-### ヘルプ(Help)
+### Help
 
-cliの全てのオプションを表示します
+全てのCLIオプションを表示します。
 
 ```bash
 parcel help
@@ -38,9 +38,9 @@ parcel help
 
 ### 出力先ディレクトリ
 
-デフォルト："dist"
+デフォルト： "dist"
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
@@ -55,17 +55,17 @@ root
 - - - entry.js
 ```
 
-### サーブするパブリックURLを設定する
+### ServeするパブリックURLを設定する
 
-デフォルト："/"
+デフォルト： "/"
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --public-url ./dist/
 ```
 
-は以下のように出力されます：
+は以下のように出力されます。
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
@@ -75,9 +75,9 @@ or
 
 ### ターゲット
 
-デフォルト：browser
+デフォルト： browser
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node
@@ -87,9 +87,9 @@ parcel build entry.js --target node
 
 ### ログレベルを変更する
 
-デフォルト：3
+デフォルト： 3
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --log-level 1
@@ -104,19 +104,19 @@ parcel entry.js --log-level 1
 
 ### HMR ホスト名
 
-デフォルト：現在のウィンドウの`location.hostname`
+デフォルト： 現在のウィンドウの`location.hostname`
 
-次で利用可能：`serve`, `watch`
+次で利用可能： `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-hostname parceljs.org
 ```
 
-### HMR ポート
+### HMRポート
 
 デフォルト： 利用可能なランダムなポート
 
-次で利用可能：`serve`, `watch`
+次で利用可能： `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-port 8080
@@ -126,19 +126,19 @@ parcel entry.js --hmr-port 8080
 
 デフォルト： オリジナルのファイル名
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-file output.html
 ```
 
-これを設定すると、エントリーポイントバンドルの出力ファイル名を変更します
+これによって、エントリーポイントバンドルの出力ファイル名が変更されます。
 
 ### 詳細なレポートを出力する
 
-デフォルト：最小限のレポート
+デフォルト： 最小限のレポート
 
-次で利用可能：`build`
+次で利用可能： `build`
 
 ```bash
 parcel build entry.js --detailed-report
@@ -146,21 +146,21 @@ parcel build entry.js --detailed-report
 
 ### httpsを有効にする
 
-デフォルト：httpsは無効です
+デフォルト： 無効
 
-次で利用可能：`server`
+次で利用可能： `serve`
 
 ```bash
 parcel build entry.js --https
 ```
 
-⚠️ このフラグは自己署名証明書を生成します。ブラウザの設定でlocalhostに対して、自己署名証明書を許可する必要があるかもしれません。
+⚠️ このフラグは自己署名証明書を生成します。ブラウザの設定でlocalhostに対して、自己署名証明書を許可する必要がある可能性があります。
 
 ### 任意の証明書を設定する
 
-デフォルト：httpsは無効
+デフォルト： 無効
 
-次で利用可能：`serve`
+次で利用可能： `serve`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -168,9 +168,9 @@ parcel entry.js --cert certificate.cert --key private.key
 
 ### ブラウザで開く
 
-デフォルト：ブラウザは開きません
+デフォルト： ブラウザは開きません
 
-次で利用可能：`serve`
+次で利用可能： `serve`
 
 ```bash
 parcel entry.js --open
@@ -178,9 +178,9 @@ parcel entry.js --open
 
 ### ソースマップを無効にする
 
-デフォルト：ソースマップは有効
+デフォルト： 有効
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
@@ -188,9 +188,9 @@ parcel build entry.js --no-source-maps
 
 ### 自動インストールを無効にする
 
-デフォルト：自動インストールは有効
+デフォルト： 有効
 
-次で利用可能：`serve`, `watch`
+次で利用可能： `serve`, `watch`
 
 ```bash
 parcel entry.js --no-autoinstall
@@ -198,9 +198,9 @@ parcel entry.js --no-autoinstall
 
 ### HMRを無効にする
 
-デフォルト：HMRは有効です
+デフォルト： 有効
 
-次で利用可能：`serve`, `watch`
+次で利用可能： `serve`, `watch`
 
 ```bash
 parcel entry.js --no-hmr
@@ -208,9 +208,9 @@ parcel entry.js --no-hmr
 
 ### 最小化を無効にする
 
-デフォルト：最小化は有効です
+デフォルト： 有効
 
-次で利用可能：`build`
+次で利用可能： `build`
 
 ```bash
 parcel build entry.js --no-minify
@@ -218,9 +218,9 @@ parcel build entry.js --no-minify
 
 ### ファイルシステムキャッシュを無効にする
 
-デフォルト：キャッシュは有効です
+デフォルト： 有効
 
-次で利用可能：`serve`, `watch`, `build`
+次で利用可能： `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-cache
