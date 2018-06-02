@@ -2,7 +2,7 @@
 
 ## Bundler
 
-Instead of the cli you can also use the API to initialise a bundler, for more advanced use-cases (e.g. custom processing after every build).
+Instead of the CLI you can also use the API to initialise a bundler, for more advanced use-cases (e.g. custom processing after every build).
 A watch example with every option explained:
 ```Javascript
 const Bundler = require('parcel-bundler');
@@ -23,14 +23,14 @@ const options = {
   target: 'browser', // browser/node/electron, defaults to browser
   https: false, // Server files over https or http, defaults to false
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
-  hmrPort: 0, // The port the hmr socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
+  hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
   hmrHostname: '', // A hostname for hot module reload, default to ''
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
 async runBundle() {
-  // Initialises a bundler using the entrypoint location and options provided
+  // Initializes a bundler using the entrypoint location and options provided
   const bundler = new Bundler(file, options);
 
   // Run the bundler, this returns the main bundle
@@ -45,7 +45,7 @@ runBundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
+* `bundled` gets called once Parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
@@ -63,7 +63,7 @@ bundler.on('buildEnd', () => {
 
 ### Bundle
 
-A `Bundle` is what parcel uses to bundle assets together, this also contains child and sibling bundles to be able to build a bundle tree.
+A `Bundle` is what Parcel uses to bundle assets together, this also contains child and sibling bundles to be able to build a bundle tree.
 
 #### Properties
 
@@ -123,7 +123,7 @@ index.html
 
 Middleware can be used to hook into a http server (e.g. `express` or node `http`).
 
-An example of using the parcel middleware with express
+An example of using the Parcel middleware with express
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();
@@ -131,10 +131,10 @@ const app = require('express')();
 const file = 'index.html'; // Pass an absolute path to the entrypoint here
 const options = {}; // See options section of api docs, for the possibilities
 
-// Initialise a new bundler using a file and options
+// Initialize a new bundler using a file and options
 const bundler = new Bundler(file, options);
 
-// Let express use the bundler middleware, this will let parcel handle every request over your express server
+// Let express use the bundler middleware, this will let Parcel handle every request over your express server
 app.use(bundler.middleware());
 
 // Listen on port 8080
