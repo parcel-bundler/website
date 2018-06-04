@@ -23,7 +23,7 @@ Certains éditeurs de texte et IDE ont une fonctionnalité appelée `safe write`
 
 Lors de l'utilisation du Hot Module Reload (HMR), cette fonctionnalité bloque la détection automatique des mises à jour de fichiers. Pour désactiver `safe write` utilisez les options fournies ci-dessous :
 
-* `Sublime Text 3` : ajoutez atomic_save: "false" à vos préférences utilisateur.
+* `Sublime Text 3` : ajoutez `atomic_save: "false"` à vos préférences utilisateur.
 * `IntelliJ` : utilisez la recherche dans les préférences pour trouver "safe write" et désactivez-le.
-* `Vim` : ajoutez :set backupcopy=yes à vos paramètres.
-* `WebStorm` : décochez Use "safe write" dans Preferences > Appearance & Behavior > System Settings.
+* `Vim` : ajoutez `:set backupcopy=yes` à vos paramètres.
+* `WebStorm` : décochez `Use "safe write"` dans Preferences > Appearance & Behavior > System Settings.
