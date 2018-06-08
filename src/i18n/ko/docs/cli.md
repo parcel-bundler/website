@@ -4,7 +4,7 @@
 
 ### Serve
 
-Serve는 개발용 서버를 시작합니다. 앱이 수정되면 자동으로 다시 빌드하고, 빠른 개발을 위해 [빠른 모듈 교체](hmr.html)를 지원합니다.
+개발용 서버를 시작합니다. 앱이 수정되면 자동으로 다시 빌드하고, 빠른 개발을 위해 [빠른 모듈 교체](hmr.html)를 지원합니다.
 
 ```bash
 parcel index.html
@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build는 애셋을 한 번 빌드합니다. 이 과정에서 코드 최소화(미니파이케이션)가 활성화되고 NODE_ENV 환경변수가 production으로 설정됩니다. [프로덕션](production.html)을 참조하세요.
+애셋을 한 번 빌드합니다. 이 과정에서 코드 최소화(미니파이케이션)가 활성화되고 환경변수가 `NODE_ENV=production` 로 설정됩니다. [프로덕션](production.html)에서 보다 자세한 내용을 확인하세요.
 
 ```bash
 parcel build index.html
@@ -20,7 +20,7 @@ parcel build index.html
 
 ### Watch
 
-Watch는 Serve와 비슷하지만 서버를 시작하지 않는다는 점이 다릅니다.
+`watch` 명령어는 `serve` 명령어와 비슷하지만 서버를 시작하지 않는다는 점이 다릅니다.
 
 ```bash
 parcel watch index.html
@@ -44,7 +44,7 @@ parcel help
 
 ```bash
 parcel build entry.js --out-dir build/output
-혹은
+# 혹은
 parcel build entry.js -d build/output
 ```
 
@@ -69,7 +69,7 @@ parcel entry.js --public-url ./dist/
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
-or
+<!-- or -->
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
@@ -83,7 +83,7 @@ or
 parcel build entry.js --target node
 ```
 
-가능한 타겟: node, browser and electron
+가능한 타겟: `node`, `browser` and `electron`
 
 ### 로그 레벨 변경
 
