@@ -2,7 +2,7 @@
 
 ## React
 
-First need to install the dependencies for React.
+First we need to install the dependencies for React.
 
 [Blog Post](http://blog.jakoblind.no/react-parcel/)
 

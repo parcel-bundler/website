@@ -43,16 +43,16 @@ const bundle = await bundler.bundle();
 
 * `bundled`은 parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
 ```js
-const bundle = new Bundler(...);
-bundle.on('bundled', (bundle) => {
-  // bundle은 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
+const bundler = new Bundler(...);
+bundler.on('bundled', (bundler) => {
+  // bundler은 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
 });
 ```
 
 * `buildEnd`는 매 빌드 후 발생됩니다. 에러가 발생한 경우에도 발생합니다.
 ```js
-const bundle = new Bundler(...);
-bundle.on('buildEnd', () => {
+const bundler = new Bundler(...);
+bundler.on('buildEnd', () => {
   // Do something...
 });
 ```

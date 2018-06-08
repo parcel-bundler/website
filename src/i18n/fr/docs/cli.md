@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build construit les ressources une fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
+Build construit les ressources une seule fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
 
 ```bash
 parcel build index.html
@@ -28,7 +28,7 @@ parcel watch index.html
 
 ### Help
 
-Affiche toutes les options possibles de la cli.
+Affiche toutes les options possibles de l'outil en ligne de commande (CLI).
 
 ```bash
 parcel help
@@ -55,14 +55,14 @@ root
 - - - entry.js
 ```
 
-### Définit l'URL publique à appliquer
+### Définir l'URL publique à appliquer
 
 Par défaut : "/"
 
 Disponible dans : `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --public-url ./dist/
+parcel entry.js --public-url ./dist/
 ```
 
 Cela produira :
@@ -85,14 +85,14 @@ parcel build entry.js --target node
 
 Les cibles possibles sont : node, browser et electron
 
-### Change le niveau de journalisation
+### Changer le niveau de journalisation
 
 Par défaut : 3
 
 Disponible dans : `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --log-level 1
+parcel entry.js --log-level 1
 ```
 
 | Loglevel | Effet                                       |
@@ -109,7 +109,7 @@ Par défaut : `location.hostname` du windows courant
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-hostname parceljs.org
+parcel entry.js --hmr-hostname parceljs.org
 ```
 
 ### Port du HMR
@@ -119,7 +119,7 @@ Par défaut : Un port disponible au hasard
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-port 8080
+parcel entry.js --hmr-port 8080
 ```
 
 ### Nom de fichier en sortie
@@ -134,7 +134,7 @@ parcel build entry.js --out-file output.html
 
 Cela modifie le nom du fichier de sortie du paquet
 
-### Imprime un rapport détaillé
+### Imprimer un rapport détaillé
 
 Par défaut : rapport minimal
 
@@ -144,27 +144,39 @@ Disponible dans : `build`
 parcel build entry.js --detailed-report
 ```
 
-### Définit un certificat personnalisé
+### Désactiver https
 
-Par défaut : génère un certificat
+Par défaut : https désactivé
 
 Disponible dans : `serve`
 
 ```bash
-parcel build entry.js --cert certificate.cert --key private.key
+parcel build entry.js --https
 ```
 
-### Ouvre dans le navigateur
+⚠️ Cet indicateur génère un certificat auto-signé. Vous devrez peut-être configurer votre navigateur pour autoriser les certificats auto-signés pour localhost.
+
+### Définir un certificat personnalisé
+
+Par défaut : https désactivé
+
+Disponible dans : `serve`
+
+```bash
+parcel entry.js --cert certificate.cert --key private.key
+```
+
+### Ouvrir dans le navigateur
 
 Par défaut : ouverture désactivée
 
 Disponible dans : `serve`
 
 ```bash
-parcel build entry.js --open
+parcel entry.js --open
 ```
 
-### Désactive source-maps
+### Désactiver source-maps
 
 Par défaut : source-maps activé
 
@@ -174,27 +186,27 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --no-source-maps
 ```
 
-### Désactive autoinstall
+### Désactiver l'installation automatique de dépendances
 
 Par défaut : autoinstall activé
 
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-autoinstall
+parcel entry.js --no-autoinstall
 ```
 
-### Désactive le HMR
+### Désactiver le HMR
 
 Par défaut : HMR activé
 
 Disponible dans : `serve`, `watch`
 
 ```bash
-parcel build entry.js --no-hmr
+parcel entry.js --no-hmr
 ```
 
-### Désactive la minification
+### Désactiver la minification
 
 Par défaut : minification activée
 
@@ -204,7 +216,7 @@ Disponible dans : `build`
 parcel build entry.js --no-minify
 ```
 
-### Désactive le cache du système de fichiers
+### Désactiver le cache du système de fichiers
 
 Par défaut : cache activé
 

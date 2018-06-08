@@ -2,7 +2,7 @@
 
 ## React
 
-D'abord vous avez besoin d'installer les dépendances pour React.
+D'abord nous avons besoin d'installer les dépendances pour React.
 
 [Article du blog](http://blog.jakoblind.no/react-parcel/)
 

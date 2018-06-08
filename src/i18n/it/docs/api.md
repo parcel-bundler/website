@@ -44,16 +44,16 @@ Questo è un elenco di tutti gli eventi del bundler
 
 * `bundled` viene richiamato una volta che Parcel ha terminato con successo il bundling, il [bundle](#bundle) principale viene passato come callback
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('bundled', (bundle) => {
-  // contiene tutte le risorse e i bundle, vedi la documentazione ulteriori informazioni
+const bundler = new Bundler(...);
+bundler.on('bundled', (bundler) => {
+  // contiene tutte le risorse e i bundler, vedi la documentazione ulteriori informazioni
 });
 ```
 
 * `buildEnd` viene chiamato dopo ogni compilazione, restituendo un alert anche se si è verificato un errore
 ```Javascript
-const bundle = new Bundler(...);
-bundle.on('buildEnd', () => {
+const bundler = new Bundler(...);
+bundler.on('buildEnd', () => {
   // Fai qualcosa...
 });
 ```

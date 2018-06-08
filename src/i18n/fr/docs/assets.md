@@ -1,20 +1,20 @@
 # 📦 Ressources
 
-Parcel est basé sur des ressources. Une ressource peut être n'importe quel fichier, mais Parcel a un support spécial pour certains types de ressource comme les fichiers JavaScript, CSS et HTML. Parcel analyse automatiquement les dépendances référencées dans ces fichiers et les inclut dans le paquet en sortie. Les ressources de types similaires sont regroupées dans le même paquet en sortie. Si vous importez une ressource d'un type différent (par exemple, si vous avez importé un fichier CSS depuis un JS), il commence par un paquet enfant et laisse une référence dans le parent. Ceci sera illustré dans les sections suivantes.
+Parcel est basé sur des ressources. Une ressource peut être n'importe quel fichier, mais Parcel a un support spécial pour certains types de ressources comme les fichiers JavaScript, CSS et HTML. Parcel analyse automatiquement les dépendances référencées dans ces fichiers et les inclut dans le paquet en sortie. Les ressources de types similaires sont regroupées dans le même paquet en sortie. Si vous importez une ressource d'un type différent (par exemple, si vous avez importé un fichier CSS depuis un JS), il commence par créer un paquet enfant et laisse une référence dans le parent. Ceci sera illustré dans les sections suivantes.
 
 ## JavaScript
 
-Le type de fichier le plus traditionnel pour les paquets web, c'est le JavaScript. Parcel prend en charge la syntaxe du module CommonJS et l'ES6 pour l'importation de fichiers. Il prend également en charge la syntaxe de la fonction dynamique `import()` pour charger les modules de manière asynchrone, qui est expliquée dans la section [Découpage du code](code_splitting.html).
+Le type de fichier le plus traditionnel pour les empaqueteurs web, c'est le JavaScript. Parcel prend en charge la syntaxe CommonJS et les modules ES6 pour l'importation de fichiers. Il prend également en charge la syntaxe de la fonction dynamique `import()` pour charger les modules de manière asynchrone, qui est expliquée dans la section [Découpage du code](code_splitting.html).
 
 ```javascript
 // Importe un module en utilisant la syntaxe CommonJS
 const dep = require('./path/to/dep');
 
-// Importe un module à l'aide de la syntaxe d'importation ES6
+// Importe un module ES6
 import dep from './path/to/dep';
 ```
 
-Vous pouvez également importer des éléments non JavaScript à partir d'un fichier JavaScript, par exemple du CSS ou même un fichier image. Lorsque vous importez l'un de ces fichiers, il n'est pas intégré comme dans d'autres empaqueteurs. Au lieu de cela, Parcel le place dans un paquet séparé (par exemple un fichier CSS) avec toutes ses dépendances. Lors de l'utilisation des [Modules CSS](https://github.com/css-modules/css-modules), les classes exportées sont placées dans le paquet JavaScript. Les autres types de ressource exportent une URL vers le fichier de sortie dans le paquet JavaScript afin que vous puissiez les référencer dans votre code.
+Vous pouvez également importer des éléments non JavaScript à partir d'un fichier JavaScript, par exemple du CSS ou même un fichier image. Lorsque vous importez l'un de ces fichiers, il n'est pas intégré comme dans d'autres empaqueteurs. Au lieu de cela, Parcel le place dans un paquet séparé (par exemple un fichier CSS) avec toutes ses dépendances. Lors de l'utilisation des [Modules CSS](https://github.com/css-modules/css-modules), les classes exportées sont placées dans le paquet JavaScript. Les autres types de ressources exportent une URL vers le fichier en sortie dans le paquet JavaScript afin que vous puissiez les référencer dans votre code.
 
 ```javascript
 // Importe un fichier CSS
@@ -27,7 +27,7 @@ import classNames from './test.css';
 import imageURL from './test.png';
 ```
 
-Si vous souhaitez insérer un fichier dans le bundle JavaScript au lieu de le référencer par une URL, vous pouvez utiliser l'API `fs.readFileSync` de Node.js pour le faire. L'URL doit être analysable statiquement, ce qui signifie qu'elle ne peut contenir aucune variable (autre que `__dirname` et `__filename`).
+Si vous souhaitez insérer un fichier dans le bundle JavaScript au lieu de le référencer par une URL, vous pouvez utiliser l'API `fs.readFileSync` de Node.js à cet effet. L'URL doit pouvoir être analysée statiquement, ce qui signifie qu'elle ne peut contenir aucune variable (autre que `__dirname` et `__filename`).
 
 ```javascript
 import fs from 'fs';
@@ -68,7 +68,7 @@ Les dépendances dans les fichiers SCSS peuvent être utilisées avec les instru
 
 ## HTML
 
-Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parcel, mais il peut aussi être référencé par des fichiers JavaScript, par exemple pour fournir des liens vers d'autres pages. Les URL des scripts, des styles, des médias et des autres fichiers HTML sont extraites et compilées comme décrit ci-dessus. Les références sont réécrites dans le code HTML afin qu'elles soient liées aux bons fichiers de sortie. Tous les noms de fichiers doivent être relatifs au fichier HTML courant.
+Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parcel, mais elle peut aussi être référencée dans des fichiers JavaScript, par exemple pour fournir des liens vers d'autres pages. Les URL des scripts, des styles, des médias et des autres fichiers HTML sont extraites et compilées comme décrit ci-dessus. Les références sont réécrites dans le code HTML afin qu'elles soient liées aux bons fichiers en sortie. Tous les noms de fichiers doivent être relatifs au fichier HTML courant.
 
 ```html
 <html>
