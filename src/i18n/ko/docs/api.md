@@ -45,11 +45,11 @@ runBundle();
 
 모든 번들러 이벤트 목록입니다.
 
-* `bundled`은 parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
+* `bundled`는 parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
-  // bundler은 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
+  // bundler는 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
 });
 ```
 
