@@ -33,7 +33,7 @@ async runBundle() {
   // 진입점 위치와 옵션을 제공해서 번들러를 초기화
   const bundler = new Bundler(file, options);
 
-  // 번들러를 동작시킴. 이것은 메인 번들을 반환함.
+  // 번들러를 실행함. 이것은 메인 번들을 반환함.
   // watch 모드를 사용할 경우 이 promise는 매 빌드마다 호출하는게 아니라 딱 한 번만 호출하고 이벤트를 사용할 것
   const bundle = await bundler.bundle();
 }
