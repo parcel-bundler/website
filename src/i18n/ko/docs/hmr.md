@@ -27,4 +27,4 @@ if (module.hot) {
 * `Sublime Text 3` 사용자 설정(user preferences)에 `atomic_save: "false"` 를 추가하세요.
 * `IntelliJ` 설정(preferences)에서 "safe write"로 검색해서 찾은 뒤 비활성화 하세요.
 * `Vim` 설정에 `:set backupcopy=yes` 를 추가하세요.
-* `WebStorm` Preferences > Appearance & Behavior > System Settings 로 가서 "safe write"의 체크를 풀어버리세요.
+* `WebStorm` Preferences > Appearance & Behavior > System Settings 로 가서 `"safe write"`의 체크를 풀어버리세요.
