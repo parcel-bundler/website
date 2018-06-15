@@ -23,7 +23,7 @@ const options = {
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
   https: false, // Les fichiers du serveur sur https ou http, par défaut à false
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
-  hmrPort: 0, // Le port sur lequel la socket hmr (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
+  hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
   detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé

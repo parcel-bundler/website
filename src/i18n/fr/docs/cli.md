@@ -4,7 +4,7 @@
 
 ### Serve
 
-Serve démarre un serveur de développement, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et prend en charge [le remplacement de module à chaud](hmr.html) pour un développement plus rapide.
+Démarre un serveur de développement, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et prend en charge [le remplacement de module à chaud](hmr.html) pour un développement plus rapide.
 
 ```bash
 parcel index.html
@@ -12,7 +12,7 @@ parcel index.html
 
 ### Build
 
-Build construit les ressources une seule fois, il active aussi la minification et définit la variable NODE_ENV à production. [Production](production.html)
+Construit les ressources une seule fois, il active aussi la minification et définit la variable environnement `NODE_ENV=production`. Consultez [Production](production.html) pour plus de détails.
 
 ```bash
 parcel build index.html
@@ -20,7 +20,7 @@ parcel build index.html
 
 ### Watch
 
-La commande watch est similaire à serve, sauf que la commande watch ne démarre pas un serveur.
+La commande `watch` est similaire à `serve`, sauf que la commande `watch` ne démarre pas un serveur.
 
 ```bash
 parcel watch index.html
@@ -44,7 +44,7 @@ Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
-ou
+# ou
 parcel build entry.js -d build/output
 ```
 
@@ -69,7 +69,7 @@ Cela produira :
 
 ```html
 <link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
-ou
+<!-- ou -->
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
@@ -83,7 +83,7 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-Les cibles possibles sont : node, browser et electron
+Les cibles possibles sont : `node`, `browser` et `electron`
 
 ### Changer le niveau de journalisation
 
