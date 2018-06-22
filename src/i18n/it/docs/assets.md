@@ -17,10 +17,10 @@ import dep from './percorso/al/file';
 È anche possibile importare risorse non JavaScript da un file JavaScript, ad esempio CSS o anche un file immagine. Quando si importa uno di questi file, non è incluso come in altri bundle. Invece, è posizionato in un bundle separato (per esempio un file CSS) insieme a tutte le sue dipendenze. Quando si utilizza la tecnica dei [CSS Modules](https://github.com/css-modules/css-modules), le classi esportate vengono posizionate nel bundle JavaScript. Altri tipi di risorse esportano un URL nel file di output nel bundle JavaScript in modo da poterlo consultare nel proprio codice.
 
 ```javascript
-// Impora un file CSS
+// Importa un file CSS
 import './test.css';
 
-// Impora un file CSS utilizzando CSS Modules
+// Importa un file CSS utilizzando CSS Modules
 import classNames from './test.css';
 
 // Importa un'immagine da un URL
