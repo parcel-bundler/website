@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+        <form class="languages">
+            <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+              <option class="en" value="https://en.parceljs.org">🇺🇸 English</option>
+              <option class="es" value="https://es.parceljs.org">🇪🇸 Español</option>
+              <option class="fr" value="https://fr.parceljs.org">🇫🇷 Français</option>
+              <option class="it" value="https://it.parceljs.org">🇮🇹 Italiano</option>
+              <option class="ja" value="https://ja.parceljs.org" selected>🇯🇵 日本語</option>
+              <option class="ko" value="https://ko.parceljs.org">🇰🇷 한국어</option>
+              <option class="pl" value="https://pl.parceljs.org">🇵🇱 Polskie</option>
+              <option class="pt" value="https://pt.parceljs.org">🇧🇷 Português</option>
+              <option class="ru" value="https://ru.parceljs.org">🇷🇺 русский</option>
+              <option class="zh" value="https://zh.parceljs.org">🇨🇳 中文</option>
+            </select>
+          </form>
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 はじめに</a></li>
+        <li><a href="assets.html">📦 アセット</a></li>
+        <li><a href="transforms.html">🐠 変換</a></li>
+        <li><a href="code_splitting.html">✂️ コード分割</a></li>
+        <li><a href="hmr.html">🔥 ホットモジュールリプレースメント</a></li>
+        <li><a href="production.html">✨ プロダクション</a></li>
+        <li><a href="recipes.html">🍰 レシピ</a></li>
+        <li><a href="cli.html">🖥 CLI</a></li>
+      </ul>
+      <h3>応用</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 仕組み</a></li>
+        <li><a href="asset_types.html">📝 アセットタイプ</a></li>
+        <li><a href="api.html">📚 API</a></li>
+        <li><a href="packagers.html">📦 パッケージャー</a></li>
+        <li><a href="plugins.html">🔌 プラグイン</a></li>
+      </ul>
+    </nav>
+    <main>
+      {{~> content}}
+    </main>
+  </div>
+  <script>
+    (function () {
+      var pathname = window.location.pathname.substr(1);
+      var activeLink = document.querySelector('a[href="' + pathname + '"]');
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>
