@@ -21,7 +21,7 @@ const options = {
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   target: 'browser', // browser/node/electron, defaults to browser
-  https: false, // Server files over https or http, defaults to false
+  https: false, // Serve files over https or http, defaults to false
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
@@ -121,7 +121,7 @@ index.html
 
 ### Middleware
 
-Middleware can be used to hook into a http server (e.g. `express` or node `http`).
+Middleware can be used to hook into an http server (e.g. `express` or node `http`).
 
 An example of using the Parcel middleware with express
 ```Javascript
