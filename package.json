@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "markdown-styles": "^3.1.10",
-    "now": "^9.2.7",
+    "now": "^11.2.4",
     "now-travis": "^1.2.0",
     "npm-run-all": "^4.1.1"
   },
