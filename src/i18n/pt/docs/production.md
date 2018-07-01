@@ -6,7 +6,7 @@ Quando chegar a hora de enviar sua aplicação para produção, você pode usar 
 parcel build entry.js
 ```
 
-Isso desabilita o `watch` e o `hmr` para que o código só seja compilado uma vez. Ele também habilita o minifier para todos os arquivos de saída para reduzir o tamanho dos arquivos. Os minifiers utilizados pelo Parcel são [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) para JavaScript, [cssnano](http://cssnano.co) para CSS e [htmlnano](https://github.com/posthtml/htmlnano) para HTML.
+Isso desabilita o `watch` e o `hmr` para que o código só seja compilado uma vez. Ele também habilita o minifier para todos os arquivos de saída para reduzir o tamanho dos arquivos. Os minifiers utilizados pelo Parcel são [terser](https://github.com/fabiosantoscode/terser) para JavaScript, [cssnano](http://cssnano.co) para CSS e [htmlnano](https://github.com/posthtml/htmlnano) para HTML.
 
 Ativando o modo de produção também define a variável de ambiente `NODE_ENV=production`. As bibliotecas mais conhecidas, como React, possuem recursos de depuração apenas para desenvolvimento, que são desativados ao definir esta variável de ambiente, o que resulta em compilações menores e mais rápidas para produção.
 

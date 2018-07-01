@@ -6,7 +6,7 @@ Cuando llegue el momento de empaquetar tu aplicación para producción, puedes u
 parcel build entry.js
 ```
 
-Esto deshabilita el modo `watch` y el reemplazo de módulos en caliente, por lo tanto solo se construirá la aplicación una vez. Además, se habilita el minificador para todas las salidas empaquetadas, lo que reduce el tamaño de los archivos. Los minificadores usados por Parcel son [uglify-es](https://github.com/mishoo/UglifyJS2/tree/harmony) para JavaScript, [cssnano](http://cssnano.co) para CSS, and [htmlnano](https://github.com/posthtml/htmlnano) para HTML.
+Esto deshabilita el modo `watch` y el reemplazo de módulos en caliente, por lo tanto solo se construirá la aplicación una vez. Además, se habilita el minificador para todas las salidas empaquetadas, lo que reduce el tamaño de los archivos. Los minificadores usados por Parcel son [terser](https://github.com/fabiosantoscode/terser) para JavaScript, [cssnano](http://cssnano.co) para CSS, and [htmlnano](https://github.com/posthtml/htmlnano) para HTML.
 
 La habilitación del modo producción también configura la variable de entorno `NODE_ENV=production`. Librerías grandes como React contienen características para depuración que son deshabilitadas al configurar esta variable de entorno, lo que resulta en una construcción más pequeña y rápida para producción.
 
