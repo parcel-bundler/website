@@ -163,15 +163,6 @@ print_endline("Hello World");
 $ yarn add react react-dom reason-react
 ```
 
-```html
-<!-- index.html -->
-<html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
-</html>
-```
-
 ```diff
 // bsconfig.json
 
@@ -200,11 +191,11 @@ $ yarn add react react-dom reason-react
 }
 ```
 
-```html
+```diff
 <!-- index.html -->
 <html>
 <body>
-  <div id="app"></div>
++  <div id="app"></div>
   <script src="./src/index.re"></script>
 </body>
 </html>

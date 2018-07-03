@@ -137,15 +137,6 @@ $ yarn add bs-platform --dev
 }
 ```
 
-```html
-<!-- index.html -->
-<html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
-</html>
-```
-
 ```reason
 /* src/index.re */
 print_endline("Hello World");
@@ -157,15 +148,6 @@ print_endline("Hello World");
 
 ```bash
 $ yarn add react react-dom reason-react
-```
-
-```html
-<!-- index.html -->
-<html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
-</html>
 ```
 
 ```diff
@@ -196,11 +178,11 @@ $ yarn add react react-dom reason-react
 }
 ```
 
-```html
+```diff
 <!-- index.html -->
 <html>
 <body>
-  <div id="app"></div>
++  <div id="app"></div>
   <script src="./src/index.re"></script>
 </body>
 </html>
