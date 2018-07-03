@@ -48,9 +48,11 @@ This is a list of all bundler events
 * `bundled` gets called once Parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
-bundler.on('bundled', (bundler) => {
+bundler.on('bundled', (bundle) => {
   // bundler contains all assets and bundles, see documentation for details
 });
+// Call this to start bundling
+bundler.bundle();
 ```
 
 * `buildEnd` gets called after each build, this also emits if an error occurred
@@ -59,6 +61,8 @@ const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Do something...
 });
+// Call this to start bundling
+bundler.bundle();
 ```
 
 ### Bundle
