@@ -21,7 +21,7 @@ const options = {
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
-  https: false, // Les fichiers du serveur sur https ou http, par défaut à false
+  https: false, // Sert les fichiers sur https ou http, par défaut à false
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
