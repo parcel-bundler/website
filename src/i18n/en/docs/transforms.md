@@ -225,16 +225,13 @@ $ yarn add react react-dom reason-react
 ```
 
 ```reason
-/* src/Greeting.re */ 
+/* src/Greeting.re */
 
 let component = ReasonReact.statelessComponent("Greeting");
 
 let make = (~name, _children) => {
   ...component,
-  render: _self =>
-    <div>
-      {ReasonReact.stringToElement("Hello! " ++ name)}
-    </div>
+  render: _self => <div> (ReasonReact.string("Hello! " ++ name)) </div>,
 };
 ```
 
