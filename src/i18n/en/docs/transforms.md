@@ -178,6 +178,7 @@ $ yarn add react react-dom reason-react
 
 ```html
 <!-- index.html -->
+<!doctype html>
 <html>
 <body>
   <script src="./src/index.re"></script>
