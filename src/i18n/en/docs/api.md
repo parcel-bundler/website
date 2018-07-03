@@ -65,6 +65,26 @@ bundler.on('buildEnd', () => {
 bundler.bundle();
 ```
 
+* `buildStart` gets called at the start of the first build, contains the entryFiles as parameter
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', entryPoints => {
+  // Do something...
+});
+// Call this to start bundling
+bundler.bundle();
+```
+
+* `buildError` gets called every time an error occurs during builds, has an error object as parameter
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', error => {
+  // Do something...
+});
+// Call this to start bundling
+bundler.bundle();
+```
+
 ### Bundle
 
 A `Bundle` is what Parcel uses to bundle assets together, this also contains child and sibling bundles to be able to build a bundle tree.
