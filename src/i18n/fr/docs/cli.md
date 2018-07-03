@@ -36,7 +36,7 @@ parcel help
 
 ### Version
 
-Displays Parcel version number
+Affiche le numéro de version de Parcel
 
 ```bash
 parcel --version
