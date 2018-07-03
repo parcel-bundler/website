@@ -137,6 +137,15 @@ $ yarn add bs-platform --dev
 }
 ```
 
+```html
+<!-- index.html -->
+<html>
+<body>
+  <script src="./src/index.re"></script>
+</body>
+</html>
+```
+
 ```reason
 /* src/index.re */
 print_endline("Hello World");
