@@ -45,7 +45,7 @@ runBundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once Parcel has successfully finished bundling, the main [bundle](#bundle) instance gets passed to the callback
+* `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) instance gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
@@ -55,7 +55,7 @@ bundler.on('bundled', (bundle) => {
 bundler.bundle();
 ```
 
-* `buildEnd` gets called after each build, this also emits if an error occurred
+* `buildEnd` gets called after each build (aka **including every rebuild**), this also emits if an error occurred
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {

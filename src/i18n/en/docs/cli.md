@@ -34,6 +34,14 @@ Displays all possible cli options
 parcel help
 ```
 
+### Version
+
+Displays Parcel version number
+
+```bash
+parcel --version
+```
+
 ## Options
 
 ### Output directory
@@ -57,7 +65,7 @@ root
 
 ### Set the public URL to serve on
 
-Default: "/"
+Default: [the same as the --out-dir option](#output-directory)
 
 Available in: `serve`, `watch`, `build`
 
@@ -84,6 +92,26 @@ parcel build entry.js --target node
 ```
 
 Possible targets: `node`, `browser`, `electron`
+
+### Cache directory
+
+Default: ".cache"
+
+Available in: `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --cache-dir build/cache
+```
+
+### Port
+
+Default: 1234
+
+Available in: `serve`
+
+```bash
+parcel serve entry.js --port 1111
+```
 
 ### Change Log level
 
@@ -148,7 +176,7 @@ parcel build entry.js --detailed-report
 
 Default: https disabled
 
-Available in: `serve`
+Available in: `serve`, `watch` (listen on HTTPS for HMR connections)
 
 ```bash
 parcel build entry.js --https
@@ -160,7 +188,7 @@ parcel build entry.js --https
 
 Default: https disabled
 
-Available in: `serve`
+Available in: `serve`, `watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -225,3 +253,25 @@ Available in: `serve`, `watch`, `build`
 ```bash
 parcel build entry.js --no-cache
 ```
+
+### Expose modules as UMD
+
+Default: disabled
+
+Available in: `serve`, `watch`, `build`
+
+```bash
+parcel serve entry.js --global myvariable
+```
+
+### Enable experimental scope hoisting/tree shaking support
+
+Default: disabled
+
+Available in: `build`
+
+```bash
+parcel serve entry.js --experimental-scope-hoisting
+```
+
+For more information, see the [Tree Shaking section](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) of Devon Govett's post on Parcel 1.9.
