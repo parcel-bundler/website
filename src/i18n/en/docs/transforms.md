@@ -156,6 +156,7 @@ $ yarn add bs-platform --dev
 
 ```html
 <!-- index.html -->
+<!doctype html>
 <html>
 <body>
   <script src="./src/index.re"></script>
