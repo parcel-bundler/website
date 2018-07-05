@@ -18,9 +18,9 @@ To allow setting very aggresive caching rules to your cdn, for optimal performan
 
 Parcel follows the following table, when it comes to naming bundles. (Entrypoints are never hashed)
 
-| Language | Type | Content hashed |
+| Bundle Type | Type | Content hashed |
 | ---:| --- |:---:|:---:|
-| All | Entrypoint            | ❌ |
+| Any | Entrypoint            | ❌ |
 | JavaScript | `<script>`     | ✅ |
 | JavaScript | Dynamic import | ❌ |
 | JavaScript | Service worker | ❌ |
