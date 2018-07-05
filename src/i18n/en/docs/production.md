@@ -23,9 +23,9 @@ Parcel follows the following table, when it comes to naming bundles. (Entrypoint
 | JavaScript | Regular require/import |  |  |
 | JavaScript | Dynamic import | ✅  |    |
 | JavaScript | Service worker | ✅  | ✅ |
-| HTML | iframe src | ✅ | ✅ |
-| HTML | a href | ✅ | ✅ |
+| HTML | iframe | ✅ | ✅ |
+| HTML | anchor link | ✅ | ✅ |
 | CSS | import | ✅ |  |
-| Raw (Images, text files, ...) | Import/Require/html link/... | ✅ |  |
+| Raw (Images, text files, ...) | Import/Require/... | ✅ |  |
 
 The file hash follows the following naming pattern: `<directory name>-<hash>.<extension>`
