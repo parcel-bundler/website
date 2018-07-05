@@ -11,16 +11,28 @@ This even works in third-party `node_modules`: if a configuration file is publis
 Install presets and plugins in your app:
 
 ```bash
-yarn add babel-preset-env
+yarn add babel-preset-react
 ```
 
 Then, create a `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": [
+    "react"
+  ]
 }
 ```
+
+### Default babel transforms
+
+Parcel install and transpiles your code with `babel-preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
+
+For the `browser` target it utilises [browserlist](https://github.com/browserslist/browserslist), the target browserlist can be defined in multiple locations inside `package.json` (`engines.browsers` or `browserslist`) or an external config (`browserslist` or `.browserslistrc`).
+
+The browserlist target defaults to: `> 0.25%` (Meaning, support every browser that has 0.25% or more of the total amount of active web users)
+
+For the `node` target it just utilises the `engines.node` defined in `package.json`, this default to *node 8*.
 
 ## PostCSS
 
