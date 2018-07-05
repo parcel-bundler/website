@@ -26,7 +26,7 @@ Then, create a `.babelrc`:
 
 ### Default babel transforms
 
-Parcel install and transpiles your code with `babel-preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
+Parcel transpiles your code with `babel-preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
 
 For the `browser` target it utilises [browserlist](https://github.com/browserslist/browserslist), the target browserlist can be defined in multiple locations inside `package.json` (`engines.browsers` or `browserslist`) or an external config (`browserslist` or `.browserslistrc`).
 
