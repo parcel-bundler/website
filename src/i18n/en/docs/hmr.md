@@ -18,6 +18,14 @@ if (module.hot) {
 }
 ```
 
+## Automagically installed dependencies
+
+Whenever Parcel comes across a dependency that fits the `node_module` pattern and can't find it, Parcel tries to install this dependency using `yarn` or `npm` depending on finding a `yarn.lock` file or not. This prevents the developer from having to exit parcel or having multiple terminal windows open.
+
+This only occurs in *development* (using [`serve`](./cli.html#serve) or [`watch`](./cli.html#watch)), in production (using [`build`](./cli.html#serve)) autoinstall is disabled to prevent unwanted side-effects on deployment.
+
+You can disable this feature using [`--no-autoinstall`](./cli.html#disable-autoinstall).
+
 ## Safe Write
 Some text editors and IDE's have a feature called `safe write` this basically prevents data loss, by taking a copy of the file and renaming it when saved.
 
