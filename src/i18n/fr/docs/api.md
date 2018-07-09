@@ -45,20 +45,22 @@ runBundle();
 
 Ceci est une liste de tous les événements d'un empaqueteur
 
-* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage. Le [bundle](#bundle) principal est passé à la fonction de rappel
+* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. Le [bundle](#bundle) principal est passé à la fonction de rappel
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
   // bundler contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
 });
+// appelle de bundler.bundle() quelque part
 ```
 
-* `buildEnd` est appelé après chaque construction, cela est également émis si une erreur s'est produite
+* `buildEnd` est appelé après chaque construction (**c'est aussi le cas pour chaque reconstruction**), cela est également émis si une erreur s'est produite
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Faire quelque chose...
 });
+// appelle de bundler.bundle() quelque part
 ```
 
 ### Bundle
