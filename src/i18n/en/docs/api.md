@@ -29,7 +29,7 @@ const options = {
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
-async runBundle() {
+async function runBundle() {
   // Initializes a bundler using the entrypoint location and options provided
   const bundler = new Bundler(file, options);
 
