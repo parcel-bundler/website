@@ -29,7 +29,7 @@ const options = {
   detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
 };
 
-async runBundle() {
+async function runBundle() {
   // Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
   const bundler = new Bundler(file, options);
 
