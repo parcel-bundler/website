@@ -180,6 +180,10 @@ p code {
   display: inline-block;
 }
 
+p a code{
+  color: #0645ad; text-decoration:none;
+}
+
 b, strong { font-weight: bold; }
 
 dfn { font-style: italic; }
