@@ -18,6 +18,14 @@ if (module.hot) {
 }
 ```
 
+## Dépendances installées automagiquement
+
+Chaque fois que Parcel rencontre une dépendance qui correspond au schéma `node_module` et ne le trouve pas, Parcel tente d'installer cette dépendance en utilisant `yarn` ou `npm` selon la présence ou non d'un fichier `yarn.lock`. Cela évite au développeur de quitter Parcel ou d'avoir plusieurs fenêtres de terminal ouvertes.
+
+Cela ne se produit qu'en *développement* (en utilisant [`serve`](cli.md#serve) ou [`watch`](cli.md#watch)), par contre en production (en utilisant [`build`](cli.md#build)) autoinstall est désactivé pour empêcher les effets secondaires indésirables sur le déploiement.
+
+Vous pouvez désactiver cette fonctionnalité en utilisant [`--no-autoinstall`](cli.md#désactiver-linstallation-automatique-de-dépendances).
+
 ## Safe Write
 Certains éditeurs de texte et IDE ont une fonctionnalité appelée `safe write` qui évite la perte de données, en prenant une copie du fichier et en la renommant à l'enregistrement.
 
