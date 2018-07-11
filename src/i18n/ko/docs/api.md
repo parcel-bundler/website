@@ -29,7 +29,7 @@ const options = {
   detailedReport: false // 번들, 애셋, 파일 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
 };
 
-async runBundle() {
+async function runBundle() {
   // 진입점 위치와 옵션을 제공해서 번들러를 초기화
   const bundler = new Bundler(file, options);
 
