@@ -104,6 +104,7 @@ yarn add posthtml-img-autosize
 
 ```html
 <!-- index.html -->
+<!doctype html>
 <html>
 <body>
   <script src="./index.ts"></script>
