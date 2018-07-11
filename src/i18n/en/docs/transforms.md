@@ -156,6 +156,7 @@ $ yarn add bs-platform --dev
 
 ```html
 <!-- index.html -->
+<!doctype html>
 <html>
 <body>
   <script src="./src/index.re"></script>
@@ -174,15 +175,6 @@ print_endline("Hello World");
 
 ```bash
 $ yarn add react react-dom reason-react
-```
-
-```html
-<!-- index.html -->
-<html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
-</html>
 ```
 
 ```diff
@@ -213,27 +205,24 @@ $ yarn add react react-dom reason-react
 }
 ```
 
-```html
+```diff
 <!-- index.html -->
 <html>
 <body>
-  <div id="app"></div>
++  <div id="app"></div>
   <script src="./src/index.re"></script>
 </body>
 </html>
 ```
 
 ```reason
-/* src/Greeting.re */ 
+/* src/Greeting.re */
 
 let component = ReasonReact.statelessComponent("Greeting");
 
 let make = (~name, _children) => {
   ...component,
-  render: _self =>
-    <div>
-      {ReasonReact.stringToElement("Hello! " ++ name)}
-    </div>
+  render: _self => <div> (ReasonReact.string("Hello! " ++ name)) </div>,
 };
 ```
 

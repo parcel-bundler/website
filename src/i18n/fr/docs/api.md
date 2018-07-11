@@ -21,9 +21,9 @@ const options = {
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
-  https: false, // Les fichiers du serveur sur https ou http, par défaut à false
+  https: false, // Sert les fichiers sur https ou http, par défaut à false
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
-  hmrPort: 0, // Le port sur lequel la socket hmr (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
+  hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
   detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
@@ -45,20 +45,22 @@ runBundle();
 
 Ceci est une liste de tous les événements d'un empaqueteur
 
-* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage. Le [bundle](#bundle) principal est passé à la fonction de rappel
+* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. Le [bundle](#bundle) principal est passé à la fonction de rappel
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
   // bundler contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
 });
+// appelle de bundler.bundle() quelque part
 ```
 
-* `buildEnd` est appelé après chaque construction, cela est également émis si une erreur s'est produite
+* `buildEnd` est appelé après chaque construction (**c'est aussi le cas pour chaque reconstruction**), cela est également émis si une erreur s'est produite
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Faire quelque chose...
 });
+// appelle de bundler.bundle() quelque part
 ```
 
 ### Bundle

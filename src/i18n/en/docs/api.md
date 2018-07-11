@@ -21,7 +21,7 @@ const options = {
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   target: 'browser', // browser/node/electron, defaults to browser
-  https: false, // Server files over https or http, defaults to false
+  https: false, // Serve files over https or http, defaults to false
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
@@ -29,7 +29,7 @@ const options = {
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
-async runBundle() {
+async function runBundle() {
   // Initializes a bundler using the entrypoint location and options provided
   const bundler = new Bundler(file, options);
 
@@ -45,20 +45,22 @@ runBundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once Parcel has successfully finished bundling, the main [bundle](#bundle) gets passed to the callback
+* `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
   // bundler contains all assets and bundles, see documentation for details
 });
+// call bundler.bundle() somewhere
 ```
 
-* `buildEnd` gets called after each build, this also emits if an error occurred
+* `buildEnd` gets called after each build (aka **including every rebuild**), this also emits if an error occurred
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Do something...
 });
+// call bundler.bundle() somewhere
 ```
 
 ### Bundle
@@ -121,7 +123,7 @@ index.html
 
 ### Middleware
 
-Middleware can be used to hook into a http server (e.g. `express` or node `http`).
+Middleware can be used to hook into an http server (e.g. `express` or node `http`).
 
 An example of using the Parcel middleware with express
 ```Javascript

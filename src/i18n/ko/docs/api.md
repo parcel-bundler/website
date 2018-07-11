@@ -23,29 +23,33 @@ const options = {
   target: 'browser', // browser/node/electron, 기본값은 browser
   https: false, // 파일을 https로 서빙할지 http로 할지 여부. 기본값은 false
   logLevel: 3, // 3 = 모든것을 로깅, 2 = 경고와 에러를 로깅, 1 = 에러만 로깅
-  hmrPort: 0, // hmr 소켓이 돌아갈 포트번호. 기본값은 무작위의 빈 포트 (node.js에서 0은 무작위의 빈 포트로 배정됨)
+  hmrPort: 0, // HMR 소켓이 돌아갈 포트번호. 기본값은 무작위의 빈 포트 (node.js에서 0은 무작위의 빈 포트로 배정됨)
   sourceMaps: true, // 소스맵을 활성화할지 여부. 기본값은 활성화 (아직 미니파이드 빌드에선 지원되지 않음)
   hmrHostname: '', // 빠른 모듈 교체를 위한 hostname.기본값은 ''
   detailedReport: false // 번들, 애셋, 파일 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
 };
 
-// 진입점 위치와 옵션을 제공해서 번들러를 초기화
-const bundler = new Bundler(file, options);
+async runBundle() {
+  // 진입점 위치와 옵션을 제공해서 번들러를 초기화
+  const bundler = new Bundler(file, options);
 
-// 번들러를 동작시킴. 이것은 메인 번들을 반환함.
-// watch 모드를 사용할 경우 이 promise는 매 빌드마다 호출하는게 아니라 딱 한 번만 호출하고 이벤트를 사용할 것
-const bundle = await bundler.bundle();
+  // 번들러를 실행함. 이것은 메인 번들을 반환함.
+  // watch 모드를 사용할 경우 이 promise는 매 빌드마다 호출하는게 아니라 딱 한 번만 호출하고 이벤트를 사용할 것
+  const bundle = await bundler.bundle();
+}
+
+runBundle();
 ```
 
 ### 이벤트
 
 모든 번들러 이벤트 목록입니다.
 
-* `bundled`은 parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
+* `bundled`는 Parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
-  // bundler은 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
+  // bundler는 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
 });
 ```
 
@@ -59,7 +63,7 @@ bundler.on('buildEnd', () => {
 
 ### 번들
 
-`Bundle`은 parcel이 애셋을 함께 번들링하기 위해 사용하며, 번들 트리를 빌드하기 위해 자식, 형제 번들을 포함합니다.
+`Bundle`은 Parcel이 애셋을 함께 번들링하기 위해 사용하며, 번들 트리를 빌드하기 위해 자식, 형제 번들을 포함합니다.
 
 #### 속성들
 
@@ -124,19 +128,15 @@ Parcel 미들웨어를 express와 사용하는 예제입니다.
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 
-async function start() {
-  const file = 'index.html'; // 엔트리 포인트로 쓰일 절대경로를 적습니다
-  const options = {}; // 가능한 옵션은 API 문서를 참조하세요
+const file = 'index.html'; // 엔트리 포인트로 쓰일 절대경로를 적습니다
+const options = {}; // 가능한 옵션은 API 문서를 참조하세요
 
-  // 파일과 옵션을 사용해 번들러를 초기화합니다
-  const bundler = new Bundler(file, options);
+// 파일과 옵션을 사용해 번들러를 초기화합니다
+const bundler = new Bundler(file, options);
 
-  // express가 번들러 미들웨어를 사용할 수 있게 합니다. 그러면 express server를 거치는 매 요청을 parcel이 처리할 것입니다.
-  app.use(bundler.middleware());
+// express가 번들러 미들웨어를 사용할 수 있게 합니다. 그러면 express server를 거치는 매 요청을 Parcel이 처리할 것입니다.
+app.use(bundler.middleware());
 
-  // 8080포트로 listen을 시작합니다.
-  app.listen(8080);
-}
-
-start();
+// 8080포트로 listen을 시작합니다.
+app.listen(8080);
 ```
