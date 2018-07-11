@@ -45,7 +45,7 @@ runBundle();
 
 모든 번들러 이벤트 목록입니다.
 
-* `bundled`는 **처음 한 번만**, Parcel이 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
+* `bundled` 이벤트는 **처음 한 번만**,Parcel이 성공적으로 번들링을 마친 후 발생되어, 메인 [번들](#번들)을 callback에 전달합니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
@@ -54,7 +54,7 @@ bundler.on('bundled', (bundler) => {
 // 어디선가 bundler.bundle() 를 호출함
 ```
 
-* `buildEnd`는 **재빌드를 포함한** 빌드 후 매번 발생됩니다. 에러가 발생한 경우에도 발생합니다.
+* `buildEnd` 이벤트는 **재빌드를 포함한** 빌드 후 매번 발생됩니다. 에러가 발생한 경우에도 발생합니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
