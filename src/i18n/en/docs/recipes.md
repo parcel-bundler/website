@@ -37,7 +37,6 @@ First we need to install the dependencies for Preact.
 npm install --save preact
 npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-preact
 ```
 
@@ -47,7 +46,6 @@ npm install --save-dev babel-preset-preact
 yarn add preact
 yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
 yarn add --dev babel-preset-preact
 ```
 
@@ -56,7 +54,9 @@ Then make sure the following Babel config is present.
 ```javascript
 // .babelrc
 {
-  "presets": ["env", "preact"]
+  "presets": [
+    "preact"
+  ]
 }
 ```
 
