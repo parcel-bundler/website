@@ -45,13 +45,14 @@ runBundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) gets passed to the callback
+* `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) instance gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
-bundler.on('bundled', (bundler) => {
+bundler.on('bundled', (bundle) => {
   // bundler contains all assets and bundles, see documentation for details
 });
-// call bundler.bundle() somewhere
+// Call this to start bundling
+bundler.bundle();
 ```
 
 * `buildEnd` gets called after each build (aka **including every rebuild**), this also emits if an error occurred
@@ -60,7 +61,28 @@ const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Do something...
 });
-// call bundler.bundle() somewhere
+// Call this to start bundling
+bundler.bundle();
+```
+
+* `buildStart` gets called at the start of the first build, the `entryFiles` Array gets passed to the callback
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', entryPoints => {
+  // Do something...
+});
+// Call this to start bundling
+bundler.bundle();
+```
+
+* `buildError` gets called every time an error occurs during builds, the `Error` Object gets passed to the callback
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', error => {
+  // Do something...
+});
+// Call this to start bundling
+bundler.bundle();
 ```
 
 ### Bundle
