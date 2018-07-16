@@ -20,12 +20,12 @@ Parcel suit le tableau suivant, lorsqu’il s’agit de nommer des bundles. (Les
 
 | Type de bundle | Type | Contenu haché |
 | ---:| --- |:---:|:---:|
-| Any | point d'entrée          | ❌ |
+| Tous | point d'entrée         | ❌ |
 | JavaScript | `<script>`       | ✅ |
 | JavaScript | Import dynamique | ❌ |
 | JavaScript | Service worker   | ❌ |
 | HTML | iframe                 | ❌ |
 | HTML | lien d'ancrage         | ❌ |
-| Raw (Images, fichiers texte, ...) | Import/Require/... | ✅ |
+| Brut (Images, fichiers texte, ...) | Import/Require/... | ✅ |
 
 Le hachage du fichier suit le modèle de dénomination suivant : `<nom du répertoire>-<hash>.<extension>`
