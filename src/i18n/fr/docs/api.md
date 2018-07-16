@@ -45,13 +45,14 @@ runBundle();
 
 Ceci est une liste de tous les événements d'un empaqueteur
 
-* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. Le [bundle](#bundle) principal est passé à la fonction de rappel
+* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. L'instance du [bundle](#bundle) principal est passé à la fonction de rappel
 ```Javascript
 const bundler = new Bundler(...);
-bundler.on('bundled', (bundler) => {
+bundler.on('bundled', (bundle) => {
   // bundler contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
 });
-// appelle de bundler.bundle() quelque part
+// Appelez ceci pour commencer l'empaquetage
+bundler.bundle();
 ```
 
 * `buildEnd` est appelé après chaque construction (**c'est aussi le cas pour chaque reconstruction**), cela est également émis si une erreur s'est produite
@@ -60,7 +61,28 @@ const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Faire quelque chose...
 });
-// appelle de bundler.bundle() quelque part
+// Appelez ceci pour commencer l'empaquetage
+bundler.bundle();
+```
+
+* `buildStart` est appelé au début de la première construction, le tableau `entryFiles` est passé à la fonction de rappel
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', entryPoints => {
+  // Faire quelque chose...
+});
+// Appelez ceci pour commencer l'empaquetage
+bundler.bundle();
+```
+
+* `buildError` est appelé chaque fois qu'une erreur se produit pendant les constructions, l'objet `Error` est passé à la fonction de rappel
+```Javascript
+const bundler = new Bundler(...);
+bundler.on('buildError', error => {
+  // Faire quelque chose...
+});
+// Appelez ceci pour commencer l'empaquetage
+bundler.bundle();
 ```
 
 ### Bundle

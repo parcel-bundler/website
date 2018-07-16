@@ -271,7 +271,7 @@ Par défaut : désactivé
 Disponible dans : `build`
 
 ```bash
-parcel serve entry.js --experimental-scope-hoisting
+parcel build entry.js --experimental-scope-hoisting
 ```
 
 Pour plus d'informations, consultez la [section Tree Shaking](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) de l'article de Devon Govett sur Parcel 1.9.
