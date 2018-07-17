@@ -10,10 +10,10 @@ Parcel bierze za plik wejściowy pojedynczy zasób, który może być dowolnego 
 
 Kiedy drzewo zasobów zostanie skonstruowane, zasoby są umieszczane w drzewie paczek. Dla pliku wejściowego tworzona jest jedna paczka, a paczki potomne tworzone są dla dynamicznych `import()`ów, które powodują dzielenie kodu.
 
-Paczki siostrzane tworzone są kiedy importowane są zasoby różnego typu. Przykładowo, jeśli z pliku JavaScript zostaine zaimportowany plik CSS, zostanie on umieszczony w paczce siostrzanej do paczki JavaScript.
+Paczki siostrzane tworzone są kiedy importowane są zasoby różnego typu. Przykładowo, jeśli z pliku JavaScript zostanie zaimportowany plik CSS, zostanie on umieszczony w paczce siostrzanej do paczki JavaScript.
 
-Jeśli do jednego zasobu pojawią się odwołania w więcej niż jednej paczce, jest on przenoszony do najbliższego wspólnego rodzica w drzewie zasobów tak, by nie został on umieszczony w paczce więcej niż 1 raz.
+Jeśli do jednego zasobu pojawią się odwołania w więcej niż jednej paczce, jest on przenoszony do najbliższego wspólnego rodzica w drzewie zasobów tak, aby nie został on umieszczony w paczce więcej niż raz.
 
 ### 3. Pakowanie
 
-Kiedy drzewo paczek zostanie skonstruowane, każdya paczka jest zapisywana do pliku za pomocą [programu pakującego](packagers.html), specyficznego dla każdego typu pliku. Programy pakujące wiedzą, jak połączyć kod z wielu zasobów do finalnego pliku, który jest ładowany przez przeglądarkę.
+Kiedy drzewo paczek zostanie skonstruowane, każda paczka jest zapisywana do pliku za pomocą [programu pakującego](packagers.html), specyficznego dla każdego typu pliku. Programy pakujące wiedzą, jak połączyć kod z wielu zasobów do finalnego pliku, który jest ładowany przez przeglądarkę.

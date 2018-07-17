@@ -4,7 +4,7 @@ Parcel od razu wspiera dzielenie kodu bez żadnej konfiguracji. To pozwala na dz
 
 Dzielenie kodu może być kontrolowane poprzez użycie [proponowanej składni](https://github.com/tc39/proposal-dynamic-import) `import()`, która działa tak jak zwykły `import` czy funkcja `require`, ale zwraca Promise. To oznacza, że moduły są ładowane asynchronicznie.
 
-Poniższy przykład pokazuje jak można używać dynamicznego importowania by wczytać podstronę aplikacji na żądanie.
+Poniższy przykład pokazuje jak można używać dynamicznego importowania, aby wczytać podstronę aplikacji na żądanie.
 
 ```javascript
 // pages/about.js
@@ -19,7 +19,7 @@ import('./pages/about').then(function (page) {
 });
 ```
 
-Ponieważ `import()` zwraca Promise, możesz również użyć składni async/await. Prawdopodobnie wymagana będzie konfiguracja Babel, by transpilować składnię, dopóki szerwsze wsparcie przez przeglądarki nie zostanie zapewnione.
+Ponieważ `import()` zwraca Promise, możesz również użyć składni async/await. Prawdopodobnie wymagana będzie konfiguracja Babel, by transpilować składnię, dopóki szersze wsparcie przez przeglądarki nie zostanie zapewnione.
 
 ```javascript
 const page = await import('./pages/about');
@@ -27,7 +27,7 @@ const page = await import('./pages/about');
 page.render();
 ```
 
-Dynamiczne importy są w Parcel również wczytywane z opóźnieniem, dlatego możesz dalej umiesczać wszystkie swoje `import()`y na górze pliku, a paczki potomne i tak nie będą wczytane do czasu ich użycia. Poniższy przykład ilustruje, jak można wczytywać podstrony aplikacji z opóźnieniem.
+Dynamiczne importy są w Parcel również wczytywane z opóźnieniem, dlatego możesz dalej umieszczać wszystkie swoje `import()`y na górze pliku, a paczki potomne i tak nie będą wczytane do czasu ich użycia. Poniższy przykład ilustruje, jak można wczytywać podstrony aplikacji z opóźnieniem.
 
 ```javascript
 // Zdefiniuj mapę nazw stron do dynamicznych importów.

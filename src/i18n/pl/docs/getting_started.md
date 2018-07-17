@@ -24,7 +24,7 @@ or
 npm init -y
 ```
 
-Parcel może użyć dowolnego pliku jako plik wejściowy, ale dobrym pomysłem zacząć jest od pliku HTML lub JavaScript. Jeśli zalinkujesz główny plik JavaScript w HTML za pomocą relatywnej ścieżki, Parcel przetworzy ją za Ciebie i zamieni odwołanie na URL do pliku wyjściowego.
+Parcel może użyć dowolnego pliku jako plik wejściowy, ale dobrym pomysłem jest zacząć od pliku HTML lub JavaScript. Jeśli zalinkujesz główny plik JavaScript w HTML za pomocą relatywnej ścieżki, Parcel przetworzy ją za Ciebie i zamieni odwołanie na URL do pliku wyjściowego.
 
 Następnie utwórz pliki index.html i index.js.
 
@@ -40,7 +40,7 @@ Następnie utwórz pliki index.html i index.js.
 console.log("hello world");
 ```
 
-Parcel ma wbudowany serwer deweloperski, który automatycznie przebudowuje aplikację po dokonaniu zmiany w pliku i wspiera [hot module replacement](hmr.html) by przyspieszyć tworzenie oprogramowania. Po prostu podaj mu twój plik wejściowy:
+Parcel ma wbudowany serwer deweloperski, który automatycznie przebudowuje aplikację po dokonaniu zmiany w pliku i wspiera [hot module replacement](hmr.html) aby przyspieszyć tworzenie oprogramowania. Po prostu podaj mu twój plik wejściowy:
 
 ```bash
 parcel index.html
@@ -54,4 +54,4 @@ Używaj serwera deweloperskiego jeśli nie masz własnego serwera, lub jeśli ap
 parcel watch index.html
 ```
 
-Kiedy zdecydujesz się zbudować stronę produkcyjnie, tryb `build` jednorazowo buduje aplikację. Przeczytaj sekcję [Produkcja](production.html), by dowiedzieć się więcej.
+Kiedy zdecydujesz się zbudować stronę produkcyjnie, tryb `build` jednorazowo buduje aplikację. Przeczytaj sekcję [Produkcja](production.html), aby dowiedzieć się więcej.

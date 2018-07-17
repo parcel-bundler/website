@@ -1,8 +1,8 @@
 # 📝 Typy Zasobów
 
-Tak jak opisano w [dokumentacji dot. Zasobów](assets.html), Parcel reprezentuje każdy plik wejściowy jako `Asset`. Typy zasobów są reprezentowane jako klasy dziedziczące z basowej klasy `Asset` i implementujące wymagane interfejsy do parsowania, analizy zależności, transformowania i generowania kodu.
+Tak jak opisano w [dokumentacji dot. Zasobów](assets.html), Parcel reprezentuje każdy plik wejściowy jako `Asset`. Typy zasobów są reprezentowane jako klasy dziedziczące z bazowej klasy `Asset` i implementujące wymagane interfejsy do parsowania, analizy zależności, transformowania i generowania kodu.
 
-Ponieważ Parcel procesuje zasoby równolegle na wielu rdzeniach procesora, typy zasobów mogą dokonywać jedynie takich transformacji, które dokonywane są na jednym pliku jednocześnie. Dla transformacji na wielu plikach może zostać użyty niestandardowy [Program pakujący](packagers.html).
+Ponieważ Parcel przetwarza zasoby równolegle na wielu rdzeniach procesora, typy zasobów mogą dokonywać jedynie takich transformacji, które dokonywane są na jednym pliku jednocześnie. Dla transformacji na wielu plikach może zostać użyty niestandardowy [Program pakujący](packagers.html).
 
 ## Interfejs Zasobu
 
@@ -43,7 +43,7 @@ class MyAsset extends Asset {
 
 ## Rejestrowanie Typu Zasobu
 
-Możesz zarejestrować swój typ zasobu w programie pakującym używając metody `addAssetType`. Akceptuje on rozszerzenie pliku do zarejestrowania i ścieżkę do modułu typu zasobu. Używana jest ścieżka zamiast faktycznego obiektu modułu dlatego, by mogła być ona przekazana do procesów wątków usługowch.
+Możesz zarejestrować swój typ zasobu w programie pakującym używając metody `addAssetType`. Akceptuje on rozszerzenie pliku do zarejestrowania i ścieżkę do modułu typu zasobu. Używana jest ścieżka zamiast faktycznego obiektu modułu dlatego, aby mogła być ona przekazana do procesów wątków usługowch.
 
 ```javascript
 const Bundler = require('parcel-bundler');
