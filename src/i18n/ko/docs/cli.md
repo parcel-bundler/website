@@ -34,6 +34,14 @@ parcel watch index.html
 parcel help
 ```
 
+### Version
+
+Parcel의 버전을 출력합니다.
+
+```bash
+parcel --version
+```
+
 ## 옵션
 
 ### 결과물 디렉토리
@@ -57,7 +65,7 @@ root
 
 ### 서빙될 public URL 설정
 
-기본값: "/"
+기본값: [--out-dir 옵션과 같음](#output-directory)
 
 같이 사용 가능한 명령어: `serve`, `watch`, `build`
 
@@ -84,6 +92,26 @@ parcel build entry.js --target node
 ```
 
 가능한 타겟: `node`, `browser` and `electron`
+
+### 캐시 디렉토리
+
+기본값: ".cache"
+
+같이 사용 가능한 명령어: `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --cache-dir build/cache
+```
+
+### 포트 번호
+
+기본값: 1234
+
+같이 사용 가능한 명령어: `serve`
+
+```bash
+parcel serve entry.js --port 1111
+```
 
 ### 로그 레벨 변경
 
@@ -148,7 +176,7 @@ parcel build entry.js --detailed-report
 
 기본값: https 비활성
 
-같이 사용 가능한 명령어: `serve`
+같이 사용 가능한 명령어: `serve`, `watch` (HMR 연결을 위해 HTTPS로 수신)
 
 ```bash
 parcel entry.js --https
@@ -160,7 +188,7 @@ parcel entry.js --https
 
 기본값: https 비활성
 
-같이 사용 가능한 명령어: `serve`
+같이 사용 가능한 명령어: `serve`, `watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -225,3 +253,26 @@ parcel build entry.js --no-minify
 ```bash
 parcel build entry.js --no-cache
 ```
+
+
+### 모듈을 UMD로 출력
+
+기본값: 비활성화
+
+같이 사용 가능한 명령어: `serve`, `watch`, `build`
+
+```bash
+parcel serve entry.js --global myvariable
+```
+
+### 실험단계의 스코프 호이스팅(scope hoisting)/트리 셰이킹(tree shaking) 지원 활성화
+
+기본값: 비활성화
+
+같이 사용 가능한 명령어: `build`
+
+```bash
+parcel serve entry.js --experimental-scope-hoisting
+```
+
+더 자세한 정보는 Devon Govett이 Parcel 1.9에 대해 작성한 글의 [Tree Shaking section(영문)](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3)을 참조하세요.

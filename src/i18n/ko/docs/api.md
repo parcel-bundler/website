@@ -29,7 +29,7 @@ const options = {
   detailedReport: false // 번들, 애셋, 파일 크기, 빌드 시간을 담은 상세한 리포트를 출력. 기본값은 false. 리포트는 오직 watch가 비활성일때만 출력됨
 };
 
-async runBundle() {
+async function runBundle() {
   // 진입점 위치와 옵션을 제공해서 번들러를 초기화
   const bundler = new Bundler(file, options);
 
@@ -45,20 +45,22 @@ runBundle();
 
 모든 번들러 이벤트 목록입니다.
 
-* `bundled`는 Parcel이 한 번 성공적으로 번들링을 마친 후 발생되어 메인 [번들](#번들)을 callback에 전달됩니다.
+* `bundled` 이벤트는 **처음 한 번만**, Parcel이 성공적으로 번들링을 마친 후 발생되어, 메인 [번들](#번들)을 callback에 전달합니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
   // bundler는 모든 애셋과 번들을 포함합니다. 자세한건 문서를 참조하세요.
 });
+// 어디선가 bundler.bundle() 를 호출함
 ```
 
-* `buildEnd`는 매 빌드 후 발생됩니다. 에러가 발생한 경우에도 발생합니다.
+* `buildEnd` 이벤트는 **재빌드를 포함한** 빌드 후 매번 발생됩니다. 에러가 발생한 경우에도 발생합니다.
 ```js
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Do something...
 });
+// 어디선가 bundler.bundle() 를 호출함
 ```
 
 ### 번들
