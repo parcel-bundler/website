@@ -68,7 +68,7 @@ bundler.bundle();
 * `buildStart` est appelé au début de la première construction, le tableau `entryFiles` est passé à la fonction de rappel
 ```Javascript
 const bundler = new Bundler(...);
-bundler.on('buildError', entryPoints => {
+bundler.on('buildStart', entryPoints => {
   // Faire quelque chose...
 });
 // Appelez ceci pour commencer l'empaquetage
