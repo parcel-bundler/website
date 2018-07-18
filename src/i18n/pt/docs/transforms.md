@@ -56,6 +56,19 @@ last 2 versions
 
 Os CSS Modules são habilitados de uma forma um pouco diferente usando a chave de "módulos" de um nível superior. Isso ocorre porque o Parcel precisa ter um suporte especial para os CSS Modules, uma vez que eles exportam um objeto a ser incluído no pacote JavaScript também. Observe que você ainda precisa instalar `postcss-modules` em seu projeto.
 
+### Configure cssnano minifier
+
+A biblioteca [cssnano](http://cssnano.co) é adicionada ao PostCSS para otimizar CSS em produção, você pode configurar a mesma criando o arquivo `cssnano.config.js`:
+
+```js
+module.exports = {
+  calc: false,
+  discardComments: {
+    removeAll: true,
+  }
+};
+```
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) é uma ferramenta para converter HTML com o auxílio de plugins. Você pode configurar o PostHTML com Parcel criando um arquivo de configuração usando um desses nomes: `.posthtmlrc` (JSON),` posthtmlrc.js` ou `posthtml.config.js`.
