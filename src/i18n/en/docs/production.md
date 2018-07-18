@@ -29,3 +29,9 @@ Parcel follows the following table, when it comes to naming bundles. (Entrypoint
 | Raw (Images, text files, ...) | Import/Require/... | ✅ |
 
 The file hash follows the following naming pattern: `<directory name>-<hash>.<extension>`
+
+## Cross platform gotchas
+
+In an effort to optimize production build performance, Parcel will try to determine the number of CPUs available at the machine running the build command so it can distribute the work accordingly. To do so, Parcel relies on the [physical-cpu-count](https://www.npmjs.com/package/physical-cpu-count) library.
+
+Be aware that this module assumes you have the [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) program available in your system.
