@@ -78,10 +78,12 @@ Parcel adds [cssnano](http://cssnano.co) to postcss in order to minify css in pr
 
 ```js
 module.exports = {
-  calc: false,
-  discardComments: {
-    removeAll: true,
-  }
+  preset: ['default', {
+    calc: false,
+    discardComments: {
+      removeAll: true,
+    }
+  }]
 };
 ```
 
