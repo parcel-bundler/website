@@ -68,7 +68,7 @@ bundler.bundle();
 * `buildStart` gets called at the start of the first build, the `entryFiles` Array gets passed to the callback
 ```Javascript
 const bundler = new Bundler(...);
-bundler.on('buildError', entryPoints => {
+bundler.on('buildStart', entryPoints => {
   // Do something...
 });
 // Call this to start bundling
