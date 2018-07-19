@@ -19,6 +19,7 @@ const options = {
   watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
   cache: true, // Enabled or disables caching, defaults to true
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
+  contentHash: false, // Disable content hash from being included on the filename
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   target: 'browser', // browser/node/electron, defaults to browser
   https: false, // Serve files over https or http, defaults to false
