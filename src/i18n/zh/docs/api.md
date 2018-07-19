@@ -2,7 +2,7 @@
 
 ## Bundler
 
-你可以选择使用 API 替代 CLI 来初始化 bunlder 对象，以获取更高级的使用方式(例如：在每次构建时进行自定义操作)。
+你可以选择使用 API 替代 CLI 来初始化 bundler 对象，以获取更高级的使用方式(例如：在每次构建时进行自定义操作)。
 针对每个选项都给出了可参考的示例进行解释说明：
 ```Javascript
 const Bundler = require('parcel-bundler');
