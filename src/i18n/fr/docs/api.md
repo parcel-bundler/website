@@ -19,6 +19,7 @@ const options = {
   watch: true, // Surveiller les fichiers et les reconstruire lors d'un changement, par défaut pour process.env.NODE_ENV !== 'production'
   cache: true, // Active ou non la mise en cache, la valeur par défaut est true
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
+  contentHash: false, // Désactive l'inclusion du hachage de contenu sur le nom du fichier
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
   https: false, // Sert les fichiers sur https ou http, par défaut à false
