@@ -12,8 +12,8 @@ parcel index.html
 
 ### Build
 
-Собирает ресурсы за один раз, это также минифицирует их и устанавливает переменную окружения  `NODE_ENV=production`.
-См. [Production](production.html) для получения дополнительной информации.
+Собирает ресурсы за один раз, это также минифицирует их и устанавливает переменную окружения `NODE_ENV=production`.
+См. [Работа в продакшене](production.html) для получения дополнительной информации.
 
 ```bash
 parcel build index.html
@@ -33,6 +33,14 @@ parcel watch index.html
 
 ```bash
 parcel help
+```
+
+### Version
+
+Показывает номер версии Parcel
+
+```bash
+parcel --version
 ```
 
 ## Опции
@@ -58,7 +66,7 @@ root
 
 ### Установить общедоступный URL для сервера
 
-Значение по умолчанию: "/"
+Значение по умолчанию: [аналогично указанному в опции --out-dir](#output-directory)
 
 Доступно для: `serve`, `watch`, `build`
 
@@ -85,6 +93,26 @@ parcel build entry.js --target node
 ```
 
 Возможные цели: `node`, `browser`, `electron`
+
+### Каталог кеширования
+
+Значение по умолчанию: ".cache"
+
+Доступно для: `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --cache-dir build/cache
+```
+
+### Порт
+
+Значение по умолчанию: 1234
+
+Доступно для: `serve`
+
+```bash
+parcel serve entry.js --port 1111
+```
 
 ### Изменить уровень логирования
 
@@ -147,9 +175,9 @@ parcel build entry.js --detailed-report
 
 ### Включить https
 
-Значение по умолчанию: https disabled
+Значение по умолчанию: https отключён
 
-Доступно для: `serve`
+Доступно для: `serve`, `watch` (работает на HTTPS для подключений HMR)
 
 ```bash
 parcel build entry.js --https
@@ -159,9 +187,9 @@ parcel build entry.js --https
 
 ### Установка пользовательского сертификата
 
-Значение по умолчанию: https отключен
+Значение по умолчанию: https отключён
 
-Доступно для: `serve`
+Доступно для: `serve`, `watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -199,7 +227,7 @@ parcel entry.js --no-autoinstall
 
 ### Отключение HMR
 
-Значение по умолчанию: HMR включен 
+Значение по умолчанию: HMR включён
 
 Доступно для: `serve`, `watch`
 
@@ -226,3 +254,25 @@ parcel build entry.js --no-minify
 ```bash
 parcel build entry.js --no-cache
 ```
+
+### Сделать глобальными модули как UMD
+
+Значение по умолчанию: отключено
+
+Доступно для: `serve`, `watch`, `build`
+
+```bash
+parcel serve entry.js --global myvariable
+```
+
+### Включить поддержку подъёма области видимости/tree shaking
+
+Значение по умолчанию: отключено
+
+Доступно для: `build`
+
+```bash
+parcel serve entry.js --experimental-scope-hoisting
+```
+
+Для получения дополнительной информации смотрите [раздел Tree Shaking](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) в записи Девона Говетта (Devon Govett) про Parcel 1.9.
