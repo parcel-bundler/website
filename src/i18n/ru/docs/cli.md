@@ -66,7 +66,7 @@ root
 
 ### Установить общедоступный URL для сервера
 
-Значение по умолчанию: [то же самое, что и опция --out-dir](#output-directory)
+Значение по умолчанию: [аналогично указанному в опции --out-dir](#output-directory)
 
 Доступно для: `serve`, `watch`, `build`
 
@@ -227,7 +227,7 @@ parcel entry.js --no-autoinstall
 
 ### Отключение HMR
 
-Значение по умолчанию: HMR включен
+Значение по умолчанию: HMR включён
 
 Доступно для: `serve`, `watch`
 
@@ -255,7 +255,7 @@ parcel build entry.js --no-minify
 parcel build entry.js --no-cache
 ```
 
-### Сделать глобальным модули как UMD
+### Сделать глобальными модули как UMD
 
 Значение по умолчанию: отключено
 
@@ -265,7 +265,7 @@ parcel build entry.js --no-cache
 parcel serve entry.js --global myvariable
 ```
 
-### Включить поддержку подъём области видимости/tree shaking
+### Включить поддержку подъёма области видимости/tree shaking
 
 Значение по умолчанию: отключено
 
