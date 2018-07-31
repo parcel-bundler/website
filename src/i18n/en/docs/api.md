@@ -21,6 +21,7 @@ const options = {
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
   contentHash: false, // Disable content hash from being included on the filename
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
+  scopeHoist: false, // turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
   target: 'browser', // browser/node/electron, defaults to browser
   https: false, // Serve files over https or http, defaults to false
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
