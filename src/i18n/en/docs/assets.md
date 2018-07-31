@@ -37,6 +37,9 @@ const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 
 // Read contents as a Buffer
 const buffer = fs.readFileSync(__dirname + '/test.png');
+
+// Convert Buffer contents to an image
+<img  src={`data:image/png;base64,${buffer.toString('base64')}`}/>
 ```
 
 ## CSS
