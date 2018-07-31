@@ -51,6 +51,8 @@ class MyAsset extends Asset {
     // Can be used for combining multiple asset types
   }
 }
+
+module.exports = MyAsset
 ```
 
 ## Registering an Asset Type
