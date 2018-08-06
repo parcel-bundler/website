@@ -4,7 +4,7 @@ Parcel zbudowany jest wokół zasobów. Zasób może reprezentować dowolny plik
 
 ## JavaScript
 
-Najbardziej tradycyjnym typem pliku dla programów tworzących pakiety jest JavaScript. Parcel wspiera zarówno składnię CommonJS, jak i modułów ES6 do celu importowania plików. Wspiera również składnię `import()` do asychronicznego wczytywania modułów, co szerzej opisane jest w sekcji [Dzielenie Kodu](code_splitting.html).
+Najbardziej tradycyjnym typem pliku dla programów tworzących pakiety jest JavaScript. Parcel wspiera zarówno składnię CommonJS, jak i modułów ES6 do celu importowania plików. Wspiera również dynamiczną składnię `import()` do asychronicznego wczytywania modułów, co szerzej opisane jest w sekcji [Dzielenie Kodu](code_splitting.html).
 
 ```javascript
 // Importuj moduł z użyciem składni CommonJS
@@ -27,7 +27,7 @@ import classNames from './test.css';
 import imageURL from './test.png';
 ```
 
-Jeśli chcesz wstawić plik w kod w paczce wyjściowej JavaScript zamiast odwołania do niego po URL, możesz użyć API `fs.readFileSync` z Node.js. URL-e muszą być możliwe do statycznej analizy, dlatego nie mogą posiadać żadnych zmiennych (oprócz `__dirname` i `__filename`).
+Jeśli chcesz wstawić plik w kod w paczce wyjściowej JavaScript zamiast odwołania do niego poprzez URL, możesz użyć API `fs.readFileSync` z Node.js. URL-e muszą być możliwe do statycznej analizy, dlatego nie mogą posiadać żadnych zmiennych (oprócz `__dirname` i `__filename`).
 
 ```javascript
 import fs from 'fs';
@@ -41,7 +41,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 
 ## CSS
 
-Zasoby CSS mogą być importowane z pliku JavaScript lub pliku HTML. Mogą zawierać zależności zdefiniowane za pomocą składni `@import`, jak również odwołania do obrazów, fontów itd. za pomocą funkcji `url()`. Inne pliki CSS `@import`owane do zasobu są wstawiane w kod tej samej paczki wyjściowej CSS, a odwołania `url()` są przepisywane tak, by zawierały ścieżki do plików wyjściowych. Wszystkie ścieżki powinny być relatywne do pliku CSS.
+Zasoby CSS mogą być importowane z pliku JavaScript lub pliku HTML. Mogą zawierać zależności zdefiniowane za pomocą składni `@import`, jak również odwołania do obrazów, fontów itd. za pomocą funkcji `url()`. Inne pliki CSS `@import`owane do zasobu są wstawiane w kod tej samej paczki wyjściowej CSS, a odwołania `url()` są przepisywane tak, aby zawierały ścieżki do plików wyjściowych. Wszystkie ścieżki powinny być relatywne do pliku CSS.
 
 ```css
 /* Importuj inny plik CSS */
@@ -53,7 +53,7 @@ Zasoby CSS mogą być importowane z pliku JavaScript lub pliku HTML. Mogą zawie
 }
 ```
 
-Oprócz czystego CSS, inne języki kompilowalne-do-CSS jak LESS, SASS i Stylus są także wspierane i działają w identyczny sposób.
+Oprócz czystego CSS, inne języki kompilowalne do CSS jak LESS, SASS i Stylus są także wspierane i działają w identyczny sposób.
 
 ## SCSS
 
@@ -73,7 +73,7 @@ Zależności w plikach SCSS mogą być definiowane za pomocą składni `@import`
 
 ## HTML
 
-Zasoby HTML są często plikami wejściowymi które są podawane do Parcel, ale mogą być także odwołaniami w plikach JavaScript, np. do tworzenia linków do innych stron. URL-e do skryptów, styli, mediów i innych plików HTML są ekstraktowane i komplilowane tak jak opisano powyżej. Odwołania są przepisywane w HTML tak, by zawierały ścieżki do plików wyjściowych. Wszystkie ścieżki powinny być relatywne do pliku HTML.
+Zasoby HTML są często plikami wejściowymi które są podawane do Parcel, ale mogą być także odwołaniami w plikach JavaScript, np. do tworzenia linków do innych stron. URL-e do skryptów, styli, mediów i innych plików HTML są ekstraktowane i komplilowane tak jak opisano powyżej. Odwołania są przepisywane w HTML tak, aby zawierały ścieżki do plików wyjściowych. Wszystkie ścieżki powinny być relatywne do pliku HTML.
 
 ```html
 <html>
