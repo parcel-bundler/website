@@ -51,6 +51,8 @@ class MyAsset extends Asset {
     // Peut être utilisé pour combiner plusieurs types de ressource
   }
 }
+
+module.exports = MyAsset
 ```
 
 ## Enregistrement d'un type d'Asset

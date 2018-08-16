@@ -23,6 +23,8 @@ class MyPackager extends Packager {
     await this.dest.end(trailer);
   }
 }
+
+module.exports = MyPackager
 ```
 
 ## Enregistrement d'un packager
