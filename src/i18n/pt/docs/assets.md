@@ -56,11 +56,11 @@ Os arquivos CSS podem ser importados a partir de um arquivo JavaScript ou HTML e
 Além de somente CSS, outras linguagens que transpilam para ele, como LESS, SASS e Stylus, também são suportadas e funcionam da mesma maneira.
 
 ## SCSS
-Para utilizar SCSS é necessário utilizar o módulo `node-sass`. Para instalar, utilize o npm:
+Para utilizar SCSS é necessário utilizar o módulo `sass`. Para instalar, utilize o npm:
 ```bash
-npm install node-sass
+npm install sass
 ```
-Assim que você tiver o `node-sass` instalado, você já pode importar os arquivos SCSS no seu arquivo JavaScript.
+Assim que você tiver o `sass` instalado, você já pode importar os arquivos SCSS no seu arquivo JavaScript.
 ```javascript
 import './custom.scss'
 ```
