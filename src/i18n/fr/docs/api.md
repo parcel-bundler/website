@@ -21,6 +21,7 @@ const options = {
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   contentHash: false, // Désactive l'inclusion du hachage de contenu sur le nom du fichier
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
+  scopeHoist: false, // Active le flag expérimental de scope hoisting/tree shaking, pour des paquets plus petits en production
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
   https: false, // Sert les fichiers sur https ou http, par défaut à false
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
