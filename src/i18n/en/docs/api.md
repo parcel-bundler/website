@@ -23,7 +23,10 @@ const options = {
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   scopeHoist: false, // turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
   target: 'browser', // browser/node/electron, defaults to browser
-  https: false, // Serve files over https or http, defaults to false
+  https: { // Define a custom {key, cert} pair, use true to generate one or false to use http
+    cert: './ssl/c.crt', // path to custom certificate
+    key: './ssl/k.key' // path to custom key
+  },
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
