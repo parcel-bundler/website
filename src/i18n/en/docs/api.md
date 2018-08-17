@@ -23,8 +23,7 @@ const options = {
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   scopeHoist: false, // turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
   target: 'browser', // browser/node/electron, defaults to browser
-  https: false, // Serve files over https or http, defaults to false
-  https: {
+  https: { // Define a custom {key, cert} pair, use true to generate one or false to use http
     cert: './ssl/c.crt', // path to custom certificate
     key: './ssl/k.key' // path to custom key
   },
