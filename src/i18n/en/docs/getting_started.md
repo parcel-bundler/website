@@ -58,12 +58,12 @@ parcel watch index.html
 
 In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
 
-Expecifing the file names:
+Specifing the file names:
 ```bash
 parcel index.html about.html
 ```
 
-Use tokens and create a blob:
+Use tokens and create a glob:
 ```bash
 parcel *.html
 ```
@@ -77,5 +77,7 @@ parcel *.html
 ```
 
 Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicity point to the file http://localhost:1234/folder-1/index.html.
+
+### Building for production
 
 When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
