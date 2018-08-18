@@ -46,7 +46,7 @@ Parcel 内置了一个当你改变文件时能够自动重新构建应用的开�
 parcel index.html
 ```
 
-现在在浏览器中打开 [http://localhost:1234/](http://localhost:1234/)。你也可以使用 `-p <port number>` 选项覆盖默认的端口。
+现在在浏览器中打开 [http://localhost:1234/](http://localhost:1234/)。如果模块热重载没有生效，你可能需要[配置你的编辑器](hmr.html#safe-write)。你也可以使用 `-p <port number>` 选项覆盖默认的端口。
 如果没有自己的服务器可使用开发服务器，或者你的应用程序完全由客户端呈现。如果有自己的服务器，你可以在`watch` 模式下运行 Parcel 。当文件改变它仍然会自动重新构建并支持热替换，但是不会启动 web 服务。
 
 ```bash

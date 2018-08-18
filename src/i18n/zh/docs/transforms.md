@@ -60,6 +60,19 @@ last 2 versions
 
 为了使 CSS 模块能够与现有模块一起正常工作，则需在自己的 `.postcssrc` 中指定这种支持。
 
+### 设置 cssnano 的压缩配置
+
+Parcel 在生产环境构建时，会使用 [cssnano](http://cssnano.co) 来压缩 css 文件。可以创建一个 `cssnano.config.js` 文件来进行详细的压缩配置：
+
+```js
+module.exports = {
+  calc: false,
+  discardComments: {
+    removeAll: true,
+  }
+};
+```
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的： `.posthtmlrc` (JSON) ，`posthtmlrc.js` ，或者 `posthtml.config.js`。

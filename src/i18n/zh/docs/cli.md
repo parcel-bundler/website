@@ -62,7 +62,7 @@ root
 可用于：`serve`，`watch`，`build`
 
 ```bash
-parcel build entry.js --public-url ./dist/
+parcel entry.js --public-url ./dist/
 ```
 
 将输出到：
@@ -92,7 +92,7 @@ parcel build entry.js --target node
 可用于：`serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --log-level 1
+parcel entry.js --log-level 1
 ```
 
 | 日志等级 | 效果                 |
@@ -109,7 +109,7 @@ parcel build entry.js --log-level 1
 可用于：`serve`，`watch`
 
 ```bash
-parcel build entry.js --hmr-hostname parceljs.org
+parcel entry.js --hmr-hostname parceljs.org
 ```
 
 ### HMR 端口
@@ -119,7 +119,7 @@ parcel build entry.js --hmr-hostname parceljs.org
 可用于：`serve`, `watch`
 
 ```bash
-parcel build entry.js --hmr-port 8080
+parcel entry.js --hmr-port 8080
 ```
 
 ### 输出的文件名
@@ -144,14 +144,26 @@ parcel build entry.js --out-file output.html
 parcel build entry.js --detailed-report
 ```
 
+### 启用 https
+
+默认为：不启用 https
+
+可用于： `serve`
+
+```bash
+parcel entry.js --https
+```
+
+⚠️ 这个配置会生成一个自签名证书，你可能需要配置你的浏览器，使之接受 localhost 上的自签名证书。
+
 ### 设置一个自定义证书
 
-默认为：生成一个证书
+默认为：不启用 https
 
 可用于：`serve`
 
 ```bash
-parcel build entry.js --cert certificate.cert --key private.key
+parcel entry.js --cert certificate.cert --key private.key
 ```
 
 ### 在浏览器中打开
@@ -161,7 +173,7 @@ parcel build entry.js --cert certificate.cert --key private.key
 可用于：`serve`
 
 ```bash
-parcel build entry.js --open
+parcel entry.js --open
 ```
 
 ### 禁用 source-maps
@@ -181,7 +193,7 @@ parcel build entry.js --no-source-maps
 可用于：`serve`，`watch`
 
 ```bash
-parcel build entry.js --no-autoinstall
+parcel entry.js --no-autoinstall
 ```
 
 ### 禁用 HMR
@@ -191,7 +203,7 @@ parcel build entry.js --no-autoinstall
 可用于：`serve`，`watch`
 
 ```bash
-parcel build entry.js --no-hmr
+parcel entry.js --no-hmr
 ```
 
 ### 禁用 minification
