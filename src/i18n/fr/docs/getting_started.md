@@ -54,4 +54,30 @@ Utilisez le serveur de développement lorsque vous n'avez pas votre propre serve
 parcel watch index.html
 ```
 
+### Plusieurs fichiers comme point d'entrée
+
+Si vous avez plusieurs fichiers comme point d'entrée, disons `index.html` et `about.html`, vous avez deux façons d'exécuter l'empaqueteur :
+
+En spécifiant les noms des fichiers :
+```bash
+parcel index.html about.html
+```
+
+Utilisez des tokens et créez un glob :
+```bash
+parcel *.html
+```
+
+*REMARQUE :* Si vous avez une structure de fichier comme celle-ci :
+```
+- répertoire-1
+-- index.html
+- répertoire-2
+-- index.html
+```
+
+La recherche vers http://localhost:1234/folder-1/ ne fonctionnera pas, à la place, vous devez indiquer explicitement le fichier http://localhost:1234/folder-1/index.html.
+
+### Construction pour la production
+
 Lorsque vous êtes prêt à construire les fichiers finals utilisés pour la production, le mode `build` arrête de scruter les modifications et ne construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
