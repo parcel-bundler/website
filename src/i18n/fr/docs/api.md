@@ -8,8 +8,12 @@ Un exemple de watch avec chaque option expliquée :
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 
-// Emplacement du fichier d'entrée
-const file = Path.join(__dirname, './index.html');
+// Emplacement du fichier unique en point d'entrée :
+const entryFiles = Path.join(__dirname, './index.html');
+// OU : Plusieurs fichiers avec un glob (cela peut être aussi un .js)
+// const entryFiles = './src/*.js';
+// OU : Plusieurs fichiers dans un tableau
+// const entryFiles = ['./src/index.html', './un/autre/repertoire/scripts.js'];
 
 // Options de l'empaqueteur
 const options = {
@@ -23,7 +27,10 @@ const options = {
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   scopeHoist: false, // Active le flag expérimental de scope hoisting/tree shaking, pour des paquets plus petits en production
   target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
-  https: false, // Sert les fichiers sur https ou http, par défaut à false
+  https: { // Définit une paire personnalisée {key, cert}, utilisez true pour en générer un ou false pour utiliser http
+    cert: './ssl/c.crt', // chemin vers le certificat personnalisé
+    key: './ssl/k.key' // chemin vers la clé personnalisée
+  },
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
@@ -33,7 +40,7 @@ const options = {
 
 async function runBundle() {
   // Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
-  const bundler = new Bundler(file, options);
+  const bundler = new Bundler(entryFiles, options);
 
   // Démarre l'empaqueteur, cela renvoie le paquet principal
   // Utilisez les événements si vous êtes en mode watch, car cette Promise n'est résolue qu'une seule fois et non à chaque reconstruction
