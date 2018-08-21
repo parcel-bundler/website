@@ -58,7 +58,7 @@ Let's say that we develop in this order:
 
     </html>
   ```
-2. exec command `npm start` (`pkg.scripts.start = parcel start src/index.html`)
+2. exec command `parcel start src/index.html`
 3. open the browser with the related localhost (usually `localhost:1234`)
 4. it's blank (that's correct)
 5. now insert `<script src>` below the `<div id="app">`
