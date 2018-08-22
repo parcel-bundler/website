@@ -19,4 +19,4 @@ Publish this package on npm using `parcel-plugin-` or `@your-scope/parcel-plugin
 
 ## Using Plugins
 
-Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-` or `@your-scope/parcel-plugin-`, e.g. `parcel-plugin-foo` or `@your-scope/parcel-plugin-foo`. Any dependencies listed in `package.json` with these prefixes will be automatically loaded during initialization.
+Using plugins in Parcel could not be any simpler. All you need to do is install and save them in your `package.json`. Plugins should be named with the prefix `parcel-plugin-` or `@your-scope/parcel-plugin-`, e.g. `parcel-plugin-foo` or `@your-scope/parcel-plugin-foo`. Any dependencies listed in `package.json` with these prefixes will automatically be loaded during initialization.
