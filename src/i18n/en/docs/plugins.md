@@ -15,8 +15,8 @@ module.exports = function (bundler) {
 };
 ```
 
-Publish this package on npm using the `parcel-plugin-` prefix, and it will be automatically detected and loaded as described below.
+Publish this package on npm using `parcel-plugin-` or `@your-scope/parcel-plugin-` prefixes, and it will be automatically detected and loaded as described below.
 
 ## Using Plugins
 
-Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-`, e.g. `parcel-plugin-foo`. Any dependencies listed in `package.json` with this prefix will be automatically loaded during initialization.
+Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-` or `@your-scope/parcel-plugin-`, e.g. `parcel-plugin-foo` or `@your-scope/parcel-plugin-foo`. Any dependencies listed in `package.json` with these prefixes will be automatically loaded during initialization.
