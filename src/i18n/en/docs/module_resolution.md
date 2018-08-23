@@ -44,10 +44,12 @@ Alias mappings apply to many asset types and does not specifically support mappi
 {
   "name": "some-package",
   "alias": {
-    "ipcRenderer": "./electron-ipc.js"
+    "ipcRenderer": "./electron-ipc.js" // specify file extension
   }
 }
 ```
+
+and re-export the named export within the aliased file:
 
 ```js
 // electron-ipc.js
