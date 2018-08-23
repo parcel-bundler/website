@@ -1,6 +1,6 @@
 # :notebook_with_decorative_cover: Module Resolution
 
-Parcel (v1.7.0 and above) supports multiple module resolution strategies out of the box so you don't have to deal with endless `../../`.
+Parcel (v1.7.0 and above) supports multiple module resolution strategies out of the box so you don't have to deal with endless relative paths `../../`.
 
 ## Absolute Paths
 
@@ -33,7 +33,7 @@ This example aliases `react` to `preact` and some local custom module that is no
 
 Avoid using `~` in your aliases as it is already used by parcel as mentioned earlier.
 
-## Language Specific Conditions
+## Other Conditions
 
 ### JavaScript Named Exports
 
@@ -66,3 +66,7 @@ TypeScript will need to know about your use of the `~` module resolution or alia
       "~*": ["./src/*"]
     },
 ```
+
+### Monorepo Resolution
+
+TODO: answer this - https://github.com/parcel-bundler/parcel/pull/850#issuecomment-372105317
