@@ -110,6 +110,12 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 | OpenGL Shading Language (GLSL) | `glsl`, `vert`, `frag`           |
 | Pug                            | `jade`, `pug`                    |
 
-For any asset type not supported by default you can check if a plugin [already exists](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1) or [create your own](https://parceljs.org/plugins.html).
+<sub>\* Documentation can sometimes get out of date, for the current supported asset types see [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). For the actual list of Parsers see [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
 
-\* Documentation can sometimes get out of date, for the current supported asset types see [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). For the actual list of Parsers see [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).
+For any asset type not supported by default you can check if a plugin already exists:
+
+- [Yarn](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1)
+- [npm](https://www.npmjs.com/search?q=parcel-plugin-)
+- [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel#plugins)
+
+or [create your own](https://parceljs.org/plugins.html).
