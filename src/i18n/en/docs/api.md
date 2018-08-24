@@ -32,6 +32,7 @@ const options = {
     key: './ssl/k.key' // path to custom key
   },
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
+  hmr: true, //Enable or disable HMR while watching
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (not supported in minified builds yet)
   hmrHostname: '', // A hostname for hot module reload, default to ''
