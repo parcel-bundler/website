@@ -4,7 +4,7 @@ Parcel uses [dotenv](https://github.com/motdotla/dotenv) to support loading envi
 
 `.env` files are to be stored alongside the `package.json` that contains your `parcel-bundler` dependency.
 
-Parcel loads `.env` files with following names:
+Parcel loads `.env` files with these specific names for the following `NODE_ENV` values:
 
 | valid `.env` filenames   | `NODE_ENV=\*` | `NODE_ENV=test` |
 | ------------------------ | ------------- | --------------- |
