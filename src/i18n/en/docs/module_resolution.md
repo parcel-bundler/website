@@ -91,4 +91,4 @@ Unadvised usage:
 
 - **avoid** `~` use within monorepos.
 
-If you would like to contribute to these recommendations, please provide example repos when opening issues to support the discussion.
+If you're a monorepo user and would like to contribute to these recommendations, please provide example repos when opening issues to support the discussion.
