@@ -36,7 +36,7 @@ This example aliases `react` to `preact` and some local custom module that is no
 }
 ```
 
-Avoid using any special characters in your aliases as some may be used by parcel and others by 3rd party tools or extensions. For example:
+Avoid using any special characters in your aliases as some may be used by Parcel and others by 3rd party tools or extensions. For example:
 
 - `~` used by Parcel to resolve [tilde paths](#~-tilde-paths).
 - `@` used by npm to resolve npm organisations.
