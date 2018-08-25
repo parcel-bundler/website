@@ -41,6 +41,8 @@ Avoid using any special characters in your aliases as some may be used by Parcel
 - `~` used by Parcel to resolve [tilde paths](#~-tilde-paths).
 - `@` used by npm to resolve npm organisations.
 
+We advise being explicit when defining your aliases, so please **specify file extensions**, otherwise Parcel will need to guess. See [JavaScript Named Exports](#JavaScript-Named-Exports) for an example of this.
+
 ## Other Conditions
 
 ### JavaScript Named Exports
@@ -87,7 +89,6 @@ These are the advised usages with monorepos at this time:
 Advised usage:
 
 - use relative paths.
-- be as explicit as possible (use file extensions).
 - use `/` for a root path if a root is required.
 
 Unadvised usage:
