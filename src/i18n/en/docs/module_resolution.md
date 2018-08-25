@@ -70,11 +70,13 @@ TypeScript will need to know about your use of the `~` module resolution or alia
 
 ```json
 //tsconfig.json
+{
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "~*": ["./src/*"]
-    },
+    }
+}
 ```
 
 ### Monorepo Resolution
