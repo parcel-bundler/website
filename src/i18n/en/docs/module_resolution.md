@@ -1,4 +1,4 @@
-# :notebook_with_decorative_cover: Module Resolution
+# 📔 Module Resolution
 
 Parcel (v1.7.0 and above) supports multiple module resolution strategies out of the box so you don't have to deal with endless relative paths `../../`.
 
