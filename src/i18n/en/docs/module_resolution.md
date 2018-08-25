@@ -69,13 +69,14 @@ module.exports = require("electron").ipcRenderer;
 TypeScript will need to know about your use of the `~` module resolution or alias mappings. Please refer to the [TypeScript Module Resolution docs](https://www.typescriptlang.org/docs/handbook/module-resolution.html) for further information.
 
 ```json
-//tsconfig.json
+// tsconfig.json
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "~*": ["./src/*"]
     }
+  }
 }
 ```
 
