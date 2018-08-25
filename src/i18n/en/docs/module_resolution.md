@@ -2,13 +2,18 @@
 
 Parcel (v1.7.0 and above) supports multiple module resolution strategies out of the box so you don't have to deal with endless relative paths `../../`.
 
+Notable terms:
+
+- **project root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
+- **package root**: the directory of the nearest module root in `node_modules`.
+
 ## Absolute Paths
 
-`/foo` will resolve `foo` relative to the **project root** (top-level `package.json`)
+`/foo` will resolve `foo` relative to the **project root**.
 
 ## ~ Tilde Paths
 
-`~/foo` will resolve `foo` relative to the nearest **package root** in `node_modules` or the **project root** if not in `node_modules`.
+`~/foo` will resolve `foo` relative to the nearest **package root** or, if not found, the **project root**.
 
 ## Aliasing
 
@@ -31,7 +36,10 @@ This example aliases `react` to `preact` and some local custom module that is no
 }
 ```
 
-Avoid using `~` in your aliases as it is already used by parcel as mentioned earlier.
+Avoid using any special characters in your aliases as some may be used by parcel and others by 3rd party tools or extensions. For example:
+
+- `~` used by Parcel to resolve [tilde paths](#~-tilde-paths).
+- `@` used by npm to resolve npm organisations.
 
 ## Other Conditions
 
@@ -56,7 +64,7 @@ and re-export the named export within the aliased file:
 module.exports = require("electron").ipcRenderer;
 ```
 
-### TypeScript
+### TypeScript ~ Resolution
 
 TypeScript will need to know about your use of the `~` module resolution or alias mappings. Please refer to the [TypeScript Module Resolution docs](https://www.typescriptlang.org/docs/handbook/module-resolution.html) for further information.
 
@@ -71,4 +79,16 @@ TypeScript will need to know about your use of the `~` module resolution or alia
 
 ### Monorepo Resolution
 
-TODO: answer this - https://github.com/parcel-bundler/parcel/pull/850#issuecomment-372105317
+These are the advised usages with monorepos at this time:
+
+Advised usage:
+
+- use relative paths.
+- be as explicit as possible (use file extensions).
+- use `/` for a root path if a root is required.
+
+Unadvised usage:
+
+- **avoid** `~` use within monorepos.
+
+If you would like to contribute to these recommendations, please provide example repos when opening issues to support the discussion.
