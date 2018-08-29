@@ -4,23 +4,21 @@ Parcel 是 Web 应用打包工具，适用于经验不同的开发者。它利�
 
 首先通过 Yarn 或者 npm 安装 Parcel ：
 
-Yarn:
 ```bash
+# Yarn
 yarn global add parcel-bundler
-```
 
-npm:
-```bash
+# npm
 npm install -g parcel-bundler
 ```
 
 在你正在使用的项目目录下创建一个 package.json 文件：
 
 ```bash
+# Yarn
 yarn init -y
-```
-or 
-```bash
+
+# npm
 npm init -y
 ```
 
