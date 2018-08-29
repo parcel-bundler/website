@@ -4,23 +4,21 @@ Parcel&nbsp;&mdash; это упаковщик для веб-приложений
 
 Сначала установите Parcel с помощью Yarn или npm:
 
-Yarn:
 ```bash
+# Yarn
 yarn global add parcel-bundler
-```
 
-npm:
-```bash
+# npm
 npm install -g parcel-bundler
 ```
 
 Создайте файл package.json в папке вашего проекта, используя:
 
 ```bash
+# Yarn
 yarn init -y
-```
-или 
-```bash
+
+# npm
 npm init -y
 ```
 

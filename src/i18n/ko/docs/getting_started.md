@@ -4,23 +4,21 @@ Parcel`[파설, /parsəl/]`은 개발 경험에서 차이를 느낄수 있는 �
 
 먼저 Yarn이나 npm으로 Parcel을 설치하세요.
 
-Yarn:
 ```bash
+# Yarn
 yarn global add parcel-bundler
-```
 
-npm:
-```bash
+# npm
 npm install -g parcel-bundler
 ```
 
 그 다음, package.json파일을 프로젝트 디렉토리에 만드세요.
 
 ```bash
+# Yarn
 yarn init -y
-```
-또는
-```bash
+
+# npm
 npm init -y
 ```
 
