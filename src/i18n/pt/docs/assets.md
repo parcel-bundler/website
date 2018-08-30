@@ -83,3 +83,36 @@ Arquivos HTML são frequentemente utilizados como ponto de entrada para o Parcel
 </body>
 </html>
 ```
+
+## Recursos suportados por Padrão
+
+| Tipo de Recurso                | Extensões Associadas             |
+| ------------------------------ | -------------------------------- |
+| JavaScript                     | `js`, `jsx`, `es6`, `jsm`, `mjs` |
+| ReasonML                       | `ml`,`re`                        |
+| TypeScript                     | `ts`, `tsx`                      |
+| CoffeeScript                   | `coffee`                         |
+| Vue                            | `vue`                            |
+| JSON                           | `json`, `json5`                  |
+| YAML                           | `yaml`, `yml`                    |
+| TOML                           | `toml`                           |
+| GraphQL                        | `gql`, `graphql`                 |
+| CSS                            | `css`, `pcss`, `postcss`         |
+| Stylus                         | `stylus`                         |
+| LESS                           | `less`                           |
+| SASS                           | `sass`, `scss`                   |
+| HTML                           | `htm`, `html`                    |
+| Rust                           | `rs`                             |
+| WebManifest                    | `webmanifest`                    |
+| OpenGL Shading Language (GLSL) | `glsl`, `vert`, `frag`           |
+| Pug                            | `jade`, `pug`                    |
+
+<sub>\* A documentação pode ficar desatualizada algumas vezes, para ver os tipos de recursos suportados atualmente veja [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). Para a lista atual de <i>parsers</i> veja [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
+
+Para qualquer tipo de recurso não suportado por padrão, você pode verificar se já existe plugins disponíveis:
+
+- [Yarn](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1)
+- [npm](https://www.npmjs.com/search?q=parcel-plugin-)
+- [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel#plugins)
+
+ou [criar o seu próprio plugin](https://parceljs.org/plugins.html).
