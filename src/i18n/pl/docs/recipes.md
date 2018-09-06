@@ -81,3 +81,28 @@ Dodaj skrypt startowy do `package.json`:
   "start": "parcel index.html"
 }
 ```
+
+## Vue
+
+Najpierw należy zainstalować zależności potrzebne dla Vue:
+
+```bash
+npm install --save vue
+npm install --save-dev parcel-bundler
+```
+
+<sub>Lub, jeśli używasz Yarn:</sub>
+
+```bash
+yarn add vue
+yarn add --dev parcel-bundler
+```
+
+Dodaj skrypt startowy do `package.json`:
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
