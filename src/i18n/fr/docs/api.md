@@ -32,6 +32,7 @@ const options = {
     key: './ssl/k.key' // chemin vers la clé personnalisée
   },
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
+  hmr: true, // Active ou désactive le HMR lors de la surveillance (watch)
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (pas encore pris en charge dans les versions minifiées)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
