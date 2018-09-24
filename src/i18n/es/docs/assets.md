@@ -56,11 +56,11 @@ Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML,
 A parte de archivos CSS planos, otros lenguajes que compilan a CSS como LESS, SASS, y Stylus son también soportados, y funcionan de la misma manera.
 
 ## SCSS
-Para compilar SCSS es necesario el módulo `node-sass`. Puedes instalarlo usando npm:
+Para compilar SCSS es necesario el módulo `sass`. Puedes instalarlo usando npm:
 ```
-npm install node-sass
+npm install sass
 ```
-Una vez que tengas `node-sass` instalado puedes importar tus archivos SCSS desde archivos JavaScript.
+Una vez que tengas `sass` instalado puedes importar tus archivos SCSS desde archivos JavaScript.
 ```
 import './custom.scss'
 ```
