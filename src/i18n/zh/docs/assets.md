@@ -56,11 +56,11 @@ JavaScript 文件或 HTML 文件都能导入 CSS 资源，并且能通过 `@impo
 除了普通的 CSS，其他的 LESS，SASS，以及 Stylus 等CSS预处理器语言也是支持的，并且执行方法是与之相同的。
 
 ## SCSS
-编译 SCSS 需要 `node-sass` 模块. 通过 npm 安装它:
+编译 SCSS 需要 `sass` 模块. 通过 npm 安装它:
 ```bash
-npm install node-sass
+npm install sass
 ```
-一旦安装了 `node-sass`，你就可以在 JavaScript 文件中引入 SCSS 文件。
+一旦安装了 `sass`，你就可以在 JavaScript 文件中引入 SCSS 文件。
 ```javascript
 import './custom.scss'
 ```

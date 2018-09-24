@@ -54,4 +54,30 @@ Utilize o servidor de desenvolvimento caso você não tenha seu próprio sevidor
 parcel watch index.html
 ```
 
+### Mútiplos arquivos de entrada
+
+No caso de você ter mais de um arquivo de entrada, vamos dizer `index.html` e `about.html`, você tem duas maneiras de executar o bundler:
+
+Especificando os nomes dos arquivos:
+```bash
+parcel index.html about.html
+```
+
+Utilizando tokens e criando um glob:
+```bash
+parcel *.html
+```
+
+*NOTA:* No caso de você possuir uma estrutura de arquivos como esta:
+```
+- diretario-1
+-- index.html
+- diretorio-2
+-- index.html
+```
+
+Acessar http://localhost:1234/diretorio-1/ não irá funcionar, você terá que apontar explicitamente para o arquivo  http://localhost:1234/diretorio-1/index.html.
+
+### Building for production
+
 Quando você estiver pronto para enviar sua aplicação para produção, o modo `build` desativa a opção `watch` e constrói seus arquivos uma única vez. Veja a seção [Produção](production.html) para mais detalhes.

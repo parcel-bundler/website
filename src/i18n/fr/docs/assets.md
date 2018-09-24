@@ -59,11 +59,11 @@ Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou
 En plus des simples CSS, d'autres langages compilés vers CSS comme LESS, SASS et Stylus sont également supportés, et fonctionnent de la même manière.
 
 ## SCSS
-La compilation SCSS nécessite un module `node-sass`. Pour l'installer avec npm :
+La compilation SCSS nécessite un module `sass`. Pour l'installer avec npm :
 ```bash
-npm install node-sass
+npm install sass
 ```
-Une fois que vous avez installé `node-sass`, vous pouvez importer des fichiers SCSS à partir de fichiers JavaScript.
+Une fois que vous avez installé `sass`, vous pouvez importer des fichiers SCSS à partir de fichiers JavaScript.
 ```javascript
 import './custom.scss'
 ```
@@ -86,3 +86,36 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 </body>
 </html>
 ```
+
+## Ressources prises en charge par défaut
+
+| Type de ressources             | Extension(s) associée(s)         |
+| ------------------------------ | -------------------------------- |
+| JavaScript                     | `js`, `jsx`, `es6`, `jsm`, `mjs` |
+| ReasonML                       | `ml`,`re`                        |
+| TypeScript                     | `ts`, `tsx`                      |
+| CoffeeScript                   | `coffee`                         |
+| Vue                            | `vue`                            |
+| JSON                           | `json`, `json5`                  |
+| YAML                           | `yaml`, `yml`                    |
+| TOML                           | `toml`                           |
+| GraphQL                        | `gql`, `graphql`                 |
+| CSS                            | `css`, `pcss`, `postcss`         |
+| Stylus                         | `stylus`                         |
+| LESS                           | `less`                           |
+| SASS                           | `sass`, `scss`                   |
+| HTML                           | `htm`, `html`                    |
+| Rust                           | `rs`                             |
+| WebManifest                    | `webmanifest`                    |
+| OpenGL Shading Language (GLSL) | `glsl`, `vert`, `frag`           |
+| Pug                            | `jade`, `pug`                    |
+
+<sub>\* Pour les types de ressources actuellement pris en charge, la documentation peut devenir obsolète, consultez [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). Pour la liste actuelle des parsers, consultez [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
+
+Pour tout type de ressources non pris en charge par défaut, vous pouvez vérifier si un plugin existe déjà :
+
+- [Yarn](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1)
+- [npm](https://www.npmjs.com/search?q=parcel-plugin-)
+- [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel#plugins)
+
+ou [créez le votre](https://parceljs.org/plugins.html).
