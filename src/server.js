@@ -4,6 +4,11 @@ const fs = require('fs');
 const app = express();
 const languages = fs.readdirSync(__dirname + '/../dist');
 
+if (languages.length === 0) {
+  console.log("Please run 'npm run build' first.");
+  process.exit();
+}
+
 app.use(function (req, res, next) {
   // autodetect language
   let lang = [req.query.locale, req.subdomains[0], req.acceptsLanguages(...languages), 'en'].find(function(lang) {
