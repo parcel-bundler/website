@@ -15,8 +15,8 @@ module.exports = function (bundler) {
 };
 ```
 
-Publiez ce paquet sur npm en utilisant le préfixe `parcel-plugin-` et il sera automatiquement détecté et chargé comme décrit ci-dessous.
+Publiez ce paquet sur npm en utilisant les préfixes `parcel-plugin-` ou `@votre-scope/parcel-plugin-` et il sera automatiquement détecté et chargé comme décrit ci-dessous.
 
 ## Utilisations des Plugins
 
-L'utilisation de plugins dans Parcel ne pouvait pas être plus simple. Tout ce que vous avez à faire est de les installer et de les enregistrer dans votre `package.json`. Les plugins doivent être nommés avec le préfixe `parcel-plugin-`, par exemple `parcel-plugin-foo`. Toutes les dépendances répertoriées dans `package.json` avec ce préfixe seront automatiquement chargés lors de l'initialisation.
+L'utilisation de plugins dans Parcel ne pouvait pas être plus simple. Tout ce que vous avez à faire est de les installer et de les enregistrer dans votre `package.json`. Les plugins doivent être nommés avec les préfixes `parcel-plugin-` ou `@votre-scope/parcel-plugin-`, par exemple `parcel-plugin-foo` ou `@votre-scope/parcel-plugin-foo`. Toutes les dépendances répertoriées dans `package.json` avec ces préfixes seront automatiquement chargés lors de l'initialisation.
