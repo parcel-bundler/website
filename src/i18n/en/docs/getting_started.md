@@ -54,4 +54,30 @@ Use the development server when you don't have your own server, or your app is e
 parcel watch index.html
 ```
 
+### Multiple entry files
+
+In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
+
+Specifing the file names:
+```bash
+parcel index.html about.html
+```
+
+Use tokens and create a glob:
+```bash
+parcel *.html
+```
+
+*NOTE:* In case you have a file structure like this:
+```
+- folder-1
+-- index.html
+- folder-2
+-- index.html
+```
+
+Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicity point to the file http://localhost:1234/folder-1/index.html.
+
+### Building for production
+
 When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.

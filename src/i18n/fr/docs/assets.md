@@ -37,6 +37,9 @@ const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 
 // Lit le contenu comme un Buffer
 const buffer = fs.readFileSync(__dirname + '/test.png');
+
+// Convertit le contenu du buffer en image
+<img  src={`data:image/png;base64,${buffer.toString('base64')}`}/>
 ```
 
 ## CSS
@@ -83,3 +86,36 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 </body>
 </html>
 ```
+
+## Ressources prises en charge par défaut
+
+| Type de ressources             | Extension(s) associée(s)         |
+| ------------------------------ | -------------------------------- |
+| JavaScript                     | `js`, `jsx`, `es6`, `jsm`, `mjs` |
+| ReasonML                       | `ml`,`re`                        |
+| TypeScript                     | `ts`, `tsx`                      |
+| CoffeeScript                   | `coffee`                         |
+| Vue                            | `vue`                            |
+| JSON                           | `json`, `json5`                  |
+| YAML                           | `yaml`, `yml`                    |
+| TOML                           | `toml`                           |
+| GraphQL                        | `gql`, `graphql`                 |
+| CSS                            | `css`, `pcss`, `postcss`         |
+| Stylus                         | `stylus`                         |
+| LESS                           | `less`                           |
+| SASS                           | `sass`, `scss`                   |
+| HTML                           | `htm`, `html`                    |
+| Rust                           | `rs`                             |
+| WebManifest                    | `webmanifest`                    |
+| OpenGL Shading Language (GLSL) | `glsl`, `vert`, `frag`           |
+| Pug                            | `jade`, `pug`                    |
+
+<sub>\* Pour les types de ressources actuellement pris en charge, la documentation peut devenir obsolète, consultez [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). Pour la liste actuelle des parsers, consultez [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
+
+Pour tout type de ressources non pris en charge par défaut, vous pouvez vérifier si un plugin existe déjà :
+
+- [Yarn](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1)
+- [npm](https://www.npmjs.com/search?q=parcel-plugin-)
+- [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel#plugins)
+
+ou [créez le votre](https://parceljs.org/plugins.html).
