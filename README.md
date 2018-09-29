@@ -20,6 +20,4 @@ The website is deployed using [Zeit Now](https://zeit.co/now).
 
 Change the displayed language using a query string:
 
-E.g.: access the Korean version using the following url:
-
-    http://localhost:5000/?locale=ko
+E.g.: access the Korean version using the following url: http://localhost:5000/?locale=ko
