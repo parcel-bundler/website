@@ -8,9 +8,11 @@ Aside from the homepage, each documentation page is generated from a markdown fi
 
 Start a local server using:
 
-    npm install
-    npm run build
-    npm start
+```bash
+npm install
+npm run build
+npm start
+```
 
 The website is deployed using [Zeit Now](https://zeit.co/now).
 
