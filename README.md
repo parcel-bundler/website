@@ -6,10 +6,18 @@ Aside from the homepage, each documentation page is generated from a markdown fi
 
 ## Contributing
 
-You can start a local server using `npm start` to run it locally, once you installed all packages `npm install` and built the files `npm run build`. It is deployed using [Zeit Now](https://zeit.co/now).
+Start a local server using:
+
+```bash
+npm install
+npm run build
+npm start
+```
+
+The website is deployed using [Zeit Now](https://zeit.co/now).
 
 ### Changing the displayed language
 
-You can change the displayed language using an url query:
+Change the displayed language using a query string:
 
-For example, you can access the Korean version using the following url: `localhost:5000/?locale=ko`
+E.g.: access the Korean version using the following url: http://localhost:5000/?locale=ko
