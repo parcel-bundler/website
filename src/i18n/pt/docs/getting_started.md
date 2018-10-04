@@ -70,7 +70,7 @@ parcel *.html
 
 *NOTA:* No caso de você possuir uma estrutura de arquivos como esta:
 ```
-- diretario-1
+- diretorio-1
 -- index.html
 - diretorio-2
 -- index.html
@@ -78,6 +78,6 @@ parcel *.html
 
 Acessar http://localhost:1234/diretorio-1/ não irá funcionar, você terá que apontar explicitamente para o arquivo  http://localhost:1234/diretorio-1/index.html.
 
-### Building for production
+### Construindo para Produção
 
 Quando você estiver pronto para enviar sua aplicação para produção, o modo `build` desativa a opção `watch` e constrói seus arquivos uma única vez. Veja a seção [Produção](production.html) para mais detalhes.
