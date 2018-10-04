@@ -11,14 +11,14 @@ Isso funciona mesmo em módulos externos (`node_modules`): se um arquivo de conf
 Instale as predefinições e plugins na sua aplicação:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 Crie o arquivo `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 
