@@ -59,11 +59,11 @@ Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou
 En plus des simples CSS, d'autres langages compilés vers CSS comme LESS, SASS et Stylus sont également supportés, et fonctionnent de la même manière.
 
 ## SCSS
-La compilation SCSS nécessite un module `node-sass`. Pour l'installer avec npm :
+La compilation SCSS nécessite un module `sass`. Pour l'installer avec npm :
 ```bash
-npm install node-sass
+npm install sass
 ```
-Une fois que vous avez installé `node-sass`, vous pouvez importer des fichiers SCSS à partir de fichiers JavaScript.
+Une fois que vous avez installé `sass`, vous pouvez importer des fichiers SCSS à partir de fichiers JavaScript.
 ```javascript
 import './custom.scss'
 ```

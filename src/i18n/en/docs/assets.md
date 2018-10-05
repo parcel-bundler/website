@@ -59,11 +59,11 @@ CSS assets can be imported from a JavaScript or HTML file, and can contain depen
 In addition to plain CSS, other compile-to-CSS languages like LESS, SASS, and Stylus are also supported, and work the same way.
 
 ## SCSS
-SCSS compilation needs `node-sass` module. To install it with npm:
+SCSS compilation needs `sass` (JS version of `dart-sass`) module. To install it with npm:
 ```bash
-npm install node-sass
+npm install sass
 ```
-Once you have `node-sass` installed you can import SCSS files from JavaScript files.
+Once you have `sass` installed you can import SCSS files from JavaScript files.
 ```javascript
 import './custom.scss'
 ```

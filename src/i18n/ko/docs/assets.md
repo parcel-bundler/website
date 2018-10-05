@@ -57,11 +57,11 @@ CSS 애셋은 JavaScript나 HTML 파일로부터 임포트 될 수 있습니다.
 
 ## SCSS
 
-SCSS를 컴파일 하기 위해서는 `node-sass` 모듈이 필요합니다. 다음 명령어로 설치해주세요.
+SCSS를 컴파일 하기 위해서는 `sass` 모듈이 필요합니다. 다음 명령어로 설치해주세요.
 ```bash
-npm install node-sass
+npm install sass
 ```
-`node-sass`를 설치했다면 이제 SCSS 파일을 JavaScript 파일에서 import 할 수 있습니다.
+`sass`를 설치했다면 이제 SCSS 파일을 JavaScript 파일에서 import 할 수 있습니다.
 ```javascript
 import './custom.scss'
 ```

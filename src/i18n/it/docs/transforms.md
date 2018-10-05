@@ -11,14 +11,14 @@ Questo processo funziona anche in `node_modules` di terze parti: se un file di c
 Installa i preset e i plugins nella tua app:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 Poi, crea un file `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 

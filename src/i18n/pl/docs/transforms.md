@@ -11,14 +11,14 @@ To zachowanie działa nawet w `node_modules`: jeśli plik konfiguracyjny jest op
 Zainstaluj presety i wtyczki w aplikacji wykonując:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 Następnie utwórz plik `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 

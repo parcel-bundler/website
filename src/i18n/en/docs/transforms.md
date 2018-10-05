@@ -11,7 +11,7 @@ This even works in third-party `node_modules`: if a configuration file is publis
 Install presets and plugins in your app:
 
 ```bash
-yarn add babel-preset-react
+yarn add @babel/preset-react
 ```
 
 Then, create a `.babelrc`:
@@ -19,14 +19,14 @@ Then, create a `.babelrc`:
 ```json
 {
   "presets": [
-    "react"
+    "@babel/preset-react"
   ]
 }
 ```
 
 ### Default babel transforms
 
-Parcel transpiles your code with `babel-preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
+Parcel transpiles your code with `@babel/preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
 
 For the `browser` target it utilises [browserlist](https://github.com/browserslist/browserslist), the target browserlist can be defined in `package.json` (`engines.browsers` or `browserslist`) or using a configuration file (`browserslist` or `.browserslistrc`).
 

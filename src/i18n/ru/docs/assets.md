@@ -57,13 +57,13 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 
 ## SCSS
 
-Компиляция SCSS требует модуля `node-sass`. Установите его через npm:
+Компиляция SCSS требует модуля `sass`. Установите его через npm:
 
 ```bash
-npm install node-sass
+npm install sass
 ```
 
-После установки `node-sass` вы можете импортировать SCSS-файлы из JavaScript-файлов.
+После установки `sass` вы можете импортировать SCSS-файлы из JavaScript-файлов.
 
 ```javascript
 import './custom.scss'
