@@ -11,14 +11,14 @@
 플러그인과 프리셋을 앱에 설치 하세요:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 그리고나서, `.babelrc`를 만듭니다:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 
