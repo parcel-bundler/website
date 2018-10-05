@@ -11,14 +11,14 @@
 在你的应用程序中安装 presets 和 plugins :
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 接着，创建一个 `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 

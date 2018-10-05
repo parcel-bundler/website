@@ -11,16 +11,20 @@
 Установка пресетов и плагинов в приложении:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-react
 ```
 
 Затем создайте `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-react"]
 }
 ```
+
+### Транспиляция babel'ем по умолчанию
+
+Parcel транспилирует ваш код с пресетом `@babel/preset-env` по умолчанию, с его помощью каждый внутренний (локальные require'ы) и внешние (node_modules) будут транспилировны под указанный target.
 
 ## PostCSS
 

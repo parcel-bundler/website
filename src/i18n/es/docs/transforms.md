@@ -11,14 +11,14 @@ Esto funciona incluso en módulos de terceros dentro de la carpeta `node_modules
 Instala los presets y plugins en tu app:
 
 ```bash
-yarn add babel-preset-env
+yarn add @babel/preset-env
 ```
 
 Luego, crea un archivo `.babelrc`:
 
 ```json
 {
-  "presets": ["env"]
+  "presets": ["@babel/preset-env"]
 }
 ```
 
