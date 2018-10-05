@@ -80,18 +80,17 @@
 
       activeLink.classList.add('selected');
 
-      docsearch({ 
-        apiKey: '8b6be780425a72d1a1683abea2636778', 
-        indexName: 'parceljs', 
-        inputSelector: '#search-input', 
+      docsearch({
+        apiKey: '8b6be780425a72d1a1683abea2636778',
+        indexName: 'parceljs',
+        inputSelector: '#search-input',
         algoliaOptions: {
           'facetFilters': [
             `lang:${LANGUAGE}`
           ]
-        }, 
-        debug: false // Set debug to true if you want to inspect the dropdown 
+        }
       });
     })();
-  </script> 
+  </script>
 </body>
 </html>
