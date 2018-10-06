@@ -65,7 +65,7 @@ root
 
 ### Définir l'URL publique à appliquer
 
-Par défaut : [le même que l'option --out-dir](#répertoire-de-sortie)
+Par défaut : "/"
 
 Disponible dans : `serve`, `watch`, `build`
 

@@ -65,7 +65,7 @@ root
 
 ### Set the public URL to serve on
 
-Default: [the same as the --out-dir option](#output-directory)
+Default: "/"
 
 Available in: `serve`, `watch`, `build`
 
