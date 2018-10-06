@@ -28,7 +28,7 @@ Then, create a `.babelrc`:
 
 Parcel transpiles your code with `@babel/preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
 
-For the `browser` target it utilises [browserlist](https://github.com/browserslist/browserslist), the target browserlist can be defined in `package.json` (`engines.browsers` or `browserslist`) or using a configuration file (`browserslist` or `.browserslistrc`).
+For the `browser` target it utilises [browserslist](https://github.com/browserslist/browserslist), the target browserlist can be defined in `package.json` (`engines.browsers` or `browserslist`) or using a configuration file (`browserslist` or `.browserslistrc`).
 
 The browserlist target defaults to: `> 0.25%` (Meaning, support every browser that has 0.25% or more of the total amount of active web users)
 
