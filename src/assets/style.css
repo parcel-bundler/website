@@ -86,30 +86,32 @@ header .links a:hover {
   padding:1em;
 }
 
-@keyframes search-resize {
-  from {
-    width: 100px;
-  }
-  to {
-    width: 250px;
-  }
+.search-input {
+  display: inline-block;
+  padding: 2px 8px;
+  width: 90px;
+  border: none;
+  border-radius: 50px;
+  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: inherit;
+  margin: 0 20px;
+  transition: all 250ms;
+  background: rgba(255, 255, 255, 0);
+  color: #E7DACB;
+}
+
+.search-input::placeholder {
+  color: #E7DACB;
+}
+
+.search-input:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .search-input:focus {
-  animation-name: search-resize;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-
-.search-input {
-  display: inline-block;
-  padding: 0 8px;
-  width: 100px;
-  border: 1px solid #E7DACB;
-  border-radius: 50px;
-  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  margin: 0 20px;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
 }
 
 nav {
