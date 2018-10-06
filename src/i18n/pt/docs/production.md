@@ -31,7 +31,7 @@ root
 
 #### Definir o endereço público para servir os arquivos
 
-Padrão: --out-dir option
+Padrão: "/"
 
 ```bash
 parcel build entry.js --public-url ./

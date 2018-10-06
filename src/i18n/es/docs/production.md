@@ -31,7 +31,7 @@ root
 
 #### Configurar la URL publica en la cual servir
 
-Por defecto: --out-dir option
+Por defecto: "/"
 
 ```bash
 parcel build entry.js --public-url ./

@@ -65,7 +65,7 @@ root
 
 ### Define a URL pública para servir
 
-Padrão: [o mesmo que a opção --out-dir](#diretório-de-saída)
+Padrão: "/"
 
 Disponível em: `serve`, `watch`, `build`
 
