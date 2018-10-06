@@ -28,7 +28,7 @@ Ensuite, créez un `.babelrc`:
 
 Parcel transpile par défaut votre code avec `@babel/preset-env`, ceci transpile chaque module interne (requires locaux) et externe (node_modules) pour correspondre à la cible définie.
 
-Pour la cible `browser`, il utilise [browserlist](https://github.com/browserslist/browserslist), la browserlist cible peut être définie dans le fichier `package.json` (`engines.browsers` ou `browserslist`) ou en utilisant un fichier de configuration (`browserslist` ou `.browserslistrc`).
+Pour la cible `browser`, il utilise [browserslist](https://github.com/browserslist/browserslist), la browserlist cible peut être définie dans le fichier `package.json` (`engines.browsers` ou `browserslist`) ou en utilisant un fichier de configuration (`browserslist` ou `.browserslistrc`).
 
 Par défaut, la browserlist cible est à : `> 0,25%` (ce qui signifie que tous les navigateurs ayant 0,25% ou plus du nombre total d'utilisateurs Web actifs sont pris en charge)
 
