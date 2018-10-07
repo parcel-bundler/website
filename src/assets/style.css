@@ -86,6 +86,34 @@ header .links a:hover {
   padding:1em;
 }
 
+.search-input {
+  display: inline-block;
+  padding: 2px 8px;
+  width: 90px;
+  border: none;
+  border-radius: 50px;
+  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: inherit;
+  margin: 0 20px;
+  transition: all 250ms;
+  background: rgba(255, 255, 255, 0);
+  color: #E7DACB;
+}
+
+.search-input::placeholder {
+  color: #E7DACB;
+}
+
+.search-input:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-input:focus {
+  width: 200px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
 nav {
   width: 250px;
   font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;

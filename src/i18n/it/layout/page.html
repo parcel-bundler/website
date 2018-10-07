@@ -10,12 +10,15 @@
   <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script>
+  <script type="text/javascript">
+    var LANGUAGE = 'it';
+    
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
   </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 <body>
   <header>
@@ -24,6 +27,7 @@
       <img class="type" src="assets/logo.svg" alt="Parcel">
     </a>
     <div class="links">
+      <input type="text" id="search-input" class="search-input" placeholder="Ricerca..." />
       <form class="languages">
         <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
           <option class="en" value="https://en.parceljs.org">English</option>
@@ -66,12 +70,24 @@
       {{~> content}}
     </main>
   </div>
-  <script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+  <script type="text/javascript">
     (function () {
       var pathname = window.location.pathname.substr(1);
       var activeLink = document.querySelector('a[href="' + pathname + '"]');
 
       activeLink.classList.add('selected');
+
+      docsearch({
+        apiKey: '8b6be780425a72d1a1683abea2636778',
+        indexName: 'parceljs',
+        inputSelector: '#search-input',
+        algoliaOptions: {
+          'facetFilters': [
+            `lang:${LANGUAGE}`
+          ]
+        }
+      });
     })();
   </script>
 </body>
