@@ -91,6 +91,8 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
+⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`)
+
 Possible targets: `node`, `browser`, `electron`
 
 ### Cache directory
