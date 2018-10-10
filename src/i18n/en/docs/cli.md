@@ -91,7 +91,7 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`).
+⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`). This behavior can be overriden using --bundle-node-modules flag (see below)
 
 Possible targets: `node`, `browser`, `electron`
 
