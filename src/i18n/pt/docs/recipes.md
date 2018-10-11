@@ -12,7 +12,7 @@ npm install --save react-dom
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Ou se você tiver opcionalmente do gerenciador de pacotes Yarn instalado</sub>
+<sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add react
@@ -40,7 +40,7 @@ npm install --save-dev parcel-bundler
 npm install --save-dev babel-preset-preact
 ```
 
-<sub>Ou se você tiver opcionalmente do gerenciador de pacotes Yarn instalado</sub>
+<sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add preact
@@ -78,7 +78,7 @@ npm install --save vue
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Ou se você tiver opcionalmente do gerenciador de pacotes Yarn instalado</sub>
+<sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add vue
@@ -103,7 +103,7 @@ npm install --save-dev typescript
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Ou se você tiver opcionalmente do gerenciador de pacotes Yarn instalado</sub>
+<sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add typescript --dev
