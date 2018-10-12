@@ -91,7 +91,21 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
+⚠️ `--target node` et `--target electron` n'ajoutent pas les `dependencies` du `package.json` au bundle (mais ajoutent bien les `devDependencies`). Ce comportement peut être modifié via le flag [--bundle-node-modules](#forcer-l'ajout-des-dépendances-node) (voir ci-dessous).
+
 Les cibles possibles sont : `node`, `browser` et `electron`
+
+### Forcer l'ajout des dépendances node
+
+Par défaut : false
+
+Disponible dans : `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --target node --bundle-node-modules
+```
+
+⚠️ Par défaut, les `dependencies` du `package.json` ne sont pas ajoutées au bundle lorsque les options `--target node` ou `--target electron` sont utilisées (voir [--target](#la-cible-(target))). `--bundle-node-modules` force leur ajout au bundle.
 
 ### Répertoire du cache
 
