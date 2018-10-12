@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Parcel" />
+  <meta property="og:url" content="https://parceljs.org/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="極速、免設定的網頁打包工具" />
+  <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
+  <title>Parcel</title>
+  <link type="text/css" rel="stylesheet" href="assets/home.css"/>
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+<body>
+  <header>
+    <h1>
+      <img class="logo" src="assets/logo.svg" alt="Parcel">
+    </h1>
+    <p class="subtitle">極速、免設定的網頁打包工具</p class="subtitle">
+    <div class="parcel">
+      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
+      <div class="icons"></div>
+      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
+    </div>
+    <a class="button get-started" href="getting_started.html">開始使用</a>
+    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+
+    <nav class="links">
+      <form class="languages">
+        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+          <option class="en" value="https://en.parceljs.org">English</option>
+          <option class="es" value="https://es.parceljs.org">Español</option>
+          <option class="fr" value="https://fr.parceljs.org">Français</option>
+          <option class="it" value="https://it.parceljs.org">Italiano</option>
+          <option class="ko" value="https://ko.parceljs.org">한국어</option>
+          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+          <option class="pt" value="https://pt.parceljs.org">Português</option>
+          <option class="ru" value="https://ru.parceljs.org">Русский</option>
+          <option class="zh" value="https://zh.parceljs.org">中文</option>
+          <option class="zh-tw" value="https://zh-tw.parceljs.org" selected>繁體中文</option>
+        </select>
+      </form>
+      <a href="getting_started.html">文件</a>
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="features">
+      <section>
+        <h3>🚀 打包超快速</h3>
+        <p>Parcel 使用 worker 來進行多核編譯，再加上檔案系統快取，即便重啟後也能快速編譯。</p>
+      </section>
+      <section>
+        <h3>📦 打包你所有的資源</h3>
+        <p>Parcel 原生支援 JS、CSS、HTML 及一般檔案⋯等等，不需額外安裝外掛。</p>
+      </section>
+      <section>
+        <h3>🐠 自動轉換</h3>
+        <p>必要時程式會使用 Babel、PostCSS 或 PostHTML 自動轉換，甚至連 <code>node_modules</code> 也行。</p>
+      </section>
+      <section>
+        <h3>✂️ 免設定的程式碼分離</h3>
+        <p>使用動態的 <code>import()</code> 語法，Parcel 會將輸出的 bundle 分離，讓初始載入時只會載入必要的部分。</p>
+      </section>
+      <section>
+        <h3>🔥 模組熱替換</h3>
+        <p>Parcel 會在你開發時自動更新瀏覽器中的模組，無須額外設定。</p>
+      </section>
+      <section>
+        <h3>🚨 友善的錯誤紀錄</h3>
+        <p>當錯誤發生時，Parcel 會顯示高亮程式碼，協助你發現問題。</p>
+      </section>
+    </div>
+
+    <section>
+      <h2>Hello World</h2>
+      <p>Parcel 會從你的入口 HTML 開始，逐一尋找相依套件並建構出整個 app。</p>
+      <div class="examples">
+      <div class="example">
+        <p><strong>✏️ index.html</strong></p>
+        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>🛠 index.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// 引入另一個元件</span>
+<span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
+
+main();</code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>🛠 main.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// 引入一個 CSS 模組</span>
+<span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+  <span class="hljs-built_in">console</span>.log(classes.main);
+};</code></pre>
+      </div>
+
+      <div class="example">
+        <p><strong>💅 main.css</strong></p>
+        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+  <span class="hljs-comment">/* 引用一張圖檔 */</span>
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
+  <span class="hljs-attribute">color</span>: red;
+}</code></pre></div>
+      </div>
+
+      <p>執行 <code>parcel index.html</code> 後即會啟動開發伺服器。引入 Javascript、CSS 和影像檔什麼的，這麼簡單就搞定了 👌</p>
+    </section>
+
+    <section>
+      <h2>效能比較</h2>
+      <table>
+        <tr>
+          <th>打包工具</th>
+          <th>耗時</th>
+        </tr>
+        <tr>
+          <td>browserify</td>
+          <td>22.98 秒</td>
+        </tr>
+        <tr>
+          <td>webpack</td>
+          <td>20.71 秒</td>
+        </tr>
+        <tr>
+          <td><strong>parcel</strong></td>
+          <td><strong>9.98 秒</strong></td>
+        </tr>
+        <tr>
+          <td><strong>parcel - with cache</strong></td>
+          <td><strong>2.64 秒</strong></td>
+        </tr>
+      </table>
+      <p>本測試使用了一個大小合理的 app，包含 1726 個模組，共 6.5M 未經壓縮，並執行於 2016 的四核心 MacBook Pro。</p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="button" href="getting_started.html">開始使用</a>
+    <div class="content">
+      <nav>
+        <h3>文件</h3>
+        <div>
+          <ul>
+            <li><a href="getting_started.html">🚀 開始使用</a></li>
+            <li><a href="assets.html">📦 資源</a></li>
+            <li><a href="transforms.html">🐠 轉換</a></li>
+          </ul>
+          <ul>
+            <li><a href="code_splitting.html">✂️ 程式碼分離</a></li>
+            <li><a href="hmr.html">🔥 模組熱替換</a></li>
+            <li><a href="production.html">✨ 正式環境</a></li>
+          </ul>
+        </div>
+      </nav>
+      <nav>
+        <h3>連結</h3>
+        <ul>
+          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="copyright">
+      Copyright ©
+      <script>document.write(new Date().getFullYear())</script>
+      Devon Govett. 本網站為<a href="https://github.com/parcel-bundler/website" target="_blank">開源網站</a>。
+    </div>
+  </footer>
+
+  <script src="assets/icons.js"></script>
+</body>
+</html>
