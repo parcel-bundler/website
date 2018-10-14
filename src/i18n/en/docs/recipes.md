@@ -94,7 +94,6 @@ Add Start script to `package.json`
 }
 ```
 
-
 ## Typescript
 
 First we need to add Parcel and Typescript to our project.
@@ -103,7 +102,9 @@ First we need to add Parcel and Typescript to our project.
 npm install --save-dev typescript
 npm install --save-dev parcel-bundler
 ```
+
 <sub>Or if you have the optional Yarn package manager installed</sub>
+
 ```bash
 yarn add typescript --dev
 yarn add --dev parcel-bundler
@@ -140,6 +141,7 @@ Done!
 ### Compiling the `.ts` file directly
 
 Add Start script to `package.json`
+
 ```javascript
 // package.json
 "scripts": {
