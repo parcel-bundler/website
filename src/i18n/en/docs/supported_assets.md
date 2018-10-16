@@ -1,4 +1,4 @@
-# 📦 Default Assetd Types
+# 📦 Supported Assets
 
 | Asset Type                     | Associated Extension(s)          |
 | ------------------------------ | -------------------------------- |

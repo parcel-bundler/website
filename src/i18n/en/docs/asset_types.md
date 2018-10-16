@@ -1,4 +1,4 @@
-# 📝 Asset & Parsers
+# 📝 Asset & Types
 
 As described in the [Assets documentation](assets_transforms.html), Parcel represents each input file as an `Asset`. Asset types are represented as classes inheriting from the base `Asset` class and implementing the required interface to parse, analyze dependencies, transform, and code generate.
 
