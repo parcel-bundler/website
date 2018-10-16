@@ -124,6 +124,8 @@ nav {
   align-self: flex-start;
   height: calc(100vh - 50px - 2em);
   top: calc(50px + 1em);
+  overflow:hidden; 
+  overflow-y:scroll;
 }
 
 nav ul {
@@ -256,7 +258,8 @@ td, th {
     border-bottom: 1px solid #eee;
     z-index: 500;
 
-    position: static;
+    position: static; 
+    overflow-y:hidden;
   }
 
   nav ul {
