@@ -35,3 +35,25 @@ The file hash follows the following naming pattern: `<directory name>-<hash>.<ex
 In an effort to optimize production build performance, Parcel will try to determine the number of CPUs available at the machine running the build command so it can distribute the work accordingly. To do so, Parcel relies on the [physical-cpu-count](https://www.npmjs.com/package/physical-cpu-count) library.
 
 Be aware that this module assumes you have the [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) program available in your system.
+
+## If You Can't Install Parcel Globally
+
+Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent. In this case, you can install and run Parcel as a local package.
+
+To install with Yarn:
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+To install with NPM:
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+In this situation you won't have access to an alias for the Parcel CLI. To build your project use the following command:
+
+```bash
+node ./node_modules/parcel-bundler/bin/cli.js build entry.js
+```
