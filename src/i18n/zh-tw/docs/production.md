@@ -8,7 +8,7 @@ parcel build entry.js
 
 ## 最佳化
 
-production 模式中會停用監看模式及熱模組替換，同時也會使用壓縮器減少所有輸出 bundle 的檔案大小，在此模式中只會進行一次編譯。Parcel 分別使用 [terser](https://github.com/fabiosantoscode/terser)、 [cssnano](http://cssnano.co) 及 [htmlnano](https://github.com/posthtml/htmlnano) 來壓縮 JavaScript、CSS 及 HTML。
+production 模式中會停用監看模式及模組熱替換，同時也會使用壓縮器減少所有輸出 bundle 的檔案大小，在此模式中只會進行一次編譯。Parcel 分別使用 [terser](https://github.com/fabiosantoscode/terser)、 [cssnano](http://cssnano.co) 及 [htmlnano](https://github.com/posthtml/htmlnano) 來壓縮 JavaScript、CSS 及 HTML。
 
 使用 production 模式還會將設定環境變數 `NODE_ENV` 為 `production`，某些大型函式庫如 React，在此環境變數設定下，會停用開發時使用的除錯功能，因此輸出的檔案會更小，編譯速度也隨之提高。
 
