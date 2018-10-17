@@ -93,3 +93,60 @@ Ajoutez un script de démarrage à `package.json`
   "start": "parcel index.html"
 }
 ```
+
+## Typescript
+
+D'abord installez les dépendances pour Typescript
+
+```bash
+npm install --save-dev typescript
+npm install --save-dev parcel-bundler
+```
+
+<sub>Ou si vous avez installé le gestionnaire de paquets Yarn</sub>
+
+```bash
+yarn add typescript --dev
+yarn add --dev parcel-bundler
+```
+
+### Utiliser directement un fichier typescript depuis index.html
+
+Ensuite, ajoutez le script `start` de démarrage au `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+Puis, dans votre fichier `index.html`, importez directement le fichier `.ts`.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- Ici 👇 --> 
+    <script src="./myTypescriptFile.ts"></script>
+</body>
+</html>
+```
+
+C'est tout!
+
+### Compiler directement le fichier `.ts`
+
+Ajoutez le script `start` de démarrage au `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel myTypescriptFile.ts"
+}
+```
+
+Fini! 😄 Le fichier `.js` compilé se trouve dans dossier `dist`.

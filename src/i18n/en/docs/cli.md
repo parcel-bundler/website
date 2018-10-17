@@ -91,7 +91,21 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
+⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`). This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
+
 Possible targets: `node`, `browser`, `electron`
+
+### Force node modules bundling
+
+Default: false
+
+Available in: `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --target node --bundle-node-modules
+```
+
+By default, package.json's `dependencies` are not included when using `--target node` or `--target electron`. This flag adds them to the bundle.
 
 ### Cache directory
 

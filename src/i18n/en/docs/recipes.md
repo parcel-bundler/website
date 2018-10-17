@@ -93,3 +93,60 @@ Add Start script to `package.json`
   "start": "parcel index.html"
 }
 ```
+
+## Typescript
+
+First we need to add Parcel and Typescript to our project.
+
+```bash
+npm install --save-dev typescript
+npm install --save-dev parcel-bundler
+```
+
+<sub>Or if you have the optional Yarn package manager installed</sub>
+
+```bash
+yarn add typescript --dev
+yarn add --dev parcel-bundler
+```
+
+### Compiling from index.html
+
+Add Start script to `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+Then, in your `index.html` file, simply reference your `.ts` file.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <!-- Here 👇 --> 
+    <script src="./myTypescriptFile.ts"></script>
+</body>
+</html>
+```
+
+Done!
+
+### Compiling the `.ts` file directly
+
+Add Start script to `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel myTypescriptFile.ts"
+}
+```
+
+Done! 😄 Compiled `.js` file can be found inside the dist folder.
