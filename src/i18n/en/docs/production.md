@@ -57,3 +57,13 @@ In this situation you won't have access to an alias for the Parcel CLI. To build
 ```bash
 node ./node_modules/parcel-bundler/bin/cli.js build entry.js
 ```
+
+To make working on your own machine easier, you can add your own script to package.json.
+
+```json
+"scripts": {
+    "build": "node ./node_modules/parcel-bundler/bin/cli.js build entry.js",
+}
+```
+
+You can then build your site with `npm run build`.
