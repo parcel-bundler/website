@@ -1,0 +1,3 @@
+# WebManifest
+
+*Supported extensions: `webmanifest`*

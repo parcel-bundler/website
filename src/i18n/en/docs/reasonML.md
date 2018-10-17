@@ -1,5 +1,7 @@
 # ReasonML
 
+*Supported extensions: `ml`, `re`*
+
 ## ReasonML/BuckleScript
 
 [ReasonML](https://reasonml.github.io/) compiles OCaml to JavaScript with the help of [BuckleScript](https://bucklescript.github.io). You can use ReasonML by installing dependencies and creating `bsconfig.json`:

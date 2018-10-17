@@ -1,5 +1,7 @@
 # WebAssembly
 
+*Supported extensions: `wasm`*
+
 [WebAssembly](https://webassembly.org) is an emerging technology, but one that will have a huge impact on the web in the near future. Now supported by all major web browsers, as well as Node, WebAssembly will enable a diversity of languages on the web, and not just those that can transpile to JavaScript.
 
 Low-level languages like C and Rust can compile to WebAssembly, which is a binary format for smaller file sizes and faster runtime. Near native-level performance can be had with WebAssembly compiled code, often much faster than equivalent JavaScript. It is likely that we will see JavaScript libraries starting to take advantage of WebAssembly for performance-critical sections of code in the near future.

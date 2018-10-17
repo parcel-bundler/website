@@ -1,5 +1,7 @@
 # TypeScript
 
+*Supported extensions: `ts`, `tsx`*
+
 [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles down to plain JavaScript, which also supports modern ES2015+ features. Transforming TypeScript works out of the box without any additional configuration.
 
 ```html

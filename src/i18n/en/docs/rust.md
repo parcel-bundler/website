@@ -1,4 +1,6 @@
-# Rust Support
+# Rust
+
+*Supported extensions: `rs`*
 
 [Rust](https://www.rust-lang.org/en-US/) is a systems programming language developed by Mozilla, which offers native performance with some interesting memory and thread safety characteristics. Rust recently added support for compiling to WebAssembly, and now Parcel makes it **super easy** to get started with zero configuration!
 

@@ -1,4 +1,7 @@
 # SCSS
+
+*Supported extensions: `sass`, `scss`*
+
 SCSS compilation needs `sass` (JS version of `dart-sass`) module. To install it with npm:
 ```bash
 npm install sass
