@@ -124,7 +124,7 @@ nav {
   align-self: flex-start;
   height: calc(100vh - 50px - 2em);
   top: calc(50px + 1em);
-  overflow:hidden; 
+  overflow:hidden;
   overflow-y:scroll;
 }
 
@@ -134,8 +134,15 @@ nav ul {
   margin: 0;
 }
 
+nav ul li img {
+  width: 30px;
+  height: 30px;
+}
+nav ul li {
+  margin: 5px;
+}
 nav ul li a {
-  display: block;
+  display: inline;
   padding: 0.2em;
   margin-bottom: 3px;
   border-radius: 3px 0 0 3px;
@@ -258,7 +265,7 @@ td, th {
     border-bottom: 1px solid #eee;
     z-index: 500;
 
-    position: static; 
+    position: static;
     overflow-y:hidden;
   }
 
