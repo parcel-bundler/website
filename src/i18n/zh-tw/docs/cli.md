@@ -130,7 +130,7 @@ parcel entry.js --log-level 1
 | 2        | 紀錄錯誤及警告   |
 | 3        | 紀錄所有訊息     |
 
-### 模組熱替換(HMR) 主機名稱
+### 模組熱替換 (HMR) 主機名稱
 
 預設值：目前視窗的 `location.hostname` 值
 
@@ -140,7 +140,7 @@ parcel entry.js --log-level 1
 parcel entry.js --hmr-hostname parceljs.org
 ```
 
-### 模組熱替換(HMR) 連接埠
+### 模組熱替換 (HMR) 連接埠
 
 預設值：隨機的可用連接埠
 
@@ -176,7 +176,7 @@ parcel build entry.js --detailed-report
 
 預設：停用 HTTPS
 
-適用指令： `serve` 及 `watch` (使用 HTTPS 監聽模組熱替換之連線)
+適用指令： `serve` 及 `watch` (使用 HTTPS 監聽模組熱替換的連線)
 
 ```bash
 parcel build entry.js --https

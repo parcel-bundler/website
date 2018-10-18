@@ -1,6 +1,6 @@
 # 📦 Packagers
 
-在 Parcel 中， `Packager` 會將多個資源(`Asset`)合併輸出至最終的 bundle 裡，這個過程會發生在主程序，於所有資源被處理且 bundle 樹建立之後。
+在 Parcel 中， `Packager` 會將多個資源 (`Asset`) 合併輸出至最終的 bundle 裡，這個過程會發生在主程序，於所有資源被處理且 bundle 樹建立之後。
 
 Packager 的註冊是基於輸出檔案的類型，資源則會被送至處理其檔案類型的 Packager 中產生最終輸出檔案。
 
