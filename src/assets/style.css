@@ -148,7 +148,7 @@ nav ul li a {
   border-radius: 3px 0 0 3px;
 }
 
-nav ul li a:hover {
+nav ul li:hover {
   background: #f8f8f8;
 }
 
