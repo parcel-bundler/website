@@ -66,4 +66,4 @@ To make working with your project easier, you can add the script to package.json
 }
 ```
 
-You can then build your site with `npm run build`.
+You can then build your site with `npm run build` or `yarn build`.
