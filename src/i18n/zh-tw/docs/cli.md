@@ -65,7 +65,7 @@ root
 
 ### 設定要啟動服務的 URL
 
-預設值：同 [`--out-dir` 選項](#output-directory)
+預設值："/"
 
 適用指令： `serve`、`watch` 及 `build`
 
@@ -91,7 +91,21 @@ parcel entry.js --public-url ./dist/
 parcel build entry.js --target node
 ```
 
+⚠️ `node` 與 `electron` 並不會打包 package.json 中的 `dependencies`（但會打包 `devDependencies`），此行為可用 [--bundle-node-modules](#強制編譯-node-模組) 來覆寫，詳見下方說明。
+
 其他目標值：`node`、`browser` 及 `electron`
+
+### 強制編譯 node 模組
+
+預設值：false
+
+適用指令： `serve`、`watch` 及 `build`
+
+```bash
+parcel build entry.js --target node --bundle-node-modules
+```
+
+當使用 `--target node` 或 `--target electron` 這兩個選項時，package.json 中的 `dependencies` 預設不會被打包。此選項可將其加入 bundle 中。
 
 ### 快取路徑
 
