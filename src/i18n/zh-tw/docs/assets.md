@@ -16,7 +16,7 @@ const dep = require('./path/to/dep');
 import dep from './path/to/dep';
 ```
 
-你也可以在 JavaScript 中匯入非 JavaScript 的檔案，像是 CSS 甚至是影像檔。當你匯入這些檔案時，Parcel 會將所有的相依檔案放在另外的 bundle，不像其他打包工具將檔案直接插入於行內。
+你也可以在 JavaScript 中匯入非 JavaScript 的檔案，像是 CSS、HTML 甚至是影像檔。當你匯入這些檔案時，Parcel 會將所有的相依檔案放在另外的 bundle，不像其他打包工具將檔案直接插入於行內。
 
 當你使用 [CSS Modules](https://github.com/css-modules/css-modules) 時，匯出的類別將會置於 JavaScript bundle 內。
 
@@ -31,6 +31,13 @@ import classNames from './test.css';
 
 // 由 URL 匯入影像檔
 import imageURL from './test.png';
+
+// 匯入 HTML 檔案
+import('./some.html');
+// 或者：
+import html from './some.html';
+// 也可以這樣：
+require('./some.html');
 ```
 
 若你不想使用 URL 引入檔案，而是將檔案直接插入於行內的話，你可以透過 Node.js 的 `fs.readFileSync` API 來達成。
