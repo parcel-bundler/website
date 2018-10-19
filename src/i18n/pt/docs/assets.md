@@ -112,7 +112,7 @@ Arquivos HTML são frequentemente utilizados como ponto de entrada para o Parcel
 | OpenGL Shading Language (GLSL) | `glsl`, `vert`, `frag`           |
 | Pug                            | `jade`, `pug`                    |
 
-<sub>\* A documentação pode ficar desatualizada algumas vezes, para ver os tipos de recursos suportados atualmente veja [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). Para a lista atual de <i>parsers</i> veja [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
+<sub>\* A documentação pode ficar desatualizada algumas vezes, para ver os tipos de recursos suportados atualmente veja [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10). Para a lista atual de <i>parsers</i> veja [parcel/src/assets/]https://github.com/parcel-bundler/parcel/tree/master/packages/core/parcel-bundler/src/assets).</sub>
 
 Para qualquer tipo de recurso não suportado por padrão, você pode verificar se já existe plugins disponíveis:
 
