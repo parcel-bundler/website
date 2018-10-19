@@ -1,0 +1,3 @@
+# Stylus
+
+*Supported extensions: `stylus`*
