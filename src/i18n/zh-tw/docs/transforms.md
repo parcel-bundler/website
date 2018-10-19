@@ -30,7 +30,7 @@ yarn add babel-preset-react
 
 Parcel 預設使用 `babel-preset-env` 轉譯程式碼，這意味著 Parcel 將轉譯所有內部 (本地的 require) 及外部 (node_modules) 的模組。
 
-Parcel 會使用 [browserlist](https://github.com/browserslist/browserslist) 來處理 `browser` 環境。browserlist 的目標設定可在 `package.json`（`engines.browsers` 或 `browserslist`）中定義，或是使用設定檔 (`browserslist` 或 `.browserslistrc`) 來定義。
+Parcel 會使用 [browserslist](https://github.com/browserslist/browserslist) 來處理 `browser` 環境。browserlist 的目標設定可在 `package.json`（`engines.browsers` 或 `browserslist`）中定義，或是使用設定檔 (`browserslist` 或 `.browserslistrc`) 來定義。
 
 browserlist 預設的支援目標為 `> 0.25%`，也就是那些用戶多於 0.25% 的瀏覽器。
 
