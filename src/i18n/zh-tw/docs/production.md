@@ -37,3 +37,35 @@ Parcel 用下表列出的方式命名 bundle（進入點永遠不會經過雜湊
 在最佳化 production 環境的編譯效能時，Parcel 會使用 [physical-cpu-count](https://www.npmjs.com/package/physical-cpu-count) 來偵測主機 CPU 的可用核心數，並依結果分配任務至各核心。
 
 需特別注意的是，此套件假設你的系統中已經有 [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) 這支程式。
+
+## 當你無法使用全域的 Parcel 時
+
+在某些情境下你可能無法使用全域的 Parcel，例如你在它人的機器上編譯時，這時你就可以將 Parcel 安裝為本地的套件。
+
+使用 yarn 安裝：
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+使用 NPM 安裝：
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+這種情況底下你將無法存取 Parcel CLI 的捷徑，但你還可以使用下列指令來編譯：
+
+```bash
+node ./node_modules/parcel-bundler/bin/cli.js build entry.js
+```
+
+你也可以將指令加入 package.json 中讓編譯更加容易。
+
+```json
+"scripts": {
+  "build": "parcel build entry.js",
+}
+```
+
+加入後即可使用 `npm run build` 或 `yarn build` 來編譯你的網站。
