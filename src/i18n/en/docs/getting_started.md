@@ -84,13 +84,23 @@ When you're ready to build for production, the `build` mode turns off watching a
 
 ### Adding parcel to your project
 
-Another option is to add `parcel` to your project, this will also allow you to run it in a CI. 
+Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent or you want to use a CI to build your project programmatically. In this case, you can install and run Parcel as a local package.
 
-Install `parcel-bundler` on your project: `yarn install --dev parcel-bundler`
+To install with Yarn:
 
-Add the tasks to your `package.json`:
+```bash
+yarn add parcel-bundler --dev
+```
 
-``` json
+To install with NPM:
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+Then, add these tasks scripts to your project, by modifying your `package.json`:
+
+```json
 {
   "scripts": {
     "dev": "parcel <your entry file>",
@@ -99,7 +109,7 @@ Add the tasks to your `package.json`:
 }
 ```
 
-Then, to work with your project:
+Then, you will be able to run it:
 
 ``` bash
 
