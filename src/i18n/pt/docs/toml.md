@@ -1,0 +1,3 @@
+# TOML
+
+*Extensões suportadas: `toml`*

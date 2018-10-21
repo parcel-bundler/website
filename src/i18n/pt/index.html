@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,24 +9,23 @@
   <meta property="og:description" content="Empacotador de aplicações web ultra-rápido, sem configuração" />
   <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
   <title>Parcel</title>
-  <link type="text/css" rel="stylesheet" href="assets/home.css" />
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+  <link type="text/css" rel="stylesheet" href="assets/home.css"/>
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
   </script>
 </head>
-
 <body>
   <header>
     <h1>
       <img class="logo" src="assets/logo.svg" alt="Parcel">
     </h1>
-    <p class="subtitle">Empacotador de aplicações web ultra-rápido, sem configuração</p class="subtitle">
+    <p class="subtitle">Empacotador de aplicações web ultra-rápido, sem configuração</p>
     <div class="parcel">
       <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
       <div class="icons"></div>
@@ -52,8 +50,8 @@
           <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
         </select>
       </form>
-      <a href="getting_started.html">Documentação</a>
       <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      <a href="getting_started.html">Documentação</a>
     </nav>
   </header>
 
@@ -61,10 +59,10 @@
     <div class="features">
       <section>
         <h3>🚀 Empacotamento ultra-rápido</h3>
-        <p>Parcel utiliza processos que habilitam a compilação multicore e faz cache do sistema de arquivos para reconstruir mesmo após um reinício.</p>
+        <p>Parcel utiliza processos que habilitam a compilação multicore, e possui cache do sistema de arquivos para reconstruir rapidamente mesmo após um reinício.</p>
       </section>
       <section>
-        <h3>📦 Empacota todos os seus recursos</h3>
+        <h3>📦 Empacote todos os seus recursos</h3>
         <p>Parcel tem suporte de fábrica para JS, CSS, HTML, arquivos, e mais - sem a necessidade de plugins.</p>
       </section>
       <section>
@@ -81,7 +79,7 @@
       </section>
       <section>
         <h3>🚨 Exibição de erros amigáveis</h3>
-        <p>Parcel exibe trechos do código quando ele encontra erros para ajudá-lo a identificar o problema.</p>
+        <p>Parcel exibe erros em trechos do código para ajudá-lo a identificar o problema.</p>
       </section>
     </div>
 
@@ -89,56 +87,46 @@
       <h2>Olá, Mundo!</h2>
       <p>Inicie sua aplicação com um arquivo HTML. Parcel seguirá as dependências a partir daí e construirá toda a aplicação.</p>
       <div class="examples">
-        <div class="example">
-          <p>
-            <strong>✏️ index.html</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+      <div class="example">
+        <p><strong>✏️ index.html</strong></p>
+        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <p>
-            <strong>🛠 index.js</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-comment">// importar outro componente</span>
+      <div class="example">
+        <p><strong>🛠 index.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// Importando outro componente</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-        </div>
+      </div>
 
-        <div class="example">
-          <p>
-            <strong>🛠 main.js</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-comment">// importar um CSS</span>
+      <div class="example">
+        <p><strong>🛠 main.js</strong></p>
+        <pre class="hljs"><code><span class="hljs-comment">// Importando um módulo CSS</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-        </div>
-
-        <div class="example">
-          <p>
-            <strong>💅 main.css</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
-  <span class="hljs-comment">/* referenciar uma imagem */</span>
-  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
-  <span class="hljs-attribute">color</span>: red;
-}</code></pre>
-        </div>
       </div>
 
+      <div class="example">
+        <p><strong>💅 main.css</strong></p>
+        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+  <span class="hljs-comment">/* Referenciando um arquivo de imagem */</span>
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
+  <span class="hljs-attribute">color</span>: red;
+}</code></pre></div>
+      </div>
       <p>Apenas execute <code>parcel index.html</code> para iniciar o servidor de desenvolvimento. A importação de JavaScript, CSS, imagens, etc., simplesmente funciona! 👌</p>
     </section>
 
     <section>
-      <h2>Comparativos</h2>
+      <h2>Benchmarks</h2>
       <table>
         <tr>
           <th>Empacotador</th>
@@ -146,27 +134,19 @@ main();</code></pre>
         </tr>
         <tr>
           <td>browserify</td>
-          <td>22,98s</td>
+          <td>22.98s</td>
         </tr>
         <tr>
           <td>webpack</td>
-          <td>20,71s</td>
+          <td>20.71s</td>
         </tr>
         <tr>
-          <td>
-            <strong>parcel</strong>
-          </td>
-          <td>
-            <strong>9,98s</strong>
-          </td>
+          <td><strong>parcel</strong></td>
+          <td><strong>9.98s</strong></td>
         </tr>
         <tr>
-          <td>
-            <strong>parcel - com cache</strong>
-          </td>
-          <td>
-            <strong>2,64s</strong>
-          </td>
+          <td><strong>parcel - com cache</strong></td>
+          <td><strong>2.64s</strong></td>
         </tr>
       </table>
       <p>Baseado em um aplicativo razoalvemente grande, contendo 1.726 módulos, 6,5M de arquivos não-comprimidos. Realizado em um MacBook Pro 2016 com 4 processadores físicos.</p>
@@ -174,83 +154,39 @@ main();</code></pre>
   </main>
 
   <footer>
-    <a class="button" href="getting_started.html">Iniciar</a>
+    <a class="button" href="getting_started.html">Primeiros Passos</a>
     <div class="content">
       <nav>
         <h3>Documentação</h3>
         <div>
           <ul>
-            <li>
-              <a href="getting_started.html">🚀 Primeiros Passos</a>
-            </li>
-            <li>
-              <a href="assets.html">📦 Recursos</a>
-            </li>
-            <li>
-              <a href="transforms.html">🐠 Conversões</a>
-            </li>
+            <li><a href="getting_started.html">🚀 Primeiros Passos</a></li>
+            <li><a href="assets_transforms.html">📦 Recursos & Conversões</a></li>
+            <li><a href="code_splitting.html">✂️ Separação do Código</a></li>
           </ul>
           <ul>
-            <li>
-              <a href="code_splitting.html">✂️ Separação do Código</a>
-            </li>
-            <li>
-              <a href="hmr.html">🔥 Hot Module Replacement</a>
-            </li>
-            <li>
-              <a href="production.html">✨ Produção</a>
-            </li>
+            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+            <li><a href="production.html">✨ Produção</a></li>
+            <li><a href="cli.html">🖥 CLI</a></li>
           </ul>
         </div>
       </nav>
       <nav>
         <h3>Links</h3>
         <ul>
-          <li>
-            <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-          </li>
-          <li>
-            <a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/parceljs" target="_blank">Twitter</a>
-          </li>
+          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
         </ul>
       </nav>
     </div>
     <div class="copyright">
       Copyright ©
-      <script>document.write(new Date().getFullYear())</script> Devon Govett. Este website possui o
-      <a href="https://github.com/parcel-bundler/website" target="_blank">código-fonte aberto</a>.
+      <script>document.write(new Date().getFullYear())</script>
+      Devon Govett. Este site possui <a href="https://github.com/parcel-bundler/website" target="_blank">código-fonte aberto</a>.
     </div>
   </footer>
 
-  <script>
-    var icons = ['js', 'json', 'css', 'sass', 'less', 'html', 'jpg', 'png', 'gif', 'bmp', 'svg', 'raw'];
-    var container = document.querySelector('.icons');
-
-    function spawn() {
-      var icon = icons[Math.floor(Math.random() * icons.length)];
-      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-      svg.style.left = (25 + Math.random() * 50) + '%';
-      svg.setAttribute('class', "icon");
-      var use = document.createElementNS("http://www.w3.org/2000/svg", "use")
-      use.setAttributeNS("http://www.w3.org/1999/xlink", 'href', 'assets/icons.svg#' + icon);
-      svg.appendChild(use);
-      container.appendChild(svg);
-
-      setTimeout(function () {
-        container.removeChild(svg);
-      }, 3000);
-    }
-
-    setTimeout(function run() {
-      spawn();
-      setTimeout(run, 500 + Math.random() * 400);
-    }, 500 + Math.random() * 400);
-
-    spawn();
-  </script>
+  <script src="assets/icons.js"></script>
 </body>
-
 </html>

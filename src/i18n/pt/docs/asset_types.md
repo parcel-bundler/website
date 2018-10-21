@@ -10,35 +10,49 @@ Como o Parcel processa recursos em paralelo através de vários núcleos do proc
 const {Asset} = require('parcel-bundler');
 
 class MyAsset extends Asset {
-  type = 'foo'; // definir o tipo de saída principal
+  type = 'foo'; // define o tipo de saída principal.
 
-  parse(code) {
+  async parse(code) {
     // analisar o código em um AST
     return ast;
   }
 
-  pretransform() {
-    // opcional. converter antes de coletar as dependências
+  async pretransform() {
+    // opcional. converte antes de coletar as dependências
   }
 
   collectDependencies() {
-    // analisar as dependências
+    // analisa as dependências
     this.addDependency('my-dep');
   }
 
-  transform() {
-    // opcional. converter após coletar as dependências
+  async transform() {
+    // opcional. converte após coletar as dependências.
   }
 
-  generate() {
+  async generate() {
     // geração do código. você pode retornar múltiplas interpretações, caso necessário.
     // os resultados são passados para os empacotadores apropriados para gerar o pacote final.
-    return {
-      foo: 'minhas coisas aqui', // saída principal
-      js: 'algum javascript' // rendição alternativa a ser colocada no pacote JS, caso necessário
-    };
+    return [
+      {
+        type: 'foo',
+        value: 'my stuff here' // saída principal
+      },
+      {
+        type: 'js',
+        value: 'some javascript', // rendição alternativa a ser colocada no pacote JS, caso necessário
+        sourceMap
+      }
+    ];
+  }
+
+  async postProcess(generated) {
+    // Processo após toda a geração de código estar concluída
+    // Pode ser utilizada para combinar múltiplos tipos de recursos
   }
 }
+
+module.exports = MyAsset
 ```
 
 ## Registrando um Tipo de Recurso
