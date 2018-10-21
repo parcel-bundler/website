@@ -18,6 +18,18 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 </html>
 ```
 
+## Importing uncompiled assets
+Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS, etc.) in HTML is supported. Parcel will automatically process the file and update the link to point to the compiled asset. 
+
+```html
+<html>
+  <head>
+    <!-- include a SCSS file -->
+    <link rel="stylesheet" href="./my-styles/style.scss">
+  </head>
+</html>
+```
+
 # PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
