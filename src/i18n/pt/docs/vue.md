@@ -1,0 +1,3 @@
+# Vue
+
+*Extensões suportadas: `vue`*
