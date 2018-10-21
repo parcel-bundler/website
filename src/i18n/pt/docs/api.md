@@ -4,14 +4,12 @@
 
 Ao invés do cliente, você pode utilizar a API para inicializar o *bundler*, para casos mais avançados (por exemplo, um processamento customizado após cada *build*).
 Um exemplo com toda opção explicada:
-
 ```Javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 
 // Localização do arquivo como único entrypoint:
 const entryFiles = Path.join(__dirname, './index.html');
-
 // Ou: múltiplos arquivos como globbing (também pode ser como .js)
 // const entryFiles = './src/*.js';
 // Ou: múltiplos arquivos em um array
@@ -58,7 +56,6 @@ runBundle();
 Esta é a lista com todos os eventos do *bundler*:
 
 * `bundled` será chamado uma única vez quando o Parcel terminar de construir **pela primeira vez** com sucesso, a instância do [bundle](#bundle) principal é passada para este callback.
-
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
@@ -69,7 +66,6 @@ bundler.bundle();
 ```
 
 * `buildEnd` gerá chamado após cada build (aka **incluindo cada rebuild**), isto também emite se algum erro ocorreu.
-
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
@@ -79,8 +75,7 @@ bundler.on('buildEnd', () => {
 bundler.bundle();
 ```
 
-* `buildStart` será chamado no começo do primeiro build, o array `entryFiles` será passado para esse callback.
-
+* `buildStart` será chamado no começo do primeiro build, o array `entryFiles` será passado para esse callback
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildStart', entryPoints => {
@@ -90,8 +85,7 @@ bundler.on('buildStart', entryPoints => {
 bundler.bundle();
 ```
 
-* `buildError` será chamado sempre que ocorrer um erro durante os builds, o objeto `Error` será passado para esse callback.
-
+* `buildError` será chamado sempre que ocorrer um erro durante os builds, o objeto `Error` será passado para esse callback
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildError', error => {
@@ -120,6 +114,7 @@ Um `Bundle` é o que o Parcel utiliza para juntar todos os assets juntos, isto c
 #### Árvore
 
 O `Bundle` contém `parentBundle`, `childBundles` e `siblingBundles`, todas essas propriedades juntas cria um iterável rápido para percorrer a árvore do bundle.
+
 
 Um exemplo muito básico de uma árvore de asset e gerando uma árvore de bundle.
 
@@ -163,7 +158,6 @@ index.html
 Middleware pode ser utilizado como hoot dentro do servidor http (por exemplo, `express` ou `http` Node)
 
 Um exemplo de uso de middleware do Parcel com o express:
-
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();
