@@ -9,20 +9,22 @@ const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // opcional. escrever no cabeçalho do arquivo, caso necessário.
+    // opcional. escreve no cabeçalho do arquivo, caso necessário.
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // obrigatório. escrever o recurso no arquivo de saída.
+    // obrigatório. escreve o recurso no arquivo de saída.
     await this.dest.write(asset.generated.foo);
   }
 
   async end() {
-    // opcional. escrever o trailer do arquivo, caso necessário.
+    // opcional. escrevee o trailer do arquivo, caso necessário.
     await this.dest.end(trailer);
   }
 }
+
+module.exports = MyPackager
 ```
 
 ## Registrando um Packager
