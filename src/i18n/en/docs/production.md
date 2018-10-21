@@ -40,4 +40,4 @@ Be aware that this module assumes you have the [`lscpu`](http://manpages.courier
 
 If you want to integrate Parcel in your Continuous Integration system (e.g. Travis or Circle CI), you might need to install Parcel as a local dependency.
 
-The instructions can be [found here](/getting_started.html).
+The instructions can be [found here](getting_started.html#adding-parcel-to-your-project).
