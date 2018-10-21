@@ -81,3 +81,46 @@ Going to http://localhost:1234/folder-1/ won't work, instead you will need to ex
 ### Building for production
 
 When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
+
+### Adding parcel to your project
+
+Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent or you want to use a CI to build your project programmatically. In this case, you can install and run Parcel as a local package.
+
+To install with Yarn:
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+To install with NPM:
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+Then, add these tasks scripts to your project, by modifying your `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "parcel <your entry file>",
+    "build": "parcel build <your entry file>"
+  }
+}
+```
+
+Then, you will be able to run it:
+
+``` bash
+
+# To run in development mode
+yarn dev
+#or
+npm run dev
+
+# To run in production mode
+yarn build
+#or
+npm run build
+
+```
