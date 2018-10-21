@@ -92,7 +92,7 @@ Add the tasks to your `package.json`:
 
 ``` json
 {
-  scripts: {
+  "scripts": {
     "dev": "parcel <your entry file>",
     "build": "parcel build <your entry file>"
   }
