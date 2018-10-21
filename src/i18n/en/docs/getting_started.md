@@ -81,3 +81,36 @@ Going to http://localhost:1234/folder-1/ won't work, instead you will need to ex
 ### Building for production
 
 When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
+
+### Adding parcel to your project
+
+Another option is to add `parcel` to your project, this will also allow you to run it in a CI. 
+
+Install `parcel-bundler` on your project: `yarn install --dev parcel-bundler`
+
+Add the tasks to your `package.json`:
+
+``` json
+{
+  scripts: {
+    "dev": "parcel <your entry file>",
+    "build": "parcel build <your entry file>"
+  }
+}
+```
+
+Then, to work with your project:
+
+``` bash
+
+# To run in development mode
+yarn dev
+#or
+npm run dev
+
+# To run in production mode
+yarn build
+#or
+npm run build
+
+```
