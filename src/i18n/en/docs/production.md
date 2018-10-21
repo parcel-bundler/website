@@ -36,34 +36,8 @@ In an effort to optimize production build performance, Parcel will try to determ
 
 Be aware that this module assumes you have the [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) program available in your system.
 
-## If You Can't Install Parcel Globally
+## Using a CI
 
-Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent. In this case, you can install and run Parcel as a local package.
+If you want to integrate Parcel in your Continuous Integration system (e.g. Travis or Circle CI), you might need to install Parcel as a local dependency.
 
-To install with Yarn:
-
-```bash
-yarn add parcel-bundler --dev
-```
-
-To install with NPM:
-
-```bash
-npm install parcel-bundler --save-dev
-```
-
-In this situation you won't have access to an alias for the Parcel CLI. To build your project use the following command:
-
-```bash
-node ./node_modules/parcel-bundler/bin/cli.js build entry.js
-```
-
-To make working with your project easier, you can add the script to package.json.
-
-```json
-"scripts": {
-    "build": "parcel build entry.js",
-}
-```
-
-You can then build your site with `npm run build` or `yarn build`.
+The instructions can be [found here](getting_started.html#adding-parcel-to-your-project).
