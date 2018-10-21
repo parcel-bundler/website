@@ -47,7 +47,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 <img  src={`data:image/png;base64,${buffer.toString('base64')}`}/>
 ```
 
-## Babel
+# Babel
 
 [Babel](https://babeljs.io) é o conversor de JavaScript mais popular que conta com um grande ecossistema de plugins. Usar o Babel com o Parcel funciona da mesma maneira que utilizá-lo sozinho ou com outros empacotadores.
 
@@ -67,7 +67,7 @@ Crie o arquivo `.babelrc`:
 }
 ```
 
-### Conversões padrões do Babel
+## Conversões padrões do Babel
 
 Parcel transpila o seu código com `@babel/preset-env` por padrão, isto é para transpilar cada modulo interno (*local requires*) e externo (*node_modules*) para coincidir com destino definido.
 
