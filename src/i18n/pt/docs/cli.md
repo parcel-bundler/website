@@ -91,7 +91,21 @@ Disponível em: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
+⚠️ Alvos `node` e `electron` não irá empacotar as `dependencies` do package.json (mas irá incluir as `devDependencies`). Este comportamento pode ser substituído utilziando a flag [--bundle-node-modules](#forçando-agrupamento-de-módulos-node) (veja abaixo).
+
 Possíveis alvos: `node`, `browser`, `electron`
+
+### Forçando agrupamento de módulos Node
+
+Padrão: false
+
+Disponível em: `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --target node --bundle-node-modules
+```
+
+Por padrão, as `dependencies` do package.json não são incluídas ao utilizar `--target node` ou `--target electron`. Esta flag irá adicioná-las para o pacote.
 
 ### Diretório de cache
 
