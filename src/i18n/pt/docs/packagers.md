@@ -19,7 +19,7 @@ class MyPackager extends Packager {
   }
 
   async end() {
-    // opcional. escrevee o trailer do arquivo, caso necessário.
+    // opcional. escreve o trailer do arquivo, caso necessário.
     await this.dest.end(trailer);
   }
 }
