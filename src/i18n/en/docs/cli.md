@@ -76,9 +76,9 @@ parcel entry.js --public-url ./dist/
 will output:
 
 ```html
-<link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
+<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css">
 <!-- or -->
-<script src="/dist/entry.e5f6g7.js"></script>
+<script src="dist/entry.e5f6g7.js"></script>
 ```
 
 ### Target
