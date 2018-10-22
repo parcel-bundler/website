@@ -56,14 +56,19 @@ Gli assets CSS possono essere importati da un file JavaScript o da un file HTML,
 Oltre ai semplici CSS, sono supportati e funzionano allo stesso modo anche altri linguaggi compile-to-CSS come LESS, SASS e Stylus.
 
 ## SCSS
+
 La compilazione SCSS richiede il modulo `sass`. Per installarlo via npm:
+
 ```bash
 npm install sass
 ```
+
 Una volta installato `sass`, puoi importare i file SCSS da un file JavaScript.
+
 ```javascript
-import './custom.scss'
+import './custom.scss';
 ```
+
 Le dipendenze nel file SCSS possono essere utilizzate tramite la funzione `@import`
 
 ## HTML

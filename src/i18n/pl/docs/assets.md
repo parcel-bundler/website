@@ -66,7 +66,7 @@ npm install sass
 Kiedy `sass` będzie zainstalowany, możesz importować pliki SCSS z plików JavaScript.
 
 ```javascript
-import './custom.scss'
+import './custom.scss';
 ```
 
 Zależności w plikach SCSS mogą być definiowane za pomocą składni `@import`.

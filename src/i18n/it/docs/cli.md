@@ -48,7 +48,7 @@ or
 parcel build entry.js -d build/output
 ```
 
-```base
+```
 root
 - build
 - - output
@@ -95,12 +95,12 @@ Disponibile in: `serve`, `watch`, `build`
 parcel build entry.js --log-level 1
 ```
 
-| Loglevel | Effetto                   |
-|---       |---                        |
-| 0        | Logging disattivo         |
-| 1        | Log solo errori           |
-| 2        | Log errori e avvisi       |
-| 3        | Log di tutto              |
+| Loglevel | Effetto             |
+| -------- | ------------------- |
+| 0        | Logging disattivo   |
+| 1        | Log solo errori     |
+| 2        | Log errori e avvisi |
+| 3        | Log di tutto        |
 
 ### HMR Hostname
 

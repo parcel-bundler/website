@@ -1,6 +1,6 @@
 # Javascript
 
-*Supported extensions: `js`, `jsx`, `es6`, `jsm`, `mjs`*
+_Supported extensions: `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
 The most traditional file type for web bundlers is JavaScript. Parcel supports both CommonJS and ES6 module syntax for importing files. It also supports dynamic `import()` function syntax to load modules asynchronously, which is discussed in the [Code Splitting](code_splitting.html) section.
 
@@ -25,11 +25,11 @@ import classNames from './test.css';
 import imageURL from './test.png';
 
 // Import an HTML file
-import('./some.html')
+import('./some.html');
 // or:
-import html from './some.html'
+import html from './some.html';
 // or:
-require('./some.html')
+require('./some.html');
 ```
 
 If you want to inline a file into the JavaScript bundle instead of reference it by URL, you can use the Node.js `fs.readFileSync` API to do that. The URL must be statically analyzable, meaning it cannot have any variables in it (other than `__dirname` and `__filename`).
@@ -44,7 +44,7 @@ const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 const buffer = fs.readFileSync(__dirname + '/test.png');
 
 // Convert Buffer contents to an image
-<img  src={`data:image/png;base64,${buffer.toString('base64')}`}/>
+<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
 # Babel
@@ -61,9 +61,7 @@ Then, create a `.babelrc`:
 
 ```json
 {
-  "presets": [
-    "@babel/preset-react"
-  ]
+  "presets": ["@babel/preset-react"]
 }
 ```
 
@@ -75,4 +73,4 @@ For the `browser` target it utilises [browserslist](https://github.com/browsersl
 
 The browserlist target defaults to: `> 0.25%` (Meaning, support every browser that has 0.25% or more of the total amount of active web users)
 
-For the `node` target, Parcel uses the `engines.node` defined in `package.json`, this default to *node 8*.
+For the `node` target, Parcel uses the `engines.node` defined in `package.json`, this default to _node 8_.

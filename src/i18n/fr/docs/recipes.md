@@ -130,8 +130,8 @@ Puis, dans votre fichier `index.html`, importez directement le fichier `.ts`.
 <head>
 </head>
 <body>
-    <!-- Ici 👇 --> 
-    <script src="./myTypescriptFile.ts"></script>
+  <!-- Ici 👇 -->
+  <script src="./myTypescriptFile.ts"></script>
 </body>
 </html>
 ```

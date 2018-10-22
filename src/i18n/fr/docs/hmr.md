@@ -8,11 +8,11 @@ Il y a deux méthodes à connaître : `module.hot.accept` et `module.hot.dispose
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // le module est sur le point d'être remplacé
   });
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // le module ou l'une de ses dépendances vient d'être mis à jour
   });
 }
@@ -22,16 +22,17 @@ if (module.hot) {
 
 Chaque fois que Parcel rencontre une dépendance qui correspond au schéma `node_module` et ne le trouve pas, Parcel tente d'installer cette dépendance en utilisant `yarn` ou `npm` selon la présence ou non d'un fichier `yarn.lock`. Cela évite au développeur de quitter Parcel ou d'avoir plusieurs fenêtres de terminal ouvertes.
 
-Cela ne se produit qu'en *développement* (en utilisant [`serve`](cli.md#serve) ou [`watch`](cli.md#watch)), par contre en production (en utilisant [`build`](cli.md#build)) autoinstall est désactivé pour empêcher les effets secondaires indésirables sur le déploiement.
+Cela ne se produit qu'en _développement_ (en utilisant [`serve`](cli.md#serve) ou [`watch`](cli.md#watch)), par contre en production (en utilisant [`build`](cli.md#build)) autoinstall est désactivé pour empêcher les effets secondaires indésirables sur le déploiement.
 
 Vous pouvez désactiver cette fonctionnalité en utilisant [`--no-autoinstall`](cli.md#désactiver-linstallation-automatique-de-dépendances).
 
 ## Safe Write
+
 Certains éditeurs de texte et IDE ont une fonctionnalité appelée `safe write` qui évite la perte de données, en prenant une copie du fichier et en la renommant à l'enregistrement.
 
 Lors de l'utilisation du Hot Module Reload (HMR), cette fonctionnalité bloque la détection automatique des mises à jour de fichiers. Pour désactiver `safe write` utilisez les options fournies ci-dessous :
 
-* `Sublime Text 3` : ajoutez `atomic_save: "false"` à vos préférences utilisateur.
-* `IntelliJ` : utilisez la recherche dans les préférences pour trouver "safe write" et désactivez-le.
-* `Vim` : ajoutez `:set backupcopy=yes` à vos paramètres.
-* `WebStorm` : décochez `Use "safe write"` dans Preferences > Appearance & Behavior > System Settings.
+- `Sublime Text 3` : ajoutez `atomic_save: "false"` à vos préférences utilisateur.
+- `IntelliJ` : utilisez la recherche dans les préférences pour trouver "safe write" et désactivez-le.
+- `Vim` : ajoutez `:set backupcopy=yes` à vos paramètres.
+- `WebStorm` : décochez `Use "safe write"` dans Preferences > Appearance & Behavior > System Settings.

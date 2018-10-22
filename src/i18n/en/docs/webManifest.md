@@ -1,3 +1,3 @@
 # WebManifest
 
-*Supported extensions: `webmanifest`*
+_Supported extensions: `webmanifest`_

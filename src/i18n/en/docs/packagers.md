@@ -5,7 +5,7 @@ In Parcel, a `Packager` combines multiple `Asset`s together into a final output 
 ## Packager Interface
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
@@ -24,7 +24,7 @@ class MyPackager extends Packager {
   }
 }
 
-module.exports = MyPackager
+module.exports = MyPackager;
 ```
 
 ## Registering a Packager

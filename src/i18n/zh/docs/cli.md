@@ -48,7 +48,7 @@ parcel build entry.js --out-dir build/output
 parcel build entry.js -d build/output
 ```
 
-```base
+```
 root
 - build
 - - output
@@ -95,12 +95,12 @@ parcel build entry.js --target node
 parcel entry.js --log-level 1
 ```
 
-| 日志等级 | 效果                 |
-|---       |---                 |
-| 0        | 禁用记录             |
-| 1        | 只记录错误           |
-| 2        | 记录错误和警告        |
-| 3        | 记录一切             |
+| 日志等级 | 效果           |
+| -------- | -------------- |
+| 0        | 禁用记录       |
+| 1        | 只记录错误     |
+| 2        | 记录错误和警告 |
+| 3        | 记录一切       |
 
 ### HMR 主机名
 

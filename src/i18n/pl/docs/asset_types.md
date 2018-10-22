@@ -7,7 +7,7 @@ Ponieważ Parcel przetwarza zasoby równolegle na wielu rdzeniach procesora, typ
 ## Interfejs Zasobu
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // zdefiniuj typ wyniku

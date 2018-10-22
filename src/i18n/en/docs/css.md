@@ -1,6 +1,6 @@
 # CSS
 
-*Supported extensions: `css`, `pcss`, `postcss`*
+_Supported extensions: `css`, `pcss`, `postcss`_
 
 CSS assets can be imported from a JavaScript or HTML file, and can contain dependencies referenced by `@import` syntax as well as references to images, fonts, etc. via the `url()` function. Other CSS files that are `@import`ed are inlined into the same CSS bundle, and `url()` references are rewritten to their output filenames. All filenames should be relative to the current CSS file.
 
@@ -58,13 +58,16 @@ For CSS Modules to work properly with existing modules they need to specify this
 
 Parcel adds [cssnano](http://cssnano.co) to postcss in order to minify css in production build, where custom configuration can be set by creating `cssnano.config.js` file:
 
-```js
+```javascript
 module.exports = {
-  preset: ['default', {
-    calc: false,
-    discardComments: {
-      removeAll: true,
+  preset: [
+    'default',
+    {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
     }
-  }]
+  ]
 };
 ```

@@ -24,7 +24,7 @@ Następnie utwórz plik `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) to narzędzie do transformacji CSS z użyciem wtyczek, np.  [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) czy [CSS Modules](https://github.com/css-modules/css-modules). Możesz skonfigurować PostCSS z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.postcssrc` (JSON), `.postcssrc.js` lub `postcss.config.js`.
+[PostCSS](http://postcss.org) to narzędzie do transformacji CSS z użyciem wtyczek, np. [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) czy [CSS Modules](https://github.com/css-modules/css-modules). Możesz skonfigurować PostCSS z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.postcssrc` (JSON), `.postcssrc.js` lub `postcss.config.js`.
 
 Zainstaluj wtyczki w aplikacji wykonując:
 
@@ -81,6 +81,7 @@ Następnie utwórz plik `.posthtmlrc`:
 Wtyczki są wymienione w obiekcie `plugins` jako klucze, a ich opcje są definiowane poprzez wartości. Jeśli nie istnieje potrzeba określania opcji dla wtyczki, ustaw jej wartość na `true`.
 
 ## TypeScript
+
 [TypeScript](https://www.typescriptlang.org/) to typowany nadzbiór JavaScript, który kompiluje się do JavaScript, który wspiera także funkcje ES2015+. Transformacja TypeScript działa od razu bez żadnej dodatkowej konfiguracji.
 
 ```html
@@ -91,14 +92,16 @@ Wtyczki są wymienione w obiekcie `plugins` jako klucze, a ich opcje są definio
 </body>
 </html>
 ```
+
 ```typescript
 // index.ts
-import message from "./message";
+import message from './message';
 console.log(message);
 ```
+
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world';
 ```
 
 ## ReasonML/BuckleScript
@@ -124,8 +127,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },

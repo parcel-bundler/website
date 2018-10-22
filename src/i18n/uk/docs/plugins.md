@@ -8,7 +8,7 @@ Parcel використовує дещо інший підхід з багать
 
 Модулі для Parcel дуже прості. Це просто модулі, які експортують одну функцію, яка автоматично викликається Parcel під час ініціалізації. Функція отримує об'єкт `Bundler` в якості вхідних даних і може виконувати такі налаштування, як реєстрація типів ресурсів і пакувальників.
 
-```Javascript
+```javascript
 module.exports = function(bundler) {
   bundler.addAssetType('ext', require.resolve('./MyAsset'));
   bundler.addPackager('foo', require.resolve('./MyPackager'));

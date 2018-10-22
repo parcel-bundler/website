@@ -5,7 +5,7 @@ No Parcel, um `Packager` combina múltiplos `Asset`s juntos em um pacote de saí
 ## Interface Packager
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {

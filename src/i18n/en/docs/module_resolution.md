@@ -61,9 +61,9 @@ Alias mappings apply to many asset types and does not specifically support mappi
 
 and re-export the named export within the aliased file:
 
-```js
+```javascript
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer;
 ```
 
 ### TypeScript ~ Resolution

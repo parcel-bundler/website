@@ -7,7 +7,7 @@ Parcel elabora le risorse in parallelo su più core di elaborazione e le trasfor
 ## Interfaccia degli Asset
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // imposta il tipo principale di output.

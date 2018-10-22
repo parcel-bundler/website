@@ -1,31 +1,60 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-width: 250px;
-  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-  background:#fefefe;
+  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  background: #fefefe;
 }
 
-h1,h2,h3,h4,h5,h6{
-font-weight:400;
-color:#111;
-line-height:1em;
-font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  color: #111;
+  line-height: 1em;
+  font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-h4,h5,h6{ font-weight: bold; }
-h1{ font-size:3.2em; }
-h2{ font-size:2em; }
-h3{ font-size:1.5em; }
-h4{ font-size:1.2em; }
-h5{ font-size:1em; }
-h6{ font-size:0.9em; }
+
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3.2em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.9em;
+}
 
 header {
-  background: #21374B;
-  color: #E7DACB;
+  background: #21374b;
+  color: #e7dacb;
   text-align: center;
   padding: 80px 0 50px 0;
-  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .logo {
@@ -37,7 +66,7 @@ header {
 header .subtitle {
   margin: 0;
   font-size: 1.5em;
-  color: #E7DACB;
+  color: #e7dacb;
 }
 
 .parcel {
@@ -99,11 +128,11 @@ header .subtitle {
   display: inline-block;
   padding: 8px 0;
   width: 180px;
-  color: #E7DACB;
-  border: 1px solid #E7DACB;
+  color: #e7dacb;
+  border: 1px solid #e7dacb;
   border-radius: 50px;
   text-decoration: none;
-  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 20px;
   transition: opacity 200ms;
   text-align: center;
@@ -115,8 +144,8 @@ header .subtitle {
 }
 
 .get-started {
-  background: #E7DACB;
-  color: #21374B;
+  background: #e7dacb;
+  color: #21374b;
 }
 
 header .links {
@@ -125,11 +154,11 @@ header .links {
   right: 0;
   display: flex;
   margin: 20px;
-  align-items: center;  
+  align-items: center;
 }
 
 header .links a {
-  color: #E7DACB;
+  color: #e7dacb;
   text-decoration: none;
   padding-left: 20px;
   transition: color 125ms;
@@ -159,9 +188,9 @@ header .links a:hover {
 main {
   max-width: 1000px;
   margin: 0 auto;
-  color:#444;
-  font-size:16px;
-  line-height:1.5em;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.5em;
 }
 
 main section {
@@ -185,8 +214,21 @@ main > section {
   padding: 0 20px;
 }
 
-pre, code, kbd, samp { color: #000; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.98em; }
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; font-size: 12px; }
+pre,
+code,
+kbd,
+samp {
+  color: #000;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.98em;
+}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 12px;
+}
 
 p code {
   font-size: 0.95em;
@@ -205,7 +247,8 @@ tr:nth-child(2n + 1) {
   background: #efefef;
 }
 
-td, th {
+td,
+th {
   padding: 5px 10px;
   text-align: left;
   border: 1px solid #ddd;
@@ -226,9 +269,9 @@ td, th {
 }
 
 footer {
-  background: #21374B;
-  color: #E7DACB;
-  font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #21374b;
+  color: #e7dacb;
+  font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 40px 0 20px 0;
   margin-top: 40px;
   text-align: center;
@@ -252,7 +295,7 @@ footer nav ul {
 
 footer nav a,
 footer .copyright a {
-  color: #E7DACB;
+  color: #e7dacb;
   text-decoration: none;
   transition: color 125ms;
   line-height: 1.7em;
@@ -273,7 +316,7 @@ footer h3 {
   text-transform: uppercase;
   font-size: 13px;
   opacity: 0.7;
-  color: #E7DACB;
+  color: #e7dacb;
 }
 
 footer .copyright {

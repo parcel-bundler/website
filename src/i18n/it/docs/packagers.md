@@ -5,7 +5,7 @@ In Parcel, un `Packager` combina multipli `Assets` insieme in un bundle di outpu
 ## Interfaccia del Packager
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler');
 
 class MioPackager extends Packager {
   async start() {

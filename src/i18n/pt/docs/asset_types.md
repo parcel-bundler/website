@@ -7,7 +7,7 @@ Como o Parcel processa recursos em paralelo através de vários núcleos do proc
 ## Interface Asset
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // define o tipo de saída principal.

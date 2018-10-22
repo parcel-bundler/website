@@ -5,11 +5,13 @@ Parcel &nbsp;&mdash; це пакувальник для веб-додатків 
 Спочатку встановіть Parcel за допомогою Yarn або npm:
 
 Yarn:
+
 ```Bash
 yarn global add parcel-bundler
 ```
 
 npm:
+
 ```Bash
 npm install -g parcel-bundler
 ```
@@ -19,7 +21,9 @@ npm install -g parcel-bundler
 ```Bash
 yarn init -y
 ```
+
 або
+
 ```Bash
 npm init -y
 ```
@@ -36,7 +40,7 @@ Parcel може приймати будь-який тип файлу в якос
 </html>
 ```
 
-```Javascript
+```javascript
 console.log ("Привіт, світ!");
 ```
 

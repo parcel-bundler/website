@@ -5,7 +5,7 @@ W Parcel, `Program pakujący` łączy wiele `Zasobów` do finalnej paczki wyjśc
 ## Interfejs Programu Pakującego
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {

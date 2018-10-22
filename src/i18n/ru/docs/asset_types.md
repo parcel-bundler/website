@@ -7,8 +7,7 @@
 ## Интерфейс ресурса
 
 ```javascript
-
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // устанавливаем основной тип вывода.
@@ -28,7 +27,7 @@ class MyAsset extends Asset {
   }
 
   async transform() {
-    // преобразовать после сбора зависимостей. (опционально) 
+    // преобразовать после сбора зависимостей. (опционально)
   }
 
   async generate() {

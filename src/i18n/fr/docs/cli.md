@@ -56,7 +56,7 @@ parcel build entry.js --out-dir build/output
 parcel build entry.js -d build/output
 ```
 
-```base
+```
 root
 - build
 - - output
@@ -138,7 +138,7 @@ parcel entry.js --log-level 1
 ```
 
 | Loglevel | Effet                                       |
-|---       |---                                          |
+| -------- | ------------------------------------------- |
 | 0        | Journal désactivé                           |
 | 1        | Consigner uniquement les erreurs            |
 | 2        | Consigner les erreurs et les avertissements |

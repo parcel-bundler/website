@@ -9,7 +9,7 @@ Parcel использует несколько иной подход из мно
 Плагины для Parcel очень просты. Это просто модули, которые экспортируют одну функцию, которая автоматически вызывается Parcel во время инициализации. Функция получает объект `Bundler` в качестве входных данных и может выполнять такую настройку, как регистрация типов ресурсов и упаковщиков.
 
 ```javascript
-module.exports = function (bundler) {
+module.exports = function(bundler) {
   bundler.addAssetType('ext', require.resolve('./MyAsset'));
   bundler.addPackager('foo', require.resolve('./MyPackager'));
 };

@@ -8,22 +8,23 @@
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // 模块即将被替换时
   });
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // 模块或其依赖项之一刚刚更新时
   });
 }
 ```
 
 ## 安全写入(Safe Write)
+
 一些文本编辑器和 IDE 均有`安全写入`的功能，这基本上可以防止数据丢失，通过获取文本的副本并在保存时对其进行重命名操作。
 
 当使用热模块重载 (HMR) 时，此功能会阻止文件更新的自动检测，要禁用`安全写入`，请使用下列提供的选项:
 
-* `Sublime Text 3` 将 atomic_save: "false" 添加到你用户设置中。
-* `IntelliJ` 在设置中使用搜索来查找 "safe write" 并将其禁用。
-* `Vim` 添加 :set backupcopy=yes 到你的设置中.
-* `WebStorm` 在 Preferences > Appearance & Behavior > System Settings 中取消选中 "safe write" 选项。
+- `Sublime Text 3` 将 atomic_save: "false" 添加到你用户设置中。
+- `IntelliJ` 在设置中使用搜索来查找 "safe write" 并将其禁用。
+- `Vim` 添加 :set backupcopy=yes 到你的设置中.
+- `WebStorm` 在 Preferences > Appearance & Behavior > System Settings 中取消选中 "safe write" 选项。

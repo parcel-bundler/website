@@ -5,11 +5,13 @@ Parcel è un bundle di applicazioni web, che si differenzia per la sua developer
 Per prima cosa installa Parcel usando Yarn o npm:
 
 Yarn:
+
 ```bash
 yarn global add parcel-bundler
 ```
 
 npm:
+
 ```bash
 npm install -g parcel-bundler
 ```
@@ -19,7 +21,9 @@ Creare un file package.json nella cartella del progetto:
 ```bash
 yarn init -y
 ```
-or 
+
+or
+
 ```bash
 npm init -y
 ```
@@ -37,7 +41,7 @@ Successivamente, creare un file index.html e index.js.
 ```
 
 ```javascript
-console.log("hello world");
+console.log('hello world');
 ```
 
 Parcel possiede nativamente un proprio server di sviluppo, che automaticamente ricostruisce la tua app man mano che cambi i file e supporta l'[hot module replacement](hmr.html) per consentire uno sviluppo rapido. Fai puntare il processo semplicemente al tuo entry point:

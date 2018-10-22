@@ -22,7 +22,7 @@ yarn add @babel/preset-react
 }
 ```
 
-### Транспиляция babel'ем по умолчанию
+### Транспиляция Babel'ем по умолчанию
 
 Parcel транспилирует ваш код с пресетом `@babel/preset-env` по умолчанию, с его помощью каждый внутренний (локальные require'ы) и внешние (node_modules) будут транспилировны под указанный target.
 
@@ -86,7 +86,7 @@ yarn add posthtml-img-autosize
 
 ## TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) - типизированное надмножество  JavaScript, которое компилирует код до обычного JavaScript, который также поддерживает современные возможности ES2015+. Преобразование TypeScript работает без всякой дополнительной настройки.
+[TypeScript](https://www.typescriptlang.org/) - типизированное надмножество JavaScript, которое компилирует код до обычного JavaScript, который также поддерживает современные возможности ES2015+. Преобразование TypeScript работает без всякой дополнительной настройки.
 
 ```html
 <!-- index.html -->
@@ -99,13 +99,13 @@ yarn add posthtml-img-autosize
 
 ```typescript
 // index.ts
-import message from "./message";
+import message from './message';
 console.log(message);
 ```
 
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world';
 ```
 
 ## ReasonML/BuckleScript
@@ -131,8 +131,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },

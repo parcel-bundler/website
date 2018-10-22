@@ -12,8 +12,9 @@ export function render() {
   // Donne le rendu de la page
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // Donne le rendu de la page
   page.render();
 });
@@ -51,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill';
+import './app';
 ```
 
 Consultez les docs sur [babel-polyfill](http://babeljs.io/docs/usage/polyfill) et [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).

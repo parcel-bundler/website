@@ -26,7 +26,7 @@ yarn add --dev babel-preset-react
 
 Потім додайте скрипт запуску в `package.json`
 
-```Javascript
+```javascript
 // package.json
 "Scripts": {
   "Start": "parcel index.html"
@@ -57,7 +57,7 @@ yarn add --dev babel-preset-preact
 
 Потім переконайтеся, що існує така конфігурація Babel.
 
-```Javascript
+```javascript
 // .babelrc
 {
   "Presets": [ "env", "preact"]
@@ -66,7 +66,7 @@ yarn add --dev babel-preset-preact
 
 Потім додайте скрипт запуску в `package.json`
 
-```Javascript
+```javascript
 // package.json
 "Scripts": {
   "Start": "parcel index.html"
@@ -91,7 +91,7 @@ yarn add --dev parcel-bundler
 
 Потім додайте скрипт запуску в `package.json`
 
-```Javascript
+```javascript
 // package.json
 "Scripts": {
   "Start": "parcel index.html"

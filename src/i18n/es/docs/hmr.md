@@ -8,11 +8,11 @@ Hay dos métodos que se deben conocer: `module.hot.accept` y `module.hot.dispose
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // El módulo está a punto de ser reemplazado
   });
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // El módulo o alguna de sus dependencias ya fueron actualizadas.
   });
 }

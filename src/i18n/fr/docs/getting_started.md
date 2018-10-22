@@ -5,11 +5,13 @@ Parcel est un empaqueteur d'application web, qui se différencie par son expéri
 Commencez par installer Parcel en utilisant Yarn ou npm :
 
 Yarn :
+
 ```bash
 yarn global add parcel-bundler
 ```
 
 npm :
+
 ```bash
 npm install -g parcel-bundler
 ```
@@ -19,7 +21,9 @@ Créez un fichier package.json dans le répertoire de votre projet en utilisant 
 ```bash
 yarn init -y
 ```
+
 ou
+
 ```bash
 npm init -y
 ```
@@ -37,7 +41,7 @@ Ensuite, créez un fichier index.html et index.js.
 ```
 
 ```javascript
-console.log("hello world");
+console.log('hello world');
 ```
 
 Parcel a un serveur de développement intégré, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et il prend en charge un [module de remplacement à chaud](hmr.html) pour un développement plus rapide. Il suffit de le faire pointer sur votre fichier d'entrée :
@@ -59,16 +63,19 @@ parcel watch index.html
 Si vous avez plusieurs fichiers comme point d'entrée, disons `index.html` et `about.html`, vous avez deux façons d'exécuter l'empaqueteur :
 
 En spécifiant les noms des fichiers :
+
 ```bash
 parcel index.html about.html
 ```
 
 Utilisez des tokens et créez un glob :
+
 ```bash
 parcel *.html
 ```
 
-*REMARQUE :* Si vous avez une structure de fichier comme celle-ci :
+_REMARQUE :_ Si vous avez une structure de fichier comme celle-ci :
+
 ```
 - répertoire-1
 -- index.html

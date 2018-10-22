@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{title}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script type="text/javascript">
-    var LANGUAGE = 'pl';
-    
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
+    var LANGUAGE = 'pl'
+
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
+    gtag('config', 'UA-110647385-1')
   </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 <body>
   <header>
     <a class="logo" href="/">
-      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
-      <img class="type" src="assets/logo.svg" alt="Parcel">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30" />
+      <img class="type" src="assets/logo.svg" alt="Parcel" />
     </a>
     <div class="links">
       <input type="text" id="search-input" class="search-input" placeholder="Szukaj..." />
@@ -68,30 +70,30 @@
       {{~> content}}
 
       <h2>Help us improve the docs</h2>
-      <p>If something is missing or not entirely clear, please 
-          <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> 
-          or <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}">edit this page</a>.</p>
+      <p>If something is missing or not entirely clear, please
+        <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a>
+        or
+        <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}">edit this page</a>.
+      </p>
     </main>
   </div>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
   <script type="text/javascript">
-    (function () {
-      var pathname = window.location.pathname.substr(1);
-      var activeLink = document.querySelector('a[href="' + pathname + '"]');
+    ;(function() {
+      var pathname = window.location.pathname.substr(1)
+      var activeLink = document.querySelector('a[href="' + pathname + '"]')
 
-      activeLink.classList.add('selected');
+      activeLink.classList.add('selected')
 
       docsearch({
         apiKey: '8b6be780425a72d1a1683abea2636778',
         indexName: 'parceljs',
         inputSelector: '#search-input',
         algoliaOptions: {
-          'facetFilters': [
-            `lang:${LANGUAGE}`
-          ]
+          facetFilters: [`lang:${LANGUAGE}`]
         }
-      });
-    })();
+      })
+    })()
   </script>
 </body>
 </html>

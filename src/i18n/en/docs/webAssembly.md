@@ -1,6 +1,6 @@
 # WebAssembly
 
-*Supported extensions: `wasm`*
+_Supported extensions: `wasm`_
 
 [WebAssembly](https://webassembly.org) is an emerging technology, but one that will have a huge impact on the web in the near future. Now supported by all major web browsers, as well as Node, WebAssembly will enable a diversity of languages on the web, and not just those that can transpile to JavaScript.
 
@@ -8,12 +8,12 @@ Low-level languages like C and Rust can compile to WebAssembly, which is a binar
 
 Parcel makes it **extremely easy** to get started with WebAssembly. Assuming you already have a `.wasm` file (see the next section for an even easier way!), you can just import as usual. Both synchronous and asynchronous imports are supported.
 
-```js
+```javascript
 // synchronous import
-import {add} from './add.wasm';
+import { add } from './add.wasm';
 console.log(add(2, 3));
 // asynchronous import
-const {add} = await import('./add.wasm');
+const { add } = await import('./add.wasm');
 console.log(add(2, 3));
 ```
 

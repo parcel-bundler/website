@@ -27,11 +27,11 @@ import classNames from './test.css';
 import imageURL from './test.png';
 
 // Importe un fichier HTML
-import('./some.html')
+import('./some.html');
 // ou :
-import html from './some.html'
+import html from './some.html';
 // ou :
-require('./some.html')
+require('./some.html');
 ```
 
 Si vous souhaitez insérer un fichier dans le bundle JavaScript au lieu de le référencer par une URL, vous pouvez utiliser l'API `fs.readFileSync` de Node.js à cet effet. L'URL doit pouvoir être analysée statiquement, ce qui signifie qu'elle ne peut contenir aucune variable (autre que `__dirname` et `__filename`).
@@ -46,7 +46,7 @@ const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
 const buffer = fs.readFileSync(__dirname + '/test.png');
 
 // Convertit le contenu du buffer en image
-<img  src={`data:image/png;base64,${buffer.toString('base64')}`}/>
+<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
 ## CSS
@@ -66,14 +66,19 @@ Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou
 En plus des simples CSS, d'autres langages compilés vers CSS comme LESS, SASS et Stylus sont également supportés, et fonctionnent de la même manière.
 
 ## SCSS
+
 La compilation SCSS nécessite un module `sass`. Pour l'installer avec npm :
+
 ```bash
 npm install sass
 ```
+
 Une fois que vous avez installé `sass`, vous pouvez importer des fichiers SCSS à partir de fichiers JavaScript.
+
 ```javascript
-import './custom.scss'
+import './custom.scss';
 ```
+
 Les dépendances dans les fichiers SCSS peuvent être utilisées avec les instructions `@import`.
 
 ## HTML

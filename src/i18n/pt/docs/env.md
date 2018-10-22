@@ -6,12 +6,12 @@ Arquivos `.env` devem ser armazenados junto com o `package.json` que contém sua
 
 Parcel carrega arquivos `.env` com esses nomes especificos para os valores de `NODE_ENV` seguintes:
 
-| Nome de arquivos `.env` válidos   | `NODE_ENV=\*` | `NODE_ENV=test` |
-| --------------------------------- | ------------- | --------------- |
-| `.env`                            | ✔️           | ✔️              |
-| `.env.local`                      | ✔️           | ✖️              |
-| `.env.${NODE_ENV}`                | ✔️           | ✔️              |
-| `.env.${NODE_ENV}.local`          | ✔️           | ✔️              |
+| Nome de arquivos `.env` válidos | `NODE_ENV=\*` | `NODE_ENV=test` |
+| ------------------------------- | ------------- | --------------- |
+| `.env`                          | ✔️            | ✔️              |
+| `.env.local`                    | ✔️            | ✖️              |
+| `.env.${NODE_ENV}`              | ✔️            | ✔️              |
+| `.env.${NODE_ENV}.local`        | ✔️            | ✔️              |
 
 Notavelmente:
 

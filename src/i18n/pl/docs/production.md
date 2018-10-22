@@ -10,7 +10,6 @@ Tryb produkcyjny wyłącza tryb `watch` i hot module replacement, a więc kod zo
 
 Włączenie trybu produkcyjnego ustawia także zmienną systemową `NODE_ENV=production`. Duże biblioteki, takie jak React, mają specjalne funkcje przeznaczone wyłącznie do debuggingu i są wyłączane poprzez ustawienie tej zmiennej systemowej, co powoduje redukcję rozmiaru plików wyjściowych i szybszy proces budowania.
 
-
 ### Opcje
 
 #### Ustawienie folderu wyjściowego
@@ -23,7 +22,7 @@ lub
 parcel build entry.js -d build/output
 ```
 
-```base
+```
 root
 - build
 - - output
@@ -45,7 +44,6 @@ spowoduje:
 lub
 <script src="e5f6g7h8.js"></script>
 ```
-
 
 #### Wyłączanie minifikacji
 

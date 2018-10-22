@@ -61,9 +61,9 @@ Les cartographies d'alias s'appliquent à de nombreux types d'actifs, mais ne pr
 
 et réexporter l'export nommé dans le fichier aliasé :
 
-```js
+```javascript
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer;
 ```
 
 ### Résolution TypeScript ~
@@ -84,7 +84,7 @@ TypeScript devra connaître votre utilisation de la résolution de module `~` ou
 
 ### Résolution Monorepo
 
-Ce sont  en ce moment les utilisations conseillées avec des monorepos :
+Ce sont en ce moment les utilisations conseillées avec des monorepos :
 
 Utilisation conseillée :
 

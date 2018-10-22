@@ -12,14 +12,15 @@ export function render() {
   // 渲染页面
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // 渲染页面
   page.render();
 });
 ```
 
-因为 `import()` 返回一个Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。
+因为 `import()` 返回一个 Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。
 
 ```javascript
 const page = await import('./pages/about');
@@ -51,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill';
+import './app';
 ```
 
 请参阅 [babel-polyfill](http://babeljs.cn/docs/usage/polyfill) 和 [babel-runtime](http://babeljs.cn/docs/plugins/transform-runtime) 的文档。

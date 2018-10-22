@@ -7,7 +7,7 @@ Debido a que Parcel procesa los recursos en paralelo en múltiples núcleos de p
 ## Interfaz de Recursos
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // establecer el tipo de salida principal

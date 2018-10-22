@@ -7,6 +7,7 @@ parcel build entry.js
 ```
 
 ## Оптимізації
+
 Це відключає режим перегляду, гарячу заміну модулів, ваш додаток буде зібрано лише один раз і дозволяє мінімізувати всі вихідні бандли для зменшення розміру файлу. Мініфікатори, використовувані Parcel: [terser](https://github.com/fabiosantoscode/terser) для JavaScript, [cssnano](http://cssnano.co) для CSS і [htmlnano](https://github.com/posthtml/htmlnano) для HTML.
 
 Включення режиму продакшена також встановлює змінну середовища `NODE_ENV = production`. Великі бібліотеки, такі як React, мають тільки функціональність для налагодження, яка відключається через цю змінну середовища, що призводить до менших і швидших збірок для продакшена.
@@ -17,15 +18,15 @@ parcel build entry.js
 
 Parcel слідує за наведеною нижче таблицею, коли мова йде про імена бандлів. (Вхідні точки ніколи не хешуються)
 
-| Тип бандлу | Тип | Вміст хешується |
-| ---:| --- |:---:|:---:|
-| Any | Entrypoint            | ❌ |
-| JavaScript | `<script>`     | ✅ |
-| JavaScript | Dynamic import | ❌ |
-| JavaScript | Service worker | ❌ |
-| HTML | iframe               | ❌ |
-| HTML | anchor link          | ❌ |
-| Raw (Images, text files, ...) | Import/Require/... | ✅ |
+|                    Тип бандлу | Тип                | Вміст хешується |
+| ----------------------------: | ------------------ | :-------------: |
+|                           Any | Entrypoint         |       ❌        |
+|                    JavaScript | `<script>`         |       ✅        |
+|                    JavaScript | Dynamic import     |       ❌        |
+|                    JavaScript | Service worker     |       ❌        |
+|                          HTML | iframe             |       ❌        |
+|                          HTML | anchor link        |       ❌        |
+| Raw (Images, text files, ...) | Import/Require/... |       ✅        |
 
 Хеш файлу слід виконати наступний шаблон іменування: `<directory name>-<hash>.<extension>`
 

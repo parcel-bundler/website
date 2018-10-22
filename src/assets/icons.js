@@ -26,7 +26,7 @@ function spawn() {
   use.setAttributeNS(
     'http://www.w3.org/1999/xlink',
     'href',
-    'assets/icons.svg#' + icon,
+    'assets/icons.svg#' + icon
   )
   svg.appendChild(use)
   container.appendChild(svg)

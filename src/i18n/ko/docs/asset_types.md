@@ -1,13 +1,13 @@
 # 📝 애셋 유형
 
-[애셋 문서](assets.html)에 기술했던 것처럼, Parcel은 각 입력 파일을 `Asset`이라고 표현합니다. 애셋 유형(type)은 기본 `Asset` 클래스를 상속한 클래스로 표현됩니다. 애셋 유형은 구문 분석(parse), 종속성 분석, 변환과 코드 생성에 필요한 인터페이스를 구현합니다.
+[애셋 문서](assets.html)에 기술했던 것처럼, Parcel 은 각 입력 파일을 `Asset` 이라고 표현합니다. 애셋 유형(type)은 기본 `Asset` 클래스를 상속한 클래스로 표현됩니다. 애셋 유형은 구문 분석 (parse), 종속성 분석, 변환과 코드 생성에 필요한 인터페이스를 구현합니다.
 
-Parcel은 다중 프로세서 코어로 애셋을 병렬 처리 하기 때문에 애셋 유형이 수행할 수 있는 변환은 한번에 하나의 파일 운용만으로 한정 되어 있습니다. 여러 파일 변환을 위해 사용자 정의 [패키저](packagers.html)를 쓸 수 있습니다.
+Parcel 은 다중 프로세서 코어로 애셋을 병렬 처리 하기 때문에 애셋 유형이 수행할 수 있는 변환은 한번에 하나의 파일 운용만으로 한정 되어 있습니다. 여러 파일 변환을 위해 사용자 정의 [패키저](packagers.html)를 쓸 수 있습니다.
 
 ## 애셋 인터페이스
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // 주 출력 유형 설정
@@ -31,7 +31,7 @@ class MyAsset extends Asset {
   }
 
   async generate() {
-    // 코드 생성. 필요하다면 다수의 표현(rendition)을 반환할 수 있음.
+    // 코드 생성. 필요하다면 다수의 표현 (rendition) 을 반환할 수 있음.
     // 결과물은 적절한 패키저로 전달되어 최종 번들을 생성.
     return [
       {
@@ -40,7 +40,7 @@ class MyAsset extends Asset {
       },
       {
         type: 'js',
-        value: 'some javascript', // 필요하다면 JS 번들에 배치할 대체 표현(rendition)
+        value: 'some javascript', // 필요하다면 JS 번들에 배치할 대체 표현 (rendition)
         sourceMap
       }
     ];

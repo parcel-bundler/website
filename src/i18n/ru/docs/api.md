@@ -4,7 +4,8 @@
 
 Вместо CLI вы также можете использовать API для инициализации упаковщика для более продвинутых вариантов использования (например, пользовательская обработка после каждой сборки).
 См. пример ниже, где объясняется каждая опция:
-```Javascript
+
+```javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 
@@ -45,16 +46,18 @@ runBundle();
 
 Список всех событий упаковщика
 
-* `bundled` вызывается после того, как Parcel успешно завершил сборку, основной [бандл](#bundle) передаётся в коллбэк
-```Javascript
+- `bundled` вызывается после того, как Parcel успешно завершил сборку, основной [бандл](#bundle) передаётся в коллбэк
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
   // упаковщик содержит все ресурсы и бандлы, подробности смотрите в документации
 });
 ```
 
-* `buildEnd` вызывается после каждой сборки, он также вызывается в случае ошибки
-```Javascript
+- `buildEnd` вызывается после каждой сборки, он также вызывается в случае ошибки
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Сделать что-то
@@ -67,20 +70,19 @@ bundler.on('buildEnd', () => {
 
 #### Properties
 
-* `type`: Тип ресурсов, которые он содержит (например, js, css, map, ...)
-* `name`: Имя бандла (сгенерированное с помощью `Asset.generateBundleName()` `entryAsset`)
-* `parentBundle`: Родительский бандл, null в случае входного бандла
-* `entryAsset`: Точка входа бандла, используется для генерации имени сборка ресурсов.
-* `assets`: Набор (`Set`) всех ресурсов внутри бандла
-* `childBundles`: Набор (`Set`) всех дочерних бандлов
-* `siblingBundles`: Набор (`Set`) всех родственных бандлов
-* `siblingBundlesMap`: Карта (`Map<String(Type: js, css, map, ...), Bundle>`) всех дочерних бандлов
-* `offsets`: Карта (`Map<Asset, number(line number inside the bundle)>`) всех местоположений ресурсов внутри бандла, используемых для генерации всех точных source maps
+- `type`: Тип ресурсов, которые он содержит (например, js, css, map, ...)
+- `name`: Имя бандла (сгенерированное с помощью `Asset.generateBundleName()` `entryAsset`)
+- `parentBundle`: Родительский бандл, null в случае входного бандла
+- `entryAsset`: Точка входа бандла, используется для генерации имени сборка ресурсов.
+- `assets`: Набор (`Set`) всех ресурсов внутри бандла
+- `childBundles`: Набор (`Set`) всех дочерних бандлов
+- `siblingBundles`: Набор (`Set`) всех родственных бандлов
+- `siblingBundlesMap`: Карта (`Map<String(Type: js, css, map, ...), Bundle>`) всех дочерних бандлов
+- `offsets`: Карта (`Map<Asset, number(line number inside the bundle)>`) всех местоположений ресурсов внутри бандла, используемых для генерации всех точных source maps
 
 #### Tree
 
-Бандл (`Bundle`) содержат родительский бандл (`parentBundle`), дочерний бандл  (`childBundles`) и родственный бандл (`siblingBundles`), все эти свойства вместе создают быстрое дерерво бандлов для итерации.
-
+Бандл (`Bundle`) содержат родительский бандл (`parentBundle`), дочерний бандл (`childBundles`) и родственный бандл (`siblingBundles`), все эти свойства вместе создают быстрое дерерво бандлов для итерации.
 
 Очень простой пример дерева ресурсов и его сгенерированного дерево бандлов
 
@@ -90,7 +92,7 @@ bundler.on('buildEnd', () => {
 
 `index.js` требует `test.js` и `test.txt`
 
-```Text
+```
 index.html
 -- index.js
  |--- test.js
@@ -106,13 +108,13 @@ index.html
 
 `test.js` добавляется к ресурсам бандла `index.js`, поскольку он имеет тот же тип, что и `index.js`
 
-`test.txt` создаёт новый бандл и добавляется как дочерний бандл `index.js`, поскольку это другой  тип ресурса, чем `index.js`
+`test.txt` создаёт новый бандл и добавляется как дочерний бандл `index.js`, поскольку это другой тип ресурса, чем `index.js`
 
 `index.css` ничего не требует и, следовательно, содержит только входный ресурс.
 
 `index.css` и `index.js` - родственные бандлы для друг друга, поскольку они имеют одного и того же родителя.
 
-```Text
+```
 index.html
 -- index.js (включает index.js и test.js)
  |--- test.txt (включает test.txt)
@@ -124,7 +126,8 @@ index.html
 Мидлвар (middleware) может использоваться для подключения к HTTP-серверу (например, `express` или node `http`).
 
 Пример использования мидлвар Parcel с express
-```Javascript
+
+```javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 

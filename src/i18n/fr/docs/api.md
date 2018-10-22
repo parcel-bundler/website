@@ -4,7 +4,8 @@
 
 Au lieu de l'outil en ligne de commande (CLI), vous pouvez également utiliser l'API pour initialiser un empaqueteur (bundler), pour des cas d'utilisation plus avancés (par exemple, un traitement personnalisé après chaque construction).
 Un exemple de watch avec chaque option expliquée :
-```Javascript
+
+```javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
 
@@ -55,8 +56,9 @@ runBundle();
 
 Ceci est une liste de tous les événements d'un empaqueteur
 
-* `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. L'instance du [bundle](#bundle) principal est passé à la fonction de rappel
-```Javascript
+- `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. L'instance du [bundle](#bundle) principal est passé à la fonction de rappel
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
   // bundler contient toutes les ressources et tous les paquets, voir la documentation pour plus de détails.
@@ -65,8 +67,9 @@ bundler.on('bundled', (bundle) => {
 bundler.bundle();
 ```
 
-* `buildEnd` est appelé après chaque construction (**c'est aussi le cas pour chaque reconstruction**), cela est également émis si une erreur s'est produite
-```Javascript
+- `buildEnd` est appelé après chaque construction (**c'est aussi le cas pour chaque reconstruction**), cela est également émis si une erreur s'est produite
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
   // Faire quelque chose...
@@ -75,8 +78,9 @@ bundler.on('buildEnd', () => {
 bundler.bundle();
 ```
 
-* `buildStart` est appelé au début de la première construction, le tableau `entryFiles` est passé à la fonction de rappel
-```Javascript
+- `buildStart` est appelé au début de la première construction, le tableau `entryFiles` est passé à la fonction de rappel
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('buildStart', entryPoints => {
   // Faire quelque chose...
@@ -85,8 +89,9 @@ bundler.on('buildStart', entryPoints => {
 bundler.bundle();
 ```
 
-* `buildError` est appelé chaque fois qu'une erreur se produit pendant les constructions, l'objet `Error` est passé à la fonction de rappel
-```Javascript
+- `buildError` est appelé chaque fois qu'une erreur se produit pendant les constructions, l'objet `Error` est passé à la fonction de rappel
+
+```javascript
 const bundler = new Bundler(...);
 bundler.on('buildError', error => {
   // Faire quelque chose...
@@ -101,20 +106,19 @@ Un paquet (`Bundle`) est ce que Parcel utilise pour regrouper les ressources ens
 
 #### Propriétés
 
-* `type`: Le type de ressource qu'il contient (par exemple js, css, map, ...)
-* `name`: Le nom du paquet (généré en utilisant `Asset.generateBundleName()` de `entryAsset`)
-* `parentBundle`: Le paquet parent, à null dans le cas du paquet d'entrée
-* `entryAsset`: Le point d'entrée du paquet, utilisé pour générer le nom et rassembler des ressources.
-* `assets`: Un `Set` de toutes les ressources à l'intérieur du paquet
-* `childBundles`: Un `Set` de tous les paquets enfants
-* `siblingBundles`: Un `Set` de tous les paquets frères
-* `siblingBundlesMap`: Un `Map<String(Type: js, css, map, ...), Bundle>` de tous les paquets frères
-* `offsets`: Un `Map<Asset, number(line number inside the bundle)>` de tous les emplacements des ressources à l'intérieur, utilisé pour générer des sourcemaps précises
+- `type`: Le type de ressource qu'il contient (par exemple js, css, map, ...)
+- `name`: Le nom du paquet (généré en utilisant `Asset.generateBundleName()` de `entryAsset`)
+- `parentBundle`: Le paquet parent, à null dans le cas du paquet d'entrée
+- `entryAsset`: Le point d'entrée du paquet, utilisé pour générer le nom et rassembler des ressources.
+- `assets`: Un `Set` de toutes les ressources à l'intérieur du paquet
+- `childBundles`: Un `Set` de tous les paquets enfants
+- `siblingBundles`: Un `Set` de tous les paquets frères
+- `siblingBundlesMap`: Un `Map<String(Type: js, css, map, ...), Bundle>` de tous les paquets frères
+- `offsets`: Un `Map<Asset, number(line number inside the bundle)>` de tous les emplacements des ressources à l'intérieur, utilisé pour générer des sourcemaps précises
 
 #### Arborescence
 
 Le `Bundle` contient un `parentBundle`, des `childBundles` et des `siblingBundles`, toutes ces propriétés créent ensemble une arborescence de paquets pouvant être parcourue rapidement.
-
 
 Un exemple très basique d'une arborescence de ressource et l'arborescence de paquets générée
 
@@ -124,7 +128,7 @@ Un exemple très basique d'une arborescence de ressource et l'arborescence de pa
 
 `index.js` a besoin de `test.js` et `test.txt`
 
-```Text
+```
 index.html
 -- index.js
  |--- test.js
@@ -146,7 +150,7 @@ index.html
 
 Les paquets `index.css` et `index.js` sont des paquets frères car ils partagent le même parent.
 
-```Text
+```
 index.html
 -- index.js (inclut index.js et test.js)
  |--- test.txt (inclut test.txt)
@@ -158,7 +162,8 @@ index.html
 Le middleware peut être utilisé pour se connecter à un serveur HTTP (par exemple `express` ou `http` de node).
 
 Un exemple d'utilisation du middleware de Parcel avec express
-```Javascript
+
+```javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();
 

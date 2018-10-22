@@ -41,7 +41,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png');
 
 ## CSS
 
-Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML, y pueden tener referencias de dependencias utilizando  `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()`. Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo paquete CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
+Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML, y pueden tener referencias de dependencias utilizando `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()`. Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo paquete CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
 
 ```css
 /* Importa otro archivo CSS */
@@ -56,14 +56,19 @@ Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML,
 A parte de archivos CSS planos, otros lenguajes que compilan a CSS como LESS, SASS, y Stylus son también soportados, y funcionan de la misma manera.
 
 ## SCSS
+
 Para compilar SCSS es necesario el módulo `sass`. Puedes instalarlo usando npm:
+
 ```
 npm install sass
 ```
+
 Una vez que tengas `sass` instalado puedes importar tus archivos SCSS desde archivos JavaScript.
+
 ```
 import './custom.scss'
 ```
+
 Puedes añadir dependencias a los archivos SCSS usando `@import`.
 
 ## HTML

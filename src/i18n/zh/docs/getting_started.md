@@ -5,11 +5,13 @@ Parcel 是 Web 应用打包工具，适用于经验不同的开发者。它利�
 首先通过 Yarn 或者 npm 安装 Parcel ：
 
 Yarn:
+
 ```bash
 yarn global add parcel-bundler
 ```
 
 npm:
+
 ```bash
 npm install -g parcel-bundler
 ```
@@ -19,7 +21,9 @@ npm install -g parcel-bundler
 ```bash
 yarn init -y
 ```
-or 
+
+or
+
 ```bash
 npm init -y
 ```
@@ -37,7 +41,7 @@ Parcel 可以使用任何类型的文件作为入口，但是最好还是使用 
 ```
 
 ```javascript
-console.log("hello world");
+console.log('hello world');
 ```
 
 Parcel 内置了一个当你改变文件时能够自动重新构建应用的开发服务器，而且为了实现快速开发，该开发服务器支持[热模块替换](hmr.html)。只需要在入口文件指出：
@@ -54,4 +58,3 @@ parcel watch index.html
 ```
 
 当你准备在生产模式下创建，`build` 模式会关闭监听并且只建立一次。请查阅 [Production](production.html) 查看更多细节。
-

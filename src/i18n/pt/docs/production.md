@@ -22,7 +22,7 @@ ou
 parcel build entry.js -d build/output
 ```
 
-```base
+```
 root
 - build
 - - output

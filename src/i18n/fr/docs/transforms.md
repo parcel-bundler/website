@@ -18,9 +18,7 @@ Ensuite, créez un `.babelrc`:
 
 ```json
 {
-  "presets": [
-    "@babel/preset-react"
-  ]
+  "presets": ["@babel/preset-react"]
 }
 ```
 
@@ -32,7 +30,7 @@ Pour la cible `browser`, il utilise [browserslist](https://github.com/browsersli
 
 Par défaut, la browserlist cible est à : `> 0,25%` (ce qui signifie que tous les navigateurs ayant 0,25% ou plus du nombre total d'utilisateurs Web actifs sont pris en charge)
 
-Pour la cible `node`, Parcel utilise le `engines.node` défini dans `package.json`, la valeur par défaut est *node 8*.
+Pour la cible `node`, Parcel utilise le `engines.node` défini dans `package.json`, la valeur par défaut est _node 8_.
 
 ## PostCSS
 
@@ -76,14 +74,17 @@ Pour que les modules CSS fonctionnent correctement avec les modules existants, i
 
 Parcel ajoute [cssnano](http://cssnano.co) à postcss afin de minifier le css pour la construction en production. La configuration personnalisée peut être définie en créant le fichier `cssnano.config.js` :
 
-```js
+```javascript
 module.exports = {
-  preset: ['default', {
-    calc: false,
-    discardComments: {
-      removeAll: true,
+  preset: [
+    'default',
+    {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
     }
-  }]
+  ]
 };
 ```
 
@@ -126,18 +127,19 @@ Les plugins sont spécifiés dans l'objet `plugins` en tant que clés, et les op
 
 ```typescript
 // index.ts
-import message from "./message";
+import message from './message';
 console.log(message);
 ```
 
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world';
 ```
 
 ## ReasonML/BuckleScript
 
 [ReasonML](https://reasonml.github.io/) compile du OCaml en JavaScript à l'aide de [BuckleScript](https://bucklescript.github.io). Vous pouvez utiliser ReasonML en installant des dépendances et en créant `bsconfig.json` :
+
 ```bash
 $ yarn add bs-platform --dev
 ```
@@ -157,8 +159,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },

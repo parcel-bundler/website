@@ -9,7 +9,7 @@ Ao adicionar suporte para um novo formato de arquivo para o Parcel, você deve p
 Os plugins do Parcel são muito simples. Eles são simplesmente módulos que exportam uma única função, que é chamada pelo Parcel automaticamente durante a inicialização. A função recebe como entrada o objeto `Bundler` e pode realizar configurações, como registrar tipos de recursos e packagers.
 
 ```javascript
-module.exports = function (bundler) {
+module.exports = function(bundler) {
   bundler.addAssetType('ext', require.resolve('./MyAsset'));
   bundler.addPackager('foo', require.resolve('./MyPackager'));
 };

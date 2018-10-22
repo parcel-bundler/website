@@ -7,7 +7,7 @@ Because Parcel processes assets in parallel across multiple processor cores, the
 ## Asset Interface
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // set the main output type.
@@ -52,7 +52,7 @@ class MyAsset extends Asset {
   }
 }
 
-module.exports = MyAsset
+module.exports = MyAsset;
 ```
 
 ## Registering an Asset Type

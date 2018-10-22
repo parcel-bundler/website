@@ -130,15 +130,15 @@ E então, no seu arquivo `index.html`, simplesmente referencie o seu arquivo `.t
 <head>
 </head>
 <body>
-    <!-- Aqui 👇 -->
-    <script src="./myTypescriptFile.ts"></script>
+  <!-- Aqui 👇 -->
+  <script src="./myTypescriptFile.ts"></script>
 </body>
 </html>
 ```
 
 Feito!
 
-### Compilando o arquivo `.ts` diretamente 
+### Compilando o arquivo `.ts` diretamente
 
 Adicione o script de inicialização ao `package.json`
 

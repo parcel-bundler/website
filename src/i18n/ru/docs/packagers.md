@@ -5,7 +5,7 @@
 ## Интерфейс упаковщика
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {

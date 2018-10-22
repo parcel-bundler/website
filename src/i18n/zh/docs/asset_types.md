@@ -2,12 +2,12 @@
 
 正如 [资源文档](assets.html) 里描述的，Parcel 将输入的文件看作 `资源（Asset）`。资源类型被看作继承自基准 `Asset`类的子类，并实现了必须的接口，去解析、分析依赖、转换及生成代码。
 
-因为 Parcel 在多处理器内核中并行处理资源，因此资源类型所能够实施的转换行为，会被限制为那些可以在单一时间内操作单一文件的转换行为。而那些需要操作多个文件的转换行为，则需要一个自定义的[Packager](packagers.html)。
+因为 Parcel 在多处理器内核中并行处理资源，因此资源类型所能够实施的转换行为，会被限制为那些可以  在单一时间内操作单一文件的转换行为。而那些需要操作多个文件的转换行为，则需要一个自定义的[Packager](packagers.html)。
 
 ## 资源接口
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler');
 
 class MyAsset extends Asset {
   type = 'foo'; // 设置主要输出类型

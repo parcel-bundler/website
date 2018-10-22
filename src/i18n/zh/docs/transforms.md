@@ -64,11 +64,11 @@ last 2 versions
 
 Parcel 在生产环境构建时，会使用 [cssnano](http://cssnano.co) 来压缩 css 文件。可以创建一个 `cssnano.config.js` 文件来进行详细的压缩配置：
 
-```js
+```javascript
 module.exports = {
   calc: false,
   discardComments: {
-    removeAll: true,
+    removeAll: true
   }
 };
 ```
@@ -112,13 +112,13 @@ Plugins 在 `plugins` 对象中指定为 key，并且选项使用对象值定义
 
 ```typescript
 // index.ts
-import message from "./message";
+import message from './message';
 console.log(message);
 ```
 
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world';
 ```
 
 ## ReasonML/BuckleScript
@@ -144,8 +144,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },
