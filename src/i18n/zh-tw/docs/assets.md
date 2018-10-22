@@ -133,7 +133,7 @@ HTML 中引入的連結將會被改寫使其可連結至輸出的檔案。
 | Pug                            | `jade`, `pug`                    |
 
 <sub>\* 本表可能沒有即時更新，最新的支援類型請見：[parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/Parser.js#L10)。
-實際的 parser 清單請見：[parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/src/assets).</sub>
+實際的 parser 清單請見：[parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/packages/core/parcel-bundler/src/assets).</sub>
 
 你可以在下列這些地方搜尋那些沒有預設支援的資源類型：
 
