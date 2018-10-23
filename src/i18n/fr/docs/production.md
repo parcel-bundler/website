@@ -35,3 +35,9 @@ Le hachage du fichier suit le modèle de dénomination suivant : `<nom du réper
 Afin d'optimiser les performances de construction de la production, Parcel essayera de déterminer le nombre de processeurs disponibles sur la machine qui exécute la commande build pour distribuer le travail en conséquence. Pour ce faire, Parcel s'appuie sur la bibliothèque [physical-cpu-count](https://www.npmjs.com/package/physical-cpu-count).
 
 Cela suppose que vous ayez le programme [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) disponible sur votre système.
+
+## Utilisation d'un CI
+
+Si vous souhaitez intégrer Parcel à votre système d'intégration continue (par exemple Travis ou Circle CI), vous devrez peut-être installer Parcel en tant que dépendance locale.
+
+Les instructions se [trouvent ici](getting_started.html#ajout-de-parcel-à-vos-projets).

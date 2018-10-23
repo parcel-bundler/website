@@ -1,6 +1,6 @@
 # 📝 Types de ressources
 
-Comme décrit dans la [documentation des ressources](assets.html), Parcel représente chaque fichier en entrée comme un `Asset`. Les types de ressources sont représentés comme des classes héritant de la classe de base `Asset` et implémentant l’interface requise pour analyser, décortiquer les dépendances, transformer et générer le code.
+Comme décrit dans la [documentation des ressources](assets_transforms.html), Parcel représente chaque fichier en entrée comme un `Asset`. Les types de ressources sont représentés comme des classes héritant de la classe de base `Asset` et implémentant l’interface requise pour analyser, décortiquer les dépendances, transformer et générer le code.
 
 Comme Parcel traite les ressources en parallèle sur plusieurs cœurs de processeurs, les transformations que les types de ressource peuvent effectuer sont limitées à celles qui fonctionnent sur un seul fichier à la fois. Pour les transformations sur plusieurs fichiers, un [Packager](packagers.html) personnalisé peut être utilisé.
 
