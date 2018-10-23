@@ -82,3 +82,46 @@ parcel *.html
 ### 編譯正式環境版本
 
 當你準備部署至正式環境時，`build` 模式會關閉檔案監視且僅會編譯一次，詳情請見[正式環境](production.html) 一章。
+
+## 將 Parcel 加入至你的專案
+
+在某些情境下你可能無法使用全域的 Parcel，例如你在他人的機器上編譯時或者你想使用 CI 來自動化你的編譯，這時你就可以將 Parcel 安裝為本地的套件。
+
+使用 yarn 安裝：
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+使用 NPM 安裝：
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+接著將下列腳本加入你的 `package.json` 中：
+
+```json
+{
+  "scripts": {
+    "dev": "parcel <你的進入點>",
+    "build": "parcel build <你的進入點>"
+  }
+}
+```
+
+最後，你將可以用下列指令執行：
+
+``` bash
+
+# 執行開發模式
+yarn dev
+# 或
+npm run dev
+
+# 執行正式模式
+yarn build
+# 或
+npm run build
+
+```
