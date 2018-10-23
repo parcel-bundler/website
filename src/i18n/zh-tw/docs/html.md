@@ -23,6 +23,19 @@ HTML 中引入的連結將會被改寫使其可連結至輸出的檔案。
 </html>
 ```
 
+## 匯入未編譯的資源
+
+你可以在 HTML 中直接連結可被 Parcel 編譯的檔案（如：JavaScript、TypeScript 及 SCSS 等等），Parcel 將會自動處理這類檔案並更新連結以指向編譯後的資源。
+
+```html
+<html>
+  <head>
+    <!-- 引入一個 SCSS 檔案 -->
+    <link rel="stylesheet" href="./my-styles/style.scss">
+  </head>
+</html>
+```
+
 # PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) 是款支援外掛擴充的 HTML 轉換工具。若要在 Parcel 中使用 PostHTML ，你可以建立下列其中一個設定檔：`.posthtmlrc` (JSON)、`posthtmlrc.js` 或 `posthtml.config.js`。
