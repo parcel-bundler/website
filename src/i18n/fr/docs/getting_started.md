@@ -81,3 +81,46 @@ La recherche vers http://localhost:1234/folder-1/ ne fonctionnera pas, à la pla
 ### Construction pour la production
 
 Lorsque vous êtes prêt à construire les fichiers finals utilisés pour la production, le mode `build` arrête de scruter les modifications et ne construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
+
+### Ajout de Parcel à vos projets
+
+Parfois, il n'est pas possible d'installer Parcel globalement, par exemple si vous utilisez l'agent de génération de quelqu'un d'autre ou si vous souhaitez utiliser un CI pour générer votre projet par programme. Dans ce cas, vous pouvez installer et exécuter Parcel en tant que package local.
+
+Pour l'installer avec Yarn :
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+Pour l'installer avec NPM:
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+Ajoutez ensuite ces scripts de tâches à votre projet, en modifiant votre `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "parcel <votre fichier d entrée>",
+    "build": "parcel build <votre fichier d entrée>"
+  }
+}
+```
+
+Ensuite, vous pourrez les exécuter:
+
+``` bash
+
+# Pour exécuter en mode développment
+yarn dev
+#ou
+npm run dev
+
+# Pour exécuter en mode production
+yarn build
+#ou
+npm run build
+
+```
