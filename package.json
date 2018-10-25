@@ -10,6 +10,7 @@
     "build": "./build.sh",
     "clean": "rm -rf dist",
     "start": "node src/server.js",
+    "format": "prettier --write 'src/**/*.{md,js,css,json}'",
     "deploy": "now"
   },
   "husky": {
