@@ -10,8 +10,10 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "husky": "^1.1.2",
     "markdown-styles": "^3.1.10",
-    "now": "^11.2.4"
+    "now": "^11.2.4",
+    "pretty-quick": "^1.8.0"
   },
   "scripts": {
     "build": "./build.sh",
