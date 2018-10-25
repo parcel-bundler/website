@@ -137,12 +137,14 @@ Available in: `serve`, `watch`, `build`
 parcel entry.js --log-level 1
 ```
 
-| Loglevel | Effect                  |
-| -------- | ----------------------- |
-| 0        | Logging disabled        |
-| 1        | Only log errors         |
-| 2        | Log errors and warnings |
-| 3        | Log everything          |
+| Loglevel | Effect                                            |
+| -------- | --------------------------------------------------|
+| 0        | Logging disabled                                  |
+| 1        | Only log errors                                   |
+| 2        | Log errors and warnings                           |
+| 3        | Log everything                                    |
+| 4        | Verbose (keep everything in log with timestamps)  |
+| 5        | Debug (save everything to a file with timestamps) |
 
 ### HMR Hostname
 
