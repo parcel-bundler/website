@@ -1,6 +1,6 @@
 # TypeScript
 
-*Extensions supportées : `ts`, `tsx`*
+_Extensions supportées : `ts`, `tsx`_
 
 [TypeScript](https://www.typescriptlang.org/) est un sur-ensemble typé du JavaScript qui compile en JavaScript simple, qui prend également en charge les fonctionnalités modernes ES2015+. La transformation TypeScript fonctionne sans aucune configuration supplémentaire.
 
@@ -15,11 +15,11 @@
 
 ```typescript
 // index.ts
-import message from "./message";
-console.log(message);
+import message from './message'
+console.log(message)
 ```
 
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world'
 ```

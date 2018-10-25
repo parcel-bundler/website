@@ -8,21 +8,23 @@
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // модуль будет заменен.
-  });
+  })
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // модуль или одна из его зависимостей была только что обновлена.
-  });
+  })
 }
 ```
+
 ## Безопасная запись
+
 У некоторых текстовых редакторов и IDE есть возможность, называемая `safe write` (безопасная запись), которая в основном предотвращает потерю данных, делая копию файла и переименовывая его при сохранении.
 
 При использовании горячей перезагрузки эта возможность блокирует автоматическое обнаружение обновлений файлов, поэтому для отключения безопасной записи используйте подходящий вам вариант:
 
-* `Sublime Text 3` добавьте `atomic_save: "false"` в пользовательские настройки.
-* `IntelliJ` воспользуйтесь поиском и найдите в настройках (preferences) "safe write" и отключите её.
-* `Vim` добавьте `:set backupcopy=yes` к вашим настройкам.
-* `WebStorm` снимите галочку `Use "safe write"`, перейдя в Preferences > Appearance & Behavior > System Settings.
+- `Sublime Text 3` добавьте `atomic_save: "false"` в пользовательские настройки.
+- `IntelliJ` воспользуйтесь поиском и найдите в настройках (preferences) "safe write" и отключите её.
+- `Vim` добавьте `:set backupcopy=yes` к вашим настройкам.
+- `WebStorm` снимите галочку `Use "safe write"`, перейдя в Preferences > Appearance & Behavior > System Settings.

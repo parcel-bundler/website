@@ -7,7 +7,6 @@
 ## Інтерфейс ресурсу
 
 ```Javascript
-
 const {Asset} = require ('parcel-bundler');
 
 class MyAsset extends Asset {

@@ -130,7 +130,7 @@ yarn add --dev parcel-bundler
 <head>
 </head>
 <body>
-  <!-- 這裡 👇 --> 
+  <!-- 這裡 👇 -->
   <script src="./myTypescriptFile.ts"></script>
 </body>
 </html>

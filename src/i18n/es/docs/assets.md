@@ -8,40 +8,40 @@ El tipo de archivo más común en los empaquetadores web es JavaScript. Parcel s
 
 ```javascript
 // importa un módulo utilizando CommonJS
-const dep = require('./path/to/dep');
+const dep = require('./path/to/dep')
 
 // importa un módulo utilizando ES6
-import dep from './path/to/dep';
+import dep from './path/to/dep'
 ```
 
 También puedes importar otros tipos de recursos que no sean JavaScript desde un archivo JavaScript como por ejemplo CSS o incluso una imagen. Cuando importas alguno de estos tipos de archivos, estos no serán insertados inline como sucede con otros empaquetadores. En vez de eso, este se colocará en un paquete diferente (por ejemplo un archivo CSS) junto con todas sus dependencias. Cuando se usa [CSS Modules](https://github.com/css-modules/css-modules), las clases exportadas serán añadidas al paquete de salida JavaScript. Otros tipos de recursos exportan una URL al paquete de salida JavaScript para que puedas referenciarlo en tu código.
 
 ```javascript
 // Importa un archivo CSS
-import './test.css';
+import './test.css'
 
 // Importa un archivo CSS con CSS modules
-import classNames from './test.css';
+import classNames from './test.css'
 
 // Importa la URL de una imagen
-import imageURL from './test.png';
+import imageURL from './test.png'
 ```
 
 Si quieres insertar inline un archivo dentro de un paquete de salida JavaScript, en vez de referenciarlo por su URL, puedes usar el API `fs.readFileSync` de Node.js. La URL debe ser analizada estáticamente, quiere decir, que no pueden contener otras variables (a parte de `__dirname` y `__filename`).
 
 ```javascript
-import fs from 'fs';
+import fs from 'fs'
 
 // Lee el contenido como un string
-const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
+const string = fs.readFileSync(__dirname + '/test.txt', 'utf8')
 
 // Lee el contenido como un Buffer
-const buffer = fs.readFileSync(__dirname + '/test.png');
+const buffer = fs.readFileSync(__dirname + '/test.png')
 ```
 
 ## CSS
 
-Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML, y pueden tener referencias de dependencias utilizando  `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()`. Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo paquete CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
+Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML, y pueden tener referencias de dependencias utilizando `@import` así también como referencias a imágenes, fuentes, etc, a través de la función `url()`. Otros archivos CSS que fueron importados utilizando `@import` son insertados inline en el mismo paquete CSS, y las referencias usando `url()` son reescritas con sus respectivos nombres. Todos los nombres de los archivos deben ser relativos al archivo CSS actual.
 
 ```css
 /* Importa otro archivo CSS */
@@ -56,14 +56,19 @@ Los archivos CSS pueden ser importados a partir de un archivo JavaScript o HTML,
 A parte de archivos CSS planos, otros lenguajes que compilan a CSS como LESS, SASS, y Stylus son también soportados, y funcionan de la misma manera.
 
 ## SCSS
+
 Para compilar SCSS es necesario el módulo `sass`. Puedes instalarlo usando npm:
+
 ```
 npm install sass
 ```
+
 Una vez que tengas `sass` instalado puedes importar tus archivos SCSS desde archivos JavaScript.
+
 ```
 import './custom.scss'
 ```
+
 Puedes añadir dependencias a los archivos SCSS usando `@import`.
 
 ## HTML

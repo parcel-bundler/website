@@ -8,22 +8,23 @@ Ci sono due metodi da conoscere: `module.hot.accept` e `module.hot.dispose`. Si 
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // il modulo sta per essere sostituito
-  });
+  })
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // il modulo o una delle sue dipendenze è stato appena aggiornato
-  });
+  })
 }
 ```
 
 ## Safe Write
+
 Alcuni editor di testo e IDE hanno una funzione chiamata "safe write" che previene la perdita di dati, prendendo una copia del file e rinominandola una volta salvata.
 
 Quando si utilizza Hot Module Reload (HMR) questa funzione blocca il rilevamento automatico degli aggiornamenti dei file, per disabilitare il "safe write" utilizzare le opzioni fornite di seguito:
 
-* `Sublime Text 3` aggiungere atomic_save: "false" alle tue impostazioni utente.
-* `IntelliJ` usa la ricerca nelle impostazioni per trovare "safe write" e disabilitarlo.
-* `Vim` aggiungere :set backupcopy=yes alle tue impostazioni utente.
-* `WebStorm` disattiva Usa "safe write" in Preferences > Appearance & Behavior > System Settings.
+- `Sublime Text 3` aggiungere atomic_save: "false" alle tue impostazioni utente.
+- `IntelliJ` usa la ricerca nelle impostazioni per trovare "safe write" e disabilitarlo.
+- `Vim` aggiungere :set backupcopy=yes alle tue impostazioni utente.
+- `WebStorm` disattiva Usa "safe write" in Preferences > Appearance & Behavior > System Settings.

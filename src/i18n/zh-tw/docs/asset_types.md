@@ -8,14 +8,14 @@ Parcel 利用多核心並行處理資源，因此僅能進行同一時間處理�
 ## 資源介面
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler')
 
 class MyAsset extends Asset {
-  type = 'foo'; // 設定主要輸出類別
+  type = 'foo' // 設定主要輸出類別
 
   async parse(code) {
     // 將程式碼解析為抽象語法樹 (AST)
-    return ast;
+    return ast
   }
 
   async pretransform() {
@@ -24,7 +24,7 @@ class MyAsset extends Asset {
 
   collectDependencies() {
     // 分析相依套件
-    this.addDependency('my-dep');
+    this.addDependency('my-dep')
   }
 
   async transform() {
@@ -44,7 +44,7 @@ class MyAsset extends Asset {
         value: 'some javascript', // 若有需要可將此轉換結果一同打包
         sourceMap
       }
-    ];
+    ]
   }
 
   async postProcess(generated) {
@@ -61,8 +61,8 @@ module.exports = MyAsset
 為了將模型傳遞至 worker 中執行，這裡僅需傳入路徑而非實際的物件。
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MyAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MyAsset'))
 ```

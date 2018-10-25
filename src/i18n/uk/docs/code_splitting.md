@@ -45,7 +45,7 @@ async function renderPage(name) {
 }
 ```
 
-** Примітка: ** Якщо ви хочете використовувати async / wait в браузерах, які не підтримують його, не забудьте включити `babel-polyfill` в вашому додатку або` babel-runtime` + `babel-plugin-transform-runtime` в бібліотеках.
+** Примітка: ** Якщо ви хочете використовувати async / wait в браузерах, які не підтримують його, не забудьте включити `babel-polyfill` в вашому додатку або`babel-runtime` + `babel-plugin-transform-runtime` в бібліотеках.
 
 ```Bash
 yarn add babel-polyfill

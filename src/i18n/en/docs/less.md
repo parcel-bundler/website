@@ -1,3 +1,3 @@
 # LESS
 
-*Supported extensions: `less`*
+_Supported extensions: `less`_

@@ -8,35 +8,35 @@ Najbardziej tradycyjnym typem pliku dla programów tworzących pakiety jest Java
 
 ```javascript
 // Importuj moduł z użyciem składni CommonJS
-const dep = require('./path/to/dep');
+const dep = require('./path/to/dep')
 
 // Importuj moduł z użyciem składni modułów ES6
-import dep from './path/to/dep';
+import dep from './path/to/dep'
 ```
 
 Możesz również importować zasoby nie-JavaScriptowe z pliku JavaScript, np. pliki CSS lub obrazy. Kiedy importujesz taki plik, nie jest on wstawiany w kod, jak ma to miejsce w innych programach tworzących pakiety. Zamiast tego, taki zasób umieszczany jest w osobnej paczce (np. w pliku CSS) razem z wszystkimi jego zależnościami. W [modułach CSS](https://github.com/css-modules/css-modules), eksportowane klasy są umieszczane w paczce JavaScript. Inne typy zasobów eksportują URL do pliku wyjściowego w paczce JavaScript, by odwołanie do niego mogło zostać wstawione w kod.
 
 ```javascript
 // Importuj plik CSS
-import './test.css';
+import './test.css'
 
 // Importuj plik CSS z modułami CSS
-import classNames from './test.css';
+import classNames from './test.css'
 
 // Importuj URL pliku obrazu
-import imageURL from './test.png';
+import imageURL from './test.png'
 ```
 
 Jeśli chcesz wstawić plik w kod w paczce wyjściowej JavaScript zamiast odwołania do niego poprzez URL, możesz użyć API `fs.readFileSync` z Node.js. URL-e muszą być możliwe do statycznej analizy, dlatego nie mogą posiadać żadnych zmiennych (oprócz `__dirname` i `__filename`).
 
 ```javascript
-import fs from 'fs';
+import fs from 'fs'
 
 // Przeczytaj zawartość pliku jako string
-const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
+const string = fs.readFileSync(__dirname + '/test.txt', 'utf8')
 
 // Przeczytaj zawartość pliku jako Buffer
-const buffer = fs.readFileSync(__dirname + '/test.png');
+const buffer = fs.readFileSync(__dirname + '/test.png')
 ```
 
 ## CSS

@@ -1,6 +1,6 @@
 # ReasonML
 
-*支援的副檔名：`ml` 及 `re`*
+_支援的副檔名：`ml` 及 `re`_
 
 ## ReasonML/BuckleScript
 
@@ -27,8 +27,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },

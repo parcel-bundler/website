@@ -137,12 +137,12 @@ parcel serve entry.js --port 1111
 parcel entry.js --log-level 1
 ```
 
-| 紀錄等級 | 效果             |
-|---       |---               |
-| 0        | 停用紀錄         |
-| 1        | 僅記錄錯誤       |
-| 2        | 紀錄錯誤及警告   |
-| 3        | 紀錄所有訊息     |
+| 紀錄等級 | 效果           |
+| -------- | -------------- |
+| 0        | 停用紀錄       |
+| 1        | 僅記錄錯誤     |
+| 2        | 紀錄錯誤及警告 |
+| 3        | 紀錄所有訊息   |
 
 ### 模組熱替換 (HMR) 主機名稱
 
@@ -288,4 +288,4 @@ parcel serve entry.js --global myvariable
 parcel build entry.js --experimental-scope-hoisting
 ```
 
-詳情請參閱 Devon Govett 文章的中的 [Tree Shaking](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3)  小節。
+詳情請參閱 Devon Govett 文章的中的 [Tree Shaking](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) 小節。

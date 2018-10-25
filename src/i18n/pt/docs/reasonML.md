@@ -1,10 +1,10 @@
 # ReasonML
 
-*Extensões suportadas: `ml`, `re`*
+_Extensões suportadas: `ml`, `re`_
 
 ## ReasonML/BuckleScript
 
-[ReasonML](https://reasonml.github.io/) compila OCaml para JavaScript com a ajuda do [BuckleScript](https://bucklescript.github.io).  Você pode utilizar ReasonML ao instalar as dependências e criar o arquivo `bsconfig.json`:
+[ReasonML](https://reasonml.github.io/) compila OCaml para JavaScript com a ajuda do [BuckleScript](https://bucklescript.github.io). Você pode utilizar ReasonML ao instalar as dependências e criar o arquivo `bsconfig.json`:
 
 ```bash
 $ yarn add bs-platform --dev
@@ -25,8 +25,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },
@@ -52,7 +51,7 @@ print_endline("Hello World");
 
 ### ReasonReact
 
-[ReasonReact](https://reasonml.github.io/reason-react/) é um *bind* React para ReasonML. Você pode usar em conjunto com o Parcel também:
+[ReasonReact](https://reasonml.github.io/reason-react/) é um _bind_ React para ReasonML. Você pode usar em conjunto com o Parcel também:
 
 ```bash
 $ yarn add react react-dom reason-react

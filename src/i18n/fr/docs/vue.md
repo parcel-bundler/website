@@ -1,3 +1,3 @@
 # Vue
 
-*Extensions supportées : `vue`*
+_Extensions supportées : `vue`_

@@ -1,6 +1,6 @@
 # Rust
 
-*Extensions supportées : `rs`*
+_Extensions supportées : `rs`_
 
 [Rust](https://www.rust-lang.org/fr-FR/) est un langage de programmation système développé par Mozilla, qui offre des performances natives avec des caractéristiques de sécurité de la mémoire et des threads intéressantes. Rust a récemment ajouté la prise en charge de la compilation à WebAssembly, et maintenant Parcel **facilite grandement** le démarrage avec zéro configuration !
 
@@ -10,11 +10,11 @@ Comme avec les fichiers `.wasm`, les fichiers `.rs` peuvent être importés avec
 
 ```js
 // import synchrone
-import {add} from './add.rs';
-console.log(add(2, 3));
+import { add } from './add.rs'
+console.log(add(2, 3))
 // import asynchrone
-const {add} = await import('./add.rs');
-console.log(add(2, 3));
+const { add } = await import('./add.rs')
+console.log(add(2, 3))
 ```
 
 Du côté de Rust, vous devez simplement vous assurer que les noms de fonctions ne sont pas déformés et sont publics.

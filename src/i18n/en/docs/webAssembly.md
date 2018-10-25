@@ -1,6 +1,6 @@
 # WebAssembly
 
-*Supported extensions: `wasm`*
+_Supported extensions: `wasm`_
 
 [WebAssembly](https://webassembly.org) is an emerging technology, but one that will have a huge impact on the web in the near future. Now supported by all major web browsers, as well as Node, WebAssembly will enable a diversity of languages on the web, and not just those that can transpile to JavaScript.
 
@@ -10,11 +10,11 @@ Parcel makes it **extremely easy** to get started with WebAssembly. Assuming you
 
 ```js
 // synchronous import
-import {add} from './add.wasm';
-console.log(add(2, 3));
+import { add } from './add.wasm'
+console.log(add(2, 3))
 // asynchronous import
-const {add} = await import('./add.wasm');
-console.log(add(2, 3));
+const { add } = await import('./add.wasm')
+console.log(add(2, 3))
 ```
 
 When synchronously importing a `.wasm` file, Parcel automatically generates extra code to preload the file prior to executing your JavaScript bundle. This means that the binary WebAssembly file is not inlined into your JavaScript as a string, but actually served as a separate binary file as you’d expect. In this way, your code still works synchronously, but Parcel takes care of loading dependencies for you up front.

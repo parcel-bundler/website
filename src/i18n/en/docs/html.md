@@ -1,6 +1,6 @@
 # HTML
 
-*Supported extensions: `htm`, `html`*
+_Supported extensions: `htm`, `html`_
 
 HTML assets are often the entry file that you provide to Parcel, but can also be referenced by JavaScript files, e.g. to provide links to other pages. URLs to scripts, styles, media, and other HTML files are extracted and compiled as described above. The references are rewritten in the HTML so that they link to the correct output files. All filenames should be relative to the current HTML file.
 
@@ -19,7 +19,8 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 ```
 
 ## Importing uncompiled assets
-Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS, etc.) in HTML is supported. Parcel will automatically process the file and update the link to point to the compiled asset. 
+
+Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS, etc.) in HTML is supported. Parcel will automatically process the file and update the link to point to the compiled asset.
 
 ```html
 <html>

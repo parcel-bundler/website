@@ -8,12 +8,12 @@ Są dwie metody o których powinno się wiedzieć: `module.hot.accept` i `module
 
 ```javascript
 if (module.hot) {
-  module.hot.dispose(function () {
+  module.hot.dispose(function() {
     // moduł zaraz zostanie zastąpiony
-  });
+  })
 
-  module.hot.accept(function () {
+  module.hot.accept(function() {
     // moduł lub którakolwiek z jego zależności został właśnie zaktualizowany
-  });
+  })
 }
 ```

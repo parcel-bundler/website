@@ -1,3 +1,3 @@
 # Stylus
 
-*支援的副檔名：`stylus`*
+_支援的副檔名：`stylus`_

@@ -2,7 +2,7 @@
 
 ## React
 
-먼저 React를 위해 다음 의존성들을 설치합니다.
+먼저 React 를 위해 다음 의존성들을 설치합니다.
 
 [Blog Post](http://blog.jakoblind.no/react-parcel/)
 
@@ -31,7 +31,7 @@ yarn add --dev parcel-bundler
 
 ## Preact
 
-먼저 Preact를 위해 다음 의존성들을 설치합니다.
+먼저 Preact 를 위해 다음 의존성들을 설치합니다.
 
 ```bash
 npm install --save preact
@@ -69,10 +69,9 @@ yarn add --dev babel-preset-preact
 }
 ```
 
-
 ## Vue
 
-먼저, Vue를 사용하기 위해 의존성을 설치합니다.
+먼저, Vue 를 사용하기 위해 의존성을 설치합니다.
 
 ```bash
 npm install --save vue

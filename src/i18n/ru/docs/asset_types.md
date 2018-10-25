@@ -7,15 +7,14 @@
 ## Интерфейс ресурса
 
 ```javascript
-
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler')
 
 class MyAsset extends Asset {
-  type = 'foo'; // устанавливаем основной тип вывода.
+  type = 'foo' // устанавливаем основной тип вывода.
 
   async parse(code) {
     // разбор кода в AST.
-    return ast;
+    return ast
   }
 
   async pretransform() {
@@ -24,11 +23,11 @@ class MyAsset extends Asset {
 
   collectDependencies() {
     // анализ зависимостей.
-    this.addDependency('my-dep');
+    this.addDependency('my-dep')
   }
 
   async transform() {
-    // преобразовать после сбора зависимостей. (опционально) 
+    // преобразовать после сбора зависимостей. (опционально)
   }
 
   async generate() {
@@ -44,7 +43,7 @@ class MyAsset extends Asset {
         value: 'some javascript', //альтернативное исполнение для размещения в JS-бандле, если необходимо
         sourceMap
       }
-    ];
+    ]
   }
 
   async postProcess(generated) {
@@ -59,8 +58,8 @@ class MyAsset extends Asset {
 Вы можете зарегистрировать свой тип ресурса, используя метод `addAssetType`. Он принимает расширение файла для регистрации и путь к модулю типа ресурса. Это путь, а не фактический объект, чтобы он мог передаваться рабочим процессам.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MyAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MyAsset'))
 ```

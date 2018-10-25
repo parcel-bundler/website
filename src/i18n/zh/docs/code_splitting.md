@@ -12,19 +12,20 @@ export function render() {
   // 渲染页面
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // 渲染页面
-  page.render();
-});
+  page.render()
+})
 ```
 
-因为 `import()` 返回一个Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。
+因为 `import()` 返回一个 Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。
 
 ```javascript
-const page = await import('./pages/about');
+const page = await import('./pages/about')
 // 渲染页面
-page.render();
+page.render()
 ```
 
 动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 `import()` 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。
@@ -35,12 +36,12 @@ page.render();
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
-};
+}
 
 async function renderPage(page) {
   // 懒加载请求页面。
-  const page = await pages[page];
-  return page.render();
+  const page = await pages[page]
+  return page.render()
 }
 ```
 
@@ -51,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill'
+import './app'
 ```
 
 请参阅 [babel-polyfill](http://babeljs.cn/docs/usage/polyfill) 和 [babel-runtime](http://babeljs.cn/docs/plugins/transform-runtime) 的文档。

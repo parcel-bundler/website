@@ -63,7 +63,7 @@ Parcel 支援以 `package.json` 中的 `alias` 欄位作為別名。
 
 ```js
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer
 ```
 
 ### TypeScript 的 ~ 解析

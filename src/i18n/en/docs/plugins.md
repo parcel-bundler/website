@@ -9,10 +9,10 @@ When adding support for a new file format to Parcel, you should first consider h
 Parcel plugins are very simple. They are simply modules that export a single function, which is called by Parcel automatically during initialization. The function receives as input the `Bundler` object, and can do configuration such as registering asset types and packagers.
 
 ```javascript
-module.exports = function (bundler) {
-  bundler.addAssetType('ext', require.resolve('./MyAsset'));
-  bundler.addPackager('foo', require.resolve('./MyPackager'));
-};
+module.exports = function(bundler) {
+  bundler.addAssetType('ext', require.resolve('./MyAsset'))
+  bundler.addPackager('foo', require.resolve('./MyPackager'))
+}
 ```
 
 Publish this package on npm using `parcel-plugin-` or `@your-scope/parcel-plugin-` prefixes, and it will be automatically detected and loaded as described below.

@@ -1,6 +1,6 @@
 # HTML
 
-*支援的副檔名：`htm` 及 `html`*
+_支援的副檔名：`htm` 及 `html`_
 
 HTML 是常被提供給 Parcel 作為進入點的檔案，它也可以被 JavaScript 引用，像是提供至其他頁面的連結。
 

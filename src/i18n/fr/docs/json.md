@@ -1,3 +1,3 @@
 # JSON
 
-*Extensions supportées : `json`, `json5`*
+_Extensions supportées : `json`, `json5`_

@@ -10,10 +10,10 @@ Parcel 與大多數的打包工具不同，它以內建支援多種常見格式�
 Parcel 的外掛相當簡單，在模組內匯出一個函式即可。Parcel 在初始化時會呼叫此函式，並傳入一個 `Bundler` 物件，此物件可用來註冊資源類型或是 Packager。
 
 ```javascript
-module.exports = function (bundler) {
-  bundler.addAssetType('ext', require.resolve('./MyAsset'));
-  bundler.addPackager('foo', require.resolve('./MyPackager'));
-};
+module.exports = function(bundler) {
+  bundler.addAssetType('ext', require.resolve('./MyAsset'))
+  bundler.addPackager('foo', require.resolve('./MyPackager'))
+}
 ```
 
 命名套件時應使用 `parcel-plugin-` 或 `@your-scope/parcel-plugin-` 這兩個前綴，發布至 npm 後，套件將會自動以下述方式被偵測及載入。

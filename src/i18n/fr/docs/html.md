@@ -1,6 +1,6 @@
 # HTML
 
-*Extensions supportées : `htm`, `html`*
+_Extensions supportées : `htm`, `html`_
 
 Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parcel, mais elle peut aussi être référencée dans des fichiers JavaScript, par exemple pour fournir des liens vers d'autres pages. Les URL des scripts, des styles, des médias et des autres fichiers HTML sont extraites et compilées comme décrit ci-dessus. Les références sont réécrites dans le code HTML afin qu'elles soient liées aux bons fichiers en sortie. Tous les noms de fichiers doivent être relatifs au fichier HTML courant.
 
@@ -19,6 +19,7 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 ```
 
 ## Importation de ressources non compilés
+
 L'ajout de liens vers des fichiers que Parcel peut compiler (par exemple, JavaScript, TypeScript, SCSS, etc.) au format HTML est pris en charge. Parcel traitera automatiquement le fichier et mettra à jour le lien pour qu'il pointe vers la ressource compilé.
 
 ```html

@@ -5,22 +5,22 @@ En Parcel, un `Packager` combina multiples `Asset`s en un paquete de salida fina
 ## Interfaz de Packager
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler')
 
 class MyPackager extends Packager {
   async start() {
     // opcional. escribir cabeceras de archivo si es necesario.
-    await this.dest.write(header);
+    await this.dest.write(header)
   }
 
   async addAsset(asset) {
     // requerido. escribir el recurso al archivo de salida.
-    await this.dest.write(asset.generated.foo);
+    await this.dest.write(asset.generated.foo)
   }
 
   async end() {
     // opcional. escribir el trailer del archivo si es necesario.
-    await this.dest.end(trailer);
+    await this.dest.end(trailer)
   }
 }
 ```
@@ -30,8 +30,8 @@ class MyPackager extends Packager {
 Puedes registrar tu packager con un empaquetador usando el método `addPackager`. Este método acepta un tipo de archivo a registrar, y la ruta a tu módulo packager.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addPackager('foo', require.resolve('./MyPackager'));
+let bundler = new Bundler('input.js')
+bundler.addPackager('foo', require.resolve('./MyPackager'))
 ```

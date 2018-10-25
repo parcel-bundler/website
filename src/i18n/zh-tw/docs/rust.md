@@ -1,6 +1,6 @@
 # Rust
 
-*支援的副檔名：`rs`*
+_支援的副檔名：`rs`_
 
 [Rust](https://www.rust-lang.org/en-US/) 是款由 Mozilla 開發的系統程式語言，其特點有記憶體及執行緒安全性等。Rust 近來支援了 WebAssembly 的編譯，而 Parcel 讓它簡單到**完全無須設定**即可使用！
 
@@ -10,11 +10,11 @@
 
 ```js
 // 同步地匯入
-import {add} from './add.rs';
-console.log(add(2, 3));
+import { add } from './add.rs'
+console.log(add(2, 3))
 // 非同步地匯入
-const {add} = await import('./add.rs');
-console.log(add(2, 3));
+const { add } = await import('./add.rs')
+console.log(add(2, 3))
 ```
 
 而在 Rust 中，你只需要確保函式為公開函式 (public function) 且無名稱修飾 (name mangling)。

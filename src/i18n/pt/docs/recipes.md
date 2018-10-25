@@ -138,7 +138,7 @@ E então, no seu arquivo `index.html`, simplesmente referencie o seu arquivo `.t
 
 Feito!
 
-### Compilando o arquivo `.ts` diretamente 
+### Compilando o arquivo `.ts` diretamente
 
 Adicione o script de inicialização ao `package.json`
 

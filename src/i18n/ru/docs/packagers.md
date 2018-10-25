@@ -5,22 +5,22 @@
 ## Интерфейс упаковщика
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler')
 
 class MyPackager extends Packager {
   async start() {
     // (опционально) запись заголовока файла, если это необходимо.
-    await this.dest.write(header);
+    await this.dest.write(header)
   }
 
   async addAsset(asset) {
     // запись ресурса в выходной файл.
-    await this.dest.write(asset.generated.foo);
+    await this.dest.write(asset.generated.foo)
   }
 
   async end() {
     // (опционально) при необходимости напишите окончание файла.
-    await this.dest.end(trailer);
+    await this.dest.end(trailer)
   }
 }
 ```
@@ -30,8 +30,8 @@ class MyPackager extends Packager {
 Вы можете зарегистрировать упаковщик с помощью метода `addPackager`. Он принимает тип файла для регистрации и путь к вашему модулю упаковщика.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addPackager('foo', require.resolve('./MyPackager'));
+let bundler = new Bundler('input.js')
+bundler.addPackager('foo', require.resolve('./MyPackager'))
 ```

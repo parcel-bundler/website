@@ -8,35 +8,35 @@ Il tipo di file più tradizionale per i web bundlers é JavaScript. Parcel suppo
 
 ```javascript
 // Importa un modulo utilizzando la sintassi CommonJS
-const dep = require('./percorso/al/file');
+const dep = require('./percorso/al/file')
 
 // Importa un modulo utilizzando la sintassi ES6
-import dep from './percorso/al/file';
+import dep from './percorso/al/file'
 ```
 
 È anche possibile importare risorse non JavaScript da un file JavaScript, ad esempio CSS o anche un file immagine. Quando si importa uno di questi file, non è incluso come in altri bundle. Invece, è posizionato in un bundle separato (per esempio un file CSS) insieme a tutte le sue dipendenze. Quando si utilizza la tecnica dei [CSS Modules](https://github.com/css-modules/css-modules), le classi esportate vengono posizionate nel bundle JavaScript. Altri tipi di risorse esportano un URL nel file di output nel bundle JavaScript in modo da poterlo consultare nel proprio codice.
 
 ```javascript
 // Importa un file CSS
-import './test.css';
+import './test.css'
 
 // Importa un file CSS utilizzando CSS Modules
-import classNames from './test.css';
+import classNames from './test.css'
 
 // Importa un'immagine da un URL
-import imageURL from './test.png';
+import imageURL from './test.png'
 ```
 
 Se si desidera includere un file nel bundle JavaScript al posto di referenziarlo tramite un URL, si può utilizzare l'API di Node.js `fs.readFileSync`. L'URL dovrà essere analizzabile staticamente, cioé non potrà avere nessuna variable al suo interno, (oltre che `__dirname` e `__filename`).
 
 ```javascript
-import fs from 'fs';
+import fs from 'fs'
 
 // Legge i contenuti come una stringa
-const string = fs.readFileSync(__dirname + '/test.txt', 'utf8');
+const string = fs.readFileSync(__dirname + '/test.txt', 'utf8')
 
 // Legge i contenuti come un Buffer
-const buffer = fs.readFileSync(__dirname + '/test.png');
+const buffer = fs.readFileSync(__dirname + '/test.png')
 ```
 
 ## CSS
@@ -56,14 +56,19 @@ Gli assets CSS possono essere importati da un file JavaScript o da un file HTML,
 Oltre ai semplici CSS, sono supportati e funzionano allo stesso modo anche altri linguaggi compile-to-CSS come LESS, SASS e Stylus.
 
 ## SCSS
+
 La compilazione SCSS richiede il modulo `sass`. Per installarlo via npm:
+
 ```bash
 npm install sass
 ```
+
 Una volta installato `sass`, puoi importare i file SCSS da un file JavaScript.
+
 ```javascript
 import './custom.scss'
 ```
+
 Le dipendenze nel file SCSS possono essere utilizzate tramite la funzione `@import`
 
 ## HTML

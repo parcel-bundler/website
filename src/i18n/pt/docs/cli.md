@@ -4,7 +4,7 @@
 
 ### Servir
 
-Inicia um servidor de desenvolvimento, que recriará automaticamente seu aplicativo ao alterar os arquivos e oferece suporte à [*hot module replacement*](hmr.html) para desenvolvimento rápido.
+Inicia um servidor de desenvolvimento, que recriará automaticamente seu aplicativo ao alterar os arquivos e oferece suporte à [_hot module replacement_](hmr.html) para desenvolvimento rápido.
 
 ```bash
 parcel index.html
@@ -18,7 +18,7 @@ Constrói os recursos uma vez, ele também habilita minificação e define a var
 parcel build index.html
 ```
 
-### *Watch*
+### _Watch_
 
 O comando `watch` é similar ao `server`, com a principal diferença sendo a de não iniciar um servidor.
 
@@ -137,12 +137,12 @@ Disponível em: `serve`, `watch`, `build`
 parcel entry.js --log-level 1
 ```
 
-| Nível    | Efeito                    |
-|---       |---                        |
-| 0        | Desabilitado              |
-| 1        | Somente erros             |
-| 2        | Erros e Avisos            |
-| 3        | Tudo                      |
+| Nível | Efeito         |
+| ----- | -------------- |
+| 0     | Desabilitado   |
+| 1     | Somente erros  |
+| 2     | Erros e Avisos |
+| 3     | Tudo           |
 
 ### Hostname HMR
 
@@ -174,11 +174,11 @@ Disponível em: `serve`, `watch`, `build`
 parcel build entry.js --out-file output.html
 ```
 
-Isso altera o nome de arquivo de saída no *entrypoint* do pacote
+Isso altera o nome de arquivo de saída no _entrypoint_ do pacote
 
-### Exibir um *report* detalhado
+### Exibir um _report_ detalhado
 
-Padrão: *report* mínimo
+Padrão: _report_ mínimo
 
 Disponível em: `build`
 
@@ -196,7 +196,7 @@ Disponível em: `serve`, `watch` (listen on HTTPS for HMR connections)
 parcel build entry.js --https
 ```
 
-⚠️ Esta *flag* gera um certificado auto-assinado, você pode ter que configurar seu navegador para permitir certificados auto-assinado para localhost.
+⚠️ Esta _flag_ gera um certificado auto-assinado, você pode ter que configurar seu navegador para permitir certificados auto-assinado para localhost.
 
 ### Definir um certificado customizado
 
@@ -288,4 +288,4 @@ Disponível em: `build`
 parcel build entry.js --experimental-scope-hoisting
 ```
 
-Para obter mais informações, consulte a [sessão *Tree Shaking*](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) no post de Devon Govett no pacote 1,9.
+Para obter mais informações, consulte a [sessão _Tree Shaking_](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) no post de Devon Govett no pacote 1,9.

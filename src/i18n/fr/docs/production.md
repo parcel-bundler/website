@@ -18,15 +18,15 @@ Pour permettre à votre cdn de définir des règles de mise en cache très agres
 
 Parcel suit le tableau suivant, lorsqu’il s’agit de nommer des bundles. (Les points d'entrée ne sont jamais hachés)
 
-| Type de bundle | Type | Contenu haché |
-| ---:| --- |:---:|:---:|
-| Tous | point d'entrée         | ❌ |
-| JavaScript | `<script>`       | ✅ |
-| JavaScript | Import dynamique | ❌ |
-| JavaScript | Service worker   | ❌ |
-| HTML | iframe                 | ❌ |
-| HTML | lien d'ancrage         | ❌ |
-| Brut (Images, fichiers texte, ...) | Import/Require/... | ✅ |
+|                     Type de bundle | Type               | Contenu haché |
+| ---------------------------------: | ------------------ | :-----------: |
+|                               Tous | point d'entrée     |      ❌       |
+|                         JavaScript | `<script>`         |      ✅       |
+|                         JavaScript | Import dynamique   |      ❌       |
+|                         JavaScript | Service worker     |      ❌       |
+|                               HTML | iframe             |      ❌       |
+|                               HTML | lien d'ancrage     |      ❌       |
+| Brut (Images, fichiers texte, ...) | Import/Require/... |      ✅       |
 
 Le hachage du fichier suit le modèle de dénomination suivant : `<nom du répertoire>-<hash>.<extension>`
 

@@ -57,7 +57,8 @@ runBundle();
 
 下列是所有事件的列表
 
-* Parcel **僅會在首次**完成編譯時觸發 `bundled` 事件，並傳入 [bundle](#bundle) 實體至回呼函式。
+- Parcel **僅會在首次**完成編譯時觸發 `bundled` 事件，並傳入 [bundle](#bundle) 實體至回呼函式。
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
@@ -67,7 +68,8 @@ bundler.on('bundled', (bundle) => {
 bundler.bundle();
 ```
 
-* 每次編譯完成後（包括重新編譯）`buildEnd` 事件會被觸發，此事件即便編譯發生錯誤仍會被觸發。
+- 每次編譯完成後（包括重新編譯）`buildEnd` 事件會被觸發，此事件即便編譯發生錯誤仍會被觸發。
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
@@ -77,7 +79,8 @@ bundler.on('buildEnd', () => {
 bundler.bundle();
 ```
 
-* `buildStart` 事件會於首次編譯開始時被觸發，並傳入一個 `entryFiles` 陣列至回呼函式。
+- `buildStart` 事件會於首次編譯開始時被觸發，並傳入一個 `entryFiles` 陣列至回呼函式。
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildStart', entryPoints => {
@@ -87,7 +90,8 @@ bundler.on('buildStart', entryPoints => {
 bundler.bundle();
 ```
 
-* 當編譯出錯時會觸發 `buildError` 事件，並會將 `Error` 物件傳入回呼函式
+- 當編譯出錯時會觸發 `buildError` 事件，並會將 `Error` 物件傳入回呼函式
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildError', error => {
@@ -103,15 +107,15 @@ Parcel 使用 `Bundle` 將所有資源打包在一起，其也包含了子系及
 
 #### 屬性
 
-* `type`：其包含的資源類型，如 js、css 或 map …等等
-* `name`：bundle 名稱。由 `entryAsset` 的 `Asset.generateBundleName()` 產生
-* `parentBundle`：父 bundle。若是入口 bundle 的話則為 null
-* `entryAsset`：bundle 的進入點，用來產生名稱及搜集資源
-* `assets`：bundle 中所有資源的集合 (`Set`)
-* `childBundles`：所有子 bundle 的集合 (`Set`)
-* `siblingBundles`：所有旁系 bundle 的集合 (`Set`)
-* `siblingBundlesMap`：所有旁系 bundle 的對應關係 (`Map<String(Type: js, css, map, ...), Bundle>`)
-* `offsets`：bundle 中所有資源位置的對應關係 (`Map<Asset, number(line number inside the bundle)>`)，用來產生準確的 source map。
+- `type`：其包含的資源類型，如 js、css 或 map …等等
+- `name`：bundle 名稱。由 `entryAsset` 的 `Asset.generateBundleName()` 產生
+- `parentBundle`：父 bundle。若是入口 bundle 的話則為 null
+- `entryAsset`：bundle 的進入點，用來產生名稱及搜集資源
+- `assets`：bundle 中所有資源的集合 (`Set`)
+- `childBundles`：所有子 bundle 的集合 (`Set`)
+- `siblingBundles`：所有旁系 bundle 的集合 (`Set`)
+- `siblingBundlesMap`：所有旁系 bundle 的對應關係 (`Map<String(Type: js, css, map, ...), Bundle>`)
+- `offsets`：bundle 中所有資源位置的對應關係 (`Map<Asset, number(line number inside the bundle)>`)，用來產生準確的 source map。
 
 #### 樹 (Tree)
 
@@ -159,6 +163,7 @@ index.html
 中介軟體可用來介入 HTTP 伺服器，如 `express` 和 node 的 `http`。
 
 下列範例展示了如何在 express 中使用 Parcel 中介軟體
+
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();

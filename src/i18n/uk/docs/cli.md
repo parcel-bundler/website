@@ -21,7 +21,7 @@ parcel build index.html
 
 ### Watch
 
-Команда `watch` схожа на` serve`, з основною відмінністю: вона не запускає сервер.
+Команда `watch` схожа на`serve`, з основною відмінністю: вона не запускає сервер.
 
 ```Bash
 parcel watch index.html
@@ -49,7 +49,7 @@ parcel --version
 
 Значення за замовчуванням: "dist"
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --out-dir build/output
@@ -68,7 +68,7 @@ root
 
 Значення за замовчуванням: [аналогічно зазначеному в опції --out-dir](#output-directory)
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel entry.js --public-url ./dist/
@@ -86,19 +86,19 @@ parcel entry.js --public-url ./dist/
 
 Значення за замовчуванням: browser
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --target node
 ```
 
-Можливі цілі: `node`,` browser`, `electron`
+Можливі цілі: `node`,`browser`, `electron`
 
 ### Каталог кешування
 
 Значення за замовчуванням: ".cache"
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --cache-dir build/cache
@@ -118,24 +118,24 @@ parcel serve entry.js --port 1111
 
 Значення за замовчуванням: 3
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel entry.js --log-level 1
 ```
 
-| Рівень логування | Ефект |
-| --- | --- |
-| 0 | Логування відключено |
-| 1 | Логувати тільки помилки |
-| 2 | Логувати тільки помилки і попередження |
-| 3 | Логувати все |
+| Рівень логування | Ефект                                  |
+| ---------------- | -------------------------------------- |
+| 0                | Логування відключено                   |
+| 1                | Логувати тільки помилки                |
+| 2                | Логувати тільки помилки і попередження |
+| 3                | Логувати все                           |
 
 ### Ім'я хоста для HMR
 
 Значення за замовчуванням: `location.hostname` поточного вікна
 
-Доступно для: `serve`,` watch`
+Доступно для: `serve`,`watch`
 
 ```Bash
 parcel entry.js --hmr-hostname parceljs.org
@@ -145,7 +145,7 @@ parcel entry.js --hmr-hostname parceljs.org
 
 Значення за замовчуванням: Випадковий доступний порт
 
-Доступно для: `serve`,` watch`
+Доступно для: `serve`,`watch`
 
 ```Bash
 parcel entry.js --hmr-port 8080
@@ -155,7 +155,7 @@ parcel entry.js --hmr-port 8080
 
 Значення за замовчуванням: вихідне ім'я файлу
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --out-file output.html
@@ -177,7 +177,7 @@ parcel build entry.js --detailed-report
 
 Значення за замовчуванням: https відключений
 
-Доступно для: `serve`,` watch` (працює на HTTPS для підключень HMR)
+Доступно для: `serve`,`watch` (працює на HTTPS для підключень HMR)
 
 ```Bash
 parcel build entry.js --https
@@ -189,7 +189,7 @@ parcel build entry.js --https
 
 Значення за замовчуванням: https відключений
 
-Доступно для: `serve`,` watch`
+Доступно для: `serve`,`watch`
 
 ```Bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -209,7 +209,7 @@ parcel entry.js --open
 
 Значення за замовчуванням: source-maps включені
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --no-source-maps
@@ -219,7 +219,7 @@ parcel build entry.js --no-source-maps
 
 Значення за замовчуванням: установка включена
 
-Доступно для: `serve`,` watch`
+Доступно для: `serve`,`watch`
 
 ```Bash
 parcel entry.js --no-autoinstall
@@ -229,7 +229,7 @@ parcel entry.js --no-autoinstall
 
 Значення за замовчуванням: HMR включений
 
-Доступно для: `serve`,` watch`
+Доступно для: `serve`,`watch`
 
 ```Bash
 parcel entry.js --no-hmr
@@ -249,7 +249,7 @@ parcel build entry.js --no-minify
 
 Значення за замовчуванням: кешування включено
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel build entry.js --no-cache
@@ -259,7 +259,7 @@ parcel build entry.js --no-cache
 
 Значення за замовчуванням: відключено
 
-Доступно для: `serve`,` watch`, `build`
+Доступно для: `serve`,`watch`, `build`
 
 ```Bash
 parcel serve entry.js --global myvariable

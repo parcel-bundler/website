@@ -12,19 +12,20 @@ export function render() {
   // Renderiza la página
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // Renderiza la página
-  page.render();
-});
+  page.render()
+})
 ```
 
 Como `import()` retorna una promesa, también puedes usar async/await. Probablemente necesites configurar Babel para transpilar la sintaxis hasta que este tenga un soporte más amplio en los navegadores.
 
 ```javascript
-const page = await import('./pages/about');
+const page = await import('./pages/about')
 // Renderiza la página
-page.render();
+page.render()
 ```
 
 Las importaciones dinámicas también se cargan de forma diferida en Parcel, por lo que puedes colocar todas tus llamadas `import()` en la parte de arriba de tu archivo y los paquetes hijos no serán cargados hasta que estos sean utilizados. El siguiente ejemplo muestra como podrías cargar páginas de forma diferida en tu aplicación dinámicamente.
@@ -35,12 +36,12 @@ Las importaciones dinámicas también se cargan de forma diferida en Parcel, por
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
-};
+}
 
 async function renderPage(name) {
   // Carga de forma diferida la página solicitada.
-  const page = await pages[name];
-  return page.render();
+  const page = await pages[name]
+  return page.render()
 }
 ```
 
@@ -51,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill'
+import './app'
 ```
 
 Lee la documentación en [babel-polyfill](http://babeljs.io/docs/usage/polyfill) y [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).

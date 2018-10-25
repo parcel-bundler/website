@@ -5,22 +5,22 @@ In Parcel, un `Packager` combina multipli `Assets` insieme in un bundle di outpu
 ## Interfaccia del Packager
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler')
 
 class MioPackager extends Packager {
   async start() {
     // facoltativo. scrive il file header se richiesto.
-    await this.dest.write(header);
+    await this.dest.write(header)
   }
 
   async addAsset(asset) {
     // obbligatorio. scrive l'asset nel file output
-    await this.dest.write(asset.generated.foo);
+    await this.dest.write(asset.generated.foo)
   }
 
   async end() {
     // facoltativo. scrive il file trailer se richiesto.
-    await this.dest.end(trailer);
+    await this.dest.end(trailer)
   }
 }
 ```
@@ -30,8 +30,8 @@ class MioPackager extends Packager {
 Puoi impostare il tuo packager con un bundler usando il metodo `addPackager`. Accetta un tipo di file da impostare, e il percorso al tuo modulo packager.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addPackager('foo', require.resolve('./MioPackager'));
+let bundler = new Bundler('input.js')
+bundler.addPackager('foo', require.resolve('./MioPackager'))
 ```

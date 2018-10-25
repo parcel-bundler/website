@@ -1,3 +1,3 @@
 # OpenGL Shading Language (GLSL)
 
-*Extensões suportadas: `glsl`, `vert`, `frag`*
+_Extensões suportadas: `glsl`, `vert`, `frag`_

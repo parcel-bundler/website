@@ -7,14 +7,14 @@ Ponieważ Parcel przetwarza zasoby równolegle na wielu rdzeniach procesora, typ
 ## Interfejs Zasobu
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler')
 
 class MyAsset extends Asset {
-  type = 'foo'; // zdefiniuj typ wyniku
+  type = 'foo' // zdefiniuj typ wyniku
 
   parse(code) {
     // parsuj kod do AST
-    return ast;
+    return ast
   }
 
   pretransform() {
@@ -23,7 +23,7 @@ class MyAsset extends Asset {
 
   collectDependencies() {
     // zbierz informacje o zależnościach
-    this.addDependency('my-dep');
+    this.addDependency('my-dep')
   }
 
   transform() {
@@ -36,7 +36,7 @@ class MyAsset extends Asset {
     return {
       foo: 'my stuff here', // główny wynik
       js: 'some javascript' // dodatkowy wynik do umieszczenia w paczce JS, jeśli to konieczne
-    };
+    }
   }
 }
 ```
@@ -46,8 +46,8 @@ class MyAsset extends Asset {
 Możesz zarejestrować swój typ zasobu w programie pakującym używając metody `addAssetType`. Akceptuje on rozszerzenie pliku do zarejestrowania i ścieżkę do modułu typu zasobu. Używana jest ścieżka zamiast faktycznego obiektu modułu dlatego, aby mogła być ona przekazana do procesów wątków usługowch.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MyAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MyAsset'))
 ```

@@ -92,12 +92,14 @@ Los plugins deben ser declarados en el objeto `plugins` como llaves, y las opcio
 </body>
 </html>
 ```
+
 ```typescript
 // index.ts
-import message from "./message";
-console.log(message);
+import message from './message'
+console.log(message)
 ```
+
 ```typescript
 // message.ts
-export default "Hello, world";
+export default 'Hello, world'
 ```

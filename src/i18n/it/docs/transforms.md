@@ -99,13 +99,13 @@ I Plugins sono specificati nell'oggetto `plugins` come chiavi, e le opzioni sono
 
 ```typescript
 // index.ts
-import message from "./message";
-console.log(message);
+import message from './message'
+console.log(message)
 ```
 
 ```typescript
 // message.ts
-export default "Ciao, Mondo";
+export default 'Ciao, Mondo'
 ```
 
 ## ReasonML/BuckleScript
@@ -131,8 +131,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },
@@ -211,7 +210,7 @@ $ yarn add react react-dom reason-react
 ```
 
 ```reason
-/* src/Greeting.re */ 
+/* src/Greeting.re */
 
 let component = ReasonReact.statelessComponent("Saluta");
 
