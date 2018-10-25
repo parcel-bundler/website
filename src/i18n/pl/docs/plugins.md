@@ -9,10 +9,10 @@ Dodając wsparcie dla nowego typu pliku do Parcel, powinno się najpierw rozważ
 Wtyczki Parcel są wyjątkowo proste. To zwyczajne moduły, które eksportują pojedynczą funkcję, która wywoływana jest przez Parcel automatycznie podczas inicjalizacji. Funkcja otrzymuje na wejściu obiekt `Bundler` i może skonfigurować wtyczkę, np. rejestrując typy zasobów i programy pakujące.
 
 ```javascript
-module.exports = function (bundler) {
-  bundler.addAssetType('ext', require.resolve('./MyAsset'));
-  bundler.addPackager('foo', require.resolve('./MyPackager'));
-};
+module.exports = function(bundler) {
+  bundler.addAssetType('ext', require.resolve('./MyAsset'))
+  bundler.addPackager('foo', require.resolve('./MyPackager'))
+}
 ```
 
 Opublikuj gotową paczkę na npm używając nazwy z prefiksem `parcel-plugin-`, a zostanie ona automatycznie wykryta i załadowana jak opisano poniżej.

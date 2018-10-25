@@ -9,7 +9,7 @@ Parcel (v1.7.0 і вище) підтримує декілька стратегі
 
 ## Абсолютний шлях
 
-`/foo` буде  `foo` по відношенню до **project root**.
+`/foo` буде `foo` по відношенню до **project root**.
 
 ## ~ Tilde Paths
 
@@ -63,7 +63,7 @@ Parcel (v1.7.0 і вище) підтримує декілька стратегі
 
 ```js
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer
 ```
 
 ### TypeScript ~ Resolution

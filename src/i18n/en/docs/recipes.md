@@ -130,7 +130,7 @@ Then, in your `index.html` file, simply reference your `.ts` file.
 <head>
 </head>
 <body>
-    <!-- Here 👇 --> 
+    <!-- Here 👇 -->
     <script src="./myTypescriptFile.ts"></script>
 </body>
 </html>

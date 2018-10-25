@@ -7,14 +7,14 @@ Because Parcel processes assets in parallel across multiple processor cores, the
 ## Asset Interface
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler')
 
 class MyAsset extends Asset {
-  type = 'foo'; // set the main output type.
+  type = 'foo' // set the main output type.
 
   async parse(code) {
     // parse code to an AST
-    return ast;
+    return ast
   }
 
   async pretransform() {
@@ -23,7 +23,7 @@ class MyAsset extends Asset {
 
   collectDependencies() {
     // analyze dependencies
-    this.addDependency('my-dep');
+    this.addDependency('my-dep')
   }
 
   async transform() {
@@ -43,7 +43,7 @@ class MyAsset extends Asset {
         value: 'some javascript', // alternative rendition to be placed in JS bundle if needed
         sourceMap
       }
-    ];
+    ]
   }
 
   async postProcess(generated) {
@@ -60,8 +60,8 @@ module.exports = MyAsset
 You can register your asset type with a bundler using the `addAssetType` method. It accepts a file extension to register, and the path to your asset type module. It is a path rather than the actual object so that it can be passed to worker processes.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MyAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MyAsset'))
 ```

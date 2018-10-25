@@ -5,6 +5,7 @@
 Invece di utilizzare la CLI, si può anche usare l'API per inizializzare un bundle, per i casi d'uso più avanzati (per esempio l'elaborazione personalizzata dopo ogni build).
 
 Un esempio di "watch" con ogni opzione descritta:
+
 ```Javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
@@ -42,7 +43,8 @@ const bundle = await bundler.bundle();
 
 Questo è un elenco di tutti gli eventi del bundler
 
-* `bundled` viene richiamato una volta che Parcel ha terminato con successo il bundling, il [bundle](#bundle) principale viene passato come callback
+- `bundled` viene richiamato una volta che Parcel ha terminato con successo il bundling, il [bundle](#bundle) principale viene passato come callback
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundler) => {
@@ -50,7 +52,8 @@ bundler.on('bundled', (bundler) => {
 });
 ```
 
-* `buildEnd` viene chiamato dopo ogni compilazione, restituendo un alert anche se si è verificato un errore
+- `buildEnd` viene chiamato dopo ogni compilazione, restituendo un alert anche se si è verificato un errore
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
@@ -64,15 +67,15 @@ Un "bundle" è ciò che Parcel usa per raggruppare le risorse, questo contiene a
 
 #### Proprietà
 
-* `type`: Il tipo di assets che contiene (e.g. js, css, map, ...)
-* `name`: Il nome del bundle (generato usando `Asset.generateBundleName()` di `entryAsset`)
-* `parentBundle`: Il bundle genitore, é null nel caso non ne abbia
-* `entryAsset`: L' entryPoint del bundle, usato per generarne il nome e collezionare gli assets
-* `assets`: Un `Set` di tutti gli assets nel bundle
-* `childBundles`: Un `Set` di tutti i bundle figli
-* `siblingBundles`: Un `Set` di tutti i bundle fratelli
-* `siblingBundlesMap`: Un `Map<String(Tipo: js, css, map, ...), Bundle>` di tutti i bundle figli
-* `offsets`: Un `Map<Asset, numero(numero di linea nel bundle)>` di tutte le posizioni degli assets nel bundle, usato per generare sourcemaps accurate.
+- `type`: Il tipo di assets che contiene (e.g. js, css, map, ...)
+- `name`: Il nome del bundle (generato usando `Asset.generateBundleName()` di `entryAsset`)
+- `parentBundle`: Il bundle genitore, é null nel caso non ne abbia
+- `entryAsset`: L' entryPoint del bundle, usato per generarne il nome e collezionare gli assets
+- `assets`: Un `Set` di tutti gli assets nel bundle
+- `childBundles`: Un `Set` di tutti i bundle figli
+- `siblingBundles`: Un `Set` di tutti i bundle fratelli
+- `siblingBundlesMap`: Un `Map<String(Tipo: js, css, map, ...), Bundle>` di tutti i bundle figli
+- `offsets`: Un `Map<Asset, numero(numero di linea nel bundle)>` di tutte le posizioni degli assets nel bundle, usato per generare sourcemaps accurate.
 
 #### Tree
 
@@ -120,6 +123,7 @@ index.html
 Middleware può essere usato per agganciarsi a un server http (ad esempio `express` o un nodo `http`).
 
 Un esempio di utilizzo di Parcel middleware con express:
+
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();

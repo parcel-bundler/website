@@ -5,22 +5,22 @@
 ## Packager 接口
 
 ```javascript
-const {Packager} = require('parcel-bundler');
+const { Packager } = require('parcel-bundler')
 
 class MyPackager extends Packager {
   async start() {
     // 可选，写文件头部内容
-    await this.dest.write(header);
+    await this.dest.write(header)
   }
 
   async addAsset(asset) {
     // 必须。将资源写入生成文件。
-    await this.dest.write(asset.generated.foo);
+    await this.dest.write(asset.generated.foo)
   }
 
   async end() {
     // 可选，写文件尾内部内容。
-    await this.dest.end(trailer);
+    await this.dest.end(trailer)
   }
 }
 ```
@@ -30,8 +30,8 @@ class MyPackager extends Packager {
 你可以用 `addPackager` 方法在打包工具中注册一个 packager。它接受一个文件类型及 packager 模块的所在路径用于注册。
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addPackager('foo', require.resolve('./MyPackager'));
+let bundler = new Bundler('input.js')
+bundler.addPackager('foo', require.resolve('./MyPackager'))
 ```

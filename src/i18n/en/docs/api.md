@@ -4,6 +4,7 @@
 
 Instead of the CLI you can also use the API to initialise a bundler, for more advanced use-cases (e.g. custom processing after every build).
 A watch example with every option explained:
+
 ```Javascript
 const Bundler = require('parcel-bundler');
 const Path = require('path');
@@ -55,7 +56,8 @@ runBundle();
 
 This is a list of all bundler events
 
-* `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) instance gets passed to the callback
+- `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) instance gets passed to the callback
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('bundled', (bundle) => {
@@ -65,7 +67,8 @@ bundler.on('bundled', (bundle) => {
 bundler.bundle();
 ```
 
-* `buildEnd` gets called after each build (aka **including every rebuild**), this also emits if an error occurred
+- `buildEnd` gets called after each build (aka **including every rebuild**), this also emits if an error occurred
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildEnd', () => {
@@ -75,7 +78,8 @@ bundler.on('buildEnd', () => {
 bundler.bundle();
 ```
 
-* `buildStart` gets called at the start of the first build, the `entryFiles` Array gets passed to the callback
+- `buildStart` gets called at the start of the first build, the `entryFiles` Array gets passed to the callback
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildStart', entryPoints => {
@@ -85,7 +89,8 @@ bundler.on('buildStart', entryPoints => {
 bundler.bundle();
 ```
 
-* `buildError` gets called every time an error occurs during builds, the `Error` Object gets passed to the callback
+- `buildError` gets called every time an error occurs during builds, the `Error` Object gets passed to the callback
+
 ```Javascript
 const bundler = new Bundler(...);
 bundler.on('buildError', error => {
@@ -101,20 +106,19 @@ A `Bundle` is what Parcel uses to bundle assets together, this also contains chi
 
 #### Properties
 
-* `type`: The type of assets it contains (e.g. js, css, map, ...)
-* `name`: The name of the bundle (generated using `Asset.generateBundleName()` of `entryAsset`)
-* `parentBundle`: The parent bundle, is null in case of the entry bundle
-* `entryAsset`: The entryPoint of the bundle, used for generating the name and gathering assets.
-* `assets`: A `Set` of all assets inside the bundle
-* `childBundles`: A `Set` of all child bundles
-* `siblingBundles`: A `Set` of all sibling bundles
-* `siblingBundlesMap`: A `Map<String(Type: js, css, map, ...), Bundle>` of all sibling bundles
-* `offsets`: A `Map<Asset, number(line number inside the bundle)>` of all the locations of the assets inside the bundle, used to generate accurate source maps
+- `type`: The type of assets it contains (e.g. js, css, map, ...)
+- `name`: The name of the bundle (generated using `Asset.generateBundleName()` of `entryAsset`)
+- `parentBundle`: The parent bundle, is null in case of the entry bundle
+- `entryAsset`: The entryPoint of the bundle, used for generating the name and gathering assets.
+- `assets`: A `Set` of all assets inside the bundle
+- `childBundles`: A `Set` of all child bundles
+- `siblingBundles`: A `Set` of all sibling bundles
+- `siblingBundlesMap`: A `Map<String(Type: js, css, map, ...), Bundle>` of all sibling bundles
+- `offsets`: A `Map<Asset, number(line number inside the bundle)>` of all the locations of the assets inside the bundle, used to generate accurate source maps
 
 #### Tree
 
 The `Bundle` contains a `parentBundle`, `childBundles` and `siblingBundles`, all these properties together create a fast to iterate bundle tree.
-
 
 A very basic example of an asset tree and it's generated bundle Tree
 
@@ -158,6 +162,7 @@ index.html
 Middleware can be used to hook into an http server (e.g. `express` or node `http`).
 
 An example of using the Parcel middleware with express
+
 ```Javascript
 const Bundler = require('parcel-bundler');
 const app = require('express')();

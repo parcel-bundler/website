@@ -7,14 +7,14 @@ Parcel elabora le risorse in parallelo su più core di elaborazione e le trasfor
 ## Interfaccia degli Asset
 
 ```javascript
-const {Asset} = require('parcel-bundler');
+const { Asset } = require('parcel-bundler')
 
 class MyAsset extends Asset {
-  type = 'foo'; // imposta il tipo principale di output.
+  type = 'foo' // imposta il tipo principale di output.
 
   async parse(code) {
     // Parsing del codice su un AST
-    return ast;
+    return ast
   }
 
   async pretransform() {
@@ -23,7 +23,7 @@ class MyAsset extends Asset {
 
   collectDependencies() {
     // analizza le dipendenze
-    this.addDependency('my-dep');
+    this.addDependency('my-dep')
   }
 
   async transform() {
@@ -43,7 +43,7 @@ class MyAsset extends Asset {
         value: 'some javascript', // esecuzione alternativa, da collocare in un bundle JS se necessario
         sourceMap
       }
-    ];
+    ]
   }
 
   async postProcess(generated) {
@@ -58,8 +58,8 @@ class MyAsset extends Asset {
 Si può impostare il proprio tipo di Asset con un bundle usando il metodo "addAssetType". Accetta un'estensione di file per la creazione e il percorso del modulo del tipo di Asset. È in forma di percorso, invece che puntare all'oggetto reale, in modo che possa essere passato ai worker process.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MioAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MioAsset'))
 ```

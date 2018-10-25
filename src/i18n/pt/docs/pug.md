@@ -1,3 +1,3 @@
 # Pug
 
-*Extensões suportadas: `jade`, `pug`*
+_Extensões suportadas: `jade`, `pug`_

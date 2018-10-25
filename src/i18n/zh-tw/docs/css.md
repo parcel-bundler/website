@@ -1,6 +1,6 @@
 # CSS
 
-*支援的副檔名：`css`、`pcss` 及 `postcss`*
+_支援的副檔名：`css`、`pcss` 及 `postcss`_
 
 CSS 資源可於 JavaScript 或 HTML 檔案中被匯入，並能透過 `@import` 語法引用相依檔案，或用 `url()` 匯入影像、字型檔等等的檔案。
 其他透過 `@import` 引用的 CSS 檔案將會被插入在同一個 CSS bundle 裡，而使用 `url()` 引入的檔案則會被改寫為其檔案輸出路徑。
@@ -66,11 +66,14 @@ Parcel 會將 [cssnano](http://cssnano.co) 加入至 PostCSS 以便在正式編�
 
 ```js
 module.exports = {
-  preset: ['default', {
-    calc: false,
-    discardComments: {
-      removeAll: true,
+  preset: [
+    'default',
+    {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
     }
-  }]
-};
+  ]
+}
 ```

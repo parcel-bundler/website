@@ -14,19 +14,20 @@ export function render() {
   // 渲染頁面
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // 渲染頁面
-  page.render();
-});
+  page.render()
+})
 ```
 
 因 `import()` 回傳 Promise，你也可以使用 async/await 語法，但在瀏覽器普遍支援以前，你可能需要設定 Babel 來轉譯語法。
 
 ```javascript
-const page = await import('./pages/about');
+const page = await import('./pages/about')
 // 渲染頁面
-page.render();
+page.render()
 ```
 
 在 Parcel 中，動態的 import 會被延遲載入 (Lazy Load)，所以你還是能將所有的 `import()` 放在檔案頂部，只有用到子 bundle 時才會載入。
@@ -39,12 +40,12 @@ page.render();
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
-};
+}
 
 async function renderPage(name) {
   // 延遲載入請求的頁面
-  const page = await pages[name];
-  return page.render();
+  const page = await pages[name]
+  return page.render()
 }
 ```
 
@@ -55,8 +56,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill'
+import './app'
 ```
 
 請參閱 [babel-polyfill](http://babeljs.io/docs/usage/polyfill) 及 [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime) 的文件。

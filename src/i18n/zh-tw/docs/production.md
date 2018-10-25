@@ -18,15 +18,15 @@ production 模式中會停用監看模式及模組熱替換，同時也會使用
 
 Parcel 用下表列出的方式命名 bundle（進入點永遠不會經過雜湊）
 
-| Bundle 類型                | 類型                   | 內容經過雜湊 |
-| --------------------------:| ---------------------- |:------------:|
-| 任何類型                   | 進入點                 | ❌           |
-| JavaScript                 | `<script>`             | ✅           |
-| JavaScript                 | 動態 import            | ❌           |
-| JavaScript                 | Service worker         | ❌           |
-| HTML                       | iframe                 | ❌           |
-| HTML                       | 連結錨點 (anchor link) | ❌           |
-| 原始檔 (影像及文字檔…等等) | Import/Require/...     | ✅           |
+|                Bundle 類型 | 類型                   | 內容經過雜湊 |
+| -------------------------: | ---------------------- | :----------: |
+|                   任何類型 | 進入點                 |      ❌      |
+|                 JavaScript | `<script>`             |      ✅      |
+|                 JavaScript | 動態 import            |      ❌      |
+|                 JavaScript | Service worker         |      ❌      |
+|                       HTML | iframe                 |      ❌      |
+|                       HTML | 連結錨點 (anchor link) |      ❌      |
+| 原始檔 (影像及文字檔…等等) | Import/Require/...     |      ✅      |
 
 檔案的雜湊則遵循下列命名規則：
 

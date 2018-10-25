@@ -1,6 +1,6 @@
 # WebAssembly
 
-*支援的副檔名：`wasm`*
+_支援的副檔名：`wasm`_
 
 [WebAssembly](https://webassembly.org) 是個新興的技術，其對網頁的發展具有相當的影響力，目前各大瀏覽器都已對其提供支援。如同 Node.js 一樣，WebAssembly 將可增加網頁語言的多樣性，且不只限於能轉譯為 JavaScript 的語言。
 
@@ -10,11 +10,11 @@ C 及 Rust 等等的低階語言都能被編譯為 WebAssembly，而其作為二
 
 ```js
 // 同步地匯入
-import {add} from './add.wasm';
-console.log(add(2, 3));
+import { add } from './add.wasm'
+console.log(add(2, 3))
 // 非同步地匯入
-const {add} = await import('./add.wasm');
-console.log(add(2, 3));
+const { add } = await import('./add.wasm')
+console.log(add(2, 3))
 ```
 
 當同步地載入 `.wasm` 檔案時，Parcel 會自動產生額外的程式碼以便在執行 JavaScript bundle 之前先行載入檔案，這意味著你的二進制檔不會被當成字串而插入在 JavaScript 中，而是以獨立檔案的形式載入。如此一來你的程式仍可以同步的方式運作，Parcel 則會在前頭替你處理相依套件的載入。

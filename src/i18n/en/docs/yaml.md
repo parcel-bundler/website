@@ -1,3 +1,3 @@
 # YAML
 
-*Supported extensions: `yaml`, `yml`*
+_Supported extensions: `yaml`, `yml`_

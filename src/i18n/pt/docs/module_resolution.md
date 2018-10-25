@@ -4,7 +4,7 @@ Parcel (v.1.7.0 e superior) suporta estratégias de múltilplas resoluções de 
 
 Termos Notáveis:
 
-- **raiz do projeto**: o diretório do *entrypoint* especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos *entrypoints* são especificados.
+- **raiz do projeto**: o diretório do _entrypoint_ especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos _entrypoints_ são especificados.
 - **raiz do pacote**: o diretório mais próximo da raiz do pacote em `node_modules`.
 
 ## Caminhos Absolutos
@@ -47,7 +47,7 @@ Recomendamos ser explícito ao definir seus acrônimos, então por favor **espec
 
 ### Exportações denominadas com Javascript
 
-Os mapeamentos de acrônimos se aplicam a muitos tipos de recursos e não oferecem suporte especificamente ao mapeamento de exportações denominadas com Javascript. Se você deseja mapear js chamado *exports* você pode fazer isso:
+Os mapeamentos de acrônimos se aplicam a muitos tipos de recursos e não oferecem suporte especificamente ao mapeamento de exportações denominadas com Javascript. Se você deseja mapear js chamado _exports_ você pode fazer isso:
 
 ```json
 // package.json
@@ -63,7 +63,7 @@ e re-exportando a exportação nomeada dentro do arquivo com acrônimo:
 
 ```js
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer
 ```
 
 ### Resolução ~ TypeScript
@@ -82,9 +82,9 @@ TypeScript terá de saber sobre o seu uso da resolução de módulo com `~` ou m
 }
 ```
 
-### Resolução *Monorepo*
+### Resolução _Monorepo_
 
-Estes são os usos aconselhados com *monorepos* até o momento:
+Estes são os usos aconselhados com _monorepos_ até o momento:
 
 Uso recomendado:
 
@@ -93,6 +93,6 @@ Uso recomendado:
 
 Uso não recomentado:
 
-- **evite** utilizar `~` com *monorepos*.
+- **evite** utilizar `~` com _monorepos_.
 
-Se você é um usuário *monorepo* e gostaria de contribuir com essas recomendações, por favor, forneça repositórios de exemplo ao abrir *issues* para apoiar a discussão.
+Se você é um usuário _monorepo_ e gostaria de contribuir com essas recomendações, por favor, forneça repositórios de exemplo ao abrir _issues_ para apoiar a discussão.

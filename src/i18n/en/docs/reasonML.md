@@ -1,6 +1,6 @@
 # ReasonML
 
-*Supported extensions: `ml`, `re`*
+_Supported extensions: `ml`, `re`_
 
 ## ReasonML/BuckleScript
 
@@ -25,8 +25,7 @@ $ yarn add bs-platform --dev
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [
-  ],
+  "bs-dependencies": [],
   "warnings": {
     "error": "+101"
   },

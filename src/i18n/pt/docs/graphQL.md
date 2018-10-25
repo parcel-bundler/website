@@ -1,3 +1,3 @@
 # GraphQL
 
-*Extensões suportadas: `gql`, `graphql`*
+_Extensões suportadas: `gql`, `graphql`_

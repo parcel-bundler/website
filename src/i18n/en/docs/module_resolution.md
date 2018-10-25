@@ -63,7 +63,7 @@ and re-export the named export within the aliased file:
 
 ```js
 // electron-ipc.js
-module.exports = require("electron").ipcRenderer;
+module.exports = require('electron').ipcRenderer
 ```
 
 ### TypeScript ~ Resolution

@@ -1,3 +1,3 @@
 # CoffeeScript
 
-*Supported extensions: `coffee`*
+_Supported extensions: `coffee`_

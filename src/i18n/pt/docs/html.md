@@ -1,6 +1,6 @@
 # HTML
 
-*Extensões suportadas: `htm`, `html`*
+_Extensões suportadas: `htm`, `html`_
 
 Arquivos HTML são frequentemente utilizados como ponto de entrada para o Parcel, mas também podem ser referenciados pelos arquivos JavaScript, por exemplo, para fornecer links para outras páginas. Os endereços dos scripts, estilos, mídias e outros arquivos HTML são extraídos e compilados como descrito acima. As referências são reescritas no HTML para que elas sejam referenciadas corretamente. Todos os nomes dos arquivos devem ser relativos ao arquivo HTML principal.
 

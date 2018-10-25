@@ -60,8 +60,8 @@ module.exports = MyAsset
 Vous pouvez enregistrer votre type de ressource avec un empaqueteur (bundler) en utilisant la méthode `addAssetType`. Elle accepte une extension de fichier à enregistrer et le chemin d'accès à votre module de type de ressource. C'est un chemin plutôt que l'objet réel afin qu'il puisse être transmis aux processus de travail.
 
 ```javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel-bundler')
 
-let bundler = new Bundler('input.js');
-bundler.addAssetType('.ext', require.resolve('./MonAsset'));
+let bundler = new Bundler('input.js')
+bundler.addAssetType('.ext', require.resolve('./MonAsset'))
 ```

@@ -1,3 +1,3 @@
 # Vue
 
-*Supported extensions: `vue`*
+_Supported extensions: `vue`_

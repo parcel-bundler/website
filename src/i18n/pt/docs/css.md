@@ -1,8 +1,8 @@
 # CSS
 
-*Extensões suportadas: `css`, `pcss`, `postcss`*
+_Extensões suportadas: `css`, `pcss`, `postcss`_
 
-Recursos CSS podem ser importados de um arquivo Javascript ou HTML, e podem conter dependências referenciadas pela sintaxe `@import`, bem como referências a imagens, fontes, etc. através da função `url()`. Outros arquivos CSS que são `@import`ados de forma *inline* no mesmo pacote CSS e referenciadas com `url()` serão reescritas em seus nomes de arquivos de saída. Todos os nomes de arquivos devem ser relativos ao arquivo CSS atual.
+Recursos CSS podem ser importados de um arquivo Javascript ou HTML, e podem conter dependências referenciadas pela sintaxe `@import`, bem como referências a imagens, fontes, etc. através da função `url()`. Outros arquivos CSS que são `@import`ados de forma _inline_ no mesmo pacote CSS e referenciadas com `url()` serão reescritas em seus nomes de arquivos de saída. Todos os nomes de arquivos devem ser relativos ao arquivo CSS atual.
 
 ```css
 /* Importando outro arquivo CSS */
@@ -56,15 +56,18 @@ Para que os módulos CSS funcionem corretamente com os módulos existentes, eles
 
 ## Definindo a configuração de Minificação do cssnano
 
-Parcel adiciona o [cssnano](http://cssnano.co) ao postcss para minificar o css em *build* de produção, onde configurações customizadas podem ser definidas ao criar o arquivo `cssnano.config.js`:
+Parcel adiciona o [cssnano](http://cssnano.co) ao postcss para minificar o css em _build_ de produção, onde configurações customizadas podem ser definidas ao criar o arquivo `cssnano.config.js`:
 
 ```js
 module.exports = {
-  preset: ['default', {
-    calc: false,
-    discardComments: {
-      removeAll: true,
+  preset: [
+    'default',
+    {
+      calc: false,
+      discardComments: {
+        removeAll: true
+      }
     }
-  }]
-};
+  ]
+}
 ```

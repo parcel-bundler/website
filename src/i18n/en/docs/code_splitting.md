@@ -12,19 +12,20 @@ export function render() {
   // Render the page
 }
 ```
+
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // Render page
-  page.render();
-});
+  page.render()
+})
 ```
 
 Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
 
 ```javascript
-const page = await import('./pages/about');
+const page = await import('./pages/about')
 // Render page
-page.render();
+page.render()
 ```
 
 Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
@@ -35,12 +36,12 @@ Dynamic imports are also lazily loaded in Parcel, so you can still put all your 
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
-};
+}
 
 async function renderPage(name) {
   // Lazily load the requested page.
-  const page = await pages[name];
-  return page.render();
+  const page = await pages[name]
+  return page.render()
 }
 ```
 
@@ -51,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill'
+import './app'
 ```
 
 Read the docs on [babel-polyfill](http://babeljs.io/docs/usage/polyfill) and [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).

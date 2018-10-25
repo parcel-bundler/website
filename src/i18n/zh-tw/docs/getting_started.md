@@ -5,11 +5,13 @@ Parcel 是款網頁打包工具，憑藉其開發者體驗脫穎而出。它利�
 首先使用 Yarn 或 npm 安裝 Parcel：
 
 Yarn:
+
 ```bash
 yarn global add parcel-bundler
 ```
 
 npm:
+
 ```bash
 npm install -g parcel-bundler
 ```
@@ -19,10 +21,13 @@ npm install -g parcel-bundler
 ```bash
 yarn init -y
 ```
+
 或
+
 ```bash
 npm init -y
 ```
+
 Parcel 可將任何類型的檔案視為進入點，但 HTML 或 JavaScript 會是較好的選擇。
 如果你在 HTML 中使用相對路徑引入主要的 JavaScript 檔案，Parcel 將會在輸出的檔案中自動替換這些路徑。
 
@@ -37,7 +42,7 @@ Parcel 可將任何類型的檔案視為進入點，但 HTML 或 JavaScript 會�
 ```
 
 ```javascript
-console.log("hello world");
+console.log('hello world')
 ```
 
 Parcel 內建了開發專用的伺服器，在你更動檔案的同時會自動重新編譯你的 app，並啟用[模組熱替換](hmr.html)以提高開發效率，而你只需要指定進入點：
@@ -60,16 +65,19 @@ parcel watch index.html
 若你有多個進入點，假設分別是 `index.html` 及 `about.html`，你有兩種方式可以啟動打包工具：
 
 指定檔案名稱：
+
 ```bash
 parcel index.html about.html
 ```
 
 或使用 token 並建立一個 glob：
+
 ```bash
 parcel *.html
 ```
 
-*注意：* 若你有類似這樣的檔案架構：
+_注意：_ 若你有類似這樣的檔案架構：
+
 ```
 - folder-1
 -- index.html
@@ -112,8 +120,7 @@ npm install parcel-bundler --save-dev
 
 最後，你將可以用下列指令執行：
 
-``` bash
-
+```bash
 # 執行開發模式
 yarn dev
 # 或
@@ -123,5 +130,4 @@ npm run dev
 yarn build
 # 或
 npm run build
-
 ```

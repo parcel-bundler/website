@@ -36,7 +36,7 @@ parcel help
 
 ### Version
 
-Parcel의 버전을 출력합니다.
+Parcel 의 버전을 출력합니다.
 
 ```bash
 parcel --version
@@ -123,12 +123,12 @@ parcel serve entry.js --port 1111
 parcel entry.js --log-level 1
 ```
 
-| 로그 레벨 | 효과                       |
-|---       |---                        |
-| 0        | 로깅 비활성화               |
-| 1        | 에러만 로그                 |
-| 2        | 에러와 경고를 로그           |
-| 3        | 모두 로깅                  |
+| 로그 레벨 | 효과               |
+| --------- | ------------------ |
+| 0         | 로깅 비활성화      |
+| 1         | 에러만 로그        |
+| 2         | 에러와 경고를 로그 |
+| 3         | 모두 로깅          |
 
 ### 빠른 모듈 교체 호스트네임
 
@@ -176,13 +176,13 @@ parcel build entry.js --detailed-report
 
 기본값: https 비활성
 
-같이 사용 가능한 명령어: `serve`, `watch` (HMR 연결을 위해 HTTPS로 수신)
+같이 사용 가능한 명령어: `serve`, `watch` (HMR 연결을 위해 HTTPS 로 수신)
 
 ```bash
 parcel entry.js --https
 ```
 
-⚠️ 이 옵션은 자가서명된 인증서를 생성하므로 사용을 위해서는 브라우저에서 localhost에 대해 자가서명된 인증서를 허용하도록 설정할 필요가 있습니다.
+⚠️ 이 옵션은 자가서명된 인증서를 생성하므로 사용을 위해서는 브라우저에서 localhost 에 대해 자가서명된 인증서를 허용하도록 설정할 필요가 있습니다.
 
 ### 임의의 인증서 설정
 
@@ -254,8 +254,7 @@ parcel build entry.js --no-minify
 parcel build entry.js --no-cache
 ```
 
-
-### 모듈을 UMD로 출력
+### 모듈을 UMD 로 출력
 
 기본값: 비활성화
 
@@ -275,4 +274,4 @@ parcel serve entry.js --global myvariable
 parcel serve entry.js --experimental-scope-hoisting
 ```
 
-더 자세한 정보는 Devon Govett이 Parcel 1.9에 대해 작성한 글의 [Tree Shaking section(영문)](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3)을 참조하세요.
+더 자세한 정보는 Devon Govett 이 Parcel 1.9 에 대해 작성한 글의 [Tree Shaking section(영문)](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3)을 참조하세요.

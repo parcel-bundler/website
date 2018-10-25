@@ -1,3 +1,3 @@
 # Stylus
 
-*Extensions supportées : `stylus`*
+_Extensions supportées : `stylus`_

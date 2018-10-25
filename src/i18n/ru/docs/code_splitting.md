@@ -14,18 +14,18 @@ export function render() {
 ```
 
 ```javascript
-import('./pages/about').then(function (page) {
+import('./pages/about').then(function(page) {
   // Отобразить страницу
-  page.render();
-});
+  page.render()
+})
 ```
 
 Так как `import()` возвращает Promise, вы можете использовать синтаксис async/await. Вероятно, вам нужно настроить Babel для преобразования синтаксиса, пока он более широко не поддерживается браузерами.
 
 ```javascript
-const page = await import('./pages/about');
+const page = await import('./pages/about')
 // Отобразить страницу
-page.render();
+page.render()
 ```
 
 Динамический импорт также лениво загружается в Parcel, поэтому вы можете поместить все свои вызовы `import()` вверху файла, а дочерние бандлы не будут загружаться до тех пор, пока они не будут использованы. В следующем примере показано, как можно лениво загружать подстраницы приложения динамически.
@@ -36,12 +36,12 @@ page.render();
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
-};
+}
 
 async function renderPage(name) {
   // Лениво загрузить запрошенную страницу.
-  const page = await pages[name];
-  return page.render();
+  const page = await pages[name]
+  return page.render()
 }
 ```
 
@@ -52,8 +52,8 @@ yarn add babel-polyfill
 ```
 
 ```javascript
-import "babel-polyfill";
-import "./app";
+import 'babel-polyfill'
+import './app'
 ```
 
 Прочитайте документацию [babel-polyfill](http://babeljs.io/docs/usage/polyfill) и [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
