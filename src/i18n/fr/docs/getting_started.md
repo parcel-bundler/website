@@ -83,7 +83,7 @@ _REMARQUE :_ Si vous avez une structure de fichier comme celle-ci :
 -- index.html
 ```
 
-La recherche vers http://localhost:1234/folder-1/ ne fonctionnera pas, à la place, vous devez indiquer explicitement le fichier http://localhost:1234/folder-1/index.html.
+La recherche vers http://localhost:1234/répertoire-1/ ne fonctionnera pas, à la place, vous devez indiquer explicitement le fichier http://localhost:1234/répertoire-1/index.html.
 
 ### Construction pour la production
 

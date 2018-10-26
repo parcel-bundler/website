@@ -24,7 +24,7 @@ Chaque fois que Parcel rencontre une dépendance qui correspond au schéma `node
 
 Cela ne se produit qu'en _développement_ (en utilisant [`serve`](cli.md#serve) ou [`watch`](cli.md#watch)), par contre en production (en utilisant [`build`](cli.md#build)) autoinstall est désactivé pour empêcher les effets secondaires indésirables sur le déploiement.
 
-Vous pouvez désactiver cette fonctionnalité en utilisant [`--no-autoinstall`](cli.md#désactiver-linstallation-automatique-de-dépendances).
+Vous pouvez désactiver cette fonctionnalité en utilisant [`--no-autoinstall`](cli.md#désactiver-l'installation-automatique-de-dépendances).
 
 ## Safe Write
 

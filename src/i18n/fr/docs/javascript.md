@@ -32,7 +32,7 @@ import html from './some.html'
 require('./some.html')
 ```
 
-Si vous souhaitez insérer un fichier dans le bundle JavaScript au lieu de le référencer par une URL, vous pouvez utiliser l'API `fs.readFileSync` de Node.js à cet effet. L'URL doit pouvoir être analysée statiquement, ce qui signifie qu'elle ne peut contenir aucune variable (autre que `__dirname` et `__filename`).
+Si vous souhaitez insérer un fichier dans le paquet JavaScript au lieu de le référencer par une URL, vous pouvez utiliser l'API `fs.readFileSync` de Node.js à cet effet. L'URL doit pouvoir être analysée statiquement, ce qui signifie qu'elle ne peut contenir aucune variable (autre que `__dirname` et `__filename`).
 
 ```javascript
 import fs from 'fs'
