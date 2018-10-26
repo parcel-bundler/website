@@ -14,9 +14,9 @@ L'activation du mode production définit également la variable d'environnement 
 
 ## Stratégie de nommage des fichiers
 
-Pour permettre à votre cdn de définir des règles de mise en cache très agressives, afin d'avoir une performance et une efficacité optimale, Parcel hache les noms de fichier de la plupart des bundles (selon si le bundle doit avoir un nom lisible/mémorisable ou non, principalement pour le référencement).
+Pour permettre à votre cdn de définir des règles de mise en cache très agressives, afin d'avoir une performance et une efficacité optimale, Parcel hache les noms de fichier de la plupart des paquets (selon si le paquet doit avoir un nom lisible/mémorisable ou non, principalement pour le référencement).
 
-Parcel suit le tableau suivant, lorsqu’il s’agit de nommer des bundles. (Les points d'entrée ne sont jamais hachés)
+Parcel suit le tableau suivant, lorsqu’il s’agit de nommer des paquets. (Les points d'entrée ne sont jamais hachés)
 
 |                     Type de bundle | Type               | Contenu haché |
 | ---------------------------------: | ------------------ | :-----------: |

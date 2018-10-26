@@ -29,7 +29,7 @@ module.exports = MyPackager
 
 ## Enregistrement d'un packager
 
-Vous pouvez enregistrer votre packager avec un bundler en utilisant la méthode `addPackager`. Il accepte un type de fichier pour s'enregistrer et le chemin vers votre module packager.
+Vous pouvez enregistrer votre packager avec un empaqueteur (bundler) en utilisant la méthode `addPackager`. Il accepte un type de fichier pour s'enregistrer et le chemin vers votre module packager.
 
 ```javascript
 const Bundler = require('parcel-bundler')
