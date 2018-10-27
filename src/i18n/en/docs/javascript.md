@@ -79,4 +79,4 @@ For the `node` target, Parcel uses the `engines.node` defined in `package.json`,
 
 [Flow](https://flow.org/) is a popular static type checker for JavaScript. Using Flow with Parcel is as simple as placing `// @flow` as the first line of your `js` files.
 
-Parcel will automatically install the required Babel config to strip the Flow types from the compiled output, so there's nothing you have to worry about except [editor integrations](https://flow.org/en/docs/editors/) or supporting [Absolute Path module resolution](module_resolution.html#flow-/-absolute-or-~-tilde-resolution) with `.flowconfig`.
+Parcel will automatically install the required Babel config to strip the Flow types from the compiled output, so there's nothing you have to worry about except [editor integrations](https://flow.org/en/docs/editors/) or supporting [Absolute Path module resolution](module_resolution.html#flow-with-absolute-or-tilde-resolution) with `.flowconfig`.
