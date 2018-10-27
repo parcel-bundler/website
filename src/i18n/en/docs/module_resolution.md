@@ -66,7 +66,7 @@ and re-export the named export within the aliased file:
 module.exports = require('electron').ipcRenderer
 ```
 
-### Flow / Absolute or ~ Tilde Resolution
+### Flow with Absolute or Tilde Resolution
 
 Flow will need to know about your use of absolute path or tilde path module resolution. Using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature of Flow we can
 
