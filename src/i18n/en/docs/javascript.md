@@ -1,4 +1,4 @@
-# Javascript
+# JavaScript
 
 _Supported extensions: `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
@@ -53,7 +53,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 
 Install presets and plugins in your app:
 
-```bash
+```shell
 yarn add @babel/preset-react
 ```
 
@@ -65,7 +65,7 @@ Then, create a `.babelrc`:
 }
 ```
 
-## Default babel transforms
+## Default Babel transforms
 
 Parcel transpiles your code with `@babel/preset-env` by default, this is to transpile every module both internal (local requires) and external (node_modules) to match the defined target.
 
@@ -74,3 +74,9 @@ For the `browser` target it utilises [browserslist](https://github.com/browsersl
 The browserlist target defaults to: `> 0.25%` (Meaning, support every browser that has 0.25% or more of the total amount of active web users)
 
 For the `node` target, Parcel uses the `engines.node` defined in `package.json`, this default to _node 8_.
+
+# Flow
+
+[Flow](https://flow.org/) is a popular static type checker for JavaScript. Using Flow with Parcel is as simple as placing `// @flow` as the first line of your `js` files.
+
+Parcel will automatically install the required Babel config to strip the Flow types from the compiled output, so there's nothing you have to worry about except [editor integrations](https://flow.org/en/docs/editors/) or supporting [Absolute Path module resolution](module_resolution.html#flow-/-absolute-or-~-tilde-resolution) with `.flowconfig`.
