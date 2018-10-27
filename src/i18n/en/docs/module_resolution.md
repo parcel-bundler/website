@@ -7,7 +7,7 @@ Notable terms:
 - **project root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
 - **package root**: the directory of the nearest module root in `node_modules`.
 
-## / Absolute Paths
+## Absolute Paths
 
 `/foo` will resolve `foo` relative to the **project root**.
 
