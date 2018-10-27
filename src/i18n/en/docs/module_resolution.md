@@ -66,6 +66,41 @@ and re-export the named export within the aliased file:
 module.exports = require('electron').ipcRenderer
 ```
 
+### Flow with Absolute or Tilde Resolution
+
+Flow will need to know about your use of absolute path or tilde path module resolution. Using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature of Flow we can
+
+> Specify a regular expression to match against module names, and a replacement pattern
+
+Given a project with this structure:
+
+```
+.flowconfig
+src/
+  index.js
+  components/
+    apple.js
+    banana.js
+```
+
+To map the following correctly
+
+```javascript
+// index.js
+import Apple from '/components/apple'
+// we actually want flow to look for:
+// import Apple from 'src/components/apple';
+```
+
+we can use this setting in our `.flowconfig` to map the absolute path (the leading `/`) to `src/`:
+
+```
+[options]
+module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+```
+
+NB:`module.name_mapper` can have multiple entries if you wish to support local module aliasing.
+
 ### TypeScript ~ Resolution
 
 TypeScript will need to know about your use of the `~` module resolution or alias mappings. Please refer to the [TypeScript Module Resolution docs](https://www.typescriptlang.org/docs/handbook/module-resolution.html) for further information.
