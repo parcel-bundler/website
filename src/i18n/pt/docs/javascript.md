@@ -1,4 +1,4 @@
-# Javascript
+# JavaScript
 
 _Extensões suportadas: `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
@@ -53,7 +53,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 
 Instale as predefinições e plugins na sua aplicação:
 
-```bash
+```shell
 yarn add @babel/preset-env
 ```
 
@@ -74,3 +74,9 @@ Para o alvo `browser` é utilizado o [browserslist](https://github.com/browsersl
 O alvo padrão do _browserlist_ é: `> 0.25%` (Significando, suportar cada navegador que tenha 0,25% ou mais da quantidade total de usuários ativos da web)
 
 Para o alvo `node`, Parcel utiliza o `engines.node` definido no `package.json`, este padrão para _node 8_.
+
+# Flow
+
+[Flow](https://flow.org/) é um popular checador de tipo para JavaScript. Usar Flow com Parcel é muito simples, basta inserir `// @flow` na primeira linha dos arquivos `js`.
+
+O Parcel irá instalar automaticamente a configuração necessária para desmembrar os tipos do Flow do código compilado, portanto, não a nada com que você precise se preocupar, exceto as [integrações com editores](https://flow.org/en/docs/editors/) ou a [resolução do módulo de Caminho Absoluto](module_resolution.html#flow-via-resolucao-absoluta ou-til) com `.flowconfig`.

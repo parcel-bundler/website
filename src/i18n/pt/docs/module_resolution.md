@@ -66,6 +66,41 @@ e re-exportando a exportação nomeada dentro do arquivo com acrônimo:
 module.exports = require('electron').ipcRenderer
 ```
 
+### Flow via Resolução Absoluta ou Til
+
+Flow precisará saber sobre a resolução de módulos para o uso de caminhos absolutos ou caminhos til. Utilizando o recurso [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) do Flow, nós podemos:
+
+> Especificar uma expressão regular para corresponder aos nomes dos módulos, bem como um padrão de substituição
+
+Dado um projeto com essa estrutura:
+
+```
+.flowconfig
+src/
+  index.js
+  components/
+    apple.js
+    banana.js
+```
+
+Para mapear corretamente
+
+```javascript
+// index.js
+import Apple from '/components/apple'
+// na verdade queremos que o Flux procure:
+// import Apple from 'src/components/apple';
+```
+
+nós podemos usar essa configuração no arquivo `.flowconfig` para mapear o caminho absoluto (o direcionamento de `/`) para `src/`:
+
+```
+[options]
+module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+```
+
+Nota: `module.name_mapper` pode ter várias entradas se você desejar suportar acrônimo de módulo local.
+
 ### Resolução ~ TypeScript
 
 TypeScript terá de saber sobre o seu uso da resolução de módulo com `~` ou mapeamentos de acrônimos. Por favor, consulte a [documentação de resolução do módulo do TypeScript](https://www.typescriptlang.org/docs/handbook/module-resolution.html) para mais informações.
