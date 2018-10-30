@@ -1,152 +1,78 @@
 # 🍰 Recipes
 
-## React
+Parcel example projects using various tools & frameworks.
 
-First we need to install the dependencies for React.
+Source can be found at [parcel-bundler/example](https://github.com/parcel-bundler/examples), contributions welcome!
 
-[Blog Post](http://blog.jakoblind.no/react-parcel/)
+- [Node.js](#nodejs)
+- [Flow](#flow)
+- [React w JavaScript](#react-javascript)
+- [React w TypeScript](#react-typescript)
+- [React w ReasonML](#react-reasonml)
+- [Preact w JavaScript](#preact-javascript)
+- [Vue w JavaScript](#vue-javascript)
+- [HyperApp w JavaScript](#hyperapp)
 
-```bash
-npm install --save react
-npm install --save react-dom
-npm install --save-dev parcel-bundler
-```
+## Node.js
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/node?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-```bash
-yarn add react
-yarn add react-dom
-yarn add --dev parcel-bundler
-```
+## Flow
 
-Add Start script to `package.json`
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/flow?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-```javascript
-// package.json
-"scripts": {
-  "start": "parcel index.html"
-}
-```
+## React JavaScript
 
-## Preact
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/react?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-First we need to install the dependencies for Preact.
+## React TypeScript
 
-```bash
-npm install --save preact
-npm install --save preact-compat
-npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-preact
-```
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/typescript-react?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+## React ReasonML
 
-```bash
-yarn add preact
-yarn add preact-compat
-yarn add --dev parcel-bundler
-yarn add --dev babel-preset-preact
-```
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/reason-react?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-Then make sure the following Babel config is present.
+## Preact JavaScript
 
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
-```
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/preact?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-Add Start script to `package.json`
+## Vue JavaScript
 
-```javascript
-// package.json
-"scripts": {
-  "start": "parcel index.html"
-}
-```
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/vue?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
 
-## Vue
+## HyperApp JavaScript
 
-First we need to install the dependencies for Vue.
-
-```bash
-npm install --save vue
-npm install --save-dev parcel-bundler
-```
-
-<sub>Or if you have the optional Yarn package manager installed</sub>
-
-```bash
-yarn add vue
-yarn add --dev parcel-bundler
-```
-
-Add Start script to `package.json`
-
-```javascript
-// package.json
-"scripts": {
-  "start": "parcel index.html"
-}
-```
-
-## Typescript
-
-First we need to add Parcel and Typescript to our project.
-
-```bash
-npm install --save-dev typescript
-npm install --save-dev parcel-bundler
-```
-
-<sub>Or if you have the optional Yarn package manager installed</sub>
-
-```bash
-yarn add typescript --dev
-yarn add --dev parcel-bundler
-```
-
-### Compiling from index.html
-
-Add Start script to `package.json`
-
-```javascript
-// package.json
-"scripts": {
-  "start": "parcel index.html"
-}
-```
-
-Then, in your `index.html` file, simply reference your `.ts` file.
-
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-    <!-- Here 👇 -->
-    <script src="./myTypescriptFile.ts"></script>
-</body>
-</html>
-```
-
-Done!
-
-### Compiling the `.ts` file directly
-
-Add Start script to `package.json`
-
-```javascript
-// package.json
-"scripts": {
-  "start": "parcel myTypescriptFile.ts"
-}
-```
-
-Done! 😄 Compiled `.js` file can be found inside the dist folder.
+<iframe
+    src="https://codesandbox.io/embed/github/parcel-bundler/examples/tree/master/hyperapp?view=editor"
+    style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
+</iframe>
