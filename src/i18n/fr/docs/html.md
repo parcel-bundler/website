@@ -33,7 +33,7 @@ L'ajout de liens vers des fichiers que Parcel peut compiler (par exemple, JavaSc
 
 # PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) est un outil pour transformer du HTML avec des plugins. Vous pouvez configurer PostHTML avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.posthtmlrc` (JSON), `posthtmlrc.js` ou `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) est un outil pour transformer du HTML avec des plugins. Vous pouvez configurer PostHTML avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.posthtmlrc` (JSON), `.posthtmlrc.js` ou `posthtml.config.js`.
 
 Installez des plugins dans votre application :
 

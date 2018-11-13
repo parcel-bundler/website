@@ -58,7 +58,7 @@ Moduły CSS są włączane w nieco inny sposób za pomocą klucza `modules` na n
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) to narzędzie do transformowania HTML za pomocą wtyczek. Możesz skonfigurować PostHTML z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.posthtmlrc` (JSON), `posthtmlrc.js` lub `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) to narzędzie do transformowania HTML za pomocą wtyczek. Możesz skonfigurować PostHTML z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.posthtmlrc` (JSON), `.posthtmlrc.js` lub `posthtml.config.js`.
 
 Zainstaluj wtyczki w aplikacji wykonując:
 
