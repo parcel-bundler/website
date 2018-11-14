@@ -4,7 +4,7 @@ While many bundlers require you to install and configure plugins to transform as
 
 ## Third-Party Modules
 
-Configuration files (such as `.babelrc`) inside third-party `node_modules` will be ignored by default. However, if the module's directory is symlinked (as is common in some monorepo conventions) and the module's `package.json` has the `source` field set, then configuration files in the module's directory will be respected. Here are the types of values supported by the `source` field:
+Configuration files (such as `.babelrc`) will not be applied to files inside third-party `node_modules` by default. However, if the module's directory is symlinked (as is common in some monorepo conventions) and the module's `package.json` has the `source` field set, then configuration files inside the module's directory will be respected. Here are the types of values supported by the `source` field:
 
 * Treat all files as source code, don't change the resolution
 
