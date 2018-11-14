@@ -62,7 +62,7 @@ last 2 versions
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) - инструмент для преобразования HTML с помощью плагинов. Вы можете настроить PostHTML с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.posthtmlrc` (JSON), `posthtmlrc.js` или `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) - инструмент для преобразования HTML с помощью плагинов. Вы можете настроить PostHTML с помощью Parcel, создав конфигурационный файл, используя одно из следующих имен: `.posthtmlrc` (JSON), `.posthtmlrc.js` или `posthtml.config.js`.
 
 Установка плагинов в приложении:
 

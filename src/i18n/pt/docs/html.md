@@ -20,7 +20,7 @@ Arquivos HTML são frequentemente utilizados como ponto de entrada para o Parcel
 
 # PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) é uma ferramenta pra transformar HTML com plugins. Você pode configurar o PostHTML com o Parcel ao criar um arquivo de configuração com um desses nomes: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) é uma ferramenta pra transformar HTML com plugins. Você pode configurar o PostHTML com o Parcel ao criar um arquivo de configuração com um desses nomes: `.posthtmlrc` (JSON), `.posthtmlrc.js`, or `posthtml.config.js`.
 
 Instale plugins na sua aplicação:
 

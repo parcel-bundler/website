@@ -62,7 +62,7 @@ Affinché i CSS Modules funzionino correttamente con i file esistenti, è necess
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) è un tool per convertire i file HTML con dei plugins. Puoi configurare PostHTML con Parcel creando un file di configurazione con questi nomi: `.posthtmlrc` (JSON), `posthtmlrc.js`, o `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) è un tool per convertire i file HTML con dei plugins. Puoi configurare PostHTML con Parcel creando un file di configurazione con questi nomi: `.posthtmlrc` (JSON), `.posthtmlrc.js`, o `posthtml.config.js`.
 
 Installa i plugins nella tua app:
 
