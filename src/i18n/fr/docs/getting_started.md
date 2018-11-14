@@ -87,7 +87,7 @@ La recherche vers http://localhost:1234/répertoire-1/ ne fonctionnera pas, à l
 
 ### Construction pour la production
 
-Lorsque vous êtes prêt à construire les fichiers finals utilisés pour la production, le mode `build` arrête de scruter les modifications et ne construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
+Lorsque vous êtes prêt à construire les fichiers finaux utilisés pour la production, le mode `build` arrête de scruter les modifications et ne construit qu'une seule fois. Consultez la section [Production](production.html) pour plus de détails.
 
 ### Ajout de Parcel à vos projets
 
