@@ -79,3 +79,9 @@ Parcel 會使用 [browserslist](https://github.com/browserslist/browserslist) �
 browserlist 預設的支援目標為 `> 0.25%`，也就是那些用戶多於 0.25% 的瀏覽器。
 
 針對 `node` 環境，Parcel 則使用 `package.json` 中的 `engines.node` 設定值，此設定預設為 _node 8_。
+
+# Flow
+
+[flow](https://flow.org/) 是款 JavaScript 的靜態類型檢查工具。在 Parcel 中使用 Flow 相當容易，只要將 `// @flow` 置於你的 `js` 檔案的第一行即可。
+
+Parcel 會自動安裝必要的 Babel 設定檔以將 Flow 類別從編譯後的輸出檔中剝離，因此你什麼都不需要擔心，除了兩件事：[編輯器整合](https://flow.org/en/docs/editors/)及利用 `.flowconfig` 來支援[絕對路徑的解析](module_resolution.html#flow-的絕對與波浪號路徑解析)。

@@ -66,6 +66,39 @@ Parcel 支援以 `package.json` 中的 `alias` 欄位作為別名。
 module.exports = require('electron').ipcRenderer
 ```
 
+### Flow 的絕對與波浪號路徑解析
+
+Flow 需要知道如何解析絕對及波浪號路徑，我們可以在 [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) 中使用正規表示式來指定模組名稱配對及替換模式。
+
+假設專案有下列結構：
+
+```
+.flowconfig
+src/
+  index.js
+  components/
+    apple.js
+    banana.js
+```
+
+若要將下列程式正確的對應
+
+```javascript
+// index.js
+import Apple from '/components/apple'
+// 實際上我們希望 Flow 搜尋：
+// import Apple from 'src/components/apple';
+```
+
+我們可以將下列設定加入 `.flowconfig` 來將絕對路徑 `/` 對應至 `src/`：
+
+```
+[options]
+module.name_mapper='^\/\(.*\)$' -> '<專案根目錄>/src/\1'
+```
+
+註：若你希望使用本地模組別名，`module.name_mapper` 也可以指定多個進入點。
+
 ### TypeScript 的 ~ 解析
 
 TypeScript 需要了解你是如何使用 `~` 的模組解析及別名對應的。
