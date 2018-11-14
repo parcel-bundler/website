@@ -33,7 +33,7 @@ Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS
 
 # PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `.posthtmlrc.js`, or `posthtml.config.js`.
 
 Install plugins in your app:
 
