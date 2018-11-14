@@ -38,7 +38,7 @@ HTML 中引入的連結將會被改寫使其可連結至輸出的檔案。
 
 # PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) 是款支援外掛擴充的 HTML 轉換工具。若要在 Parcel 中使用 PostHTML ，你可以建立下列其中一個設定檔：`.posthtmlrc` (JSON)、`posthtmlrc.js` 或 `posthtml.config.js`。
+[PostHTML](https://github.com/posthtml/posthtml) 是款支援外掛擴充的 HTML 轉換工具。若要在 Parcel 中使用 PostHTML ，你可以建立下列其中一個設定檔：`.posthtmlrc` (JSON)、`.posthtmlrc.js` 或 `posthtml.config.js`。
 
 首先在你的 app 中安裝外掛：
 

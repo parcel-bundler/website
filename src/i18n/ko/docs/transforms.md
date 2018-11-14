@@ -75,7 +75,7 @@ module.exports = {
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) 플러그인으로 HTML 을 변환하기 위한 도구입니다. `.posthtmlrc` (JSON), `posthtmlrc.js`, `posthtml.config.js` 중 하나의 파일을 작성하여 Parcel 에 PostHTML 을 설정할 수 있습니다.
+[PostHTML](https://github.com/posthtml/posthtml) 플러그인으로 HTML 을 변환하기 위한 도구입니다. `.posthtmlrc` (JSON), `.posthtmlrc.js`, `posthtml.config.js` 중 하나의 파일을 작성하여 Parcel 에 PostHTML 을 설정할 수 있습니다.
 
 플러그인을 앱에 설치 하세요.
 
