@@ -58,7 +58,7 @@ Para habilitar el uso de [CSS Modules](https://github.com/css-modules/css-module
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) es una herramienta para transformar HTML con plugins. Puedes configurar PostHTML con Parcel creando un archivo de configuración usando uno de esos nombres: `.posthtmlrc` (JSON), `posthtmlrc.js`, o `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) es una herramienta para transformar HTML con plugins. Puedes configurar PostHTML con Parcel creando un archivo de configuración usando uno de esos nombres: `.posthtmlrc` (JSON), `.posthtmlrc.js`, o `posthtml.config.js`.
 
 Instala los plugins que necesites en tu app:
 

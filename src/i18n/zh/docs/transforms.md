@@ -75,7 +75,7 @@ module.exports = {
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的： `.posthtmlrc` (JSON) ，`posthtmlrc.js` ，或者 `posthtml.config.js`。
+[PostHTML](https://github.com/posthtml/posthtml) 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的： `.posthtmlrc` (JSON) ，`.posthtmlrc.js` ，或者 `posthtml.config.js`。
 
 在你的应用程序中安装 plugin ：
 
