@@ -28,7 +28,7 @@ You can disable this feature using [`--no-autoinstall`](cli.md#disable-autoinsta
 
 ## Safe Write
 
-Some text editors and IDE's have a feature called `safe write` this basically prevents data loss, by taking a copy of the file and renaming it when saved.
+Some text editors and IDE's have a feature called `safe write` that basically prevents data loss, by taking a copy of the file and renaming it when saved.
 
 When using Hot Module Reload (HMR) this feature blocks the automatic detection of file updates, to disable `safe write` use the options provided below:
 
