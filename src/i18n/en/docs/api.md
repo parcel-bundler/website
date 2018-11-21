@@ -40,17 +40,17 @@ const options = {
   detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
 };
 
-async function runBundle() {
+(async function() {
   // Initializes a bundler using the entrypoint location and options provided
   const bundler = new Bundler(entryFiles, options);
 
   // Run the bundler, this returns the main bundle
   // Use the events if you're using watch mode as this promise will only trigger once and not for every rebuild
   const bundle = await bundler.bundle();
-}
-
-runBundle();
+})();
 ```
+
+If you want to use/start the built-in development server of Parcel you can use `bundler.serve()`. This calls `bundler.bundle()` and starts a simple http (or https) server. `serve()` takes in 3 arguments (they are all optional), first one is port, second one is https (this can either be an object `{cert,key}` pointing to the location of key and cert file or `true` to generate a key) and the third one is the host.
 
 ### Events
 
