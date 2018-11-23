@@ -1,193 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Parcel" />
-  <meta property="og:url" content="https://parceljs.org/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
-  <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
-  <title>Parcel</title>
-  <link type="text/css" rel="stylesheet" href="assets/home.css"/>
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
-</head>
-<body>
-  <header>
-    <h1>
-      <img class="logo" src="assets/logo.svg" alt="Parcel">
-    </h1>
-    <p class="subtitle">Blazing fast, zero configuration web application bundler</p>
-    <div class="parcel">
-      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
-      <div class="icons"></div>
-      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
-    </div>
-    <a class="button get-started" href="getting_started.html">Get Started</a>
-    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-
-    <nav class="links">
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
-          <option class="en" value="https://en.parceljs.org" selected>English</option>
-          <option class="es" value="https://es.parceljs.org">Español</option>
-          <option class="fr" value="https://fr.parceljs.org">Français</option>
-          <option class="it" value="https://it.parceljs.org">Italiano</option>
-          <option class="ko" value="https://ko.parceljs.org">한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">Português</option>
-          <option class="ru" value="https://ru.parceljs.org">Русский</option>
-          <option class="uk" value="https://uk.parceljs.org">Українська</option>
-          <option class="zh" value="https://zh.parceljs.org">简体中文</option>
-          <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
-        </select>
-      </form>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-      <a href="getting_started.html">Documentation</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="features">
-      <section>
-        <h3>🚀 Blazing fast bundle times</h3>
-        <p>Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds even after a restart.</p>
-      </section>
-      <section>
-        <h3>📦 Bundle all your assets</h3>
-        <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
-      </section>
-      <section>
-        <h3>🐠 Automatic transforms</h3>
-        <p>Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even <code>node_modules</code>.</p>
-      </section>
-      <section>
-        <h3>✂️ Zero config code splitting</h3>
-        <p>Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is needed on initial load.</p>
-      </section>
-      <section>
-        <h3>🔥 Hot module replacement</h3>
-        <p>Parcel automatically updates modules in the browser as you make changes during development, no configuration needed.</p>
-      </section>
-      <section>
-        <h3>🚨 Friendly error logging</h3>
-        <p>Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.</p>
-      </section>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="Parcel" />
+    <meta property="og:url" content="https://parceljs.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
+    <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
+    <title>Parcel</title>
+    <link type="text/css" rel="stylesheet" href="assets/home.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
+  </head>
+  <body>
+    <div class="banner">
+      👕 Support Parcel by getting an awesome
+      <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">t-shirt or hoodie</a>! All proceeds
+      support our <a href="https://opencollective.com/parcel" target="_blank">Open Collective</a>. ✨
     </div>
 
-    <section>
-      <h2>Hello World</h2>
-      <p>Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your whole app.</p>
-      <div class="examples">
-      <div class="example">
-        <p><strong>✏️ index.html</strong></p>
-        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <header>
+      <h1><img class="logo" src="assets/logo.svg" alt="Parcel" /></h1>
+      <p class="subtitle">Blazing fast, zero configuration web application bundler</p>
+      <div class="parcel">
+        <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x" />
+        <div class="icons"></div>
+        <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x" />
+      </div>
+      <a class="button get-started" href="getting_started.html">Get Started</a>
+      <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+
+      <nav class="links">
+        <form class="languages">
+          <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+            <option class="en" value="https://en.parceljs.org" selected>English</option>
+            <option class="es" value="https://es.parceljs.org">Español</option>
+            <option class="fr" value="https://fr.parceljs.org">Français</option>
+            <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ko" value="https://ko.parceljs.org">한국어</option>
+            <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+            <option class="pt" value="https://pt.parceljs.org">Português</option>
+            <option class="ru" value="https://ru.parceljs.org">Русский</option>
+            <option class="uk" value="https://uk.parceljs.org">Українська</option>
+            <option class="zh" value="https://zh.parceljs.org">简体中文</option>
+            <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
+          </select>
+        </form>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+        <a href="getting_started.html">Documentation</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="features">
+        <section>
+          <h3>🚀 Blazing fast bundle times</h3>
+          <p>
+            Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds
+            even after a restart.
+          </p>
+        </section>
+        <section>
+          <h3>📦 Bundle all your assets</h3>
+          <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+        </section>
+        <section>
+          <h3>🐠 Automatic transforms</h3>
+          <p>
+            Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even
+            <code>node_modules</code>.
+          </p>
+        </section>
+        <section>
+          <h3>✂️ Zero config code splitting</h3>
+          <p>
+            Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is
+            needed on initial load.
+          </p>
+        </section>
+        <section>
+          <h3>🔥 Hot module replacement</h3>
+          <p>
+            Parcel automatically updates modules in the browser as you make changes during development, no configuration
+            needed.
+          </p>
+        </section>
+        <section>
+          <h3>🚨 Friendly error logging</h3>
+          <p>
+            Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.
+          </p>
+        </section>
+      </div>
+
+      <section>
+        <h2>Hello World</h2>
+        <p>
+          Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your
+          whole app.
+        </p>
+        <div class="examples">
+          <div class="example">
+            <p><strong>✏️ index.html</strong></p>
+            <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
+          <div class="example">
+            <p><strong>🛠 index.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// import another component</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
+          <div class="example">
+            <p><strong>🛠 main.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// import a CSS module</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>💅 main.css</strong></p>
-        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+          <div class="example">
+            <p><strong>💅 main.css</strong></p>
+            <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
   <span class="hljs-comment">/* Reference an image file */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
-}</code></pre></div>
-      </div>
-
-      <p>Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more just works! 👌</p>
-    </section>
-
-    <section>
-      <h2>Benchmarks</h2>
-      <table>
-        <tr>
-          <th>Bundler</th>
-          <th>Time</th>
-        </tr>
-        <tr>
-          <td>browserify</td>
-          <td>22.98s</td>
-        </tr>
-        <tr>
-          <td>webpack</td>
-          <td>20.71s</td>
-        </tr>
-        <tr>
-          <td><strong>parcel</strong></td>
-          <td><strong>9.98s</strong></td>
-        </tr>
-        <tr>
-          <td><strong>parcel - with cache</strong></td>
-          <td><strong>2.64s</strong></td>
-        </tr>
-      </table>
-      <p>Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with 4 physical cores.</p>
-    </section>
-  </main>
-
-  <footer>
-    <a class="button" href="getting_started.html">Get Started</a>
-    <div class="content">
-      <nav>
-        <h3>Documentation</h3>
-        <div>
-          <ul>
-            <li><a href="getting_started.html">🚀 Getting Started</a></li>
-            <li><a href="assets.html">📦 Assets</a></li>
-            <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
-          </ul>
-          <ul>
-            <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-            <li><a href="production.html">✨ Production</a></li>
-            <li><a href="cli.html">🖥 CLI</a></li>
-          </ul>
+}</code></pre>
+          </div>
         </div>
-      </nav>
-      <nav>
-        <h3>Links</h3>
-        <ul>
-          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
-          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="copyright">
-      Copyright ©
-      <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. This website is <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
-    </div>
-  </footer>
 
-  <script src="assets/icons.js"></script>
-</body>
+        <p>
+          Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more
+          just works! 👌
+        </p>
+      </section>
+
+      <section>
+        <h2>Benchmarks</h2>
+        <table>
+          <tr>
+            <th>Bundler</th>
+            <th>Time</th>
+          </tr>
+          <tr>
+            <td>browserify</td>
+            <td>22.98s</td>
+          </tr>
+          <tr>
+            <td>webpack</td>
+            <td>20.71s</td>
+          </tr>
+          <tr>
+            <td><strong>parcel</strong></td>
+            <td><strong>9.98s</strong></td>
+          </tr>
+          <tr>
+            <td><strong>parcel - with cache</strong></td>
+            <td><strong>2.64s</strong></td>
+          </tr>
+        </table>
+
+        <p>
+          Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with
+          4 physical cores.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="button" href="getting_started.html">Get Started</a>
+      <div class="content">
+        <nav>
+          <h3>Documentation</h3>
+          <div>
+            <ul>
+              <li><a href="getting_started.html">🚀 Getting Started</a></li>
+              <li><a href="assets.html">📦 Assets</a></li>
+              <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+            </ul>
+            <ul>
+              <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+              <li><a href="production.html">✨ Production</a></li>
+              <li><a href="cli.html">🖥 CLI</a></li>
+            </ul>
+          </div>
+        </nav>
+        <nav>
+          <h3>Links</h3>
+          <ul>
+            <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+            <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+            <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="copyright">
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Devon Govett. This website is
+        <a href="https://github.com/parcel-bundler/website" target="_blank">open source</a>.
+      </div>
+    </footer>
+
+    <script src="assets/icons.js"></script>
+  </body>
 </html>
