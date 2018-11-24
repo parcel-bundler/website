@@ -1,4 +1,4 @@
-# Javascript
+# JavaScript
 
 _Extensions supportées : `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
@@ -47,13 +47,28 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
+### Images dans JSX
+
+Vous trouverez ci-dessous un exemple d’importation d’un fichier image à utiliser dans JSX.
+
+```js
+// Importe le fichier image
+import megaMan from "./images/mega-man.png";
+
+// JSX
+<img src={megaMan} title="Mega Man" alt="Mega Man" />
+
+// JSX (avec un chemin personnalisé)
+<img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
+```
+
 # Babel
 
 [Babel](https://babeljs.io) est un transpileur populaire pour JavaScript, avec un grand écosystème de plugin. L'utilisation de Babel avec Parcel fonctionne de la même manière que l'utilisation autonome ou avec d'autres empaqueteurs.
 
 Installez les presets et les plugins dans votre application :
 
-```bash
+```shell
 yarn add @babel/preset-react
 ```
 
@@ -65,7 +80,7 @@ Ensuite, créez un `.babelrc`:
 }
 ```
 
-## Transformations babel par défaut
+## Transformations Babel par défaut
 
 Parcel transpile par défaut votre code avec `@babel/preset-env`, ceci transpile chaque module interne (requires locaux) et externe (node_modules) pour correspondre à la cible définie.
 
@@ -74,3 +89,9 @@ Pour la cible `browser`, il utilise [browserslist](https://github.com/browsersli
 Par défaut, la browserlist cible est à : `> 0,25%` (ce qui signifie que tous les navigateurs ayant 0,25% ou plus du nombre total d'utilisateurs Web actifs sont pris en charge)
 
 Pour la cible `node`, Parcel utilise le `engines.node` défini dans `package.json`, la valeur par défaut est _node 8_.
+
+# Flow
+
+[Flow](https://flow.org/) est un vérificateur populaire de type statique pour JavaScript. L'utilisation de Flow avec Parcel est aussi simple que de placer `// @flow` comme première ligne de vos fichiers `js`.
+
+Parcel installera automatiquement la configuration Babel requise pour séparer les types de Flow de la sortie compilée. Vous n'avez donc rien à craindre à l'exception des [intégrations de l'éditeur](https://flow.org/en/docs/editors/) ou de la prise en charge du [module de résolution des chemins absolus](module_resolution.html#flow-with-absolute-or-tilde-resolution) avec `.flowconfig`.
