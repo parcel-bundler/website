@@ -47,6 +47,21 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
+### Imagens em JSX
+
+Abaixo há um exemplo de como importar imagens para utilizar com JSX.
+
+```js
+// Importando o arquivo de imagem
+import megaMan from "./images/mega-man.png";
+
+// JSX
+<img src={megaMan} title="Mega Man" alt="Mega Man" />
+
+// JSX (c/ caminho customizado)
+<img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
+```
+
 # Babel
 
 [Babel](https://babeljs.io) é o conversor de JavaScript mais popular que conta com um grande ecossistema de plugins. Usar o Babel com o Parcel funciona da mesma maneira que utilizá-lo sozinho ou com outros empacotadores.
