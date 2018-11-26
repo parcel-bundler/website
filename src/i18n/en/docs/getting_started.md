@@ -62,7 +62,7 @@ parcel watch index.html
 
 In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
 
-Specifing the file names:
+Specifying the file names:
 
 ```bash
 parcel index.html about.html
@@ -83,7 +83,7 @@ _NOTE:_ In case you have a file structure like this:
 -- index.html
 ```
 
-Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicity point to the file http://localhost:1234/folder-1/index.html.
+Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicitly point to the file http://localhost:1234/folder-1/index.html.
 
 ### Building for production
 
