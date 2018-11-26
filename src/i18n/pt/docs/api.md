@@ -35,7 +35,7 @@ const options = {
   logLevel: 3, // 3 = irá loggar tudo, 2 = irá loggar avisos e erros, 1 = irá loggar erros.
   hmr: true, // Habilita ou desabilita o HMR enquanto "watching" está ativo.
   hmrPort: 0, // A porta onde o socket HMR está rodando, o padrão é uma porta livre aleatória (0 no node.js resolve para uma porta livre).
-  sourceMaps: true, // Habilita ou desabilita sourcemaps, habilitado é o padrão (não suportado em builds com arquivos minificados ainda).
+  sourceMaps: true, // Habilita ou desabilita sourcemaps, habilitado é o padrão (builds minificadas atualmente sempre criam sourcemaps).
   hmrHostname: '', // Um hostname para hot module reload, "" é o padrão.
   detailedReport: false // Exibe um report detalhado dos bundles, assets, tamanho de arquivos e tempos, false é o padrão, os reports são exibidos somente se o watch estiver desabilidado.
 };
