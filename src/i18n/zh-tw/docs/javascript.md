@@ -1,4 +1,4 @@
-# Javascript
+# JavaScript
 
 _支援的副檔名：`js`、`jsx`、`es6`、`jsm` 及 `mjs`_
 
@@ -52,13 +52,28 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
+### 在 JSX 中使用影像檔
+
+下列是在 JSX 中匯入影像檔的範例：
+
+```js
+// 匯入影像檔
+import megaMan from "./images/mega-man.png";
+
+// JSX
+<img src={megaMan} title="Mega Man" alt="Mega Man" />
+
+// JSX (使用自訂路徑)
+<img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
+```
+
 # Babel
 
 [Babel](https://babeljs.io) 是款熱門且擁有龐大外掛生態系的 JavaScript 轉譯器。其使用方式跟直接執行或在其他打包工具中相同。
 
 在你的 app 中安裝 preset 和外掛：
 
-```bash
+```shell
 yarn add babel-preset-react
 ```
 
