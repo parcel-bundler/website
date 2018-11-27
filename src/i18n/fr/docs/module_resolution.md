@@ -66,6 +66,41 @@ et réexporter l'export nommé dans le fichier aliasé :
 module.exports = require('electron').ipcRenderer
 ```
 
+### Flow avec la résolution de chemin absolu et tilde
+
+Flow aura besoin d'être au courant de votre utilisation du module de résolution de chemin absolu ou tilde. L'utilisation de la fonctionnalité [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) de Flow nous permet
+
+> De spécifier une expression régulière à faire correspondre aux noms de module et un modèle de remplacement
+
+Soit un projet avec cette structure :
+
+```
+.flowconfig
+src/
+  index.js
+  components/
+    apple.js
+    banana.js
+```
+
+Pour mapper correctement les éléments suivants
+
+```javascript
+// index.js
+import Apple from '/components/apple'
+// nous voulons en fait que flow cherche :
+// import Apple from 'src/components/apple';
+```
+
+nous pouvons utiliser ce paramétrage dans notre `.flowconfig` pour remplacer le chemin absolu (actuellement `/`) en `src/` :
+
+```
+[options]
+module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+```
+
+REMARQUE : `module.name_mapper` peut avoir plusieurs entrées si vous souhaitez prendre en charge l'alias de module local.
+
 ### Résolution TypeScript ~
 
 TypeScript devra connaître votre utilisation de la résolution de module `~` ou les cartographies d'alias. Veuillez vous reporter à la documentation de [TypeScript Module Resolution docs](https://www.typescriptlang.org/docs/handbook/module-resolution.html) pour plus d'informations.

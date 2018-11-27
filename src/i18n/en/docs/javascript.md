@@ -47,6 +47,21 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
+### Images in JSX
+
+Below is an example of how you could import an image file for use in JSX.
+
+```js
+// Import the image file
+import megaMan from "./images/mega-man.png";
+
+// JSX
+<img src={megaMan} title="Mega Man" alt="Mega Man" />
+
+// JSX (w/ custom path)
+<img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
+```
+
 # Babel
 
 [Babel](https://babeljs.io) is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.

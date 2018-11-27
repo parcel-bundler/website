@@ -43,11 +43,31 @@ h6 {
 }
 
 header {
+  position: relative;
   background: #21374b;
   color: #e7dacb;
   text-align: center;
   padding: 80px 0 50px 0;
   font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.banner {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: #2e4e6b;
+  color: #e7dacb;
+  font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.banner a {
+  color: #27ae60;
+  text-decoration: none;
+  transition: color 125ms;
+}
+
+.banner a:hover {
+  color: #1f864a;
 }
 
 .logo {
