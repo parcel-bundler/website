@@ -75,31 +75,37 @@ Flow will need to know about your use of absolute path or tilde path module reso
 Given a project with this structure:
 
 ```
+package.json
 .flowconfig
 src/
+  index.html
   index.js
   components/
     apple.js
     banana.js
 ```
 
-To map the following correctly
+And `src/index.html` as an entrypoint, our **project root** is the `src/` folder.
+
+Therefore, to map this import correctly:
 
 ```javascript
 // index.js
 import Apple from '/components/apple'
-// we actually want flow to look for:
-// import Apple from 'src/components/apple';
 ```
 
-we can use this setting in our `.flowconfig` to map the absolute path (the leading `/`) to `src/`:
+We need Flow to replace the leading `/` in `'/components/apple'` with `src/`, resulting in `'src/components/apple'`.
+
+The following setting in our `.flowconfig` achieves this replacement:
 
 ```
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
 
-NB:`module.name_mapper` can have multiple entries if you wish to support local module aliasing.
+Where `<PROJECT_ROOT>` is a Flow specific identifier indicating the location of our `.flowconfig`
+
+NB: `module.name_mapper` can have multiple entries. This allows support for [Absolute](module_resolution.html#absolute-paths) or [Tilde](module_resolution.html#~-tilde-paths) Path Resolution in addition to [local module aliasing](module_resolution.html#aliasing) support.
 
 ### TypeScript ~ Resolution
 
