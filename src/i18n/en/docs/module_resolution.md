@@ -1,21 +1,40 @@
 # 📔 Module Resolution
 
-Parcel (v1.7.0 and above) supports multiple module resolution strategies out of the box so you don't have to deal with endless relative paths `../../`.
+The Parcel resolver implements a modified version of [the node_modules resolution](https://nodejs.org/api/modules.html#modules_all_together) algorithm.
 
-Notable terms:
+## Module resolution
+In addition to the standard algorithm, all [asset types supported by Parcel](https://parceljs.org/assets.html) are also resolved.
 
+Module resolution can be relative to the:
 - **project root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
 - **package root**: the directory of the nearest module root in `node_modules`.
 
-## Absolute Paths
+### Absolute Paths
 
-`/foo` will resolve `foo` relative to the **project root**.
+`/foo` resolves `foo` relative to the **project root**.
 
-## ~ Tilde Paths
+### ~ Tilde Paths
 
-`~/foo` will resolve `foo` relative to the nearest **package root** or, if not found, the **project root**.
+`~/foo` resolves `foo` relative to the nearest **package root** or, if not found, the **project root**.
 
-## Aliasing
+### Glob file paths
+
+Globs are wildcard imports that bundle multiple assets at once. Globs can match some or all files (`/assets/*.png`), as well as files in multiple directories (`/assets/**/*`);
+
+This example bundles a directory of png files and returns the dist URLs.
+
+```
+import foo from "/assets/*.png";
+// { 
+//   'file-1': '/file-1.8e73c985.png',
+//   'file-2': '/file-1.8e73c985.png'
+// }
+```
+
+### package.json `browser` field
+If a package includes a [package.browser field](https://docs.npmjs.com/files/package.json#browser), Parcel will use this instead of the package.main entry.
+
+### Aliases
 
 Aliases are supported through the `alias` field in `package.json`.
 
@@ -43,7 +62,7 @@ Avoid using any special characters in your aliases as some may be used by Parcel
 
 We advise being explicit when defining your aliases, so please **specify file extensions**, otherwise Parcel will need to guess. See [JavaScript Named Exports](#javascript-named-exports) for an example of this.
 
-## Other Conditions
+## Common issues
 
 ### JavaScript Named Exports
 
@@ -68,9 +87,7 @@ module.exports = require('electron').ipcRenderer
 
 ### Flow with Absolute or Tilde Resolution
 
-Flow will need to know about your use of absolute path or tilde path module resolution. Using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature of Flow we can
-
-> Specify a regular expression to match against module names, and a replacement pattern
+When using absolute path or tilde path module resolution you must configure Flow using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature.
 
 Given a project with this structure:
 
