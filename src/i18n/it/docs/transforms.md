@@ -24,7 +24,7 @@ Poi, crea un file `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) é un tool per convertire il CSS con dei plugins, come [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), e [CSS Modules](https://github.com/css-modules/css-modules). Puoi configurare PostCSS con Parcel creando un file di configurazione con uno di questi nomi: `.postcssrc` (JSON), `.postcssrc.js`, o `postcss.config.js`.
+[PostCSS](http://postcss.org) é un tool per convertire il CSS con dei plugins, come [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env), e [CSS Modules](https://github.com/css-modules/css-modules). Puoi configurare PostCSS con Parcel creando un file di configurazione con uno di questi nomi: `.postcssrc` (JSON), `.postcssrc.js`, o `postcss.config.js`.
 
 Installa i plugins nella tua app:
 
@@ -91,9 +91,9 @@ I Plugins sono specificati nell'oggetto `plugins` come chiavi, e le opzioni sono
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -143,9 +143,9 @@ $ yarn add bs-platform --dev
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 
@@ -165,9 +165,9 @@ $ yarn add react react-dom reason-react
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 
@@ -202,10 +202,10 @@ $ yarn add react react-dom reason-react
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <div id="app"></div>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <div id="app"></div>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 

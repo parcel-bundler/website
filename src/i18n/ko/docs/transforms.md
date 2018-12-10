@@ -24,7 +24,7 @@ yarn add @babel/preset-env
 
 ## PostCSS
 
-[PostCSS](http://postcss.org)는 plugin 을 사용하여 CSS 를 변환하는 도구입니다. [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), [CSS Modules](https://github.com/css-modules/css-modules)와 같이 말입니다. `.postcssrc` (JSON), `.postcssrc.js`, 또는 `postcss.config.js` 중 하나의 파일을 작성하여 Parcel 로 PostCSS 를 설정할 수 있습니다.
+[PostCSS](http://postcss.org)는 plugin 을 사용하여 CSS 를 변환하는 도구입니다. [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env), [CSS Modules](https://github.com/css-modules/css-modules)와 같이 말입니다. `.postcssrc` (JSON), `.postcssrc.js`, 또는 `postcss.config.js` 중 하나의 파일을 작성하여 Parcel 로 PostCSS 를 설정할 수 있습니다.
 
 플러그인을 앱에 설치 하세요:
 
@@ -103,11 +103,11 @@ yarn add posthtml-img-autosize
 
 ```html
 <!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -157,9 +157,9 @@ $ yarn add bs-platform --dev
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 

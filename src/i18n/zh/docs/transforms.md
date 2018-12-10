@@ -24,7 +24,7 @@ yarn add @babel/preset-env
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) 是一个使用插件转换 CSS 的工具，例如 [autoprefixer](https://github.com/postcss/autoprefixer)，[cssnext](http://cssnext.io/) 以及 [CSS Modules](https://github.com/css-modules/css-modules) 。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostCSS 的目的： `.postcssrc` (JSON)，`.postcssrc.js`，或 `postcss.config.js`。
+[PostCSS](http://postcss.org) 是一个使用插件转换 CSS 的工具，例如 [autoprefixer](https://github.com/postcss/autoprefixer)，[Preset Env](https://github.com/csstools/postcss-preset-env) 以及 [CSS Modules](https://github.com/css-modules/css-modules) 。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostCSS 的目的： `.postcssrc` (JSON)，`.postcssrc.js`，或 `postcss.config.js`。
 
 在你应用程序中安装 plugins ：
 
@@ -47,7 +47,7 @@ yarn add postcss-modules autoprefixer
 
 Plugins 在 `plugins` 对象中被指定为 key，并使用对象的值定义选项。如果插件没有选项，只需将其设置为 `true` 即可。
 
-可以在 `.browserslistrc` 中指定 autoprefixer、cssnext 和目标浏览器的其他工具:
+可以在 `.browserslistrc` 中指定 autoprefixer、Preset Env 和目标浏览器的其他工具:
 
 ```
 > 1%
@@ -104,9 +104,9 @@ Plugins 在 `plugins` 对象中指定为 key，并且选项使用对象值定义
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -156,9 +156,9 @@ $ yarn add bs-platform --dev
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 
