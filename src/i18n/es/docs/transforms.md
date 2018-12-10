@@ -24,7 +24,7 @@ Luego, crea un archivo `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) es una herramienta para transformar CSS con plugins, como [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), y [CSS Modules](https://github.com/css-modules/css-modules). Puedes configurar PostCSS para ser usado con Parcel, creando un archivo de configuración usando uno de estos nombres: `.postcssrc` (JSON), `.postcssrc.js`, o `postcss.config.js`.
+[PostCSS](http://postcss.org) es una herramienta para transformar CSS con plugins, como [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env), y [CSS Modules](https://github.com/css-modules/css-modules). Puedes configurar PostCSS para ser usado con Parcel, creando un archivo de configuración usando uno de estos nombres: `.postcssrc` (JSON), `.postcssrc.js`, o `postcss.config.js`.
 
 Instala los plugins que necesites en tu app:
 
@@ -87,9 +87,9 @@ Los plugins deben ser declarados en el objeto `plugins` como llaves, y las opcio
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 

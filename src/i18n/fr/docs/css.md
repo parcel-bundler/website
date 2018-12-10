@@ -18,7 +18,7 @@ En plus des simples CSS, d'autres langages compilés vers CSS comme LESS, SASS e
 
 # PostCSS
 
-[PostCSS](http://postcss.org) est un outil pour transformer du CSS avec des plugins, comme [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/), et [CSS Modules](https://github.com/css-modules/css-modules). Vous pouvez configurer PostCSS avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.postcssrc` (JSON), `.postcssrc.js` ou `postcss.config.js`.
+[PostCSS](http://postcss.org) est un outil pour transformer du CSS avec des plugins, comme [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env), et [CSS Modules](https://github.com/css-modules/css-modules). Vous pouvez configurer PostCSS avec Parcel en créant un fichier de configuration en utilisant l'un de ces noms : `.postcssrc` (JSON), `.postcssrc.js` ou `postcss.config.js`.
 
 Installez les plugins dans votre application :
 
