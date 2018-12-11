@@ -24,7 +24,7 @@ Następnie utwórz plik `.babelrc`:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) to narzędzie do transformacji CSS z użyciem wtyczek, np. [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) czy [CSS Modules](https://github.com/css-modules/css-modules). Możesz skonfigurować PostCSS z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.postcssrc` (JSON), `.postcssrc.js` lub `postcss.config.js`.
+[PostCSS](http://postcss.org) to narzędzie do transformacji CSS z użyciem wtyczek, np. [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env) czy [CSS Modules](https://github.com/css-modules/css-modules). Możesz skonfigurować PostCSS z Parcel tworząc plik konfiguracyjny o jednej z nazw: `.postcssrc` (JSON), `.postcssrc.js` lub `postcss.config.js`.
 
 Zainstaluj wtyczki w aplikacji wykonując:
 
@@ -87,9 +87,9 @@ Wtyczki są wymienione w obiekcie `plugins` jako klucze, a ich opcje są definio
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -138,11 +138,11 @@ $ yarn add bs-platform --dev
 
 ```html
 <!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 

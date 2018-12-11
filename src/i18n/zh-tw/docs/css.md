@@ -21,7 +21,7 @@ CSS 資源可於 JavaScript 或 HTML 檔案中被匯入，並能透過 `@import`
 
 # PostCSS
 
-[PostCSS](http://postcss.org) 是款可以轉換 CSS 的外掛，它有如 [autoprefixer](https://github.com/postcss/autoprefixer)、[cssnext](http://cssnext.io/) 和 [CSS Modules](https://github.com/css-modules/css-modules) 等等的外掛。
+[PostCSS](http://postcss.org) 是款可以轉換 CSS 的外掛，它有如 [autoprefixer](https://github.com/postcss/autoprefixer)、[Preset Env](https://github.com/csstools/postcss-preset-env) 和 [CSS Modules](https://github.com/css-modules/css-modules) 等等的外掛。
 
 若要在 Parcel 中使用 PostCSS，你需要建立下列其中一個設定檔：`.postcssrc` (JSON)、`.postcssrc.js` 或 `postcss.config.js`。
 

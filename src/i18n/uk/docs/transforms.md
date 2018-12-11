@@ -24,7 +24,7 @@ yarn add babel-preset-env
 
 ## PostCSS
 
-[PostCSS](http://postcss.org) - це інструмент для перетворення CSS за допомогою плагінів, таких як [autoprefixer](https://github.com/postcss/autoprefixer), [cssnext](http://cssnext.io/) і [CSS Modules](https://github.com/css-modules/css-modules). Ви можете налаштувати PostCSS за допомогою Parcel, створивши конфігураційний файл, використовуючи одне з наступних імен: `.postcssrc` (JSON),`.postcssrc.js` або `postcss.config.js`.
+[PostCSS](http://postcss.org) - це інструмент для перетворення CSS за допомогою плагінів, таких як [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env) і [CSS Modules](https://github.com/css-modules/css-modules). Ви можете налаштувати PostCSS за допомогою Parcel, створивши конфігураційний файл, використовуючи одне з наступних імен: `.postcssrc` (JSON),`.postcssrc.js` або `postcss.config.js`.
 
 Установка плагінів в додатку:
 
@@ -87,9 +87,9 @@ yarn add posthtml-img-autosize
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -139,9 +139,9 @@ $ yarn add bs-platform --dev
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 
