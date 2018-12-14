@@ -19,4 +19,4 @@ Puoi pubblicare questo pacchetto su npm usando il prefisso `parcel-plugin-``, e 
 
 ## Utilizzare i Plugins
 
-Utilizzare i plugin in Parcel non potrebbe essere più semplice. Tutto quello che dovete fare è installarli e salvarli nel vostro `pacchetto.json`. I plugin dovrebbero essere nominati con il prefisso `parcel-plugin-`, ad esempio `parcel-plugin-foo`. Tutte le dipendenze elencate in `package.json` con questo prefisso verranno caricate automaticamente durante l'inizializzazione.
+Utilizzare i plugin in Parcel non potrebbe essere più semplice. Tutto quello che dovete fare è installarli e salvarli nel vostro `package.json`. I plugin dovrebbero essere nominati con il prefisso `parcel-plugin-`, ad esempio `parcel-plugin-foo`. Tutte le dipendenze elencate in `package.json` con questo prefisso verranno caricate automaticamente durante l'inizializzazione.
