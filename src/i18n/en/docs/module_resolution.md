@@ -66,7 +66,7 @@ We advise being explicit when defining your aliases, so please **specify file ex
 
 ### JavaScript Named Exports
 
-Alias mappings apply to many asset types and does not specifically support mapping of JavaScript named exports. If you wish to map JS named exports you can do this:
+Alias mappings apply to many asset types and do not specifically support mapping of JavaScript named exports. If you wish to map JS named exports you can do this:
 
 ```json
 // package.json
