@@ -20,20 +20,20 @@ const entryFiles = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // The out directory to put the build files in, defaults to dist
   outFile: 'index.html', // The name of the outputFile
-  publicUrl: './', // The url to server on, defaults to dist
-  watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
+  publicUrl: './', // The url to serve on, defaults to dist
+  watch: true, // Whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
   cache: true, // Enabled or disables caching, defaults to true
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
   contentHash: false, // Disable content hash from being included on the filename
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
-  scopeHoist: false, // turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
-  target: 'browser', // browser/node/electron, defaults to browser
+  scopeHoist: false, // Turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
+  target: 'browser', // Browser/node/electron, defaults to browser
   https: { // Define a custom {key, cert} pair, use true to generate one or false to use http
-    cert: './ssl/c.crt', // path to custom certificate
-    key: './ssl/k.key' // path to custom key
+    cert: './ssl/c.crt', // Path to custom certificate
+    key: './ssl/k.key' // Path to custom key
   },
   logLevel: 3, // 3 = log everything, 2 = log warnings & errors, 1 = log errors
-  hmr: true, //Enable or disable HMR while watching
+  hmr: true, // Enable or disable HMR while watching
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (minified builds currently always create sourcemaps)
   hmrHostname: '', // A hostname for hot module reload, default to ''

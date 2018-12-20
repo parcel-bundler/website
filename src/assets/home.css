@@ -193,7 +193,9 @@ header .links a:hover {
   outline: none;
 }
 
-.language-dropdown:hover {
+.language-dropdown:hover,
+.language-dropdown:focus,
+.language-dropdown option {
   color: #27ae60;
 }
 
