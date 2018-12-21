@@ -1,21 +1,43 @@
 # 📔 Résolution de module
 
-Parcel (v1.7.0 et versions ultérieures) prend en charge plusieurs stratégies de résolution de module prêtes à l'emploi, ce qui vous évite de devoir gérer des chemins relatifs sans fin, par exemple `../../`.
+Le résolveur de Parcel implémente une version modifiée de l'algorithme de [résolution des node_modules](https://nodejs.org/api/modules.html#modules_all_together).
 
-Termes notable :
+## Résolution de module
+
+En plus de l'algorithme standard, tous les [types de ressources supportés par Parcel](assets.html) sont aussi résolus.
+
+La résolution de module peut être relative à la :
 
 - **racine du projet** : le répertoire du point d'entrée spécifié à Parcel ou la racine partagée (répertoire parent commun) lorsque plusieurs points d'entrée sont spécifiés.
 - **racine du package** : le répertoire racine du module le plus proche dans `node_modules`.
 
-## Chemins absolus
+### Chemins absolus
 
-`/foo` résoudra `foo` relatif à la **racine du projet**.
+`/foo` résout `foo` relatif à la **racine du projet**.
 
-## Chemins du tilde ~
+### Chemins du tilde ~
 
-`~/foo` résoudra `foo` relatif à la **racine du package** le plus proche ou, s'il ne trouve pas, à la **racine du projet**.
+`~/foo` résout `foo` relatif à la **racine du package** le plus proche ou, s'il ne trouve pas, à la **racine du projet**.
 
-## Alias
+### Chemins de fichiers glob
+
+Les globs sont des importations génériques qui regroupent plusieurs ressources à la fois. Les globs peuvent correspondre à tout ou une partie des fichiers (`/assets/*.png`), ainsi qu'aux fichiers de plusieurs répertoires (`/assets/**/*`).
+
+Cet exemple regroupe un répertoire de fichiers png et renvoie l’URL dist.
+
+```
+import foo from "/assets/*.png";
+// {
+//   'file-1': '/file-1.8e73c985.png',
+//   'file-2': '/file-1.8e73c985.png'
+// }
+```
+
+### Le champs `browser` de package.json
+
+Si un package inclut un [champs package.browser](https://docs.npmjs.com/files/package.json#browser), Parcel l'utilisera à la place de l'entrée package.main.
+
+### Alias
 
 Les alias sont supportés via le champ `alias` dans `package.json`.
 
@@ -43,7 +65,7 @@ Ces exemples d'alias `react` vers `preact` et d'un module local personnalisé qu
 
 Nous vous conseillons d'être explicite lors de la définition de vos alias, veuillez donc **spécifier les extensions de fichier**, sinon Parcel devra le deviner. Consultez [Export nommés de JavaScript](#export-nommés-de-javascript) pour voir un exemple.
 
-## Autres conditions
+## Problèmes communs
 
 ### Export nommés de JavaScript
 
@@ -68,38 +90,42 @@ module.exports = require('electron').ipcRenderer
 
 ### Flow avec la résolution de chemin absolu et tilde
 
-Flow aura besoin d'être au courant de votre utilisation du module de résolution de chemin absolu ou tilde. L'utilisation de la fonctionnalité [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) de Flow nous permet
-
-> De spécifier une expression régulière à faire correspondre aux noms de module et un modèle de remplacement
+Lorsque vous utilisez la résolution de module de chemin absolu ou tilde, vous devez configurer Flow à l'aide de [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string).
 
 Soit un projet avec cette structure :
 
 ```
+package.json
 .flowconfig
 src/
+  index.html
   index.js
   components/
     apple.js
     banana.js
 ```
 
-Pour mapper correctement les éléments suivants
+Où `src/index.html` est le point d'entrée, notre **racine du projet** est le répertoire `src/`.
+
+Donc cela mappe correctement les éléments suivants :
 
 ```javascript
 // index.js
 import Apple from '/components/apple'
-// nous voulons en fait que flow cherche :
-// import Apple from 'src/components/apple';
 ```
 
-nous pouvons utiliser ce paramétrage dans notre `.flowconfig` pour remplacer le chemin absolu (actuellement `/`) en `src/` :
+Nous avons besoin que Flow remplace le chemin actuel `/` en `'/components/apple'` avec `src/`, cela se traduit en `'src/components/apple'`.
+
+Le paramètre suivant dans notre `.flowconfig` réalise ce remplacement :
 
 ```
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
 
-REMARQUE : `module.name_mapper` peut avoir plusieurs entrées si vous souhaitez prendre en charge l'alias de module local.
+Où `<PROJECT_ROOT>` est un identifiant spécifique à Flow indiquant l'emplacement de notre `.flowconfig`.
+
+REMARQUE : `module.name_mapper` peut avoir plusieurs entrées. Cela permet de prendre en charge la résolution du chemin [Absolu](module_resolution.html#chemins-absolus) ou [Tilde](module_resolution.html#chemins-du-tilde-~) en plus du support de l'[alias du module local](module_resolution.html#alias).
 
 ### Résolution TypeScript ~
 

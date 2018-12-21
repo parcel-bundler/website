@@ -21,16 +21,16 @@ const options = {
   outDir: './dist', // Le répertoire out pour mettre les fichiers construits, par défaut dist
   outFile: 'index.html', // Le nom du fichier en sortie
   publicUrl: './', // L'URL du serveur, par défaut 'dist'
-  watch: true, // Surveiller les fichiers et les reconstruire lors d'un changement, par défaut pour process.env.NODE_ENV !== 'production'
+  watch: true, // Surveille les fichiers et les reconstruit lors d'un changement, par défaut pour process.env.NODE_ENV !== 'production'
   cache: true, // Active ou non la mise en cache, la valeur par défaut est true
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   contentHash: false, // Désactive l'inclusion du hachage de contenu sur le nom du fichier
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   scopeHoist: false, // Active le flag expérimental de scope hoisting/tree shaking, pour des paquets plus petits en production
-  target: 'browser', // la cible de compilation : browser/node/electron, par défaut browser
+  target: 'browser', // La cible de compilation : browser/node/electron, par défaut browser
   https: { // Définit une paire personnalisée {key, cert}, utilisez true pour en générer un ou false pour utiliser http
-    cert: './ssl/c.crt', // chemin vers le certificat personnalisé
-    key: './ssl/k.key' // chemin vers la clé personnalisée
+    cert: './ssl/c.crt', // Chemin vers le certificat personnalisé
+    key: './ssl/k.key' // Chemin vers la clé personnalisée
   },
   logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
   hmr: true, // Active ou désactive le HMR lors de la surveillance (watch)
@@ -40,17 +40,17 @@ const options = {
   detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
 };
 
-async function runBundle() {
+(async function() {
   // Initialise un empaqueteur (bundler) en utilisant l'emplacement de l'entrée et les options fournies
   const bundler = new Bundler(entryFiles, options);
 
   // Démarre l'empaqueteur, cela renvoie le paquet principal
   // Utilisez les événements si vous êtes en mode watch, car cette Promise n'est résolue qu'une seule fois et non à chaque reconstruction
   const bundle = await bundler.bundle();
-}
-
-runBundle();
+})();
 ```
+
+Si vous souhaitez utiliser/démarrer le serveur de développement intégré de Parcel, vous pouvez utiliser `bundler.serve()`. Ceci appelle `bundler.bundle()` et lance un simple serveur http (ou https). `serve()` prend 3 arguments (ils sont tous facultatifs), la première est le port, le deuxième est https (il peut s'agir d'un objet `{cert,key}` pointant vers l'emplacement du fichier de key et cert ou `true` pour générer une clé) et le troisième est l'hôte (host).
 
 ### Événements
 

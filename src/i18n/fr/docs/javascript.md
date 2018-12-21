@@ -2,7 +2,7 @@
 
 _Extensions supportées : `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
-Le type de fichier le plus traditionnel pour les empaqueteurs web, c'est le JavaScript. Parcel prend en charge la syntaxe CommonJS et les modules ES6 pour l'importation de fichiers. Il prend également en charge la syntaxe de la fonction dynamique `import()` pour charger les modules de manière asynchrone, qui est expliquée dans la section [Découpage du code](code_splitting.html).
+Le type de fichier le plus traditionnel pour les empaqueteurs web, c'est le JavaScript. Parcel prend en charge la syntaxe CommonJS et les modules ES6 pour l'importation de fichiers. Il prend également en charge la syntaxe de la fonction dynamique `import()` pour charger les modules de manière asynchrone, qui est expliquée dans la section [Découpage du code](code_splitting.html). Les importations dynamiques peuvent également importer des modules à partir d'URL.
 
 ```javascript
 // Importe un module en utilisant la syntaxe CommonJS
@@ -10,6 +10,11 @@ const dep = require('./path/to/dep')
 
 // Importe un module ES6
 import dep from './path/to/dep'
+
+// Importe un module depuis une URL (par exemple CDN) et utilisant l'importation dynamique
+import('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js').then(() => {
+  console.log(_.VERSION)
+})
 ```
 
 Vous pouvez également importer des éléments non JavaScript à partir d'un fichier JavaScript, par exemple du CSS, du HTML ou même un fichier image. Lorsque vous importez l'un de ces fichiers, il n'est pas intégré comme dans d'autres empaqueteurs. Au lieu de cela, Parcel le place dans un paquet séparé (par exemple un fichier CSS) avec toutes ses dépendances. Lors de l'utilisation des [Modules CSS](https://github.com/css-modules/css-modules), les classes exportées sont placées dans le paquet JavaScript. Les autres types de ressources exportent une URL vers le fichier en sortie dans le paquet JavaScript afin que vous puissiez les référencer dans votre code.
