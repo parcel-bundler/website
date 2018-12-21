@@ -12,6 +12,15 @@ Cela désactive le mode watch et le remplacement de module à chaud, de sorte qu
 
 L'activation du mode production définit également la variable d'environnement `NODE_ENV=production`. Les grandes bibliothèques comme React ont des fonctionnalités de débogage uniquement pour le développement qui sont désactivées en définissant cette variable d'environnement, ce qui se traduit par des constructions plus petites et plus rapides pour la production.
 
+Pour tirer parti du même type de fonctionnalités de débogage réservé uniquement au développement, assurez-vous que [l'option `dead_code` de terser](https://github.com/terser-js/terser#compress-options) soit mise (elle l'est par défaut) et enveloppez tout le développement uniquement en débogage dans un contrôle conditionnel comme suit :
+
+```js
+if (process.env.NODE_ENV === 'development') {
+  // Ou, `process.env.NODE_ENV !== 'production'`
+  // S'exécute seulement en développement et sera supprimé de la version de production
+}
+```
+
 ## Stratégie de nommage des fichiers
 
 Pour permettre à votre cdn de définir des règles de mise en cache très agressives, afin d'avoir une performance et une efficacité optimale, Parcel hache les noms de fichier de la plupart des paquets (selon si le paquet doit avoir un nom lisible/mémorisable ou non, principalement pour le référencement).
