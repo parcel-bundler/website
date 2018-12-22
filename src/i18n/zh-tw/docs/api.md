@@ -41,17 +41,17 @@ const options = {
   detailedReport: false // 是否顯示更詳盡的報表。報表內容包括 bundle、資源、檔案大小及編譯時間等，預設為 false。報表僅在 watch 停用的情況下才會顯示
 };
 
-async function runBundle() {
+(async function () {
   // 使用進入點路徑及選項初始化 bundler
   const bundler = new Bundler(entryFiles, options);
 
   // 執行 bundler 後將會回傳主 bundle
   // 使用監看模式時請使用下列的事件，此 Promise 僅會觸發一次，而非每次重新編譯時都會觸發。
   const bundle = await bundler.bundle();
-}
-
-runBundle();
+})();
 ```
+
+你可以透過 `bundler.serve()` 來啟動 Parcel 內建的開發伺服器。`bundler.serve()` 會呼叫 `bundler.bundle()` 並啟動一個簡易的 HTTP/HTTPS 伺服器，`serve()` 接受下列三個參數，這三個參數都非必要項，第一個為連接埠；第二為啟用 HTTPS 與否，可設定為一個如 `{cert, key}` 的物件，其設定值指向金鑰及憑證檔，也可設定為 `true` 以產生一個金鑰；第三個參數則為主機位址。
 
 ### 事件
 

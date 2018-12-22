@@ -1,21 +1,43 @@
 # 📔 模組解析
 
-Parcel 自 1.7.0 版開始內建支援多重模組解析策略，你不需面對無窮無盡的 `../../` 相對路徑。
+Parcel 的解析器實作了一個 [node_modules 解析](https://nodejs.org/api/modules.html#modules_all_together)的改良版演算法。
 
-名詞解釋：
+## 模組解析
+
+除了標準演算法以外，所有 [Parcel 支援的資源類型](/assets.html)也都會被解析。
+
+模組解析可以相對於：
 
 - **專案根目錄**：指定給 Parcel 作為進入點的目錄，或是有多個進入點時的共享根目錄（通用父目錄）。
 - **套件根目錄**：`node_modules` 中最接近模組根目錄的路徑。
 
-## 絕對路徑
+### 絕對路徑
 
 `/foo` 會將 `foo` 解析為相對於**專案根目錄**的路徑。
 
-## ~ 波浪號路徑
+### ~ 波浪號路徑
 
 `~/foo` 會將 `foo` 解析為最接近的**套件根目錄**，找不到時則為**專案根目錄**。
 
-## 別名
+### Glob 檔案路徑
+
+Glob 可以一次引入多個或全部檔案（`assets/*.png`），也可引入多個目錄中的檔案（`/assets/**/*`）。
+
+下面範例打包了一個目錄中的所有 png 檔案並回傳正式的 URL。
+
+```js
+import foo from "/assets/*.png";
+// {
+//   'file-1': '/file-1.8e73c985.png',
+//   'file-2': '/file-1.8e73c985.png'
+// }
+```
+
+### package.json 中的 browser 設定
+
+如果一個套件含有 [package.browser 欄位](https://docs.npmjs.com/files/package.json#browser)，則 Parcel 會以此設定取代 `package.main`。
+
+### 別名
 
 Parcel 支援以 `package.json` 中的 `alias` 欄位作為別名。
 
@@ -43,7 +65,7 @@ Parcel 支援以 `package.json` 中的 `alias` 欄位作為別名。
 
 我們建議你明確的定義你的別名，定義別名時**請指定副檔名**，否則將會由 Parcel 自行猜測。範例請見 [JavaScript 中命名過的 Export](#javascript-中命名過的-export) 一節。
 
-## 其他情況
+## 常見問題
 
 ### JavaScript 中命名過的 Export
 
@@ -68,36 +90,38 @@ module.exports = require('electron').ipcRenderer
 
 ### Flow 的絕對與波浪號路徑解析
 
-Flow 需要知道如何解析絕對及波浪號路徑，我們可以在 [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) 中使用正規表示式來指定模組名稱配對及替換模式。
+當使用絕對路徑或波浪號路徑解析時，你必須設定 Flow 的 [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) 功能。
 
 假設專案有下列結構：
 
 ```
+package.json
 .flowconfig
 src/
+  index.html
   index.js
   components/
     apple.js
     banana.js
 ```
 
-若要將下列程式正確的對應
+指定 `src/index.html` 為進入點後，因專案的根目錄為 `/src`，若要將下列程式正確的對應，我們需要 Flow 將 `/conponents/apple` 替換為 `src/components/apple`。
 
 ```javascript
 // index.js
 import Apple from '/components/apple'
-// 實際上我們希望 Flow 搜尋：
-// import Apple from 'src/components/apple';
 ```
 
-我們可以將下列設定加入 `.flowconfig` 來將絕對路徑 `/` 對應至 `src/`：
+將下列設定加入 `.flowconfig` 來完成路徑轉換：
 
 ```
 [options]
-module.name_mapper='^\/\(.*\)$' -> '<專案根目錄>/src/\1'
+module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
 
-註：若你希望使用本地模組別名，`module.name_mapper` 也可以指定多個進入點。
+其中的 `<PROJECT_ROOT>` 為 Flow 的特殊記號，用來取得目前 `.flowconfig` 的路徑。
+
+註：`module.name_mapper` 可以指定多個進入點。除了[別名](#別名)外也可使用[絕對路徑](#絕對路徑)及[波浪號路徑](#~-波浪號路徑)解析。
 
 ### TypeScript 的 ~ 解析
 

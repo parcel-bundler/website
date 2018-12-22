@@ -2,7 +2,7 @@
 
 _支援的副檔名：`js`、`jsx`、`es6`、`jsm` 及 `mjs`_
 
-網頁打包工具中最傳統的檔案類型就是 JavaScript 了，Parcel 支援 CommonJS 及 ES6 的模組匯入語法，也支援非同步載入的動態的 `import()` 函式，詳情請見 [程式碼分離](code_splitting.html) 一章。
+網頁打包工具中最傳統的檔案類型就是 JavaScript 了，Parcel 支援 CommonJS 及 ES6 的模組匯入語法，也支援非同步載入的動態的 `import()` 函式，詳情請見[程式碼分離](code_splitting.html)一章。另外動態載入也可從 URL 載入模組。
 
 ```javascript
 // 使用 CommonJS 語法匯入模組
@@ -10,6 +10,11 @@ const dep = require('./path/to/dep')
 
 // 使用 ES6 匯入語法匯入模組
 import dep from './path/to/dep'
+
+// 從 URL （如 CDN）動態載入模組
+import('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js').then(() => {
+  console.log(_.VERSION);
+});
 ```
 
 你也可以在 JavaScript 中匯入非 JavaScript 的檔案，像是 CSS、HTML 甚至是影像檔。當你匯入這些檔案時，Parcel 會將所有的相依檔案放在另外的 bundle，不像其他打包工具將檔案直接插入於行內。
