@@ -1,166 +1,177 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link type="text/css" rel="stylesheet" href="assets/style.css" />
-  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script type="text/javascript">
-    var LANGUAGE = 'fr';
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script type="text/javascript">
+      var LANGUAGE = 'fr'
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-</head>
-<body>
-  <header>
-    <a class="logo" href="/">
-      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
-      <img class="type" src="assets/logo.svg" alt="Parcel">
-    </a>
-    <div class="links">
-      <input type="text" id="search-input" class="search-input" placeholder="Chercher..." />
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
-          <option class="en" value="https://en.parceljs.org">English</option>
-          <option class="es" value="https://es.parceljs.org">Español</option>
-          <option class="fr" value="https://fr.parceljs.org" selected>Français</option>
-          <option class="it" value="https://it.parceljs.org">Italiano</option>
-          <option class="ko" value="https://ko.parceljs.org">한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">Português</option>
-          <option class="ru" value="https://ru.parceljs.org">Русский</option>
-          <option class="uk" value="https://uk.parceljs.org">Українська</option>
-          <option class="zh" value="https://zh.parceljs.org">简体中文</option>
-          <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
-        </select>
-      </form>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">
+        <img
+          class="parcel"
+          src="assets/parcel.png"
+          srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x"
+          height="30"
+        />
+        <img class="type" src="assets/logo.svg" alt="Parcel" />
+      </a>
+      <div class="links">
+        <input type="text" id="search-input" class="search-input" placeholder="Chercher..." />
+        <form class="languages">
+          <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+            <option class="en" value="https://en.parceljs.org">English</option>
+            <option class="es" value="https://es.parceljs.org">Español</option>
+            <option class="fr" value="https://fr.parceljs.org" selected>Français</option>
+            <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ko" value="https://ko.parceljs.org">한국어</option>
+            <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+            <option class="pt" value="https://pt.parceljs.org">Português</option>
+            <option class="ru" value="https://ru.parceljs.org">Русский</option>
+            <option class="uk" value="https://uk.parceljs.org">Українська</option>
+            <option class="zh" value="https://zh.parceljs.org">简体中文</option>
+            <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
+          </select>
+        </form>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      </div>
+    </header>
+    <div class="content">
+      <nav>
+        <h3>Commencer</h3>
+        <ul>
+          <li><a href="getting_started.html">🚀 Commencer</a></li>
+          <li><a href="assets.html">📦 Ressources</a></li>
+          <li><a href="transforms.html">🐠 Transformations</a></li>
+        </ul>
+        <h3>Fonctionnalités</h3>
+        <ul>
+          <li><a href="code_splitting.html">✂️ Découpage du code</a></li>
+          <li><a href="hmr.html">🔥 Remplacement de module à chaud</a></li>
+          <li><a href="production.html">✨ Production</a></li>
+          <li><a href="cli.html">🖥 CLI</a></li>
+          <li><a href="recipes.html">🍰 Recettes</a></li>
+          <li><a href="env.html">🌳 Variables d'environnement</a></li>
+          <li><a href="module_resolution.html">📔 Résolution de module</a></li>
+        </ul>
+        <h3>📦 Types de ressources</h3>
+        <ul>
+          <li>
+            <a href="javascript.html"><img src="assets/icon-javascript.svg" />Javascript</a>
+          </li>
+          <li>
+            <a href="reasonML.html"><img src="assets/icon-reason-ml.svg" />ReasonML</a>
+          </li>
+          <li>
+            <a href="css.html"><img src="assets/icon-css.svg" />CSS</a>
+          </li>
+          <li>
+            <a href="scss.html"><img src="assets/icon-sass.svg" />SCSS</a>
+          </li>
+          <li>
+            <a href="less.html"><img src="assets/icon-less.svg" />LESS</a>
+          </li>
+          <li>
+            <a href="stylus.html"><img src="assets/icon-stylus.svg" />Stylus</a>
+          </li>
+          <li>
+            <a href="html.html"><img src="assets/icon-html5.svg" />HTML</a>
+          </li>
+          <li>
+            <a href="typeScript.html"><img src="assets/icon-typescript.svg" />TypeScript</a>
+          </li>
+          <li>
+            <a href="coffeeScript.html"><img src="assets/icon-coffeescript.svg" />CoffeeScript</a>
+          </li>
+          <li>
+            <a href="vue.html"><img src="assets/icon-vuejs.svg" />Vue</a>
+          </li>
+          <li>
+            <a href="json.html"><img src="assets/icon-json.svg" />JSON</a>
+          </li>
+          <li>
+            <a href="graphQL.html"><img src="assets/icon-graphql.svg" />GraphQL</a>
+          </li>
+          <li>
+            <a href="rust.html"><img src="assets/icon-rust.svg" />Rust</a>
+          </li>
+          <li>
+            <a href="webAssembly.html"><img src="assets/icon-webassembly.svg" />WebAssembly</a>
+          </li>
+          <li>
+            <a href="yaml.html"><img src="assets/icon-yaml.svg" />YAML</a>
+          </li>
+          <li>
+            <a href="toml.html"><img src="assets/icon-toml.svg" />TOML</a>
+          </li>
+          <li>
+            <a href="openGL.html"><img src="assets/icon-openGL.svg" />OpenGL</a>
+          </li>
+          <li>
+            <a href="pug.html"><img src="assets/icon-pug.svg" />Pug</a>
+          </li>
+          <li><a href="webManifest.html">WebManifest</a></li>
+        </ul>
+        <h3>Avancée</h3>
+        <ul>
+          <li><a href="how_it_works.html">🛠 Comment ça marche</a></li>
+          <li><a href="asset_types.html">📝 Types de ressources</a></li>
+          <li><a href="plugins.html">🔌 Plugins</a></li>
+          <li><a href="packagers.html">📦 Packagers</a></li>
+          <li><a href="api.html">📚 API</a></li>
+        </ul>
+      </nav>
+      <main>
+        {{~> content}}
+
+        <h2>Aidez-nous à améliorer la documentation</h2>
+        <p>
+          Si quelque chose manque ou n'est pas tout à fait clair, veuillez
+          <a href="https://github.com/parcel-bundler/website/issues"
+            >enregistrer une issue sur le dépôt du site web (en anglais)</a
+          >
+          ou
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
+            >modifier cette page</a
+          >.
+        </p>
+      </main>
     </div>
-  </header>
-  <div class="content">
-    <nav>
-      <h3>Commencer</h3>
-      <ul>
-        <li><a href="getting_started.html">🚀 Commencer</a></li>
-        <li><a href="assets.html">📦 Ressources</a></li>
-        <li><a href="transforms.html">🐠 Transformations</a></li>
-      </ul>
-      <h3>Fonctionnalités</h3>
-      <ul>
-        <li><a href="code_splitting.html">✂️ Découpage du code</a></li>
-        <li><a href="hmr.html">🔥 Remplacement de module à chaud</a></li>
-        <li><a href="production.html">✨ Production</a></li>
-        <li><a href="cli.html">🖥 CLI</a></li>
-        <li><a href="recipes.html">🍰 Recettes</a></li>
-        <li><a href="env.html">🌳 Variables d'environnement</a></li>
-        <li><a href="module_resolution.html">📔 Résolution de module</a></li>
-      </ul>
-      <h3>📦 Types de ressources</h3>
-      <ul>
-          <li>
-              <a href="javascript.html"><img src="assets/icon-javascript.svg">Javascript</a>
-          </li>
-          <li>
-              <a href="reasonML.html"><img src="assets/icon-reason-ml.svg">ReasonML</a>
-          </li>
-          <li>
-              <a href="css.html"><img src="assets/icon-css.svg">CSS</a>
-          </li>
-          <li>
-              <a href="scss.html"><img src="assets/icon-sass.svg">SCSS</a>
-          </li>
-          <li>
-              <a href="less.html"><img src="assets/icon-less.svg">LESS</a>
-          </li>
-          <li>
-              <a href="stylus.html"><img src="assets/icon-stylus.svg">Stylus</a>
-          </li>
-          <li>
-              <a href="html.html"><img src="assets/icon-html5.svg">HTML</a>
-          </li>
-          <li>
-              <a href="typeScript.html"><img src="assets/icon-typescript.svg">TypeScript</a>
-          </li>
-          <li>
-              <a href="coffeeScript.html"><img src="assets/icon-coffeescript.svg">CoffeeScript</a>
-          </li>
-          <li>
-              <a href="vue.html"><img src="assets/icon-vuejs.svg">Vue</a>
-          </li>
-          <li>
-              <a href="json.html"><img src="assets/icon-json.svg">JSON</a>
-          </li>
-          <li>
-              <a href="graphQL.html"><img src="assets/icon-graphql.svg">GraphQL</a>
-          </li>
-          <li>
-              <a href="rust.html"><img src="assets/icon-rust.svg">Rust</a>
-          </li>
-          <li>
-              <a href="webAssembly.html"><img src="assets/icon-webassembly.svg">WebAssembly</a>
-          </li>
-          <li>
-              <a href="yaml.html"><img src="assets/icon-yaml.svg">YAML</a>
-          </li>
-          <li>
-              <a href="toml.html"><img src="assets/icon-toml.svg">TOML</a>
-          </li>
-          <li>
-              <a href="openGL.html"><img src="assets/icon-openGL.svg">OpenGL</a>
-          </li>
-          <li>
-              <a href="pug.html"><img src="assets/icon-pug.svg">Pug</a>
-          </li>
-          <li>
-              <a href="webManifest.html">WebManifest</a>
-          </li>
-      </ul>
-      <h3>Avancée</h3>
-      <ul>
-        <li><a href="how_it_works.html">🛠 Comment ça marche</a></li>
-        <li><a href="asset_types.html">📝 Types de ressources</a></li>
-        <li><a href="plugins.html">🔌 Plugins</a></li>
-        <li><a href="packagers.html">📦 Packagers</a></li>
-        <li><a href="api.html">📚 API</a></li>
-      </ul>
-    </nav>
-    <main>
-      {{~> content}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript">
+      ;(function() {
+        var pathname = window.location.pathname.substr(1)
+        var activeLink = document.querySelector('a[href="' + pathname + '"]')
 
-      <h2>Aidez-nous à améliorer la documentation</h2>
-      <p>Si quelque chose manque ou n'est pas tout à fait clair, veuillez 
-          <a href="https://github.com/parcel-bundler/website/issues">enregistrer une issue sur le dépôt du site web (en anglais)</a> 
-          ou <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}">modifier cette page</a>.</p>
-    </main>
-  </div>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      var pathname = window.location.pathname.substr(1);
-      var activeLink = document.querySelector('a[href="' + pathname + '"]');
+        activeLink.classList.add('selected')
+        if (activeLink.scrollIntoView) activeLink.scrollIntoView()
 
-      activeLink.classList.add('selected');
-
-      docsearch({
-        apiKey: '8b6be780425a72d1a1683abea2636778',
-        indexName: 'parceljs',
-        inputSelector: '#search-input',
-        algoliaOptions: {
-          'facetFilters': [
-            `lang:${LANGUAGE}`
-          ]
-        }
-      });
-    })();
-  </script>
-</body>
+        docsearch({
+          apiKey: '8b6be780425a72d1a1683abea2636778',
+          indexName: 'parceljs',
+          inputSelector: '#search-input',
+          algoliaOptions: {
+            facetFilters: [`lang:${LANGUAGE}`]
+          }
+        })
+      })()
+    </script>
+  </body>
 </html>

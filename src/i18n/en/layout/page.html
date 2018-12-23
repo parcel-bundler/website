@@ -159,6 +159,7 @@
         var activeLink = document.querySelector('a[href="' + pathname + '"]')
 
         activeLink.classList.add('selected')
+        if (activeLink.scrollIntoView) activeLink.scrollIntoView()
 
         docsearch({
           apiKey: '8b6be780425a72d1a1683abea2636778',
