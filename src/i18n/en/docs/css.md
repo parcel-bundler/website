@@ -2,7 +2,16 @@
 
 _Supported extensions: `css`, `pcss`, `postcss`_
 
-CSS assets can be imported from a JavaScript or HTML file, and can contain dependencies referenced by `@import` syntax as well as references to images, fonts, etc. via the `url()` function. Other CSS files that are `@import`ed are inlined into the same CSS bundle, and `url()` references are rewritten to their output filenames. All filenames should be relative to the current CSS file.
+CSS assets can be imported from a JavaScript or HTML file:
+
+```js
+import './index.css';
+```
+```html
+<link rel="stylesheet" type="text/css" href="index.css">
+```
+
+CSS assets can contain dependencies referenced by `@import` syntax as well as references to images, fonts, etc. via the `url()` function. Other CSS files that are `@import`ed are inlined into the same CSS bundle, and `url()` references are rewritten to their output filenames. All filenames should be relative to the current CSS file.
 
 ```css
 /* Import another CSS file */
