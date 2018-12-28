@@ -36,7 +36,10 @@
       <div class="links">
         <input type="text" id="search-input" class="search-input" placeholder="Search..." />
         <form class="languages">
-          <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
+          <select
+            class="language-dropdown"
+            onchange="location = this.options[this.selectedIndex].value + location.pathname;"
+          >
             <option class="en" value="https://en.parceljs.org" selected>English</option>
             <option class="es" value="https://es.parceljs.org">Español</option>
             <option class="fr" value="https://fr.parceljs.org">Français</option>

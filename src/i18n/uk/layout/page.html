@@ -1,102 +1,114 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link type="text/css" rel="stylesheet" href="assets/style.css" />
-  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script type="text/javascript">
-    var LANGUAGE = 'uk';
-    
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
-</head>
-<body>
-  <header>
-    <a class="logo" href="/">
-      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
-      <img class="type" src="assets/logo.svg" alt="Parcel">
-    </a>
-    <div class="links">
-      <input type="text" id="search-input" class="search-input" placeholder="пошук..." />
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
-          <option class="en" value="https://en.parceljs.org">English</option>
-          <option class="es" value="https://es.parceljs.org">Español</option>
-          <option class="fr" value="https://fr.parceljs.org">Français</option>
-          <option class="it" value="https://it.parceljs.org">Italiano</option>
-          <option class="ko" value="https://ko.parceljs.org">한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">Português</option>
-          <option class="ru" value="https://ru.parceljs.org">Русский</option>
-          <option class="uk" value="https://uk.parceljs.org" selected>Українська</option>
-          <option class="zh" value="https://zh.parceljs.org">简体中文</option>
-          <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
-        </select>
-      </form>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script type="text/javascript">
+      var LANGUAGE = 'uk'
+
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">
+        <img
+          class="parcel"
+          src="assets/parcel.png"
+          srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x"
+          height="30"
+        />
+        <img class="type" src="assets/logo.svg" alt="Parcel" />
+      </a>
+      <div class="links">
+        <input type="text" id="search-input" class="search-input" placeholder="пошук..." />
+        <form class="languages">
+          <select
+            class="language-dropdown"
+            onchange="location = this.options[this.selectedIndex].value + location.pathname;"
+          >
+            <option class="en" value="https://en.parceljs.org">English</option>
+            <option class="es" value="https://es.parceljs.org">Español</option>
+            <option class="fr" value="https://fr.parceljs.org">Français</option>
+            <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ko" value="https://ko.parceljs.org">한국어</option>
+            <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+            <option class="pt" value="https://pt.parceljs.org">Português</option>
+            <option class="ru" value="https://ru.parceljs.org">Русский</option>
+            <option class="uk" value="https://uk.parceljs.org" selected>Українська</option>
+            <option class="zh" value="https://zh.parceljs.org">简体中文</option>
+            <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
+          </select>
+        </form>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      </div>
+    </header>
+    <div class="content">
+      <nav>
+        <ul>
+          <li><a href="getting_started.html">🚀 Початок роботи</a></li>
+          <li><a href="assets.html">📦 Ресурси</a></li>
+          <li><a href="module_resolution.html">📔 Дозволи модулів</a></li>
+          <li><a href="transforms.html">🐠 Трансформації</a></li>
+          <li><a href="code_splitting.html">✂️ Розділення коду</a></li>
+          <li><a href="env.html">🌳 Змінні середовища</a></li>
+          <li><a href="hmr.html">🔥 Гаряча заміна модуля</a></li>
+          <li><a href="production.html">✨ Робота в продакшені</a></li>
+          <li><a href="recipes.html">🍰 Рецепти</a></li>
+          <li><a href="cli.html">🖥 CLI</a></li>
+        </ul>
+        <h3>Advanced</h3>
+        <ul>
+          <li><a href="how_it_works.html">🛠 Як це працює?</a></li>
+          <li><a href="asset_types.html">📝 Типи ресурсів</a></li>
+          <li><a href="api.html">📚 API</a></li>
+          <li><a href="packagers.html">📦 Пакувальники</a></li>
+          <li><a href="plugins.html">🔌 Плаґіни</a></li>
+        </ul>
+      </nav>
+      <main>
+        {{~> content}}
+
+        <h2>Help us improve the docs</h2>
+        <p>
+          If something is missing or not entirely clear, please
+          <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> or
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
+            >edit this page</a
+          >.
+        </p>
+      </main>
     </div>
-  </header>
-  <div class="content">
-    <nav>
-      <ul>
-        <li><a href="getting_started.html">🚀 Початок роботи</a></li>
-        <li><a href="assets.html">📦 Ресурси</a></li>
-        <li><a href="module_resolution.html">📔 Дозволи модулів</a></li>
-        <li><a href="transforms.html">🐠 Трансформації</a></li>
-        <li><a href="code_splitting.html">✂️ Розділення коду</a></li>
-        <li><a href="env.html">🌳 Змінні середовища</a></li>
-        <li><a href="hmr.html">🔥 Гаряча заміна модуля</a></li>
-        <li><a href="production.html">✨ Робота в продакшені</a></li>
-        <li><a href="recipes.html">🍰 Рецепти</a></li>
-        <li><a href="cli.html">🖥 CLI</a></li>
-      </ul>
-      <h3>Advanced</h3>
-      <ul>
-        <li><a href="how_it_works.html">🛠 Як це працює?</a></li>
-        <li><a href="asset_types.html">📝 Типи ресурсів</a></li>
-        <li><a href="api.html">📚 API</a></li>
-        <li><a href="packagers.html">📦 Пакувальники</a></li>
-        <li><a href="plugins.html">🔌 Плаґіни</a></li>
-      </ul>
-    </nav>
-    <main>
-      {{~> content}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript">
+      ;(function() {
+        var pathname = window.location.pathname.substr(1)
+        var activeLink = document.querySelector('a[href="' + pathname + '"]')
 
-      <h2>Help us improve the docs</h2>
-      <p>If something is missing or not entirely clear, please 
-          <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> 
-          or <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}">edit this page</a>.</p>
-    </main>
-  </div>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      var pathname = window.location.pathname.substr(1);
-      var activeLink = document.querySelector('a[href="' + pathname + '"]');
+        activeLink.classList.add('selected')
 
-      activeLink.classList.add('selected');
-
-      docsearch({
-        apiKey: '8b6be780425a72d1a1683abea2636778',
-        indexName: 'parceljs',
-        inputSelector: '#search-input',
-        algoliaOptions: {
-          'facetFilters': [
-            `lang:${LANGUAGE}`
-          ]
-        }
-      });
-    })();
-  </script>
-</body>
+        docsearch({
+          apiKey: '8b6be780425a72d1a1683abea2636778',
+          indexName: 'parceljs',
+          inputSelector: '#search-input',
+          algoliaOptions: {
+            facetFilters: [`lang:${LANGUAGE}`]
+          }
+        })
+      })()
+    </script>
+  </body>
 </html>
