@@ -2,7 +2,17 @@
 
 _Extensions supportées : `css`, `pcss`, `postcss`_
 
-Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou HTML et elles peuvent contenir des dépendances référencées par la syntaxe `@import` ainsi que des références à des images, des polices, etc. via la fonction `url()`. Les autres fichiers CSS, qui sont `@import`és, sont intégrés dans le même paquet CSS, et les références de `url()` sont réécrites en sortie dans leurs noms de fichiers. Tous les noms des fichiers doivent être relatifs au fichier CSS courant.
+Les ressources CSS peuvent être importées à partir d'un fichier JavaScript ou HTML :
+
+```js
+import './index.css'
+```
+
+```html
+<link rel="stylesheet" type="text/css" href="index.css">
+```
+
+Les ressources CSS peuvent contenir des dépendances référencées par la syntaxe `@import` ainsi que des références à des images, des polices, etc. via la fonction `url()`. Les autres fichiers CSS, qui sont `@import`és, sont intégrés dans le même paquet CSS, et les références de `url()` sont réécrites en sortie dans leurs noms de fichiers. Tous les noms des fichiers doivent être relatifs au fichier CSS courant.
 
 ```css
 /* Importe un autre fichier CSS */
