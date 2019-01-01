@@ -25,6 +25,7 @@ const options = {
   cache: true, // Enabled or disables caching, defaults to true
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
   contentHash: false, // Disable content hash from being included on the filename
+  global: 'moduleName', // Expose modules as UMD under this name, disabled by default
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   scopeHoist: false, // Turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
   target: 'browser', // Browser/node/electron, defaults to browser
