@@ -26,6 +26,7 @@ const options = {
   cache: true, // 是否啟用快取，預設為 true
   cacheDir: '.cache', // 快取檔案目錄，預設為 .cache
   contentHash: false, // 避免檔名含有的內文雜湊值
+  global: 'moduleName', // 使用此名稱匯出一個 UMD 模組，預設為停用
   minify: false, // 檔案壓縮，若 process.env.NODE_ENV 為 'production'，則會自動啟用
   scopeHoist: false, // 啟用實驗性質的 scope hoisting/tree shaking 功能，可減少 bundle 的大小
   target: 'browser', // browser/node/electron，預設為 browser
