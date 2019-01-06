@@ -6,16 +6,16 @@ The Parcel resolver implements a modified version of [the node_modules resolutio
 In addition to the standard algorithm, all [asset types supported by Parcel](https://parceljs.org/assets.html) are also resolved.
 
 Module resolution can be relative to the:
-- **project root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
+- **entry root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
 - **package root**: the directory of the nearest module root in `node_modules`.
 
 ### Absolute Paths
 
-`/foo` resolves `foo` relative to the **project root**.
+`/foo` resolves `foo` relative to the **entry root**.
 
 ### ~ Tilde Paths
 
-`~/foo` resolves `foo` relative to the nearest **package root** or, if not found, the **project root**.
+`~/foo` resolves `foo` relative to the nearest **package root** or, if not found, the **entry root**.
 
 ### Glob file paths
 
@@ -102,7 +102,7 @@ src/
     banana.js
 ```
 
-And `src/index.html` as an entrypoint, our **project root** is the `src/` folder.
+And `src/index.html` as an entrypoint, our **entry root** is the `src/` folder.
 
 Therefore, to map this import correctly:
 
