@@ -26,5 +26,10 @@ app.use(
   })
 )
 
+app.use(function(req, res, next) {
+  // redirect to homepage if page not found
+  res.redirect(307, req.protocol + '://' + req.get('host'))
+})
+
 app.listen(5000)
 console.log('Listening on port http://localhost:5000')
