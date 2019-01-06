@@ -1,234 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="Parcel" />
+    <meta property="og:url" content="https://parceljs.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
+    <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
+    <title>Parcel 한국어판</title>
+    <link type="text/css" rel="stylesheet" href="assets/home.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'UA-110647385-1')
+    </script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Parcel" />
-  <meta property="og:url" content="https://parceljs.org/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
-  <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
-  <title>Parcel 한국어판</title>
-  <link type="text/css" rel="stylesheet" href="assets/home.css"/>
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-110647385-1');
-  </script>
-</head>
+  <body>
+    <header>
+      <h1><img class="logo" src="assets/logo.svg" alt="Parcel" /></h1>
+      <p class="subtitle">불꽃 튀게 빠르고 설정이 필요 없는 웹 애플리케이션 번들러</p>
+      <div class="parcel">
+        <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x" />
+        <div class="icons"></div>
+        <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x" />
+      </div>
+      <a class="button get-started" href="getting_started.html">시작하기</a>
+      <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
-<body>
-  <header>
-    <h1>
-      <img class="logo" src="assets/logo.svg" alt="Parcel">
-    </h1>
-    <p class="subtitle">불꽃 튀게 빠르고 설정이 필요 없는 웹 애플리케이션 번들러</p>
-    <div class="parcel">
-      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
-      <div class="icons"></div>
-      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
-    </div>
-    <a class="button get-started" href="getting_started.html">시작하기</a>
-    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      <nav class="links">
+        <form class="languages">
+          <select
+            class="language-dropdown"
+            onchange="location = this.options[this.selectedIndex].value + location.pathname;"
+          >
+            <option class="en" value="https://en.parceljs.org">English</option>
+            <option class="es" value="https://es.parceljs.org">Español</option>
+            <option class="fr" value="https://fr.parceljs.org">Français</option>
+            <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ko" value="https://ko.parceljs.org" selected>한국어</option>
+            <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+            <option class="pt" value="https://pt.parceljs.org">Português</option>
+            <option class="ru" value="https://ru.parceljs.org">Русский</option>
+            <option class="uk" value="https://uk.parceljs.org">Українська</option>
+            <option class="zh" value="https://zh.parceljs.org">简体中文</option>
+            <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
+          </select>
+        </form>
+        <a href="getting_started.html">문서</a>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+      </nav>
+    </header>
 
-    <nav class="links">
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value;">
-          <option class="en" value="https://en.parceljs.org">English</option>
-          <option class="es" value="https://es.parceljs.org">Español</option>
-          <option class="fr" value="https://fr.parceljs.org">Français</option>
-          <option class="it" value="https://it.parceljs.org">Italiano</option>
-          <option class="ko" value="https://ko.parceljs.org" selected>한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">Português</option>
-          <option class="ru" value="https://ru.parceljs.org">Русский</option>
-          <option class="uk" value="https://uk.parceljs.org">Українська</option>
-          <option class="zh" value="https://zh.parceljs.org">简体中文</option>
-          <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
-        </select>
-      </form>
-      <a href="getting_started.html">문서</a>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="features">
-      <section>
-        <h3>🚀 불꽃 튀게 빠른 번들</h3>
-        <p>Parcel은 워커 프로세스를 이용하여 멀티코어 컴파일을 가능케 하고, 심지어 재시작 후라 해도 빠른 리빌드를 할 수 있도록 파일시스템 캐시를 갖고 있습니다.</p>
-      </section>
-      <section>
-        <h3>📦 모든 애셋 번들</h3>
-        <p>Parcel은 JS, CSS, HTML, 파일 애셋, 그 외 많은 것들에 대한 지원을 즉시 제공합니다. 플러그인 없이요.</p>
-      </section>
-      <section>
-        <h3>🐠 자동 변환</h3>
-        <p>필요하다면 Babel, PostCSS, PostHTML을 사용하는 코드는 자동으로 변환됩니다. 심지어
-          <code>node_modules</code>까지도.</p>
-      </section>
-      <section>
-        <h3>✂️ 설정 없는 코드 분할</h3>
-        <p>Parcel은 동적
-          <code>import()</code>문을 사용해서 출력 번들을 분할 할 수 있습니다. 이를 통해 초기 로드시 필요한 것들만 로드할 수 있습니다.</p>
-      </section>
-      <section>
-        <h3>🔥 빠른 모듈 교체(HMR)</h3>
-        <p>Parcel은 설정 없이 자동으로 개발중의 변화를 갱신하여 브라우저에 나타냅니다.</p>
-      </section>
-      <section>
-        <h3>🚨 친절한 에러 로그</h3>
-        <p>Parcel은 오류 발생시 도움이 되도록 문제를 정확히 집어주는 구문 강조 코드 프레임을 출력합니다.</p>
-      </section>
-    </div>
-
-    <section>
-      <h2>Hello World</h2>
-      <p>애플리케이션을 위한 진입 HTML 파일로 시작하세요. Parcel이 의존성을 따라 전체 앱을 빌드합니다.</p>
-      <div class="examples">
-        <div class="example">
+    <main>
+      <div class="features">
+        <section>
+          <h3>🚀 불꽃 튀게 빠른 번들</h3>
           <p>
-            <strong>✏️ index.html</strong>
+            Parcel은 워커 프로세스를 이용하여 멀티코어 컴파일을 가능케 하고, 심지어 재시작 후라 해도 빠른 리빌드를 할 수
+            있도록 파일시스템 캐시를 갖고 있습니다.
           </p>
-          <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+        </section>
+        <section>
+          <h3>📦 모든 애셋 번들</h3>
+          <p>Parcel은 JS, CSS, HTML, 파일 애셋, 그 외 많은 것들에 대한 지원을 즉시 제공합니다. 플러그인 없이요.</p>
+        </section>
+        <section>
+          <h3>🐠 자동 변환</h3>
+          <p>
+            필요하다면 Babel, PostCSS, PostHTML을 사용하는 코드는 자동으로 변환됩니다. 심지어
+            <code>node_modules</code>까지도.
+          </p>
+        </section>
+        <section>
+          <h3>✂️ 설정 없는 코드 분할</h3>
+          <p>
+            Parcel은 동적 <code>import()</code>문을 사용해서 출력 번들을 분할 할 수 있습니다. 이를 통해 초기 로드시
+            필요한 것들만 로드할 수 있습니다.
+          </p>
+        </section>
+        <section>
+          <h3>🔥 빠른 모듈 교체(HMR)</h3>
+          <p>Parcel은 설정 없이 자동으로 개발중의 변화를 갱신하여 브라우저에 나타냅니다.</p>
+        </section>
+        <section>
+          <h3>🚨 친절한 에러 로그</h3>
+          <p>Parcel은 오류 발생시 도움이 되도록 문제를 정확히 집어주는 구문 강조 코드 프레임을 출력합니다.</p>
+        </section>
+      </div>
+
+      <section>
+        <h2>Hello World</h2>
+        <p>애플리케이션을 위한 진입 HTML 파일로 시작하세요. Parcel이 의존성을 따라 전체 앱을 빌드합니다.</p>
+        <div class="examples">
+          <div class="example">
+            <p><strong>✏️ index.html</strong></p>
+            <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-        </div>
+          </div>
 
-        <div class="example">
-          <p>
-            <strong>🛠 index.js</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-comment">// 다른 컴포넌트 임포트</span>
+          <div class="example">
+            <p><strong>🛠 index.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// 다른 컴포넌트 임포트</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-        </div>
+          </div>
 
-        <div class="example">
-          <p>
-            <strong>🛠 main.js</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-comment">// CSS 모듈 임포트</span>
+          <div class="example">
+            <p><strong>🛠 main.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// CSS 모듈 임포트</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-        </div>
+          </div>
 
-        <div class="example">
-          <p>
-            <strong>💅 main.css</strong>
-          </p>
-          <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+          <div class="example">
+            <p><strong>💅 main.css</strong></p>
+            <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
   <span class="hljs-comment">/* 이미지 파일 참조 */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
 }</code></pre>
+          </div>
         </div>
+
+        <p>
+          <code>parcel index.html</code>로 개발용 서버를 구동하세요. JavaScript, CSS, images, 그 밖에 다양한 것들이
+          제대로 임포트 될겁니다! 👌
+        </p>
+      </section>
+
+      <section>
+        <h2>벤치마크</h2>
+        <table>
+          <tr>
+            <th>번들러</th>
+            <th>시간</th>
+          </tr>
+          <tr>
+            <td>browserify</td>
+            <td>22.98초</td>
+          </tr>
+          <tr>
+            <td>webpack</td>
+            <td>20.71초</td>
+          </tr>
+          <tr>
+            <td><strong>parcel</strong></td>
+            <td><strong>9.98초</strong></td>
+          </tr>
+          <tr>
+            <td><strong>parcel - 캐시 사용</strong></td>
+            <td><strong>2.64초</strong></td>
+          </tr>
+        </table>
+
+        <p>
+          무리 없는 크기, 1726개의 module을 포함한, 미 압축 6.5M의 app 기준. 4개의 물리 CPU가 있는 2016형 MacBook
+          Pro에서 빌드됨.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="button" href="getting_started.html">시작하기</a>
+      <div class="content">
+        <nav>
+          <h3>문서</h3>
+          <div>
+            <ul>
+              <li><a href="getting_started.html">🚀 시작하기</a></li>
+              <li><a href="assets.html">📦 애셋</a></li>
+              <li><a href="transforms.html">🐠 변환</a></li>
+            </ul>
+            <ul>
+              <li><a href="code_splitting.html">✂️ 코드 분할</a></li>
+              <li><a href="hmr.html">🔥 빠른 모듈 교체(HMR)</a></li>
+              <li><a href="production.html">✨ 프로덕션</a></li>
+            </ul>
+          </div>
+        </nav>
+        <nav>
+          <h3>링크</h3>
+          <ul>
+            <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+            <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+            <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+          </ul>
+        </nav>
       </div>
+      <div class="copyright">
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Devon Govett. 이 웹사이트는
+        <a href="https://github.com/parcel-bundler/website" target="_blank">오픈 소스</a>입니다.
+      </div>
+    </footer>
 
-      <p>
-        <code>parcel index.html</code>로 개발용 서버를 구동하세요. JavaScript, CSS, images, 그 밖에 다양한 것들이 제대로 임포트 될겁니다! 👌</p>
-    </section>
-
-    <section>
-      <h2>벤치마크</h2>
-      <table>
-        <tr>
-          <th>번들러</th>
-          <th>시간</th>
-        </tr>
-        <tr>
-          <td>browserify</td>
-          <td>22.98초</td>
-        </tr>
-        <tr>
-          <td>webpack</td>
-          <td>20.71초</td>
-        </tr>
-        <tr>
-          <td>
-            <strong>parcel</strong>
-          </td>
-          <td>
-            <strong>9.98초</strong>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>parcel - 캐시 사용</strong>
-          </td>
-          <td>
-            <strong>2.64초</strong>
-          </td>
-        </tr>
-      </table>
-      <p>무리 없는 크기, 1726개의 module을 포함한, 미 압축 6.5M의 app 기준. 4개의 물리 CPU가 있는 2016형 MacBook Pro에서 빌드됨.</p>
-    </section>
-  </main>
-
-  <footer>
-    <a class="button" href="getting_started.html">시작하기</a>
-    <div class="content">
-      <nav>
-        <h3>문서</h3>
-        <div>
-          <ul>
-            <li>
-              <a href="getting_started.html">🚀 시작하기</a>
-            </li>
-            <li>
-              <a href="assets.html">📦 애셋</a>
-            </li>
-            <li>
-              <a href="transforms.html">🐠 변환</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="code_splitting.html">✂️ 코드 분할</a>
-            </li>
-            <li>
-              <a href="hmr.html">🔥 빠른 모듈 교체(HMR)</a>
-            </li>
-            <li>
-              <a href="production.html">✨ 프로덕션</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <nav>
-        <h3>링크</h3>
-        <ul>
-          <li>
-            <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-          </li>
-          <li>
-            <a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/parceljs" target="_blank">Twitter</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="copyright">
-      Copyright ©
-      <script>document.write(new Date().getFullYear())</script> Devon Govett. 이 웹사이트는
-      <a href="https://github.com/parcel-bundler/website" target="_blank">오픈 소스</a>입니다.
-    </div>
-  </footer>
-
-  <script src="assets/icons.js"></script>
-</body>
-
+    <script src="assets/icons.js"></script>
+  </body>
 </html>
