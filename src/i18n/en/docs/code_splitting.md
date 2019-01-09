@@ -4,6 +4,8 @@ Parcel supports zero configuration code splitting out of the box. This allows yo
 
 Code splitting is controlled by use of the dynamic `import()` function [syntax proposal](https://github.com/tc39/proposal-dynamic-import), which works like the normal `import` statement or `require` function, but returns a Promise. This means that the module is loaded asynchronously.
 
+## Using dynamic imports
+
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
 ```javascript
@@ -19,6 +21,8 @@ import('./pages/about').then(function(page) {
   page.render()
 })
 ```
+
+## Dynamic imports with async/await
 
 Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
 
@@ -57,3 +61,11 @@ import './app'
 ```
 
 Read the docs on [babel-polyfill](http://babeljs.io/docs/usage/polyfill) and [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+
+## Bundle resolution
+
+Parcel infers the location of bundles automatically. This is done in the [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) module, and uses the stack trace to determine the path where the initial bundle was loaded.
+
+This means you don't need to configure where bundles should be loaded from, but also means you must serve the bundles from the same location.
+
+Parcel currently resolves bundles at the following protocols: `http`, `https`, `file`, `ftp`, `chrome-extension` and `moz-extension`.
