@@ -137,14 +137,14 @@ Disponible dans : `serve`, `watch`, `build`
 parcel entry.js --log-level 1
 ```
 
-| Loglevel | Effet                                                  |
-| -------- | ------------------------------------------------------ |
-| 0        | Journal désactivé                                      |
-| 1        | Consigner uniquement les erreurs                       |
-| 2        | Consigner les erreurs et les avertissements            |
-| 3        | Tout consigner                                         |
-| 4        | Verbose (garder tout dans un log avec l'horodatage)    |
-| 5        | Débogue (sauve tout dans un fichier avec l'horodatage) |
+| Loglevel | Effet                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 0        | Journal désactivé                                                                                       |
+| 1        | Consigner uniquement les erreurs                                                                        |
+| 2        | Consigner les erreurs et les avertissements                                                             |
+| 3        | Consigner les erreurs, les avertissements et les infos                                                  |
+| 4        | Verbose (garder tout dans un log avec l'horodatage <br/> et aussi les requêtes http sur le serveur dev) |
+| 5        | Débogue (sauve tout dans un fichier avec l'horodatage)                                                  |
 
 ### Nom d'hôte du HMR
 
