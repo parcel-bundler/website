@@ -23,3 +23,43 @@ console.log(message)
 // message.ts
 export default 'Hello, world'
 ```
+
+## Lors de l'utilisation de React
+
+Pour utiliser Typescript + React + JSX, vous avez besoin de :
+
+1. utiliser l'extension `.tsx`
+2. importer React correctement
+3. utiliser une tsconfig avec une [option spéciale](https://www.typescriptlang.org/docs/handbook/jsx.html) `"jsx": "react"`
+
+Exemple complet :
+
+```html
+<!-- index.html -->
+<html>
+<body>
+  <div id="root"></div>
+  <script src="./index.tsx"></script>
+</body>
+</html>
+```
+
+```typescript
+// index.tsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+console.log('Coucou depuis tsx!')
+
+ReactDOM.render(<p>Coucou</p>, document.getElementById('root'))
+```
+
+```.tsconfig
+{
+  "compilerOptions": {
+    "jsx": "react"
+  }
+}
+```
+
+Consultez complétement cette discussion pour plus de détails : https://github.com/parcel-bundler/parcel/issues/1199
