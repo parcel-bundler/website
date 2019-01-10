@@ -25,6 +25,7 @@ const options = {
   cache: true, // Active ou non la mise en cache, la valeur par défaut est true
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
   contentHash: false, // Désactive l'inclusion du hachage de contenu sur le nom du fichier
+  global: 'moduleName', // Expose sous ce nom des modules comme UMD, désactivé par défaut
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   scopeHoist: false, // Active le flag expérimental de scope hoisting/tree shaking, pour des paquets plus petits en production
   target: 'browser', // La cible de compilation : browser/node/electron, par défaut browser
@@ -32,7 +33,7 @@ const options = {
     cert: './ssl/c.crt', // Chemin vers le certificat personnalisé
     key: './ssl/k.key' // Chemin vers la clé personnalisée
   },
-  logLevel: 3, // 3 = Tout consigner, 2 = Consigner les erreurs et les avertissements, 1 = Consigner uniquement les erreurs
+  logLevel: 3, // 5 = Tout consigner dans un fichier, 4 = Comme le 3, mais avec des horodatages et également enregistrer les requêtes http sur le serveur de développement, 3 = Consigner les informations, avertissements et erreurs, 2 = Consigner les avertissements et erreurs, 1 = Consigner les erreurs
   hmr: true, // Active ou désactive le HMR lors de la surveillance (watch)
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (les constructions minifiées pour l'instant créent toujours des sourcemaps)

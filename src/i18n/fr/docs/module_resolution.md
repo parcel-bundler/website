@@ -8,16 +8,16 @@ En plus de l'algorithme standard, tous les [types de ressources supportés par P
 
 La résolution de module peut être relative à la :
 
-- **racine du projet** : le répertoire du point d'entrée spécifié à Parcel ou la racine partagée (répertoire parent commun) lorsque plusieurs points d'entrée sont spécifiés.
+- **racine de l'entrée** : le répertoire du point d'entrée spécifié à Parcel ou la racine partagée (répertoire parent commun) lorsque plusieurs points d'entrée sont spécifiés.
 - **racine du package** : le répertoire racine du module le plus proche dans `node_modules`.
 
 ### Chemins absolus
 
-`/foo` résout `foo` relatif à la **racine du projet**.
+`/foo` résout `foo` relatif à la **racine de l'entrée**.
 
 ### Chemins du tilde ~
 
-`~/foo` résout `foo` relatif à la **racine du package** le plus proche ou, s'il ne trouve pas, à la **racine du projet**.
+`~/foo` résout `foo` relatif à la **racine du package** le plus proche ou, s'il ne trouve pas, à la **racine de l'entrée**.
 
 ### Chemins de fichiers glob
 
@@ -105,7 +105,7 @@ src/
     banana.js
 ```
 
-Où `src/index.html` est le point d'entrée, notre **racine du projet** est le répertoire `src/`.
+Où `src/index.html` est le point d'entrée, notre **racine de l'entrée** est le répertoire `src/`.
 
 Donc cela mappe correctement les éléments suivants :
 
