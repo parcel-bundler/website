@@ -4,6 +4,8 @@ Parcel prend en charge le découpage de code sans aucune configuration. Cela vou
 
 Le découpage du code est contrôlé par l'utilisation de la fonction dynamique `import()` décrite par la [proposition de syntaxe](https://github.com/tc39/proposal-dynamic-import), qui fonctionne comme l'instruction normale `import` ou la fonction `require`, mais retourne une promesse. Cela signifie que le module est chargé de manière asynchrone.
 
+## Utilisation des importations dynamiques
+
 L'exemple suivant montre comment utiliser les importations dynamiques pour charger une sous-page de votre application à la demande.
 
 ```javascript
@@ -19,6 +21,8 @@ import('./pages/about').then(function(page) {
   page.render()
 })
 ```
+
+## Importations dynamiques avec async/await
 
 Comme `import()` renvoie une promesse, vous pouvez aussi utiliser la syntaxe async/await. Vous aurez probablement besoin de configurer Babel pour transpiler la syntaxe, pour qu'elle soit supportée par la plupart des navigateurs.
 
@@ -57,3 +61,11 @@ import './app'
 ```
 
 Consultez les docs sur [babel-polyfill](http://babeljs.io/docs/usage/polyfill) et [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+
+## Résolution de paquet
+
+Parcel déduit automatiquement l'emplacement des paquets. Ceci est fait dans le module [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) et utilise la stack trace pour déterminer le chemin où le paquet initial a été chargé.
+
+Cela signifie que vous n'avez pas besoin de configurer l'emplacement de chargement des paquets, mais vous devez également les fournir à partir du même emplacement.
+
+Actuellement, Parcel résout les paquets des protocoles suivants : `http`, `https`, `file`, `ftp`, `chrome-extension` et `moz-extension`.
