@@ -2,7 +2,7 @@
 
 _支援的副檔名：`rs`_
 
-[Rust](https://www.rust-lang.org/en-US/) 是款由 Mozilla 開發的系統程式語言，其特點有記憶體及執行緒安全性等。Rust 近來支援了 WebAssembly 的編譯，而 Parcel 讓它簡單到**完全無須設定**即可使用！
+[Rust](https://www.rust-lang.org) 是款由 Mozilla 開發的系統程式語言，其特點有記憶體及執行緒安全性等。Rust 近來支援了 WebAssembly 的編譯，而 Parcel 讓它簡單到**完全無須設定**即可使用！
 
 只要將 `.rs` 用與其他檔案一樣的方式匯入 Parcel 就可以了！Parcel 假設你已經安裝了 [Rustup](https://rustup.rs)，並會**自動安裝**正確的工具鏈 (toolchain)、目標檔 (target) 及其他編譯時的必要檔案。其用法就如真的 Rust 檔案一樣，在 [Cargo](https://github.com/rust-lang/cargo) 的幫忙之下，Parcel 可以自動追蹤相依套件並進行監看，在你存檔時也會自動重新編譯。
 
