@@ -2,7 +2,7 @@
 
 _Extensões suportadas: `rs`_
 
-[Rust](https://www.rust-lang.org/en-US/) é uma linguagem de programação de sistemas desenvolvida pela Mozilla, que oferece desempenho nativo com algumas características interessantes de memória e segurança de thread. Rust recentemente adicionado suporte para a compilação para WebAssembly, e agora o Parcel torna **super fácil** para começar com zero de configuração!
+[Rust](https://www.rust-lang.org) é uma linguagem de programação de sistemas desenvolvida pela Mozilla, que oferece desempenho nativo com algumas características interessantes de memória e segurança de thread. Rust recentemente adicionado suporte para a compilação para WebAssembly, e agora o Parcel torna **super fácil** para começar com zero de configuração!
 
 Agora você pode simplesmente importar arquivos `.rs` como qualquer outro tipo de arquivo no Parcel! Supondo que você tenha o [Rustup](https://rustup.rs) instalado, o Parcel **automaticamente cuida da instalação** das _toolchains_ corretas, alvos e outros pré-requisitos de compilação. Ele funciona com projetos [Cargo](https://github.com/rust-lang/cargo), bem como arquivos _straight-up_ do Rust, automaticamente rastreando suas dependências então **arquivos são assistidos** e reconstruídos sempre que você salvar, e muito mais!
 
