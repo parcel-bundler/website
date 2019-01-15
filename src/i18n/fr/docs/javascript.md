@@ -99,4 +99,4 @@ Pour la cible `node`, Parcel utilise le `engines.node` défini dans `package.jso
 
 [Flow](https://flow.org/) est un vérificateur populaire de type statique pour JavaScript. L'utilisation de Flow avec Parcel est aussi simple que de placer `// @flow` comme première ligne de vos fichiers `js`.
 
-Parcel installera automatiquement la configuration Babel requise pour séparer les types de Flow de la sortie compilée. Vous n'avez donc rien à craindre à l'exception des [intégrations de l'éditeur](https://flow.org/en/docs/editors/) ou de la prise en charge du [module de résolution des chemins absolus](module_resolution.html#flow-with-absolute-or-tilde-resolution) avec `.flowconfig`.
+Parcel installera automatiquement la configuration Babel requise pour séparer les types de Flow de la sortie compilée. Vous n'avez donc rien à craindre à l'exception des [intégrations de l'éditeur](https://flow.org/en/docs/editors/) ou de la prise en charge du [module de résolution des chemins absolus](module_resolution.html#flow-avec-la-résolution-de-chemin-absolu-et-tilde) avec `.flowconfig`.

@@ -18,7 +18,7 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 </html>
 ```
 
-## Importation de ressources non compilés
+## Importation de ressources non compilées
 
 L'ajout de liens vers des fichiers que Parcel peut compiler (par exemple, JavaScript, TypeScript, SCSS, etc.) au format HTML est pris en charge. Parcel traitera automatiquement le fichier et mettra à jour le lien pour qu'il pointe vers la ressource compilé.
 
