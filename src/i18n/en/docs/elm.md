@@ -5,7 +5,7 @@ _Supported extensions: `elm`_
 [Elm](https://elm-lang.org/) is a functional language with an advanced type
 system that ensures correctnes of your code and prevents confusing runtime
 errors. With its focus on simplicity and speed, Elm is a great choice when it
-comes to building webapps of all kinds. Parcel supports Elm righ out of the box
+comes to building webapps of all kinds. Parcel supports Elm right out of the box
 without the need for any additional configuration.
 
 ```html
