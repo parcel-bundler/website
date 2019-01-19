@@ -3,9 +3,11 @@
 The Parcel resolver implements a modified version of [the node_modules resolution](https://nodejs.org/api/modules.html#modules_all_together) algorithm.
 
 ## Module resolution
+
 In addition to the standard algorithm, all [asset types supported by Parcel](https://parceljs.org/assets.html) are also resolved.
 
 Module resolution can be relative to the:
+
 - **entry root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
 - **package root**: the directory of the nearest module root in `node_modules`.
 
@@ -25,13 +27,14 @@ This example bundles a directory of png files and returns the dist URLs.
 
 ```
 import foo from "/assets/*.png";
-// { 
+// {
 //   'file-1': '/file-1.8e73c985.png',
 //   'file-2': '/file-1.8e73c985.png'
 // }
 ```
 
 ### package.json `browser` field
+
 If a package includes a [package.browser field](https://docs.npmjs.com/files/package.json#browser), Parcel will use this instead of the package.main entry.
 
 ### Aliases
@@ -45,7 +48,7 @@ This example aliases `react` to `preact` and some local custom module that is no
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",
