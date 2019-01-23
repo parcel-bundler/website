@@ -84,6 +84,13 @@ Then, create a `.babelrc`:
   "presets": ["@babel/preset-react"]
 }
 ```
+You can also put `babel` config in `package.json`
+```json
+"babel": {
+  "presets": ["@babel/preset-react"]
+}
+```
+NOTE: `package.json` takes precedence over `.babelrc`.
 
 ## Default Babel transforms
 
