@@ -29,6 +29,7 @@ const options = {
   minify: false, // Minifie les fichiers, activé par défaut si process.env.NODE_ENV === 'production'
   scopeHoist: false, // Active le flag expérimental de scope hoisting/tree shaking, pour des paquets plus petits en production
   target: 'browser', // La cible de compilation : browser/node/electron, par défaut browser
+  bundleNodeModules: false, // Les dépendances du package.json ne sont pas incluses lors de l'utilisation de l'option 'node' ou 'electron' avec l'option 'target' ci-dessus. Définissez le à true pour pouvoir les ajouter au paquet, false par défaut
   https: { // Définit une paire personnalisée {key, cert}, utilisez true pour en générer un ou false pour utiliser http
     cert: './ssl/c.crt', // Chemin vers le certificat personnalisé
     key: './ssl/k.key' // Chemin vers la clé personnalisée
