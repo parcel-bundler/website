@@ -29,6 +29,7 @@ const options = {
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'
   scopeHoist: false, // Turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
   target: 'browser', // Browser/node/electron, defaults to browser
+  bundleNodeModules: false, // By default, package.json dependencies are not included when using 'node' or 'electron' with 'target' option above. Set to true to adds them to the bundle, false by default
   https: { // Define a custom {key, cert} pair, use true to generate one or false to use http
     cert: './ssl/c.crt', // Path to custom certificate
     key: './ssl/k.key' // Path to custom key
