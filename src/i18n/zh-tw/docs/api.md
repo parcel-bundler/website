@@ -30,11 +30,19 @@ const options = {
   minify: false, // 檔案壓縮，若 process.env.NODE_ENV 為 'production'，則會自動啟用
   scopeHoist: false, // 啟用實驗性質的 scope hoisting/tree shaking 功能，可減少 bundle 的大小
   target: 'browser', // browser/node/electron，預設為 browser
+  bundleNodeModules: false, // 當 target 設定的環境為 node 及 electron 時，package.json 中的相依套件並不會被加入 bundle 中，若需包含相依套件請將本項設定為 true
   https: { // 定義一對金鑰及憑證。設定為 true 將自動產生，設定為 false 則改用 HTTP
     cert: './ssl/c.crt', // 自訂憑證路徑
     key: './ssl/k.key' // 自訂金鑰路徑
   },
-  logLevel: 3, // 3 = 紀錄所有訊息 2 = 僅記錄錯誤及警告 1 = 僅紀錄錯誤
+  logLevel: 3,
+  /*
+    5 = 將所有訊息輸出至檔案
+    4 = 附加時間戳記的詳盡訊息，並紀錄所有連至開發伺服器的請求
+    3 = 紀錄所有訊息
+    2 = 僅記錄錯誤及警告
+    1 = 僅紀錄錯誤
+  */
   hmr: true, // 於監看模式時啟用或停用模組熱替換(HMR)
   hmrPort: 0, // 模組熱替換的 socket 連接埠，預設為一個可用的隨機連接埠（0 表示可用的隨機連接埠）
   sourceMaps: true, // 是否啟用 sourcemaps，預設為啟用（在最小化編譯中強制產生 sourcemap）

@@ -86,9 +86,18 @@ yarn add babel-preset-react
 
 ```json
 {
-  "presets": ["react"]
+  "presets": ["@babel/preset-react"]
 }
 ```
+
+你也可以在 `package.json` 中指定 `babel` 設定
+
+```json
+"babel": {
+  "presets": ["@babel/preset-react"]
+}
+```
+注意：`package.json` 優先度大於 `.babelrc`。
 
 ## 預設的 Babel 轉換
 
