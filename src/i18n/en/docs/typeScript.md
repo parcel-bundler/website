@@ -55,7 +55,8 @@ ReactDOM.render(
 )
 ```
 
-```.tsconfig
+```json
+tsconfig.json
 {
   "compilerOptions": {
     "jsx": "react"
