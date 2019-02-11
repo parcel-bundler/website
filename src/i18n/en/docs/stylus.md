@@ -1,6 +1,6 @@
 # Stylus
 
-_Supported extensions: `stylus`_
+_Supported extensions: `styl`_
 
 It's not even necessary to install Stylus 😱, parcel will automatically install Stylus if it detects a Stylus file.
 
