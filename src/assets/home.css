@@ -191,6 +191,7 @@ header .links a:hover {
   font-size: inherit;
   text-align: right;
   outline: none;
+  padding:8px;
 }
 
 .language-dropdown:hover,
