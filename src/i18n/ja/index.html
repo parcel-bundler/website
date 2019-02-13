@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,20 +24,21 @@
   </head>
   <body>
     <div class="banner">
-      👕 Support Parcel by getting an awesome
-      <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">t-shirt or hoodie</a>! All proceeds
-      support our <a href="https://opencollective.com/parcel" target="_blank">Open Collective</a>. ✨
+      👕 最高の
+      <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">Tシャツとパーカー</a>を買って、Parcel
+      を応援してください！全利益が、 私達
+      <a href="https://opencollective.com/parcel" target="_blank">Open Collective</a> の事業の支えになります。 ✨
     </div>
 
     <header>
       <h1><img class="logo" src="assets/logo.svg" alt="Parcel" /></h1>
-      <p class="subtitle">Blazing fast, zero configuration web application bundler</p>
+      <p class="subtitle">驚くほど速く、設定不要なWebアプリケーションバンドラー</p>
       <div class="parcel">
         <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x" />
         <div class="icons"></div>
         <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x" />
       </div>
-      <a class="button get-started" href="getting_started.html">Get Started</a>
+      <a class="button get-started" href="getting_started.html">はじめる</a>
       <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
       <nav class="links">
@@ -50,6 +51,7 @@
             <option class="es" value="https://es.parceljs.org">Español</option>
             <option class="fr" value="https://fr.parceljs.org">Français</option>
             <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ja" value="https://ja.parceljs.org">日本語</option>
             <option class="ko" value="https://ko.parceljs.org">한국어</option>
             <option class="pl" value="https://pl.parceljs.org">Polskie</option>
             <option class="pt" value="https://pt.parceljs.org">Português</option>
@@ -60,48 +62,51 @@
           </select>
         </form>
         <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-        <a href="getting_started.html">Documentation</a>
+        <a href="getting_started.html">ドキュメント</a>
       </nav>
     </header>
 
     <main>
       <div class="features">
         <section>
-          <h3>🚀 Blazing fast bundle times</h3>
+          <h3>🚀 驚くほど高速なパッケージング速度</h3>
           <p>
-            Parcel uses worker processes to enable multicore compilation, and has a filesystem cache for fast rebuilds
-            even after a restart.
+            Parcel
+            はマルチコアコンパイルを有効にするためにワーカープロセスを使い、再起動後でも高速に動くようにファイルシステムのキャッシュを持ちます。
           </p>
         </section>
         <section>
-          <h3>📦 Bundle all your assets</h3>
-          <p>Parcel has out of the box support for JS, CSS, HTML, file assets, and more - no plugins needed.</p>
+          <h3>📦 全アセットをまとめます</h3>
+          <p>Parcel 形にとらわれず、 JS、CSS、HTML、ファイルアセットなどをプラグインなしでサポートします。</p>
         </section>
         <section>
-          <h3>🐠 Automatic transforms</h3>
+          <h3>🐠 全自動変換</h3>
           <p>
-            Code is automatically transformed using Babel, PostCSS, and PostHTML when needed - even
-            <code>node_modules</code>.
+            コードを、プラグイン無しで自動変換します。必要に応じて、Babel、PostCSS、PostHTML を使い、<code
+              >node_modules</code
+            >
+            ですら変換可能です。
           </p>
         </section>
         <section>
-          <h3>✂️ Zero config code splitting</h3>
+          <h3>✂️ コードの分割も設定不要</h3>
           <p>
-            Using the dynamic <code>import()</code> syntax, Parcel splits your output bundles so you only load what is
-            needed on initial load.
+            動的な <code>import()</code> シンタックスで、Parcel
+            はアウトプットバンドルを自動で分割し、必要に応じて初期ロードすることができます。
           </p>
         </section>
         <section>
-          <h3>🔥 Hot module replacement</h3>
+          <h3>🔥 モジュールの変更もその場でできます</h3>
           <p>
-            Parcel automatically updates modules in the browser as you make changes during development, no configuration
-            needed.
+            Parcel
+            は、開発時に変えた変更に応じてブラウザー上でモジュールを自動アップデートします。もちろん、設定不要です。
           </p>
         </section>
         <section>
-          <h3>🚨 Friendly error logging</h3>
+          <h3>🚨 人に優しいエラーログ</h3>
           <p>
-            Parcel prints syntax highlighted code frames when it encounters errors to help you pinpoint the problem.
+            Parcel
+            は、エラーになった時、問題の箇所を特定するのに便利なシンタックスハイライト付きのコードブロックを表示します。
           </p>
         </section>
       </div>
@@ -109,8 +114,8 @@
       <section>
         <h2>Hello World</h2>
         <p>
-          Start with the entry HTML file for your application. Parcel follows the dependencies from there to build your
-          whole app.
+          アプリケーションで必要な最初の HTML ファイルで入門してみましょう。Parcel
+          は、アプリケーション全体の依存性をここから追従します。
         </p>
         <div class="examples">
           <div class="example">
@@ -151,17 +156,18 @@ main();</code></pre>
         </div>
 
         <p>
-          Just run <code>parcel index.html</code> to start a dev server. Importing JavaScript, CSS, images, and more
-          just works! 👌
+          <code>parcel index.html</code>
+          とタイプするだけで、開発要サーバーが立ち上がります。JavaScript、CSS、画像などの読み込みもこれだけで動きます！
+          👌
         </p>
       </section>
 
       <section>
-        <h2>Benchmarks</h2>
+        <h2>ベンチマーク</h2>
         <table>
           <tr>
-            <th>Bundler</th>
-            <th>Time</th>
+            <th>バンドラー</th>
+            <th>処理時間</th>
           </tr>
           <tr>
             <td>browserify</td>
@@ -182,26 +188,26 @@ main();</code></pre>
         </table>
 
         <p>
-          Based on a reasonably sized app, containing 1726 modules, 6.5M uncompressed. Built on a 2016 MacBook Pro with
-          4 physical cores.
+          1726個のモジュールを含む一般的なサイズのアプリ(未圧縮時6.5MB)で、4つの物理コアを持つ MacBook Pro(2016)
+          を利用。
         </p>
       </section>
     </main>
 
     <footer>
-      <a class="button" href="getting_started.html">Get Started</a>
+      <a class="button" href="getting_started.html">はじめる</a>
       <div class="content">
         <nav>
-          <h3>Documentation</h3>
+          <h3>ドキュメント</h3>
           <div>
             <ul>
-              <li><a href="getting_started.html">🚀 Getting Started</a></li>
-              <li><a href="assets.html">📦 Assets</a></li>
-              <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+              <li><a href="getting_started.html">🚀 はじめる</a></li>
+              <li><a href="assets.html">📦 アセット</a></li>
+              <li><a href="code_splitting.html">✂️ コード分割</a></li>
             </ul>
             <ul>
-              <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
-              <li><a href="production.html">✨ Production</a></li>
+              <li><a href="hmr.html">🔥 ホットモジュールリプレイスメント</a></li>
+              <li><a href="production.html">✨ プロダクション</a></li>
               <li><a href="cli.html">🖥 CLI</a></li>
             </ul>
           </div>
