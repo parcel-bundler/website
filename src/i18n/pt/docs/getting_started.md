@@ -52,7 +52,7 @@ parcel index.html
 
 Agora, abra seu navegador em http://localhost:1234/. Você também pode alterar a porta padrão utilizando a opção `-p <port number>`.
 
-Utilize o servidor de desenvolvimento caso você não tenha seu próprio sevidor, ou sua aplicação será inteiramente renderizada no cliente. Caso você possua seu próprio servidor, você pode utilizar o Parcel em modo `watch`. Essa opção continua reconstruindo sua aplicação à medida que você vai alterando os arquivos e suporta Hot Module Replacement, mas não irá iniciar um servidor.
+Utilize o servidor de desenvolvimento caso você não tenha seu próprio servidor, ou sua aplicação será inteiramente renderizada no cliente. Caso você possua seu próprio servidor, você pode utilizar o Parcel em modo `watch`. Essa opção continua reconstruindo sua aplicação à medida que você vai alterando os arquivos e suporta Hot Module Replacement, mas não irá iniciar um servidor.
 
 ```bash
 parcel watch index.html
