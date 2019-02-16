@@ -18,6 +18,15 @@ Builds the assets once, it also enabled minification and sets the `NODE_ENV=prod
 parcel build index.html
 ```
 
+_NOTE:_ For special use cases, it's also possible to perform a single build from the `development` environment, like this:
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+It creates the same bundles than `serve`, but it doesn't watch or serve assets.
+
+
 ### Watch
 
 The `watch` command is similar to `serve`, with the main difference being it doesn't start up a server.
