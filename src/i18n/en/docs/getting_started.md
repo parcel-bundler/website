@@ -44,7 +44,7 @@ Next, create an index.html and index.js file.
 console.log('hello world')
 ```
 
-Parcel has a development server built in, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development. Just point it at your entry file:
+Parcel has a development server built in, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development. Point it at your entry file:
 
 ```bash
 parcel index.html
