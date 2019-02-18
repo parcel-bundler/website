@@ -54,7 +54,8 @@ console.log('Coucou depuis tsx!')
 ReactDOM.render(<p>Coucou</p>, document.getElementById('root'))
 ```
 
-```.tsconfig
+```json
+// tsconfig.json
 {
   "compilerOptions": {
     "jsx": "react"

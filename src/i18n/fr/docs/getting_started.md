@@ -44,7 +44,7 @@ Ensuite, créez un fichier index.html et index.js.
 console.log('hello world')
 ```
 
-Parcel a un serveur de développement intégré, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et il prend en charge un [module de remplacement à chaud](hmr.html) pour un développement plus rapide. Il suffit de le faire pointer sur votre fichier d'entrée :
+Parcel a un serveur de développement intégré, qui reconstruira automatiquement votre application lorsque vous modifiez des fichiers et il prend en charge un [module de remplacement à chaud](hmr.html) pour un développement plus rapide. Faites-le pointer sur votre fichier d'entrée :
 
 ```bash
 parcel index.html
