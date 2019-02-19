@@ -58,7 +58,7 @@ Si vous souhaitez utiliser/démarrer le serveur de développement intégré de P
 
 Ceci est une liste de tous les événements d'un empaqueteur
 
-- `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage **pour la première fois**. L'instance du [bundle](#bundle) principal est passé à la fonction de rappel
+- `bundled` est appelé une seule fois lorsque Parcel a terminé avec succès l'empaquetage. L'instance du [bundle](#bundle) principal est passé à la fonction de rappel
 
 ```Javascript
 const bundler = new Bundler(...);
