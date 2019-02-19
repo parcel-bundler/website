@@ -8,16 +8,16 @@ Parcel 的解析器實作了一個 [node_modules 解析](https://nodejs.org/api/
 
 模組解析可以相對於：
 
-- **專案根目錄**：指定給 Parcel 作為進入點的目錄，或是有多個進入點時的共享根目錄（通用父目錄）。
+- **進入點根目錄**：指定給 Parcel 作為進入點的目錄，有多個進入點時則為共享根目錄（共同父目錄）。
 - **套件根目錄**：`node_modules` 中最接近模組根目錄的路徑。
 
 ### 絕對路徑
 
-`/foo` 會將 `foo` 解析為相對於**專案根目錄**的路徑。
+`/foo` 會將 `foo` 解析為相對於**進入點根目錄**的路徑。
 
 ### ~ 波浪號路徑
 
-`~/foo` 會將 `foo` 解析為最接近的**套件根目錄**，找不到時則為**專案根目錄**。
+`~/foo` 會將 `foo` 解析為最接近的**套件根目錄**，找不到時則為**進入點根目錄**。
 
 ### Glob 檔案路徑
 
@@ -105,7 +105,7 @@ src/
     banana.js
 ```
 
-指定 `src/index.html` 為進入點後，因專案的根目錄為 `/src`，若要將下列程式正確的對應，我們需要 Flow 將 `/conponents/apple` 替換為 `src/components/apple`。
+指定 `src/index.html` 為進入點後，因其根目錄為 `/src`，若要將下列程式正確的對應，我們需要 Flow 將 `/conponents/apple` 替換為 `src/components/apple`。
 
 ```javascript
 // index.js

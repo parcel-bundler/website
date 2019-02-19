@@ -58,7 +58,7 @@ If you want to use/start the built-in development server of Parcel you can use `
 
 This is a list of all bundler events
 
-- `bundled` gets called once Parcel has successfully finished bundling **for the first time**, the main [bundle](#bundle) instance gets passed to the callback
+- `bundled` gets called once Parcel has successfully finished bundling, the main [bundle](#bundle) instance gets passed to the callback
 
 ```Javascript
 const bundler = new Bundler(...);

@@ -6,6 +6,8 @@ Parcel 預設支援免設定的程式碼分離 (Code Splitting)，可將你的�
 
 程式碼分離由[動態的 `import()` 語法](https://github.com/tc39/proposal-dynamic-import)控制，它就像一般的 `import` 語法或 `require` 函式一樣，差別在於其回傳一個 Promise，這意味著模組可被動態地載入。
 
+## 使用動態載入
+
 下列的範例展示了如何在你的程式中動態載入子頁面。
 
 ```javascript
@@ -21,6 +23,8 @@ import('./pages/about').then(function(page) {
   page.render()
 })
 ```
+
+## 使用 async/await 動態載入
 
 因 `import()` 回傳 Promise，你也可以使用 async/await 語法，但在瀏覽器普遍支援以前，你可能需要設定 Babel 來轉譯語法。
 
@@ -61,3 +65,9 @@ import './app'
 ```
 
 請參閱 [babel-polyfill](http://babeljs.io/docs/usage/polyfill) 及 [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime) 的文件。
+
+## Bundle 解析
+
+Parcel 會利用 [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) 模組來自動偵測 bundle 的位置，並使用堆疊追蹤（Stack Trace）來決定初始化 bundle 的載入路徑。這表示你不需要親自設定 bundle 要從何載入，但你必須將所有 bundle 放置於同一位置。
+
+Parcel 目前可解析的協定有：`http`、`https`、`file`、`ftp`、`chrome-extension` 及 `moz-extension`。
