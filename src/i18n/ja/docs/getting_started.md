@@ -105,7 +105,7 @@ npm でインストールする方法
 npm install parcel-bundler --save-dev
 ```
 
-それから、あなたのプロジェクトの `package.json` にこれらのタスクスクリプトを追加します。
+それから、プロジェクトの `package.json` にこれらのタスクスクリプトを追加します。
 
 ```json
 {
