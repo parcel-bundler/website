@@ -18,6 +18,14 @@ Construit les ressources une seule fois, il active aussi la minification et déf
 parcel build index.html
 ```
 
+_REMARQUE :_ Pour des cas d'utilisation spéciaux, il est également possible d'effectuer une construction unique à partir de l'environnement `development`, comme ceci :
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+Il crée les mêmes paquets que `serve`, mais il ne surveille pas les ressources, ni les sert.
+
 ### Watch
 
 La commande `watch` est similaire à `serve`, sauf que la commande `watch` ne démarre pas un serveur.
