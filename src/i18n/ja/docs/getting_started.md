@@ -28,7 +28,7 @@ yarn init -y
 npm init -y
 ```
 
-Parcel はどんな種類のファイルでもエントリーポイントとして扱うことができますが、HTML または JavaScript ファイルから始めるのがぴったりです。HTML ファイルから相対パスでメインとなる JavaScript ファイルをリンクすると、Parcel はそれを処理し、参照を出力したファイルの URL に置き換えます。
+Parcel はどんな種類のファイルでもエントリーポイントとして扱うことができますが、HTML または JavaScript ファイルから始めるのがよいでしょう。HTML ファイルから相対パスでメインとなる JavaScript ファイルをリンクすると、Parcel はそれを処理し、参照を出力したファイルの URL に置き換えます。
 
 次に、index.html と index.js ファイルを作成しましょう。
 
