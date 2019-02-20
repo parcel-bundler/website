@@ -16,7 +16,7 @@ npm:
 npm install -g parcel-bundler
 ```
 
-あなたのプロジェクトディレクトリに以下のコマンドを使って package.json を作成しましょう。
+プロジェクトルートに以下のコマンドを使って package.json を作成しましょう。
 
 ```bash
 yarn init -y
