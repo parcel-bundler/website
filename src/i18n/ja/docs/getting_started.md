@@ -1,8 +1,8 @@
-# 🚀 Getting Started
+# 🚀 はじめに
 
-Parcel is a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration.
+Parcel は、開発者の経験によって生まれた Web アプリケーションバンドラです。設定不要で、マルチコア処理を利用した驚異的な高速パフォーマンスを提供します。
 
-First install Parcel using Yarn or npm:
+まずは yarn または npm で Parcel をインストールしましょう。
 
 Yarn:
 
@@ -16,21 +16,21 @@ npm:
 npm install -g parcel-bundler
 ```
 
-Create a package.json file in your project directory using:
+プロジェクトルートに以下のコマンドを使って package.json を作成しましょう。
 
 ```bash
 yarn init -y
 ```
 
-or
+または
 
 ```bash
 npm init -y
 ```
 
-Parcel can take any type of file as an entry point, but an HTML or JavaScript file is a good place to start. If you link your main JavaScript file in the HTML using a relative path, Parcel will also process it for you, and replace the reference with a URL to the output file.
+Parcel はどんな種類のファイルでもエントリーポイントとして扱うことができますが、HTML または JavaScript ファイルから始めるのがよいでしょう。HTML ファイルから相対パスでメインとなる JavaScript ファイルをリンクすると、Parcel はそれを処理し、参照を出力したファイルの URL に置き換えます。
 
-Next, create an index.html and index.js file.
+次に、index.html と index.js ファイルを作成しましょう。
 
 ```html
 <html>
@@ -44,37 +44,37 @@ Next, create an index.html and index.js file.
 console.log('hello world')
 ```
 
-Parcel has a development server built in, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development. Just point it at your entry file:
+Parcel には開発用サーバーが組み込まれており、ファイルを変更した際に自動的にアプリケーションを再ビルドします。 また、開発を効率的にするため[ホットモジュールリプレイスメント](hmr.html)をサポートしています。次のようにエントリーファイルを指定してみましょう。
 
 ```bash
 parcel index.html
 ```
 
-Now open http://localhost:1234/ in your browser. If hot module replacement isn't working you may need to [configure your editor](hmr.html#safe-write). You can also override the default port with the `-p <port number>` option.
+では、ブラウザで http://localhost:1234/ を開いてみましょう。もし、ホットモジュールリプレイスメントが動いていない場合は[エディタの設定を編集](hmr.html#safe-write)する必要があるかもしれません。 `-p <ポート番号>` オプションを使うことでデフォルトのポート番号を上書きすることができます。
 
-Use the development server when you don't have your own server, or your app is entirely client rendered. If you do have your own server, you can run Parcel in `watch` mode instead. This still automatically rebuilds as files change and supports hot module replacement, but doesn't start a web server.
+自分でサーバーを持っていない場合、あるいはアプリケーションがすべてクライアントでレンダリングされる場合には、Parcel の開発用サーバを使いましょう。自分でサーバーを持っている場合には、代わりに Parcel を `watch` モードで実行することができます。ファイルが変更されると自動で再ビルドを行い、ホットモジュールリプレースメントをサポートしますが、Web サーバーは起動しません。
 
 ```bash
 parcel watch index.html
 ```
 
-### Multiple entry files
+### 複数のエントリーファイル
 
-In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
+万が一、あなたが複数のエントリーファイルを持っている、たとえば `index.html` と `about.html` があるとした場合にはバンドラーを起動するために 2 種類の方法があります。
 
-Specifying the file names:
+ファイル名を指定する方法
 
 ```bash
 parcel index.html about.html
 ```
 
-Use tokens and create a glob:
+トークンを使って glob を作る方法
 
 ```bash
 parcel *.html
 ```
 
-_NOTE:_ In case you have a file structure like this:
+_NOTE:_ もしこのようなファイル構造をしている場合
 
 ```
 - folder-1
@@ -83,29 +83,29 @@ _NOTE:_ In case you have a file structure like this:
 -- index.html
 ```
 
-Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicitly point to the file http://localhost:1234/folder-1/index.html.
+http://localhost:1234/folder-1/ を開いてもうまくいきません。http://localhost:1234/folder-1/index.html のように、ファイル名を正確に指定する必要があります。
 
-### Building for production
+### 本番用にビルドする
 
-When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
+本番用のビルドを行うときは、 `build` モードがファイルの監視を無効にして、一度だけビルドを行います。 詳細は[本番](production.html)を参照してください。
 
-### Adding parcel to your project
+### Parcel をプロジェクトに追加する
 
-Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent or you want to use a CI to build your project programmatically. In this case, you can install and run Parcel as a local package.
+時には Parcel をグローバルインストールできないこともあるでしょう。（例：他人のマシンや CI を使ってプロジェクトを自動でビルドしたいとき）こういう場合には、ローカルパッケージとして Parcel をインストールすることができます。
 
-To install with Yarn:
+yarn でインストールする方法
 
 ```bash
 yarn add parcel-bundler --dev
 ```
 
-To install with NPM:
+npm でインストールする方法
 
 ```bash
 npm install parcel-bundler --save-dev
 ```
 
-Then, add these tasks scripts to your project, by modifying your `package.json`:
+それから、プロジェクトの `package.json` にこれらのタスクスクリプトを追加します。
 
 ```json
 {
@@ -116,16 +116,16 @@ Then, add these tasks scripts to your project, by modifying your `package.json`:
 }
 ```
 
-Then, you will be able to run it:
+すると、以下のように実行することができるようになります
 
 ```bash
-# To run in development mode
+# 開発モードで起動する
 yarn dev
-#or
+#または
 npm run dev
 
-# To run in production mode
+# 本番モードでビルドする
 yarn build
-#or
+#または
 npm run build
 ```
