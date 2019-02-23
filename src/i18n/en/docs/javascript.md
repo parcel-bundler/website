@@ -74,7 +74,7 @@ import megaMan from "./images/mega-man.png";
 Install presets and plugins in your app:
 
 ```shell
-yarn add @babel/preset-react
+yarn add --dev @babel/preset-react
 ```
 
 Then, create a `.babelrc`:
