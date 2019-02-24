@@ -1,14 +1,14 @@
 # 📦 Assets
 
-Parcel is based around assets. An asset can represent any file, but Parcel has special support for certain types of assets like JavaScript, CSS, and HTML files. Parcel automatically analyzes the dependencies referenced in these files and includes them in the output bundle. Assets of similar types are grouped together into the same output bundle. If you import an asset of a different type (for example, if you imported a CSS file from JS), it starts a child bundle and leaves a reference to it in the parent. This will be illustrated in the following sections.
+Parcel はアセットに基づいています。アセットは様々なファイルのことを表しますが、JavaScript、CSS、HTML など特定の種類のアセットについては特別なサポートがあります。Parcel はこれらのファイルから、参照されている依存を自動で解析して出力するバンドルに含めます。同じような種類のアセットはグループ化され、同じバンドルにまとめられます。異なる種類のアセットをインポートすると（例: CSS ファイルを JS ファイルからインポートした場合）、子バンドルが作成され、親バンドルへの参照が残されます。これについては、別のセクションで説明します。
 
-If you are unable to find a certain asset type in the docs it might be that the documentation is out of date. For the entire list of supported asset types see [parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/Parser.js#L10).
-For the actual list of Parsers see [parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/packages/core/parcel-bundler/src/assets).
+もしドキュメントに特定の種類のアセットが見つからない場合は、ドキュメントが古い可能性があります。サポートされているアセットの種類のリストは[parcel/src/Parser.js](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/Parser.js#L10)で確認できます。
+パーサーのリストは[parcel/src/assets/](https://github.com/parcel-bundler/parcel/tree/master/packages/core/parcel-bundler/src/assets)で確認できます。
 
-For any asset type not supported by default you can check if a plugin already exists:
+デフォルトでサポートされていない種類のアセットについては、以下のリンクからサポートするプラグインがあるか探すことができます。
 
 - [Yarn](https://yarnpkg.com/en/packages?q=parcel-plugin-&p=1)
 - [npm](https://www.npmjs.com/search?q=parcel-plugin-)
 - [awesome-parcel](https://github.com/parcel-bundler/awesome-parcel#plugins)
 
-or [create your own](https://parceljs.org/plugins.html).
+または [自分でプラグインを作ることもできます](https://parceljs.org/plugins.html)。
