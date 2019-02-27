@@ -310,3 +310,7 @@ parcel build entry.js --experimental-scope-hoisting
 ```
 
 For more information, see the [Tree Shaking section](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) of Devon Govett's post on Parcel 1.9.
+
+## Manual restarting
+
+While using `parcel serve` (or just `parcel`), you can type "rs" and hit enter to trigger the bundling process manually. It works the same way as if you have changed one of the source files.
