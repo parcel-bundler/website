@@ -79,7 +79,7 @@ import megaMan from "./images/mega-man.png";
 在你的 app 中安裝 preset 和外掛：
 
 ```shell
-yarn add babel-preset-react
+yarn add --dev babel-preset-react
 ```
 
 接著建立 `.babelrc`：

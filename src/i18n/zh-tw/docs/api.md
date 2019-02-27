@@ -66,7 +66,7 @@ const options = {
 
 下列是所有事件的列表
 
-- Parcel **僅會在首次**完成編譯時觸發 `bundled` 事件，並傳入 [bundle](#bundle) 實體至回呼函式。
+- Parcel 會在編譯完成時觸發 `bundled` 事件，並傳入 [bundle](#bundle) 實體至回呼函式。
 
 ```Javascript
 const bundler = new Bundler(...);
