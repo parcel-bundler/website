@@ -10,6 +10,16 @@ Démarre un serveur de développement, qui reconstruira automatiquement votre ap
 parcel index.html
 ```
 
+Vous pouvez aussi passer un [glob](https://github.com/isaacs/node-glob) ou une liste de globs pour plusieurs points d'entrée.
+
+```bash
+parcel one.html two.html
+# OU
+parcel *.html
+# OU
+parcel ./**/*.html
+```
+
 ### Build
 
 Construit les ressources une seule fois, il active aussi la minification et définit la variable environnement `NODE_ENV=production`. Consultez [Production](production.html) pour plus de détails.
