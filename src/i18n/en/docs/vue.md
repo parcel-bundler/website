@@ -19,7 +19,7 @@ Vue.js is a progressive, incrementally-adoptable JavaScript framework for buildi
 
 ```
 
-#### Note that you can use all tools you like ( pug, typescript, scss ... ), parcel will handle all!
+NOTE: that you can use all tools you like ( pug, typescript, scss ... ), parcel will handle all!
 ```vue
 // app.vue
 <template lang="pug">
