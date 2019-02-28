@@ -10,6 +10,16 @@ Starts up a development server, which will automatically rebuild your app as you
 parcel index.html
 ```
 
+You may also pass a [glob](https://github.com/isaacs/node-glob) or list of globs for multiple entry points.
+
+```bash
+parcel one.html two.html
+# OR
+parcel *.html
+# OR
+parcel ./**/*.html
+```
+
 ### Build
 
 Builds the assets once, it also enabled minification and sets the `NODE_ENV=production` environment variable. See [Production](production.html) for more details.
