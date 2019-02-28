@@ -60,11 +60,11 @@ new Vue({
 ```
 
 Then simply build the project:
-```
+```bash
 parcel build index.html
 ```
 Or serve it ( http://127.0.0.1:1234 ):
-```
+```bash
 parcel index.html
 ```
 
