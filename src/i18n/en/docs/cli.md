@@ -36,7 +36,6 @@ NODE_ENV=development parcel build <entrypoint> --no-minify
 
 It creates the same bundles than `serve`, but it doesn't watch or serve assets.
 
-
 ### Watch
 
 The `watch` command is similar to `serve`, with the main difference being it doesn't start up a server.
@@ -95,7 +94,7 @@ parcel entry.js --public-url ./dist/
 will output:
 
 ```html
-<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css">
+<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css" />
 <!-- or -->
 <script src="dist/entry.e5f6g7.js"></script>
 ```
@@ -247,6 +246,16 @@ Available in: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
+```
+
+### Disable content hashing
+
+Default: content-hash enabled
+
+Available in: `build`
+
+```bash
+parcel build entry.js --no-content-hash
 ```
 
 ### Disable autoinstall
