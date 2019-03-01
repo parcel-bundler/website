@@ -45,7 +45,7 @@ Parcel 可將任何類型的檔案視為進入點，但 HTML 或 JavaScript 會�
 console.log('hello world')
 ```
 
-Parcel 內建了開發專用的伺服器，在你更動檔案的同時會自動重新編譯你的 app，並啟用[模組熱替換](hmr.html)以提高開發效率，而你只需要指定進入點：
+Parcel 內建了開發專用的伺服器，在你更動檔案的同時會自動重新編譯你的 app，並啟用[模組熱替換](hmr.html)以提高開發效率，你只需要指定進入點：
 
 ```bash
 parcel index.html

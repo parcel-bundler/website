@@ -18,6 +18,15 @@ parcel index.html
 parcel build index.html
 ```
 
+_註：_ 在某些特殊使用情境下，是可以在 `development` 環境中執行單次編譯的，像是：
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+他會產生與 `serve` 指令相同的 bundle，但不會啟用監看及伺服器。
+
+
 ### 監看
 
 `watch` 指令與 `serve` 類似，主要差異為此指令不會啟動開發伺服器。
