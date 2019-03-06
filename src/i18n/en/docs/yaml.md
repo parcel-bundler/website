@@ -26,5 +26,5 @@ hello:
 import data from './data.yaml'
 console.log(data.hello[0]);
 
-// "computer"
+// "world"
 ```
