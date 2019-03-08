@@ -51,24 +51,18 @@ Let's assume this file structure:
 .
 ├── package.json
 └── src
-    ├── data.js
-    ├── index.js
-    └── index.pug
+    ├── index.pug
+    └── pug.config.js
 ```
-We need to export a `locals` object and import it into our index.js file
+We need to export a `locals` object from a `pug.config.js` file. The `pug.config.js` file must be in the directory with the `index.pug` file OR, in the directory containing the `package.json` file. The `pug.config.js` file does not need to be imported into a js file explicitly. This **IS** the only way to make a `locals` object available for your Pug templates.
 ```js
-// data.js
+// pug.config.js
 
 module.exports = {
   locals: {
     hello: "world"
   }
 };
-```
-```js
-// index.js
-
-import "./data.js";
 ```
 ```pug
 // index.pug
@@ -79,12 +73,45 @@ html(lang="")
     // ...
   body
     h1 #{hello} 
-
-    script(src="index.js")
 ```
 Again, we can get this running by using the same parcel command: `parcel src/index.pug`. 
 
+### Cancel and rerun parcel after updating locals object
 You will not be able to see changes made to your `locals` object on the fly.  If you update your `locals` object, you will need to cancel the parcel process in your terminal and relaunch `parcel src/index.pug` again.
+
+### Watch our for silent errors
+Also, understand that if you use this locals setup, you will not get an error if you use a property that doesn't exist for interpolation in your Pug. Thus, if we wrote `h1 #{thing}` and there was no `thing` property in locals, then Parcel will not crash, nor report an error. You will only be left with an empty result in the browser. So, be careful to get this right, or you might not know that an interpolated element is not working.
+
+### Three file naming options only
+You can use a `.pugrc` or a `.pugrc.js` file instead of `pug.config.js`. But these are the only 3 variations that will work for setting up locals.
+
+### Can't use import statements in the `pug.config.js` file
+If you want to import other files into the `pug.config.js` file, then you must use require statements. 
+
+This will work:
+```js
+// pug.config.js
+
+const data = require("./data.js");
+
+module.exports = {
+  locals: {
+    d: data
+  }
+};
+
+```
+This will NOT work:
+```js
+import data from "./data.js";
+
+module.exports = {
+  locals: {
+    d: data
+  }
+};
+```
+
 
 ## Adding a script to package.json
 ```json
