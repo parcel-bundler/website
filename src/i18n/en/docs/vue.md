@@ -19,7 +19,7 @@ Vue.js is a progressive, incrementally-adoptable JavaScript framework for buildi
 
 ```
 
-NOTE: that you can use all tools you like ( pug, typescript, scss ... ), parcel will handle all!
+You can use all tools you like (Pug, TypeScript, SCSS, ...):
 ```vue
 // app.vue
 <template lang="pug">
@@ -50,22 +50,5 @@ export default Vue.extend({
 import Vue from 'vue';
 import App from './app.vue';
 
-Vue.component('app', App);
-
-new Vue({
-  el: '#app',
-  template: `<app></app>`,
-});
-
+new Vue(App).$mount('#app')
 ```
-
-Then simply build the project:
-```bash
-parcel build index.html
-```
-Or serve it ( http://127.0.0.1:1234 ):
-```bash
-parcel index.html
-```
-
-Parcel will automagically add all javascripts and stylesheets!
