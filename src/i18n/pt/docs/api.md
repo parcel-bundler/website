@@ -18,39 +18,41 @@ const entryFiles = Path.join(__dirname, './index.html');
 
 // Opções do bundler
 const options = {
-  outDir: './dist', // O diretório de saída para construir os arquivos, dist é o padrão.
-  outFile: 'index.html', // O nome do arquivo de saída.
-  publicUrl: './', // A URL onde o servidor será servido, dist é o padrão.
+  outDir: './dist', // O diretório de saída para construir os arquivos, dist é o padrão
+  outFile: 'index.html', // O nome do arquivo de saída
+  publicUrl: './', // A URL onde o servidor será servido, dist é o padrão
   watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
-  cache: true, // Habilita ou desabilita o cache, true é o padrão.
-  cacheDir: '.cache', // O diretório de cache a ser utilizado, .cache é o padrão.
-  contentHash: false, // Desabilita o hash de conteúdo de ser incluído no nome do arquivo.
-  minify: false, // Minifica o arquivo, habilitado se process.env.NODE_ENV === 'production'.
-  scopeHoist: false, // Torna ligado a flag de scope hoisting/tree shaking experimental, para pequenas builds de produção.
-  target: 'browser', // browser/node/electron, browser é o padrão.
+  cache: true, // Habilita ou desabilita o cache, true é o padrão
+  cacheDir: '.cache', // O diretório de cache a ser utilizado, .cache é o padrão
+  contentHash: false, // Desabilita o hash de conteúdo de ser incluído no nome do arquivo
+  global: 'moduleName', // Expor módulos como UMD utilizando este nome, desativado por padrão
+  minify: false, // Minifica o arquivo, habilitado se process.env.NODE_ENV === 'production'
+  scopeHoist: false, // Torna ligado a flag de scope hoisting/tree shaking experimental, para pequenas builds de produção
+  target: 'browser', // browser/node/electron, browser é o padrão
+  bundleNodeModules: false, // Por padrão, as dependências do package.json não são incluídas ao usar a opção 'node' ou 'electron' na opção 'target' acima. Defina como true para adicioná-los ao bundle, false é o padrão
   https: { // Define um par costumizado de {chave, certificado}, use true para gerar um ou false para utilizar http.
     cert: './ssl/c.crt', // caminho para um certificado customizado.
-    key: './ssl/k.key' // caminho para uma chave customizada.
+    key: './ssl/k.key' // caminho para uma chave customizada
   },
-  logLevel: 3, // 3 = irá loggar tudo, 2 = irá loggar avisos e erros, 1 = irá loggar erros.
-  hmr: true, // Habilita ou desabilita o HMR enquanto "watching" está ativo.
-  hmrPort: 0, // A porta onde o socket HMR está rodando, o padrão é uma porta livre aleatória (0 no node.js resolve para uma porta livre).
-  sourceMaps: true, // Habilita ou desabilita sourcemaps, habilitado é o padrão (builds minificadas atualmente sempre criam sourcemaps).
-  hmrHostname: '', // Um hostname para hot module reload, "" é o padrão.
-  detailedReport: false // Exibe um report detalhado dos bundles, assets, tamanho de arquivos e tempos, false é o padrão, os reports são exibidos somente se o watch estiver desabilidado.
+  logLevel: 3, // 3 = irá loggar tudo, 2 = irá loggar avisos e erros, 1 = irá loggar erros
+  hmr: true, // Habilita ou desabilita o HMR enquanto "watching" está ativo
+  hmrPort: 0, // A porta onde o socket HMR está rodando, o padrão é uma porta livre aleatória (0 no node.js resolve para uma porta livre)
+  sourceMaps: true, // Habilita ou desabilita sourcemaps, habilitado é o padrão (builds minificadas atualmente sempre criam sourcemaps)
+  hmrHostname: '', // Um hostname para hot module reload, "" é o padrão
+  detailedReport: false // Exibe um report detalhado dos bundles, assets, tamanho de arquivos e tempos, false é o padrão, os reports são exibidos somente se o watch estiver desabilidado
 };
 
-async function runBundle() {
+(async function() {
   // Inicializa o bundler utilizando a localização do entrypoint e as configurações especificadas.
   const bundler = new Bundler(entryFiles, options);
 
   // Executa o bundler, isto retorna o bundle principal
   // Utiliza os eventos, se você estiver com o modo watch essa promise será disparada uma única vez e não a cada rebuild
   const bundle = await bundler.bundle();
-}
-
-runBundle();
+})();
 ```
+
+Se você quiser user/iniciar o servidor built-in de desenvolvimento do Parcel, você pode utilizar `bundler.serve()`. Isso chama `bundler.bundle()` e inicia um servidor http (ou https) simples. `serve()` recebe 3 argumentos (todos eles opcionais), o primeiro é a porta, o segundo é https (isto pode ser um objeto `{cert, key}` apontando para o local da chave e arquivo do certificado ou `true` para gerar uma chave) e o terceiro é o host. 
 
 ### Eventos
 
