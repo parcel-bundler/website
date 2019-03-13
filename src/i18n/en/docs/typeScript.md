@@ -25,6 +25,7 @@ export default 'Hello, world'
 ```
 
 ## When using React
+
 To use Typescript + React + JSX, you need to:
 
 1. use the `.tsx` extension
@@ -32,6 +33,7 @@ To use Typescript + React + JSX, you need to:
 3. use a tsconfig with a [special option](https://www.typescriptlang.org/docs/handbook/jsx.html) `"jsx": "react"`
 
 Full example:
+
 ```html
 <!-- index.html -->
 <html>
@@ -50,8 +52,8 @@ import ReactDOM from 'react-dom'
 console.log('Hello from tsx!')
 
 ReactDOM.render(
-	<p>Hello</p>,
-	document.getElementById('root'),
+  <p>Hello</p>,
+  document.getElementById('root'),
 )
 ```
 
@@ -64,4 +66,4 @@ ReactDOM.render(
 }
 ```
 
-See this full thread for more details: https://github.com/parcel-bundler/parcel/issues/1199
+See [this full thread](https://github.com/parcel-bundler/parcel/issues/1199) for more details.
