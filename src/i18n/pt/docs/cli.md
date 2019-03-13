@@ -143,6 +143,8 @@ parcel entry.js --log-level 1
 | 1     | Somente erros  |
 | 2     | Erros e Avisos |
 | 3     | Tudo           |
+| 4     | Verboso (irá manter tudo logado com timestamps <br> e também irá logar requisições http realizadas ao servidor de desenvolvimento) |
+| 5     | Debug (irá salvar tudo em um arquivo com timestamps) |
 
 ### Hostname HMR
 

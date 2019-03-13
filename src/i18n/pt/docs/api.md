@@ -34,7 +34,7 @@ const options = {
     cert: './ssl/c.crt', // caminho para um certificado customizado.
     key: './ssl/k.key' // caminho para uma chave customizada
   },
-  logLevel: 3, // 3 = irá loggar tudo, 2 = irá loggar avisos e erros, 1 = irá loggar erros
+  logLevel: 3, // 5 = irá salvar tudo em um arquivo, 4 = assim como o 3 mas com timestamp e adicionalmente irá logar as requisições http realizadas para o servidor, 3 = irá loggar tudo, 2 = irá loggar avisos e erros, 1 = irá loggar erros
   hmr: true, // Habilita ou desabilita o HMR enquanto "watching" está ativo
   hmrPort: 0, // A porta onde o socket HMR está rodando, o padrão é uma porta livre aleatória (0 no node.js resolve para uma porta livre)
   sourceMaps: true, // Habilita ou desabilita sourcemaps, habilitado é o padrão (builds minificadas atualmente sempre criam sourcemaps)
