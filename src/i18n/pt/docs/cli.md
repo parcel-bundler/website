@@ -10,6 +10,16 @@ Inicia um servidor de desenvolvimento, que recriará automaticamente seu aplicat
 parcel index.html
 ```
 
+Você também pode passar um [glob](https://github.com/isaacs/node-glob) ou uma lista de globs para múltiplos arquivos de entrada.
+
+```bash
+parcel one.html two.html
+# OU
+parcel *.html
+# OU
+parcel ./**/*.html
+```
+
 ### Construir
 
 Constrói os recursos uma vez, ele também habilita minificação e define a variável de ambiente `NODE_ENV=production`. Veja [Produção](production.html) para mais detalhes.
@@ -17,6 +27,14 @@ Constrói os recursos uma vez, ele também habilita minificação e define a var
 ```bash
 parcel build index.html
 ```
+
+_NOTA:_ Para casos de uso especiais, é possível realizar um único build do ambiente de `development`, dessa forma:
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+Isto irá criar os mesmos bundles e então serví-los, mas não irá assistir ou servir os recursos.
 
 ### _Watch_
 
@@ -228,6 +246,16 @@ Disponível em: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
+```
+
+### Desabilitar hashing de conteúdo
+
+Padrão: content-hash habilitado
+
+Disponível em: `build`
+
+```bash
+parcel build entry.js --no-content-hash
 ```
 
 ### Desabilitar autoinstall
