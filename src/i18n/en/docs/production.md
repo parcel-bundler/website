@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'development') { // Or, `process.env.NODE_ENV !== '
 
 To allow setting very aggresive caching rules to your cdn, for optimal performance and efficiency, Parcel hashes the file names of most bundles (according to whether the bundle should have a readable/rememberable name or not, mainly for SEO).
 
-Parcel follows the following table, when it comes to naming bundles. (Entrypoints are never hashed)
+Parcel follows the following table, when it comes to naming bundles (Entrypoints are never hashed).
 
 |                   Bundle Type | Type               | Content hashed |
 | ----------------------------: | ------------------ | :------------: |
