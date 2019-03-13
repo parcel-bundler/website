@@ -4,6 +4,8 @@ Parcel suporta separação do código sem nenhuma configuração, de fábrica. I
 
 A separação do código é controlada pelo uso da função dinâmica `import ()` [syntax proposal](https://github.com/tc39/proposal-dynamic-import), que funciona como a declaração de `import` ou a função `require`, mas retorna uma Promise. Isso significa que o módulo é carregado de forma assíncrona.
 
+## Utilizando imports dinâmicos
+
 O exemplo a seguir mostra como você pode usar as importações dinâmicas para carregar outra página da sua aplicação sob demanda.
 
 ```javascript
@@ -19,6 +21,8 @@ import('./pages/about').then(function(page) {
   page.render()
 })
 ```
+
+## Imports dinâmicos com async/await
 
 Como `import ()` retorna uma Promise, você também pode usar async/await. Provavelmente você precisará configurar o Babel para converter a sintaxe até que ela seja suportada por todos os navegadores.
 
@@ -57,3 +61,11 @@ import './app'
 ```
 
 Leia a documentação em [babel-polyfill](http://babeljs.io/docs/usage/polyfill) e [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+
+## Resolução do Bundle
+
+O Parcel infere a localização dos bundles automaticamente. Isto é feito pelo módulo [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) e utiliza o rastreamento de pilha para determinar o caminho onde o pacote inicial foi carregado.
+
+Isso significa que você não precisa configurar onde os bundles devem ser carregados, mas também significa que você deve servir os bundles do mesmo local.
+
+O pacote resolve atualmente pacotes nos seguintes protocolos: `http`, `https`, `file`, `ftp`, `chrome-extension` e `moz-extension`.
