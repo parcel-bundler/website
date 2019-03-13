@@ -2,7 +2,7 @@
 
 _Extensões suportadas: `elm`_
 
-[Elm](https://elm-lang.org/) é uma linguagem funcional com um sistema de tipos avançados que garantem a correção do seu código e evita erros confusos em tempo de execução. Com o seu foco na simplicidade e velocidade, Elm é uma ótima opção quando se trata de construção de webapps de todos os tipos. O Parcel tem suport nativo ao Elm sem a necessidade de nenhuma configuração adicional.
+[Elm](https://elm-lang.org/) é uma linguagem funcional com um sistema de tipos avançados que garantem a correção do seu código e evita erros confusos em tempo de execução. Com o seu foco na simplicidade e velocidade, Elm é uma ótima opção quando se trata de construção de webapps de todos os tipos. O Parcel tem suporte nativo ao Elm sem a necessidade de nenhuma configuração adicional.
 
 ```html
 <!-- index.html -->
