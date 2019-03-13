@@ -20,7 +20,7 @@ const entryFiles = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // Le répertoire out pour mettre les fichiers construits, par défaut dist
   outFile: 'index.html', // Le nom du fichier en sortie
-  publicUrl: './', // L'URL du serveur, par défaut 'dist'
+  publicUrl: './', // L'URL du serveur, par défaut '/'
   watch: true, // Surveille les fichiers et les reconstruit lors d'un changement, par défaut pour process.env.NODE_ENV !== 'production'
   cache: true, // Active ou non la mise en cache, la valeur par défaut est true
   cacheDir: '.cache', // Le répertoire où le cache est placé, par défaut .cache
