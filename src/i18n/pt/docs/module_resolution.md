@@ -65,7 +65,7 @@ Evite utilizar quaisquer caracteres especiais em seus acrônimos, alguns podem s
 
 Recomendamos ser explícito ao definir seus acrônimos, então por favor **especifique extensões**, caso contrário o Parcel terá de adivinhar. Consulte [exportações denominadas com Javascript](#exportações-denominadas-com-javascript) para um exemplo disso.
 
-## Outras Condições
+## Problemas comuns
 
 ### Exportações denominadas com Javascript
 
