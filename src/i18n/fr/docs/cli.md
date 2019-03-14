@@ -94,7 +94,7 @@ parcel entry.js --public-url ./dist/
 Cela produira :
 
 ```html
-<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css">
+<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css" />
 <!-- ou -->
 <script src="dist/entry.e5f6g7.js"></script>
 ```
@@ -246,6 +246,16 @@ Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
+```
+
+### Désactiver le hachage du contenu
+
+Par défaut : content-hash activé
+
+Disponible dans : `build`
+
+```bash
+parcel build entry.js --no-content-hash
 ```
 
 ### Désactiver l'installation automatique de dépendances

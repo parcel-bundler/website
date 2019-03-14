@@ -31,6 +31,7 @@ Elm.Main.init({
 
 ```elm
 -- Main.elm
+module Main exposing (main)
 
 import Browser
 import Html exposing (h1, text)
