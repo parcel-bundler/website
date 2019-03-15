@@ -16,7 +16,7 @@ const file = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // Каталог для файлів збірки, за замовчуванням - dist
   outFile: 'index.html', // Ім'я вихідного файлу
-  publicUrl: './', // Шлях, який обслуговує сервер, за замовчуванням - dist
+  publicUrl: './', // Шлях, який обслуговує сервер, за замовчуванням - '/'
   watch: true, // чи слід відстежувати зміни файлів і збирати заново їх при зміні, за замовчуванням - process.env.NODE_ENV! == 'production'
   cache: true, // Включає або відключає кешування, за замовчуванням - true
   cacheDir: '.cache', // Каталог кешування, за замовчуванням .cache
