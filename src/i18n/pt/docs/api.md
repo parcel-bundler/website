@@ -52,7 +52,7 @@ const options = {
 })();
 ```
 
-Se você quiser user/iniciar o servidor built-in de desenvolvimento do Parcel, você pode utilizar `bundler.serve()`. Isso chama `bundler.bundle()` e inicia um servidor http (ou https) simples. `serve()` recebe 3 argumentos (todos eles opcionais), o primeiro é a porta, o segundo é https (isto pode ser um objeto `{cert, key}` apontando para o local da chave e arquivo do certificado ou `true` para gerar uma chave) e o terceiro é o host. 
+Se você quiser user/iniciar o servidor built-in de desenvolvimento do Parcel, você pode utilizar `bundler.serve()`. Isso chama `bundler.bundle()` e inicia um servidor http (ou https) simples. `serve()` recebe 3 argumentos (todos eles opcionais), o primeiro é a porta, o segundo é https (isto pode ser um objeto `{cert, key}` apontando para o local da chave e arquivo do certificado ou `true` para gerar uma chave) e o terceiro é o host.
 
 ### Eventos
 

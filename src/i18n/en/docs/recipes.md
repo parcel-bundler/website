@@ -106,7 +106,7 @@ npm install --save-dev parcel-bundler
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
-yarn add typescript --dev
+yarn add --dev typescript
 yarn add --dev parcel-bundler
 ```
 

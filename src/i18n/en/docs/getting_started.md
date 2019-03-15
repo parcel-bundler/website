@@ -121,11 +121,11 @@ Then, you will be able to run it:
 ```bash
 # To run in development mode
 yarn dev
-#or
+# or
 npm run dev
 
 # To run in production mode
 yarn build
-#or
+# or
 npm run build
 ```
