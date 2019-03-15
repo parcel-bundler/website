@@ -52,7 +52,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
-### Images in JSX
+## Images in JSX
 
 Below is an example of how you could import an image file for use in JSX.
 
@@ -67,7 +67,7 @@ import megaMan from "./images/mega-man.png";
 <img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
 ```
 
-# Babel
+## Babel
 
 [Babel](https://babeljs.io) is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.
 
@@ -84,12 +84,15 @@ Then, create a `.babelrc`:
   "presets": ["@babel/preset-react"]
 }
 ```
+
 You can also put `babel` config in `package.json`
+
 ```json
 "babel": {
   "presets": ["@babel/preset-react"]
 }
 ```
+
 NOTE: `package.json` takes precedence over `.babelrc`.
 
 ## Default Babel transforms
@@ -102,7 +105,7 @@ The browserlist target defaults to: `> 0.25%` (Meaning, support every browser th
 
 For the `node` target, Parcel uses the `engines.node` defined in `package.json`, this default to _node 8_.
 
-# Flow
+## Flow
 
 [Flow](https://flow.org/) is a popular static type checker for JavaScript. Using Flow with Parcel is as simple as placing `// @flow` as the first line of your `js` files.
 

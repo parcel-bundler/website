@@ -3,9 +3,11 @@
 The Parcel resolver implements a modified version of [the node_modules resolution](https://nodejs.org/api/modules.html#modules_all_together) algorithm.
 
 ## Module resolution
+
 In addition to the standard algorithm, all [asset types supported by Parcel](https://parceljs.org/assets.html) are also resolved.
 
 Module resolution can be relative to the:
+
 - **entry root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
 - **package root**: the directory of the nearest module root in `node_modules`.
 
@@ -19,19 +21,20 @@ Module resolution can be relative to the:
 
 ### Glob file paths
 
-Globs are wildcard imports that bundle multiple assets at once. Globs can match some or all files (`/assets/*.png`), as well as files in multiple directories (`/assets/**/*`);
+Globs are wildcard imports that bundle multiple assets at once. Globs can match some or all files (`/assets/*.png`), as well as files in multiple directories (`/assets/**/*`)
 
 This example bundles a directory of png files and returns the dist URLs.
 
-```
+```javascript
 import foo from "/assets/*.png";
-// { 
+// {
 //   'file-1': '/file-1.8e73c985.png',
 //   'file-2': '/file-1.8e73c985.png'
 // }
 ```
 
 ### package.json `browser` field
+
 If a package includes a [package.browser field](https://docs.npmjs.com/files/package.json#browser), Parcel will use this instead of the package.main entry.
 
 ### Aliases
@@ -115,7 +118,7 @@ We need Flow to replace the leading `/` in `'/components/apple'` with `src/`, re
 
 The following setting in our `.flowconfig` achieves this replacement:
 
-```
+```ini
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
