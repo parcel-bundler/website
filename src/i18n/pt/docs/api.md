@@ -20,7 +20,7 @@ const entryFiles = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // O diretório de saída para construir os arquivos, dist é o padrão
   outFile: 'index.html', // O nome do arquivo de saída
-  publicUrl: './', // A URL onde o servidor será servido, dist é o padrão
+  publicUrl: './', // A URL onde o servidor será servido, '/' é o padrão
   watch: true, // whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
   cache: true, // Habilita ou desabilita o cache, true é o padrão
   cacheDir: '.cache', // O diretório de cache a ser utilizado, .cache é o padrão
