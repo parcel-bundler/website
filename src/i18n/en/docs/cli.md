@@ -161,7 +161,7 @@ parcel entry.js --log-level 1
 | 1        | Only log errors                                                                                 |
 | 2        | Log errors and warnings                                                                         |
 | 3        | Log errors, warnings and info                                                                   |
-| 4        | Verbose (keep everything in log with timestamps <br/> and also log http requests to dev server) |
+| 4        | Verbose (keep everything in log with timestamps <br> and also log http requests to dev server) |
 | 5        | Debug (save everything to a file with timestamps)                                               |
 
 ### HMR Hostname

@@ -2,7 +2,7 @@
 
 _Extensões suportadas: `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
-O tipo de arquivo mais utilizado pelos empacotadores é o JavaScript. Parcel suporta tanto CommonJS como módulos ES6 para importar os arquivos. Ele também suporta a função `import()` para carregar os módulos de forma assíncrona, o qual será discutido na sessão [separação do código](code_splitting.html).
+O tipo de arquivo mais utilizado pelos empacotadores é o JavaScript. Parcel suporta tanto CommonJS como módulos ES6 para importar os arquivos. Ele também suporta a função `import()` para carregar os módulos de forma assíncrona, o qual será discutido na sessão [separação do código](code_splitting.html). Importações dinâmicas também podem importar módulos de URLs.
 
 ```javascript
 // Importar um módulo utilizando sintaxe CommonJS
@@ -10,6 +10,11 @@ const dep = require('./path/to/dep')
 
 // Importar um módulo utilizando sintaxe ES6
 import dep from './path/to/dep'
+
+// Importando um módulo de uma URL (por exemplo, um CDN) usando importação dinâmica
+import('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js').then(() => {
+  console.log(_.VERSION);
+});
 ```
 
 Você também pode importar outros tipos de recursos que não sejam arquivos JavaScript, como um arquivo CSS ou mesmo uma imagem. Quando você importar um desses tipos de arquivos, eles não serão incluídos no arquivo principal assim como é feito com os outros empacotadores. Na verdade, eles serão adicionados em arquivos separados (por exemplo, um arquivo CSS) junto com suas dependências. Quando você utilizar [CSS Modules](https://github.com/css-modules/css-modules), as classes exportadas são adicionadas no arquivo de saída JavaScript. Outros tipos de recursos exportam a referência no arquivo de saída JavaScript para que você possa referenciar no seu código.
@@ -47,7 +52,7 @@ const buffer = fs.readFileSync(__dirname + '/test.png')
 ;<img src={`data:image/png;base64,${buffer.toString('base64')}`} />
 ```
 
-### Imagens em JSX
+## Imagens em JSX
 
 Abaixo há um exemplo de como importar imagens para utilizar com JSX.
 
@@ -62,23 +67,33 @@ import megaMan from "./images/mega-man.png";
 <img src={`/dist${megaMan}`} title="Mega Man" alt="Mega Man" />
 ```
 
-# Babel
+## Babel
 
 [Babel](https://babeljs.io) é o conversor de JavaScript mais popular que conta com um grande ecossistema de plugins. Usar o Babel com o Parcel funciona da mesma maneira que utilizá-lo sozinho ou com outros empacotadores.
 
 Instale as predefinições e plugins na sua aplicação:
 
 ```shell
-yarn add @babel/preset-env
+yarn add --dev @babel/preset-react
 ```
 
 Crie o arquivo `.babelrc`:
 
 ```json
 {
-  "presets": ["@babel/preset-env"]
+  "presets": ["@babel/preset-react"]
 }
 ```
+
+Você também pode colocar a configuração `babel` no `package.json`
+
+```json
+"babel": {
+  "presets": ["@babel/preset-react"]
+}
+```
+
+NOTA: `package.json` tem precedência sobre o  `.babelrc`.
 
 ## Conversões padrões do Babel
 
@@ -90,7 +105,7 @@ O alvo padrão do _browserlist_ é: `> 0.25%` (Significando, suportar cada naveg
 
 Para o alvo `node`, Parcel utiliza o `engines.node` definido no `package.json`, este padrão para _node 8_.
 
-# Flow
+## Flow
 
 [Flow](https://flow.org/) é um popular checador de tipo para JavaScript. Usar Flow com Parcel é muito simples, basta inserir `// @flow` na primeira linha dos arquivos `js`.
 

@@ -21,7 +21,7 @@ const entryFiles = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // 編譯後的檔案輸出路徑，預設為 dist
   outFile: 'index.html', // 輸出檔案名稱
-  publicUrl: './', // 靜態檔案的路徑，預設為 dist
+  publicUrl: './', // 靜態檔案的路徑，預設為 '/'
   watch: true, // 是否在檔案更動時自動重新編譯，預設於 process.env.NODE_ENV !== 'production' 時啟用
   cache: true, // 是否啟用快取，預設為 true
   cacheDir: '.cache', // 快取檔案目錄，預設為 .cache
