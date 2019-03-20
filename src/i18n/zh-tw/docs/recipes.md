@@ -106,7 +106,7 @@ npm install --save-dev parcel-bundler
 <sub>或者你想使用 yarn 來安裝</sub>
 
 ```bash
-yarn add typescript --dev
+yarn add --dev typescript
 yarn add --dev parcel-bundler
 ```
 
