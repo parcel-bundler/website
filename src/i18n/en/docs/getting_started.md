@@ -60,8 +60,7 @@ parcel watch index.html
 
 You can also use [createapp.dev](https://createapp.dev/parcel) to create a Parcel project in the browser. Select the features you need such as React, Vue, Typescript and CSS, and you will see the project being generated in real-time. You can use this tool for learning how to set up a new project and you can also download the project as a ZIP-file and get started coding instantly.
 
-
-### Multiple entry files
+## Multiple entry files
 
 In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
 
@@ -88,11 +87,11 @@ _NOTE:_ In case you have a file structure like this:
 
 Going to http://localhost:1234/folder-1/ won't work, instead you will need to explicitly point to the file http://localhost:1234/folder-1/index.html.
 
-### Building for production
+## Building for production
 
 When you're ready to build for production, the `build` mode turns off watching and only builds once. See the [Production](production.html) section for more details.
 
-### Adding parcel to your project
+## Adding parcel to your project
 
 Sometimes it's not possible to install Parcel globally e.g. if you're building on someone else's build agent or you want to use a CI to build your project programmatically. In this case, you can install and run Parcel as a local package.
 
@@ -124,11 +123,11 @@ Then, you will be able to run it:
 ```bash
 # To run in development mode
 yarn dev
-#or
+# or
 npm run dev
 
 # To run in production mode
 yarn build
-#or
+# or
 npm run build
 ```

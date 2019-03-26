@@ -34,7 +34,7 @@ _NOTE:_ For special use cases, it's also possible to perform a single build from
 NODE_ENV=development parcel build <entrypoint> --no-minify
 ```
 
-It creates the same bundles than `serve`, but it doesn't watch or serve assets.
+It creates the same bundles as `serve`, but it doesn't watch or serve assets.
 
 ### Watch
 
@@ -161,7 +161,7 @@ parcel entry.js --log-level 1
 | 1        | Only log errors                                                                                 |
 | 2        | Log errors and warnings                                                                         |
 | 3        | Log errors, warnings and info                                                                   |
-| 4        | Verbose (keep everything in log with timestamps <br/> and also log http requests to dev server) |
+| 4        | Verbose (keep everything in log with timestamps <br> and also log http requests to dev server) |
 | 5        | Debug (save everything to a file with timestamps)                                               |
 
 ### HMR Hostname

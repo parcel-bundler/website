@@ -6,57 +6,46 @@ Quando chegar a hora de enviar sua aplicação para produção, você pode usar 
 parcel build entry.js
 ```
 
+## Otimizações
+
 Isso desabilita o `watch` e o `hmr` para que o código só seja compilado uma vez. Ele também habilita o minifier para todos os arquivos de saída para reduzir o tamanho dos arquivos. Os minifiers utilizados pelo Parcel são [terser](https://github.com/fabiosantoscode/terser) para JavaScript, [cssnano](http://cssnano.co) para CSS e [htmlnano](https://github.com/posthtml/htmlnano) para HTML.
 
 Ativando o modo de produção também define a variável de ambiente `NODE_ENV=production`. As bibliotecas mais conhecidas, como React, possuem recursos de depuração apenas para desenvolvimento, que são desativados ao definir esta variável de ambiente, o que resulta em compilações menores e mais rápidas para produção.
 
-### Opções
+Para aproveitar o mesmo tipo de recursos de depuração somente de desenvolvimento, certifique-se de que a [opção `dead_code` do teaser](https://github.com/terser-js/terser#compress-options) esteja habilitada (está por padrão) e encapsula qualquer depuração somente de desenvolvimento em uma verificação condicional assim:
 
-#### Definir o diretório de saída
-
-Padrão: "dist"
-
-```bash
-parcel build entry.js --out-dir build/output
-ou
-parcel build entry.js -d build/output
+```js
+if (process.env.NODE_ENV === 'development') { // Ou, `process.env.NODE_ENV !== 'production'`
+  // Irá executar somente em desenvolvimento e ignorado do build de produção.
+}
 ```
 
-```base
-root
-- build
-- - output
-- - - entry.js
-```
+## Estratégia de nomeação de arquivos
 
-#### Definir o endereço público para servir os arquivos
+Para permitir a configuração de regras de cache muito agressivas para o seu CDN, para o melhor desempenho e eficiência, o Parcel faz hashes dos nomes dos arquivos da maioria dos bundles (se o bundle deve ter um nome legível/lembrável ou não, principalmente para SEO).
 
-Padrão: "/"
+O Parcel segue a tabela a seguir, quando se trata de nomear os pacotes (entrypoints nunca são em hasheados).
 
-```bash
-parcel build entry.js --public-url ./
-```
+|                        Tipo de Bundle | Tipo               | Conteúdo hasheado |
+| ------------------------------------: | ------------------ | :----------------: |
+|                              Qualquer | Entrypoint         |         ❌         |
+|                            JavaScript | `<script>`         |         ✅        |
+|                            JavaScript | Dynamic import     |         ❌         |
+|                            JavaScript | Service worker     |         ❌         |
+|                                  HTML | iframe             |         ❌         |
+|                                  HTML | anchor link        |         ❌         |
+| Raw (Imagens, arquivos de texto, ...) | Import/Require/... |         ✅        |
 
-Será convertido para:
+O hash do arquivo segue o seguinte padrão de nomeação: `<nome do diretório>-<hash>.<extensão>`.
 
-```html
-<link rel="stylesheet" type="text/css" href="1a2b3c4d.css">
-ou
-<script src="e5f6g7h8.js"></script>
-```
+## Armadilhas cross platform
 
-#### Desabilitar a minificação
+Em um esforço para otimizar o desempenho de compilação de produção, o Parcel tentará determinar o número de CPUs disponíveis na máquina que executa o comando de compilação para que ele possa distribuir o trabalho de acordo. Para isso, a Parcel conta com o módulo [physical-cpu-count](https://www.npmjs.com/package/physical-cpu-count).
 
-Padrão: minificação habilitada
+Esteja ciente que este módulo supõe que você tem o programa [`lscpu`](http://manpages.courier-mta.org/htmlman1/lscpu.1.html) disponível no seu sistema.
 
-```bash
-parcel build entry.js --no-minify
-```
+## Usando um CI
 
-#### Desabilitar o cache do sistema de arquivos
+Se você deseja integrar o Parcel no seu sistema de integração contínua (por exemplo, Travis ou Circle CI), talvez seja necessário instalar o Parcel como uma dependência local.
 
-Padrão: cache habilitado
-
-```bash
-parcel build entry.js --no-cache
-```
+As instruções podem ser [encontradas aqui](getting_started.html#adicionando-parcel-ao-seu-projeto).

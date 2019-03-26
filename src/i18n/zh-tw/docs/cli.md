@@ -10,6 +10,16 @@
 parcel index.html
 ```
 
+你也可以使用 [glob](https://github.com/isaacs/node-glob) 來指定多個進入點
+
+```bash
+parcel one.html two.html
+# 或
+parcel *.html
+# 或
+parcel ./**/*.html
+```
+
 ### 編譯
 
 一次性編譯資源，啟用程式碼壓縮並設定環境變數 `NODE_ENV` 設定為 `production`。詳情請見 [正式環境](production.html)一章。
@@ -25,7 +35,6 @@ NODE_ENV=development parcel build <entrypoint> --no-minify
 ```
 
 他會產生與 `serve` 指令相同的 bundle，但不會啟用監看及伺服器。
-
 
 ### 監看
 
@@ -85,7 +94,7 @@ parcel entry.js --public-url ./dist/
 此選項將會輸出
 
 ```html
-<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css">
+<link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css"/>
 <!-- or -->
 <script src="dist/entry.e5f6g7.js"></script>
 ```
@@ -237,6 +246,16 @@ parcel entry.js --open
 
 ```bash
 parcel build entry.js --no-source-maps
+```
+
+### 停用內容 hash
+
+預設：啟用內容 hash
+
+是用指令： `build`
+
+```bash
+parcel build entry.js --no-content-hash
 ```
 
 ### 停用自動安裝

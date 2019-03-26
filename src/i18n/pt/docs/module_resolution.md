@@ -1,21 +1,43 @@
 # 📔 Resolução de Módulo
 
-Parcel (v.1.7.0 e superior) suporta estratégias de múltilplas resoluções de módulo fora da caixa, para que você não tenha que lidar com caminhos relativos infinitos `../../`.
+O resolvedor do Parcel implementa uma versão modificada do algoritmo de [resolução do node_modules](https://nodejs.org/api/modules.html#modules_all_together).
 
-Termos Notáveis:
+## Resolução de Módulo
 
-- **raiz do projeto**: o diretório do _entrypoint_ especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos _entrypoints_ são especificados.
+Além do algorimo padrão, todos os [tipos de recursos suportados pelo Parcel](https://parceljs.org/assets.html) são resolvidos também.
+
+A resolução de módulo pode ser relativa a:
+
+- **raiz do projeto**: o diretório do *entrypoint* especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos _entrypoints_ são especificados.
 - **raiz do pacote**: o diretório mais próximo da raiz do pacote em `node_modules`.
 
-## Caminhos Absolutos
+### Caminhos Absolutos
 
 `/foo` irá resolver `foo` relativo à **raiz do projeto**.
 
-## ~ Caminhos com til
+### ~ Caminhos com til
 
 `~/foo` irá resolver `foo` em relação à **raiz do pacote** mais próxima ou, se não for encontrada, a **raiz do projeto**.
 
-## Acrônimos
+### Caminho de arquivos Glob
+
+Globs são importações curingas que agrupam vários recursos de uma só vez. Globs podem combinar alguns ou todos os arquivos (`/assets/*.png`), bem como arquivos em vários diretórios (`/assets/**/*`)
+
+Este exemplo empacota um diretório de arquivos png e retorna as URLs de produção.
+
+```javascript
+import foo from "/assets/*.png";
+// {
+//   'file-1': '/file-1.8e73c985.png',
+//   'file-2': '/file-1.8e73c985.png'
+// }
+```
+
+### Campo `browser` no package.json
+
+Se um pacote incluir o [campo `package.browser`](https://docs.npmjs.com/files/package.json#browser), o Parcel irá utilizá-lo ao invés da entrada `package.main`.
+
+### Acrônimos
 
 Os acrônimos são suportados através do campo `alias` no `package.json`.
 
@@ -43,7 +65,7 @@ Evite utilizar quaisquer caracteres especiais em seus acrônimos, alguns podem s
 
 Recomendamos ser explícito ao definir seus acrônimos, então por favor **especifique extensões**, caso contrário o Parcel terá de adivinhar. Consulte [exportações denominadas com Javascript](#exportações-denominadas-com-javascript) para um exemplo disso.
 
-## Outras Condições
+## Problemas comuns
 
 ### Exportações denominadas com Javascript
 
@@ -75,15 +97,19 @@ Flow precisará saber sobre a resolução de módulos para o uso de caminhos abs
 Dado um projeto com essa estrutura:
 
 ```
+package.json
 .flowconfig
 src/
+  index.html
   index.js
   components/
     apple.js
     banana.js
 ```
 
-Para mapear corretamente
+E `src/index.html` como um *entrypoint*, a **raíz do projeto** (*project root*) é o diretório `src/`.
+
+Portanto, para mapear essa importação corretamente:
 
 ```javascript
 // index.js
@@ -94,7 +120,7 @@ import Apple from '/components/apple'
 
 nós podemos usar essa configuração no arquivo `.flowconfig` para mapear o caminho absoluto (o direcionamento de `/`) para `src/`:
 
-```
+```ini
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
