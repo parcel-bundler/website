@@ -34,7 +34,7 @@ _NOTE:_ For special use cases, it's also possible to perform a single build from
 NODE_ENV=development parcel build <entrypoint> --no-minify
 ```
 
-It creates the same bundles than `serve`, but it doesn't watch or serve assets.
+It creates the same bundles as `serve`, but it doesn't watch or serve assets.
 
 ### Watch
 

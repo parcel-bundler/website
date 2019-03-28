@@ -58,6 +58,8 @@ Use the development server when you don't have your own server, or your app is e
 parcel watch index.html
 ```
 
+You can also use [createapp.dev](https://createapp.dev/parcel) to create a Parcel project in the browser. Select the features you need such as React, Vue, Typescript and CSS, and you will see the project being generated in real-time. You can use this tool for learning how to set up a new project and you can also download the project as a ZIP-file and get started coding instantly.
+
 ## Multiple entry files
 
 In case you have more than one entry file, let's say `index.html` and `about.html`, you have 2 ways to run the bundler:
