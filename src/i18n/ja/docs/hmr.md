@@ -1,10 +1,10 @@
 # 🔥 Hot Module Replacement
 
-Hot Module Replacement (HMR) improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things. Parcel's HMR implementation supports both JavaScript and CSS assets out of the box. HMR is automatically disabled when bundling in production mode.
+Hot Module Replacement（HMR）は、ページ全体を更新しなくても、実行時にブラウザ内のモジュールを自動的に更新することで開発者体験を向上させる仕組みです。これは、変更を行ってもアプリケーション内の状態（ステート）は保持されることを意味します。Parcel の HMR 実装は、そのままで JavaScript と CSS の両方をサポートします。プロダクションモードでバンドルすると、HMR は自動的に無効になります。
 
-As you save files, Parcel rebuilds what changed and sends an update to any running clients containing the new code. The new code then replaces the old version, and is re-evaluated along with all parents. You can hook into this process using the `module.hot` API, which can notify your code when a module is about to be disposed, or when a new version comes in. Projects like [react-hot-loader](https://github.com/gaearon/react-hot-loader) can help with this process, and work out of the box with Parcel.
+ファイルを保存すると、Parcel は差分をリビルドし、新しいコードを含んでいる実行中のクライアントに更新を知らせます。その後、新しいコードは古いバージョンを置き換え、すべての親要素と共に再評価されます。モジュールが破棄されようとしているとき、または新しいバージョンに更新されるとき、コードに通知することが出来る `module.hot` API を使用することで、このプロセスにフックすることができます。[react-hot-loader](https://github.com/gaearon/react-hot-loader) のようなプロジェクトはこのプロセスを手助けすることができ、Parcel なら設定不要で使用できます。
 
-There are two methods to know about: `module.hot.accept` and `module.hot.dispose`. You call `module.hot.accept` with a callback function which is executed when that module or any of its dependencies are updated. `module.hot.dispose` accepts a callback which is called when that module is about to be replaced.
+知っておくと良い方法が 2 つあります： `module.hot.accept` と `module.hot.dispose` です。`module.hot.accept` は、あるモジュールまたはその依存関係のいずれかが更新されたときにコールバック関数が実行されます。`module.hot.dispose` は、あるモジュールが置き換えられようとしているときにコールバック関数が実行されます。
 
 ```javascript
 if (module.hot) {
@@ -18,21 +18,21 @@ if (module.hot) {
 }
 ```
 
-## Automagically installed dependencies
+## 依存関係の自動インストール
 
-Whenever Parcel comes across a dependency that fits the `node_module` pattern and can't find it, Parcel tries to install this dependency using `yarn` or `npm` depending on finding a `yarn.lock` file or not. This prevents the developer from having to exit parcel or having multiple terminal windows open.
+Parcel は必要なモジュールが `node_module` フォルダーに存在しない状況に出くわした場合はいつでも、それらを自動でインストールしようとする仕組みがあります。これは、yarn.lock ファイルが見つかるかどうかによって、`yarn` か `npm` を用いて行います。これによって、開発者は一度ターミナル上で Parcel から exit したり、複数のターミナルを立ち上げる必要がなくなります。
 
-This only occurs in _development_ (using [`serve`](cli.md#serve) or [`watch`](cli.md#watch)), however in production (using [`build`](cli.md#build)) autoinstall is disabled to prevent unwanted side-effects on deployment.
+これらは 開発環境 ([`serve`](cli.md#serve) もしくは [`watch`](cli.md#watch) コマンド) 時に適用されます。しかしながら、プロダクション環境（[`build`](cli.md#build) コマンド）時には、デプロイ時の予期しない副作用を回避するために無効化されています。
 
-You can disable this feature using [`--no-autoinstall`](cli.md#disable-autoinstall).
+あなたは [`--no-autoinstall`](cli.md#disable-autoinstall) オプションを使うことでこの機能を無効化することができます。
 
-## Safe Write
+## セーフライト
 
-Some text editors and IDE's have a feature called `safe write` that basically prevents data loss, by taking a copy of the file and renaming it when saved.
+IDE やテキストエディタの中には、`セーフライト（safe write）`と呼ばれる、データの損失を防ぐためにコピーを取り保存時に名前を変更するという機能があります。
 
-When using Hot Module Reload (HMR) this feature blocks the automatic detection of file updates, to disable `safe write` use the options provided below:
+ホットモジュールリプレイスメント（HMR）を使用している場合、この機能はファイル更新の自動検出をブロックしてしまうので セーフライトを無効にするためには、下記のオプションを使用します。
 
-- `Sublime Text 3` add `atomic_save: "false"` to your user preferences.
-- `IntelliJ` use search in the preferences to find "safe write" and disable it.
-- `Vim` add `:set backupcopy=yes` to your settings.
-- `WebStorm` uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
+- `Sublime Text 3` `atomic_save: "false"` を preferences に追加する。
+- `IntelliJ` preferences 内で "safe write" を検索し、無効化する。
+- `Vim` `:set backupcopy=yes` を設定に追加する。
+- `WebStorm` Preferences > Appearance & Behavior > System Settings 内の `Use "safe write"` のチェックを外す。
