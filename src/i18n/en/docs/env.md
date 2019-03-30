@@ -6,7 +6,7 @@ Parcel uses [dotenv](https://github.com/motdotla/dotenv) to support loading envi
 
 Parcel loads `.env` files with these specific names for the following `NODE_ENV` values:
 
-| valid `.env` filenames   | `NODE_ENV=\*` | `NODE_ENV=test` |
+| valid `.env` filenames   | `NODE_ENV=*` | `NODE_ENV=test` |
 | ------------------------ | ------------- | --------------- |
 | `.env`                   | ✔️            | ✔️              |
 | `.env.local`             | ✔️            | ✖️              |
@@ -17,3 +17,4 @@ Notably:
 
 - `NODE_ENV` defaults to `development`.
 - `.env.local` is not loaded when `NODE_ENV=test` since [tests should produce the same results for everyone](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/utils/env.js#L9)
+- Sometimes introducing a new .env file will not work immediately. Try deleting the .cache/ directory in this case.
