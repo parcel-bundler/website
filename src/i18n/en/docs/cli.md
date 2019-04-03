@@ -198,12 +198,15 @@ This changes the output filename of the entrypoint bundle
 
 ### Print a detailed report
 
-Default: Minimal report
+Default: Minimal report, otherwise depth 10
+
+The optional argument specifies the depth to print.
 
 Available in: `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### Enable https
