@@ -198,12 +198,15 @@ parcel build entry.js --out-file output.html
 
 ### 顯示細節報告
 
-預設：精簡報告
+預設：精簡報告，否則細節深度為10
+
+選填的參數可指定顯示報告的深度。
 
 適用指令： `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### 啟用 HTTPS
