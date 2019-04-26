@@ -60,6 +60,8 @@ parcel index.html
 parcel watch index.html
 ```
 
+你也可以利用 [createapp.dev](https://createapp.dev/parcel) 來建立 Parcel 專案，網頁會在你選擇功能（React、Vue、Typescript 和 CSS 等等）的同時產生專案。透過這個工具你可以學習如何建立新專案，也可以將建立好的專案下載為 ZIP 檔。
+
 ### 多個進入點
 
 若你有多個進入點，假設分別是 `index.html` 及 `about.html`，你有兩種方式可以啟動打包工具：
