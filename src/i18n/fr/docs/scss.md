@@ -18,4 +18,12 @@ Les dépendances dans les fichiers SCSS peuvent être utilisées avec les instru
 
 Si vous n'avez pas de module `sass` installé avant l'exécution de Parcel, Parcel l'installera automatiquement pour vous.
 
+De plus, vous pouvez configurer la compilation sass avec Parcel en créant un fichier de configuration : .sassrc
+
+Par exemple, vous pouvez contrôler le style de sortie du CSS généré en le spécifiant ainsi :
+
+{
+outputStyle: "nested",
+}
+
 **Remarques :** Vous pouvez aussi utiliser le module `node-sass` pour la compilation du SCSS. L'utilisation du module `node-sass` vous donnera une compilation plus rapide. Cependant, [une issue](https://github.com/parcel-bundler/parcel/issues/1836) a été reportée sur l'utilisation du module `node-sass` avec Parcel.

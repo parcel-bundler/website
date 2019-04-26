@@ -97,7 +97,7 @@ REMARQUE : `package.json` est prioritaire sur `.babelrc`.
 
 ## Transformations Babel par défaut
 
-Parcel transpile par défaut votre code avec `@babel/preset-env`, ceci transpile chaque module interne (requires locaux) et externe (node_modules) pour correspondre à la cible définie.
+Parcel transpile par défaut votre code (chaque module interne) avec `@babel/preset-env` pour correspondre à la cible définie.
 
 Pour la cible `browser`, il utilise [browserslist](https://github.com/browserslist/browserslist), la browserlist cible peut être définie dans le fichier `package.json` (`engines.browsers` ou `browserslist`) ou en utilisant un fichier de configuration (`browserslist` ou `.browserslistrc`).
 
