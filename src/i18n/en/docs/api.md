@@ -132,10 +132,10 @@ A very basic example of an asset tree and it's generated bundle Tree
 
 ```Text
 index.html
--- index.js
- |--- test.js
- |--- test.txt
--- index.css
+├── index.js
+│   ├── test.js
+│   └── test.txt
+└── index.css
 ```
 
 ##### Bundle Tree:
@@ -154,9 +154,9 @@ index.html
 
 ```Text
 index.html
--- index.js (includes index.js and test.js)
- |--- test.txt (includes test.txt)
--- index.css (includes index.css)
+├── index.js ········ (includes index.js and test.js)
+│   └── test.txt ···· (includes test.txt)
+└── index.css ······· (includes index.css)
 ```
 
 ### Middleware
