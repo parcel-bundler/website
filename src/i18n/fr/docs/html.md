@@ -6,15 +6,15 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 
 ```html
 <html>
-<body>
-  <!-- référence un fichier image -->
-  <img src="./images/header.png">
+  <body>
+    <!-- référence un fichier image -->
+    <img src="./images/header.png" />
 
-  <a href="./other.html">Lien vers une autre page</a>
+    <a href="./other.html">Lien vers une autre page</a>
 
-  <!-- importe un paquet JavaScript -->
-  <script src="./index.js"></script>
-</body>
+    <!-- importe un paquet JavaScript -->
+    <script src="./index.js"></script>
+  </body>
 </html>
 ```
 
@@ -26,7 +26,7 @@ L'ajout de liens vers des fichiers que Parcel peut compiler (par exemple, JavaSc
 <html>
   <head>
     <!-- inclure un fichier SCSS -->
-    <link rel="stylesheet" href="./my-styles/style.scss">
+    <link rel="stylesheet" href="./my-styles/style.scss" />
   </head>
 </html>
 ```
@@ -48,9 +48,14 @@ Ensuite, créez un `.posthtmlrc`:
   "plugins": {
     "posthtml-img-autosize": {
       "root": "./images"
+    },
+    "posthtml-modules": {
+      "root": "./src"
     }
   }
 }
 ```
 
 Les plugins sont spécifiés dans l'objet `plugins` en tant que clés, et les options sont définies en utilisant des valeurs d'objets. S'il n'y a pas d'options pour un plugin, définissez-le simplement à `true`.
+
+Grâce à l'importation de modules à l'aide de `posthtml-modules`, si vous commencez des chemins avec `/`, ils deviendront relatifs avec `./src`.
