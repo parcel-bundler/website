@@ -198,12 +198,15 @@ Cela modifie le nom du fichier de sortie du paquet
 
 ### Imprimer un rapport détaillé
 
-Par défaut : rapport minimal
+Par défaut : rapport minimal, sinon un détail à 10
+
+L'argument optionnel spécifie un détail du rapport.
 
 Disponible dans : `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### Désactiver https
