@@ -93,6 +93,12 @@ header .subtitle {
   width: 100%;
 }
 
+@media only screen and (max-width: 600px) {
+  .parcel img {
+    height: auto;
+  }
+}
+
 .parcel .icons {
   position: absolute;
   top: -100px;
@@ -100,7 +106,7 @@ header .subtitle {
   width: 100%;
 }
 
-.parcel img:last-child {
+.parcel picture:last-child img {
   position: absolute;
   top: 0;
   left: 0;
@@ -191,7 +197,7 @@ header .links a:hover {
   font-size: inherit;
   text-align: right;
   outline: none;
-  padding:8px;
+  padding: 8px;
 }
 
 .language-dropdown:hover,
