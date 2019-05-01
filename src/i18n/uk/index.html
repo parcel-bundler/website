@@ -27,9 +27,29 @@
       <h1><img class="logo" src="assets/logo.svg" alt="Parcel" /></h1>
       <p class="subtitle">Блискавично швидкий пакувальник для веб-додатків без налаштувань</p>
       <div class="parcel">
-        <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-back.webp, assets/parcel-back@2x.webp 2x, assets/parcel-back@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-back.png"
+            srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x"
+            height="474"
+          />
+        </picture>
         <div class="icons"></div>
-        <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-front.webp, assets/parcel-front@2x.webp 2x, assets/parcel-front@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-front.png"
+            srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x"
+            height="474"
+          />
+        </picture>
       </div>
       <a class="button get-started" href="getting_started.html">Давайте почнемо!</a>
       <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
