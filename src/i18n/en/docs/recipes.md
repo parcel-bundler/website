@@ -35,33 +35,14 @@ First we need to install the dependencies for Preact.
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-core
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-core
-yarn add --dev babel-preset-preact
-```
-
-You should manually add [babel-core](https://www.npmjs.com/package/babel-core) for [babel-preset-preact](https://github.com/developit/babel-preset-preact) has not supported babel7 yet
-
-Then make sure the following Babel config is present.
-
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
 ```
 
 Add Start script to `package.json`

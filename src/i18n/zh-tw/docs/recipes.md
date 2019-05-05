@@ -35,29 +35,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>或者是你想使用 Yarn 來管理套件</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-preact
-```
-
-確保你的 Babel 設定如下：
-
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
 ```
 
 接著在 `package.json` 中增加啟動指令
