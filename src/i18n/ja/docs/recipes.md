@@ -35,29 +35,14 @@ First we need to install the dependencies for Preact.
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-preact
-```
-
-Then make sure the following Babel config is present.
-
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
 ```
 
 Add Start script to `package.json`

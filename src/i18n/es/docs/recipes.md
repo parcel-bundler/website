@@ -48,29 +48,14 @@ Primero necesitas instalar las dependencias para Preact.
 
 ```
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>O, si opcionalmente tienes instalado Yarn como gestor de paquetes</sub>
 
 ```
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
-yarn add --dev babel-preset-preact
-```
-
-Luego, asegúrate que la siguiente configuración de Babel esté presente.
-
-```javascript
-// .babelrc
-{
-  "presets": ["env", "preact"]
-}
 ```
 
 Agrega el script de inicio a `package.json`

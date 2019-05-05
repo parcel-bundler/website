@@ -35,29 +35,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>혹시 yarn 패키지 매니저를 사용하신다면 다음의 명령어로 설치할 수 있습니다.</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
-yarn add --dev babel-preset-preact
-```
-
-그리고 다음과 같이 babel 설정 파일을 만들어주세요.
-
-```javascript
-// .babelrc
-{
-  "presets": ["env", "preact"]
-}
 ```
 
 그리고 시작 스크립트를 `package.json`에 지정해주세요.

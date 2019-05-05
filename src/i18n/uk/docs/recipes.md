@@ -39,29 +39,14 @@ yarn add --dev babel-preset-react
 
 ```Bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
-npm install --save-dev babel-preset-preact
 ```
 
 <sub> Або, якщо у вас встановлений менеджер пакетів Yarn </sub>
 
 ```Bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
-yarn add --dev babel-preset-preact
-```
-
-Потім переконайтеся, що існує така конфігурація Babel.
-
-```Javascript
-// .babelrc
-{
-  "Presets": [ "env", "preact"]
-}
 ```
 
 Потім додайте скрипт запуску в `package.json`

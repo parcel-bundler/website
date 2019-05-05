@@ -35,29 +35,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-env
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-env
-yarn add --dev babel-preset-preact
-```
-
-然后确保以下 Babel 预设存在.
-
-```javascript
-// .babelrc
-{
-  "presets": ["env", "preact"]
-}
 ```
 
 向 `package.json` 的 scripts 中添加 start 脚本。
