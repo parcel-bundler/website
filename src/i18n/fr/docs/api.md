@@ -132,10 +132,10 @@ Un exemple très basique d'une arborescence de ressource et l'arborescence de pa
 
 ```Text
 index.html
--- index.js
- |--- test.js
- |--- test.txt
--- index.css
+├── index.js
+│   ├── test.js
+│   └── test.txt
+└── index.css
 ```
 
 ##### Arborescence de paquets :
@@ -154,9 +154,9 @@ Les paquets `index.css` et `index.js` sont des paquets frères car ils partagent
 
 ```Text
 index.html
--- index.js (inclut index.js et test.js)
- |--- test.txt (inclut test.txt)
--- index.css (inclut index.css)
+├── index.js ········ (inclut index.js et test.js)
+│   └── test.txt ···· (inclut test.txt)
+└── index.css ······· (inclut index.css)
 ```
 
 ### Middleware
