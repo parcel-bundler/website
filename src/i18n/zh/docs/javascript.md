@@ -1,6 +1,6 @@
 # JavaScript
 
-_支持的扩展名: `js`, `jsx`, `es6`, `jsm`, `mjs`_
+_支持扩展类型: `js`, `jsx`, `es6`, `jsm`, `mjs`_
 
 Web 端打包最常见的文件类型是 JavaScript。Parcel 支持以 CommonJS 和 ES6 模块语法导入文件。同时也支持动态`import()`函数语法异步加载模块，这将在[代码拆分](code_splitting.html)部分讨论。动态导入也能通过 URL 链接导入模块。
 

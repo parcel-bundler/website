@@ -1,6 +1,6 @@
 # ReasonML
 
-_支持的扩展名: `ml`, `re`_
+_支持扩展类型: `ml`, `re`_
 
 ## ReasonML/BuckleScript
 
