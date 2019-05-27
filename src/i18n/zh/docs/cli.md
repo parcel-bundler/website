@@ -2,12 +2,22 @@
 
 ## Commands
 
-### 服务
+### 服务（Serve）
 
 serve 命令启用一个开发服务器，且支持 [热模块替换](hmr.html) 以实现快速开发。当你更改文件时，该服务器将自动重新构建你的应用程序。
 
 ```bash
 parcel index.html
+```
+
+你也可以为多个入口点传递一个[glob](https://github.com/isaacs/node-glob)或 glob 列表。
+
+```bash
+parcel one.html two.html
+# 或
+parcel *.html
+# 或
+parcel ./**/*.html
 ```
 
 ### 构建（Build）
@@ -17,6 +27,14 @@ build 命令会一次性构建资源，它还启用了压缩功能，并将 NODE
 ```bash
 parcel build index.html
 ```
+
+_注意:_ 对于特殊用例，它也可以从开发环境执行单次构建：
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+产生与`serve`相同的打包，但是没有监听或资源服务。
 
 ### 监听（Watch）
 
@@ -34,6 +52,14 @@ parcel watch index.html
 parcel help
 ```
 
+### 版本（Version）
+
+显示 Parcel 版本号
+
+```bash
+parcel --version
+```
+
 ## Options
 
 ### 设置输出目录
@@ -44,7 +70,7 @@ parcel help
 
 ```bash
 parcel build entry.js --out-dir build/output
-或者
+# 或者
 parcel build entry.js -d build/output
 ```
 
@@ -68,8 +94,8 @@ parcel entry.js --public-url ./dist/
 将输出到：
 
 ```html
-<link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css">
-或者
+<link rel="stylesheet" type="text/css" href="/dist/entry.1a2b3c.css" />
+<!-- 或者 -->
 <script src="/dist/entry.e5f6g7.js"></script>
 ```
 
@@ -83,7 +109,41 @@ parcel entry.js --public-url ./dist/
 parcel build entry.js --target node
 ```
 
-可选的目标（target）：node，browser 和 electron
+⚠️ Target 为`node` and `electron`的将不会打包`dependencies`（然而却包含`devDependencies`）。使用[--bundle-node-modules](#force-node-modules-bundling) 标记可以覆盖这样的行为（往下看）
+
+可选的目标（target）：`node`, `browser`, `electron`
+
+### 强制 node 模块打包
+
+默认为：false
+
+可用于： `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --target node --bundle-node-modules
+```
+
+默认情况下，当使用 `--target node` 或 `--target electron`时，package.json's `dependencies`将不包含在打包中。这个标记就是为了添加它们进去。
+
+### 缓存目录
+
+默认为: ".cache"
+
+可用于： `serve`, `watch`, `build`
+
+```bash
+parcel build entry.js --cache-dir build/cache
+```
+
+### 端口
+
+默认为：1234
+
+可用于： `serve`
+
+```bash
+parcel serve entry.js --port 1111
+```
 
 ### 更改日志级别
 
@@ -138,17 +198,20 @@ parcel build entry.js --out-file output.html
 
 默认为：精简报告
 
+可选参数指定要打印报告的深度（depth）
+
 可用于：`build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### 启用 https
 
 默认为：不启用 https
 
-可用于： `serve`
+可用于： `serve`，`watch`（热更新 hmr 采用 https 连接）
 
 ```bash
 parcel entry.js --https
@@ -160,7 +223,7 @@ parcel entry.js --https
 
 默认为：不启用 https
 
-可用于：`serve`
+可用于：`serve`，`watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -168,7 +231,7 @@ parcel entry.js --cert certificate.cert --key private.key
 
 ### 在浏览器中打开
 
-默认为：禁用开启
+默认为：禁用
 
 可用于：`serve`
 
@@ -176,9 +239,9 @@ parcel entry.js --cert certificate.cert --key private.key
 parcel entry.js --open
 ```
 
-### 禁用 source-maps
+### 禁用源代码映射（source-maps）
 
-默认为：source-maps 启用
+默认为：启用
 
 可用于：`serve`，`watch`，`build`
 
@@ -186,9 +249,19 @@ parcel entry.js --open
 parcel build entry.js --no-source-maps
 ```
 
-### 禁用 autoinstall
+### 禁用文件 hash 命名（content-hash）
 
-默认为：autoinstall 启用
+默认为：启用
+
+可用于：`build`
+
+```bash
+parcel build entry.js --no-content-hash
+```
+
+### 禁用自动安装依赖（autoinstall）
+
+默认为：启用
 
 可用于：`serve`，`watch`
 
@@ -196,9 +269,9 @@ parcel build entry.js --no-source-maps
 parcel entry.js --no-autoinstall
 ```
 
-### 禁用 HMR
+### 禁用热替换（HMR）
 
-默认为：HMR 启用
+默认为：启用
 
 可用于：`serve`，`watch`
 
@@ -206,9 +279,9 @@ parcel entry.js --no-autoinstall
 parcel entry.js --no-hmr
 ```
 
-### 禁用 minification
+### 禁用代码压缩（minification）
 
-默认为：minification 启用
+默认为：启用
 
 可用于：`build`
 
@@ -225,3 +298,26 @@ parcel build entry.js --no-minify
 ```bash
 parcel build entry.js --no-cache
 ```
+
+### UMD 方式暴露模块
+
+默认为：禁止
+
+可用于：`serve`, `watch`, `build`
+
+```bash
+parcel serve entry.js --global myvariable
+```
+
+### 开启实验性的 scope hoisting/tree shaking 支持
+
+默认为：禁止
+
+可用于：`build`
+
+```bash
+parcel build entry.js --experimental-scope-hoisting
+```
+
+更多信息，请查看 Devon Govett's post on Parcel 1.9
+[Tree Shaking section](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3)
