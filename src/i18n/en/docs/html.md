@@ -18,6 +18,10 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 </html>
 ```
 
+## Importing HTML in JavaScript
+
+Importing HTML in JavaScript does not statically include the HTML strings, but the HTML files will dynamically be fetched using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). To achieve Internet Explorer 11 and older browser support, `Promise` and `fetch` polyfills need to be provided.
+
 ## Importing uncompiled assets
 
 Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS, etc.) in HTML is supported. Parcel will automatically process the file and update the link to point to the compiled asset.
