@@ -20,7 +20,7 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 
 ## Importing HTML in JavaScript
 
-Importing HTML in JavaScript does not statically include the HTML strings, but the HTML files will dynamically be fetched using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). To achieve Internet Explorer 11 and oder browser support, `Promise` and `fetch` polyfills need to be provided.
+Importing HTML in JavaScript does not statically include the HTML strings, but the HTML files will dynamically be fetched using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). To achieve Internet Explorer 11 and older browser support, `Promise` and `fetch` polyfills need to be provided.
 
 ## Importing uncompiled assets
 
