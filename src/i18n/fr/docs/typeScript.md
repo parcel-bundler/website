@@ -4,12 +4,14 @@ _Extensions supportées : `ts`, `tsx`_
 
 [TypeScript](https://www.typescriptlang.org/) est un sur-ensemble typé du JavaScript qui compile en JavaScript simple, qui prend également en charge les fonctionnalités modernes ES2015+. La transformation TypeScript fonctionne sans aucune configuration supplémentaire.
 
+Parcel n'effectue aucune vérification de type. Vous pouvez utiliser `tsc --noEmit` pour que vos fichiers soient vérifiés par typescript.
+
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <script src="./index.ts"></script>
-</body>
+  <body>
+    <script src="./index.ts"></script>
+  </body>
 </html>
 ```
 
@@ -37,10 +39,10 @@ Exemple complet :
 ```html
 <!-- index.html -->
 <html>
-<body>
-  <div id="root"></div>
-  <script src="./index.tsx"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script src="./index.tsx"></script>
+  </body>
 </html>
 ```
 
@@ -64,3 +66,23 @@ ReactDOM.render(<p>Coucou</p>, document.getElementById('root'))
 ```
 
 Consultez complétement cette discussion pour plus de détails : https://github.com/parcel-bundler/parcel/issues/1199
+
+## baseURL and paths
+
+Parcel ne peut pas utiliser les directives `baseUrl` ou `paths` dans `tsconfig.json`. Vous pouvez à la place utiliser la convention de chargement du module `~` de Parcel. Dites-le à typescript à peu près comme ça :
+
+```json
+// tsconfig.json
+// en supposant que vos sources sont dans ./src/
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "~*": ["./*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
+```
+
+Consultez [ce gist](https://gist.github.com/croaky/e3394e78d419475efc79c1e418c243ed) pour un exemple complet.
