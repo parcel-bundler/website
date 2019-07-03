@@ -26,10 +26,10 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 ```
 
-你也可以导入`Cargo.toml`文件。Parcel会调用Cargo来编译。
+你也可以导入rust项目，通过导入`src/lib.rs`或`src/main.rs`。Parcel会调用Cargo来编译。
 
 ```js
-import { sub } from './sub/Cargo.toml'
+import { sub } from './sub/src/lib.rs'
 console.log(sub(2, 3))
 ```
 
@@ -45,7 +45,7 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2"
 ```
 
-在`./sub/lib.rs`中：
+在`./sub/src/lib.rs`中：
 ```rust
 use wasm_bindgen::prelude::*;
 
