@@ -26,7 +26,7 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 ```
 
-你也可以导入rust项目，通过导入`src/lib.rs`或`src/main.rs`。Parcel会调用Cargo来编译。
+你也可以通过导入`src/lib.rs`或`src/main.rs`来导入rust项目。此时，Parcel会调用`cargo`而不是`rustc`进行编译。
 
 ```js
 import { sub } from './sub/src/lib.rs'
