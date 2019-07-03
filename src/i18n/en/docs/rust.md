@@ -1,6 +1,6 @@
 # Rust
 
-_Supported extensions: `rs`, `Cargo.toml`_
+_Supported extensions: `rs`_
 
 [Rust](https://www.rust-lang.org) is a systems programming language developed by Mozilla, which offers native performance with some interesting memory and thread safety characteristics. Rust recently added support for compiling to WebAssembly, and now Parcel makes it **super easy** to get started with zero configuration!
 
@@ -26,10 +26,10 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 ```
 
-You can also import rust project using `Cargo.toml`.
+You can also import rust project by importing `src/lib.rs` or `src/main.rs`, Parcel will call `cargo` to build the project.
 
 ```js
-import { sub } from './sub/Cargo.toml'
+import { sub } from './sub/src/lib.rs'
 console.log(sub(2, 3))
 ```
 
@@ -45,7 +45,7 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2"
 ```
 
-in `./sub/lib.rs`:
+in `./sub/src/lib.rs`:
 ```rust
 use wasm_bindgen::prelude::*;
 
