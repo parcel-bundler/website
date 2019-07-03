@@ -1,6 +1,6 @@
 # Rust
 
-_支持扩展类型: `rs`_
+_支持扩展类型: `rs`, `Cargo.toml`
 
 [Rust](https://www.rust-lang.org)是一个由 Mozilla 开发的系统级编程语言，在一些内存和安全线程方面拥有近原生的性能。Rust 最近支持了编译成 WebAssembly，而现在 Parcel 让它**超级简单**零配置地开始使用。
 
@@ -23,5 +23,34 @@ console.log(add(2, 3))
 #[no_mangle]
 pub fn add(a: i32, b: i32) -> i32 {
   return a + b
+}
+```
+
+你也可以导入`Cargo.toml`文件。Parcel会调用Cargo来编译。
+
+```js
+import { sub } from './sub/Cargo.toml'
+console.log(sub(2, 3))
+```
+
+在`./sub/Cargo.toml`中：
+```toml
+[package]
+...
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+```
+
+在`./sub/lib.rs`中：
+```rust
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub fn sub(a: i32, b: i32) -> i32 {
+    a - b
 }
 ```
