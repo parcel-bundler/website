@@ -23,6 +23,10 @@ HTML 中引入的連結將會被改寫使其可連結至輸出的檔案。
 </html>
 ```
 
+## 在 JacaScript 中匯入 HTML
+
+在 JacaScript 中匯入 HTML 並不是單純匯入 HTML 字串而已，而是利用 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) 動態地擷取 HTML 檔案。若需要支援 Internet Explorer 11 或是更舊的瀏覽器，則需要另外提供 `Promise` 和 `fetch` 的 polyfill。
+
 ## 匯入未編譯的資源
 
 你可以在 HTML 中直接連結可被 Parcel 編譯的檔案（如：JavaScript、TypeScript 及 SCSS 等等），Parcel 將會自動處理這類檔案並更新連結以指向編譯後的資源。
