@@ -109,7 +109,7 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-⚠️ `--target node` et `--target electron` n'ajoutent pas les `dependencies` du `package.json` au paquet (mais ajoutent bien les `devDependencies`). Ce comportement peut être modifié via le flag [--bundle-node-modules](#forcer-l'ajout-des-dépendances-node) (voir ci-dessous).
+⚠️ `--target node` et `--target electron` n'ajoutent pas les `dependencies` du `package.json` au paquet. Ce comportement peut être modifié via le flag [--bundle-node-modules](#forcer-l'ajout-des-dépendances-node) (voir ci-dessous).
 
 Les cibles possibles sont : `node`, `browser` et `electron`
 

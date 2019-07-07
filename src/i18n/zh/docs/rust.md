@@ -17,7 +17,7 @@ const { add } = await import('./add.rs')
 console.log(add(2, 3))
 ```
 
-在 Rust 侧，你只需要确保函数名不是 mangled 而是 public 的。
+在 Rust 侧，你只需要确保函数名不是 mangled 而且函数是 public 的即可。
 
 ```rs
 #[no_mangle]
