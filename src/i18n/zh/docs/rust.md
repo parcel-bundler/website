@@ -25,3 +25,32 @@ pub fn add(a: i32, b: i32) -> i32 {
   return a + b
 }
 ```
+
+你也可以通过导入`src/lib.rs`或`src/main.rs`来导入rust项目。此时，Parcel会调用`cargo`而不是`rustc`进行编译。
+
+```js
+import { sub } from './sub/src/lib.rs'
+console.log(sub(2, 3))
+```
+
+在`./sub/Cargo.toml`中：
+```toml
+[package]
+...
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+```
+
+在`./sub/src/lib.rs`中：
+```rust
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub fn sub(a: i32, b: i32) -> i32 {
+    a - b
+}
+```
