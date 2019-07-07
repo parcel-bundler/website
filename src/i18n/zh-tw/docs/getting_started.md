@@ -1,6 +1,6 @@
 # 🚀 開始使用
 
-Parcel 是款網頁打包工具，憑藉其開發者體驗脫穎而出。它利用多核處理來達成極速編譯，且完全無須設定。
+Parcel 是款網頁打包工具，憑藉其開發者體驗脫穎而出。它利用多核心處理來達成極速編譯，且完全無須設定。
 
 首先使用 Yarn 或 npm 安裝 Parcel：
 
@@ -29,6 +29,7 @@ npm init -y
 ```
 
 Parcel 可將任何類型的檔案視為進入點，但 HTML 或 JavaScript 會是較好的選擇。
+
 如果你在 HTML 中使用相對路徑引入主要的 JavaScript 檔案，Parcel 將會在輸出的檔案中自動替換這些路徑。
 
 下一步，建立 index.html 及 index.js。
@@ -52,7 +53,8 @@ parcel index.html
 ```
 
 接著在瀏覽器中打開 http://localhost:1234/。
-若模組熱替換無法正常運作，你可能需要[設定你的編輯器](hmr.html#safe-write)。你也可以使用 `-p <port number>` 選項來複寫預設連接埠。
+
+若模組熱替換無法正常運作，你可能需要[設定你的編輯器](hmr.html#safe-write)。你也可以使用 `-p <port number>` 選項來覆寫預設連接埠。
 
 開發專用的伺服器建議只在沒有自有伺服器及純前端 app 的情況下才使用。若你已有伺服器，可使用 Parcel 的 `watch` 模式，此模式仍有自動重新編譯及模組熱替換的功能，但不會啟動網頁伺服器。
 
@@ -87,7 +89,7 @@ _注意：_ 若你有類似這樣的檔案架構：
 -- index.html
 ```
 
-在這種情況下是無法連線到 http://localhost:1234/folder-1/ 的，你需要明確的指定至檔案才行，如： http://localhost:1234/folder-1/index.html。
+在這種情況下是無法連線到 http://localhost:1234/folder-1/ 的，你需要明確的指定至檔案才行，如：http://localhost:1234/folder-1/index.html。
 
 ### 編譯正式環境版本
 

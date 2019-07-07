@@ -2,9 +2,9 @@
 
 _支援的副檔名`ts` 及 `tsx`_
 
-[TypeScript](https://www.typescriptlang.org/) 是個強型別語法的 JavaScript 超集合，其可支援 ES2015+ 的功能並可編譯成一般的 JavaScript。
+[TypeScript](https://www.typescriptlang.org/) 是個強型別語法的 JavaScript 超集合，其可支援 ES2015+ 的功能並可編譯成一般的 JavaScript。Parcel 已內建 TypeScript 的轉換，完全無需設定。
 
-Parcel 已內建 TypeScript 的轉換，完全無需設定。
+Parcel 不會執行 type check，你可以使用 `tsc --noEmit` 讓 TypeScript 檢查你的檔案。
 
 ```html
 <!-- index.html -->
@@ -68,3 +68,24 @@ ReactDOM.render(
 ```
 
 詳情請見此討論串：https://github.com/parcel-bundler/parcel/issues/1199
+
+## baseURL 和 paths
+
+Parcel 不會使用 `tsconfig.json` 中的 `baseUrl` 和 `paths` 指令，你可以用 Parcel 的 `~` 模型載入方式取而代之：
+
+```js
+// tsconfig.json
+// 假設你的 ts 原始碼位於 ./src/
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "~*": ["./*"]
+    },
+  },
+  "include": ["src/**/*"]
+}
+```
+
+完整範例請見[此 gist](https://gist.github.com/croaky/e3394e78d419475efc79c1e418c243ed)。
+

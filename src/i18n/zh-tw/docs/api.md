@@ -140,10 +140,10 @@ Parcel 使用 `Bundle` 將所有資源打包在一起，其也包含了子系及
 
 ```Text
 index.html
--- index.js
- |--- test.js
- |--- test.txt
--- index.css
+├── index.js
+│   ├── test.js
+│   └── test.txt
+└── index.css
 ```
 
 ##### Bundle 樹 (Bundle Tree)：
@@ -162,9 +162,9 @@ index.html
 
 ```Text
 index.html
--- index.js (包括 index.js 及 test.js)
- |--- test.txt (包括 test.txt)
--- index.css (包括 index.css)
+├── index.js ········ (包括 index.js 及 test.js)
+│   └── test.txt ···· (包括 test.txt)
+└── index.css ······· (包括 index.css)
 ```
 
 ### 中介軟體 (Middleware)
