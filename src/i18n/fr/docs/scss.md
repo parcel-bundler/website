@@ -22,6 +22,12 @@ Une fois que vous avez installé `sass`, vous pouvez importer des fichiers SCSS 
 import './custom.scss'
 ```
 
+Vous pouvez également inclure directement le fichier SCSS dans un fichier HTML.
+
+```html
+<link rel="stylesheet" href="./style.scss" />
+```
+
 Les dépendances dans les fichiers SCSS peuvent être utilisées avec les instructions `@import`.
 
 Si vous n'avez pas de module `sass` installé avant l'exécution de Parcel, Parcel l'installera automatiquement pour vous.
