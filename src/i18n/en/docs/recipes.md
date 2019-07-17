@@ -79,9 +79,9 @@ Add Start script to `package.json`
 }
 ```
 
-## Typescript
+## TypeScript
 
-First we need to add Parcel and Typescript to our project.
+First we need to add Parcel and TypeScript to our project.
 
 ```bash
 npm install --save-dev typescript
