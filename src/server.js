@@ -14,10 +14,16 @@ app.use(function(req, res, next) {
   let lang = [req.query.locale, req.subdomains[0], req.acceptsLanguages(...languages), 'en'].find(function(lang) {
     return languages.includes(lang)
   })
-
-  req.url = '/' + lang + req.url
-  res.setHeader('Content-Language', lang)
-  next()
+  // check if page exist
+  fs.access(`${__dirname}/../dist/${lang}${req.url}`, fs.F_OK, err => {
+    if (err) {
+      // fallback to `en`
+      lang = 'en'
+    }
+    req.url = `/${lang}${req.url}`
+    res.setHeader('Content-Language', lang)
+    next()
+  })
 })
 
 app.use(
