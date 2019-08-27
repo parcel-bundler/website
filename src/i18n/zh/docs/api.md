@@ -29,7 +29,7 @@ const options = {
   global: 'moduleName', // 在当前名字模块以UMD模式导出，默认禁止。
   minify: false, // 压缩文件，当 process.env.NODE_ENV === 'production' 时，会启用
   scopeHoist: false, // 打开实验性的scope hoisting/tree shaking用来缩小生产环境的包。
-  target: 'browser', // 浏览器/node/electron, 默认为 browser
+  target: 'browser', // browser/node/electron, 默认为 browser
   bundleNodeModules: false, // 当package.json的'target'设置'node' or 'electron'时，相应的依赖不会加入bundle中。设置true将被包含。
   https: { // 设置true自动定义一对密钥和证书，false取消变成http
     cert: './ssl/c.crt', // 自定义证书路径
