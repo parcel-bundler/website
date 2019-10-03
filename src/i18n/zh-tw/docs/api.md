@@ -47,7 +47,8 @@ const options = {
   hmrPort: 0, // 模組熱替換的 socket 連接埠，預設為一個可用的隨機連接埠（0 表示可用的隨機連接埠）
   sourceMaps: true, // 是否啟用 sourcemaps，預設為啟用（在最小化編譯中強制產生 sourcemap）
   hmrHostname: '', // 模組熱替換的域名，預設為 ''
-  detailedReport: false // 是否顯示更詳盡的報表。報表內容包括 bundle、資源、檔案大小及編譯時間等，預設為 false。報表僅在 watch 停用的情況下才會顯示
+  detailedReport: false, // 是否顯示更詳盡的報表。報表內容包括 bundle、資源、檔案大小及編譯時間等，預設為 false。報表僅在 watch 停用的情況下才會顯示
+  autoInstall: true, // 是否於打包時自動安裝缺少的相依套件
 };
 
 (async function () {

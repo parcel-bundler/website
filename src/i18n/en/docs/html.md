@@ -62,3 +62,12 @@ Then, create a `.posthtmlrc`:
 Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
 When importing modules using `posthtml-modules`, if you start paths with `/`, they will become relative to `./src`.
+
+# htmlnano
+
+Parcel automatically processes all HTML assets with [htmlnano](https://github.com/posthtml/htmlnano) when minification is enabled. htmlnano can be configured according to its documentation with a `.htmlnanorc` (JSON) or `.htmlnanorc.js` file, for example:
+```json
+{
+    "removeComments": false
+}
+```
