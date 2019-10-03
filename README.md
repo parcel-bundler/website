@@ -14,7 +14,7 @@ npm run build
 npm start
 ```
 
-The website is deployed using [Zeit Now](https://zeit.co/now).
+The website is deployed using [ZEIT Now](https://zeit.co/now).
 
 ### Changing the displayed language
 
