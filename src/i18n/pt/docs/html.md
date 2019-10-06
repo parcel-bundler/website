@@ -35,9 +35,13 @@ Então, crie o `.posthtmlrc`:
   "plugins": {
     "posthtml-img-autosize": {
       "root": "./images"
+    },
+    "posthtml-modules": {
+      "root": "./src"
     }
   }
 }
 ```
+Quando for importar módulos usando o `posthtml-modules`, ao começar caminhos com `/`, eles serão relativos a `./src`.
 
 Plugins são especificados nas chaves do objeto `plugins`, e as opções são definidas usando os valores do objeto. Se não houver opções para um plugin, basta configurá-lo como `true` em vez disso.

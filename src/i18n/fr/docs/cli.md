@@ -109,7 +109,7 @@ Disponible dans : `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-⚠️ `--target node` et `--target electron` n'ajoutent pas les `dependencies` du `package.json` au paquet (mais ajoutent bien les `devDependencies`). Ce comportement peut être modifié via le flag [--bundle-node-modules](#forcer-l'ajout-des-dépendances-node) (voir ci-dessous).
+⚠️ `--target node` et `--target electron` n'ajoutent pas les `dependencies` du `package.json` au paquet. Ce comportement peut être modifié via le flag [--bundle-node-modules](#forcer-l'ajout-des-dépendances-node) (voir ci-dessous).
 
 Les cibles possibles sont : `node`, `browser` et `electron`
 
@@ -198,12 +198,15 @@ Cela modifie le nom du fichier de sortie du paquet
 
 ### Imprimer un rapport détaillé
 
-Par défaut : rapport minimal
+Par défaut : rapport minimal, sinon un détail à 10
+
+L'argument optionnel spécifie un détail du rapport.
 
 Disponible dans : `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### Désactiver https

@@ -34,9 +34,29 @@
       <h1><img class="logo" src="assets/logo.svg" alt="Parcel" /></h1>
       <p class="subtitle">Empaqueteur d'application web ultra-rapide, sans configuration</p>
       <div class="parcel">
-        <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-back.webp, assets/parcel-back@2x.webp 2x, assets/parcel-back@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-back.png"
+            srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x"
+            height="474"
+          />
+        </picture>
         <div class="icons"></div>
-        <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-front.webp, assets/parcel-front@2x.webp 2x, assets/parcel-front@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-front.png"
+            srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x"
+            height="474"
+          />
+        </picture>
       </div>
       <a class="button get-started" href="getting_started.html">Commencer</a>
       <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
@@ -53,7 +73,7 @@
             <option class="it" value="https://it.parceljs.org">Italiano</option>
             <option class="ja" value="https://ja.parceljs.org">日本語</option>
             <option class="ko" value="https://ko.parceljs.org">한국어</option>
-            <option class="pl" value="https://pl.parceljs.org">Polskie</option>
+            <option class="pl" value="https://pl.parceljs.org">Polski</option>
             <option class="pt" value="https://pt.parceljs.org">Português</option>
             <option class="ru" value="https://ru.parceljs.org">Русский</option>
             <option class="uk" value="https://uk.parceljs.org">Українська</option>
@@ -157,8 +177,8 @@
         </div>
 
         <p>
-          Exécutez <code>parcel index.html</code> pour démarrer un serveur de dev. L'importation JavaScript,
-          CSS, images, etc fonctionne correctement ! 👌
+          Exécutez <code>parcel index.html</code> pour démarrer un serveur de dev. L'importation JavaScript, CSS,
+          images, etc fonctionne correctement ! 👌
         </p>
       </section>
 

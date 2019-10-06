@@ -34,9 +34,9 @@ Ensuite, créez un fichier index.html et index.js.
 
 ```html
 <html>
-<body>
-  <script src="./index.js"></script>
-</body>
+  <body>
+    <script src="./index.js"></script>
+  </body>
 </html>
 ```
 
@@ -57,6 +57,8 @@ Utilisez le serveur de développement lorsque vous n'avez pas votre propre serve
 ```bash
 parcel watch index.html
 ```
+
+Vous pouvez aussi utiliser [createapp.dev](https://createapp.dev/parcel) pour créer un projet Parcel dans le navigateur. Sélectionnez les fonctionnalités dont vous avez besoin, telles que React, Vue, Typescript et CSS, et le projet sera généré en temps réel. Vous pouvez utiliser cet outil pour apprendre à configurer un nouveau projet. Vous pouvez également télécharger le projet sous forme de fichier ZIP et commencer à coder immédiatement.
 
 ### Plusieurs fichiers comme point d'entrée
 

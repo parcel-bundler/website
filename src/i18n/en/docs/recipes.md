@@ -35,29 +35,14 @@ First we need to install the dependencies for Preact.
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-preact
-```
-
-Then make sure the following Babel config is present.
-
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
 ```
 
 Add Start script to `package.json`
@@ -94,9 +79,9 @@ Add Start script to `package.json`
 }
 ```
 
-## Typescript
+## TypeScript
 
-First we need to add Parcel and Typescript to our project.
+First we need to add Parcel and TypeScript to our project.
 
 ```bash
 npm install --save-dev typescript
@@ -150,3 +135,91 @@ Add Start script to `package.json`
 ```
 
 Done! 😄 Compiled `.js` file can be found inside the dist folder.
+
+## Bootstrap + FontAwesome
+
+First we need to install the dependencies for Bootstrap and FontAwesome.
+
+```bash
+npm install bootstrap jquery popper.js
+npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+<sub>Or if you have the optional Yarn package manager installed</sub>
+
+```bash
+yarn add bootstrap jquery popper.js
+yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+Add Start script to `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+### Importing Bootstrap with precompiled styles
+
+Create a JavaScript file to act as the entry point for your app and import any necessary dependencies.
+
+```javascript
+// main.js
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.css' // Import precompiled Bootstrap css
+import '@fortawesome/fontawesome-free/css/all.css'
+```
+
+Then, in your `index.html` file, add a reference to your JavaScript entry point.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+      <!-- Here 👇 -->
+      <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+Done!
+
+### Customizing Bootstrap styles
+
+If you wish to customize the Bootstrap styles instead of importing the precompiled css, create an entry point `.scss` file and include the Bootstrap source styles.
+
+```scss
+// main.scss
+@import "~bootstrap/scss/bootstrap";
+```
+
+Next, create a JavaScript file to act as the entry point for your app and import any necessary dependencies.
+
+```javascript
+// main.js
+import 'bootstrap'
+import '@fortawesome/fontawesome-free/css/all.css'
+import './main.scss' // Import our scss file
+```
+
+Then, in your `index.html` file, add a reference to your JavaScript entry point.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+      <!-- Here 👇 -->
+      <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+Done!

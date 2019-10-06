@@ -14,7 +14,7 @@ npm run build
 npm start
 ```
 
-The website is deployed using [Zeit Now](https://zeit.co/now).
+The website is deployed using [ZEIT Now](https://zeit.co/now).
 
 ### Changing the displayed language
 
@@ -26,7 +26,7 @@ Change the displayed language using a query string, access various version using
 * Italiano: http://localhost:5000/?locale=it
 * 日本語: http://localhost:5000/?locale=ja
 * 한국어: http://localhost:5000/?locale=ko
-* Polskie: http://localhost:5000/?locale=pl
+* Polski: http://localhost:5000/?locale=pl
 * Português: http://localhost:5000/?locale=pt
 * Русский: http://localhost:5000/?locale=ru
 * Українська: http://localhost:5000/?locale=uk

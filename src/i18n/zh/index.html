@@ -1,204 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Parcel" />
-  <meta property="og:url" content="https://parceljs.org/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
-  <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
-  <title>Parcel 中文网</title>
-  <link type="text/css" rel="stylesheet" href="assets/home.css"/>
-  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="Parcel" />
+    <meta property="og:url" content="https://parceljs.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Blazing fast, zero configuration web application bundler" />
+    <meta property="og:image" content="https://parceljs.org/assets/parcel-og.png" />
+    <title>Parcel 中文网</title>
+    <link type="text/css" rel="stylesheet" href="assets/home.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-110647385-1');
   </script> -->
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-</head>
-<body>
-  <header>
-    <h1>
-      <img class="logo" src="assets/logo.svg" alt="Parcel">
-    </h1>
-    <p class="subtitle">极速零配置Web应用打包工具</p class="subtitle">
-    <div class="parcel">
-      <img src="assets/parcel-back.png" srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x">
-      <div class="icons"></div>
-      <img src="assets/parcel-front.png" srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x">
+    <script>
+      var _hmt = _hmt || []
+      ;(function() {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
+    </script>
+  </head>
+  <body>
+    <div class="banner">
+      👕 通过T恤商店支持 Parcel
+      <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">t-shirt or hoodie</a
+      >！所有的收益将作为我们的募捐基金
+      <a href="https://opencollective.com/parcel" target="_blank">Open Collective</a>。 ✨
     </div>
-    <a class="button get-started" href="getting_started.html">快速开始</a>
-    <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    <header>
+      <h1>
+        <img class="logo" src="assets/logo.svg" alt="Parcel" />
+      </h1>
+      <p class="subtitle">极速零配置Web应用打包工具</p>
+      <div class="parcel">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-back.webp, assets/parcel-back@2x.webp 2x, assets/parcel-back@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-back.png"
+            srcset="assets/parcel-back@2x.png 2x, assets/parcel-back@3x.png 3x"
+            height="474"
+          />
+        </picture>
+        <div class="icons"></div>
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/parcel-front.webp, assets/parcel-front@2x.webp 2x, assets/parcel-front@3x.webp 3x"
+          />
+          <img
+            src="assets/parcel-front.png"
+            srcset="assets/parcel-front@2x.png 2x, assets/parcel-front@3x.png 3x"
+            height="474"
+          />
+        </picture>
+      </div>
+      <a class="button get-started" href="getting_started.html">快速开始</a>
+      <a class="button" href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
 
-    <nav class="links">
-      <form class="languages">
-        <select class="language-dropdown" onchange="location = this.options[this.selectedIndex].value + location.pathname;">
-          <option class="en" value="https://en.parceljs.org">English</option>
-          <option class="es" value="https://es.parceljs.org">Español</option>
-          <option class="fr" value="https://fr.parceljs.org">Français</option>
-          <option class="it" value="https://it.parceljs.org">Italiano</option>
-          <option class="ja" value="https://ja.parceljs.org">日本語</option>
-          <option class="ko" value="https://ko.parceljs.org">한국어</option>
-          <option class="pl" value="https://pl.parceljs.org">Polskie</option>
-          <option class="pt" value="https://pt.parceljs.org">Português</option>
-          <option class="ru" value="https://ru.parceljs.org">Русский</option>
-          <option class="uk" value="https://uk.parceljs.org">Українська</option>
-          <option class="zh" value="https://zh.parceljs.org" selected>简体中文</option>
-          <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
-        </select>
-      </form>
-      <a href="getting_started.html">文档</a>
-      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
-    </nav>
-  </header>
+      <nav class="links">
+        <form class="languages">
+          <select
+            class="language-dropdown"
+            onchange="location = this.options[this.selectedIndex].value + location.pathname;"
+          >
+            <option class="en" value="https://en.parceljs.org">English</option>
+            <option class="es" value="https://es.parceljs.org">Español</option>
+            <option class="fr" value="https://fr.parceljs.org">Français</option>
+            <option class="it" value="https://it.parceljs.org">Italiano</option>
+            <option class="ja" value="https://ja.parceljs.org">日本語</option>
+            <option class="ko" value="https://ko.parceljs.org">한국어</option>
+            <option class="pl" value="https://pl.parceljs.org">Polski</option>
+            <option class="pt" value="https://pt.parceljs.org">Português</option>
+            <option class="ru" value="https://ru.parceljs.org">Русский</option>
+            <option class="uk" value="https://uk.parceljs.org">Українська</option>
+            <option class="zh" value="https://zh.parceljs.org" selected>简体中文</option>
+            <option class="zh-tw" value="https://zh-tw.parceljs.org">繁體中文</option>
+          </select>
+        </form>
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+        <a href="getting_started.html">文档</a>
+      </nav>
+    </header>
 
-  <main>
-    <div class="features">
-      <section>
-        <h3>🚀 极速打包</h3>
-        <p>Parcel 使用 worker 进程去启用多核编译。同时有文件系统缓存，即使在重启构建后也能快速再编译。</p>
-      </section>
-      <section>
-        <h3>📦 将你所有的资源打包</h3>
-        <p>Parcel 具备开箱即用的对  JS, CSS, HTML, 文件 及更多的支持，而且不需要插件。</p>
-      </section>
-      <section>
-        <h3>🐠 自动转换</h3>
-        <p>如若有需要，Babel, PostCSS, 和PostHTML甚至 <code>node_modules</code> 包会被用于自动转换代码.</p>
-      </section>
-      <section>
-        <h3>✂️ 零配置代码分拆</h3>
-        <p>使用动态 <code>import()</code> 语法, Parcel 将你的输出文件束(bundles)分拆，因此你只需要在初次加载时加载你所需要的代码。</p>
-      </section>
-      <section>
-        <h3>🔥 热模块替换</h3>
-        <p>Parcel 无需配置，在开发环境的时候会自动在浏览器内随着你的代码更改而去更新模块。</p>
-      </section>
-      <section>
-        <h3>🚨 友好的错误日志</h3>
-        <p>当遇到错误时，Parcel 会输出 语法高亮的代码片段，帮助你定位问题。</p>
-      </section>
-    </div>
+    <main>
+      <div class="features">
+        <section>
+          <h3>🚀 极速打包</h3>
+          <p>Parcel 使用 worker 进程去启用多核编译。同时有文件系统缓存，即使在重启构建后也能快速再编译。</p>
+        </section>
+        <section>
+          <h3>📦 将你所有的资源打包</h3>
+          <p>Parcel 具备开箱即用的对 JS, CSS, HTML, 文件 及更多的支持，而且不需要插件。</p>
+        </section>
+        <section>
+          <h3>🐠 自动转换</h3>
+          <p>如若有需要，Babel, PostCSS, 和PostHTML甚至 <code>node_modules</code> 包会被用于自动转换代码.</p>
+        </section>
+        <section>
+          <h3>✂️ 零配置代码分拆</h3>
+          <p>
+            使用动态 <code>import()</code> 语法, Parcel
+            将你的输出文件束(bundles)分拆，因此你只需要在初次加载时加载你所需要的代码。
+          </p>
+        </section>
+        <section>
+          <h3>🔥 热模块替换</h3>
+          <p>Parcel 无需配置，在开发环境的时候会自动在浏览器内随着你的代码更改而去更新模块。</p>
+        </section>
+        <section>
+          <h3>🚨 友好的错误日志</h3>
+          <p>当遇到错误时，Parcel 会输出 语法高亮的代码片段，帮助你定位问题。</p>
+        </section>
+      </div>
 
-    <section>
-      <h2>Hello World</h2>
-      <p>先从你应用的入口 HTML 文件开始。Parcel 跟随着文件的依赖去构建你的整个应用。</p>
-      <div class="examples">
-      <div class="example">
-        <p><strong>✏️ index.html</strong></p>
-        <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+      <section>
+        <h2>Hello World</h2>
+        <p>先从你应用的入口 HTML 文件开始。Parcel 跟随着文件的依赖去构建你的整个应用。</p>
+        <div class="examples">
+          <div class="example">
+            <p><strong>✏️ index.html</strong></p>
+            <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>🛠 index.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// 引入另一个组件</span>
+          <div class="example">
+            <p><strong>🛠 index.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// 导入另一个组件</span>
 <span class="hljs-keyword">import</span> main <span class="hljs-keyword">from</span> <span class="hljs-string">'./main'</span>;
 
 main();</code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>🛠 main.js</strong></p>
-        <pre class="hljs"><code><span class="hljs-comment">// 引入一个 CSS 模块</span>
+          <div class="example">
+            <p><strong>🛠 main.js</strong></p>
+            <pre class="hljs"><code><span class="hljs-comment">// 导入一个 CSS 模块</span>
 <span class="hljs-keyword">import</span> classes <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.css'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(classes.main);
 };</code></pre>
-      </div>
+          </div>
 
-      <div class="example">
-        <p><strong>💅 main.css</strong></p>
-        <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
+          <div class="example">
+            <p><strong>💅 main.css</strong></p>
+            <pre class="hljs"><code><span class="hljs-selector-class">.main</span> {
   <span class="hljs-comment">/* 引用一张图片 */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
   <span class="hljs-attribute">color</span>: red;
-}</code></pre></div>
-      </div>
-
-      <p>只需要运行 <code>parcel index.html</code> 去启动一个开发服务器。引入 JavaScript, CSS, images, 和更多的资源，然后便大功告成！ 👌</p>
-    </section>
-
-    <section>
-      <h2>基准</h2>
-      <table>
-        <tr>
-          <th>打包工具</th>
-          <th>时间</th>
-        </tr>
-        <tr>
-          <td>browserify</td>
-          <td>22.98s</td>
-        </tr>
-        <tr>
-          <td>webpack</td>
-          <td>20.71s</td>
-        </tr>
-        <tr>
-          <td><strong>parcel</strong></td>
-          <td><strong>9.98s</strong></td>
-        </tr>
-        <tr>
-          <td><strong>parcel - with cache</strong></td>
-          <td><strong>2.64s</strong></td>
-        </tr>
-      </table>
-      <p>基于一个合理大小的应用，包含1726个模块，6.5M 未压缩大小。在一台有4个物理核心 CPU 的 2016 MacBook Pro 上构建。</p>
-    </section>
-  </main>
-
-  <footer>
-    <a class="button" href="getting_started.html">快速开始</a>
-    <div class="content">
-      <nav>
-        <h3>文档</h3>
-        <div>
-          <ul>
-            <li><a href="getting_started.html">🚀 快速开始</a></li>
-            <li><a href="assets.html">📦 资源</a></li>
-            <li><a href="transforms.html">🐠 转换</a></li>
-          </ul>
-          <ul>
-            <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
-            <li><a href="hmr.html">🔥 热模块替换</a></li>
-            <li><a href="production.html">✨ 生产环境</a></li>
-          </ul>
+}</code></pre>
+          </div>
         </div>
-      </nav>
-      <nav>
-        <h3>Links</h3>
-        <ul>
-          <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
-          <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="copyright">
-      Copyright ©
-      <script>document.write(new Date().getFullYear())</script>
-      Devon Govett. 此网站<a href="https://github.com/parcel-bundler/website" target="_blank">开源</a>。本网站由<a href="https://docschina.org/" target="_blank">印记中文团队</a>贡献中文翻译。
-    </div>
-  </footer>
 
-  <script src="assets/icons.js"></script>
-</body>
+        <p>
+          只需要运行 <code>parcel index.html</code> 去启动一个开发服务器。导入 JavaScript, CSS, images,
+          和更多的资源，然后便大功告成！ 👌
+        </p>
+      </section>
+
+      <section>
+        <h2>基准</h2>
+        <table>
+          <tr>
+            <th>打包工具</th>
+            <th>时间</th>
+          </tr>
+          <tr>
+            <td>browserify</td>
+            <td>22.98s</td>
+          </tr>
+          <tr>
+            <td>webpack</td>
+            <td>20.71s</td>
+          </tr>
+          <tr>
+            <td><strong>parcel</strong></td>
+            <td><strong>9.98s</strong></td>
+          </tr>
+          <tr>
+            <td><strong>parcel - with cache</strong></td>
+            <td><strong>2.64s</strong></td>
+          </tr>
+        </table>
+
+        <p>
+          基于一个合理大小的应用，包含1726个模块，6.5M 未压缩大小。在一台有4个物理核心 CPU 的 2016 MacBook Pro 上构建。
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <a class="button" href="getting_started.html">快速开始</a>
+      <div class="content">
+        <nav>
+          <h3>文档</h3>
+          <div>
+            <ul>
+              <li><a href="getting_started.html">🚀 快速开始</a></li>
+              <li><a href="assets.html">📦 资源</a></li>
+              <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
+            </ul>
+            <ul>
+              <li><a href="hmr.html">🔥 热模块替换</a></li>
+              <li><a href="production.html">✨ 生产环境</a></li>
+              <li><a href="cli.html">🖥 CLI</a></li>
+            </ul>
+          </div>
+        </nav>
+        <nav>
+          <h3>Links</h3>
+          <ul>
+            <li><a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a></li>
+            <li><a href="https://www.npmjs.com/package/parcel-bundler" target="_blank">npm</a></li>
+            <li><a href="https://twitter.com/parceljs" target="_blank">Twitter</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="copyright">
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Devon Govett. 此网站<a href="https://github.com/parcel-bundler/website" target="_blank">开源</a>。
+      </div>
+    </footer>
+
+    <script src="assets/icons.js"></script>
+  </body>
 </html>

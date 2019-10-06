@@ -12,7 +12,7 @@ npm install --save react-dom
 npm install --save-dev parcel-bundler
 ```
 
-<sub>或者是你想使用 Yarn 來管理套件</sub>
+<sub>或者你也可以使用 Yarn 安裝</sub>
 
 ```bash
 yarn add react
@@ -20,7 +20,7 @@ yarn add react-dom
 yarn add --dev parcel-bundler
 ```
 
-在 `package.json` 中增加啟動指令
+在 `package.json` 中加入啟動指令
 
 ```javascript
 // package.json
@@ -35,32 +35,17 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save preact-compat
 npm install --save-dev parcel-bundler
-npm install --save-dev babel-preset-preact
 ```
 
 <sub>或者是你想使用 Yarn 來管理套件</sub>
 
 ```bash
 yarn add preact
-yarn add preact-compat
 yarn add --dev parcel-bundler
-yarn add --dev babel-preset-preact
 ```
 
-確保你的 Babel 設定如下：
-
-```javascript
-// .babelrc
-{
-  "presets": [
-    "preact"
-  ]
-}
-```
-
-接著在 `package.json` 中增加啟動指令
+接著在 `package.json` 中加入啟動指令
 
 ```javascript
 // package.json
@@ -85,7 +70,7 @@ yarn add vue
 yarn add --dev parcel-bundler
 ```
 
-在 `package.json` 中增加啟動指令
+在 `package.json` 中加入啟動指令
 
 ```javascript
 // package.json
@@ -136,7 +121,7 @@ yarn add --dev parcel-bundler
 </html>
 ```
 
-完成！
+搞定！
 
 ### 直接編譯 `.ts` 檔案
 
@@ -149,4 +134,92 @@ yarn add --dev parcel-bundler
 }
 ```
 
-完成！ 😄 編譯過的 `.js` 檔案將會在 dist 目錄中。
+搞定！編譯過的 `.js` 檔案將會在 dist 目錄中。
+
+## Bootstrap + FontAwesome
+
+首先需要安裝 Bootstrap 及 FontAwesome 的相依套件。
+
+```bash
+npm install bootstrap jquery popper.js
+npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+<sub>或者你也可以使用 Yarn 安裝</sub>
+
+```bash
+yarn add bootstrap jquery popper.js
+yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+在 `package.json` 中加入啟動指令
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+### 匯入 Bootstrap 及預先編譯的樣式
+
+建立一個 JavaScript 檔案作為 app 進入點，接著匯入任何必要的相依套件。
+
+```javascript
+// main.js
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.css' // 匯入預先編譯的 Bootstrap CSS
+import '@fortawesome/fontawesome-free/css/all.css'
+```
+
+然後在你的 `index.html` 中加入 JavaSctipt 進入點。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+      <!-- 這裡 👇 -->
+      <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+搞定！
+
+### 自訂 Bootstrap 樣式
+
+若你想自訂 Bootstrap 樣式的話，可以建立一個 `.scss` 進入點，並引入 Bootstrap 樣式源碼。
+
+```scss
+// main.scss
+@import "~bootstrap/scss/bootstrap";
+```
+
+接著建立一個 JavaScript 檔案作為 app 進入點，並匯入任何必要的相依套件。
+
+```javascript
+// main.js
+import 'bootstrap'
+import '@fortawesome/fontawesome-free/css/all.css'
+import './main.scss' // 匯入剛建立的 scss 檔案
+```
+
+然後在你的 `index.html` 中加入 JavaSctipt 進入點。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+      <!-- 這裡 👇 -->
+      <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+搞定！

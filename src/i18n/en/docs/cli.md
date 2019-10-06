@@ -109,7 +109,7 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`). This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
+⚠️ Target `node` and `electron` will not bundle package.json's `dependencies`. This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
 
 Possible targets: `node`, `browser`, `electron`
 
@@ -198,12 +198,15 @@ This changes the output filename of the entrypoint bundle
 
 ### Print a detailed report
 
-Default: Minimal report
+Default: Minimal report, otherwise depth 10
+
+The optional argument specifies the depth to print.
 
 Available in: `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### Enable https

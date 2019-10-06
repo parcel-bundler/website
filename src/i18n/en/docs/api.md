@@ -39,7 +39,8 @@ const options = {
   hmrPort: 0, // The port the HMR socket runs on, defaults to a random free port (0 in node.js resolves to a random free port)
   sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (minified builds currently always create sourcemaps)
   hmrHostname: '', // A hostname for hot module reload, default to ''
-  detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
+  detailedReport: false, // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
+  autoInstall: true, // Enable or disable auto install of missing dependencies found during bundling
 };
 
 (async function() {
@@ -132,10 +133,10 @@ A very basic example of an asset tree and it's generated bundle Tree
 
 ```Text
 index.html
--- index.js
- |--- test.js
- |--- test.txt
--- index.css
+├── index.js
+│   ├── test.js
+│   └── test.txt
+└── index.css
 ```
 
 ##### Bundle Tree:
@@ -154,9 +155,9 @@ index.html
 
 ```Text
 index.html
--- index.js (includes index.js and test.js)
- |--- test.txt (includes test.txt)
--- index.css (includes index.css)
+├── index.js ········ (includes index.js and test.js)
+│   └── test.txt ···· (includes test.txt)
+└── index.css ······· (includes index.css)
 ```
 
 ### Middleware

@@ -10,13 +10,13 @@ parcel build entry.js
 
 production 模式中會停用監看模式及模組熱替換，同時也會使用壓縮器減少所有輸出 bundle 的檔案大小，在此模式中只會進行一次編譯。Parcel 分別使用 [terser](https://github.com/fabiosantoscode/terser)、 [cssnano](http://cssnano.co) 及 [htmlnano](https://github.com/posthtml/htmlnano) 來壓縮 JavaScript、CSS 及 HTML。
 
-使用 production 模式還會將設定環境變數 `NODE_ENV` 為 `production`，某些大型函式庫如 React，在此環境變數設定下，會停用開發時使用的除錯功能，因此輸出的檔案會更小，編譯速度也隨之提高。
+使用 production 模式時環境變數 `NODE_ENV` 會被設定為 `production`。某些大型函式庫如 React，在此環境變數設定下，會停用開發時使用的除錯功能，因此輸出的檔案會更小，編譯速度也隨之提高。
 
-若想使用一些開發模式中的除錯功能，請先確保 terser 中的 [dead_code 選項](https://github.com/terser-js/terser#compress-options)是啟用的（預設為啟用），並將開發時的除錯程式碼放進如下的檢查式中：
+若想使用一些開發模式中的除錯功能，請先確保 terser 中的 [dead_code 選項](https://github.com/terser-js/terser#compress-options)是啟用的（預設即為啟用），並將開發時的除錯程式碼放進如下的檢查式中：
 
 ```js
 if (process.env.NODE_ENV === 'development') { // 或 `process.env.NODE_ENV !== 'production'`
-  // 僅在開發環境中執行，並將在正式編譯中被移除
+  // 僅在開發環境中執行，並會在正式編譯中被移除
 }
 ```
 

@@ -39,7 +39,8 @@ const options = {
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (les constructions minifiées pour l'instant créent toujours des sourcemaps)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
-  detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
+  detailedReport: false, // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
+  autoInstall: true, // Active ou désactive l'installation auto des dépendances manquantes lors de l'empaquetage
 };
 
 (async function() {
@@ -132,10 +133,10 @@ Un exemple très basique d'une arborescence de ressource et l'arborescence de pa
 
 ```Text
 index.html
--- index.js
- |--- test.js
- |--- test.txt
--- index.css
+├── index.js
+│   ├── test.js
+│   └── test.txt
+└── index.css
 ```
 
 ##### Arborescence de paquets :
@@ -154,9 +155,9 @@ Les paquets `index.css` et `index.js` sont des paquets frères car ils partagent
 
 ```Text
 index.html
--- index.js (inclut index.js et test.js)
- |--- test.txt (inclut test.txt)
--- index.css (inclut index.css)
+├── index.js ········ (inclut index.js et test.js)
+│   └── test.txt ···· (inclut test.txt)
+└── index.css ······· (inclut index.css)
 ```
 
 ### Middleware
