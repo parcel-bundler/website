@@ -6,11 +6,14 @@ Vue.js est un framework JavaScript évolutif avec une adaptation progressive pou
 
 ```html
 <!-- index.html -->
+
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <title>Parcel - Vue</title>
   </head>
+
   <body>
     <div id="app"></div>
     <script src="./index.js"></script>
@@ -21,13 +24,15 @@ Vue.js est un framework JavaScript évolutif avec une adaptation progressive pou
 Vous pouvez utiliser tous les outils que vous aimez (Pug, TypeScript, SCSS, ...) :
 
 ```vue
-// app.vue
+// App.vue
+
 <template lang="pug">
   .container Hello {{bundler}}
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   data() {
     return {
@@ -46,8 +51,9 @@ export default Vue.extend({
 
 ```js
 // index.js
+
 import Vue from 'vue'
-import App from './app.vue'
+import App from './App.vue'
 
 new Vue(App).$mount('#app')
 ```

@@ -25,3 +25,34 @@ pub fn add(a: i32, b: i32) -> i32 {
   return a + b
 }
 ```
+
+Vous pouvez également importer un projet rust en important `src/lib.rs` ou `src/main.rs`, Parcel appellera `cargo` pour construire le projet.
+
+```js
+import { sub } from './sub/src/lib.rs'
+console.log(sub(2, 3))
+```
+
+dans `./sub/Cargo.toml`:
+
+```toml
+[package]
+...
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+```
+
+dans `./sub/src/lib.rs`:
+
+```rust
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub fn sub(a: i32, b: i32) -> i32 {
+    a - b
+}
+```
