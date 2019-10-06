@@ -18,6 +18,10 @@ Une ressource HTML est souvent le fichier d'entrée que vous fournissez à Parce
 </html>
 ```
 
+## Importation de HTML en JavaScript
+
+L'importation de HTML en JavaScript n'inclut pas les chaînes HTML de manière statique, mais les fichiers HTML seront récupérés dynamiquement à l’aide de l'[API Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). Pour assurer la prise en charge d’Internet Explorer 11 et des navigateurs plus anciens, il est nécessaire de fournir les polyfills `Promise` et `fetch`.
+
 ## Importation de ressources non compilées
 
 L'ajout de liens vers des fichiers que Parcel peut compiler (par exemple, JavaScript, TypeScript, SCSS, etc.) au format HTML est pris en charge. Parcel traitera automatiquement le fichier et mettra à jour le lien pour qu'il pointe vers la ressource compilé.

@@ -21,6 +21,11 @@ Once you have `sass` installed you can import SCSS files from JavaScript files.
 ```javascript
 import './custom.scss'
 ```
+You can also directly include the SCSS file in a HTML file. 
+
+```html
+<link rel="stylesheet" href="./style.scss">
+```
 
 Dependencies in the SCSS files can be used with the `@import` statements.
 

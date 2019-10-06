@@ -39,7 +39,8 @@ const options = {
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (les constructions minifiées pour l'instant créent toujours des sourcemaps)
   hmrHostname: '', // Un nom d'hôte pour le rechargement de module à chaud, par défaut à ''
-  detailedReport: false // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
+  detailedReport: false, // Afficher un rapport détaillé des paquets, ressources, tailles des fichiers et durées de build, par défaut à false, les rapports ne sont affichés que si le mode watch est désactivé
+  autoInstall: true, // Active ou désactive l'installation auto des dépendances manquantes lors de l'empaquetage
 };
 
 (async function() {

@@ -79,9 +79,9 @@ Ajoutez un script de démarrage à `package.json`
 }
 ```
 
-## Typescript
+## TypeScript
 
-D'abord installez les dépendances pour Typescript
+D'abord installez les dépendances pour TypeScript
 
 ```bash
 npm install --save-dev typescript
@@ -112,12 +112,11 @@ Puis, dans votre fichier `index.html`, importez directement le fichier `.ts`.
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-</head>
-<body>
+  <head> </head>
+  <body>
     <!-- Ici 👇 -->
     <script src="./myTypescriptFile.ts"></script>
-</body>
+  </body>
 </html>
 ```
 
@@ -135,3 +134,89 @@ Ajoutez le script `start` de démarrage au `package.json`
 ```
 
 Fini! 😄 Le fichier `.js` compilé se trouve dans dossier `dist`.
+
+## Bootstrap + FontAwesome
+
+Nous devons d’abord installer les dépendances pour Bootstrap et FontAwesome.
+
+```bash
+npm install bootstrap jquery popper.js
+npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+<sub>Ou si vous avez le gestionnaire de package Yarn installé</sub>
+
+```bash
+yarn add bootstrap jquery popper.js
+yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+```
+
+Ajoutez un script Start dans le `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+### Importer Bootstrap avec des styles précompilés
+
+Créez un fichier JavaScript qui servira de point d'entrée pour votre application et importez les dépendances nécessaires.
+
+```javascript
+// main.js
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.css' // Import precompiled Bootstrap css
+import '@fortawesome/fontawesome-free/css/all.css'
+```
+
+Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point d'entrée JavaScript.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body>
+    <!-- Ici 👇 -->
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+C'est fait !
+
+### Personnaliser les styles Bootstrap
+
+Si vous souhaitez personnaliser les styles Bootstrap au lieu d'importer le css précompilé, créez un fichier `.scss` comme point d'entrée et incluez les styles source de Bootstrap.
+
+```scss
+// main.scss
+@import '~bootstrap/scss/bootstrap';
+```
+
+Puis, créez un fichier JavaScript qui servira de point d'entrée pour votre application et importez les dépendances nécessaires.
+
+```javascript
+// main.js
+import 'bootstrap'
+import '@fortawesome/fontawesome-free/css/all.css'
+import './main.scss' // Import our scss file
+```
+
+Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point d'entrée JavaScript.
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body>
+    <!-- Ici 👇 -->
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+C'est fait !
