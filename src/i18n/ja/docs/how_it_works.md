@@ -1,19 +1,24 @@
-# 🛠 How It Works
+# 🛠 仕組み
 
-Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
+Parcel は**バンドル**のツリーを**アセット**のツリーに変換します。
 
-### 1. Constructing the Asset Tree
+他の多くのバンドラーは基本的に JavaScript のアセットをベースにして、他のフォーマットのアセットを追跡しています。（たとえば、JS ファイルに文字列としてのインライン化など。）
+Parcel はファイルタイプにとらわれず、どんなタイプのアセットでもコンフィギュレーションなしに期待通りの方法で動作します。
 
-Parcel takes as input a single entry asset, which could be any type: a JS file, HTML, CSS, image, etc. There are various [asset types](asset_types.html) defined in Parcel which know how to handle specific file types. The assets are parsed, their dependencies are extracted, and they are transformed to their final compiled form. This creates a tree of assets.
+Parcel のバンドリングプロセスには 3 つのステップがあります。
 
-### 2. Constructing the Bundle Tree
+### 1. アセットツリーの構築
 
-Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+Parcel は入力として 1 つのエントリーアセットを取ります。エントリーアセットは任意のタイプで、JS ファイル、HTML、CSS、画像などです。特定のファイルタイプを処理するために、Parcel にはさまざまな[アセットタイプ](asset_types.html)が定義されています。アセットの解析、依存関係の抽出がされ、最終的にコンパイルされた形式に変換されます。これによりアセットのツリーが作成されます。
 
-Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
+### 2. バンドルツリーの構築
 
-If an asset is required in more than one bundle, it is hoisted up to the nearest common ancestor in the bundle tree so it is not included more than once.
+アセットツリーが構築されると、バンドルツリーにアセットが配置されます。エントリーアセット用のバンドルが作成され、動的な`import()`用の子バンドルが作成されます。これによりコード分割が発生します。
 
-### 3. Packaging
+兄弟バンドルは、JavaScript から CSS ファイルをインポートした場合など、異なるタイプのアセットがインポートされると作成され、対応する JavaScript の兄弟バンドルに配置されます。
 
-After the bundle tree is constructed, each bundle is written to a file by a [packager](packagers.html) specific to the file type. The packagers know how to combine the code from each asset together into the final file that is loaded by a browser.
+アセットが複数のバンドルで必要とされる場合、そのアセットはバンドルツリー内で最も近い共通の上位の階層まで引き上げられるため、複数回含まれることはありません。
+
+### 3. パッケージング
+
+バンドルツリーが構築された後、各バンドルはファイルタイプ固有の[パッケージャ](packagers.html)によってファイルに書き込まれます。パッケージャは、各アセットのコードをブラウザによってロードされる最終ファイルにまとめます。
