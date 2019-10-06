@@ -12,7 +12,7 @@ _支援的副檔名：`ml` 及 `re`_
 $ yarn add bs-platform --dev
 ```
 
-```json
+```js
 // bsconfig.json
 // from https://github.com/BuckleScript/bucklescript/blob/master/jscomp/bsb/templates/basic-reason/bsconfig.json
 
@@ -38,11 +38,11 @@ $ yarn add bs-platform --dev
 
 ```html
 <!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<body>
-  <script src="./src/index.re"></script>
-</body>
+  <body>
+    <script src="./src/index.re"></script>
+  </body>
 </html>
 ```
 
@@ -65,7 +65,7 @@ $ yarn add react react-dom reason-react
 {
   "name": "whatever",
 + "reason": {
-+   "react-jsx": 2
++   "react-jsx": 3
 + },
   "sources": {
     "dir": "src",
@@ -91,7 +91,7 @@ $ yarn add react react-dom reason-react
 <!-- index.html -->
 <html>
 <body>
-+  <div id="app"></div>
++ <div id="app"></div>
   <script src="./src/index.re"></script>
 </body>
 </html>
@@ -100,11 +100,9 @@ $ yarn add react react-dom reason-react
 ```reason
 /* src/Greeting.re */
 
-let component = ReasonReact.statelessComponent("Greeting");
-
-let make = (~name, _children) => {
-  ...component,
-  render: _self => <div> (ReasonReact.string("Hello! " ++ name)) </div>,
+[@react.component]
+let make = (~name) => {
+  <div> {React.string("Hello! " ++ name)} </div>;
 };
 ```
 

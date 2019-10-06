@@ -57,3 +57,11 @@ import './app'
 ```
 
 请参阅 [babel-polyfill](http://babeljs.cn/docs/usage/polyfill) 和 [babel-runtime](http://babeljs.cn/docs/plugins/transform-runtime) 的文档。
+
+## Bundle 解析
+
+Parcel 可以自动推断 Bundle 的位置。这是在 [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js)模块中完成的，并使用堆栈跟踪（Stack Trace）确定初始化加载 Bundle 的路径。
+
+这意味着你不需要配置 Bundle 从哪里载入，但是你必须从相同位置提供 Bundle。
+
+Parcel 目前可以在下列协议下解析 Bundle：`http`, `https`, `file`, `ftp`, `chrome-extension` and `moz-extension`。

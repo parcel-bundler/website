@@ -18,6 +18,10 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 </html>
 ```
 
+## Importing HTML in JavaScript
+
+Importing HTML in JavaScript does not statically include the HTML strings, but the HTML files will dynamically be fetched using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). To achieve Internet Explorer 11 and older browser support, `Promise` and `fetch` polyfills need to be provided.
+
 ## Importing uncompiled assets
 
 Adding links to files that Parcel can compile (e.g. JavaScript, TypeScript, SCSS, etc.) in HTML is supported. Parcel will automatically process the file and update the link to point to the compiled asset.
@@ -58,3 +62,12 @@ Then, create a `.posthtmlrc`:
 Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
 When importing modules using `posthtml-modules`, if you start paths with `/`, they will become relative to `./src`.
+
+# htmlnano
+
+Parcel automatically processes all HTML assets with [htmlnano](https://github.com/posthtml/htmlnano) when minification is enabled. htmlnano can be configured according to its documentation with a `.htmlnanorc` (JSON) or `.htmlnanorc.js` file, for example:
+```json
+{
+    "removeComments": false
+}
+```

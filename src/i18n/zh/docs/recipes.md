@@ -78,3 +78,59 @@ yarn add --dev parcel-bundler
   "start": "parcel index.html"
 }
 ```
+
+## Typescript
+
+首先，我们需要添加 Parcel 和 Typescript 到你的项目里。
+
+```bash
+npm install --save-dev typescript
+npm install --save-dev parcel-bundler
+```
+
+<sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
+
+```bash
+yarn add --dev typescript
+yarn add --dev parcel-bundler
+```
+
+### 从 index.html 开始编译
+
+添加 start 脚本到`package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel index.html"
+}
+```
+
+接着，在你的`index.html`文件，简单的引入你的`.ts`文件
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body>
+    <!-- 这里 👇 -->
+    <script src="./myTypescriptFile.ts"></script>
+  </body>
+</html>
+```
+
+完成！
+
+### 直接编译`.ts`文件
+
+添加 start 脚本到`package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel myTypescriptFile.ts"
+}
+```
+
+完成！😄 在 dist 文件夹中将发现编译后的`.js`文件

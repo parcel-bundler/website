@@ -8,6 +8,8 @@ d'exécution. Avec son souci de la simplicité et de la rapidité, Elm est un
 excellent choix pour créer des applications Web de toutes sortes. Parcel inclus la
 prise en charge Elm sans aucune configuration supplémentaire.
 
+Pour commencer créez les trois fichiers suivants dans un répertoire:
+
 ```html
 <!-- index.html -->
 
@@ -39,6 +41,8 @@ import Html exposing (h1, text)
 main =
   h1 [] [ text "Hello, Elm!" ]
 ```
+
+Lancez `parcel index.html` et c'est joué !
 
 Pour en savoir plus sur Elm et son écosystème d’outils, consultez le
 [guide](https://guide.elm-lang.org/) du site officiel.
