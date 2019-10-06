@@ -1,6 +1,6 @@
 # 🔌 Plugins
 
-See [keywords:parcel-plugin](https://www.npmjs.com/search?q=keywords:parcel-plugin) on npmjs.com for a list of available plugins.
+See [here](https://www.npmjs.com/search?q=parcel-plugin*) for a list of available plugins on npm.
 
 Parcel takes a slightly different approach from many other tools in that many common formats are included out of the box without the need to install and configure additional plugins. However, there are cases where you might want to extend Parcel in a nonstandard way, and for those times, plugins are supported. Installed plugins are automatically detected and loaded based on `package.json` dependencies.
 
