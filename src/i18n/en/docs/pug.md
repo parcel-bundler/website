@@ -91,7 +91,7 @@ Again, we can get this running by using the same parcel command: `parcel src/ind
 
 You will not be able to see changes made to your `locals` object on the fly.  If you update your `locals` object, you will need to cancel the parcel process in your terminal and relaunch `parcel src/index.pug` again.
 
-### Watch our for silent errors
+### Watch out for silent errors
 
 Also, understand that if you use this locals setup, you will not get an error if you use a property that doesn't exist for interpolation in your Pug. Thus, if we wrote `h1 #{thing}` and there was no `thing` property in locals, then Parcel will not crash, nor report an error. You will only be left with an empty result in the browser. So, be careful to get this right, or you might not know that an interpolated element is not working.
 
