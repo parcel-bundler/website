@@ -59,7 +59,15 @@ Ensuite, créez un `.posthtmlrc`:
   }
 }
 ```
-
 Les plugins sont spécifiés dans l'objet `plugins` en tant que clés, et les options sont définies en utilisant des valeurs d'objets. S'il n'y a pas d'options pour un plugin, définissez-le simplement à `true`.
 
 Grâce à l'importation de modules à l'aide de `posthtml-modules`, si vous commencez des chemins avec `/`, ils deviendront relatifs avec `./src`.
+
+# htmlnano
+
+Lorsque la minification est activée, Parcel traite automatiquement toutes les ressources HTML avec [htmlnano](https://github.com/posthtml/htmlnano). htmlnano peut être configuré selon sa documentation avec un fichier `.htmlnanorc` (JSON) ou `.htmlnanorc.js`, par exemple :
+```json
+{
+    "removeComments": false
+}
+```
