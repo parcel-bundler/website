@@ -1,5 +1,7 @@
 # 🔌 Plugins
 
+Consultez [ici](https://www.npmjs.com/search?q=parcel-plugin*) pour avoir une liste des plugins disponibles sur npm.
+
 Parcel adopte une approche légèrement différente de beaucoup d'autres outils dans la mesure où de nombreux formats courants sont inclus sans avoir besoin d'installer et de configurer des plugins supplémentaires. Cependant, il y a des cas où vous auriez besoin d'étendre Parcel d'une manière non standard, et pour ces cas, les plugins sont supportés. Les plugins installés sont automatiquement détectés et chargés en fonction des dépendances du `package.json`.
 
 Lors de l'ajout du support pour un nouveau format de fichier à Parcel, vous devez d'abord considérer à quel point il est répandu et comment la mise en œuvre est standardisée. S'il est suffisamment répandu et standard, le format devra probablement être ajouté au cœur de Parcel au lieu d'un plugin que les utilisateurs devront installer. Si vous avez des doutes, [GitHub](https://github.com/parcel-bundler/parcel/issues) est le bon endroit pour en discuter.

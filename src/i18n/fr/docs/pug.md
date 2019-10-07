@@ -91,7 +91,7 @@ Encore une fois, nous pouvons obtenir l'exécution en utilisant cette commande d
 
 Vous ne pourrez pas voir les modifications apportées à la volée à l'objet `locals`. Si vous mettez à jour votre objet `locals`, vous devez annuler le processus Parcel dans votre terminal et relancer `parcel src/index.pug`.
 
-### Surveiller nos erreurs silencieuses
+### Attention aux erreurs silencieuses
 
 De plus, sachez que si vous utilisez cette configuration `locals`, vous ne recevrez pas d’erreur si vous utilisez une propriété qui n’existe pas pour l’interpolation dans votre Pug. Ainsi, si nous écrivons `h1 #{thing}` et qu'il n'y avait aucune propriété `thing` dans `locals`, Parcel ne plantera pas, ni ne signalera une erreur. Il n'y aura qu'un résultat vide dans le navigateur. Veillez donc à ne pas vous tromper, sinon vous risquez de ne pas savoir qu'un élément interpolé ne fonctionne pas.
 
