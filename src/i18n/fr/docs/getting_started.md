@@ -39,6 +39,7 @@ Ensuite, créez un fichier index.html et index.js.
   </body>
 </html>
 ```
+REMARQUE : Parcel convertit les ressources JS en ES5, elles ne s'exécuteront pas dans le contexte d'une balise avec `<script type="module">`, donc utilisez simplement des balises `<script>` simples sans attribut `type` dans votre source HTML.
 
 ```javascript
 console.log('hello world')

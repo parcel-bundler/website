@@ -39,20 +39,19 @@ dans `./sub/Cargo.toml`:
 [package]
 ...
 
+[dependencies]
+
 [lib]
 crate-type = ["cdylib"]
-
-[dependencies]
-wasm-bindgen = "0.2"
 ```
 
 dans `./sub/src/lib.rs`:
 
 ```rust
-use wasm_bindgen::prelude::*;
-
-#[wasm_bindgen]
+#[no_mangle]
 pub fn sub(a: i32, b: i32) -> i32 {
     a - b
 }
 ```
+
+Consultez aussi [cet exemple complet.](https://github.com/parcel-bundler/examples/tree/master/rust-cargo)
