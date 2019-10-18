@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="assets/style.css" />
     <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -34,7 +34,9 @@
         <img class="type" src="assets/logo.svg" alt="Parcel" />
       </a>
       <div class="links">
-        <input type="text" id="search-input" class="search-input" placeholder="Ricerca..." />
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" class="search-input" placeholder="Ricerca..." />
+        </div>
         <form class="languages">
           <select
             class="language-dropdown"
@@ -85,7 +87,7 @@
         <p>
           If something is missing or not entirely clear, please
           <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> or
-          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{ language }}/docs/{{ relative }}"
             >edit this page</a
           >.
         </p>
