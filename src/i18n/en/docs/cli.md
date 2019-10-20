@@ -135,6 +135,16 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --cache-dir build/cache
 ```
 
+### Host
+
+Default: localhost
+
+Available in: `serve`
+
+```bash
+parcel serve entry.js --host local.myhost.co.uk
+```
+
 ### Port
 
 Default: 1234
