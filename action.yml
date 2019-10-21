@@ -5,4 +5,4 @@ outputs:
   description: 'The total time it took to deploy all sites'
 runs:
   using: 'node12'
-  main: 'deploy.js'
+  main: 'dist/index.js'
