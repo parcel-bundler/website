@@ -22,9 +22,11 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "@actions/core": "^1.2.0",
     "husky": "^1.1.2",
     "markdown-styles": "^3.1.10",
     "now": "^11.2.4",
+    "now-client": "^5.2.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.8.0"
   }

@@ -1,0 +1,8 @@
+name: 'Deploy Parcel to ZEIT'
+description: 'Create ZEIT v2 production deployment on push'
+outputs:
+  total-deployment-time: #id
+  description: 'The total time it took to deploy all sites'
+runs:
+  using: 'node12'
+  main: 'deploy.js'
