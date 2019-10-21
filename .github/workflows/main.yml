@@ -6,9 +6,9 @@ jobs:
     name: Deploy to ZEIT Now
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout
       - name: Deploy
         id: deploy
-        uses: ./action
+        uses: ./
       - name: Get total deployment time
         run: echo "Total deployment time ${{ steps.deploy.outputs.deployment-time }}"
