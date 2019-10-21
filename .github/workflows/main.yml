@@ -9,6 +9,6 @@ jobs:
         uses: actions/checkout@v1
       - name: Deploy
         id: deploy
-        uses: ./
+        uses: ./action
       - name: Get total deployment time
         run: echo "Total deployment time ${{ steps.deploy.outputs.deployment-time }}"
