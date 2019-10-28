@@ -1,10 +1,10 @@
 # 🛠️ Debugging
 
-As Parcel automatically generates sourcemaps by default, setting up debugging with Parcel involves little work to set up.
+As Parcel automatically generates sourcemaps by default, setting up debugging with Parcel involves minimal effort for the most part.
 
 ## Chrome Developer Tools
 
-Assuming that source maps are enabled, these should work out of the box.
+Assuming that source maps are enabled, no extra configuration is required here.
 
 For example, suppose you had a folder structure like the following:
 
@@ -47,7 +47,7 @@ With this setup, you can run `parcel src/index.html` and set breakpoints in the 
 
 ## Visual Studio Code
 
-Assuming a folder structure similar to the one shown above for Chrome developer tools, the following `launch.json` can be used with the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension:
+Assuming a folder/file structure similar to the one shown above for Chrome developer tools, the following `launch.json` can be used with the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension:
 
 ```json
 {
