@@ -42,6 +42,8 @@ Parcel 可將任何類型的檔案視為進入點，但 HTML 或 JavaScript 會�
 </html>
 ```
 
+注意：Parcel 會將 JavaScript 轉換為 ES5，因此在你的 HTML 沒有必要使用 `<script type="module">`，使用 `<script>` 即可。
+
 ```javascript
 console.log('hello world')
 ```

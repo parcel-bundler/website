@@ -63,3 +63,15 @@ yarn add posthtml-img-autosize
 ```
 
 使用外掛時需於 `plugins` 內新增一個屬性，外掛選項則為此屬性的值，並以物件形式設定。若外掛無需設定，將屬性值設定為 `true` 即可。
+
+使用 posthtml-modules 匯入模組時，若路徑開頭為 /，則會被轉換為相對於 ./src 的路徑。
+
+# htmlnano
+
+當使用程式碼壓縮時，Parcel 會自動使用 [htmlnano](https://github.com/posthtml/htmlnano) 來處理所有的 HTML 資源。根據其文件，htmlnano 可以透過 `.htmlnanorc` (JSON) 或 `.htmlnanorc.js` 檔案來設定，如：
+
+```json
+{
+    "removeComments": false
+}
+```
