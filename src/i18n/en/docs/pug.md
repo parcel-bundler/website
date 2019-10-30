@@ -140,4 +140,4 @@ module.exports = {
   },
 ```
 
-We can key `npm run dev` or `npm run devopen` to have the project open in the browser. We can then build the pub project with `npm run build`.
+We can key `npm run dev` or `npm run devopen` to have the project open in the browser. We can then build the pug project with `npm run build`.
