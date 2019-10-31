@@ -64,9 +64,9 @@ parcel --version
 
 ### Répertoire de sortie
 
-Par défaut : "dist"
+Par défaut : "dist"
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
@@ -83,9 +83,9 @@ root
 
 ### Définir l'URL publique à appliquer
 
-Par défaut : "/"
+Par défaut : "/"
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --public-url ./dist/
@@ -101,9 +101,9 @@ Cela produira :
 
 ### La cible (target)
 
-Par défaut : browser
+Par défaut : browser
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node
@@ -115,9 +115,9 @@ Les cibles possibles sont : `node`, `browser` et `electron`
 
 ### Forcer l'ajout des dépendances node
 
-Par défaut : false
+Par défaut : false
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node --bundle-node-modules
@@ -127,19 +127,29 @@ parcel build entry.js --target node --bundle-node-modules
 
 ### Répertoire du cache
 
-Par défaut : ".cache"
+Par défaut : ".cache"
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --cache-dir build/cache
 ```
 
+### Host
+
+Par défaut : localhost
+
+Disponible dans : `serve`
+
+```bash
+parcel serve entry.js --host local.myhost.co.uk
+```
+
 ### Port
 
-Par défaut : 1234
+Par défaut : 1234
 
-Disponible dans : `serve`
+Disponible dans : `serve`
 
 ```bash
 parcel serve entry.js --port 1111
@@ -147,9 +157,9 @@ parcel serve entry.js --port 1111
 
 ### Changer le niveau de journalisation
 
-Par défaut : 3
+Par défaut : 3
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --log-level 1
@@ -166,9 +176,9 @@ parcel entry.js --log-level 1
 
 ### Nom d'hôte du HMR
 
-Par défaut : `location.hostname` du windows courant
+Par défaut : `location.hostname` du windows courant
 
-Disponible dans : `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-hostname parceljs.org
@@ -176,9 +186,9 @@ parcel entry.js --hmr-hostname parceljs.org
 
 ### Port du HMR
 
-Par défaut : Un port disponible au hasard
+Par défaut : Un port disponible au hasard
 
-Disponible dans : `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-port 8080
@@ -186,9 +196,9 @@ parcel entry.js --hmr-port 8080
 
 ### Nom de fichier en sortie
 
-Par défaut : Nom du fichier original
+Par défaut : Nom du fichier original
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-file output.html
@@ -198,11 +208,11 @@ Cela modifie le nom du fichier de sortie du paquet
 
 ### Imprimer un rapport détaillé
 
-Par défaut : rapport minimal, sinon un détail à 10
+Par défaut : rapport minimal, sinon un détail à 10
 
 L'argument optionnel spécifie un détail du rapport.
 
-Disponible dans : `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --detailed-report
@@ -211,9 +221,9 @@ parcel build entry.js --detailed-report 10
 
 ### Désactiver https
 
-Par défaut : https désactivé
+Par défaut : https désactivé
 
-Disponible dans : `serve`, `watch` (écoute le HTTPS pour les connexions HMR)
+Disponible dans : `serve`, `watch` (écoute le HTTPS pour les connexions HMR)
 
 ```bash
 parcel build entry.js --https
@@ -223,9 +233,9 @@ parcel build entry.js --https
 
 ### Définir un certificat personnalisé
 
-Par défaut : https désactivé
+Par défaut : https désactivé
 
-Disponible dans : `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
@@ -233,9 +243,9 @@ parcel entry.js --cert certificate.cert --key private.key
 
 ### Ouvrir dans le navigateur
 
-Par défaut : ouverture désactivée
+Par défaut : ouverture désactivée
 
-Disponible dans : `serve`
+Disponible dans : `serve`
 
 ```bash
 parcel entry.js --open
@@ -243,9 +253,9 @@ parcel entry.js --open
 
 ### Désactiver source-maps
 
-Par défaut : source-maps activé
+Par défaut : source-maps activé
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
@@ -253,9 +263,9 @@ parcel build entry.js --no-source-maps
 
 ### Désactiver le hachage du contenu
 
-Par défaut : content-hash activé
+Par défaut : content-hash activé
 
-Disponible dans : `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --no-content-hash
@@ -263,9 +273,9 @@ parcel build entry.js --no-content-hash
 
 ### Désactiver l'installation automatique de dépendances
 
-Par défaut : autoinstall activé
+Par défaut : autoinstall activé
 
-Disponible dans : `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel entry.js --no-autoinstall
@@ -273,9 +283,9 @@ parcel entry.js --no-autoinstall
 
 ### Désactiver le HMR
 
-Par défaut : HMR activé
+Par défaut : HMR activé
 
-Disponible dans : `serve`, `watch`
+Disponible dans : `serve`, `watch`
 
 ```bash
 parcel entry.js --no-hmr
@@ -283,9 +293,9 @@ parcel entry.js --no-hmr
 
 ### Désactiver la minification
 
-Par défaut : minification activée
+Par défaut : minification activée
 
-Disponible dans : `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --no-minify
@@ -293,9 +303,9 @@ parcel build entry.js --no-minify
 
 ### Désactiver le cache du système de fichiers
 
-Par défaut : cache activé
+Par défaut : cache activé
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-cache
@@ -303,9 +313,9 @@ parcel build entry.js --no-cache
 
 ### Exposer les modules en UMD
 
-Par défaut : désactivé
+Par défaut : désactivé
 
-Disponible dans : `serve`, `watch`, `build`
+Disponible dans : `serve`, `watch`, `build`
 
 ```bash
 parcel serve entry.js --global myvariable
@@ -313,9 +323,9 @@ parcel serve entry.js --global myvariable
 
 ### Activer le support expérimental de scope hoisting/tree shaking
 
-Par défaut : désactivé
+Par défaut : désactivé
 
-Disponible dans : `build`
+Disponible dans : `build`
 
 ```bash
 parcel build entry.js --experimental-scope-hoisting
