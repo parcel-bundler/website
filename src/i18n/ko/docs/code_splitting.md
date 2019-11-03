@@ -50,3 +50,11 @@ import './app'
 ```
 
 [babel-polyfill](http://babeljs.io/docs/usage/polyfill)와 [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime)를 읽어보세요.
+
+## 번들 분석
+
+Parcel은 번들의 위치를 자동으로 추론합니다. 이 추론은 `bundle-url` 모듈에서 수행되며 스택추적을 사용하여 초기에 번들이 로드된 경로를 결정합니다.
+
+즉, 번들이 어디에 로드될지 설정할 필요가 없으며, 동일한 경로에서 번들을 제공해야 합니다.
+
+Parcel은 현재 `http`, `https`, `file`, `ftp`, `chrome-extension` 및 `moz-extension` 프로토콜에서 번들을 분석합니다.

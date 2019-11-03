@@ -112,7 +112,8 @@ Puis, dans votre fichier `index.html`, importez directement le fichier `.ts`.
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+  </head>
   <body>
     <!-- Ici 👇 -->
     <script src="./myTypescriptFile.ts"></script>
@@ -120,7 +121,7 @@ Puis, dans votre fichier `index.html`, importez directement le fichier `.ts`.
 </html>
 ```
 
-C'est tout!
+C'est tout !
 
 ### Compiler directement le fichier `.ts`
 
@@ -133,7 +134,7 @@ Ajoutez le script `start` de démarrage au `package.json`
 }
 ```
 
-Fini! 😄 Le fichier `.js` compilé se trouve dans dossier `dist`.
+Fini ! 😄 Le fichier `.js` compilé se trouve dans dossier `dist`.
 
 ## Bootstrap + FontAwesome
 
@@ -177,7 +178,8 @@ Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+  </head>
   <body>
     <!-- Ici 👇 -->
     <script src="./main.js"></script>
@@ -211,11 +213,61 @@ Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+  </head>
   <body>
     <!-- Ici 👇 -->
     <script src="./main.js"></script>
   </body>
+</html>
+```
+
+C'est fait !
+
+## Svelte
+
+Nous devons d’abord installer les dépendances pour Svelte.
+
+[Article du blog](https://dev.to/alexparra/basic-svelte-app-with-parcel-30i5)
+
+```bash
+npm install --save-dev svelte
+npm install --save-dev parcel-plugin-svelte
+npm install --save-dev parcel-bundler
+```
+
+<sub>Ou si vous avez le gestionnaire de paquets Yarn installé</sub>
+
+```bash
+yarn add --dev svelte
+yarn add --dev parcel-plugin-svelte
+yarn add --dev parcel-bundler
+```
+
+### Compiler à partir de index.html
+
+Ajoutez le script `start` au `package.json`
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel src/index.html"
+}
+```
+
+Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point d’entrée JavaScript.
+
+```html
+<!-- .src/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mon App Svelte</title>
+</head>
+<body>
+    <!-- Ici 👇 -->
+    <script src="./src/main.js"></script>
+</body>
 </html>
 ```
 

@@ -25,3 +25,33 @@ pub fn add(a: i32, b: i32) -> i32 {
   return a + b
 }
 ```
+
+你也可以透過匯入 `src/lib.rs` 或 `src/main.rs` 來匯入 rust 專案，Parcel 會呼叫 `cargo` 來編譯專案。
+
+```js
+import { sub } from './sub/src/lib.rs'
+console.log(sub(2, 3))
+```
+
+在 `./sub/Cargo.toml` 中：
+
+```toml
+[package]
+...
+
+[dependencies]
+
+[lib]
+crate-type = ["cdylib"]
+```
+
+在 `./sub/src/lib.rs` 中：
+
+```rust
+#[no_mangle]
+pub fn sub(a: i32, b: i32) -> i32 {
+    a - b
+}
+```
+
+詳見[此完整範例](https://github.com/parcel-bundler/examples/tree/master/rust-cargo)。

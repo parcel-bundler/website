@@ -1,8 +1,14 @@
 # 🔥 模組熱替換
 
-模組熱替換 (HMR, Hot Module Replacement) 可提升你的開發效率，模組熱替換並不會重整頁面，而是即時地更新瀏覽器中的模組，讓你得以在更動某些小地方時仍可保留原本的狀態。
+模組熱替換 (HMR, Hot Module Replacement) 可提升你的開發效率，模組熱替換並不會重整頁面，而是即時地更新瀏覽器中的模組，讓你得以在更動某些小地方時仍可保留原本的狀態。Parcel 支援 JavaScript 及 CSS 的模組熱替換。
 
-Parcel 內建支援 JavaScript 及 CSS 的模組熱替換，在 production 模式中將會自動停用此功能。
+從 1.12.0 版開始預設已改為於檔案更動時重整頁面。你可以用下列的指令啟用真正的模組熱替換，這僅適用於開發環境，模組熱替換在 production 模式中會自動停用。
+
+```javascript
+if (module.hot) {
+  module.hot.accept()
+}
+```
 
 Parcel 會在你更動檔案時重新編譯更動的部分，並將更新發送至所有正在執行的用戶端，使用新的程式碼來替換舊版本，同時也將重新評估所有父元件是否需要更新。你可以使用 `module.hot` API 來涉入這個過程，它可以在模組即將被處理或有新版本傳入時通知你的程式。Parcel 支援了 [react-hot-loader](https://github.com/gaearon/react-hot-loader) 等專案以協助達成這個過程。
 
