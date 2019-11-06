@@ -1,4 +1,3 @@
-const core = require('@actions/core')
 const path = require('path')
 const { createDeployment } = require('now-client')
 const { readdir } = require('fs')
@@ -24,12 +23,12 @@ try {
     )
       .then(deployments => {
         let time = Date.now() - start
-        core.setOutput('total-deployment-time')
+        console.log('total deployment time: ', time)
       })
       .catch(console.error)
   })
 } catch ({ message }) {
-  core.setFailed(message)
+  console.error(message)
 }
 
 async function deploy(sitePath) {
