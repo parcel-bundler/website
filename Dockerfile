@@ -9,7 +9,7 @@ COPY package.json /package.json
 COPY build.sh /build.sh
 COPY deploy.js /deploy.js
 
-RUN cd / && ./build.sh && yarn
+RUN cd /; yarn; ./build.sh;
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
