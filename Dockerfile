@@ -5,7 +5,6 @@ LABEL com.github.actions.description="Deploy static v2 sites for each Parcel loc
 LABEL repository="https://github.com/coetry/parceljs-www"
 
 COPY package.json /package.json
-COPY yarn.lock /yarn.lock
 COPY build.sh /build.sh
 COPY deploy.js /deploy.js
 
