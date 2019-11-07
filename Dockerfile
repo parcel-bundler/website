@@ -11,8 +11,11 @@ COPY package.json ~/app/package.json
 COPY build.sh ~/app/build.sh
 COPY deploy.js ~/app/deploy.js
 
-RUN cd ~/app && yarn; ./build.sh;
-RUN cd ~/app/node_nodules && echo "now-client: $(ls | grep now-client)"
+WORKDIR ~/app
+RUN yarn && ./build.sh  
+
+WORKDIR ~/app/node_modules
+RUN echo "now-client: $(ls | grep now-client)"
 
 COPY entrypoint.sh ~/entrypoint.sh
 ENTRYPOINT ["~/entrypoint.sh"]
