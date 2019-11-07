@@ -10,6 +10,7 @@ COPY build.sh /build.sh
 COPY deploy.js /deploy.js
 
 RUN cd / && yarn; ./build.sh;
+RUN cd /node_nodules && echo "now-client: $(ls | grep now-client)"
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
