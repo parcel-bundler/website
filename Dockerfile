@@ -17,5 +17,5 @@ RUN yarn && ./build.sh
 WORKDIR ~/app/node_modules
 RUN echo "now-client: $(ls | grep now-client)"
 
-COPY entrypoint.sh ~/entrypoint.sh
-ENTRYPOINT ["~/entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
