@@ -1,4 +1,4 @@
 #!/bin/sh -l
 
 set -eu # stop on error
-node /deploy.js
+node ~/app/deploy.js
