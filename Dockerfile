@@ -4,15 +4,15 @@ LABEL com.github.actions.name="Deploy Parcel To ZEIT"
 LABEL com.github.actions.description="Deploy static v2 sites for each Parcel locale"
 LABEL repository="https://github.com/coetry/parceljs-www"
 
-WORKDIR /app
+WORKDIR ~/app
 
-COPY ./src /app/src
-COPY package.json /app/package.json
-COPY build.sh /app/build.sh
-COPY deploy.js /app/deploy.js
+COPY ./src ~/app/src
+COPY package.json ~/app/package.json
+COPY build.sh ~/app/build.sh
+COPY deploy.js ~/app/deploy.js
 
-RUN cd /app && yarn; ./build.sh;
-RUN cd /app/node_nodules && echo "now-client: $(ls | grep now-client)"
+RUN cd ~/app && yarn; ./build.sh;
+RUN cd ~/app/node_nodules && echo "now-client: $(ls | grep now-client)"
 
-COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh ~/entrypoint.sh
+ENTRYPOINT ["~/entrypoint.sh"]
