@@ -30,3 +30,4 @@ import data from './data.toml'
 console.log(data.hello[0]);
 
 // "world
+```
