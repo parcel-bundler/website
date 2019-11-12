@@ -6,7 +6,8 @@ LABEL repository="https://github.com/coetry/parceljs-www"
 
 WORKDIR /usr/src/app
 
-COPY src package.json build.sh deploy.js ./
+COPY src/ ./src
+COPY package.json build.sh deploy.js ./
 
 RUN yarn && ./build.sh  
 
