@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "now-client": "5.2.1"
+    "now-client": "5.2.0"
   },
   "devDependencies": {
     "@actions/core": "^1.2.0",
