@@ -9,7 +9,7 @@ try {
     let start = Date.now()
     Promise.all(
       locales.map(async locale => {
-        let sitePath = path.join(__dirname, locale)
+        let sitePath = path.join(__dirname, 'dist', locale)
         console.log({ sitePath })
         console.log(`deploying ... ${locale}`)
         try {
