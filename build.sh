@@ -13,13 +13,13 @@ for lang in src/i18n/*; do
     echo "{
       \"version\": 2,
       \"alias\": [\"$(basename "$lang").hai.af\", \"yocoin.life\"]
-    }" >> "dist/$(basename "$lang")/now.json"
+    }" >> "dist/$(basename "$lang")/now.json";
     else echo "{
       \"version\": 2,
       \"alias\": [\"$(basename "$lang").hai.af\"]
-    }" >> "dist/$(basename "$lang")/now.json"
-  fi
-  cat "dist/$(basename "$lang")/now.json"
+    }" >> "dist/$(basename "$lang")/now.json";
+  fi;
+  cat "dist/$(basename "$lang")/now.json";
 done
 
 rm -rf tmp
