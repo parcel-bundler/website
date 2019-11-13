@@ -12,11 +12,11 @@ for lang in src/i18n/*; do
   if [ "$lang" = "en" ]; then
     echo "{
       \"version\": 2,
-      \"alias\": [\"$(basename "$lang").hai.af\", \"yocoin.life\"]
+      \"alias\": [\"$(basename "$lang").parceljs.org\", \"parceljs.org\"]
     }" >> "dist/$(basename "$lang")/now.json";
     else echo "{
       \"version\": 2,
-      \"alias\": [\"$(basename "$lang").hai.af\"]
+      \"alias\": [\"$(basename "$lang").parceljs.org\"]
     }" >> "dist/$(basename "$lang")/now.json";
   fi;
   cat "dist/$(basename "$lang")/now.json";
