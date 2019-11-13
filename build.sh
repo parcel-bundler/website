@@ -19,6 +19,7 @@ for lang in src/i18n/*; do
       \"alias\": [\"$(basename "$lang").hai.af\"]
     }" >> "dist/$(basename "$lang")/now.json"
   fi
+  cat "dist/${basename "$lang")/now.json"
 done
 
 rm -rf tmp
