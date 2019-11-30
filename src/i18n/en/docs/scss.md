@@ -31,7 +31,7 @@ Dependencies in the SCSS files can be used with the `@import` statements.
 
 If you don't have `sass` module installed before running Parcel, Parcel will install it automatically for you.
 
-Addtionally, you can configure sass compilation with Parcel by creating a configuration file such as: .sassrc
+Additionally, you can configure sass compilation with Parcel by creating a configuration file such as: .sassrc
 
 For instance, you can control the output style of the generated CSS by specifying it like so:
 
