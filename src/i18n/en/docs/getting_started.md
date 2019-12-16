@@ -35,11 +35,12 @@ Next, create an index.html and index.js file.
 ```html
 <html>
 <body>
-  <script src="./index.js"></script>
+  <script type="module" src="./index.js"></script>
+  <script nomodule src="./index.js"></script>
 </body>
 </html>
 ```
-NB: Parcel converts JS assets to ES5, which won't run in in the context of a `<script type="module">` tag, so just use plain `<script>` tags with no `type` attribute in your source HTML.
+NB: Parcel can simultaneously create packages that target both newer and older browsers.  Using the `<script type="module">` and `<script nomodule>` syntax ensures that the correct code is loaded for each browser.  The `nomodule` package will contain JavaScript that is converted to ES5.
 
 ```javascript
 console.log('hello world')
