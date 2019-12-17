@@ -2,7 +2,7 @@
 
 Parcel faz uso do [dotenv](https://github.com/motdotla/dotenv) para suportar o carregamento de variáveis de ambiente de arquivos `.env`.
 
-Arquivos `.env` devem ser armazenados junto com o `package.json` que contém sua dependência para o `parcel-bundler`.
+Arquivos `.env` devem ser armazenados junto com o `package.json` que contém sua dependência para o `parcel`.
 
 Parcel carrega arquivos `.env` com esses nomes especificos para os valores de `NODE_ENV` seguintes:
 

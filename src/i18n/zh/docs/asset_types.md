@@ -7,7 +7,7 @@
 ## 资源接口
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // 设置主要输出类型
@@ -58,7 +58,7 @@ class MyAsset extends Asset {
 你可以用 `addAssetType` 方法在打包工具中去注册你的资源类型。它接受一个文件扩展名，以及资源类型模块的路径。它是一个路径，而非实际的对象，这样可以使它被传至 worker 进程中。
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MyAsset'))

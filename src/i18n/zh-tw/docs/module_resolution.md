@@ -48,7 +48,7 @@ Parcel 支援以 `package.json` 中的 `alias` 欄位作為別名。
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",

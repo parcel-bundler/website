@@ -6,7 +6,7 @@
 针对每个选项都给出了可参考的示例进行解释说明：
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // 单个入口文件路径
@@ -174,7 +174,7 @@ index.html
 使用 express 的 parcel 中间件示例：
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 const file = 'index.html'; // 传入一个绝对路径，作为入口文件

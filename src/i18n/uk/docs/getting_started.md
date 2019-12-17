@@ -7,13 +7,13 @@ Parcel &nbsp;&mdash; це пакувальник для веб-додатків 
 Yarn:
 
 ```Bash
-yarn global add parcel-bundler
+yarn global add parcel
 ```
 
 npm:
 
 ```Bash
-npm install -g parcel-bundler
+npm install -g parcel
 ```
 
 Створіть файл package.json в папці вашого проекту, використовуючи:

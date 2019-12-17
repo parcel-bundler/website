@@ -5,7 +5,7 @@
 ## Packager 接口
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MyPackager extends Packager {
   async start() {
@@ -30,7 +30,7 @@ class MyPackager extends Packager {
 你可以用 `addPackager` 方法在打包工具中注册一个 packager。它接受一个文件类型及 packager 模块的所在路径用于注册。
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MyPackager'))

@@ -7,13 +7,13 @@ Parcel は、開発者の経験によって生まれた Web アプリケーシ�
 Yarn:
 
 ```bash
-yarn global add parcel-bundler
+yarn global add parcel
 ```
 
 npm:
 
 ```bash
-npm install -g parcel-bundler
+npm install -g parcel
 ```
 
 プロジェクトルートに以下のコマンドを使って package.json を作成しましょう。
@@ -96,13 +96,13 @@ http://localhost:1234/folder-1/ を開いてもうまくいきません。http:/
 yarn でインストールする方法
 
 ```bash
-yarn add parcel-bundler --dev
+yarn add parcel --dev
 ```
 
 npm でインストールする方法
 
 ```bash
-npm install parcel-bundler --save-dev
+npm install parcel --save-dev
 ```
 
 それから、プロジェクトの `package.json` にこれらのタスクスクリプトを追加します。

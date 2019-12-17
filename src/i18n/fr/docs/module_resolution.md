@@ -48,7 +48,7 @@ Ces exemples d'alias `react` vers `preact` et d'un module local personnalisé qu
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",

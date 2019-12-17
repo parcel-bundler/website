@@ -39,7 +39,7 @@ document.getElementById("greeting").innerHTML = variable;
 </html>
 ```
 
-(`package.json`에는 `parcel-bundler`만 설치되어 있습니다.)
+(`package.json`에는 `parcel`만 설치되어 있습니다.)
 
 이 설정으로, `parcel src/index.html`을 설정하고, 소스코드에서 breakpoint를 설정할 수 있습니다.
 

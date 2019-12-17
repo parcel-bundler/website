@@ -5,7 +5,7 @@ Dans Parcel, un `Packager` combine plusieurs `Asset` ensemble dans un paquet fin
 ## Packager Interface
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MyPackager extends Packager {
   async start() {
@@ -32,7 +32,7 @@ module.exports = MyPackager
 Vous pouvez enregistrer votre packager avec un empaqueteur (bundler) en utilisant la méthode `addPackager`. Il accepte un type de fichier pour s'enregistrer et le chemin vers votre module packager.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MonPackager'))

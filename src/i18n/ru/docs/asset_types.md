@@ -7,7 +7,7 @@
 ## Интерфейс ресурса
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // устанавливаем основной тип вывода.
@@ -58,7 +58,7 @@ class MyAsset extends Asset {
 Вы можете зарегистрировать свой тип ресурса, используя метод `addAssetType`. Он принимает расширение файла для регистрации и путь к модулю типа ресурса. Это путь, а не фактический объект, чтобы он мог передаваться рабочим процессам.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MyAsset'))

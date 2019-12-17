@@ -7,7 +7,7 @@ Ponieważ Parcel przetwarza zasoby równolegle na wielu rdzeniach procesora, typ
 ## Interfejs Zasobu
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // zdefiniuj typ wyniku
@@ -46,7 +46,7 @@ class MyAsset extends Asset {
 Możesz zarejestrować swój typ zasobu w programie pakującym używając metody `addAssetType`. Akceptuje on rozszerzenie pliku do zarejestrowania i ścieżkę do modułu typu zasobu. Używana jest ścieżka zamiast faktycznego obiektu modułu dlatego, aby mogła być ona przekazana do procesów wątków usługowch.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MyAsset'))

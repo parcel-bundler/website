@@ -9,7 +9,7 @@ Najpierw należy zainstalować zależności potrzebne dla React.
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-react
 ```
@@ -19,7 +19,7 @@ npm install --save-dev babel-preset-react
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 yarn add --dev babel-preset-env
 yarn add --dev babel-preset-react
 ```
@@ -48,14 +48,14 @@ Najpierw należy zainstalować zależności potrzebne dla Preact.
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Lub, jeśli używasz Yarn:</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Dodaj skrypt startowy do `package.json`:
@@ -73,14 +73,14 @@ Najpierw należy zainstalować zależności potrzebne dla Vue:
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Lub, jeśli używasz Yarn:</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Dodaj skrypt startowy do `package.json`:

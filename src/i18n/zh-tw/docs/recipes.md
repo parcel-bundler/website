@@ -9,7 +9,7 @@
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者你也可以使用 Yarn 安裝</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 在 `package.json` 中加入啟動指令
@@ -35,14 +35,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者是你想使用 Yarn 來管理套件</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 接著在 `package.json` 中加入啟動指令
@@ -60,14 +60,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者是你想使用 Yarn 來管理套件</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 在 `package.json` 中加入啟動指令
@@ -85,14 +85,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save-dev typescript
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者你想使用 yarn 來安裝</sub>
 
 ```bash
 yarn add --dev typescript
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### 由 index.html 進行編譯
@@ -142,14 +142,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install bootstrap jquery popper.js
-npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+npm install --save-dev parcel @fortawesome/fontawesome-free
 ```
 
 <sub>或者你也可以使用 Yarn 安裝</sub>
 
 ```bash
 yarn add bootstrap jquery popper.js
-yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+yarn add --dev parcel @fortawesome/fontawesome-free
 ```
 
 在 `package.json` 中加入啟動指令
@@ -233,7 +233,7 @@ import './main.scss' // 匯入剛建立的 scss 檔案
 ```bash
 npm install --save-dev svelte
 npm install --save-dev parcel-plugin-svelte
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者你也可以使用 Yarn 安裝</sub>
@@ -241,7 +241,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add --dev svelte
 yarn add --dev parcel-plugin-svelte
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### 從 index.html 編譯

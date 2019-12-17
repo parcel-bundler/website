@@ -2,7 +2,7 @@
 
 Parcel 使用[dotenv](https://github.com/motdotla/dotenv)支持从`.env`文件加载环境变量。
 
-`.env`与`package.json`储存在一起，将包含在你的`parcel-bundler`依赖项
+`.env`与`package.json`储存在一起，将包含在你的`parcel`依赖项
 
 Parcel 根据下表`NODE_ENV`的值来加载具体名字的`.env`文件
 

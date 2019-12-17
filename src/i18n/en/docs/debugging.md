@@ -39,7 +39,7 @@ and `index.html` contains:
 </html>
 ```
 
-(`package.json` only has `parcel-bundler` installed)
+(`package.json` only has `parcel` installed)
 
 With this setup, you can run `parcel src/index.html` and set breakpoints in the source code, as seen below:
 

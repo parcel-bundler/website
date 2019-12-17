@@ -9,7 +9,7 @@ Primero necesitas instalar las dependencias para React.
 ```
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-react
 ```
@@ -19,7 +19,7 @@ npm install --save-dev babel-preset-react
 ```
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 yarn add --dev babel-preset-env
 yarn add --dev babel-preset-react
 ```
@@ -48,14 +48,14 @@ Primero necesitas instalar las dependencias para Preact.
 
 ```
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>O, si opcionalmente tienes instalado Yarn como gestor de paquetes</sub>
 
 ```
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Agrega el script de inicio a `package.json`

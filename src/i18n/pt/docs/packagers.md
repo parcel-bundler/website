@@ -5,7 +5,7 @@ No Parcel, um `Packager` combina múltiplos `Asset`s juntos em um pacote de saí
 ## Interface Packager
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MyPackager extends Packager {
   async start() {
@@ -32,7 +32,7 @@ module.exports = MyPackager
 Você pode registrar seu Packager com um bundler usando o método `addPackager`. Ele aceita um tipo de arquivo para se registrar e o caminho para seu módulo de pacote.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MyPackager'))

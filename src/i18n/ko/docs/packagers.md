@@ -5,7 +5,7 @@ Parcel 에선 `패키저`가 다수의 `애셋`을 하나의 최종 출력 번�
 ## 패키저 인터페이스
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MyPackager extends Packager {
   async start() {
@@ -30,7 +30,7 @@ class MyPackager extends Packager {
 `addPackager` 메소드를 사용하여 번들러에 패키저를 등록할 수 있습니다. 이 메소드는 등록하려는 파일 유형과 패키저 모듈의 경로를 받아들입니다.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MyPackager'))

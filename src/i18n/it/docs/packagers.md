@@ -5,7 +5,7 @@ In Parcel, un `Packager` combina multipli `Assets` insieme in un bundle di outpu
 ## Interfaccia del Packager
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MioPackager extends Packager {
   async start() {
@@ -30,7 +30,7 @@ class MioPackager extends Packager {
 Puoi impostare il tuo packager con un bundler usando il metodo `addPackager`. Accetta un tipo di file da impostare, e il percorso al tuo modulo packager.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MioPackager'))

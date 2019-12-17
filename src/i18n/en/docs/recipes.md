@@ -9,7 +9,7 @@ First we need to install the dependencies for React.
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Add Start script to `package.json`
@@ -35,14 +35,14 @@ First we need to install the dependencies for Preact.
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Add Start script to `package.json`
@@ -60,14 +60,14 @@ First we need to install the dependencies for Vue.
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Add Start script to `package.json`
@@ -85,14 +85,14 @@ First we need to add Parcel and TypeScript to our project.
 
 ```bash
 npm install --save-dev typescript
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add --dev typescript
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### Compiling from index.html
@@ -142,14 +142,14 @@ First we need to install the dependencies for Bootstrap and FontAwesome.
 
 ```bash
 npm install bootstrap jquery popper.js
-npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+npm install --save-dev parcel @fortawesome/fontawesome-free
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
 
 ```bash
 yarn add bootstrap jquery popper.js
-yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+yarn add --dev parcel @fortawesome/fontawesome-free
 ```
 
 Add Start script to `package.json`
@@ -233,7 +233,7 @@ First we need to install the dependencies for Svelte.
 ```bash
 npm install --save-dev svelte
 npm install --save-dev parcel-plugin-svelte
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Or if you have the optional Yarn package manager installed</sub>
@@ -241,7 +241,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add --dev svelte
 yarn add --dev parcel-plugin-svelte
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### Compiling from index.html

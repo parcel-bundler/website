@@ -48,7 +48,7 @@ import foo from "/assets/*.png";
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",

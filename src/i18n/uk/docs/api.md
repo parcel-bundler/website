@@ -6,7 +6,7 @@
 Див. Приклад нижче, де пояснюється кожна опція:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // Шлях до файлу точки входу
@@ -128,7 +128,7 @@ index.html
 Приклад використання мідлвар Parcel з express
 
 ```Javascript
-const Bundler = require ( 'parcel-bundler');
+const Bundler = require ( 'parcel');
 const app = require ( 'express') ();
 
 const file = 'index.html'; // Передайте абсолютний шлях до точки входу тут

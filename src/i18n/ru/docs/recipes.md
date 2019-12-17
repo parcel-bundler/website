@@ -9,7 +9,7 @@
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 npm install --save-dev babel-preset-env
 npm install --save-dev babel-preset-react
 ```
@@ -19,7 +19,7 @@ npm install --save-dev babel-preset-react
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 yarn add --dev babel-preset-env
 yarn add --dev babel-preset-react
 ```
@@ -39,14 +39,14 @@ yarn add --dev babel-preset-react
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Затем добавьте скрипт запуска в `package.json`
@@ -64,14 +64,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Или, если у вас установлен менеджер пакетов Yarn</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Затем добавьте скрипт запуска в `package.json`

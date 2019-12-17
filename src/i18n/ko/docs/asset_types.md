@@ -7,7 +7,7 @@ Parcel 은 다중 프로세서 코어로 애셋을 병렬 처리 하기 때문�
 ## 애셋 인터페이스
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // 주 출력 유형 설정
@@ -58,7 +58,7 @@ class MyAsset extends Asset {
 `addAssetType` 메소드를 사용해 애셋 유형을 번들러에 등록할 수 있습니다. 이것은 등록할 파일 확장자와 애셋 유형 모듈의 경로를 받아들입니다. 실제 객체가 아닌 경로이기 때문에 워커 프로세스로 전달될 수 있습니다.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MyAsset'))

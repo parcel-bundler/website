@@ -39,7 +39,7 @@ Et `index.html` contient :
 </html>
 ```
 
-(`package.json` n'a que `parcel-bundler` d'installé)
+(`package.json` n'a que `parcel` d'installé)
 
 Avec cette configuration, vous pouvez exécuter `parcel src/index.html` et définir des points d'arrêt dans le code source, comme indiqué ci-dessous :
 

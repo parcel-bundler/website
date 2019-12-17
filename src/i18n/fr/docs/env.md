@@ -2,7 +2,7 @@
 
 Parcel utilise [dotenv](https://github.com/motdotla/dotenv) pour charger les variables d'environnement depuis les fichiers `.env`.
 
-Les fichiers `.env` doivent être placés au même endroit que le `package.json` qui contient votre dépendance `parcel-bundler`.
+Les fichiers `.env` doivent être placés au même endroit que le `package.json` qui contient votre dépendance `parcel`.
 
 Parcel charge les fichiers `.env` avec ces noms spécifiques pour les valeurs de `NODE_ENV` suivantes :
 

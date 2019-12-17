@@ -9,7 +9,7 @@ Come prima cosa installa le dipendenze di React
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Oppure, se si vuole utilizzare Yarn</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Aggiungi uno script di Start nel `package.json`
@@ -35,14 +35,14 @@ Come prima cosa installa le dipendenze di Preact
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Oppure, se si vuole utilizzare Yarn</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Aggiungi uno script di Start nel `package.json`
@@ -60,14 +60,14 @@ Come prima cosa installa le dipendenze di Vue
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Oppure, se si vuole utilizzare Yarn</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Aggiungi uno script di Start nel `package.json`

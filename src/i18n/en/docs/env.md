@@ -2,7 +2,7 @@
 
 Parcel uses [dotenv](https://github.com/motdotla/dotenv) to support loading environment variables from `.env` files.
 
-`.env` files are to be stored alongside the `package.json` that contains your `parcel-bundler` dependency.
+`.env` files are to be stored alongside the `package.json` that contains your `parcel` dependency.
 
 Parcel loads `.env` files with these specific names for the following `NODE_ENV` values:
 

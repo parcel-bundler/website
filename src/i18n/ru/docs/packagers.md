@@ -5,7 +5,7 @@
 ## Интерфейс упаковщика
 
 ```javascript
-const { Packager } = require('parcel-bundler')
+const { Packager } = require('parcel')
 
 class MyPackager extends Packager {
   async start() {
@@ -30,7 +30,7 @@ class MyPackager extends Packager {
 Вы можете зарегистрировать упаковщик с помощью метода `addPackager`. Он принимает тип файла для регистрации и путь к вашему модулю упаковщика.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addPackager('foo', require.resolve('./MyPackager'))

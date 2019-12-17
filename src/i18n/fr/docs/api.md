@@ -6,7 +6,7 @@ Au lieu de l'outil en ligne de commande (CLI), vous pouvez également utiliser l
 Un exemple de watch avec chaque option expliquée :
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // Emplacement du fichier unique en point d'entrée :
@@ -167,7 +167,7 @@ Le middleware peut être utilisé pour se connecter à un serveur HTTP (par exem
 Un exemple d'utilisation du middleware de Parcel avec express
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 const file = 'index.html'; // Passe ici un chemin absolu vers le point d'entrée

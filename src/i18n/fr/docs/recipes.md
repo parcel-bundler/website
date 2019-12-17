@@ -9,7 +9,7 @@ D'abord nous avons besoin d'installer les dépendances pour React.
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou si vous avez installé le gestionnaire de paquets Yarn</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Ajoutez un script de démarrage à `package.json`
@@ -35,14 +35,14 @@ D'abord vous avez besoin d'installer les dépendances pour Preact.
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou si vous avez installé le gestionnaire de paquets Yarn</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Ajoutez un script de démarrage à `package.json`
@@ -60,14 +60,14 @@ D'abord vous avez besoin d'installer les dépendances pour Vue.
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou si vous avez installé le gestionnaire de paquets Yarn</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Ajoutez un script de démarrage à `package.json`
@@ -85,14 +85,14 @@ D'abord installez les dépendances pour TypeScript
 
 ```bash
 npm install --save-dev typescript
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou si vous avez installé le gestionnaire de paquets Yarn</sub>
 
 ```bash
 yarn add typescript --dev
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### Utiliser directement un fichier typescript depuis index.html
@@ -142,14 +142,14 @@ Nous devons d’abord installer les dépendances pour Bootstrap et FontAwesome.
 
 ```bash
 npm install bootstrap jquery popper.js
-npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
+npm install --save-dev parcel @fortawesome/fontawesome-free
 ```
 
 <sub>Ou si vous avez le gestionnaire de package Yarn installé</sub>
 
 ```bash
 yarn add bootstrap jquery popper.js
-yarn add --dev parcel-bundler @fortawesome/fontawesome-free
+yarn add --dev parcel @fortawesome/fontawesome-free
 ```
 
 Ajoutez un script Start dans le `package.json`
@@ -233,7 +233,7 @@ Nous devons d’abord installer les dépendances pour Svelte.
 ```bash
 npm install --save-dev svelte
 npm install --save-dev parcel-plugin-svelte
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou si vous avez le gestionnaire de paquets Yarn installé</sub>
@@ -241,7 +241,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add --dev svelte
 yarn add --dev parcel-plugin-svelte
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### Compiler à partir de index.html

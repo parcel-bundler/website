@@ -9,7 +9,7 @@
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者如果你安装了 Yarn 包管理器</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 添加 start 指令到 `package.json`
@@ -35,14 +35,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 向 `package.json` 的 scripts 中添加 start 脚本。
@@ -60,14 +60,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 向 `package.json` 的 scripts 中添加 start 脚本。
@@ -85,14 +85,14 @@ yarn add --dev parcel-bundler
 
 ```bash
 npm install --save-dev typescript
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>或者如果说你安装了 Yarn 包管理器，作为 npm 的备选</sub>
 
 ```bash
 yarn add --dev typescript
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### 从 index.html 开始编译

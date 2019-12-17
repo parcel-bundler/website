@@ -7,13 +7,13 @@ Parcel 是 Web 应用打包工具，适用于经验不同的开发者。它利�
 Yarn:
 
 ```bash
-yarn global add parcel-bundler
+yarn global add parcel
 ```
 
 npm:
 
 ```bash
-npm install -g parcel-bundler
+npm install -g parcel
 ```
 
 在你正在使用的项目目录下创建一个 package.json 文件：
@@ -97,13 +97,13 @@ _注意:_ 假设你的文件目录结构如下:
 Yarn 方式安装：
 
 ```bash
-yarn add parcel-bundler --dev
+yarn add parcel --dev
 ```
 
 NPM 方式安装：
 
 ```bash
-npm install parcel-bundler --save-dev
+npm install parcel --save-dev
 ```
 
 接着，通过修改你的`package.json`来添加这些任务脚本

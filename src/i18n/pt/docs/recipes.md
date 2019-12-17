@@ -9,7 +9,7 @@ Primeiro instale as dependências do React.
 ```bash
 npm install --save react
 npm install --save react-dom
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
@@ -17,7 +17,7 @@ npm install --save-dev parcel-bundler
 ```bash
 yarn add react
 yarn add react-dom
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Adicione o script de inicialização ao `package.json`
@@ -35,14 +35,14 @@ Primeiro instale as dependências do Preact.
 
 ```bash
 npm install --save preact
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add preact
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Adicione o script de inicialização ao `package.json`
@@ -60,14 +60,14 @@ Primeiro, nós precisamos instalar as dependências para o Vue.
 
 ```bash
 npm install --save vue
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add vue
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 Adicione o script de inicialização ao `package.json`
@@ -85,14 +85,14 @@ Primeiro, nós temos que adicionar o Parcel e Typescript ao nosso projeto.
 
 ```bash
 npm install --save-dev typescript
-npm install --save-dev parcel-bundler
+npm install --save-dev parcel
 ```
 
 <sub>Ou se você tiver opcionalmente o gerenciador de pacotes Yarn instalado</sub>
 
 ```bash
 yarn add typescript --dev
-yarn add --dev parcel-bundler
+yarn add --dev parcel
 ```
 
 ### Compilando a partir do index.html

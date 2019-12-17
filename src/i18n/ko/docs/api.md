@@ -6,7 +6,7 @@
 모든 옵션이 설명된 아래 예시를 보세요.
 
 ```js
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 const Path = require('path')
 
 // 진입점 파일 위치
@@ -130,7 +130,7 @@ index.html
 Parcel 미들웨어를 express 와 사용하는 예제입니다.
 
 ```js
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 const app = require('express')()
 
 const file = 'index.html' // 엔트리 포인트로 쓰일 절대경로를 적습니다

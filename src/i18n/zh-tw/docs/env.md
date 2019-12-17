@@ -2,7 +2,7 @@
 
 Parcel 使用 [dotenv](https://github.com/motdotla/dotenv) 來支援 `.env` 檔案中的環境變數。
 
-`.env` 檔案應被儲存於與 `package.json`（含有 `parcel-bundler` 的那個檔案）相同的目錄中。
+`.env` 檔案應被儲存於與 `package.json`（含有 `parcel` 的那個檔案）相同的目錄中。
 
 Parcel 根據下表的 `NODE_ENV` 值來載入對應的 `.env` 檔案：
 

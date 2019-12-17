@@ -7,7 +7,7 @@ Parcel elabora le risorse in parallelo su più core di elaborazione e le trasfor
 ## Interfaccia degli Asset
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // imposta il tipo principale di output.
@@ -58,7 +58,7 @@ class MyAsset extends Asset {
 Si può impostare il proprio tipo di Asset con un bundle usando il metodo "addAssetType". Accetta un'estensione di file per la creazione e il percorso del modulo del tipo di Asset. È in forma di percorso, invece che puntare all'oggetto reale, in modo che possa essere passato ai worker process.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MioAsset'))

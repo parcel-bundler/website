@@ -7,7 +7,7 @@ Debido a que Parcel procesa los recursos en paralelo en múltiples núcleos de p
 ## Interfaz de Recursos
 
 ```javascript
-const { Asset } = require('parcel-bundler')
+const { Asset } = require('parcel')
 
 class MyAsset extends Asset {
   type = 'foo' // establecer el tipo de salida principal
@@ -46,7 +46,7 @@ class MyAsset extends Asset {
 Puedes registrar tus tipos de recursos con un paquete usando el método `addAssetType`. Este acepta una extensión de archivo, y la ruta a tu módulo de tipo de recurso. Esta es una ruta en lugar del objeto real para que pueda ser enviado a procesos paralelos de trabajo.
 
 ```javascript
-const Bundler = require('parcel-bundler')
+const Bundler = require('parcel')
 
 let bundler = new Bundler('input.js')
 bundler.addAssetType('.ext', require.resolve('./MyAsset'))

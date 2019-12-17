@@ -6,7 +6,7 @@ Instead of the CLI you can also use the API to initialise a bundler, for more ad
 A watch example with every option explained:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // Single entrypoint file location:
@@ -167,7 +167,7 @@ Middleware can be used to hook into an http server (e.g. `express` or node `http
 An example of using the Parcel middleware with express
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 const file = 'index.html'; // Pass an absolute path to the entrypoint here

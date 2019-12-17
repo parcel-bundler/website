@@ -7,7 +7,7 @@ Invece di utilizzare la CLI, si può anche usare l'API per inizializzare un bund
 Un esempio di "watch" con ogni opzione descritta:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // Definizione del file entry-point
@@ -125,7 +125,7 @@ Middleware può essere usato per agganciarsi a un server http (ad esempio `expre
 Un esempio di utilizzo di Parcel middleware con express:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 // Inizializzare un nuovo bundle usando un file e le opzioni (per le opzioni e il file vedere la documentazione del bundle)

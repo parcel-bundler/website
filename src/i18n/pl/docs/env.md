@@ -2,7 +2,7 @@
 
 Parcel wykorzystuje [dotenv](https://github.com/motdotla/dotenv) by ładować zmienne środowiskowe z plików `.env`.
 
-Pliki `.env` powinny znajdować się w tym samym miejscu co `package.json`, który zawiera zależność `parcel-bundler`.
+Pliki `.env` powinny znajdować się w tym samym miejscu co `package.json`, który zawiera zależność `parcel`.
 
 Parcel ładuje pliki `.env` o tych konkretnych nazwach dla następujących wartości `NODE_ENV`:
 

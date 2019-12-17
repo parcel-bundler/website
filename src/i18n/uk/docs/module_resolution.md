@@ -26,7 +26,7 @@ Parcel (v1.7.0 і вище) підтримує декілька стратегі
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",

@@ -7,13 +7,13 @@ Primeiro, instale o Parcel usando Yarn ou npm:
 Yarn:
 
 ```bash
-yarn global add parcel-bundler
+yarn global add parcel
 ```
 
 npm:
 
 ```bash
-npm install -g parcel-bundler
+npm install -g parcel
 ```
 
 Crie o arquivo package.json no diretório do seu projeto executando:
@@ -96,13 +96,13 @@ Quando você estiver pronto para enviar sua aplicação para produção, o modo 
 Para instalar com Yarn:
 
 ```bash
-yarn add parcel-bundler --dev
+yarn add parcel --dev
 ```
 
 Para instalar com NPM:
 
 ```bash
-npm install parcel-bundler --save-dev
+npm install parcel --save-dev
 ```
 
 Então, adicione esses scripts de tarefas para o seu projeto, modificando o seu `package.json`:

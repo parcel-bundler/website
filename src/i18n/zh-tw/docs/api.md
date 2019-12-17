@@ -7,7 +7,7 @@
 下面將用一個監看 (watch) 的範例來解釋所有設定選項：
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // 進入點路徑
@@ -175,7 +175,7 @@ index.html
 下列範例展示了如何在 express 中使用 Parcel 中介軟體
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 const file = 'index.html'; // 傳入進入點的絕對路徑

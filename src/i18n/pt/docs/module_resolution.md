@@ -48,7 +48,7 @@ Este exemplo utiliza `react` como `preact` e outros módulos locais que não est
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel": "^1.7.0"
   },
   "alias": {
     "react": "preact-compat",

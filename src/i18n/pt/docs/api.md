@@ -6,7 +6,7 @@ Ao invés do cliente, você pode utilizar a API para inicializar o _bundler_, pa
 Um exemplo com toda opção explicada:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const Path = require('path');
 
 // Localização do arquivo como único entrypoint:
@@ -166,7 +166,7 @@ Middleware pode ser utilizado como hoot dentro do servidor http (por exemplo, `e
 Um exemplo de uso de middleware do Parcel com o express:
 
 ```Javascript
-const Bundler = require('parcel-bundler');
+const Bundler = require('parcel');
 const app = require('express')();
 
 const file = 'index.html'; // Passa um caminho absoluto para o entrypoint aqui
