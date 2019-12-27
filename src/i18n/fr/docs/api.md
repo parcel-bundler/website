@@ -34,7 +34,7 @@ const options = {
     cert: './ssl/c.crt', // Chemin vers le certificat personnalisé
     key: './ssl/k.key' // Chemin vers la clé personnalisée
   },
-  logLevel: 3, // 5 = Tout consigner dans un fichier, 4 = Comme le 3, mais avec des horodatages et également enregistrer les requêtes http sur le serveur de développement, 3 = Consigner les informations, avertissements et erreurs, 2 = Consigner les avertissements et erreurs, 1 = Consigner les erreurs
+  logLevel: 3, // 5 = Tout consigner dans un fichier, 4 = Comme le 3, mais avec des horodatages et également enregistrer les requêtes http sur le serveur de développement, 3 = Consigner les informations, avertissements et erreurs, 2 = Consigner les avertissements et erreurs, 1 = Consigner les erreurs, 0 = Ne rien consigner
   hmr: true, // Active ou désactive le HMR lors de la surveillance (watch)
   hmrPort: 0, // Le port sur lequel la socket HMR (Hot Module Reload) fonctionne, par défaut à un port libre aléatoire (0 dans node.js se traduit en un port libre aléatoire)
   sourceMaps: true, // Active ou désactive les sourcemaps, par défaut activé (les constructions minifiées pour l'instant créent toujours des sourcemaps)
