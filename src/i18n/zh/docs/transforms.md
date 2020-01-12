@@ -1,6 +1,6 @@
 # 🐠 转换(Transforms)
 
-许多打包工具需要你安装和配置插件来转换资源，Parcel 支持许多开箱即用的转换器和内置的编译器。您可以使用 [Babel](https://babeljs.cn) 转换 JavaScript ，使用 [PostCSS](http://postcss.org) 转换 CSS ，使用 [PostHTML](https://github.com/posthtml/posthtml) 转换 HTML。Parcel 在模块中找到配置文件 (例如 `.babelrc` ，`.postcssrc`) 时会自动运行并进行转换。（除了在`.babelrc`指定的换外，Parcel 总会在所有模块上使用 Babel 编译成浏览器支持的现代 JavaScript。请参阅[JavaScript/Default Babel Transforms](javascript.html#default-babel-transforms) 查看更多信息。)
+许多打包工具需要你安装和配置插件来转换资源，Parcel 支持许多开箱即用的转换器和内置的编译器。您可以使用 [Babel](https://babeljs.cn) 转换 JavaScript ，使用 [PostCSS](http://postcss.org) 转换 CSS ，使用 [PostHTML](https://github.com/posthtml/posthtml) 转换 HTML。Parcel 在模块中找到配置文件 (例如 `.babelrc` ，`.postcssrc`) 时会自动运行并进行转换。（除了在`.babelrc`指定的转换外，Parcel 总会在所有模块上使用 Babel 编译成浏览器支持的现代 JavaScript。请参阅[JavaScript/Default Babel Transforms](javascript.html#default-babel-transforms) 查看更多信息。)
 
 ## 第三方模块
 
