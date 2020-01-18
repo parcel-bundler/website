@@ -89,3 +89,7 @@ Parcel does not use the `baseUrl` or `paths` directives in `tsconfig.json`. You 
 ```
 
 See [this gist](https://gist.github.com/croaky/e3394e78d419475efc79c1e418c243ed) for a full example.
+
+## Module API types
+
+To interact with Parcel's Module API (e.g. when setting up [Hot Module Replacement](https://parceljs.org/hmr.html)), make sure to install the `@types/parcel-env` package.
