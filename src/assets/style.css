@@ -26,6 +26,13 @@ body {
   box-sizing: inherit;
 }
 
+.parcel2-note {
+  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  background: #21374b;
+  color: #e7dacb;
+  text-align: center;
+}
+
 header {
   position: -webkit-sticky;
   position: sticky;
