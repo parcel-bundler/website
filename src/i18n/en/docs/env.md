@@ -19,3 +19,4 @@ Notably:
 - `.env.local` is not loaded when `NODE_ENV=test` since [tests should produce the same results for everyone](https://github.com/parcel-bundler/parcel/blob/28df546a2249b6aac1e529dd629f506ba6b0a4bb/src/utils/env.js#L9)
 - Sometimes introducing a new .env file will not work immediately. Try deleting the .cache/ directory in this case.
 - Accessing the `process.env` object directly is [not supported](https://github.com/parcel-bundler/parcel/issues/2299#issuecomment-439768971), but accessing specific variables on it like `process.env.API_KEY` will provide the expected value.
+- Use the built-in `process` Node.js global, i.e. don't do `import process from "process"`, because it will not work. If you use TypeScript, you probably want to install `@types/node` for it to compile.
