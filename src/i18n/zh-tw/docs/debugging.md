@@ -49,7 +49,7 @@ document.getElementById("greeting").innerHTML = variable;
 
 假設檔案結構與 Chrome 開發者工具一節中的類似，則可在 [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) 外掛中使用下列 `launch.json` 設定：
 
-```json
+```js
 {
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
