@@ -4,22 +4,24 @@ _支援的副檔名：`glsl`、`vert` 及 `frag`_
 
 ## GLSL 範例程式碼
 
-### Vertex shader
-```c
-uniform vec4 scale;
-void main()
-{
-  vec4 pos = gl_Vertex * scale;
-  gl_Position = gl_ModelViewProjectionMatrix * pos;
+## Vertex shader
+
+`shader.frag`:
+
+```glsl
+#pragma glslify: snoise3 = require(glsl-noise/simplex/3d)
+attribute vec3 position;
+void main() {
+  gl_FragColor = vec4(snoise3(position), 1.0);
 }
 ```
 
-### Fragment Shader
-```c
-void main()
-{
-  gl_FragColor = vec4(1,1,1,1);
-}
-```
+接著你可以匯入轉譯後的版本，並在 WebGL 中使用這個字串：
 
-詳情請見 [OpenGL GLSL 文件](https://www.opengl.org/sdk/docs/tutorials/TyphoonLabs/Chapter_3.pdf)
+```js
+import frag from './shader.frag'
+
+// ...
+gl.shaderSource(..., frag);
+// ...
+```
