@@ -39,7 +39,7 @@ doctype html
 html(lang="")
   head
     // ...
-    link(rel="stylesheet", href="index.css")
+    link(rel="stylesheet", href="style.css")
   body
     h1 Hello
 
