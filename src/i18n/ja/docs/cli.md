@@ -10,6 +10,16 @@ Starts up a development server, which will automatically rebuild your app as you
 parcel index.html
 ```
 
+You may also pass a [glob](https://github.com/isaacs/node-glob) or list of globs for multiple entry points.
+
+```bash
+parcel one.html two.html
+# OR
+parcel *.html
+# OR
+parcel ./**/*.html
+```
+
 ### Build
 
 Builds the assets once, it also enabled minification and sets the `NODE_ENV=production` environment variable. See [Production](production.html) for more details.
@@ -17,6 +27,14 @@ Builds the assets once, it also enabled minification and sets the `NODE_ENV=prod
 ```bash
 parcel build index.html
 ```
+
+_NOTE:_ For special use cases, it's also possible to perform a single build from the `development` environment, like this:
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+It creates the same bundles as `serve`, but it doesn't watch or serve assets.
 
 ### Watch
 
@@ -91,7 +109,7 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --target node
 ```
 
-⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`). This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
+⚠️ Target `node` and `electron` will not bundle package.json's `dependencies`. This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
 
 Possible targets: `node`, `browser`, `electron`
 
@@ -117,6 +135,16 @@ Available in: `serve`, `watch`, `build`
 parcel build entry.js --cache-dir build/cache
 ```
 
+### Host
+
+Default: localhost
+
+Available in: `serve`
+
+```bash
+parcel serve entry.js --host local.myhost.co.uk
+```
+
 ### Port
 
 Default: 1234
@@ -137,14 +165,14 @@ Available in: `serve`, `watch`, `build`
 parcel entry.js --log-level 1
 ```
 
-| Loglevel | Effect                                                                                          |
-| -------- | ----------------------------------------------------------------------------------------------- |
-| 0        | Logging disabled                                                                                |
-| 1        | Only log errors                                                                                 |
-| 2        | Log errors and warnings                                                                         |
-| 3        | Log errors, warnings and info                                                                   |
-| 4        | Verbose (keep everything in log with timestamps <br/> and also log http requests to dev server) |
-| 5        | Debug (save everything to a file with timestamps)                                               |
+| Loglevel | Effect                                                                                         |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 0        | Logging disabled                                                                               |
+| 1        | Only log errors                                                                                |
+| 2        | Log errors and warnings                                                                        |
+| 3        | Log errors, warnings and info                                                                  |
+| 4        | Verbose (keep everything in log with timestamps <br> and also log http requests to dev server) |
+| 5        | Debug (save everything to a file with timestamps)                                              |
 
 ### HMR Hostname
 
@@ -180,12 +208,15 @@ This changes the output filename of the entrypoint bundle
 
 ### Print a detailed report
 
-Default: Minimal report
+Default: Minimal report, otherwise depth 10
+
+The optional argument specifies the depth to print.
 
 Available in: `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
 ### Enable https
@@ -228,6 +259,16 @@ Available in: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
+```
+
+### Disable content hashing
+
+Default: content-hash enabled
+
+Available in: `build`
+
+```bash
+parcel build entry.js --no-content-hash
 ```
 
 ### Disable autoinstall
