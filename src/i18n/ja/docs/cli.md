@@ -4,23 +4,41 @@
 
 ### Serve
 
-Starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](hmr.html) for fast development.
+開発サーバーを起動します。ファイルを変更するとアプリが自動的に再構築され、迅速な開発のために [hot module replacement](hmr.html) がサポートされます。
 
 ```bash
 parcel index.html
 ```
 
+また、複数のエントリポイントに対して [glob](https://github.com/isaacs/node-glob) または glob のリストを渡すこともできます。
+
+```bash
+parcel one.html two.html
+# OR
+parcel *.html
+# OR
+parcel ./**/*.html
+```
+
 ### Build
 
-Builds the assets once, it also enabled minification and sets the `NODE_ENV=production` environment variable. See [Production](production.html) for more details.
+アセットを一度ビルドします。また、ミニファイを有効にし、 `NODE_ENV = production`環境変数を設定します。 詳細については [Production](production.html) を参照してください。
 
 ```bash
 parcel build index.html
 ```
 
+_NOTE:_ 特別なユースケースでは、次のように `development` 環境から単一のビルドを実行することもできます。
+
+```
+NODE_ENV=development parcel build <entrypoint> --no-minify
+```
+
+`serve` と同じバンドルを作成しますが、アセットの監視や配信は行いません。
+
 ### Watch
 
-The `watch` command is similar to `serve`, with the main difference being it doesn't start up a server.
+`watch`コマンドは `serve` に似ていますが、主な違いはサーバーを起動しないことです。
 
 ```bash
 parcel watch index.html
@@ -28,7 +46,7 @@ parcel watch index.html
 
 ### Help
 
-Displays all possible cli options
+利用可能なすべての cli オプションを表示します
 
 ```bash
 parcel help
@@ -36,7 +54,7 @@ parcel help
 
 ### Version
 
-Displays Parcel version number
+Parcel のバージョン番号を表示します
 
 ```bash
 parcel --version
@@ -44,11 +62,11 @@ parcel --version
 
 ## Options
 
-### Output directory
+### 出力ディレクトリ
 
-Default: "dist"
+デフォルト: "dist"
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-dir build/output
@@ -63,17 +81,17 @@ root
 - - - entry.js
 ```
 
-### Set the public URL to serve on
+### 公開する URL を設定する
 
-Default: "/"
+デフォルト: "/"
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --public-url ./dist/
 ```
 
-will output:
+出力:
 
 ```html
 <link rel="stylesheet" type="text/css" href="dist/entry.1a2b3c.css" />
@@ -83,211 +101,234 @@ will output:
 
 ### Target
 
-Default: browser
+デフォルト: browser
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node
 ```
 
-⚠️ Target `node` and `electron` will not bundle package.json's `dependencies` (but will include `devDependencies`). This behavior can be overriden using [--bundle-node-modules](#force-node-modules-bundling) flag (see below).
+⚠️ 対象が `node` と `electron` の場合、 package.json の `dependencies` はバンドルしません。 この動作は [--bundle-node-modules](#node-modules-の強制バンドル) フラグを使って上書きできます（以下を参照）。
 
-Possible targets: `node`, `browser`, `electron`
+可能なターゲット: `node`, `browser`, `electron`
 
-### Force node modules bundling
+### node modules の強制バンドル
 
-Default: false
+デフォルト: false
 
-Available in: `serve`, `watch`, `build`
+可能なターゲット: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --target node --bundle-node-modules
 ```
 
-By default, package.json's `dependencies` are not included when using `--target node` or `--target electron`. This flag adds them to the bundle.
+デフォルトでは、 `--target node` または `--target electron` を使用する場合、package.json の `dependencies` は含まれません。 このフラグはそれらをバンドルに追加します。
 
-### Cache directory
+### キャッシュディレクトリ
 
-Default: ".cache"
+デフォルト: ".cache"
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --cache-dir build/cache
 ```
 
-### Port
+### ホスト
 
-Default: 1234
+デフォルト: localhost
 
-Available in: `serve`
+利用可能: `serve`
+
+```bash
+parcel serve entry.js --host local.myhost.co.uk
+```
+
+### ポート
+
+デフォルト: 1234
+
+利用可能: `serve`
 
 ```bash
 parcel serve entry.js --port 1111
 ```
 
-### Change Log level
+### ログレベルの変更
 
-Default: 3
+デフォルト: 3
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel entry.js --log-level 1
 ```
 
-| Loglevel | Effect                                                                                          |
-| -------- | ----------------------------------------------------------------------------------------------- |
-| 0        | Logging disabled                                                                                |
-| 1        | Only log errors                                                                                 |
-| 2        | Log errors and warnings                                                                         |
-| 3        | Log errors, warnings and info                                                                   |
-| 4        | Verbose (keep everything in log with timestamps <br/> and also log http requests to dev server) |
-| 5        | Debug (save everything to a file with timestamps)                                               |
+| Loglevel | Effect                                                                                                   |
+| -------- | -------------------------------------------------------------------------------------------------------- |
+| 0        | ログは無効                                                                                               |
+| 1        | エラーのみを記録する                                                                                     |
+| 2        | エラーと警告だけ記録する                                                                                 |
+| 3        | エラー、警告、情報を記録する                                                                             |
+| 4        | Verbose （タイムスタンプを使用してすべてをログを記録<br>し、http リクエストを dev サーバーに記録します） |
+| 5        | debug （すべてをタイムスタンプ付きのファイルに保存）                                                     |
 
-### HMR Hostname
+### HMR ホスト名
 
-Default: `location.hostname` of current window
+デフォルト: 現在のウィンドウの `location.hostname`
 
-Available in: `serve`, `watch`
+利用可能: `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-hostname parceljs.org
 ```
 
-### HMR Port
+### HMR ポート
 
-Default: A random available port
+デフォルト: 利用可能なランダムなポート
 
-Available in: `serve`, `watch`
+利用可能: `serve`, `watch`
 
 ```bash
 parcel entry.js --hmr-port 8080
 ```
 
-### Output filename
+### 出力ファイル名
 
-Default: Original filename
+デフォルト: 元のファイル名
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --out-file output.html
 ```
 
-This changes the output filename of the entrypoint bundle
+これにより、エントリポイントバンドルの出力ファイル名が変更されます
 
-### Print a detailed report
+### 詳細レポートを表示する
 
-Default: Minimal report
+デフォルト: 最小のレポート、あるいは深さ 10
 
-Available in: `build`
+オプションの引数は、表示の深さを指定します。
+
+利用可能: `build`
 
 ```bash
 parcel build entry.js --detailed-report
+parcel build entry.js --detailed-report 10
 ```
 
-### Enable https
+### https を有効化
 
-Default: https disabled
+デフォルト: https は無効
 
-Available in: `serve`, `watch` (listen on HTTPS for HMR connections)
+利用可能: `serve`, `watch` (HMR 接続を HTTPS で待ち受ける)
 
 ```bash
 parcel build entry.js --https
 ```
 
-⚠️ This flag generates a self-signed certificate, you might have to configure your browser to allow self-signed certificates for localhost.
+⚠️ このフラグは自己署名証明書を生成します。localhost の自己署名証明書を許可するようにブラウザーを構成する必要がある場合があります。
 
-### Set a custom certificate
+### カスタム証明書を設定する
 
-Default: https disabled
+デフォルト: https は無効
 
-Available in: `serve`, `watch`
+利用可能: `serve`, `watch`
 
 ```bash
 parcel entry.js --cert certificate.cert --key private.key
 ```
 
-### Open in browser
+### ブラウザを開く
 
-Default: open disabled
+デフォルト: open は無効
 
-Available in: `serve`
+利用可能: `serve`
 
 ```bash
 parcel entry.js --open
 ```
 
-### Disable source-maps
+### source-maps を無効にする
 
-Default: source-maps enabled
+デフォルト: source-maps は有効
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-source-maps
 ```
 
-### Disable autoinstall
+### コンテンツハッシュを無効にする
 
-Default: autoinstall enabled
+デフォルト:コンテンツハッシュは有効
 
-Available in: `serve`, `watch`
+利用可能: `build`
+
+```bash
+parcel build entry.js --no-content-hash
+```
+
+### 自動インストールを無効にする
+
+デフォルト: 自動インストールは有効
+
+利用可能: `serve`, `watch`
 
 ```bash
 parcel entry.js --no-autoinstall
 ```
 
-### Disable HMR
+### HMR を無効にする
 
-Default: HMR enabled
+デフォルト: HMR は有効
 
-Available in: `serve`, `watch`
+利用可能: `serve`, `watch`
 
 ```bash
 parcel entry.js --no-hmr
 ```
 
-### Disable minification
+### minification を無効にする
 
-Default: minification enabled
+デフォルト: minification は有効
 
-Available in: `build`
+利用可能: `build`
 
 ```bash
 parcel build entry.js --no-minify
 ```
 
-### Disable the filesystem cache
+### ファイルシステムキャッシュを無効にする
 
-Default: cache enabled
+デフォルト: キャッシュは有効
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel build entry.js --no-cache
 ```
 
-### Expose modules as UMD
+### モジュールを UMD として公開する
 
-Default: disabled
+デフォルト: 無効
 
-Available in: `serve`, `watch`, `build`
+利用可能: `serve`, `watch`, `build`
 
 ```bash
 parcel serve entry.js --global myvariable
 ```
 
-### Enable experimental scope hoisting/tree shaking support
+### 実験的な scope hoisting/tree shaking サポートを有効にする
 
-Default: disabled
+デフォルト: 無効
 
-Available in: `build`
+利用可能: `build`
 
 ```bash
 parcel build entry.js --experimental-scope-hoisting
 ```
 
-For more information, see the [Tree Shaking section](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) of Devon Govett's post on Parcel 1.9.
+詳細については、 Parcel 1.9 に関する Devon Govett の記事 [Tree Shaking section](https://medium.com/@devongovett/parcel-v1-9-0-tree-shaking-2x-faster-watcher-and-more-87f2e1a70f79#4ed3) を参照してください。
