@@ -2,9 +2,9 @@
 
 ## React
 
-First we need to install the dependencies for React.
+まず React の依存関係をインストールする必要があります。
 
-[Blog Post](http://blog.jakoblind.no/react-parcel/)
+[ブログの投稿](http://blog.jakoblind.no/react-parcel/)
 
 ```bash
 npm install --save react
@@ -12,7 +12,7 @@ npm install --save react-dom
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add react
@@ -20,7 +20,7 @@ yarn add react-dom
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -31,21 +31,21 @@ Add Start script to `package.json`
 
 ## Preact
 
-First we need to install the dependencies for Preact.
+まず Preact の依存関係をインストールする必要があります。
 
 ```bash
 npm install --save preact
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add preact
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -56,21 +56,21 @@ Add Start script to `package.json`
 
 ## Vue
 
-First we need to install the dependencies for Vue.
+まず Vue の依存関係をインストールする必要があります。
 
 ```bash
 npm install --save vue
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add vue
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -81,23 +81,23 @@ Add Start script to `package.json`
 
 ## TypeScript
 
-First we need to add Parcel and TypeScript to our project.
+まずプロジェクトへ Parcel と TypeScript を追加する必要があります。
 
 ```bash
 npm install --save-dev typescript
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add --dev typescript
 yarn add --dev parcel-bundler
 ```
 
-### Compiling from index.html
+### index.html からコンパイルする
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -106,7 +106,7 @@ Add Start script to `package.json`
 }
 ```
 
-Then, in your `index.html` file, simply reference your `.ts` file.
+次に、 `index.html` ファイルで `.ts` ファイルを参照するだけです。
 
 ```html
 <!-- index.html -->
@@ -120,11 +120,11 @@ Then, in your `index.html` file, simply reference your `.ts` file.
 </html>
 ```
 
-Done!
+完了です！
 
-### Compiling the `.ts` file directly
+### `.ts` ファイルを直接コンパイルする
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -133,25 +133,25 @@ Add Start script to `package.json`
 }
 ```
 
-Done! 😄 Compiled `.js` file can be found inside the dist folder.
+完了です! 😄 コンパイルされた `.js` ファイルは dist フォルダー内で見つけることができます。
 
 ## Bootstrap + FontAwesome
 
-First we need to install the dependencies for Bootstrap and FontAwesome.
+まず Bootstrap と FontAwesome の依存関係をインストールする必要があります。
 
 ```bash
 npm install bootstrap jquery popper.js
 npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add bootstrap jquery popper.js
 yarn add --dev parcel-bundler @fortawesome/fontawesome-free
 ```
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -160,18 +160,18 @@ Add Start script to `package.json`
 }
 ```
 
-### Importing Bootstrap with precompiled styles
+### プリコンパイル済みのスタイルで Bootstrap をインポートする
 
-Create a JavaScript file to act as the entry point for your app and import any necessary dependencies.
+アプリのエントリポイントとして機能する JavaScript ファイルを作成し、必要な依存関係をインポートします。
 
 ```javascript
 // main.js
 import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.css' // Import precompiled Bootstrap css
+import 'bootstrap/dist/css/bootstrap.css' // プリコンパイル済みの Bootstrap css をインポートします
 import '@fortawesome/fontawesome-free/css/all.css'
 ```
 
-Then, in your `index.html` file, add a reference to your JavaScript entry point.
+次に、 `index.html` ファイルで JavaScript エントリポイントへの参照を追加します。
 
 ```html
 <!-- index.html -->
@@ -185,27 +185,27 @@ Then, in your `index.html` file, add a reference to your JavaScript entry point.
 </html>
 ```
 
-Done!
+完了です！
 
-### Customizing Bootstrap styles
+### Bootstrap のスタイルをカスタマイズ
 
-If you wish to customize the Bootstrap styles instead of importing the precompiled css, create an entry point `.scss` file and include the Bootstrap source styles.
+プリコンパイルされた css をインポートせずに Bootstrap のスタイルをカスタマイズしたい場合、エントリポイントの `.scss` ファイルを作成し、Bootstrap のスタイルのソースを含めます。
 
 ```scss
 // main.scss
 @import '~bootstrap/scss/bootstrap';
 ```
 
-Next, create a JavaScript file to act as the entry point for your app and import any necessary dependencies.
+次に、アプリのエントリポイントとして機能する JavaScript ファイルを作成し、必要な依存関係をインポートします。
 
 ```javascript
 // main.js
 import 'bootstrap'
 import '@fortawesome/fontawesome-free/css/all.css'
-import './main.scss' // Import our scss file
+import './main.scss' // scss ファイルをインポートします
 ```
 
-Then, in your `index.html` file, add a reference to your JavaScript entry point.
+次に、 `index.html`ファイルで、JavaScript エントリポイントへの参照を追加します。
 
 ```html
 <!-- index.html -->
@@ -219,13 +219,13 @@ Then, in your `index.html` file, add a reference to your JavaScript entry point.
 </html>
 ```
 
-Done!
+完了です！
 
 ## Svelte
 
-First we need to install the dependencies for Svelte.
+まず Svelte の依存関係をインストールする必要があります。
 
-[Blog Post](https://dev.to/alexparra/basic-svelte-app-with-parcel-30i5)
+[ブログの投稿](https://dev.to/alexparra/basic-svelte-app-with-parcel-30i5)
 
 ```bash
 npm install --save-dev svelte
@@ -233,7 +233,7 @@ npm install --save-dev parcel-plugin-svelte
 npm install --save-dev parcel-bundler
 ```
 
-<sub>Or if you have the optional Yarn package manager installed</sub>
+<sub>パッケージマネージャー Yarn をインストールして選択している場合</sub>
 
 ```bash
 yarn add --dev svelte
@@ -241,9 +241,9 @@ yarn add --dev parcel-plugin-svelte
 yarn add --dev parcel-bundler
 ```
 
-### Compiling from index.html
+### index.html からコンパイルする
 
-Add Start script to `package.json`
+Start スクリプトを `package.json` に追加します。
 
 ```javascript
 // package.json
@@ -252,7 +252,7 @@ Add Start script to `package.json`
 }
 ```
 
-Then, in your `index.html` file, add a reference to your JavaScript entry point.
+次に、 `index.html`ファイルで、JavaScript エントリポイントへの参照を追加します。
 
 ```html
 <!-- .src/index.html -->
@@ -268,4 +268,4 @@ Then, in your `index.html` file, add a reference to your JavaScript entry point.
 </html>
 ```
 
-Done!
+完了です！
