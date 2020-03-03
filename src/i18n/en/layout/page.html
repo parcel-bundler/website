@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="assets/style.css" />
     <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   </head>
   <body>
+    <div class="parcel2-note">
+      <em>Note:</em> This page covers Parcel 1, the documentation for Parcel 2 has yet to be written.
+    </div>
     <header>
       <a class="logo" href="/">
         <img
@@ -34,7 +37,9 @@
         <img class="type" src="assets/logo.svg" alt="Parcel" />
       </a>
       <div class="links">
-        <input type="text" id="search-input" class="search-input" placeholder="Search..." />
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" class="search-input" placeholder="Search..." />
+        </div>
         <form class="languages">
           <select
             class="language-dropdown"
@@ -65,6 +70,7 @@
           <li><a href="getting_started.html">🚀 Getting Started</a></li>
           <li><a href="assets.html">📦 Assets</a></li>
           <li><a href="transforms.html">🐠 Transforms</a></li>
+          <li><a href="debugging.html">🛠️ Debugging</a></li>
         </ul>
         <h3>Features</h3>
         <ul>
@@ -153,7 +159,7 @@
         <p>
           If something is missing or not entirely clear, please
           <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> or
-          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{ language }}/docs/{{ relative }}"
             >edit this page</a
           >.
         </p>

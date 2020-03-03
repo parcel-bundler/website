@@ -39,7 +39,7 @@ doctype html
 html(lang="")
   head
     // ...
-    link(rel="stylesheet", href="index.css")
+    link(rel="stylesheet", href="style.css")
   body
     h1 Hello
 
@@ -140,4 +140,4 @@ module.exports = {
   },
 ```
 
-We can key `npm run dev` or `npm run devopen` to have the project open in the browser. We can then build the pub project with `npm run build`.
+We can key `npm run dev` or `npm run devopen` to have the project open in the browser. We can then build the pug project with `npm run build`.

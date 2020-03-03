@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="assets/style.css" />
     <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -35,7 +35,9 @@
         <img class="type" src="assets/logo.svg" alt="Parcel" />
       </a>
       <div class="links">
-        <input type="text" id="search-input" class="search-input" placeholder="수색..." />
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" class="search-input" placeholder="검색..." />
+        </div>
         <form class="languages">
           <select
             class="language-dropdown"
@@ -56,38 +58,107 @@
           </select>
         </form>
         <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+        <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">👕 스토어</a>
       </div>
     </header>
     <div class="content">
       <nav>
+        <h3>시작하기</h3>
         <ul>
           <li><a href="getting_started.html">🚀 시작하기</a></li>
           <li><a href="assets.html">📦 애셋</a></li>
           <li><a href="transforms.html">🐠 변환</a></li>
+          <li><a href="debugging.html">🛠️ 디버깅</a></li>
+        </ul>
+        <h3>기능</h3>
+        <ul>
           <li><a href="code_splitting.html">✂️ 코드 분할</a></li>
           <li><a href="hmr.html">🔥 빠른 모듈 교체(HMR)</a></li>
           <li><a href="production.html">✨ 프로덕션</a></li>
           <li><a href="recipes.html">🍰 레시피</a></li>
+          <li><a href="env.html">🌳 환경 변수</a></li>
           <li><a href="cli.html">🖥 커맨드 라인 인터페이스</a></li>
+          <li><a href="module_resolution.html">📔 모듈 해석</a></li>
         </ul>
-        <h3>Advanced</h3>
+        <h3>📦 애셋 유형</h3>
+        <ul>
+          <li>
+            <a href="javascript.html"><img src="assets/icon-javascript.svg" />JavaScript</a>
+          </li>
+          <li>
+            <a href="reasonML.html"><img src="assets/icon-reason-ml.svg" />ReasonML</a>
+          </li>
+          <li>
+            <a href="css.html"><img src="assets/icon-css.svg" />CSS</a>
+          </li>
+          <li>
+            <a href="scss.html"><img src="assets/icon-sass.svg" />SCSS</a>
+          </li>
+          <li>
+            <a href="less.html"><img src="assets/icon-less.svg" />LESS</a>
+          </li>
+          <li>
+            <a href="stylus.html"><img src="assets/icon-stylus.svg" />Stylus</a>
+          </li>
+          <li>
+            <a href="html.html"><img src="assets/icon-html5.svg" />HTML</a>
+          </li>
+          <li>
+            <a href="typeScript.html"><img src="assets/icon-typescript.svg" />TypeScript</a>
+          </li>
+          <li>
+            <a href="coffeeScript.html"><img src="assets/icon-coffeescript.svg" />CoffeeScript</a>
+          </li>
+          <li>
+            <a href="vue.html"><img src="assets/icon-vuejs.svg" />Vue</a>
+          </li>
+          <li>
+            <a href="json.html"><img src="assets/icon-json.svg" />JSON</a>
+          </li>
+          <li>
+            <a href="graphQL.html"><img src="assets/icon-graphql.svg" />GraphQL</a>
+          </li>
+          <li>
+            <a href="rust.html"><img src="assets/icon-rust.svg" />Rust</a>
+          </li>
+          <li>
+            <a href="webAssembly.html"><img src="assets/icon-webassembly.svg" />WebAssembly</a>
+          </li>
+          <li>
+            <a href="elm.html"><img src="assets/icon-elm.svg" />Elm</a>
+          </li>
+          <li>
+            <a href="yaml.html"><img src="assets/icon-yaml.svg" />YAML</a>
+          </li>
+          <li>
+            <a href="toml.html"><img src="assets/icon-toml.svg" />TOML</a>
+          </li>
+          <li>
+            <a href="openGL.html"><img src="assets/icon-openGL.svg" />OpenGL</a>
+          </li>
+          <li>
+            <a href="pug.html"><img src="assets/icon-pug.svg" />Pug</a>
+          </li>
+          <!-- <li><a href="webManifest.html">WebManifest</a></li> -->
+        </ul>
+        <h3>고급</h3>
         <ul>
           <li><a href="how_it_works.html">🛠 어떻게 동작하는가</a></li>
           <li><a href="asset_types.html">📝 애셋 유형</a></li>
-          <li><a href="api.html">📚 API</a></li>
-          <li><a href="packagers.html">📦 패키저</a></li>
           <li><a href="plugins.html">🔌 플러그인</a></li>
+          <li><a href="packagers.html">📦 패키저</a></li>
+          <li><a href="api.html">📚 번들러 API</a></li>
         </ul>
       </nav>
       <main>
         {{~> content}}
 
-        <h2>Help us improve the docs</h2>
+        <h2>문서의 개선을 도와주세요</h2>
         <p>
-          If something is missing or not entirely clear, please
-          <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> or
-          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
-            >edit this page</a
+          빠진점이 있거나 명확하지 않은 경우,
+          <a href="https://github.com/parcel-bundler/website/issues">웹 사이트 저장소에 이슈를 제기해 주시거나</a>
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{ language }}/docs/{{ relative }}"
+            >페이지를 수정해 주세요.</a
           >.
         </p>
       </main>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link type="text/css" rel="stylesheet" href="assets/style.css" />
     <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -34,7 +34,9 @@
         <img class="type" src="assets/logo.svg" alt="Parcel" />
       </a>
       <div class="links">
-        <input type="text" id="search-input" class="search-input" placeholder="Chercher..." />
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" class="search-input" placeholder="Chercher..." />
+        </div>
         <form class="languages">
           <select
             class="language-dropdown"
@@ -64,6 +66,7 @@
           <li><a href="getting_started.html">🚀 Commencer</a></li>
           <li><a href="assets.html">📦 Ressources</a></li>
           <li><a href="transforms.html">🐠 Transformations</a></li>
+          <li><a href="debugging.html">🛠️ Débogage</a></li>
         </ul>
         <h3>Fonctionnalités</h3>
         <ul>
@@ -155,7 +158,7 @@
             >enregistrer une issue sur le dépôt du site web (en anglais)</a
           >
           ou
-          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}"
+          <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{ language }}/docs/{{ relative }}"
             >modifier cette page</a
           >.
         </p>

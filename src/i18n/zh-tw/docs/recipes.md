@@ -181,8 +181,8 @@ import '@fortawesome/fontawesome-free/css/all.css'
   <head>
   </head>
   <body>
-      <!-- 這裡 👇 -->
-      <script src="./main.js"></script>
+    <!-- 這裡 👇 -->
+    <script src="./main.js"></script>
   </body>
 </html>
 ```
@@ -216,9 +216,58 @@ import './main.scss' // 匯入剛建立的 scss 檔案
   <head>
   </head>
   <body>
-      <!-- 這裡 👇 -->
-      <script src="./main.js"></script>
+    <!-- 這裡 👇 -->
+    <script src="./main.js"></script>
   </body>
+</html>
+```
+
+搞定！
+
+## Svelte
+
+首先我們需要安裝 Svelte 的相依套件。
+
+[部落格文章](https://dev.to/alexparra/basic-svelte-app-with-parcel-30i5)
+
+```bash
+npm install --save-dev svelte
+npm install --save-dev parcel-plugin-svelte
+npm install --save-dev parcel-bundler
+```
+
+<sub>或者你也可以使用 Yarn 安裝</sub>
+
+```bash
+yarn add --dev svelte
+yarn add --dev parcel-plugin-svelte
+yarn add --dev parcel-bundler
+```
+
+### 從 index.html 編譯
+
+在 `package.json` 中加入啟動指令
+
+```javascript
+// package.json
+"scripts": {
+  "start": "parcel src/index.html"
+}
+```
+
+然後在你的 index.html 中加入 JavaSctipt 進入點。
+
+```html
+<!-- .src/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Svelte App</title>
+</head>
+<body>
+  <!-- 這裡 👇 -->
+  <script src="./src/main.js"></script>
+</body>
 </html>
 ```
 

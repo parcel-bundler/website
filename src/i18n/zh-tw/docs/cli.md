@@ -135,6 +135,16 @@ parcel build entry.js --target node --bundle-node-modules
 parcel build entry.js --cache-dir build/cache
 ```
 
+### 主機位置
+
+預設值：localhost
+
+適用指令： `serve`
+
+```bash
+parcel serve entry.js --host local.myhost.co.uk
+```
+
 ### 連接埠
 
 預設值：1234

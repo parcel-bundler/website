@@ -40,6 +40,9 @@ A continuación, crea los archivos index.html y index.js.
 </html>
 ```
 
+Nota: Parcel convierte los archivos JS a ES5, los cuales no funcionarán dentro de la etiqueta 
+`<script type="module">` así que simplemente usa la etiqueta `<script>` sin el atributo type en tu código HTML.
+
 ```javascript
 console.log('hola mundo')
 ```
@@ -58,4 +61,77 @@ Utiliza el servidor de desarrollo cuando no tengas tu propio servidor, o tu apli
 parcel watch index.html
 ```
 
-Cuando estes listo para construir tu aplicación para producción, el modo `build` deshabilita el modo `watch` y solo construye la aplicación una vez. Ve la sección [Producción](production.html) para más detalles.
+Tu también puedes usar [createapp.dev](https://createapp.dev/parcel) para crear un proyecto de Parcel en el navegador. Selecciona las tecnologías que quieras como por ejemplo React, Vue, TypeScript y CSS, y verás el proyecto generarse en vivo. También puedes usar esta herramientas para aprender a como montar un proyecto y además puedes descargar el proyecto como un archivo ZIP y empezar a programar al momento.
+
+## Múltiples archivos de entrada
+
+En caso de que tengas más de un archivo de entrada, digamos `index.html` y `about.html`, tu tienes dos maneras que ejecutar el empaquetador:
+
+Especificamos los nombres de archivo:
+
+```bash
+parcel index.html about.html
+```
+
+También puedes crear un glob:
+
+```bash
+parcel *.html
+```
+
+_NOTA:_ En case de que tengas una estrucutura de archivos como esta:
+
+```
+- folder-1
+-- index.html
+- folder-2
+-- index.html
+```
+
+Yendo a http://localhost:1234/folder-1/ no funcionará, en cambio tendrás que apuntar explícitamente al archivo http://localhost:1234/folder-1/index.html.
+
+## Construyendo para producción
+
+Cuando estés listo para construir para producción, el modo `build` para de ver los cambios y entonces solo empaqueta una vez. Mira la sección [Producción](production.html) para más detalles. 
+
+## Añadiendo parcel a tu proyecto
+
+A veces nos es posible instalar Parcel globalmente, por ejemplo, si estás construyendo el paquete de otra pesona o simplemente quieres usar una CI para construir tu paquete de manera programada. En este caso, puedes instalar y usar Parcel como un paquete local.
+
+Para instalar con Yarn:
+
+```bash
+yarn add parcel-bundler --dev
+```
+
+Para instalar con NPM:
+
+```bash
+npm install parcel-bundler --save-dev
+```
+
+Luego, añade estos scripts a tu proyecto modificando tu `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "parcel <your entry file>",
+    "build": "parcel build <your entry file>"
+  }
+}
+```
+
+Entonces, podrás ejecutarlo:
+
+```bash
+# Para ejecutarlo en modo de desarrollo 
+yarn dev
+# o
+npm run dev
+
+# Para ejecutarlo en modo de producción
+yarn build
+# o
+npm run build
+```
+

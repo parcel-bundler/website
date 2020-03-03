@@ -17,12 +17,20 @@ body {
   background: #fefefe;
   box-sizing: border-box;
   width: 100%;
+  min-width: 320px;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+.parcel2-note {
+  font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+  background: #21374b;
+  color: #e7dacb;
+  text-align: center;
 }
 
 header {
@@ -40,6 +48,7 @@ header {
 }
 
 header .logo {
+  display: inline-block;
   padding: 0 15px;
 }
 
@@ -370,14 +379,12 @@ th {
   }
 
   nav {
+    position: static;
     width: 100%;
     height: auto;
     background: white;
     border-right: none;
     border-bottom: 1px solid #eee;
-    z-index: 500;
-
-    position: static;
     overflow-y: hidden;
   }
 
@@ -392,6 +399,61 @@ th {
   nav ul li a {
     border-radius: 3px;
     margin-bottom: 5px;
+  }
+
+  nav h3 {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    height: auto;
+    display: block;
+    position: relative;
+  }
+
+  header .logo {
+    padding: 10px 15px;
+  }
+
+  header .logo .parcel {
+    height: 26px;
+  }
+
+  header .logo .type {
+    width: 100px;
+  }
+
+  header .links {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    background: #2e4e6b;
+    justify-content: space-around;
+  }
+
+  .language-dropdown,
+  header .links a {
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .search-input-wrapper {
+    position: absolute;
+    top: 17px;
+    right: 0;
+  }
+
+  .search-input {
+    width: 125px;
+    margin: 0 15px;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+
+  .search-input:focus {
+    width: 125px;
   }
 }
 

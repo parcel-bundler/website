@@ -1,12 +1,12 @@
-# ✂️ Code Splitting
+# ✂️ Code Splitting（コード分割）
 
-Parcel supports zero configuration code splitting out of the box. This allows you to split your application code into separate bundles which can be loaded on demand, which means smaller initial bundle sizes and faster load times. As the user navigates around in your application and modules are required, Parcel automatically takes care of loading child bundles on demand.
+Parcel はゼロコンフィグのコード分割をサポートしています。これによりコードを別々のバンドルに分割し、必要に応じて読み込むことができます。つまり初期バンドルサイズが小さくなり、ロード時間が短縮されます。
 
-Code splitting is controlled by use of the dynamic `import()` function [syntax proposal](https://github.com/tc39/proposal-dynamic-import), which works like the normal `import` statement or `require` function, but returns a Promise. This means that the module is loaded asynchronously.
+コード分割は動的な `import()` 関数の[構文提案](https://github.com/tc39/proposal-dynamic-import)によって定められており、普通の `import` 宣言や `require` 関数ではありますが、 Promise を返します。つまり、このモジュールは非同期に読み込まれるということです。
 
 ## Using dynamic imports
 
-The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
+次の例は要求に応じて別ページを動的インポートする方法を示しています。
 
 ```javascript
 // pages/about.js
@@ -24,7 +24,7 @@ import('./pages/about').then(function(page) {
 
 ## Dynamic imports with async/await
 
-Because `import()` returns a Promise, you can also use async/await syntax. You probably need to configure Babel to transpile the syntax though, until it is more widely supported by browsers.
+`import()` が Promise を返すため、 async/await 構文を利用することもできます。幅広いブラウザがこの構文をサポートするまでは Babel でトランスパイルを行う必要があるでしょう。
 
 ```javascript
 const page = await import('./pages/about')
@@ -32,24 +32,24 @@ const page = await import('./pages/about')
 page.render()
 ```
 
-Dynamic imports are also lazily loaded in Parcel, so you can still put all your `import()` calls at the top of your file and the child bundles won't be loaded until they are used. The following example shows how you might lazily load sub-pages of an application dynamically.
+動的インポートにより Parcel で遅延読み込みをすることができます。つまり `import()` をファイルの先頭で呼び出してもそれらが使われるまでは子要素は読み込まれません。次の例は、アプリケーションの別ページを動的に遅延読み込みする方法を示しています。
 
 ```javascript
-// Setup a map of page names to dynamic imports.
-// These are not loaded until they are used.
+// 動的インポートするページを設定します
+// これらは呼び出されるまで読み込まれません
 const pages = {
   about: import('./pages/about'),
   blog: import('./pages/blog')
 }
 
 async function renderPage(name) {
-  // Lazily load the requested page.
+  // 要求されたページを遅延読み込みします
   const page = await pages[name]
   return page.render()
 }
 ```
 
-**Note:** If you would like to use async/await in browsers that don't support it natively, remember to include `babel-polyfill` in your app or `babel-runtime` + `babel-plugin-transform-runtime` in libraries.
+**注意:** もしも async/await が公式にサポートされていないブラウザで利用したい場合は `babel-polyfill` のライブラリ内にある `babel-runtime` + `babel-plugin-transform-runtime` をアプリケーションに含めるのを覚えておいて下さい。
 
 ```bash
 yarn add babel-polyfill
@@ -60,12 +60,12 @@ import 'babel-polyfill'
 import './app'
 ```
 
-Read the docs on [babel-polyfill](http://babeljs.io/docs/usage/polyfill) and [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime).
+詳細は [babel-polyfill](http://babeljs.io/docs/usage/polyfill) と [babel-runtime](http://babeljs.io/docs/plugins/transform-runtime) のドキュメントをお読み下さい。
 
 ## Bundle resolution
 
-Parcel infers the location of bundles automatically. This is done in the [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) module, and uses the stack trace to determine the path where the initial bundle was loaded.
+Parcel は自動的にバンドルを区切る位置を決定します。これには [bundle-url](https://github.com/parcel-bundler/parcel/blob/master/packages/core/parcel-bundler/src/builtins/bundle-url.js) モジュールと初期バンドルがどこのパスで読み込まれるのかを決定するスタックトレースを利用しています。
 
-This means you don't need to configure where bundles should be loaded from, but also means you must serve the bundles from the same location.
+これにより、どこから読み込まれるべきかを設定する必要はなく、必ず同じ位置からそのバンドルが serve されていることを意味しています。
 
-Parcel currently resolves bundles at the following protocols: `http`, `https`, `file`, `ftp`, `chrome-extension` and `moz-extension`.
+Parcel は現在次のプロトコルのバンドルを解決しています: `http`, `https`, `file`, `ftp`, `chrome-extension`, `moz-extension`
