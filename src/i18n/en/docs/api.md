@@ -20,7 +20,7 @@ const entryFiles = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // The out directory to put the build files in, defaults to dist
   outFile: 'index.html', // The name of the outputFile
-  publicUrl: './', // The url to serve on, defaults to '/'
+  publicUrl: '/', // The url to serve on, defaults to '/'
   watch: true, // Whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
   cache: true, // Enabled or disables caching, defaults to true
   cacheDir: '.cache', // The directory cache gets put in, defaults to .cache
