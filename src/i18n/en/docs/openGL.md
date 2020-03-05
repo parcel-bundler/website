@@ -4,7 +4,7 @@ _Supported extensions: `glsl`, `vert`, `frag`_
 
 # Examples of GLSL code
 
-## Vertex shader
+## Fragment shader
 
 `shader.frag`:
 
