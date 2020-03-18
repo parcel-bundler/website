@@ -1,0 +1,11 @@
+dist/
+node_modules/
+.idea/
+yarn.lock
+.DS_Store
+yarn-error.log
+package-lock.json
+
+_site/
+
+.now

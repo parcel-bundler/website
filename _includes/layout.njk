@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ eleventyNavigation.key }}</title>
+    <link href="/prism.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+      }
+      header{
+        background-color: #21374b;
+        position: sticky;
+        top: 0;
+        color: white;
+
+        font-size: 2rem;
+        padding: 0.5rem;
+        text-align: center;
+      }
+      header a, header a:visited {
+        text-decoration: none;
+        color: inherit;
+      }
+      #content {
+        display: flex;
+        flex-direction: row;
+      }
+      nav {
+        width: 350px;
+      }
+      nav ul {
+        padding-inline-start: 2rem;
+      }
+      nav a {
+        color: #21374b;
+        text-decoration: none;
+      }
+      nav .current > a {
+        color: grey;
+      }
+      nav .section > a {
+        text-decoration: underline;
+      }
+      main {
+        flex: 1;
+        margin: 0 auto;
+        max-width: 42em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">Parcel 2 Documentation</a>
+    </header>
+    <div id="content">
+      <nav>
+        {{ collections.all
+           | eleventyNavigation
+           | eleventyNavigationToHtml({
+              listItemHasChildrenClass: 'section',
+              activeListItemClass: 'current',
+              activeKey: eleventyNavigation.key})
+           | safe }}
+      </nav>
+      <main>
+        <h1>{{ eleventyNavigation.key | default(title) | safe }}</h1>
+        {{ content | safe }}
+      </main>
+    </div>
+  </body>
+</html>
