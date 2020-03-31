@@ -17,7 +17,7 @@ const file = Path.join(__dirname, './index.html');
 const options = {
   outDir: './dist', // La directory nella quale posizionare l'output del bundle, di default "dist"
   outFile: 'index.html', // Il nome dell' outputFile
-  publicUrl: './', // L'url del server, di default '/'
+  publicUrl: '/', // L'url del server, di default '/'
   watch: true, // Se effettuare o meno il watch dei file, di default la configurazione é process.env.NODE_ENV !== 'production'
   cache: true, // Attiva o disattiva la cache, di default true
   cacheDir: '.cache', // La directory nella quale la cache é salvata, di default é .cache
