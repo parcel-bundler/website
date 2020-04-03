@@ -272,3 +272,24 @@ Ensuite, dans votre fichier `index.html`, ajoutez une référence à votre point
 ```
 
 C'est fait !
+
+## Transpiler les fonctions async
+
+Parcel utilise babel et fait un maximum sans configuration. Néanmoins, pour transpiler les fonctions [async](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/async_function), vous pouvez rajouter un fichier `.babelrc` avec ce contenu :
+
+```json
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "regenerator": true
+    }]
+  ]
+}
+```
+
+Parcel installera tout seul pour vous les dépendances !
+
+Vous pouvez désormais utiliser les fonctions async dans votre code.
