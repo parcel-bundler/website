@@ -58,7 +58,7 @@ Utilize o servidor de desenvolvimento caso você não tenha seu próprio servido
 parcel watch index.html
 ```
 
-## Mútiplos arquivos de entrada
+## Múltiplos arquivos de entrada
 
 No caso de você ter mais de um arquivo de entrada, vamos dizer `index.html` e `about.html`, você tem duas maneiras de executar o bundler:
 
