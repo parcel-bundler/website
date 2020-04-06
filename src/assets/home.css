@@ -1,10 +1,52 @@
+:root {
+  --white: #fefefe;
+  --light: #f8f8f8;
+  --silver: #bbb;
+  --gray: #888;
+  --dark: #123;
+  --black: #111;
+
+  --green: #27ae60;
+
+  --red: #d14;
+  --dark-red: #b03;
+
+  --orange: #faa700;
+
+  --light-yellow: #ff9;
+
+  --light-blue: #06e;
+  --blue: #15b;
+  --dark-blue: #21374b;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+  :root {
+    --white: #111;
+    --light: #123;
+    --silver: #888;
+    --gray: #bbb;
+    --dark: #f8f8f8;
+    --black: #fefefe;
+
+    --green: #4c8;
+
+    --red: #d67;
+    --dark-red: #b56;
+
+    --light-blue: #68a;
+    --light-blue: #8ad;
+    --dark-blue: #acf;
+  }
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   min-width: 320px;
   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-  background: #fefefe;
+  background: var(--white);
 }
 
 h1,
@@ -14,7 +56,7 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  color: #111;
+  color: var(--black);
   line-height: 1em;
   font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -210,7 +252,7 @@ header .links a:hover {
 main {
   max-width: 1000px;
   margin: 0 auto;
-  color: #444;
+  color: var(--dark);
   font-size: 16px;
   line-height: 1.5em;
 }
@@ -240,7 +282,7 @@ pre,
 code,
 kbd,
 samp {
-  color: #000;
+  color: var(--black);
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 0.98em;
 }
@@ -253,7 +295,7 @@ pre {
 
 p code {
   font-size: 0.95em;
-  background-color: #f8f8f8;
+  background-color: var(--light);
   border-radius: 3px;
   padding: 0 0.2em;
   display: inline-block;
@@ -265,14 +307,14 @@ table {
 }
 
 tr:nth-child(2n + 1) {
-  background: #efefef;
+  background: var(--light);
 }
 
 td,
 th {
   padding: 5px 10px;
   text-align: left;
-  border: 1px solid #ddd;
+  border: 1px solid var(--silver);
 }
 
 .examples {
@@ -417,5 +459,112 @@ footer .copyright a {
   footer .copyright {
     width: 200px;
     margin: 0 auto;
+  }
+}
+
+/* hljs override */
+@media only screen and (prefers-color-scheme: dark) {
+  main .hljs {
+    background-color: var(--light);
+    color: var(--dark);
+  }
+
+  main .hljs-comment,
+  main .diff .hljs-header,
+  main .hljs-javadoc {
+    color: var(--gray);
+  }
+
+  main .hljs-keyword,
+  main .css .rule .hljs-keyword,
+  main .hljs-winutils,
+  main .nginx .hljs-title,
+  main .hljs-subst,
+  main .hljs-request,
+  main .hljs-status {
+    color: var(--dark);
+  }
+
+  main .hljs-number,
+  main .hljs-hexcolor,
+  main .ruby .hljs-constant {
+    color: var(--green);
+  }
+
+  main .hljs-string,
+  main .hljs-tag .hljs-value,
+  main .hljs-phpdoc,
+  main .hljs-dartdoc,
+  main .tex .hljs-formula {
+    color: var(--red);
+  }
+
+  main .hljs-title,
+  main .hljs-id,
+  main .scss .hljs-preprocessor {
+    color: var(--dark-red);
+  }
+
+  main .hljs-class .hljs-title,
+  main .hljs-type,
+  main .vhdl .hljs-literal,
+  main .tex .hljs-command {
+    color: var(--dark-blue);
+  }
+
+  main .hljs-tag,
+  main .hljs-tag .hljs-title,
+  main .hljs-rules .hljs-property,
+  main .django .hljs-tag .hljs-keyword {
+    color: var(--dark-blue);
+  }
+
+  main .hljs-attribute,
+  main .hljs-variable,
+  main .lisp .hljs-body {
+    color: var(--green);
+  }
+
+  main .hljs-regexp {
+    color: var(--green);
+  }
+
+  main .hljs-symbol,
+  main .ruby .hljs-symbol .hljs-string,
+  main .lisp .hljs-keyword,
+  main .clojure .hljs-keyword,
+  main .scheme .hljs-keyword,
+  main .tex .hljs-special,
+  main .hljs-prompt {
+    color: var(--dark-red);
+  }
+
+  main .hljs-built_in {
+    color: var(--green);
+  }
+
+  main .hljs-preprocessor,
+  main .hljs-pragma,
+  main .hljs-pi,
+  main .hljs-doctype,
+  main .hljs-shebang,
+  main .hljs-cdata {
+    color: var(--gray);
+  }
+
+  main .hljs-deletion {
+    background: var(--light);
+  }
+
+  main .hljs-addition {
+    background: var(--light-yellow);
+  }
+
+  main .diff .hljs-change {
+    background: var(--green);
+  }
+
+  main .hljs-chunk {
+    color: var(--silver);
   }
 }
