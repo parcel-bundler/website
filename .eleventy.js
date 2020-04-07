@@ -22,7 +22,10 @@ module.exports = function (eleventyConfig) {
     "md",
     markdownIt({
       html: true,
-    }).use(markdownItAnchor)
+    }).use(markdownItAnchor, {
+      permalink: true,
+      permalinkBefore: true,
+    })
   );
 
   // ---------- Macros ----------

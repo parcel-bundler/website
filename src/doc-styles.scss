@@ -44,6 +44,18 @@ body {
   white-space: nowrap; /* added line */
 }
 
+.header-anchor {
+  color: black !important;
+  text-decoration: none;
+  display: none;
+  position: absolute;
+  left: -1.5ch;
+  padding-right: 0.5ch;
+}
+*:hover > .header-anchor {
+  display: initial;
+}
+
 .parcel-docs-header {
   flex: 0 0 auto;
 
@@ -228,6 +240,7 @@ body {
     h4,
     h5,
     h6 {
+      position: relative;
       font-weight: 400;
       color: #111;
       line-height: 1em;
