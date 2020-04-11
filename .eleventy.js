@@ -40,7 +40,6 @@ module.exports = function (eleventyConfig) {
     return `<div class="well error">${content}</div>`;
   });
 
-  // TODO add "Open in REPL " 😉
   eleventyConfig.addPairedShortcode("sample", function (content, entry, mode) {
     let data = content
       .split("\n")

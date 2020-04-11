@@ -8,6 +8,9 @@ title: Parcel Documentation
 - landing page (this)?
 - Responsive on mobile (the sidebar should somehow collapse)
 - Print: syntax highlighting is lost
+- inline code in heading is too small
+- (Eventually add "Open in REPL" link to the code samples - actually the main reason I made them a njk macro)
+
 
 # "Design System":
 
