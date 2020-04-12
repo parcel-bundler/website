@@ -20,3 +20,4 @@ Notably:
 - Sometimes introducing a new .env file will not work immediately. Try deleting the .cache/ directory in this case.
 - Accessing the `process.env` object directly is [not supported](https://github.com/parcel-bundler/parcel/issues/2299#issuecomment-439768971), but accessing specific variables on it like `process.env.API_KEY` will provide the expected value.
 - Use the built-in `process` Node.js global, i.e. don't do `import process from "process"`, because it will not work. If you use TypeScript, you probably want to install `@types/node` for it to compile.
+- Use  destructuring assignment only with one variable. i.e don't do  `const {API_URL, API_KEY } = process.env` because it will not work, but you can do `const {API_KEY } = process.env`.  
