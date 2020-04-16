@@ -7,14 +7,21 @@ override:eleventyNavigation:
 summary: A brief overview over the plugin system and the core datatypes
 ---
 
-TODO make this diagram wider/bigger
 
-<img src="./full_diagram.opt.png"/>
+<div style="overflow-x: auto;">
+  <img style="height: 35rem; max-height: 65vh; max-width: none;" src="./full_diagram.opt.png"/>
+</div>
+
+*Scroll to the right to see more*
 
 
 #### Core Data Types
 
-*Note: this is not intended to be an API documentation (as of now anyway) but rather introduces the concepts as to why they exist so that reading through the [API definition](https://github.com/parcel-bundler/parcel/blob/v2/packages/core/types/index.js) doesn't leave you puzzled.*
+{% note %}
+
+This is not intended to be an API documentation (as of now anyway) but rather introduces the concepts behind these types so that reading the [API definition](https://github.com/parcel-bundler/parcel/blob/v2/packages/core/types/index.js) doesn't leave you puzzled.
+
+{% endnote %}
 
 TODO
 

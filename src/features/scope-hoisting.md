@@ -1,7 +1,9 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: 🌳 Scope hoisting
+  key: Scope hoisting
+  title: 🌳 Scope hoisting
+  order: 6
 summary: What scope hoisting is and how it enables smaller builds and ESM output
 ---
 
@@ -13,6 +15,6 @@ summary: What scope hoisting is and how it enables smaller builds and ESM output
 
 {% note %}
 
-This is an in-depth description of the internal works of our scope-hoisting implemenation. It is definitely not required knowledge.
+This is a rather in-depth description of the Parcel's scope hoisting implementation. This is not required reading for using Parcel.
 
 {% endnote %}

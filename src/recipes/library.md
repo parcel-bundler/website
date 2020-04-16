@@ -1,8 +1,9 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Library
-  title: 📔 Library
+  key: Generic JS Library
+  title: 📔 Generic JS Library
+  order: 2
 summary: How to configure Parcel for a library
 ---
 

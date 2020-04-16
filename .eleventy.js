@@ -66,6 +66,28 @@ module.exports = function (eleventyConfig) {
     return JSON.stringify({ name, content });
   });
 
+  eleventyConfig.addPairedShortcode("migration", function (content, name) {
+    let data = content
+      .split("\n")
+      .filter(Boolean)
+      .map((s) => JSON.parse(s));
+    return (
+      `<div class="well warning migration">\n\n` +
+      `<div class="assets">\n` +
+      `${data
+        .map(
+          ({ content }, i) =>
+            `<div class="asset">` +
+            (i === 0 && name ? `<em>${name}</em>:` : "") +
+            content +
+            `</div>`
+        )
+        .join(`<div class='arrow'></div>`)}\n` +
+      `</div>\n` +
+      `</div>`
+    );
+  });
+
   return {
     dir: {
       input: "src",

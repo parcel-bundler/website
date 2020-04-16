@@ -220,7 +220,9 @@ body {
 
   .main-content {
     width: 100%;
-    padding: 0 2rem;
+    min-width: 0;
+    padding: 2rem;
+    padding-top: 0;
     line-height: 1.5em;
 
     & > header {
@@ -308,6 +310,12 @@ body {
       white-space: pre;
       white-space: pre-wrap;
       word-wrap: break-word;
+    }
+
+    p pre,
+    p code,
+    p kbd,
+    p samp {
       font-size: 12px;
     }
 
@@ -390,6 +398,7 @@ body {
     table {
       border-collapse: collapse;
       border-spacing: 0;
+      width: 100%;
     }
 
     td {

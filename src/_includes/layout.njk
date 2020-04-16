@@ -17,12 +17,18 @@
         background-color: var(--well-background-color);
         border-left: 5px solid var(--well-side-color);
       }
+      .well > p:first-child {
+        margin-top: 0;
+      }
+      .well > p:last-child {
+        margin-bottom: 0;
+      }
       .well::before {
         content: "ℹ️";
         position: absolute;
         padding: 0.5rem;
         top: 0;
-        right: 0;
+        right: -2.5rem;
       }
       .well.warning {
         --well-side-color: #f6b73c;
@@ -37,8 +43,6 @@
       }
       .well.error::before {
         content: "🚨";
-      }
-      .well.sample {
       }
       @media print {
         .well.sample.row .asset {
@@ -56,12 +60,29 @@
       }
       .well.sample::before {
         content: "code sample";
+        right: 0;
         opacity: 0.5;
       }
 
       .well.sample .cmd {
         display: flex;
         justify-content: center;
+      }
+
+      .well.migration {
+        --well-side-color: #f6b73c;
+        --well-background-color: #fff3d4;
+      }
+      .well.migration::before {
+        content: "🚚";
+      }
+
+      .well.migration .arrow {
+        clip-path: polygon(0 40%, 33% 40%, 33% 0, 66% 0, 66% 40%, 100% 40%, 50% 100%);
+        height: 2rem;
+        width: 2.5rem;
+        margin: 0 auto;
+        background: #f6b73c;
       }
     </style>
   </head>

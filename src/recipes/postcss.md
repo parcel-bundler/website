@@ -3,11 +3,12 @@ layout: layout.njk
 eleventyNavigation:
   key: (Post)CSS
   title: <img src="/assets/lang-icons/postcss.svg"/> (Post)CSS
+  order: 4
 ---
 
-To motivate to following tips, here's an overview over how Parcel processes CSS files (in that order):
+To motivate some of the following tips, here's an overview over how Parcel processes CSS files (in that order):
 - [@parcel/transformer-postcss](/official-plugins/transformer-postcss/):
-  Applies `.postcssrc` and might generate CSS modules map
+  Applies `.postcssrc` and might generate a CSS modules map
 - [@parcel/transformer-css](/official-plugins/transformer-css/):
   Registers `@import ...` and `url(...)` into Parcel's graph
 - [@parcel/packager-css](/official-plugins/packager-css/):
@@ -16,6 +17,56 @@ To motivate to following tips, here's an overview over how Parcel processes CSS 
   Minify the bundle output from `@parcel/packager-css`.
 
 As you can see, each asset is processed individually by PostCSS and concatenated with the others afterwards.
+
+Parcel reads PostCSS from these files (in that priority): `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, `postcss.config.js`.
+
+## CSS Modules
+
+There are two ways to enable CSS modules:
+
+- Either globally in the PostCSS config file (this way you can also configure the underlying `postcss-modules` plugin).
+
+{% sample %}
+{% samplefile ".postcssrc" %}
+
+```json
+{
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "generateScopedName": "_[name]__[local]"
+    }
+  }
+};
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+- Or on a per-file basis: by using the file extension `.module.css` (or `.module.scss`, etc.).
+
+{% sample %}
+{% samplefile "app.module.css" %}
+
+```css
+.main {
+  color: grey;
+}
+```
+
+{% endsamplefile %}
+{% samplefile "index.js" %}
+
+```jsx
+import {main} from "./app.module.css";
+
+export function App() {
+  return <div className={main}/>;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## Using `postcss-import`
 
