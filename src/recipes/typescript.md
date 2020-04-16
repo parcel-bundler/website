@@ -15,6 +15,7 @@ TODO
 
 - isolated modules mode: limitations (`const enum`)
 - tsconfig (`paths` is not supported?)
+- `package.json#types`
 
 {% sample %}
 {% samplefile ".parcelrc" %}

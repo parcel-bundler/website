@@ -72,7 +72,8 @@ export function render() {
 TODO Will's recent PR
 
 If a asset is imported both synchrounously and asynchrounously, it doesn't make sense to create an actual async bundle (because the module is already loaded anyways).
-So in this situation, Parcel instead turns `import("foo")` into `Promise.resolve(require("foo"))`.
+
+In this situation, Parcel instead turns `import("foo")` into `Promise.resolve(require("foo"))`. So in a larger build, you should think of dynamic/async imports as "I would be fine with an async import but sync is ok" rather than "This will become a new bundle".
 
 ## Bundle resolution
 
