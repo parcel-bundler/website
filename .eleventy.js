@@ -66,7 +66,7 @@ module.exports = function (eleventyConfig) {
     return JSON.stringify({ name, content });
   });
 
-  eleventyConfig.addPairedShortcode("migration", function (content, name) {
+  eleventyConfig.addPairedShortcode("migration", function (content) {
     let data = content
       .split("\n")
       .filter(Boolean)
@@ -76,9 +76,9 @@ module.exports = function (eleventyConfig) {
       `<div class="assets">\n` +
       `${data
         .map(
-          ({ content }, i) =>
+          ({ name, content }, i) =>
             `<div class="asset">` +
-            (i === 0 && name ? `<em>${name}</em>:` : "") +
+            (name ? `<em>${name}</em>:` : "") +
             content +
             `</div>`
         )

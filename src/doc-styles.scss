@@ -354,6 +354,12 @@ body {
       text-decoration: none;
     }
 
+    code mark {
+      background: #ff0;
+      font-weight: 700;
+      font-style: initial;
+    }
+
     mark {
       background: #ff0;
       color: #000;

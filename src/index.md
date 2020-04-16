@@ -8,7 +8,6 @@ title: Parcel Documentation
 - landing page (this)?
 - Responsive on mobile (the sidebar should somehow collapse)
 - Print: syntax highlighting is lost
-- inline code in heading is too small
 - (Eventually add "Open in REPL" link to the code samples - actually the main reason I made them a njk macro)
 
 
@@ -63,9 +62,29 @@ console.log("hello!");
 {% endsamplefile %}
 {% samplefile "index.js" %}
 
-```js
+```js/2
+import "x";
+
 console.log("hello!");
 ```
 
 {% endsamplefile %}
 {% endsample %}
+
+
+{% migration %}
+{% samplefile "index.html" %}
+
+```html/0
+<script src="./index.js"></script>
+```
+
+{% endsamplefile %}
+{% samplefile "index.js" %}
+
+```js/0
+console.log("hello!");
+```
+
+{% endsamplefile %}
+{% endmigration %}

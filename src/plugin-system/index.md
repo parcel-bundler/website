@@ -3,7 +3,7 @@ layout: layout.njk
 override:eleventyNavigation:
   key: Plugin System
   title: 🔌 Plugin System
-  order: 3
+  order: 4
 summary: A brief overview over the plugin system and the core datatypes
 ---
 
