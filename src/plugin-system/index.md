@@ -7,36 +7,39 @@ override:eleventyNavigation:
 summary: A brief overview over the plugin system
 ---
 
+<figure>
+  <div style="overflow-x: auto;">
+    <img style="height: 35rem; max-height: 65vh; max-width: none;" src="./full_diagram.opt.png"/>
+  </div>
+  <figcaption style="text-align: center;">
 
-<div style="overflow-x: auto;">
-  <img style="height: 35rem; max-height: 65vh; max-width: none;" src="./full_diagram.opt.png"/>
-</div>
+_Scroll to the right to see more_
 
-*Scroll to the right to see more*
+  </figcaption>
+</figure>
 
 ### List of Plugin Types (in a somewhat correct order)
 
 - [Transformer](transformer): Convert an asset (into another asset) <br>
-  *Example: convert Typescript to Javascript (per file)*
+  _Example: convert Typescript to Javascript (per file)_
 - [Resolver](resolver): Turn dependency requests into absolute paths (or exclude them) <br>
-  *Example: add your own syntax for imports, e.g. `import "^/foo"`*
+  _Example: add your own syntax for imports, e.g. `import "^/foo"`_
 - [Bundler](bundler): Turns an asset graph into a bundle graph <br>
-  *Example: create a bundler that does Vendoring (splitting app and node_modules code)*
+  _Example: create a bundler that does Vendoring (splitting app and node_modules code)_
 - [Runtime](runtime): Programatically insert (synthetic) assets into bundles" <br>
-  *Example: add analytics to every bundle*
+  _Example: add analytics to every bundle_
 - [Packager](packager): Turn a group of assets (bundle) into a bundle file" <br>
-  *Example: concatenate all input CSS files into a CSS bundle*
+  _Example: concatenate all input CSS files into a CSS bundle_
 - [Optimizer](optimizer): Apply modifications to the finished bundle (similar to a transformer) <br>
-  *Example: run a minifier or convert into a data-url for inline usage*
+  _Example: run a minifier or convert into a data-url for inline usage_
 
 <p></p> <!-- Force two lists -->
 
 - [Validator](validator): Analyze assets and emit warnings and errors <br>
-  *Example: do type-checking (Typescript, Flow)*
+  _Example: do type-checking (Typescript, Flow)_
 - [Config](config): A reuseable '.parcelrc' package <br>
-  *Example: provide a tailor-made parcel config for your boilerplate* <br>
-- [Reporter](reporter): Listen to events of the build
-  *Example: generate a bundle report, run a dev server*
+  _Example: provide a tailor-made parcel config for your boilerplate_ <br>
+- [Reporter](reporter): Listen to events of the build <br>
+  _Example: generate a bundle report, run a dev server_
 
-
-*For plugin authors: [a high-level overview over the plugin API](data-structures)*
+_For plugin authors: [a high-level overview over the plugin API](data-structures)_

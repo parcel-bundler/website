@@ -34,6 +34,23 @@ document.body.innerHTML = `<img src="${logo}">`;
 {% endsamplefile %}
 {% endmigration %}
 
+Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
+
+{% migration %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transforms": {
+    "*": ["@parcel/transformer-raw"]
+  },
+}
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
 ## Configuration/CLI
 
 ### `package.json#main`

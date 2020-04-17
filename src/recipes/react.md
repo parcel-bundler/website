@@ -41,18 +41,18 @@ For further information, take a look at the [official documentation](https://rea
 
 ##### State in class components is reset between reloads
 
-With classe components slowly being deprecated, their state is not preserved.
+With class components slowly being deprecated, their state will not be preserved.
 
 ##### Declaring a Default Export Using a Function Expression Isn't Recognized
+
+Editing this component would reset `value` because the Fast Refresh Babel plugin cannot instrument the default export declaration.
 
 {% sample %}
 {% samplefile "Component.js" %}
 
-```jsx
+```jsx/2
 import React, { useState } from "react";
 
-// Editing this component would reset `value` because the
-// Fast Refresh Babel plugin cannot instrument this statement.
 export default () => {
   const [value] = useState(Date.now());
 
@@ -82,21 +82,21 @@ ReactDom.render(..., <App />);
 
 ##### Exporting Values That Are Not Components Will Reset the State:
 
+Editing `Component` would reset the `value` state, because of the other non-component export.
+
 {% sample %}
 {% samplefile "Component.js" %}
 
-```jsx
+```jsx/5,9
 import React, { useState } from "react";
 
 const Component = () => {
   const [value] = useState(Date.now());
 
-  // Editing this component would reset `value` ...
   return <h1>Hello! {value}</h1>;
 };
 export default Component;
 
-// ... because of this other export.
 export function utility() {
   return Date.now();
 }
@@ -126,16 +126,15 @@ ReactDom.render(..., <App />);
 
 ##### Modifying the Asset That Calls Render Will Reset All State:
 
+Understandably, modifying `App` will call `ReactDom.render` again:
+
 {% sample %}
 {% samplefile "index.js" %}
 
-```jsx
+```jsx/3,5
 import React from "react";
 import ReactDom from "react-dom";
 
-console.log(utility());
-
-// Understandably, modifying this will call `ReactDom.render` again.
 const App = () => <h1>Hello!</h1>;
 
 ReactDom.render(..., <App />);

@@ -98,7 +98,7 @@ When `sideEffects: false` is specified in the `package.json`, Parcel can skip pr
 
 {% note %}
 
-This is a rather in-depth description of the Parcel's scope hoisting implementation. This is not required reading for using Parcel.
+This is a rather in-depth description of the Parcel's scope hoisting implementation and not required reading for using Parcel.
 
 {% endnote %}
 

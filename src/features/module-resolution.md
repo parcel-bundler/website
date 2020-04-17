@@ -60,8 +60,8 @@ This example aliases `react` to `preact` and some local custom module that is no
 
 Avoid using any special characters in your aliases as some may be used by Parcel and others by 3rd party tools or extensions. For example:
 
-- `~` used by Parcel to resolve [tilde paths](#~-tilde-paths).
-- `@` used by npm to resolve npm organizations.
+- `~` is used by Parcel to resolve [tilde paths](#~-tilde-paths).
+- `@` is used by npm to for packages by npm organizations.
 
 We advise being explicit when defining your aliases, so please **specify file extensions**, otherwise Parcel will need to guess. See [JavaScript Named Exports](#javascript-named-exports) for an example of this.
 
@@ -97,20 +97,18 @@ module.exports = require("electron").ipcRenderer;
 
 When using absolute path or tilde path module resolution you must configure Flow using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature.
 
-Given a project with this structure:
+Given a project with this structure and `src/index.html` as an entrypoint, the **entry root** is the `src/` folder.
 
 ```
-package.json
-.flowconfig
-src/
-  index.html
-  index.js
-  components/
-    apple.js
-    banana.js
+├── package.json
+├── .flowconfig
+└── src/
+    ├── index.html
+    ├── index.js
+    └── components/
+        ├── apple.js
+        └── banana.js
 ```
-
-And `src/index.html` as an entrypoint, the **entry root** is the `src/` folder.
 
 Therefore, to map this import correctly, Flow should replace the leading `/` in `'/components/apple'` with `src/`, resulting in `'src/components/apple'`. That is achieved by the following setting in your `.flowconfig`.
 
@@ -134,7 +132,9 @@ module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
 (`<PROJECT_ROOT>` is a Flow specific identifier indicating the location of your `.flowconfig`.)
 
-NB: `module.name_mapper` can have multiple entries. This allows support for [Absolute](#absolute-paths) or [Tilde](#~-tilde-paths) Path Resolution in addition to [local module aliasing](#aliases) support.
+TODO
+
+Note: `module.name_mapper` can have multiple entries. This enabled support for [absolute](#absolute-paths) or [tilde](#~-tilde-paths) Path Resolution in addition to [local module aliasing](#aliases) support.
 
 ### TypeScript ~ Resolution
 
@@ -165,10 +165,6 @@ Advised usage:
 
 - use relative paths.
 - use `/` for a root path if a root is required.
-
-Unadvised usage:
-
-- **avoid** `~` use within monorepos.
+- **avoid** `~` within monorepos.
 
 If you're a monorepo user and would like to contribute to these recommendations, please provide example repos when opening issues to support the discussion.
-Terms

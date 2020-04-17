@@ -162,6 +162,67 @@ Named pipelines are currently implemented for transformers and optimizers (the n
 
 #### Predefined (offical) named pipelines
 
+- `data-url:` See above for an example. It isn't replaced by an URL to a new bundle but instead an isolated data url.
 - `url:` Needed when e.g. importing "normal" assets such as media files as a URL
-- `bundle-text:` Can be used to e.g. import a CSS file's contents into Javascript (needed for some component frameworks)
-- `data-url:` See above, isn't replaced by an URL to a new bundle but instead an isolated data url.
+
+{% sample %}
+{% samplefile "index.js" %}
+
+```js/0
+import logo from "url:./logo.svg";
+
+document.body.innerHTML = `<img src="${logo}">`;
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+{% note %}
+
+You might ask why we chose to use this explicit syntax. The reason is that this way, adding a new asset type to Parcel isn't a breaking change anymore (this happened in the past when `import foo from "./other.html"` didn't return the URL but the HTML contents anymore).
+
+It's also possible to modify the parcel config to opt into the old behaviour: see [Migration](/getting-started/migration/#importing-non-code-assets-from-javascript)
+
+{% endnote %}
+
+
+- `bundle-text:` Can be used to e.g. import a CSS (or LESS!) file's contents into Javascript (needed for some frameworks)
+
+{% sample %}
+{% samplefile "style.less" %}
+
+```less
+@myColor: #143352;
+
+span {
+  color: @myColor;
+}
+```
+
+{% endsamplefile %}
+{% samplefile "index.js" %}
+
+```js/0,9
+import style from "bundle-text:./logo.less";
+
+class MyTest extends HTMLElement {
+  constructor() {
+    super();
+
+    let shadow = this.attachShadow({ mode: 'open' });
+
+    let style = document.createElement('style');
+    style.textContent = style;
+    shadow.appendChild(style);
+
+    let info = document.createElement('span');
+    info.textContent = this.getAttribute('label');
+    shadow.appendChild(info);
+  }
+}
+
+customElements.define('my-test', MyTest);
+```
+
+{% endsamplefile %}
+{% endsample %}

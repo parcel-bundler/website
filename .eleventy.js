@@ -31,13 +31,13 @@ module.exports = function (eleventyConfig) {
   // ---------- Macros ----------
 
   eleventyConfig.addPairedShortcode("note", function (content) {
-    return `<div class="well">${content}</div>`;
+    return `<figure class="well">${content}</figure>`;
   });
   eleventyConfig.addPairedShortcode("warning", function (content) {
-    return `<div class="well warning">${content}</div>`;
+    return `<figure class="well warning">${content}</figure>`;
   });
   eleventyConfig.addPairedShortcode("error", function (content) {
-    return `<div class="well error">${content}</div>`;
+    return `<figure class="well error">${content}</figure>`;
   });
 
   eleventyConfig.addPairedShortcode("sample", function (content, entry, mode) {
@@ -46,7 +46,7 @@ module.exports = function (eleventyConfig) {
       .filter(Boolean)
       .map((s) => JSON.parse(s));
     return (
-      `<div class="well sample ${mode === "column" ? "column" : "row"}">\n\n` +
+      `<figure class="well sample ${mode === "column" ? "column" : "row"}">\n\n` +
       (entry ? `<div class="cmd"><code>parcel ${entry}</code></div>` : "") +
       `<div class="assets">\n` +
       `${data
@@ -59,7 +59,7 @@ module.exports = function (eleventyConfig) {
         )
         .join("\n")}\n` +
       `</div>\n` +
-      `</div>`
+      `</figure>`
     );
   });
   eleventyConfig.addPairedShortcode("samplefile", function (content, name) {
@@ -67,24 +67,28 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addPairedShortcode("migration", function (content) {
-    let data = content
+    let assets = content
       .split("\n")
       .filter(Boolean)
       .map((s) => JSON.parse(s));
+
+    if (assets.length === 1) assets.splice(0, 0, null);
+
     return (
-      `<div class="well warning migration">\n\n` +
+      `<figure class="well warning migration">\n\n` +
       `<div class="assets">\n` +
-      `${data
-        .map(
-          ({ name, content }, i) =>
-            `<div class="asset">` +
-            (name ? `<em>${name}</em>:` : "") +
-            content +
-            `</div>`
+      assets
+        .map((a) =>
+          a
+            ? `<div class="asset">` +
+              (a.name ? `<em>${a.name}</em>:` : "") +
+              a.content +
+              `</div>`
+            : ""
         )
-        .join(`<div class='arrow'></div>`)}\n` +
+        .join(`<div class='arrow'></div>\n`) +
       `</div>\n` +
-      `</div>`
+      `</figure>`
     );
   });
 

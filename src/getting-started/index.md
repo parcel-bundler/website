@@ -24,7 +24,7 @@ override:eleventyNavigation:
 <!DOCTYPE html>
 <html>
   <body>
-    <h1 id="greeting"></h1>
+    <div id="root"></div>
     <script src="./index.ts"></script>
   </body>
 </html>
@@ -33,13 +33,11 @@ override:eleventyNavigation:
 {% endsamplefile %}
 {% samplefile "src/index.ts" %}
 
-```ts
+```tsx
 import React from "react";
 import {render} from "react-dom";
 
-const variable: string = "Hello, World!";
-
-document.getElementById("greeting").innerHTML = variable;
+render(<h1>Hello World</h1>, document.getElementById("root"));
 ```
 
 {% endsamplefile %}

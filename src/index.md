@@ -6,13 +6,15 @@ title: Parcel Documentation
 ## TODO
 
 - Landing page (this)
+- Babel
+- Plugins
 
 <br>
 
 - Responsive on mobile (the sidebar should somehow collapse)
 - Print: syntax highlighting is lost
-- better contrast for sidebar links
-- (Eventually add "Open in REPL" link to the code samples - actually the main reason I made them a njk macro)
+- better contrast for sidebar links (and search bar)
+- (Eventually add "Open in REPL" link to the code samples)
 
 # "Design System":
 

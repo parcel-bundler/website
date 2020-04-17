@@ -47,37 +47,33 @@ import Parcel, { createWorkerFarm } from "@parcel/core";
 import defaultConfigContents from "@parcel/config-default";
 import { NodeFS, MemoryFS } from "@parcel/fs";
 
-const sleep = (t) => new Promise((res) => setTimeout(res, t));
+let workerFarm = createWorkerFarm();
+let inputFS = new NodeFS();
+let outputFS = new MemoryFS(workerFarm);
 
-(async () => {
-  const workerFarm = createWorkerFarm();
-  const inputFS = new NodeFS();
-  let outputFS = new MemoryFS(workerFarm);
+let b = new Parcel({
+  entries: [path.join(__dirname, "src", "index.html")],
+  defaultConfig: {
+    ...defaultConfigContents,
+    filePath: require.resolve("@parcel/config-default"),
+  },
+  inputFS: inputFS,
+  outputFS: outputFS,
+  workerFarm,
+  defaultEngines: {
+    browsers: ["last 1 Chrome version"],
+    node: "8",
+  },
+  serve: { port: 8000, host: "localhost" }
+});
 
-  let b = new Parcel({
-    entries: [path.join(__dirname, "src", "index.html")],
-    defaultConfig: {
-      ...defaultConfigContents,
-      filePath: require.resolve("@parcel/config-default"),
-    },
-    inputFS: inputFS,
-    outputFS: outputFS,
-    workerFarm,
-    defaultEngines: {
-      browsers: ["last 1 Chrome version"],
-      node: "8",
-    },
-    serve: { port: 8000, host: "localhost" }
-  });
+await b.build();
 
-  await b.build();
+for (let file of outputFS.readdir("/")) { // TODO ?
+  console.log(file, await outputFS.readFile(file, "utf8"));
+}
 
-  for (let file of outputFS.readdir("/")) { // TODO ?
-    console.log(file, await outputFS.readFile(file, "utf8"));
-  }
-
-  await workerFarm.end();
-})();
+await workerFarm.end();
 ```
 
 {% endsamplefile %}
