@@ -5,11 +5,14 @@ title: Parcel Documentation
 
 ## TODO
 
-- landing page (this)?
+- Landing page (this)
+
+<br>
+
 - Responsive on mobile (the sidebar should somehow collapse)
 - Print: syntax highlighting is lost
+- better contrast for sidebar links
 - (Eventually add "Open in REPL" link to the code samples - actually the main reason I made them a njk macro)
-
 
 # "Design System":
 
@@ -26,13 +29,13 @@ title: Parcel Documentation
 Welcome!
 
 {% note %}
-  ...
+...
 {% endnote %}
 {% warning %}
-  !!
+!!
 {% endwarning %}
 {% error %}
-  !!!
+!!!
 {% enderror %}
 
 {% sample null, "column" %}
@@ -70,7 +73,6 @@ console.log("hello!");
 
 {% endsamplefile %}
 {% endsample %}
-
 
 {% migration %}
 {% samplefile "index.html" %}

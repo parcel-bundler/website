@@ -16,9 +16,9 @@ Parcel is designed to be very modular, `@parcel/core` itself is (almost) not spe
 
 Here is an excerpt from the default config that the `parcel` CLI uses. Generally, there are three categories of plugin types (with regards to the configuration):
 
-- only one plugin for the whole build (Bundler)
-- a list of plugins that run sequentially (Namer/Resolver/Reporter)
-- the plugin(s) are specified per asset/bundle type (Transformer/Packager/Optimizer)
+- only one plugin for the whole build (bundler)
+- a list of plugins that run sequentially (namers/resolvers/reporters)
+- the plugin(s) are specified per asset/bundle type (transformers/packagers/optimizers)
 - runtimes are the exception here, because they are specified per [context](/getting-started/configuration#context) TODO LINK.
 
 {% sample %}
@@ -58,8 +58,8 @@ Here is an excerpt from the default config that the `parcel` CLI uses. Generally
 
 A filetype is specified by a glob which is matched against the _whole filepath_ (the _pipelines_ are matched in order of declaration), so you could use different plugins depending on the input/output filepath:
 
-- The globs for Transformers are matched against the asset (input) path.
-- The globs for Packagers and Optimizers are matched against the bundle (output) path.
+- The globs for transformers are matched against the asset (input) path.
+- The globs for packagers and optimizers are matched against the bundle (output) path.
 
 ### Extending configs
 
@@ -68,7 +68,7 @@ A common usecase is extensing the default config, for this reason the `extends` 
 {% sample %}
 {% samplefile ".parcelrc" %}
 
-```json
+```json/1
 {
   "extends": "@parcel/config-default",
   "transforms": {
@@ -97,7 +97,7 @@ If a transformer doesn't change the asset type and you still want to continue pr
 {% sample  %}
 {% samplefile ".parcelrc" %}
 
-```json
+```json/3
 {
   "extends": "@parcel/config-default",
   "transforms": {
@@ -122,7 +122,7 @@ Here is an example on how you achieve a url dependency that doesn't create a new
 
 (_Note: this config is already contained in `@parcel/config-default`. This config is just for illustration._)
 
-```json
+```json/3,6
 {
   "extends": "@parcel/config-default",
   "transforms": {
@@ -137,7 +137,7 @@ Here is an example on how you achieve a url dependency that doesn't create a new
 {% endsamplefile %}
 {% samplefile "index.js" %}
 
-```js
+```js/2
 import x from "./other.js";
 
 new Worker("data-url:./worker.js");
@@ -152,14 +152,16 @@ As you can see, `...` is now used to make sure that `data-url:./worker.js` will 
 
 {% note %}
 
-If you're curious how this can be achieved wihtout a deeper integration with Parcel core:
+If you're curious how this can be achieved without a deeper integration with Parcel core:
 
 `@parcel/transformer-inline-string` sets marks the asset to be an inlined asset. `@parcel/packager-js` then inlines this inline bundle (as a string `"${contents}"`). This inline bundle was previously processed by `@parcel/optimizer-data-url` which encodes the JS code into a data url.
 
 {% endnote %}
 
+Named pipelines are currently implemented for transformers and optimizers (the named pipeline is inheirited from the entry asset).
+
 #### Predefined (offical) named pipelines
 
 - `url:` Needed when e.g. importing "normal" assets such as media files as a URL
-- `bundle-text:` Can be used to e.g. import a CSS file into Javascript (needed for some component frameworks)
+- `bundle-text:` Can be used to e.g. import a CSS file's contents into Javascript (needed for some component frameworks)
 - `data-url:` See above, isn't replaced by an URL to a new bundle but instead an isolated data url.

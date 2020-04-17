@@ -8,10 +8,9 @@ summary: How far you can get without any configuration and how to configure Parc
 ---
 
 TODO
-- `package.json`
-  - `main/module/browser/source`
-  - `source`
-  - `targets`
-- CLI flags that set defaults for these
+- entries: CLI or `source`
+- output: `main/module/browser/source`, `distDir`
+- `package.json#targets`
+  - CLI flags that set defaults for these
 
 Link to [bundling a library](/recipes/library) and [bundling a webapp](/recipes/webapp)
