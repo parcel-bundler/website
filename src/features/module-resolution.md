@@ -9,28 +9,22 @@ summary: How dependencies are resolved
 
 The Parcel resolver implements a modified version of [the node_modules resolution](https://nodejs.org/api/modules.html#modules_all_together) algorithm.
 
-Module resolution can be relative to the:
-
-TODO:
-
-- **entry root**: the directory of the entrypoint specified to Parcel, or the shared root (common parent directory) when multiple entrypoints are specified.
-- **project root**: the directory of the nearest module root in `node_modules`.
+- **root directory**: the directory of the entrypoint specified to Parcel, or the shared root (nearest common parent directory) when multiple entrypoints are specified.
+- **project root**: the nearest directory from the root direct that contains a lockfile (`yarn.lock`, `package-lock.json`, `pnpm-lock.yaml`) or a VCS folder (`.git`, `.hg`)
 
 ### Absolute Paths
 
-TODO:
-`/foo` resolves `foo` relative to the **entry root**.
+`/foo` resolves `foo` relative to the **project root**.
 
-### ~ Tilde Paths
+### Tilde Paths
 
-TODO:
-`~/foo` resolves `foo` relative to the nearest **package root** or, if not found, the **entry root**.
+`~/foo` resolves `foo` relative to nearest **`node_modules`** directory, the nearest directory with **`package.json`** or the project root - whichever comes first.
 
 ### package.json `browser` field
 
 If a package includes a [package.browser field](https://docs.npmjs.com/files/package.json#browser) (and it is a string), Parcel will use this instead of the package.main entry.
 
-If it is an object, it behaves just like [`aliases`](#aliases), but has a higher priority when `target.context === "browser"`.
+If it is an object, it behaves just like [`aliases`](#aliases), but has a higher priority when [`target.context === "browser"`](/getting-started/configuration) TODO LINK.
 
 ### Aliases
 
@@ -41,7 +35,7 @@ This example aliases `react` to `preact` and some local custom module that is no
 {% sample %}
 {% samplefile "package.json" %}
 
-```json
+```json/5-9
 {
   "name": "some-package",
   "devDependencies": {
@@ -60,10 +54,28 @@ This example aliases `react` to `preact` and some local custom module that is no
 
 Avoid using any special characters in your aliases as some may be used by Parcel and others by 3rd party tools or extensions. For example:
 
-- `~` is used by Parcel to resolve [tilde paths](#~-tilde-paths).
+- `~` is used by Parcel to resolve [tilde paths](#tilde-paths).
 - `@` is used by npm to for packages by npm organizations.
 
 We advise being explicit when defining your aliases, so please **specify file extensions**, otherwise Parcel will need to guess. See [JavaScript Named Exports](#javascript-named-exports) for an example of this.
+
+### Package entry fields
+
+When scope hoisting is enabled, a bare specified (e.g. `lodash`) is resolved in this order (the first field that specified and points to ane existing file):
+
+- `package.json#source`
+- `package.json#browser`
+- `package.json#module`
+- `package.json#main`
+- `index.{js, json}`
+
+Without scope hoisting however, `main` is preferred to `module` for better performance:
+
+- `package.json#source`
+- `package.json#browser`
+- `package.json#module`
+- `package.json#main`
+- `index.{js, json}`
 
 ## Common issues
 
@@ -74,7 +86,7 @@ Alias mappings apply to many asset types and do not specifically support mapping
 {% sample %}
 {% samplefile "package.json" %}
 
-```json
+```json5/3
 {
   "name": "some-package",
   "alias": {
@@ -127,12 +139,9 @@ import Apple from "/components/apple";
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
 
+`<PROJECT_ROOT>` is a Flow specific identifier indicating the location of your `.flowconfig`.
 {% endsamplefile %}
 {% endsample %}
-
-(`<PROJECT_ROOT>` is a Flow specific identifier indicating the location of your `.flowconfig`.)
-
-TODO
 
 Note: `module.name_mapper` can have multiple entries. This enabled support for [absolute](#absolute-paths) or [tilde](#~-tilde-paths) Path Resolution in addition to [local module aliasing](#aliases) support.
 
@@ -158,6 +167,8 @@ TypeScript will need to know about your use of the `~` module resolution or alia
 {% endsample %}
 
 ### Monorepo Resolution
+
+TODO?
 
 These are the advised usages with monorepos at this time:
 

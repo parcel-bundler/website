@@ -20,7 +20,7 @@ TODO
 {% sample %}
 {% samplefile ".parcelrc" %}
 
-```json
+```json/3
 {
   "extends": "@parcel/config-default",
   "transforms": {

@@ -59,7 +59,7 @@ Calls to `fs.readFileSync` are replaced with the file's contents if the filepath
 {% sample "build index.js" %}
 {% samplefile "index.js" %}
 
-```js
+```js/3
 import fs from "fs";
 import path from "path";
 

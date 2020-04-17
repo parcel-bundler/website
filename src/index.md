@@ -1,7 +1,27 @@
 ---
 layout: layout.njk
-title: Parcel Documentation
+title: Parcel
 ---
+
+Parcel is a compiler for all your code, regardless of the language or toolchain.
+
+Parcel takes all of your files and dependencies, transforms them, and merges
+them together into a smaller set of output files that can be used to run your
+code.
+
+Parcel supports many different languages and file types out of the box, from
+web technologies like HTML, CSS, and JavaScript, to lower level languages like
+Rust, and anything that compiles to WebAssembly (WASM), to assets like images,
+fonts, videos, and more.
+
+Parcel makes your code portable. You can build your code for different
+environments, for the web for your server, or for an app. You can even build
+multiple targets at once and have them live update as you make changes.
+
+Parcel is fast and predictable. It compiles all of your files in isolation in
+parallel inside workers, caching all of them as it goes along. Caches are
+stable across machines and are only affected by the files and configs within
+your project (unless you want to pass specific environment variables).
 
 ## TODO
 
@@ -15,6 +35,7 @@ title: Parcel Documentation
 - Print: syntax highlighting is lost
 - better contrast for sidebar links (and search bar)
 - (Eventually add "Open in REPL" link to the code samples)
+
 
 # "Design System":
 

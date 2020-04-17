@@ -3,7 +3,7 @@ layout: layout.njk
 override:eleventyNavigation:
   key: Case Studies
   parent: Plugin System
-  order: 10
+  order: 11
 summary: Some multi-plugin examples
 ---
 

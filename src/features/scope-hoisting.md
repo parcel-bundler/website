@@ -76,7 +76,7 @@ $index$export$var$obj.run();
 
 As you can see, the top-level variables from the assets need to be renamed to have a globally unique name.
 
-But now, removing unused exports has become trivial: the variable `$thing$export$Bar` is not used at all, so we can safely remove it (and a minifier like Terser would do this automatically), this step is sometimes referred to as **tree shaking**.
+Now, removing unused exports has become trivial: the variable `$thing$export$Bar` is not used at all, so we can safely remove it (and a minifier like Terser would do this automatically), this step is sometimes referred to as **tree shaking**.
 
 The only real downside is that builds take quite a bit longer and also use more memory than the wrapper-based approach (because every single statement needs to be modified and the bundle as a whole needs to remain in memory during the packaging).
 
@@ -92,7 +92,7 @@ There are a few cases where an asset needs to be _wrapped_, that is moved inside
 
 ### `sideEffects: false`
 
-When `sideEffects: false` is specified in the `package.json`, Parcel can skip processing some assets entirely (e.g. not transpile the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
+When `sideEffects: false` is specified in the `package.json`, Parcel can skip processing some assets entirely (e.g. not transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
 ## How It Really Works
 
@@ -104,6 +104,7 @@ This is a rather in-depth description of the Parcel's scope hoisting implementat
 
 TODO
 
+<!--
 ```js
 var $id$exports$ = function () {
   var exports = this;
@@ -135,3 +136,4 @@ function $id$init() {
   return $id$exports;
 }
 ```
+-->

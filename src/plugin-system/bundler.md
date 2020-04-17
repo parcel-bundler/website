@@ -2,8 +2,23 @@
 layout: layout.njk
 eleventyNavigation:
   key: Bundler
-  order: 4
-summary: "A plugin type: Turn an asset graph into a bundle graph"
+  order: 3
+summary: "A plugin type: Turns an asset graph into a bundle graph"
 ---
 
-TODO
+Bundlers accept the entire asset graph and modify it to add bundle nodes that group the assets
+into output bundles.
+
+```js
+import { Bundler } from "@parcel/plugin";
+
+export default new Bundler({
+  async bundle({ graph }) {
+    // ...
+  },
+
+  async optimize({ graph }) {
+    // ...
+  },
+});
+```

@@ -2,13 +2,11 @@
 layout: layout.njk
 eleventyNavigation:
   key: Data structures
-  order: 11
+  order: 12
 summary: A high-level description of the important data structures
 ---
 
 #### Diagnostics
-
-
 
 #### Core Data Types
 
@@ -21,9 +19,13 @@ This is not intended to be an API documentation (as of now anyway) but rather in
 TODO
 
 ##### Asset
-##### Dependency
-##### AssetGraph
-##### Bundle
-##### BundleGraph
+
 ##### Dependency
 
+##### AssetGraph
+
+##### Bundle
+
+##### BundleGraph
+
+##### Dependency

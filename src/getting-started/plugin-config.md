@@ -10,7 +10,7 @@ summary: How to use your own plugins and create named pipelines
 Contrary to what this page's title might suggest, this is not about configuring individual plugins, but how to tell Parcel which plugin is responsible for (among others) which file type(s).
 {% endnote %}
 
-Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are diffent plugins (see [Plugin System](</plugin-system/#list-of-plugin-types-with-a-brief-description-(in-a-somewhat-correct-order)>) for an overview).
+Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are diffent plugins (see [Plugin System](/plugin-system/)).
 
 ### `.parcelrc`
 
@@ -19,7 +19,7 @@ Here is an excerpt from the default config that the `parcel` CLI uses. Generally
 - only one plugin for the whole build (bundler)
 - a list of plugins that run sequentially (namers/resolvers/reporters)
 - the plugin(s) are specified per asset/bundle type (transformers/packagers/optimizers)
-- runtimes are the exception here, because they are specified per [context](/getting-started/configuration#context) TODO LINK.
+- runtimes are the exception here, because they are specified per [context](/getting-started/configuration/#targets-2).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -185,7 +185,6 @@ It's also possible to modify the parcel config to opt into the old behaviour: se
 
 {% endnote %}
 
-
 - `bundle-text:` Can be used to e.g. import a CSS (or LESS!) file's contents into Javascript (needed for some frameworks)
 
 {% sample %}
@@ -209,19 +208,19 @@ class MyTest extends HTMLElement {
   constructor() {
     super();
 
-    let shadow = this.attachShadow({ mode: 'open' });
+    let shadow = this.attachShadow({ mode: "open" });
 
-    let style = document.createElement('style');
+    let style = document.createElement("style");
     style.textContent = style;
     shadow.appendChild(style);
 
-    let info = document.createElement('span');
-    info.textContent = this.getAttribute('label');
+    let info = document.createElement("span");
+    info.textContent = this.getAttribute("label");
     shadow.appendChild(info);
   }
 }
 
-customElements.define('my-test', MyTest);
+customElements.define("my-test", MyTest);
 ```
 
 {% endsamplefile %}

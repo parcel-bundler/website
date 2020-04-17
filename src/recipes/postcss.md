@@ -7,6 +7,7 @@ eleventyNavigation:
 ---
 
 To motivate some of the following tips, here's an overview over how Parcel processes CSS files (in that order):
+
 - [@parcel/transformer-postcss](/official-plugins/transformer-postcss/):
   Applies `.postcssrc` and might generate a CSS modules map
 - [@parcel/transformer-css](/official-plugins/transformer-css/):
@@ -37,7 +38,7 @@ There are two ways to enable CSS modules:
       "generateScopedName": "_[name]__[local]"
     }
   }
-};
+}
 ```
 
 {% endsamplefile %}
@@ -58,10 +59,10 @@ There are two ways to enable CSS modules:
 {% samplefile "index.js" %}
 
 ```jsx
-import {main} from "./app.module.css";
+import { main } from "./app.module.css";
 
 export function App() {
-  return <div className={main}/>;
+  return <div className={main} />;
 }
 ```
 
@@ -114,7 +115,6 @@ html {
   height: 50px;
   background-image: var(--varIcon);
 }
-
 ```
 
 {% endsamplefile %}
@@ -126,7 +126,6 @@ html {
   --varIcon: url("../icon.svg");
 }
 ```
-
 
 {% endsamplefile %}
 {% endsample %}
