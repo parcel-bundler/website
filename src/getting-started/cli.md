@@ -64,7 +64,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--no-source-maps`                           | Disables sourcemaps, <br> Default value for [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)              |
 | `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                          |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/getting-started/configuration/#targets-2) |
-| `--target [name]`                            | Only build the specified target(s) TODO LINK                                                                                |
+| `--target [name]`                            | Only build the specified target(s)                                                                                |
 | `-V, --version`                              | Outputs the version number                                                                                                  |
 
 ### Parameters related to the dev server/watch mode (`serve` and `watch`)
