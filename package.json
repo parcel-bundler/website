@@ -4,16 +4,18 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve --quiet",
     "debug": "DEBUG=* eleventy",
-    "lint": "prettier --write 'src/**/*.{json,md}'"
+    "lint": "prettier --write 'src/**/*.{json,md}'",
+    "generate-api": "node scripts/generate-api-docs.js > src/plugin-system/api.html"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-navigation": "^0.1.5",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "@babel/generator": "^7.9.5",
+    "@babel/parser": "^7.9.4",
+    "@babel/traverse": "^7.9.5",
     "eleventy-plugin-sass": "^1.0.0",
+    "markdown-it-anchor": "^5.2.7",
     "prettier": "^2.0.4"
-  },
-  "dependencies": {
-    "markdown-it-anchor": "^5.2.7"
   }
 }
