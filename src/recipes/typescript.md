@@ -11,11 +11,12 @@ TODO
 
 - tsc vs babel
   - tsconfig ignored with babel
-  - babel requries `transform-class-properties`
+  - `@babel/preset-env` requries `plugin-transform-class-properties`
 
 - isolated modules mode: limitations (`const enum`)
 - tsconfig (`paths` is not supported?)
-- `package.json#types`
+- `package.json#types` (automatic target like `main`)
+-
 
 {% sample %}
 {% samplefile ".parcelrc" %}

@@ -51,6 +51,63 @@ Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
 {% endsamplefile %}
 {% endmigration %}
 
+### Typescript
+
+Parcel 1 transpiled TypeScript using `tsc` (the official TypeScript compiler). Parcel 2 instead uses Babel (using `@babel/preset-env`) by default. This has two notable consequences:
+
+(The [TypeScript recipe](/recipes/typescript) contains more informations - and limitations - of Parcel's TypeScript handling.)
+
+###### `@babel/preset-typescript` Isn't inserted Automatically into a Custom `.babelrc`.
+
+For most use cases, transpiling using Babel is enough, so Parcel includes `@babel/preset-typescript` in its default Babel config for TypeScript assets. You need to specify it manually however if you are using a custom `.babelrc`:
+
+{% migration %}
+{% samplefile ".babelrc" %}
+
+```json/1
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": ["babel-plugin-foo"]
+}
+```
+
+{% endsamplefile %}
+{% samplefile ".babelrc" %}
+
+```json/1
+{
+  "presets": ["@babel/preset-env", "@babel/preset-typescript"],
+  "plugins": ["babel-plugin-foo"]
+}
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
+###### Babel Doesn't Read `tsconfig.json`
+
+In case Babel doesn't work for you (e.g. because of an advanced `tsconfig.json`), you can use `tsc`:
+
+{% migration %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transforms": {
+    "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
+{% warning %}
+This is expected to be slightly slower for large builds/assets, so transpiling using Babel is the default approach.
+{% endwarning %}
+
+
 ## Configuration/CLI
 
 ### `package.json#main`
