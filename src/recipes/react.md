@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: React
   title: <img src="/assets/lang-icons/react.svg"/> React
-  order: 5
+  order: 6
 ---
 
 Compared to Webpack, Parcel's paradigm is to use your HTML file as the entry point, not merely the main script:
@@ -142,3 +142,5 @@ ReactDom.render(..., <App />);
 
 {% endsamplefile %}
 {% endsample %}
+
+(The HMR functionality is provided by `@parcel/transformer-react-refresh-babel`, `@parcel/transformer-react-refresh-wrap` and `@parcel/runtime-react-refresh` TODO LINK.)

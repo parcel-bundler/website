@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: Typescript
   title: <img src="/assets/lang-icons/typescript.svg"/> Typescript
-  order: 6
+  order: 7
 summary: Explains the different ways TypeScript can be transpiled
 ---
 
@@ -33,3 +33,4 @@ TODO
 {% endsamplefile %}
 {% endsample %}
 
+(This functionality is provided by `@parcel/transformer-babel` and `@parcel/transformer-typescript-tsc` TODO LINK.)

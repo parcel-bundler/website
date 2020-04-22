@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: Generic Webapp
   title: ❓Generic Webapp
-  order: 3
+  order: 4
 summary: How to configure Parcel for a typical Webapp
 ---
 

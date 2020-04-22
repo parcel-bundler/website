@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: (Post)CSS
   title: <img src="/assets/lang-icons/postcss.svg"/> (Post)CSS
-  order: 4
+  order: 5
 ---
 
 To motivate some of the following tips, here's an overview over how Parcel processes CSS files (in that order):
