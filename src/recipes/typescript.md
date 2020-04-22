@@ -24,7 +24,7 @@ TODO
 ```json/3
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
   }
 }

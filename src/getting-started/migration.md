@@ -42,7 +42,7 @@ Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
 ```json/3
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "*": ["@parcel/transformer-raw"]
   },
 }
@@ -94,7 +94,7 @@ In case Babel doesn't work for you (e.g. because of an advanced `tsconfig.json`)
 ```json/3
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
   }
 }

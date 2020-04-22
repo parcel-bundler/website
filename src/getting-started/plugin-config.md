@@ -71,7 +71,7 @@ A common usecase is extensing the default config, for this reason the `extends` 
 ```json/1
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
   }
 }
@@ -100,7 +100,7 @@ If a transformer doesn't change the asset type and you still want to continue pr
 ```json/3
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "*.js": ["parcel-transformer-add-comment", "..."]
   }
 }
@@ -125,7 +125,7 @@ Here is an example on how you achieve a url dependency that doesn't create a new
 ```json/3,6
 {
   "extends": "@parcel/config-default",
-  "transforms": {
+  "transformers": {
     "data-url:*": ["@parcel/transformer-inline-string", "..."]
   },
   "optimizers": {
