@@ -33,9 +33,7 @@ your project (unless you want to pass specific environment variables).
 
 - Responsive on mobile (the sidebar should somehow collapse)
 - Print: syntax highlighting is lost
-- better contrast for sidebar links (and search bar)
 - (Eventually add "Open in REPL" link to the code samples)
-
 
 # "Design System":
 

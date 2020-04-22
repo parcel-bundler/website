@@ -113,6 +113,9 @@ body {
           width: 24rem;
         }
       }
+      &::placeholder {
+        color: currentColor;
+      }
     }
   }
 
@@ -180,36 +183,26 @@ body {
     }
 
     & > ul {
-      & > li {
-        & > a {
-          color: #595959;
-          font-weight: 600;
-          text-transform: uppercase;
-          margin-bottom: 0.5rem;
-          font-size: 1.1rem;
+      & a {
+        color: #595959;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
 
-          &:hover {
-            color: #4a4a4a;
-          }
-        }
-
-        & > ul {
-          & > li > a {
-            color: #868686;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 0.25rem;
-            font-size: 0.9rem;
-          }
-
-          & > li:not(:first-child) {
-            margin-top: 0.5rem;
-          }
+        &:hover {
+          color: #4a4a4a;
         }
       }
 
-      & > li:not(:first-child) {
-        margin-top: 1.5rem;
+      & > li {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+
+        & > ul > li {
+          margin-bottom: 0.25rem;
+          font-size: 0.9rem;
+          margin-left: 1rem;
+        }
       }
     }
 
@@ -335,8 +328,13 @@ body {
     }
 
     p a code {
-      color: #0645ad;
-      text-decoration: none;
+      text-decoration: underline;
+      padding: 0;
+      color: inherit;
+    }
+
+    figure code {
+      font-size: 0.9rem;
     }
 
     b,

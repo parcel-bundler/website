@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: (Post)CSS
-  title: <img src="/assets/lang-icons/postcss.svg"/> (Post)CSS
+  title: <img src="/assets/lang-icons/postcss.svg" alt=""/> (Post)CSS
   order: 5
 ---
 
