@@ -26,7 +26,6 @@ your project (unless you want to pass specific environment variables).
 ## TODO
 
 - Landing page (this)
-- Babel
 - Plugins
 
 <br>
