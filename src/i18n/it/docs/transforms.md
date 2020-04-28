@@ -86,7 +86,7 @@ I Plugins sono specificati nell'oggetto `plugins` come chiavi, e le opzioni sono
 
 ## TypeScript
 
-[TypeScript](https://www.typescriptlang.org/) è un superset di JavaScript che si compila in Javascript classico che supporta anche le feature delle versioni ES2015+. La Conversione di TypeScript funziona nativamente senza necessirà di configurazioni aggiuntive.
+[TypeScript](https://www.typescriptlang.org/) è un superset di JavaScript che si compila in Javascript classico che supporta anche le feature delle versioni ES2015+. La Conversione di TypeScript funziona nativamente senza necessità di configurazioni aggiuntive.
 
 ```html
 <!-- index.html -->
