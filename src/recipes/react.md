@@ -80,6 +80,8 @@ ReactDom.render(..., <App />);
 {% endsamplefile %}
 {% endsample %}
 
+[See also Dan Abramov's tweet](https://twitter.com/dan_abramov/status/1255229440860262400)
+
 ##### Exporting Values That Are Not Components Will Reset the State:
 
 Editing `Component` would reset the `value` state, because of the other non-component export.
