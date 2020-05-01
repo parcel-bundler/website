@@ -54,29 +54,15 @@ assets which Parcel will pull in.
 The data structure that represents all of these assets and their dependencies
 on one another is called the "Asset Graph".
 
-### Bundles
+### Bundle Graph
 
 Once Parcel has built the entire Asset Graph, it begins turning it into
 "bundles". These bundles are groupings of assets that get placed together in a
-single file.
-
-Bundles will (generally) contain only assets in the same language:
-
-| Bundle Name  | Assets                      |
-| ------------ | --------------------------- |
-| `index.html` | `index.html`                |
-| `app.css`    | `app.css`                   |
-| `app.js`     | `app.js`, `navbar.js`, etc. |
+single file. Bundles will (generally) contain only assets in the same language.
 
 Some assets are considered "entry" points into your app, and will stay as
 separate bundles. For example, if your `index.html` file links to an
 `about.html` file, they won't be merged together.
-
-| Bundle Name  | Assets       | Entry URL |
-| ------------ | ------------ | --------- |
-| `index.html` | `index.html` | `/`       |
-| `about.html` | `about.html` | `/about`  |
-
 
 ### Complete List of Plugin Types (in a somewhat correct order)
 
@@ -86,7 +72,7 @@ separate bundles. For example, if your `index.html` file links to an
   _Example: add your own syntax for imports, e.g. `import "^/foo"`_
 - [Bundler](bundler): Turns an asset graph into a bundle graph <br>
   _Example: create a bundler that does Vendoring (splitting app and node_modules code)_
-- [Namer](namer): Generates a name for a bundle <br>
+- [Namer](namer): Generates a filename (or filepath) for a bundle <br>
   _Example: create a bundler that does Vendoring (splitting app and node_modules code)_
 - [Runtime](runtime): Programatically inserts (synthetic) assets into bundles" <br>
   _Example: add analytics to every bundle_
@@ -103,5 +89,3 @@ separate bundles. For example, if your `index.html` file links to an
   _Example: provide a tailor-made parcel config for your boilerplate_ <br>
 - [Reporter](reporter): Listens to events of the build <br>
   _Example: generate a bundle report, run a dev server_
-
-_For plugin authors: [a high-level overview over the plugin API](data-structures)_

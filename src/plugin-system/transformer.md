@@ -13,24 +13,32 @@ asset graph. They mostly call out to different compilers and preprocessors.
 import { Transform } from "@parcel/plugin";
 
 export default new Transform({
+  async canReuseAST({ ast, options, logger }) {
+    return false;
+  }
+
   async loadConfig({ config, options, logger }) {
     // ...
     return config;
   },
 
-  async parse({ asset }) {
+  async parse({ asset, config, logger, resolve, options }) {
     // ...
     return ast;
   },
 
-  async transform({ asset }) {
+  async transform({ asset, ast, config, logger, resolve, options }) {
     // ...
     return [asset];
   },
 
-  async generate({ asset }) {
+  async generate({ asset, ast, resolve, options }) {
     // ...
     return { code, map };
   },
+
+  async postProcess({assets, config, options, resolve, logger}) {
+    return assets;
+  }
 });
 ```

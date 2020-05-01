@@ -8,3 +8,5 @@ summary: Some multi-plugin examples
 ---
 
 Not sure about this one, like "plugin example/guide/tutorial"
+
+TODO a namer plugin that retains folder structure / no hashes

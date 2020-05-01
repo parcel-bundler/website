@@ -63,7 +63,7 @@ A filetype is specified by a glob which is matched against the _whole filepath_ 
 
 ### Extending configs
 
-A common usecase is extensing the default config, for this reason the `extends` field can be a config packages or an array of config packages to extend.
+A common usecase is extending the default config, for this reason the `extends` field can be a config package or an array of config packages to extend.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -181,11 +181,11 @@ document.body.innerHTML = `<img src="${logo}">`;
 
 You might ask why we chose to use this explicit syntax. The reason is that this way, adding a new asset type to Parcel isn't a breaking change anymore (this happened in the past when `import foo from "./other.html"` didn't return the URL but the HTML contents anymore).
 
-It's also possible to modify the parcel config to opt into the old behaviour: see [Migration](/getting-started/migration/#importing-non-code-assets-from-javascript)
+It's also possible to modify the parcel config to opt into the old behaviour: see [Migration](/getting-started/migration/#importing-non-code-assets-from-javascript).
 
 {% endnote %}
 
-- `bundle-text:` Can be used to e.g. import a CSS (or LESS!) file's contents into Javascript (needed for some frameworks)
+- `bundle-text:` Can be used to e.g. import a CSS (or LESS!) file's contents into Javascript (needed for some "frameworks")
 
 {% sample %}
 {% samplefile "style.less" %}

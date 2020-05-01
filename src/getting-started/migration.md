@@ -11,7 +11,7 @@ For the most part, you shouldn't have to change much when upgrading to Parcel 2:
 
 ### Importing non-code assets from Javascript
 
-If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier.
+If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (more details in [Plugin Configuration](/getting-started/plugin-config/#predefined-\(offical\)-named-pipelines))
 
 {% migration %}
 {% samplefile "index.js" %}

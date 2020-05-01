@@ -45,8 +45,11 @@ if (module.hot) {
 }
 ```
 
+
 {% endsamplefile %}
 {% endsample %}
+
+TODO api was slightly changed for React Fast Refresh
 
 ## Safe Write
 

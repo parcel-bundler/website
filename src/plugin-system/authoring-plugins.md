@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Authoring Plugins
-  order: 13
+  order: 0
 summary: "What to take in mind when authoring a plugin"
 ---
 
