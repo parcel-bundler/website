@@ -199,18 +199,18 @@ Each of those targets contains the target's environment configuration (all of th
 
 <div style="font-size: 0.9em">
 
-| Option               | Possible values                                     | Description                                                                                                                                                     |
-| -------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `context`            | [see below](#context)                               | In which runtime the bundles should run.                                                                                                                        |
-| `distDir`            | `string`                                            | Specify output folder (as opposed to output file)                                                                                                               |
-| `engines`            | [`package.json#engines`](#engines-%2F-browserslist) | Higher priority than `package.json#engines`                                                                                                                     |
-| `includeNodeModules` | [see below](#includenodemodules)                    | Whether to bundle all/none/some `node_module` dependencies                                                                                                      |
-| `isLibrary`          | `boolean`                                           | Library as in "npm library"                                                                                                                                     |
-| `minify`             | `boolean`                                           | Whether to enable minification (exact behaviour is determined by plugins). <br> Set by [`--no-scope-hoist`](/getting-started/cli/#parameters-specific-to-build) |
-| `outputFormat`       | `'global' | 'esmodule' | 'commonjs'`                | Which type of imports/exports should be emitted                                                                                                                 |
-| `publicUrl`          | `string`                                            | The public url of the bundle at runtime                                                                                                                         |
-| `scopeHoist`         | `boolean`                                           | Whether to enable scope hoisting <br> Needs to be `true` for ESM and CommonJS `outputFormat`.                                                                   |
-| `sourceMap`          | [see below](#sourcemap)                             | Enable/disable sourcemap and set options. <br> Set by [`--no-scope-hoist`](/getting-started/cli/#parameters-specific-to-build)                                  |
+| Option               | Possible values                                     | Description                                                                                                                                                                        |
+| -------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`            | [see below](#context)                               | In which runtime the bundles should run.                                                                                                                                           |
+| `distDir`            | `string`                                            | Specify output folder (as opposed to output file)                                                                                                                                  |
+| `engines`            | [`package.json#engines`](#engines-%2F-browserslist) | Higher priority than `package.json#engines`                                                                                                                                        |
+| `includeNodeModules` | [see below](#includenodemodules)                    | Whether to bundle all/none/some `node_module` dependencies                                                                                                                         |
+| `isLibrary`          | `boolean`                                           | Library as in "npm library"                                                                                                                                                        |
+| `minify`             | `boolean`                                           | Whether to enable minification (exact behaviour is determined by plugins). <br> Set by [`--no-minify`](/getting-started/cli/#parameters-specific-to-build)                    |
+| `outputFormat`       | `'global' | 'esmodule' | 'commonjs'`                | Which type of imports/exports should be emitted                                                                                                                                    |
+| `publicUrl`          | `string`                                            | The public url of the bundle at runtime                                                                                                                                            |
+| `scopeHoist`         | `boolean`                                           | Whether to enable scope hoisting <br> Needs to be `true` for ESM and CommonJS `outputFormat`. <br> Set by [`--no-scope-hoist`](/getting-started/cli/#parameters-specific-to-build) |
+| `sourceMap`          | [see below](#sourcemap)                             | Enable/disable sourcemap and set options. <br> Overwritten by [`--no-source-maps`](/getting-started/cli/#general-parameters)                                                       |
 
 </div>
 

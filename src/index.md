@@ -27,6 +27,12 @@ your project (unless you want to pass specific environment variables).
 
 - Landing page (this)
 - Plugins
+  - Transformer
+  - Bundler
+  - Runtime
+  - Packager
+  - Optimizer
+  - Reporter
 
 <br>
 

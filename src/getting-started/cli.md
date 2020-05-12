@@ -61,7 +61,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                          |
 | `--no-autoinstall`                           | Disables autoinstall                                                                                                        |
 | `--no-cache`                                 | Disables reading from the filesystem cache                                                                                  |
-| `--no-source-maps`                           | Disables sourcemaps, <br> Default value for [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)              |
+| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)              |
 | `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                          |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/getting-started/configuration/#targets-2) |
 | `--target [name]`                            | Only build the specified target(s)                                                                                |

@@ -15,9 +15,16 @@ resolve. If the resolver isn't sure how to handle a request, it can also return
 import { Resolver } from "@parcel/plugin";
 
 export default new Resolver({
-  async resolve({ dependency }) {
+  async resolve({ filePath, dependency }) {
+    if (!shouldHandle(filePath)) {
+      return null;
+    }
     // ...
-    return { filePath } || null;
+    return {
+      filePath: doResolve({ from: filePath, to: dependency.moduleSpecifier }),
+    };
   },
 });
 ```
+
+The [result object](/plugin-system/api/#ResolveResult) can also contain `sideEffects` (which corresponds to `package.json#sideEffects`) `code` (used instead of `fs.readFile(filePath)`) and `isExcluded` (e.g. to exclude `node_modules`).

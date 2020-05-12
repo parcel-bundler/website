@@ -18,3 +18,5 @@ This is simply a [`.parcelrc`](/getting-started/plugin-config/) file wrapped int
   }
 }
 ```
+
+One usecase for this is a system with multiple plugins.
