@@ -46,6 +46,6 @@ Be aware that this module assumes you have the [`lscpu`](http://manpages.courier
 
 ## Using a CI
 
-If you want to integrate Parcel in your Continuous Integration system (e.g. Travis or Circle CI), you might need to install Parcel as a local dependency.
+If you want to integrate Parcel in your Continuous Integration system (e.g. Travis or Circle CI), you might need to install Parcel as a local dependency. The instructions can be [found here](getting_started.html#adding-parcel-to-your-project).
 
-The instructions can be [found here](getting_started.html#adding-parcel-to-your-project).
+When building inside a Docker container you can use the `PARCEL_WORKERS` environment variable to control how many processes will get spawned to do the work. Since Parcel scales based on the machine's CPU count not the container's, it can lead to unwanted side effects. For example, in CircleCI, [exceeding the runner's allocated resources](https://support.circleci.com/hc/en-us/articles/360038192673-NodeJS-Builds-or-Test-Suites-Fail-With-ENOMEM-or-a-Timeout).
