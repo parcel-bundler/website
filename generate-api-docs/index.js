@@ -47,7 +47,22 @@ const TYPES = false
   : path.join(__dirname, "example.flow");
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-const PUBLIC_URL = OUTPUT_DIR;
+const PUBLIC_URL = "/"; //OUTPUT_DIR;
+
+const SECTION_TO_URL = {
+  index: "/plugin-system/api/",
+  bundler: "/plugin-system/bundler/",
+  namer: "/plugin-system/namer/",
+  optimizer: "/plugin-system/optimizer/",
+  packager: "/plugin-system/packager/",
+  reporter: "/plugin-system/reporter/",
+  reporter: "/plugin-system/reporter/",
+  resolver: "/plugin-system/resolver/",
+  runtime: "/plugin-system/runtime/",
+  transformer: "/plugin-system/transformer/",
+  validator: "/plugin-system/validator/",
+  validator: "/plugin-system/validator/",
+};
 
 // ---------------------------
 // CROSS REFERENCING
@@ -57,7 +72,8 @@ let collected /*: Map<string, CollectedType>*/ = new Map();
 let typeToSection = new Map();
 
 function urlToType(name) {
-  return `${nullthrows(typeToSection.get(name))}.html#${name}`;
+  let section = nullthrows(typeToSection.get(name));
+  return `${nullthrows(SECTION_TO_URL[section], section)}#${name}`;
 }
 
 let typeReferenced = new SetMap();
@@ -94,7 +110,7 @@ let ast = parse(fs.readFileSync(TYPES, "utf8"), {
 traverse(ast, {
   ExportNamedDeclaration(path) {
     let { node } = path;
-    node.declaration.leadingsComments = node.leadingComments;
+    node.declaration.leadingComments = node.leadingComments;
     let jsdoc = node.leadingComments && node.leadingComments[0];
     collected.set(node.declaration.id.name, {
       declaration: node.declaration,
@@ -151,10 +167,7 @@ for (let [name, { type, loc, jsdoc }] of parsed) {
 // GENERATE
 // ---------------------------
 
-function write(
-  sectionName /*. string*/,
-  data /*: Map<string, ProcessedType>*/
-) {
+function write(file, data) {
   let output = `<html>
 <head>
 <style>
@@ -241,9 +254,11 @@ ${[...refs].map((v) => `<a href="${urlToType(v)}">${v}</a>`).join(", ")}`
   }
 
   output += `</div></body></html>`;
-  fs.writeFileSync(path.join(OUTPUT_DIR, sectionName + ".html"), output);
+  fs.writeFileSync(file, output);
 }
 
 for (let [section, data] of generated) {
-  write(section, data);
+  let file = path.join(OUTPUT_DIR, section + ".html");
+  write(file, data);
+  console.log("wrote", file);
 }

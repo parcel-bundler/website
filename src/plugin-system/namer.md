@@ -38,3 +38,7 @@ Namers have complete freedom over the filepaths, but they should still follow th
 ## Including a hash
 
 If you want to include a hash in the filename that is based on the final bundle contents, insert `bundle.hashReference`. This is an opaque value that will later on be replaced with the actual hash (since at this stage, there is no bundle content to generate the hash of).
+
+## Relevant API
+
+{% include "../api/namer.html" %}

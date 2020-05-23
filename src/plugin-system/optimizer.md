@@ -18,3 +18,7 @@ export default new Optimizer({
   },
 });
 ```
+
+## Relevant API
+
+{% include "../api/optimizer.html" %}

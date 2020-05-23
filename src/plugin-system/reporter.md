@@ -18,3 +18,7 @@ export default new Reporter({
   }
 });
 ```
+
+## Relevant API
+
+{% include "../api/reporter.html" %}

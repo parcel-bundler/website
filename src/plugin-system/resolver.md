@@ -28,3 +28,7 @@ export default new Resolver({
 ```
 
 The [result object](/plugin-system/api/#ResolveResult) can also contain `sideEffects` (which corresponds to `package.json#sideEffects`) `code` (used instead of `fs.readFile(filePath)`) and `isExcluded` (e.g. to exclude `node_modules`).
+
+## Relevant API
+
+{% include "../api/resolver.html" %}

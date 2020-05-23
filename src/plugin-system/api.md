@@ -6,4 +6,4 @@ eleventyNavigation:
 summary: "The types specified in `@parcel/types`"
 ---
 
-{% include "./api.html" %}
+{% include "../api/index.html" %}

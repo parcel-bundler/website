@@ -1,0 +1,138 @@
+<html>
+<head>
+<style>
+  .api .type {
+   margin: 2rem 0;
+   padding: 0.4rem 1rem;
+   border: 1px solid #eee;
+  }
+  .api .type .title {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .api .type .title a {
+    font-size: 1rem;
+    opacity: 0.5;
+  }
+  .api .type .title a:hover {
+    font-size: 1rem;
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div class="api">
+<div class="type">
+
+<h4 class="title">
+  <span id="ResolveConfigFn">ResolveConfigFn</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L635"><i>../website/generate-api-docs/example.flow:635</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#ResolveConfigFn">ResolveConfigFn</a> = (configNames: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a> | null&gt;;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>
+</div><div class="type">
+
+<h4 class="title">
+  <span id="ResolveConfigWithPathFn">ResolveConfigWithPathFn</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L642"><i>../website/generate-api-docs/example.flow:642</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#ResolveConfigWithPathFn">ResolveConfigWithPathFn</a> = (configNames: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, assetFilePath: string) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a> | null&gt;;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>
+</div><div class="type">
+
+<h4 class="title">
+  <span id="ValidateResult">ValidateResult</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L650"><i>../website/generate-api-docs/example.flow:650</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#ValidateResult">ValidateResult</a> = {|
+  warnings: Array&lt;Diagnostic&gt;,
+  errors: Array&lt;Diagnostic&gt;,
+|};</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>
+</div><div class="type">
+
+<h4 class="title">
+  <span id="DedicatedThreadValidator">DedicatedThreadValidator</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L658"><i>../website/generate-api-docs/example.flow:658</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a> = {|
+  validateAll: ({|
+    assets: <a href="/plugin-system/transformer/#Asset">Asset</a>[],
+    resolveConfigWithPath: <a href="/plugin-system/validator/#ResolveConfigWithPathFn">ResolveConfigWithPathFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+    logger: PluginLogger,
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;?<a href="/plugin-system/validator/#ValidateResult">ValidateResult</a>&gt;&gt;
+|};</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/validator/#Validator">Validator</a>
+</div><div class="type">
+
+<h4 class="title">
+  <span id="MultiThreadValidator">MultiThreadValidator</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L670"><i>../website/generate-api-docs/example.flow:670</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a> = {|
+  validate: ({|
+    asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
+    config: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+    logger: PluginLogger,
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/validator/#ValidateResult">ValidateResult</a> | void&gt;,
+  getConfig?: ({|
+    asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
+    resolveConfig: <a href="/plugin-system/validator/#ResolveConfigFn">ResolveConfigFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+    logger: PluginLogger,
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void&gt;,
+|};</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/validator/#Validator">Validator</a>
+</div><div class="type">
+
+<h4 class="title">
+  <span id="Validator">Validator</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L688"><i>../website/generate-api-docs/example.flow:688</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/validator/#Validator">Validator</a> = <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a> | <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>;</code></pre>
+
+</div></div></body></html>

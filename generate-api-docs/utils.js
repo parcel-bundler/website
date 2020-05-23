@@ -94,7 +94,7 @@ module.exports.parseJsDoc = function parseJsDoc(
   }
 
   let body = declaration.body || declaration.right;
-  if (body) {
+  if (t.isObjectTypeAnnotation(body)) {
     for (let prop of body.properties) {
       let description = getJSDocCommentOfNode(prop);
       if (!description) continue;

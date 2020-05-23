@@ -18,3 +18,7 @@ export default new Packager({
   },
 });
 ```
+
+## Relevant API
+
+{% include "../api/packager.html" %}

@@ -34,3 +34,7 @@ export default new Validator({
 ```
 
 If your plugin implements `validateAll`, Parcel will make sure to always invoke this method on the same thread (so that your cache state is accessible).
+
+## Relevant API
+
+{% include "../api/validator.html" %}
