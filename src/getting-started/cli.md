@@ -85,7 +85,7 @@ TODO, ports for HMR can be specified separately?
 
 | Format             | Description                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------------- |
-| `--open [browser]` | Automatically opens the entry in your browser, defaults to the default browser, TODO PR open |
+| `--open [browser]` | Automatically opens the entry in your browser, defaults to the default browser |
 
 ### Parameters specific to the non-server commands (`watch` and `build`)
 
@@ -99,3 +99,4 @@ TODO, ports for HMR can be specified separately?
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--no-minify`      | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.minify`](/getting-started/configuration/#targets-2) |
 | `--no-scope-hoist` | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/getting-started/configuration/#targets-2)                                     |
+| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report |

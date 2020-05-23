@@ -1,0 +1,134 @@
+/**
+ * Defines the environment in for the output bundle
+ * @section General
+ */
+export interface Environment {
+  +context: EnvironmentContext;
+  +engines: Engines;
+  /** Whether to include all/none packages \
+   *  (<code>true / false</code>), an array of package names to include, or an object \
+   *  (of a package is not specified, it's included).
+   */
+  +includeNodeModules:
+    | boolean
+    | Array<PackageName>
+    | { [PackageName]: boolean, ... };
+  +outputFormat: OutputFormat;
+  /** Whether this is a library build (e.g. less loaders) */
+  +isLibrary: boolean;
+  /** Whether the output should be minified. */
+  +minify: boolean;
+  /** Whether scope hoisting is enabled. */
+  +scopeHoist: boolean;
+
+  /** Whether <code>context</code> specifies a browser context. */
+  isBrowser(): boolean;
+  /** Whether <code>context</code> specifies a node context. */
+  isNode(): boolean;
+  /** Whether <code>context</code> specifies an electron context. */
+  isElectron(): boolean;
+  /** Whether <code>context</code> specifies a worker context. */
+  isWorker(): boolean;
+  /** Whether <code>context</code> specifies an isolated context (can't access other loaded ancestor bundles). */
+  isIsolated(): boolean;
+  matchesEngines(minVersions: VersionMap): boolean;
+}
+
+// /**
+//  * A Graph that contains Bundle-s, Asset-s, Dependency-s, BundleGroup-s
+//  * @method getChildBundles Child bundles are Bundles that might be loaded by an asset in the bundle
+//  * @method getSiblingBundles See BundleGroup
+//  * @method getReferencedBundles Bundles that are referenced (by filename)
+//  * @method getDependencies Get the dependencies of the asset
+//  * @method getIncomingDependencies Get the dependencies that require the asset
+//  * @method resolveExternalDependency Returns undefined if the specified dependency was excluded or wasn't async \
+//  * and otherwise the BundleGroup or Asset that the dependency resolves to. VERIFY
+//  * @method getDependencyResolution Find out which asset the dependency resolved to.
+//  * @method isAssetInAncestorBundles Whether the asset is already included in a compatible (regarding EnvironmentContext) parent bundle.
+//  * @method isAssetReferenced Whether the asset is referenced (the "references" edge)FIXME how? url/filename?
+//  * @method isAssetReferencedByDependant Whether the asset is referenced by URL which could cause an import.
+//  * @method resolveSymbol <code>asset</code> exports <code>symbol</code>, try to find the asset where the \
+//  * corresponding variable lives (resolves re-exports). Stop resolving transitively once \
+//  * <code>boundary</code> was left (<code>bundle.hasAsset(asset) === false</code>), then <code>result.symbol</code> is undefined.
+//  * @method getExportedSymbols Gets the symbols that are (transivitely) exported by the asset
+//  * @section B
+//  */
+// export interface BundleGraph<TBundle: Bundle> {
+//   getBundles(): Array<TBundle>;
+//   getBundleGroupsContainingBundle(bundle: Bundle): Array<BundleGroup>;
+//   getBundlesInBundleGroup(bundleGroup: BundleGroup): Array<TBundle>;
+//   getChildBundles(bundle: Bundle): Array<TBundle>;
+//   getParentBundles(bundle: Bundle): Array<TBundle>;
+//   getSiblingBundles(bundle: Bundle): Array<TBundle>;
+//   getReferencedBundles(bundle: Bundle): Array<TBundle>;
+//   getDependencies(asset: Asset): Array<Dependency>;
+//   getIncomingDependencies(asset: Asset): Array<Dependency>;
+//   resolveExternalDependency(
+//     dependency: Dependency,
+//     bundle: ?Bundle
+//   ): ?(
+//     | {| type: "bundle_group", value: BundleGroup |}
+//     | {| type: "asset", value: Asset |}
+//   );
+//   isDependencyDeferred(dependency: Dependency): boolean;
+//   getDependencyResolution(dependency: Dependency, bundle: ?Bundle): ?Asset;
+//   findBundlesWithAsset(Asset): Array<TBundle>;
+//   findBundlesWithDependency(Dependency): Array<TBundle>;
+//   isAssetReachableFromBundle(asset: Asset, bundle: Bundle): boolean;
+//   findReachableBundleWithAsset(bundle: Bundle, asset: Asset): ?TBundle;
+//   isAssetReferenced(asset: Asset): boolean;
+//   isAssetReferencedByDependant(bundle: Bundle, asset: Asset): boolean;
+//   hasParentBundleOfType(bundle: Bundle, type: string): boolean;
+//   /**
+//    * Resolve the export `symbol` of `asset` to the source,
+//    * stopping at the first asset after leaving `bundle`.
+//    * `symbol === null`: bailout (== caller should do `asset.exports[exportsSymbol]`)
+//    * `symbol === undefined`: symbol not found
+//    */
+//   resolveSymbol(
+//     asset: Asset,
+//     symbol: CodeSymbol,
+//     boundary: ?Bundle
+//   ): SymbolResolution;
+//   getExportedSymbols(asset: Asset): Array<ExportSymbolResolution>;
+//   traverseBundles<TContext>(
+//     visit: GraphVisitor<TBundle, TContext>,
+//     startBundle: ?Bundle
+//   ): ?TContext;
+// }
+
+// /**
+//  * @section B
+//  */
+// export type BundleResult = {|
+//   +contents: Blob,
+//   +ast?: AST,
+//   +map?: ?SourceMap,
+// |};
+
+// /**
+//  * @section B
+//  */
+// export type ResolveResult = {|
+//   +filePath?: FilePath,
+//   +isExcluded?: boolean,
+//   /** Corresponds to BaseAsset's <code>sideEffects</code>. */
+//   +sideEffects?: boolean,
+//   /** A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from". */
+//   +code?: string,
+// |};
+
+// export type Bundler = {|
+//   /** foo */
+//   bundle({|
+//     bundleGraph: MutableBundleGraph,
+//     options: PluginOptions,
+//     logger: PluginLogger,
+//   |}): Async<void>,
+//   /** bar */
+//   optimize({|
+//     bundleGraph: MutableBundleGraph,
+//     options: PluginOptions,
+//     logger: PluginLogger,
+//   |}): Async<void>,
+// |};

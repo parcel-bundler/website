@@ -1,0 +1,118 @@
+<html>
+<head>
+<style>
+  .api .type {
+   margin: 2rem 0;
+   padding: 0.4rem 1rem;
+   border: 1px solid #eee;
+  }
+  .api .type .title {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .api .type .title a {
+    font-size: 1rem;
+    opacity: 0.5;
+  }
+  .api .type .title a:hover {
+    font-size: 1rem;
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div class="api">
+<div class="type">
+
+<h4 class="title">
+  <span id="BundleGraph">BundleGraph</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L56"><i>../website/generate-api-docs/example.flow:56</i></a>
+</h4>
+
+<p>A Graph that contains Bundle-s, Asset-s, Dependency-s, BundleGroup-s
+</p>
+
+<h5>Method Descriptions</h5><ul><li><b><code>getChildBundles</code></b>: Child bundles are Bundles that might be loaded by an asset in the bundle</p>
+<li><b><code>getSiblingBundles</code></b>: See BundleGroup</p>
+<li><b><code>getReferencedBundles</code></b>: Bundles that are referenced (by filename)</p>
+<li><b><code>getDependencies</code></b>: Get the dependencies of the asset</p>
+<li><b><code>getIncomingDependencies</code></b>: Get the dependencies that require the asset</p>
+<li><b><code>resolveExternalDependency</code></b>: Returns undefined if the specified dependency was excluded or wasn't async and otherwise the BundleGroup or Asset that the dependency resolves to. VERIFY</p>
+<li><b><code>getDependencyResolution</code></b>: Find out which asset the dependency resolved to.</p>
+<li><b><code>isAssetInAncestorBundles</code></b>: Whether the asset is already included in a compatible (regarding EnvironmentContext) parent bundle.</p>
+<li><b><code>isAssetReferenced</code></b>: Whether the asset is referenced (the "references" edge)FIXME how? url/filename?</p>
+<li><b><code>isAssetReferencedByDependant</code></b>: Whether the asset is referenced by URL which could cause an import.</p>
+<li><b><code>resolveSymbol</code></b>: <code>asset</code> exports <code>symbol</code>, try to find the asset where the corresponding variable lives (resolves re-exports). Stop resolving transitively once <code>boundary</code> was left (<code>bundle.hasAsset(asset) === false</code>), then <code>result.symbol</code> is undefined.</p>
+<li><b><code>getExportedSymbols</code></b>: Gets the symbols that are (transivitely) exported by the asset</p></ul>
+
+<h5>Type</h5>
+<pre><code>interface <a href="B.html#BundleGraph">BundleGraph</a>&lt;TBundle: Bundle&gt; {
+  getBundles(): Array&lt;TBundle&gt;,
+  getBundleGroupsContainingBundle(bundle: Bundle): Array&lt;BundleGroup&gt;,
+  getBundlesInBundleGroup(bundleGroup: BundleGroup): Array&lt;TBundle&gt;,
+  getChildBundles(bundle: Bundle): Array&lt;TBundle&gt;,
+  getParentBundles(bundle: Bundle): Array&lt;TBundle&gt;,
+  getSiblingBundles(bundle: Bundle): Array&lt;TBundle&gt;,
+  getReferencedBundles(bundle: Bundle): Array&lt;TBundle&gt;,
+  getDependencies(asset: Asset): Array&lt;Dependency&gt;,
+  getIncomingDependencies(asset: Asset): Array&lt;Dependency&gt;,
+  resolveExternalDependency(dependency: Dependency, bundle: ?Bundle): ?({|
+    type: "bundle_group",
+    value: BundleGroup,
+  |} | {|
+    type: "asset",
+    value: Asset,
+  |}),
+  isDependencyDeferred(dependency: Dependency): boolean,
+  getDependencyResolution(dependency: Dependency, bundle: ?Bundle): ?Asset,
+  findBundlesWithAsset(Asset): Array&lt;TBundle&gt;,
+  findBundlesWithDependency(Dependency): Array&lt;TBundle&gt;,
+  isAssetReachableFromBundle(asset: Asset, bundle: Bundle): boolean,
+  findReachableBundleWithAsset(bundle: Bundle, asset: Asset): ?TBundle,
+  isAssetReferenced(asset: Asset): boolean,
+  isAssetReferencedByDependant(bundle: Bundle, asset: Asset): boolean,
+  hasParentBundleOfType(bundle: Bundle, type: string): boolean,
+  resolveSymbol(asset: Asset, symbol: CodeSymbol, boundary: ?Bundle): SymbolResolution,
+  getExportedSymbols(asset: Asset): Array&lt;ExportSymbolResolution&gt;,
+  traverseBundles&lt;TContext&gt;(visit: GraphVisitor&lt;TBundle, TContext&gt;, startBundle: ?Bundle): ?TContext,
+}</code></pre>
+
+</div><div class="type">
+
+<h4 class="title">
+  <span id="BundleResult">BundleResult</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L103"><i>../website/generate-api-docs/example.flow:103</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="B.html#BundleResult">BundleResult</a> = {|
+  +contents: Blob,
+  +ast?: AST,
+  +map?: ?SourceMap,
+|};</code></pre>
+
+</div><div class="type">
+
+<h4 class="title">
+  <span id="ResolveResult">ResolveResult</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/../website/generate-api-docs/example.flow#L112"><i>../website/generate-api-docs/example.flow:112</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="B.html#ResolveResult">ResolveResult</a> = {|
+  +filePath?: FilePath,
+  +isExcluded?: boolean,
+  +sideEffects?: boolean,
+  +code?: string,
+|};</code></pre>
+
+</div></div></body></html>
