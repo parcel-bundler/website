@@ -21,7 +21,8 @@ For a full list, take a look at the [Babel documentation](https://babeljs.io/doc
 
 ## TypeScript's `tsc`
 
-If you are using more advanced TypeScript features that include custom config settings in `tsconfig.js`, you can use the `@parcel/transformer-typescript-tsc` transformer which uses the offical TypeScript compiler.
+If you are using more advanced TypeScript features that include custom config settings in `tsconfig.js`, you can use the `@parcel/transformer-typescript-tsc` transformer which uses the offical TypeScript compiler:
+
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -40,11 +41,13 @@ If you are using more advanced TypeScript features that include custom config se
 
 Because Parcel processes each file individually, it implicitly sets `isolatedModules: true` in the tsc options, this [comes with limitations as well](https://www.typescriptlang.org/tsconfig#isolatedModules), namely constant `const enum`s not being supported either.
 
-Some `tsconfig.json` options (such as `paths`) aren't respected when using the default config.
+- No type checking
+- `const enum` isn't supported
+- Some `tsconfig.json` options (such as `paths`) aren't currently not respected with the default config.
 
 ## Type Checking
 
-Neither the Babel transformer nor the tsc transformer validate the types, they merely strip the type annotations. The only builtin way to validate the types is to use the tsc validator which runs after the bundles are generated. You need to add a `tsconfig.json` file that includes your source files (although the validator still only runs on the assets that Parcel processed).
+Neither the Babel transformer nor the tsc transformer perform type checking, they merely strip the type annotations. The only builtin way to validate the types is to use the tsc validator which runs after the bundles are generated. You need to add a `tsconfig.json` file that includes your source files (although the validator still only runs on the assets that Parcel processed, TODO does it?).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -52,7 +55,7 @@ Neither the Babel transformer nor the tsc transformer validate the types, they m
 ```json/3
 {
   "extends": "@parcel/config-default",
-  "transformers": {
+  "validators": {
     "*.{ts,tsx}": ["@parcel/validator-typescript"]
   }
 }
