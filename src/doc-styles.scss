@@ -3,8 +3,10 @@ $break-md: 768px;
 $break-lg: 1024px;
 $break-xl: 1280px;
 
-$title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-$text-fonts: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+$title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+  Arial, sans-serif;
+$text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
+  serif;
 
 body {
   margin: 0;
@@ -161,7 +163,8 @@ body {
     font-family: $title-fonts;
     white-space: nowrap;
 
-    ul, li {
+    ul,
+    li {
       list-style: none;
     }
 
@@ -241,7 +244,6 @@ body {
       line-height: 1em;
       font-family: $title-fonts;
       margin-top: 1.5rem;
-
 
       & img {
         height: 1em;
@@ -469,5 +471,3 @@ body {
     }
   }
 }
-
-

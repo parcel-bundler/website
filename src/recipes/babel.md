@@ -11,5 +11,4 @@ TODO
 - default config (browserslist)
 - babel.config.js should be avoided
 
-
 (This functionality is provided by `@parcel/transformer-babel` TODO LINK.)

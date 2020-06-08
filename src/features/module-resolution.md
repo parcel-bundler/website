@@ -88,10 +88,10 @@ Alias mappings apply to many asset types and do not specifically support mapping
 
 ```json5/3
 {
-  "name": "some-package",
-  "alias": {
-    "ipcRenderer": "./electron-ipc.js" // specify file extension
-  }
+  name: "some-package",
+  alias: {
+    ipcRenderer: "./electron-ipc.js", // specify file extension
+  },
 }
 ```
 

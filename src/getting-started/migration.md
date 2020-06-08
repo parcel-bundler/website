@@ -11,7 +11,7 @@ For the most part, you shouldn't have to change much when upgrading to Parcel 2:
 
 ### Importing non-code assets from Javascript
 
-If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (more details in [Plugin Configuration](/getting-started/plugin-config/#predefined-\(offical\)-named-pipelines))
+If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (more details in [Plugin Configuration](</getting-started/plugin-config/#predefined-(offical)-named-pipelines>))
 
 {% migration %}
 {% samplefile "index.js" %}
@@ -44,7 +44,7 @@ Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
   "extends": "@parcel/config-default",
   "transformers": {
     "*": ["@parcel/transformer-raw"]
-  },
+  }
 }
 ```
 
@@ -107,7 +107,6 @@ In case Babel doesn't work for you (e.g. because of an advanced `tsconfig.json`)
 This is expected to be slightly slower for large builds/assets, so transpiling using Babel is the default approach.
 {% endwarning %}
 
-
 ## Configuration/CLI
 
 ### `package.json#main`
@@ -131,23 +130,22 @@ parcel build index.js --target node
 
 ```json5/3,5,10
 {
-  "targets": {
-    "default": {
-      "context": "node", // <-- (1)
-      "engines": {
-        "node": "10" // <------ (2)
-      }
-    }
+  targets: {
+    default: {
+      context: "node", // <-- (1)
+      engines: {
+        node: "10", // <------ (2)
+      },
+    },
   },
-  "engines": {
-    "node": "10" // <---------- (3)
-  }
+  engines: {
+    node: "10", // <---------- (3)
+  },
 }
 ```
 
 {% endsamplefile %}
 {% endmigration %}
-
 
 ### `--experimental-scope-hoisting`
 
@@ -171,7 +169,6 @@ parcel build index.js --no-scope-hoist
 
 {% endsamplefile %}
 {% endmigration %}
-
 
 ### `--bundle-node-modules`
 
@@ -204,7 +201,6 @@ parcel build index.js --target node --bundle-node-modules
 {% endsamplefile %}
 {% endmigration %}
 
-
 {% note %}
 
 This option is more versatile that the CLI parameter (you can also selectively include packages), see [Configuration#includeNodeModules](/getting-started/configuration/#includenodemodules) for all details.
@@ -231,7 +227,7 @@ parcel build index.js --out-file lib.js
 
 ```json5/1
 {
-  "default": "lib.js",
+  default: "lib.js",
   // ...
 }
 ```

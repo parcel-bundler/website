@@ -4,7 +4,7 @@
     "watch": "eleventy --watch --incremental",
     "serve": "eleventy --serve --quiet --incremental",
     "debug": "DEBUG=* eleventy",
-    "lint": "prettier --write 'src/**/*.{json,md}'",
+    "lint": "prettier --write 'src/**/*.{json,md,scss}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel src/api"
   },
   "devDependencies": {

@@ -23,7 +23,6 @@ For a full list, take a look at the [Babel documentation](https://babeljs.io/doc
 
 If you are using more advanced TypeScript features that include custom config settings in `tsconfig.js`, you can use the `@parcel/transformer-typescript-tsc` transformer which uses the offical TypeScript compiler:
 
-
 {% sample %}
 {% samplefile ".parcelrc" %}
 

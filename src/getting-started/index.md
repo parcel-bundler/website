@@ -52,7 +52,7 @@ Now you can run `yarn start` to spin up a development server and `yarn build` to
 
 ```tsx
 import React from "react";
-import {render} from "react-dom";
+import { render } from "react-dom";
 
 render(<h1>Hello World</h1>, document.getElementById("root"));
 ```

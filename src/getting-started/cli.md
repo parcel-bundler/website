@@ -10,6 +10,7 @@ summary: The "parcel" command
 ## Commands
 
 The "entries" in all commands can be:
+
 - one or more files
 - one or more globs
 - one or more directorises (see [Specifying Entrypoints](/getting-started/configuration/#specifying-entrypoints))
@@ -55,17 +56,17 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 
 ### General parameters
 
-| Format                                       | Description                                                                                                                 |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                       |
-| `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                          |
-| `--no-autoinstall`                           | Disables autoinstall                                                                                                        |
-| `--no-cache`                                 | Disables reading from the filesystem cache                                                                                  |
-| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)              |
-| `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                          |
+| Format                                       | Description                                                                                                                  |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                        |
+| `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                           |
+| `--no-autoinstall`                           | Disables autoinstall                                                                                                         |
+| `--no-cache`                                 | Disables reading from the filesystem cache                                                                                   |
+| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)                      |
+| `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                           |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/getting-started/configuration/#targets-2) |
-| `--target [name]`                            | Only build the specified target(s)                                                                                |
-| `-V, --version`                              | Outputs the version number                                                                                                  |
+| `--target [name]`                            | Only build the specified target(s)                                                                                           |
+| `-V, --version`                              | Outputs the version number                                                                                                   |
 
 ### Parameters related to the dev server/watch mode (`serve` and `watch`)
 
@@ -83,20 +84,20 @@ TODO, ports for HMR can be specified separately?
 
 ### Parameters specific to `serve`
 
-| Format             | Description                                                                                  |
-| ------------------ | -------------------------------------------------------------------------------------------- |
+| Format             | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
 | `--open [browser]` | Automatically opens the entry in your browser, defaults to the default browser |
 
 ### Parameters specific to the non-server commands (`watch` and `build`)
 
-| Format             | Description                                                                                                                                      |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Format             | Description                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--dist-dir <dir>` | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/getting-started/configuration/#targets-2) |
 
 ### Parameters specific to `build`
 
-| Format             | Description                                                                                                                                   |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--no-minify`      | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.minify`](/getting-started/configuration/#targets-2) |
-| `--no-scope-hoist` | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/getting-started/configuration/#targets-2)                                     |
-| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report |
+| Format                      | Description                                                                                                                                    |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--no-minify`               | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.minify`](/getting-started/configuration/#targets-2) |
+| `--no-scope-hoist`          | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/getting-started/configuration/#targets-2)                                     |
+| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report                                                 |

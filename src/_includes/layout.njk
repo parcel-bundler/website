@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title | default(eleventyNavigation.title)  | default(eleventyNavigation.key) | striptags | safe }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {{ title | default(eleventyNavigation.title) |
+      default(eleventyNavigation.key) | striptags | safe }}
+    </title>
     <link href="/assets/reset.css" rel="stylesheet" />
     <link href="/assets/prism.css" rel="stylesheet" />
     <link href="/doc-styles.css" rel="stylesheet" />
@@ -55,7 +58,7 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
       }
-      .well.sample.row .assets p{
+      .well.sample.row .assets p {
         margin: 0;
       }
       .well.sample::before {
@@ -78,7 +81,15 @@
       }
 
       .well.migration .arrow {
-        clip-path: polygon(0 40%, 33% 40%, 33% 0, 66% 0, 66% 40%, 100% 40%, 50% 100%);
+        clip-path: polygon(
+          0 40%,
+          33% 40%,
+          33% 0,
+          66% 0,
+          66% 40%,
+          100% 40%,
+          50% 100%
+        );
         height: 2rem;
         width: 2.5rem;
         margin: 0 auto;
@@ -96,8 +107,14 @@
   <body>
     <header class="parcel-docs-header">
       <a class="logo" href="/">
-        <img class="parcel" src="/assets/parcel.png" srcset="/assets/parcel@2x.png 2x" height="30" alt="">
-        <img class="type" src="/assets/logo.svg" alt="Parcel">
+        <img
+          class="parcel"
+          src="/assets/parcel.png"
+          srcset="/assets/parcel@2x.png 2x"
+          height="30"
+          alt=""
+        />
+        <img class="type" src="/assets/logo.svg" alt="Parcel" />
       </a>
       <div class="search-container">
         <label for="search-input" class="visually-hidden">Search</label>
@@ -106,10 +123,12 @@
       <div class="social-links">
         <a href="https://github.com/parcel-bundler/parcel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <title>
-                  GitHub
-              </title>
-              <path d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"/>
+            <title>
+              GitHub
+            </title>
+            <path
+              d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"
+            />
           </svg>
         </a>
       </div>
@@ -117,19 +136,18 @@
     <div class="content-scroll">
       <div id="content" class="content-container">
         <nav class="sidebar">
-          {{ collections.all
-             | eleventyNavigation
-             | eleventyNavigationToHtml({
-                listItemHasChildrenClass: 'section',
-                activeListItemClass: 'current',
-                activeKey: eleventyNavigation.key})
-             | safe }}
+          {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({
+          listItemHasChildrenClass: 'section', activeListItemClass: 'current',
+          activeKey: eleventyNavigation.key}) | safe }}
         </nav>
         <main class="main-content">
           <header>
-            <h1>{{ title | default(eleventyNavigation.title)  | default(eleventyNavigation.key) | safe }}</h1>
+            <h1>
+              {{ title | default(eleventyNavigation.title) |
+              default(eleventyNavigation.key) | safe }}
+            </h1>
             {% if summary %}
-              <p class="summary">{{ summary }}</p>
+            <p class="summary">{{ summary }}</p>
             {% endif %}
           </header>
 

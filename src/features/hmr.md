@@ -45,7 +45,6 @@ if (module.hot) {
 }
 ```
 
-
 {% endsamplefile %}
 {% endsample %}
 
