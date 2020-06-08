@@ -11,14 +11,18 @@ $text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
 html {
   --color: black;
   --background-color: transparent;
-  --inline-code-background-color: #f8f8f8;
+  --code-background-color: #f8f8f8;
   --link-color: #00e;
+  --sidebar-color: #333;
+  --code-mark-background-color: #ff0;
 }
 html.dark {
   --color: #fafafa;
   --background-color: #050505;
-  --inline-code-background-color: #333;
+  --code-background-color: #333;
   --link-color: #3c70f6;
+  --sidebar-color: #ccc;
+  --code-mark-background-color: #616104aa;
 }
 
 a {
@@ -298,6 +302,7 @@ body {
   margin: auto;
 
   .sidebar {
+    color: var(--sidebar-color);
     padding: 0 1rem 0 0.5rem;
     border-right: 1px solid #eeeeee;
     font-family: $title-fonts;
@@ -322,18 +327,13 @@ body {
 
       &:hover {
         background-color: #eeeeee;
-        color: #0067ee;
+        color: #4a4a4a;
       }
     }
 
     & > ul {
       & li {
-        color: var(--color);
         margin-bottom: 0.5rem;
-
-        &:not(:first-child):hover {
-          color: #4a4a4a;
-        }
       }
 
       & > li:not(:first-child) {
@@ -441,7 +441,7 @@ body {
       // color: #000;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
         monospace;
-      background-color: var(--inline-code-background-color);
+      background-color: var(--code-background-color);
       // background-color: #f8f8f8;
       white-space: pre;
       // white-space: pre-wrap;
@@ -496,7 +496,7 @@ body {
     }
 
     code mark {
-      background: #ff0;
+      background: var(--code-mark-background-color);
       font-weight: 700;
       font-style: initial;
     }

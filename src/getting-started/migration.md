@@ -131,7 +131,7 @@ parcel build index.js --target node
 {
   targets: {
     default: {
-      context: "node", // <-- (1)
+      context: "node", // <--- (1)
       engines: {
         node: "10", // <------ (2)
       },
