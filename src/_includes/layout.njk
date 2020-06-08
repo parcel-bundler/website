@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if summary %}
+    <meta name="description" content="{{ summary }}" />
+    {% endif %}
     <title>
       {{ title | default(eleventyNavigation.title) |
       default(eleventyNavigation.key) | striptags | safe }}
@@ -20,10 +23,17 @@
           class="parcel"
           src="/assets/parcel.png"
           srcset="/assets/parcel@2x.png 2x"
-          width="38" height="30"
+          width="38"
+          height="30"
           alt=""
         />
-        <img class="type" src="/assets/logo.svg" alt="Parcel" width="300" height="160" />
+        <img
+          class="type"
+          src="/assets/logo.svg"
+          alt="Parcel"
+          width="300"
+          height="160"
+        />
       </a>
       <div class="search-container">
         <label for="search-input" class="visually-hidden">Search</label>
