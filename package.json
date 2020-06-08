@@ -1,26 +1,26 @@
 {
   "scripts": {
     "build": "rm -rf _site; eleventy",
-    "watch": "eleventy --watch",
-    "serve": "eleventy --serve --quiet",
+    "watch": "eleventy --watch --incremental",
+    "serve": "eleventy --serve --quiet --incremental",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'src/**/*.{json,md}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel src/api"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-navigation": "^0.1.5",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
-    "@babel/generator": "^7.9.5",
-    "@babel/parser": "^7.9.4",
-    "@babel/traverse": "^7.9.5",
+    "@babel/generator": "^7.10.2",
+    "@babel/parser": "^7.10.2",
+    "@babel/traverse": "^7.10.1",
     "eleventy-plugin-sass": "^1.0.0",
     "markdown-it": "^11.0.0",
-    "markdown-it-anchor": "^5.2.7",
-    "prettier": "^2.0.4"
+    "markdown-it-anchor": "^5.3.0",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "flow-bin": "^0.125.1",
+    "flow-bin": "^0.126.1",
     "nullthrows": "^1.1.1"
   }
 }
