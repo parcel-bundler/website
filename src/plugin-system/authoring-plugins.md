@@ -123,7 +123,8 @@ of Parcel that your plugin supports:
 If you do not specify this field, Parcel will output a warning:
 
 ```
-Warning: The plugin "parcel-transform-typescript" needs to specify a `package.json#engines.parcel` field with the supported Parcel version range.
+Warning: The plugin "parcel-transform-typescript" needs to specify a
+`package.json#engines.parcel` field with the supported Parcel version range.
 ```
 
 If you do specify the parcel engine field and the user is using an incompatible

@@ -8,7 +8,7 @@ summary: A high-level overview over the plugin system
 
 <figure>
   <div style="overflow-x: auto;">
-    <img style="height: 35rem; max-height: 65vh; max-width: none;" src="/assets/diagram-plugin-system.opt.png"/>
+    <img class="img-plugin-diagram" style="height: 35rem; max-height: 65vh; max-width: none;" src="/assets/diagram-plugin-system.opt.png"/>
   </div>
   <figcaption style="text-align: center;">
 

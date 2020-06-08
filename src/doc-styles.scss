@@ -8,9 +8,20 @@ $title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
 $text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
   serif;
 
+@mixin transition-background-color {
+  transition: background 0.2s ease-in-out;
+}
+@mixin transition-color {
+  transition: color 0.2s ease-in-out;
+}
+@mixin transition-colors {
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
 html {
   --color: black;
   --background-color: transparent;
+  --header-background-color: #21374b;
   --code-background-color: #f8f8f8;
   --link-color: #00e;
   --sidebar-color: #333;
@@ -19,7 +30,8 @@ html {
 }
 html.dark {
   --color: #fafafa;
-  --background-color: #050505;
+  --header-background-color: #111d27;
+  --background-color: #111d27;
   --code-background-color: #333;
   --link-color: #3c70f6;
   --sidebar-color: #ccc;
@@ -33,7 +45,9 @@ a {
 
 body {
   color: var(--color);
-  background-color: var(--background-color);
+  background: var(--background-color);
+  @include transition-colors;
+
   margin: 0;
   font-family: $text-fonts;
   height: 100vh;
@@ -65,14 +79,16 @@ body {
   position: relative;
   --well-color: #3c70f6;
   margin: 1rem;
-  background-color: var(--well-color);
+  background: var(--well-color);
   border-left: 5px solid var(--well-color);
 
   & > div {
     padding: 0.5rem;
-    background-color: #fffc;
+    background: #fffc;
+    @include transition-background-color;
+
     .dark & {
-      background-color: #000b;
+      background: #000b;
     }
   }
 
@@ -160,6 +176,7 @@ body {
 
     & .asset:first-child mark {
       background: #f004;
+      @include transition-colors;
       .dark & {
         color: white;
         background: #f006;
@@ -167,6 +184,7 @@ body {
     }
     & .asset:last-child mark {
       background: #4a06;
+      @include transition-colors;
       .dark & {
         color: white;
       }
@@ -174,8 +192,31 @@ body {
   }
 }
 
+.img-plugin-diagram {
+  height: 35rem;
+  max-height: 65vh;
+  max-width: none;
+  .dark & {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
 #color-scheme-toggle {
-  height: 1.5em;
+  height: 1.7em;
+
+  & circle {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  & .big-circle {
+    transform-origin: center;
+  }
+  .dark & .big-circle {
+    transform: scale(1.1);
+  }
+  .dark & .small-circle {
+    transform: translate(-20px, 10px);
+  }
 }
 
 .visually-hidden {
@@ -208,7 +249,9 @@ body {
   box-sizing: border-box;
   font-family: $title-fonts;
 
-  background-color: #21374b;
+  background-color: var(--header-background-color);
+  @include transition-background-color;
+
   padding: 1rem;
   color: #e7dacb;
   width: 100%;
@@ -282,7 +325,7 @@ body {
   }
 
   #color-scheme-toggle {
-    margin-left: 0.4em;
+    margin-left: 1em;
     cursor: pointer;
   }
 
@@ -305,6 +348,8 @@ body {
 
   .sidebar {
     color: var(--sidebar-color);
+    @include transition-color;
+
     padding: 0 1rem 0 0.5rem;
     border-right: 1px solid var(--border-color);
     font-family: $title-fonts;
@@ -444,7 +489,7 @@ body {
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
         monospace;
       background-color: var(--code-background-color);
-      // background-color: #f8f8f8;
+      @include transition-background-color;
       white-space: pre;
       // white-space: pre-wrap;
       word-wrap: break-word;
@@ -499,6 +544,7 @@ body {
 
     code mark {
       background: var(--code-mark-background-color);
+      @include transition-background-color;
       font-weight: 700;
       font-style: initial;
 
