@@ -8,7 +8,26 @@ $title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
 $text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
   serif;
 
+html {
+  --color: black;
+  --background-color: transparent;
+  --inline-code-background-color: #f8f8f8;
+  --link-color: #00e;
+}
+html.dark {
+  --color: #fafafa;
+  --background-color: #050505;
+  --inline-code-background-color: #333;
+  --link-color: #3c70f6;
+}
+
+a {
+  color: var(--link-color);
+}
+
 body {
+  color: var(--color);
+  background-color: var(--background-color);
   margin: 0;
   font-family: $text-fonts;
   height: 100vh;
@@ -36,6 +55,123 @@ body {
   }
 }
 
+.well {
+  position: relative;
+  --well-color: #3c70f6;
+  margin: 1rem;
+  background-color: var(--well-color);
+  border-left: 5px solid var(--well-color);
+
+  & > div {
+    padding: 0.5rem;
+    background-color: #fffc;
+    .dark & {
+      background-color: #000b;
+    }
+  }
+
+  & > div p:first-child {
+    margin-top: 0;
+  }
+
+  & > div p:last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    content: "ℹ️";
+    position: absolute;
+    padding: 0.5rem;
+    top: 0;
+    right: -2.5rem;
+  }
+
+  &.warning {
+    --well-color: #f6b73c;
+    // --well-background-color: #fff3d4;
+    &::before {
+      content: "⚠️";
+    }
+  }
+
+  &.error {
+    --well-color: #f65b3c;
+    // --well-background-color: #ffdcd4;
+    &::before {
+      content: "🚨";
+    }
+  }
+
+  &.sample {
+    &.row .assets {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    &.row .assets p {
+      margin: 0;
+    }
+    &::before {
+      content: "code sample";
+      right: 0;
+      opacity: 0.5;
+    }
+
+    & .cmd {
+      display: flex;
+      justify-content: center;
+    }
+    @media print {
+      &.row .asset {
+        width: 100%;
+      }
+    }
+  }
+
+  &.migration {
+    --well-color: #f6b73c;
+    // --well-background-color: #fff3d4;
+
+    &::before {
+      content: "🚚";
+    }
+    & .arrow {
+      clip-path: polygon(
+        0 40%,
+        33% 40%,
+        33% 0,
+        66% 0,
+        66% 40%,
+        100% 40%,
+        50% 100%
+      );
+      height: 2rem;
+      width: 2.5rem;
+      margin: 0 auto;
+      background: #f6b73c;
+    }
+
+    & .asset:first-child mark {
+      background: #f004;
+      .dark & {
+        color: white;
+        background: #f006;
+      }
+    }
+    & .asset:last-child mark {
+      background: #4a06;
+      .dark & {
+        color: white;
+      }
+    }
+  }
+}
+
+#color-scheme-toggle {
+  height: 1.5em;
+}
+
 .visually-hidden {
   position: absolute !important;
   height: 1px;
@@ -47,7 +183,6 @@ body {
 }
 
 .header-anchor {
-  color: black !important;
   text-decoration: none;
   display: none;
   position: absolute;
@@ -140,6 +275,11 @@ body {
     }
   }
 
+  #color-scheme-toggle {
+    margin-left: 0.4em;
+    cursor: pointer;
+  }
+
   @media print {
     display: none;
   }
@@ -188,23 +328,19 @@ body {
 
     & > ul {
       & li {
-        color: #595959;
-        // font-weight: 600;
-        // text-transform: uppercase;
+        color: var(--color);
         margin-bottom: 0.5rem;
 
-        &:hover {
+        &:not(:first-child):hover {
           color: #4a4a4a;
         }
       }
 
       & > li:not(:first-child) {
-        // font-size: 1.1rem;
         margin-bottom: 1.5rem;
 
         & > ul > li {
           margin-bottom: 0.25rem;
-          // font-size: 0.9rem;
           margin-left: 1.2rem;
         }
       }
@@ -232,7 +368,7 @@ body {
       .summary {
         margin-top: 0.5rem;
         margin-bottom: 0;
-        color: #676767;
+        filter: opacity(0.7);
       }
     }
 
@@ -244,7 +380,6 @@ body {
     h6 {
       position: relative;
       font-weight: 400;
-      color: #111;
       line-height: 1em;
       font-family: $title-fonts;
       margin-top: 1.5rem;
@@ -302,10 +437,11 @@ body {
     code,
     kbd,
     samp {
-      color: #000;
+      // color: #000;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
         monospace;
-      background-color: #f8f8f8;
+      background-color: var(--inline-code-background-color);
+      // background-color: #f8f8f8;
       white-space: pre;
       // white-space: pre-wrap;
       word-wrap: break-word;

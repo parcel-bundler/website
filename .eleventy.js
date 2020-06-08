@@ -31,13 +31,13 @@ module.exports = function (eleventyConfig) {
   // ---------- Macros ----------
 
   eleventyConfig.addPairedShortcode("note", function (content) {
-    return `<figure class="well">${content}</figure>`;
+    return `<figure class="well"><div>${content}</div></figure>`;
   });
   eleventyConfig.addPairedShortcode("warning", function (content) {
-    return `<figure class="well warning">${content}</figure>`;
+    return `<figure class="well warning"><div>${content}</div></figure>`;
   });
   eleventyConfig.addPairedShortcode("error", function (content) {
-    return `<figure class="well error">${content}</figure>`;
+    return `<figure class="well error"><div>${content}</div></figure>`;
   });
 
   eleventyConfig.addPairedShortcode("sample", function (content, entry, mode) {
