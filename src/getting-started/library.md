@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   title: 📔 Generic JS Library
   order: 2
-summary: How to configure Parcel for a library
+summary: How to get started with building a library
 ---
 
 TODO

@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   title: 📔 Module Resolution
-  order: 4
+  order: 5
 summary: How dependencies are resolved
 ---
 

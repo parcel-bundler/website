@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   title: ⌨️ CLI
-  order: 4
+  order: 2
 summary: The "parcel" command
 ---
 

@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   title: 🔥 Hot Module Replacement
-  order: 3
+  order: 4
 summary: Refreshing your JS app without a full page reload
 ---
 

@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   title: ✂️ Code Splitting
-  order: 2
+  order: 3
 summary: Load code as you need it (if you need it)
 ---
 

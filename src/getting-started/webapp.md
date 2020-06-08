@@ -1,7 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  title: 🌐 Webapp
+  title: 🌐 Generic Webapp
   order: 1
 ---
 
