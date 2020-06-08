@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Optimizer
-  order: 7
+  order: 9
 summary: "A plugin type: Apply modifications to the finished bundle"
 ---
 

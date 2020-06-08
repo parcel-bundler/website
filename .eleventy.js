@@ -46,7 +46,9 @@ module.exports = function (eleventyConfig) {
       .filter(Boolean)
       .map((s) => JSON.parse(s));
     return (
-      `<figure class="well sample ${mode === "column" ? "column" : "row"}">\n\n` +
+      `<figure class="well sample ${
+        mode === "column" ? "column" : "row"
+      }">\n\n` +
       (entry ? `<div class="cmd"><code>parcel ${entry}</code></div>` : "") +
       `<div class="assets">\n` +
       `${data

@@ -1,5 +1,3 @@
 {
-  "eleventyNavigation": {
-    "parent": "Plugin System"
-  }
+  "tags": "🔌 Plugin System"
 }

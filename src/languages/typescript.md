@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: Typescript
   title: <img src="/assets/lang-icons/typescript.svg" alt=""/> Typescript
-  order: 7
+  order: 3
 summary: Explains the different ways TypeScript can be transpiled
 ---
 
@@ -90,4 +90,4 @@ Parcel can extract the typings of your entry point by specifying `package.json#t
 {% endsamplefile %}
 {% endsample %}
 
-(This functionality is provided by `@parcel/transformer-babel` or `@parcel/transformer-typescript-tsc` TODO LINK.)
+(This functionality is provided by `@parcel/transformer-babel` or `@parcel/transformer-typescript-tsc`.)

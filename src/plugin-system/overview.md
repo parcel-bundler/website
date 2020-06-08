@@ -1,15 +1,14 @@
 ---
 layout: layout.njk
-override:eleventyNavigation:
-  key: Plugin System
-  title: 🔌 Plugin System
-  order: 4
-summary: A brief overview over the plugin system
+eleventyNavigation:
+  title: Overview
+  order: 1
+summary: A high-level overview over the plugin system
 ---
 
 <figure>
   <div style="overflow-x: auto;">
-    <img style="height: 35rem; max-height: 65vh; max-width: none;" src="./full_diagram.opt.png"/>
+    <img style="height: 35rem; max-height: 65vh; max-width: none;" src="/assets/diagram-plugin-system.opt.png"/>
   </div>
   <figcaption style="text-align: center;">
 

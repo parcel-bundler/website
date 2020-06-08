@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Configuration
-  order: 10
+  order: 12
 summary: "Not really a plugin type: A reuseable '.parcelrc' package"
 ---
 

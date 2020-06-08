@@ -1,7 +1,6 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Hot Module Replacement
   title: 🔥 Hot Module Replacement
   order: 3
 summary: Refreshing your JS app without a full page reload
@@ -61,4 +60,4 @@ When using Hot Module Reload (HMR) this feature blocks the automatic detection o
 - Vim: add `:set backupcopy=yes` to your settings.
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 
-(This functionality is provided by `@parcel/runtime-browser-hmr` TODO LINK.)
+(This functionality is provided by `@parcel/runtime-browser-hmr`.)

@@ -145,4 +145,4 @@ ReactDom.render(..., <App />);
 {% endsamplefile %}
 {% endsample %}
 
-(The HMR functionality is provided by `@parcel/transformer-react-refresh-babel`, `@parcel/transformer-react-refresh-wrap` and `@parcel/runtime-react-refresh` TODO LINK.)
+(The HMR functionality is provided by `@parcel/transformer-react-refresh-babel`, `@parcel/transformer-react-refresh-wrap` and `@parcel/runtime-react-refresh`.)

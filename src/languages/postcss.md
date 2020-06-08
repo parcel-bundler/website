@@ -2,8 +2,8 @@
 layout: layout.njk
 eleventyNavigation:
   key: (Post)CSS
-  title: <img src="/assets/lang-icons/postcss.svg" alt=""/> (Post)CSS
-  order: 5
+  title: <img src="/assets/lang-icons/postcss.svg" alt=""/> CSS (PostCSS)
+  order: 2
 ---
 
 To motivate some of the following tips, here's an overview over how Parcel processes CSS files (in that order):

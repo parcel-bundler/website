@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Validator
-  order: 9
+  order: 11
 summary: "A plugin type: Analyze assets and emit warnings and errors"
 ---
 

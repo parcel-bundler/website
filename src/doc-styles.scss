@@ -161,6 +161,7 @@ body {
     padding: 0 1rem 0 0.5rem;
     border-right: 1px solid #eeeeee;
     font-family: $title-fonts;
+    font-size: 1.1rem;
     white-space: nowrap;
 
     ul,
@@ -173,8 +174,8 @@ body {
     }
 
     a {
-      color: #0645ad;
-      display: block;
+      color: inherit;
+      display: flex;
       text-decoration: none;
       padding: 0.25rem 0.5rem;
       border-radius: 2px;
@@ -186,10 +187,10 @@ body {
     }
 
     & > ul {
-      & a {
+      & li {
         color: #595959;
-        font-weight: 600;
-        text-transform: uppercase;
+        // font-weight: 600;
+        // text-transform: uppercase;
         margin-bottom: 0.5rem;
 
         &:hover {
@@ -197,20 +198,23 @@ body {
         }
       }
 
-      & > li {
-        font-size: 1.1rem;
+      & > li:not(:first-child) {
+        // font-size: 1.1rem;
         margin-bottom: 1.5rem;
 
         & > ul > li {
           margin-bottom: 0.25rem;
-          font-size: 0.9rem;
-          margin-left: 1rem;
+          // font-size: 0.9rem;
+          margin-left: 1.2rem;
         }
       }
     }
 
     & a img {
       height: 1em;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 0.25em;
     }
   }
 

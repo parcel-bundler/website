@@ -1,7 +1,6 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Parcel API
   title: 📚 Parcel API
   order: 6
 summary: How to use @parcel/core programatically

@@ -1,7 +1,6 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: API Proxy
   title: 🚇 API Proxy
   order: 1
 summary: Configuration the builtin dev server to forward specific paths to another server
@@ -58,4 +57,4 @@ module.exports = function (app) {
 {% endsamplefile %}
 {% endsample %}
 
-(This functionality is provided by `@parcel/reporter-dev-server` TODO LINK.)
+(This functionality is provided by `@parcel/reporter-dev-server`.)

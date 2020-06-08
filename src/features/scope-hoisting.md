@@ -1,11 +1,24 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Scope hoisting
-  title: 🌳 Scope hoisting
+  title: 🌳 Scope Hoisting
   order: 7
 summary: What scope hoisting is and how it enables smaller builds and ESM output
 ---
+
+## Tips for smaller/faster builds
+
+### Wrapped Assets
+
+There are a few cases where an asset needs to be _wrapped_, that is moved inside a function. This negates the advantages of scope-hoisting because moving the exports into the top-level was our original objective.
+
+- If a top-level `return` statement or `eval` are being used or a `module` variable is used freely (`module.exports` is fine), we cannot add it into the top-level scope (because `return` would stop the execution of the whole bundle and `eval` might use variables that have been renamed).
+
+- If an asset is imported conditionally (or generally in a try/catch, a function an if statement) using CommonJS `require`, this isn't possible with the ESM syntax), we cannot add it into the top-level scope because its content should only be execute when it is actually required.
+
+### `sideEffects: false`
+
+When `sideEffects: false` is specified in the `package.json`, Parcel can skip processing some assets entirely (e.g. not transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
 ## Motivation and Advantages of Scope Hoisting
 
@@ -79,20 +92,6 @@ As you can see, the top-level variables from the assets need to be renamed to ha
 Now, removing unused exports has become trivial: the variable `$thing$export$Bar` is not used at all, so we can safely remove it (and a minifier like Terser would do this automatically), this step is sometimes referred to as **tree shaking**.
 
 The only real downside is that builds take quite a bit longer and also use more memory than the wrapper-based approach (because every single statement needs to be modified and the bundle as a whole needs to remain in memory during the packaging).
-
-## Tips for smaller/faster builds
-
-### Wrapped Assets
-
-There are a few cases where an asset needs to be _wrapped_, that is moved inside a function. This negates the advantages of scope-hoisting because moving the exports into the top-level was our original objective.
-
-- If a top-level `return` statement or `eval` are being used or a `module` variable is used freely (`module.exports` is fine), we cannot add it into the top-level scope (because `return` would stop the execution of the whole bundle and `eval` might use variables that have been renamed).
-
-- If an asset is imported conditionally (or generally in a try/catch, a function an if statement) using CommonJS `require`, this isn't possible with the ESM syntax), we cannot add it into the top-level scope because its content should only be execute when it is actually required.
-
-### `sideEffects: false`
-
-When `sideEffects: false` is specified in the `package.json`, Parcel can skip processing some assets entirely (e.g. not transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
 ## How It Really Works
 

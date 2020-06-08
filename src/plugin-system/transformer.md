@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Transformer
-  order: 1
+  order: 3
 summary: "A plugin type: Convert an asset (into another asset)"
 ---
 

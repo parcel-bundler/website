@@ -23,23 +23,6 @@ parallel inside workers, caching all of them as it goes along. Caches are
 stable across machines and are only affected by the files and configs within
 your project (unless you want to pass specific environment variables).
 
-## TODO
-
-- Landing page (this)
-- Plugins
-  - Transformer
-  - Bundler
-  - Runtime
-  - Packager
-  - Optimizer
-  - Reporter
-
-<br>
-
-- Responsive on mobile (the sidebar should somehow collapse)
-- Print: syntax highlighting is lost
-- (Eventually add "Open in REPL" link to the code samples)
-
 # "Design System":
 
 ## Second Heading

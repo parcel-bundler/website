@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Resolver
-  order: 2
+  order: 4
 summary: "A plugin type: Turn dependency requests into absolute paths (or exclude them)"
 ---
 

@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: Data structures
-  order: 12
+  order: 13
 summary: A high-level description of the important data structures
 ---
 

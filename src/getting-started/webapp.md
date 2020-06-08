@@ -1,10 +1,14 @@
 ---
 layout: layout.njk
-override:eleventyNavigation:
-  key: "Getting Started"
-  title: "🚀 Getting Started"
+eleventyNavigation:
+  title: 🌐 Webapp
   order: 1
 ---
+
+TODO
+
+- differential serving
+- browserslist
 
 The Parcel CLI is built into the main `parcel` package. While you can install
 it globally and run it, it is much better to install it locally into your
