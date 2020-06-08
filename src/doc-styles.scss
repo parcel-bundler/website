@@ -33,7 +33,7 @@ html.dark {
   --header-background-color: #111d27;
   --background-color: #111d27;
   --code-background-color: #333;
-  --link-color: #3c70f6;
+  --link-color: #5e8af7;
   --sidebar-color: #ccc;
   --code-mark-background-color: #616104aa;
   --border-color: #aaa;
@@ -491,7 +491,7 @@ body {
       background-color: var(--code-background-color);
       @include transition-background-color;
       white-space: pre;
-      // white-space: pre-wrap;
+      white-space: pre-wrap;
       word-wrap: break-word;
     }
 

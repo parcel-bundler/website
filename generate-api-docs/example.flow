@@ -880,7 +880,7 @@ export interface Bundle {
 }
 
 /**
- * A Bundler that got named by a Namer
+ * A Bundle that got named by a Namer
  * @section bundler
  */
 export interface NamedBundle extends Bundle {

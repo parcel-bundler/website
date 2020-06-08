@@ -14,10 +14,11 @@ const {
   parseJsDoc,
   escapeHtml,
   indent,
+  extractJSDocComment,
 } = require("./utils.js");
 
 /*::
-import type { JSDocType } from "./utils.js";
+import type { JSDocType, JSDocParam } from "./utils.js";
 
 export type CollectedType = {|
   declaration: any,
@@ -25,6 +26,7 @@ export type CollectedType = {|
     filename: string,
     start: {| column: string, line: string |},
   |},
+  defaultSection: ?string
 |};
 declare type ProcessedType =
   | {|
@@ -61,24 +63,56 @@ const PARCEL_TYPES = false
   ? path.join(PARCEL_ROOT, "parcel/packages/core/types/index.js")
   : path.join(__dirname, "example.flow");
 
-const PARCEL_SOURCE_MAP = path.join(PARCEL_ROOT, "source-map/src/SourceMap.js");
+const PARCEL_SOURCE_MAP = [
+  path.join(PARCEL_ROOT, "source-map/src/SourceMap.js"),
+  path.join(PARCEL_ROOT, "source-map/src/types.js"),
+];
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 const PUBLIC_URL = "/"; //OUTPUT_DIR;
 
+const PARCEL_URL = "https://github.com/parcel-bundler/parcel/blob/v2";
+const SOURCE_MAP_URL =
+  "https://github.com/parcel-bundler/source-map/blob/master";
+
 const SECTION_TO_URL = {
-  index: "/plugin-system/api/",
-  bundler: "/plugin-system/bundler/",
-  namer: "/plugin-system/namer/",
-  optimizer: "/plugin-system/optimizer/",
-  packager: "/plugin-system/packager/",
-  reporter: "/plugin-system/reporter/",
-  reporter: "/plugin-system/reporter/",
-  resolver: "/plugin-system/resolver/",
-  runtime: "/plugin-system/runtime/",
-  transformer: "/plugin-system/transformer/",
-  validator: "/plugin-system/validator/",
-  "source-map": "/plugin-system/source-map/",
+  index: {
+    link: "/plugin-system/api/",
+  },
+  bundler: {
+    link: "/plugin-system/bundler/",
+  },
+  namer: {
+    link: "/plugin-system/namer/",
+  },
+  optimizer: {
+    link: "/plugin-system/optimizer/",
+  },
+  packager: {
+    link: "/plugin-system/packager/",
+  },
+  reporter: {
+    link: "/plugin-system/reporter/",
+  },
+  reporter: {
+    link: "/plugin-system/reporter/",
+  },
+  resolver: {
+    link: "/plugin-system/resolver/",
+  },
+  runtime: {
+    link: "/plugin-system/runtime/",
+  },
+  transformer: {
+    link: "/plugin-system/transformer/",
+  },
+  validator: {
+    link: "/plugin-system/validator/",
+  },
+  "source-map": {
+    link: "/plugin-system/source-maps/",
+    repo: SOURCE_MAP_URL,
+  },
 };
 
 // ---------------------------
@@ -90,11 +124,14 @@ let typeToSection = new Map();
 
 function urlToType(name) {
   let section = nullthrows(typeToSection.get(name));
-  return `${nullthrows(SECTION_TO_URL[section], section)}#${name}`;
+  return `${nullthrows(SECTION_TO_URL[section], section).link}#${name}`;
 }
 
 let typeReferenced = new SetMap();
-function replaceReferences(name /*: string*/, contents /*: string*/) {
+function replaceReferencesDescription(
+  name /*: string*/,
+  contents /*: string*/
+) {
   for (let [n] of collected) {
     contents = contents.replace(
       new RegExp(`(^|\\W)(${n})($|\\W)`, "g"),
@@ -112,6 +149,24 @@ function replaceReferences(name /*: string*/, contents /*: string*/) {
     );
   }
   return contents;
+}
+
+function replaceReferences /*::<T: { description: string, params?: ?Array<JSDocParam> }> */(
+  name,
+  v /*: T */
+) /*: T */ {
+  if (v.params)
+    return {
+      ...v,
+      // $FlowFixMe
+      params: v.params.map((p) => replaceReferences(name, p)),
+      description: replaceReferencesDescription(name, v.description),
+    };
+  else
+    return {
+      ...v,
+      description: replaceReferencesDescription(name, v.description),
+    };
 }
 
 // ---------------------------
@@ -164,6 +219,12 @@ function classToInterface(decl) {
               };
             case "ClassPrivateProperty":
               return;
+            case "ClassProperty":
+              if (extractJSDocComment(p)?.includes("@private")) {
+                return;
+              }
+
+              invariant(false, p.type);
             default:
               invariant(false, p.type);
           }
@@ -173,7 +234,7 @@ function classToInterface(decl) {
   };
 }
 
-function collectExportDeclaration(node) {
+function collectExportDeclaration(node, defaultSection) {
   let { declaration } = node;
 
   declaration.leadingComments = node.leadingComments;
@@ -185,10 +246,11 @@ function collectExportDeclaration(node) {
   collected.set(declaration.id.name, {
     declaration: declaration,
     loc: node.loc,
+    defaultSection,
   });
 }
 
-function collect(file) {
+function collect(file, defaultSection) {
   traverse(
     parse(fs.readFileSync(file, "utf8"), {
       sourceType: "module",
@@ -197,17 +259,18 @@ function collect(file) {
     }),
     {
       ExportDefaultDeclaration(path) {
-        collectExportDeclaration(path.node);
+        collectExportDeclaration(path.node, defaultSection);
         path.skip();
       },
       ExportNamedDeclaration(path) {
-        collectExportDeclaration(path.node);
+        collectExportDeclaration(path.node, defaultSection);
         path.skip();
       },
       TypeAlias({ node }) {
         collected.set(node.id.name, {
           declaration: node,
           loc: node.loc,
+          defaultSection,
         });
       },
     }
@@ -215,16 +278,16 @@ function collect(file) {
 }
 
 collect(PARCEL_TYPES);
-// collect(PARCEL_SOURCE_MAP);
+PARCEL_SOURCE_MAP.forEach((p) => collect(p, "source-map"));
 
 // ---------------------------
 // PARSE JSDOC
 // ---------------------------
 
 let jsDocs /*: Map<string, JSDocType>*/ = new Map();
-for (let [name, { declaration, loc }] of collected) {
+for (let [name, { declaration, loc, defaultSection }] of collected) {
   let parsedJsDoc = parseJsDoc(declaration);
-  let section = parsedJsDoc.section || "index";
+  let section = parsedJsDoc.section || defaultSection || "index";
   typeToSection.set(name, section);
   jsDocs.set(name, parsedJsDoc);
 }
@@ -239,12 +302,9 @@ for (let [name, { declaration, loc }] of collected) {
   let section = nullthrows(typeToSection.get(name));
 
   let jsDoc /*: JSDocType*/ = {
-    description: replaceReferences(name, parsedJsDoc.description),
+    description: replaceReferencesDescription(name, parsedJsDoc.description),
     // $FlowFixMe
-    properties: parsedJsDoc.properties.map((prop) => ({
-      description: replaceReferences(name, prop.description),
-      ...prop,
-    })),
+    properties: parsedJsDoc.properties.map((p) => replaceReferences(name, p)),
     section: parsedJsDoc.section,
   };
 
@@ -256,14 +316,22 @@ for (let [name, { declaration, loc }] of collected) {
       definition: [
         {
           value:
-            generate(
-              { ...declaration, body: null },
-              { comments: false }
-            ).code.trim() + " {",
+            escapeHtml(
+              generate(
+                { ...declaration, body: null },
+                { comments: false }
+              ).code.trim()
+            ) + " {",
         },
         ...declaration.body.properties.map((p) => ({
           key: p.key.name,
-          value: indent(generate(p, { comments: false }).code) + ",",
+          value:
+            indent(
+              replaceReferencesDescription(
+                name,
+                escapeHtml(generate(p, { comments: false }).code)
+              )
+            ) + ",",
         })),
         { value: "}" },
       ],
@@ -279,11 +347,23 @@ for (let [name, { declaration, loc }] of collected) {
       loc,
       definition: [
         {
-          value: `type ${declaration.id.name} = {` + (exact ? "|" : ""),
+          value: escapeHtml(
+            `type ${declaration.id.name}${
+              declaration.typeParameters
+                ? generate(declaration.typeParameters).code
+                : ""
+            } = {` + (exact ? "|" : "")
+          ),
         },
         ...declaration.right.properties.map((p) => ({
           key: p.key?.name,
-          value: indent(generate(p, { comments: false }).code) + ",",
+          value:
+            indent(
+              replaceReferencesDescription(
+                name,
+                escapeHtml(generate(p, { comments: false }).code)
+              )
+            ) + ",",
         })),
         { value: (exact ? "|" : "") + "}" },
       ],
@@ -291,7 +371,10 @@ for (let [name, { declaration, loc }] of collected) {
   } else {
     generated.append(section, name, {
       type: "type",
-      definition: generate(declaration, { comments: false }).code.trim(),
+      definition: replaceReferencesDescription(
+        name,
+        escapeHtml(generate(declaration, { comments: false }).code.trim())
+      ),
       jsDoc,
       loc,
     });
@@ -302,36 +385,39 @@ for (let [name, { declaration, loc }] of collected) {
 // GENERATE
 // ---------------------------
 
-function write(file, data) {
+function write(section, file, data) {
   let output = `<html>
 <head>
 <style>
-  .api .type {
+  div.api .type {
    margin: 2rem 0;
    padding: 0.4rem 1rem;
    border: 1px solid var(--border-color);
   }
-  .api .type .title {
+  div.api .type .title {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .api .type .title a {
+  div.api .type .title a {
     font-size: 1rem;
     opacity: 0.5;
   }
-  .api .type .title a:hover {
+  div.api .type .title a:hover {
     font-size: 1rem;
     opacity: 1;
   }
-  .api .inline-method {
-    margin: 0.3em 3em;
+  div.api div.inline-method {
+    padding: 0.3em 0.3em 1.3em 3.5em;
+    background: var(--code-background-color);
+    transition: background 0.2s ease-in-out;
   }
-  .api .inline-method ul {
+  div.api div.inline-method ul {
     margin: 0;
   }
-  .api .interface {
+  div.api pre.interface {
     margin: 0;
+    padding: 0;
   }
 </style>
 </head>
@@ -362,13 +448,14 @@ function write(file, data) {
       });
     let refs = typeReferenced.get(name);
 
-    output += `<div class="type">
+    console.log(section, SECTION_TO_URL[section].repo || PARCEL_URL);
 
+    output += `<div class="type">
 <h4 class="title">
   <span id="${name}">${name}</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/${loc.filename}#L${
-      loc.start.line
-    }"><i>${loc.filename}:${loc.start.line}</i></a>
+  <a href="${SECTION_TO_URL[section].repo || PARCEL_URL}/${loc.filename.slice(
+      loc.filename.indexOf("/") + 1
+    )}#L${loc.start.line}"><i>${loc.filename}:${loc.start.line}</i></a>
 </h4>
 ${description ? `<p>${description}</p>` : ""}
 `;
@@ -434,6 +521,6 @@ ${[...refs].map((v) => `<a href="${urlToType(v)}">${v}</a>`).join(", ")}`
 
 for (let [section, data] of generated) {
   let file = path.join(OUTPUT_DIR, section + ".html");
-  write(file, data);
+  write(section, file, data);
   console.log("wrote", file);
 }

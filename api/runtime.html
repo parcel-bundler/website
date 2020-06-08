@@ -1,67 +1,69 @@
 <html>
 <head>
 <style>
-  .api .type {
+  div.api .type {
    margin: 2rem 0;
    padding: 0.4rem 1rem;
    border: 1px solid var(--border-color);
   }
-  .api .type .title {
+  div.api .type .title {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .api .type .title a {
+  div.api .type .title a {
     font-size: 1rem;
     opacity: 0.5;
   }
-  .api .type .title a:hover {
+  div.api .type .title a:hover {
     font-size: 1rem;
     opacity: 1;
   }
-  .api .inline-method {
-    margin: 0.3em 3em;
+  div.api div.inline-method {
+    padding: 0.3em 0.3em 1.3em 3.5em;
+    background: var(--code-background-color);
+    transition: background 0.2s ease-in-out;
   }
-  .api .inline-method ul {
+  div.api div.inline-method ul {
     margin: 0;
   }
-  .api .interface {
+  div.api pre.interface {
     margin: 0;
+    padding: 0;
   }
 </style>
 </head>
 <body>
 <div class="api">
 <div class="type">
-
 <h4 class="title">
   <span id="RuntimeAsset">RuntimeAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1057"><i>website/generate-api-docs/example.flow:1057</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1057"><i>website/generate-api-docs/example.flow:1057</i></a>
 </h4>
 <p>A "synthetic" asset that will be inserted into the bundle graph.
 </p>
 <pre class="interface"><code>type RuntimeAsset = {|</code></pre>
-<pre class="interface"><code>  +filePath: FilePath,</code></pre>
+<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +code: string,</code></pre>
-<pre class="interface"><code>  +dependency?: Dependency,</code></pre>
+<pre class="interface"><code>  +dependency?: <a href="/plugin-system/transformer/#Dependency">Dependency</a>,</code></pre>
 <pre class="interface"><code>  +isEntry?: boolean,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Runtime">Runtime</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1067"><i>website/generate-api-docs/example.flow:1067</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1067"><i>website/generate-api-docs/example.flow:1067</i></a>
 </h4>
 
 <pre class="interface"><code>type Runtime = {|</code></pre>
 <pre class="interface"><code>  apply({|
-    bundle: NamedBundle,
-    bundleGraph: BundleGraph<NamedBundle>,
-    options: PluginOptions,
+    bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
+    bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}): Async<void | RuntimeAsset | Array<RuntimeAsset>>,</code></pre>
+  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;void | <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a> | Array&lt;<a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>&gt;&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
 

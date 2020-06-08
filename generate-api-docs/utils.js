@@ -54,7 +54,7 @@ module.exports.SetMap = class SetMap /*::<T> */ extends Map /*:: <string, Set<T>
   }
 };
 
-function getJSDocCommentOfNode(node /*: any */) /*: ?string*/ {
+function extractJSDocComment(node /*: any */) /*: ?string*/ {
   return (
     node.leadingComments &&
     node.leadingComments[0] &&
@@ -62,6 +62,7 @@ function getJSDocCommentOfNode(node /*: any */) /*: ?string*/ {
     node.leadingComments[0].value.replace(/(?:\\\n)?^\s*\* ?/gm, "").trim()
   );
 }
+module.exports.extractJSDocComment = extractJSDocComment;
 
 function parseJsDocComment(contents) /*: JSDocType */ {
   let result = {
@@ -118,7 +119,7 @@ function parseJsDocComment(contents) /*: JSDocType */ {
 module.exports.parseJsDoc = function parseJsDoc(
   declaration /*: any*/
 ) /*: JSDocType*/ {
-  let contents = getJSDocCommentOfNode(declaration);
+  let contents = extractJSDocComment(declaration);
 
   let result = contents
     ? parseJsDocComment(contents)
@@ -131,7 +132,7 @@ module.exports.parseJsDoc = function parseJsDoc(
   let body = declaration.body || declaration.right;
   if (t.isObjectTypeAnnotation(body)) {
     for (let prop of body.properties) {
-      let nodeComment = getJSDocCommentOfNode(prop);
+      let nodeComment = extractJSDocComment(prop);
       if (!nodeComment) continue;
 
       t.assertIdentifier(prop.key);
@@ -170,7 +171,6 @@ module.exports.escapeHtml = function escapeHtml(str /*: string */) {
     "<": "&lt;",
     ">": "&gt;",
   };
-  console.log(str);
   return str.replace(/[&<>]/g, function (tag) {
     return tagsToReplace[tag] || tag;
   });

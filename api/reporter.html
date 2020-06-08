@@ -1,42 +1,44 @@
 <html>
 <head>
 <style>
-  .api .type {
+  div.api .type {
    margin: 2rem 0;
    padding: 0.4rem 1rem;
    border: 1px solid var(--border-color);
   }
-  .api .type .title {
+  div.api .type .title {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .api .type .title a {
+  div.api .type .title a {
     font-size: 1rem;
     opacity: 0.5;
   }
-  .api .type .title a:hover {
+  div.api .type .title a:hover {
     font-size: 1rem;
     opacity: 1;
   }
-  .api .inline-method {
-    margin: 0.3em 3em;
+  div.api div.inline-method {
+    padding: 0.3em 0.3em 1.3em 3.5em;
+    background: var(--code-background-color);
+    transition: background 0.2s ease-in-out;
   }
-  .api .inline-method ul {
+  div.api div.inline-method ul {
     margin: 0;
   }
-  .api .interface {
+  div.api pre.interface {
     margin: 0;
+    padding: 0;
   }
 </style>
 </head>
 <body>
 <div class="api">
 <div class="type">
-
 <h4 class="title">
   <span id="ProgressLogEvent">ProgressLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1122"><i>website/generate-api-docs/example.flow:1122</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1122"><i>website/generate-api-docs/example.flow:1122</i></a>
 </h4>
 
 <pre class="interface"><code>type ProgressLogEvent = {|</code></pre>
@@ -46,27 +48,27 @@
 <pre class="interface"><code>  +message: string,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#LogEvent">LogEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="DiagnosticLogEvent">DiagnosticLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1133"><i>website/generate-api-docs/example.flow:1133</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1133"><i>website/generate-api-docs/example.flow:1133</i></a>
 </h4>
 <p>A log event with a rich diagnostic
 </p>
 <pre class="interface"><code>type DiagnosticLogEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "log",</code></pre>
 <pre class="interface"><code>  +level: "error" | "warn" | "info" | "verbose",</code></pre>
-<pre class="interface"><code>  +diagnostics: Array<Diagnostic>,</code></pre>
+<pre class="interface"><code>  +diagnostics: Array&lt;Diagnostic&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#LogEvent">LogEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="TextLogEvent">TextLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1142"><i>website/generate-api-docs/example.flow:1142</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1142"><i>website/generate-api-docs/example.flow:1142</i></a>
 </h4>
 
 <pre class="interface"><code>type TextLogEvent = {|</code></pre>
@@ -75,12 +77,12 @@
 <pre class="interface"><code>  +message: string,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#LogEvent">LogEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="LogEvent">LogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1151"><i>website/generate-api-docs/example.flow:1151</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1151"><i>website/generate-api-docs/example.flow:1151</i></a>
 </h4>
 
 
@@ -88,13 +90,13 @@
 
 
 <h5>Type</h5>
-<pre><code>type LogEvent = ProgressLogEvent | DiagnosticLogEvent | TextLogEvent;</code></pre>
-
+<pre><code>type <a href="/plugin-system/reporter/#LogEvent">LogEvent</a> = <a href="/plugin-system/reporter/#ProgressLogEvent">ProgressLogEvent</a> | <a href="/plugin-system/reporter/#DiagnosticLogEvent">DiagnosticLogEvent</a> | <a href="/plugin-system/reporter/#TextLogEvent">TextLogEvent</a>;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BuildStartEvent">BuildStartEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1157"><i>website/generate-api-docs/example.flow:1157</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1157"><i>website/generate-api-docs/example.flow:1157</i></a>
 </h4>
 <p>The build just started.
 </p>
@@ -102,12 +104,12 @@
 <pre class="interface"><code>  +type: "buildStart",</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="WatchStartEvent">WatchStartEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1165"><i>website/generate-api-docs/example.flow:1165</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1165"><i>website/generate-api-docs/example.flow:1165</i></a>
 </h4>
 <p>The build just started in watch mode.
 </p>
@@ -115,12 +117,12 @@
 <pre class="interface"><code>  +type: "watchStart",</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="WatchEndEvent">WatchEndEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1173"><i>website/generate-api-docs/example.flow:1173</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1173"><i>website/generate-api-docs/example.flow:1173</i></a>
 </h4>
 <p>The build just ended in watch mode.
 </p>
@@ -128,42 +130,42 @@
 <pre class="interface"><code>  +type: "watchEnd",</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="ResolvingProgressEvent">ResolvingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1181"><i>website/generate-api-docs/example.flow:1181</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1181"><i>website/generate-api-docs/example.flow:1181</i></a>
 </h4>
 <p>A new <a href="/plugin-system/transformer/#Dependency">Dependency</a> is being resolved.
 </p>
 <pre class="interface"><code>type ResolvingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildProgress",</code></pre>
 <pre class="interface"><code>  +phase: "resolving",</code></pre>
-<pre class="interface"><code>  +dependency: Dependency,</code></pre>
+<pre class="interface"><code>  +dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="TransformingProgressEvent">TransformingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1191"><i>website/generate-api-docs/example.flow:1191</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1191"><i>website/generate-api-docs/example.flow:1191</i></a>
 </h4>
 <p>A new <a href="/plugin-system/transformer/#Asset">Asset</a> is being transformed.
 </p>
 <pre class="interface"><code>type TransformingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildProgress",</code></pre>
 <pre class="interface"><code>  +phase: "transforming",</code></pre>
-<pre class="interface"><code>  +filePath: FilePath,</code></pre>
+<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BundlingProgressEvent">BundlingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1201"><i>website/generate-api-docs/example.flow:1201</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1201"><i>website/generate-api-docs/example.flow:1201</i></a>
 </h4>
 <p>The <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> is generated.
 </p>
@@ -172,42 +174,42 @@
 <pre class="interface"><code>  +phase: "bundling",</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="PackagingProgressEvent">PackagingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1210"><i>website/generate-api-docs/example.flow:1210</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1210"><i>website/generate-api-docs/example.flow:1210</i></a>
 </h4>
 <p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being packaged.
 </p>
 <pre class="interface"><code>type PackagingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildProgress",</code></pre>
 <pre class="interface"><code>  +phase: "packaging",</code></pre>
-<pre class="interface"><code>  +bundle: NamedBundle,</code></pre>
+<pre class="interface"><code>  +bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="OptimizingProgressEvent">OptimizingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1220"><i>website/generate-api-docs/example.flow:1220</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1220"><i>website/generate-api-docs/example.flow:1220</i></a>
 </h4>
 <p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being optimized.
 </p>
 <pre class="interface"><code>type OptimizingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildProgress",</code></pre>
 <pre class="interface"><code>  +phase: "optimizing",</code></pre>
-<pre class="interface"><code>  +bundle: NamedBundle,</code></pre>
+<pre class="interface"><code>  +bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BuildProgressEvent">BuildProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1229"><i>website/generate-api-docs/example.flow:1229</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1229"><i>website/generate-api-docs/example.flow:1229</i></a>
 </h4>
 
 
@@ -215,43 +217,43 @@
 
 
 <h5>Type</h5>
-<pre><code>type BuildProgressEvent = ResolvingProgressEvent | TransformingProgressEvent | BundlingProgressEvent | PackagingProgressEvent | OptimizingProgressEvent;</code></pre>
-
+<pre><code>type <a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a> = <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a> | <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a> | <a href="/plugin-system/reporter/#BundlingProgressEvent">BundlingProgressEvent</a> | <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a> | <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BuildSuccessEvent">BuildSuccessEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1240"><i>website/generate-api-docs/example.flow:1240</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1240"><i>website/generate-api-docs/example.flow:1240</i></a>
 </h4>
 <p>The build was successful.
 </p>
 <pre class="interface"><code>type BuildSuccessEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildSuccess",</code></pre>
-<pre class="interface"><code>  +bundleGraph: BundleGraph<NamedBundle>,</code></pre>
+<pre class="interface"><code>  +bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,</code></pre>
 <pre class="interface"><code>  +buildTime: number,</code></pre>
-<pre class="interface"><code>  +changedAssets: Map<string, Asset>,</code></pre>
+<pre class="interface"><code>  +changedAssets: Map&lt;string, <a href="/plugin-system/transformer/#Asset">Asset</a>&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildEvent">BuildEvent</a>, <a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BuildFailureEvent">BuildFailureEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1251"><i>website/generate-api-docs/example.flow:1251</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1251"><i>website/generate-api-docs/example.flow:1251</i></a>
 </h4>
 <p>The build failed.
 </p>
 <pre class="interface"><code>type BuildFailureEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "buildFailure",</code></pre>
-<pre class="interface"><code>  +diagnostics: Array<Diagnostic>,</code></pre>
+<pre class="interface"><code>  +diagnostics: Array&lt;Diagnostic&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#BuildEvent">BuildEvent</a>, <a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BuildEvent">BuildEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1259"><i>website/generate-api-docs/example.flow:1259</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1259"><i>website/generate-api-docs/example.flow:1259</i></a>
 </h4>
 
 
@@ -259,27 +261,26 @@
 
 
 <h5>Type</h5>
-<pre><code>type BuildEvent = BuildFailureEvent | BuildSuccessEvent;</code></pre>
+<pre><code>type <a href="/plugin-system/reporter/#BuildEvent">BuildEvent</a> = <a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a> | <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>;</code></pre>
 
 </div><div class="type">
-
 <h4 class="title">
   <span id="ValidationEvent">ValidationEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1265"><i>website/generate-api-docs/example.flow:1265</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1265"><i>website/generate-api-docs/example.flow:1265</i></a>
 </h4>
 <p>A new file is being validated.
 </p>
 <pre class="interface"><code>type ValidationEvent = {|</code></pre>
 <pre class="interface"><code>  +type: "validation",</code></pre>
-<pre class="interface"><code>  +filePath: FilePath,</code></pre>
+<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="ReporterEvent">ReporterEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1273"><i>website/generate-api-docs/example.flow:1273</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1273"><i>website/generate-api-docs/example.flow:1273</i></a>
 </h4>
 
 
@@ -287,22 +288,22 @@
 
 
 <h5>Type</h5>
-<pre><code>type ReporterEvent = LogEvent | BuildStartEvent | BuildProgressEvent | BuildSuccessEvent | BuildFailureEvent | WatchStartEvent | WatchEndEvent | ValidationEvent;</code></pre>
-
+<pre><code>type <a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a> = <a href="/plugin-system/reporter/#LogEvent">LogEvent</a> | <a href="/plugin-system/reporter/#BuildStartEvent">BuildStartEvent</a> | <a href="/plugin-system/reporter/#BuildProgressEvent">BuildProgressEvent</a> | <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a> | <a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a> | <a href="/plugin-system/reporter/#WatchStartEvent">WatchStartEvent</a> | <a href="/plugin-system/reporter/#WatchEndEvent">WatchEndEvent</a> | <a href="/plugin-system/reporter/#ValidationEvent">ValidationEvent</a>;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/reporter/#Reporter">Reporter</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Reporter">Reporter</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1287"><i>website/generate-api-docs/example.flow:1287</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1287"><i>website/generate-api-docs/example.flow:1287</i></a>
 </h4>
 <p>A build event listener
 </p>
 <pre class="interface"><code>type Reporter = {|</code></pre>
 <pre class="interface"><code>  report({|
-    event: ReporterEvent,
-    options: PluginOptions,
+    event: <a href="/plugin-system/reporter/#ReporterEvent">ReporterEvent</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}): Async<void>,</code></pre>
+  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
 

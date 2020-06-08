@@ -1,96 +1,97 @@
 <html>
 <head>
 <style>
-  .api .type {
+  div.api .type {
    margin: 2rem 0;
    padding: 0.4rem 1rem;
    border: 1px solid var(--border-color);
   }
-  .api .type .title {
+  div.api .type .title {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .api .type .title a {
+  div.api .type .title a {
     font-size: 1rem;
     opacity: 0.5;
   }
-  .api .type .title a:hover {
+  div.api .type .title a:hover {
     font-size: 1rem;
     opacity: 1;
   }
-  .api .inline-method {
-    margin: 0.3em 3em;
+  div.api div.inline-method {
+    padding: 0.3em 0.3em 1.3em 3.5em;
+    background: var(--code-background-color);
+    transition: background 0.2s ease-in-out;
   }
-  .api .inline-method ul {
+  div.api div.inline-method ul {
     margin: 0;
   }
-  .api .interface {
+  div.api pre.interface {
     margin: 0;
+    padding: 0;
   }
 </style>
 </head>
 <body>
 <div class="api">
 <div class="type">
-
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L357"><i>website/generate-api-docs/example.flow:357</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L357"><i>website/generate-api-docs/example.flow:357</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
 </p>
 <pre class="interface"><code>type DependencyOptions = {|</code></pre>
-<pre class="interface"><code>  +moduleSpecifier: ModuleSpecifier,</code></pre>
+<pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
 <pre class="interface"><code>  +isAsync?: boolean,</code></pre>
 <pre class="interface"><code>  +isEntry?: boolean,</code></pre>
 <pre class="interface"><code>  +isOptional?: boolean,</code></pre>
 <pre class="interface"><code>  +isURL?: boolean,</code></pre>
 <pre class="interface"><code>  +isWeak?: ?boolean,</code></pre>
-<pre class="interface"><code>  +loc?: SourceLocation,</code></pre>
-<pre class="interface"><code>  +env?: EnvironmentOpts,</code></pre>
-<pre class="interface"><code>  +meta?: Meta,</code></pre>
-<pre class="interface"><code>  +target?: Target,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap<CodeSymbol, {|
-    local: CodeSymbol,
-    loc: ?SourceLocation,
-  |}>,</code></pre>
+<pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
+<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
+<pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<pre class="interface"><code>  +target?: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
+<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>, {|
+    local: <a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>,
+    loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
+  |}&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L396"><i>website/generate-api-docs/example.flow:396</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L396"><i>website/generate-api-docs/example.flow:396</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
 <pre class="interface"><code>interface Dependency {</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
-<pre class="interface"><code>  +moduleSpecifier: ModuleSpecifier,</code></pre>
+<pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
 <pre class="interface"><code>  +isAsync: boolean,</code></pre>
 <pre class="interface"><code>  +isEntry: boolean,</code></pre>
 <pre class="interface"><code>  +isOptional: boolean,</code></pre>
 <pre class="interface"><code>  +isURL: boolean,</code></pre>
 <pre class="interface"><code>  +isWeak: ?boolean,</code></pre>
-<pre class="interface"><code>  +loc: ?SourceLocation,</code></pre>
-<pre class="interface"><code>  +env: Environment,</code></pre>
-<pre class="interface"><code>  +meta: Meta,</code></pre>
-<pre class="interface"><code>  +target: ?Target,</code></pre>
+<pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
+<pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
+<pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<pre class="interface"><code>  +target: ?<a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <pre class="interface"><code>  +sourceAssetId: ?string,</code></pre>
 <pre class="interface"><code>  +sourcePath: ?string,</code></pre>
 <pre class="interface"><code>  +pipeline: ?string,</code></pre>
-<pre class="interface"><code>  +symbols: MutableCodeSymbols,</code></pre>
+<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableCodeSymbols">MutableCodeSymbols</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>
+<a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L425"><i>website/generate-api-docs/example.flow:425</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L425"><i>website/generate-api-docs/example.flow:425</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -98,21 +99,21 @@
 <pre class="interface"><code>  version: string,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L446"><i>website/generate-api-docs/example.flow:446</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L446"><i>website/generate-api-docs/example.flow:446</i></a>
 </h4>
 <p>An asset (usually represents one source file).
 <br><br></p>
 <pre class="interface"><code>interface BaseAsset {</code></pre>
-<pre class="interface"><code>  +env: Environment,</code></pre>
+<pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <pre class="interface"><code>  +fs: FileSystem,</code></pre>
-<pre class="interface"><code>  +filePath: FilePath,</code></pre>
+<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
-<pre class="interface"><code>  +meta: Meta,</code></pre>
+<pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +isIsolated: boolean,</code></pre>
 <pre class="interface"><code>  +isInline: boolean,</code></pre>
 <pre class="interface"><code>  +isSplittable: ?boolean,</code></pre>
@@ -120,38 +121,37 @@
 <pre class="interface"><code>  +type: string,</code></pre>
 <pre class="interface"><code>  +sideEffects: boolean,</code></pre>
 <pre class="interface"><code>  +uniqueKey: ?string,</code></pre>
-<pre class="interface"><code>  +astGenerator: ?ASTGenerator,</code></pre>
-<pre class="interface"><code>  +symbols: CodeSymbols,</code></pre>
-<pre class="interface"><code>  getAST(): Promise<?AST>,</code></pre>
-<div class="inline-method">Returns to current AST. See notes in subclasses (Asset, MutableAsset).
-</div><pre class="interface"><code>  getCode(): Promise<string>,</code></pre>
-<div class="inline-method">Returns to current source code. See notes in MutableAsset.
-</div><pre class="interface"><code>  getBuffer(): Promise<Buffer>,</code></pre>
+<pre class="interface"><code>  +astGenerator: ?<a href="/plugin-system/transformer/#ASTGenerator">ASTGenerator</a>,</code></pre>
+<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#CodeSymbols">CodeSymbols</a>,</code></pre>
+<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
+<div class="inline-method">Returns to current <a href="/plugin-system/api/#AST">AST</a>. See notes in subclasses (<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>).
+</div><pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
+<div class="inline-method">Returns to current source code. See notes in <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>.
+</div><pre class="interface"><code>  getBuffer(): Promise&lt;Buffer&gt;,</code></pre>
 <div class="inline-method">Returns the contents as a buffer.
 </div><pre class="interface"><code>  getStream(): Readable,</code></pre>
 <div class="inline-method">Returns the contents as a stream.
-</div><pre class="interface"><code>  getMap(): Promise<?SourceMap>,</code></pre>
+</div><pre class="interface"><code>  getMap(): Promise&lt;?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>&gt;,</code></pre>
 <div class="inline-method">Returns the sourcemap (if existent).
-</div><pre class="interface"><code>  getMapBuffer(): Promise<?Buffer>,</code></pre>
+</div><pre class="interface"><code>  getMapBuffer(): Promise&lt;?Buffer&gt;,</code></pre>
 <div class="inline-method">A buffer representation of the sourcemap (if existent).
-</div><pre class="interface"><code>  getIncludedFiles(): $ReadOnlyArray<File>,</code></pre>
-<pre class="interface"><code>  getDependencies(): $ReadOnlyArray<Dependency>,</code></pre>
-<pre class="interface"><code>  getConfig(filePaths: Array<FilePath>, options: ?{|
+</div><pre class="interface"><code>  getIncludedFiles(): $ReadOnlyArray&lt;<a href="/plugin-system/api/#File">File</a>&gt;,</code></pre>
+<pre class="interface"><code>  getDependencies(): $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;,</code></pre>
+<pre class="interface"><code>  getConfig(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
     parse?: boolean,
-  |}): Promise<ConfigResult | null>,</code></pre>
+  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
 <div class="inline-method">Used to load config files, (looks in every parent folder until a module root) for the specified filenames. <code>packageKey</code> can be used to also check <code>pkg#[packageKey]</code>.
-</div><pre class="interface"><code>  getPackage(): Promise<PackageJSON | null>,</code></pre>
+</div><pre class="interface"><code>  getPackage(): Promise&lt;<a href="/plugin-system/api/#PackageJSON">PackageJSON</a> | null&gt;,</code></pre>
 <div class="inline-method">Returns the package.json this file belongs to.
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L496"><i>website/generate-api-docs/example.flow:496</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L496"><i>website/generate-api-docs/example.flow:496</i></a>
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
@@ -160,127 +160,125 @@
 <pre class="interface"><code>  isInline: boolean,</code></pre>
 <pre class="interface"><code>  isSplittable: ?boolean,</code></pre>
 <pre class="interface"><code>  type: string,</code></pre>
-<pre class="interface"><code>  addDependency(dep: DependencyOptions): string,</code></pre>
-<pre class="interface"><code>  addIncludedFile(file: File): void,</code></pre>
-<pre class="interface"><code>  addURLDependency(url: string, opts: $Shape<DependencyOptions>): string,</code></pre>
-<pre class="interface"><code>  +symbols: MutableCodeSymbols,</code></pre>
+<pre class="interface"><code>  addDependency(dep: <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>): string,</code></pre>
+<pre class="interface"><code>  addIncludedFile(file: <a href="/plugin-system/api/#File">File</a>): void,</code></pre>
+<pre class="interface"><code>  addURLDependency(url: string, opts: $Shape&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;): string,</code></pre>
+<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableCodeSymbols">MutableCodeSymbols</a>,</code></pre>
 <pre class="interface"><code>  isASTDirty(): boolean,</code></pre>
 <pre class="interface"><code>  getAST(): void,</code></pre>
-<div class="inline-method">Returns <code>null</code> if there is no AST.
-</div><pre class="interface"><code>  setAST(AST): void,</code></pre>
+<div class="inline-method">Returns <code>null</code> if there is no <a href="/plugin-system/api/#AST">AST</a>.
+</div><pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
 <pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
 <pre class="interface"><code>  setCode(string): void,</code></pre>
-<div class="inline-method">Throws if the AST is dirty (meaning: this won't implicity stringify the AST).
-</div><pre class="interface"><code>  setEnvironment(opts: EnvironmentOpts): void,</code></pre>
-<pre class="interface"><code>  setMap(?SourceMap): void,</code></pre>
+<div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicity stringify the <a href="/plugin-system/api/#AST">AST</a>).
+</div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>): void,</code></pre>
+<pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
 <pre class="interface"><code>  setStream(Readable): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L523"><i>website/generate-api-docs/example.flow:523</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L523"><i>website/generate-api-docs/example.flow:523</i></a>
 </h4>
 
 <pre class="interface"><code>interface Asset extends BaseAsset {</code></pre>
 <pre class="interface"><code>  getAST(): void,</code></pre>
-<div class="inline-method">Throws if there is no AST.
-</div><pre class="interface"><code>  +stats: Stats,</code></pre>
+<div class="inline-method">Throws if there is no <a href="/plugin-system/api/#AST">AST</a>.
+</div><pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/bundler/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L534"><i>website/generate-api-docs/example.flow:534</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L534"><i>website/generate-api-docs/example.flow:534</i></a>
 </h4>
 <p>FIXME
 </p>
 <pre class="interface"><code>interface Config {</code></pre>
 <pre class="interface"><code>  +isSource: boolean,</code></pre>
-<pre class="interface"><code>  +searchPath: FilePath,</code></pre>
-<pre class="interface"><code>  +result: ConfigResult,</code></pre>
-<pre class="interface"><code>  +env: Environment,</code></pre>
-<pre class="interface"><code>  +resolvedPath: ?FilePath,</code></pre>
-<pre class="interface"><code>  setResolvedPath(filePath: FilePath): void,</code></pre>
-<pre class="interface"><code>  setResult(result: ConfigResult): void,</code></pre>
+<pre class="interface"><code>  +searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<pre class="interface"><code>  +result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
+<pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
+<pre class="interface"><code>  +resolvedPath: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<pre class="interface"><code>  setResolvedPath(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
+<pre class="interface"><code>  setResult(result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>): void,</code></pre>
 <pre class="interface"><code>  setResultHash(resultHash: string): void,</code></pre>
-<pre class="interface"><code>  addIncludedFile(filePath: FilePath): void,</code></pre>
-<pre class="interface"><code>  addDevDependency(name: PackageName, version?: Semver): void,</code></pre>
+<pre class="interface"><code>  addIncludedFile(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
+<pre class="interface"><code>  addDevDependency(name: <a href="/plugin-system/api/#PackageName">PackageName</a>, version?: <a href="/plugin-system/api/#Semver">Semver</a>): void,</code></pre>
 <pre class="interface"><code>  setWatchGlob(glob: string): void,</code></pre>
-<pre class="interface"><code>  getConfigFrom(searchPath: FilePath, filePaths: Array<FilePath>, options: ?{|
+<pre class="interface"><code>  getConfigFrom(searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>, filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
-  |}): Promise<ConfigResult | null>,</code></pre>
-<pre class="interface"><code>  getConfig(filePaths: Array<FilePath>, options: ?{|
+  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
+<pre class="interface"><code>  getConfig(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
-  |}): Promise<ConfigResult | null>,</code></pre>
-<pre class="interface"><code>  getPackage(): Promise<PackageJSON | null>,</code></pre>
+  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
+<pre class="interface"><code>  getPackage(): Promise&lt;<a href="/plugin-system/api/#PackageJSON">PackageJSON</a> | null&gt;,</code></pre>
 <pre class="interface"><code>  shouldRehydrate(): void,</code></pre>
 <pre class="interface"><code>  shouldReload(): void,</code></pre>
 <pre class="interface"><code>  shouldInvalidateOnStartup(): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L578"><i>website/generate-api-docs/example.flow:578</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L578"><i>website/generate-api-docs/example.flow:578</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
-<pre class="interface"><code>  +content: Blob,</code></pre>
-<pre class="interface"><code>  +map?: ?SourceMap,</code></pre>
+<pre class="interface"><code>  +content: <a href="/plugin-system/api/#Blob">Blob</a>,</code></pre>
+<pre class="interface"><code>  +map?: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L589"><i>website/generate-api-docs/example.flow:589</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L589"><i>website/generate-api-docs/example.flow:589</i></a>
 </h4>
 <p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
 </p>
 <pre class="interface"><code>type TransformerResult = {|</code></pre>
-<pre class="interface"><code>  +ast?: ?AST,</code></pre>
-<pre class="interface"><code>  +content?: ?Blob,</code></pre>
-<pre class="interface"><code>  +dependencies?: $ReadOnlyArray<DependencyOptions>,</code></pre>
-<pre class="interface"><code>  +env?: EnvironmentOpts,</code></pre>
-<pre class="interface"><code>  +filePath?: FilePath,</code></pre>
-<pre class="interface"><code>  +includedFiles?: $ReadOnlyArray<File>,</code></pre>
+<pre class="interface"><code>  +ast?: ?<a href="/plugin-system/api/#AST">AST</a>,</code></pre>
+<pre class="interface"><code>  +content?: ?<a href="/plugin-system/api/#Blob">Blob</a>,</code></pre>
+<pre class="interface"><code>  +dependencies?: $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;,</code></pre>
+<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
+<pre class="interface"><code>  +filePath?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<pre class="interface"><code>  +includedFiles?: $ReadOnlyArray&lt;<a href="/plugin-system/api/#File">File</a>&gt;,</code></pre>
 <pre class="interface"><code>  +isInline?: boolean,</code></pre>
 <pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
 <pre class="interface"><code>  +isSource?: boolean,</code></pre>
 <pre class="interface"><code>  +isSplittable?: boolean,</code></pre>
-<pre class="interface"><code>  +map?: ?SourceMap,</code></pre>
-<pre class="interface"><code>  +meta?: Meta,</code></pre>
+<pre class="interface"><code>  +map?: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>,</code></pre>
+<pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +pipeline?: ?string,</code></pre>
 <pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap<CodeSymbol, {|
-    local: CodeSymbol,
-    loc: ?SourceLocation,
-  |}>,</code></pre>
+<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>, {|
+    local: <a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>,
+    loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
+  |}&gt;,</code></pre>
 <pre class="interface"><code>  +symbolsConfident?: boolean,</code></pre>
 <pre class="interface"><code>  +type: string,</code></pre>
 <pre class="interface"><code>  +uniqueKey?: ?string,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L618"><i>website/generate-api-docs/example.flow:618</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L618"><i>website/generate-api-docs/example.flow:618</i></a>
 </h4>
 
 
@@ -288,73 +286,73 @@
 
 
 <h5>Type</h5>
-<pre><code>type ResolveFn = (from: FilePath, to: string) => Promise<FilePath>;</code></pre>
-
+<pre><code>type <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a> = (from: <a href="/plugin-system/api/#FilePath">FilePath</a>, to: string) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;;</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
-
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L682"><i>website/generate-api-docs/example.flow:682</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L682"><i>website/generate-api-docs/example.flow:682</i></a>
 </h4>
 <p>The methods for a transformer plugin.
 </p>
 <pre class="interface"><code>type Transformer = {|</code></pre>
 <pre class="interface"><code>  getConfig?: ({|
-    asset: MutableAsset,
-    resolve: ResolveFn,
-    options: PluginOptions,
+    asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
+    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<ConfigResult | void>,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void&gt;,</code></pre>
 <pre class="interface"><code>  loadConfig?: ({|
-    config: Config,
-    options: PluginOptions,
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<void>,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  preSerializeConfig?: ({|
-    config: Config,
-    options: PluginOptions,
-  |}) => Async<void>,</code></pre>
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  postDeserializeConfig?: ({|
-    config: Config,
-    options: PluginOptions,
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<void>,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  canReuseAST?: ({|
-    ast: AST,
-    options: PluginOptions,
+    ast: <a href="/plugin-system/api/#AST">AST</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => boolean,</code></pre>
-<div class="inline-method">Whether an AST from a previous transformer can be reused (to prevent double-parsing)
+  |}) =&gt; boolean,</code></pre>
+<div class="inline-method">Whether an <a href="/plugin-system/api/#AST">AST</a> from a previous transformer can be reused (to prevent double-parsing)
 </div><pre class="interface"><code>  parse?: ({|
-    asset: MutableAsset,
-    config: ?ConfigResult,
-    resolve: ResolveFn,
-    options: PluginOptions,
+    asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
+    config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
+    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<?AST>,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
 <div class="inline-method">Parse the contents into an ast
 </div><pre class="interface"><code>  transform({|
-    asset: MutableAsset,
-    config: ?ConfigResult,
-    resolve: ResolveFn,
-    options: PluginOptions,
+    asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
+    config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
+    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}): Async<Array<TransformerResult | MutableAsset>>,</code></pre>
+  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;<a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a> | <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>&gt;&gt;,</code></pre>
 <div class="inline-method">Transform the asset and/or add new assets
 </div><pre class="interface"><code>  generate?: ({|
-    asset: Asset,
-    ast: AST,
-    options: PluginOptions,
+    asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
+    ast: <a href="/plugin-system/api/#AST">AST</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<GenerateOutput>,</code></pre>
-<div class="inline-method">Stringify the AST
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/transformer/#GenerateOutput">GenerateOutput</a>&gt;,</code></pre>
+<div class="inline-method">Stringify the <a href="/plugin-system/api/#AST">AST</a>
 </div><pre class="interface"><code>  postProcess?: ({|
-    assets: Array<MutableAsset>,
-    config: ?ConfigResult,
-    resolve: ResolveFn,
-    options: PluginOptions,
+    assets: Array&lt;<a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>&gt;,
+    config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
+    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
-  |}) => Async<Array<TransformerResult>>,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;<a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>&gt;&gt;,</code></pre>
 <div class="inline-method">FIXME what is this even for?
 </div><pre class="interface"><code>|}</code></pre>
 
