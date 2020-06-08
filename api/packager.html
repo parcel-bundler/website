@@ -19,6 +19,15 @@
     font-size: 1rem;
     opacity: 1;
   }
+  .api .inline-method {
+    margin: 0.3em 3em;
+  }
+  .api .inline-method ul {
+    margin: 0;
+  }
+  .api .interface {
+    margin: 0;
+  }
 </style>
 </head>
 <body>
@@ -30,22 +39,18 @@
   <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1079"><i>website/generate-api-docs/example.flow:1079</i></a>
 </h4>
 
-
-
-
-
-<h5>Type</h5>
-<pre><code>type <a href="/plugin-system/packager/#Packager">Packager</a> = {|
-  package({|
-    bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
-    bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+<pre class="interface"><code>type Packager = {|</code></pre>
+<pre class="interface"><code>  package({|
+    bundle: NamedBundle,
+    bundleGraph: BundleGraph<NamedBundle>,
+    options: PluginOptions,
     logger: PluginLogger,
-    getInlineBundleContents: (<a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;{|
-      contents: <a href="/plugin-system/api/#Blob">Blob</a>
-    |}&gt;,
-    getSourceMapReference: (map: ?<a href="/plugin-system/source-map/#SourceMap">SourceMap</a>) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;?string&gt;,
-  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/bundler/#BundleResult">BundleResult</a>&gt;
-|};</code></pre>
+    getInlineBundleContents: (Bundle, BundleGraph<NamedBundle>) => Async<{|
+      contents: Blob
+    |}>,
+    getSourceMapReference: (map: ?SourceMap) => Async<?string>,
+  |}): Async<BundleResult>,</code></pre>
+<pre class="interface"><code>|}</code></pre>
+
 
 </div></div></body></html>

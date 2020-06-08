@@ -352,13 +352,12 @@ export interface MutableCodeSymbols extends CodeSymbols {
 
 /**
  * Usen when creating a Dependency, see that.
- * @property env Is merged with the environment of the importer.
- * @property target FIXME why can this overwritten? cross-target?
  * @section transformer
  */
 export type DependencyOptions = {|
   +moduleSpecifier: ModuleSpecifier,
   +isAsync?: boolean,
+  /** Is merged with the environment of the importer */
   +isEntry?: boolean,
   +isOptional?: boolean,
   +isURL?: boolean,
@@ -366,6 +365,7 @@ export type DependencyOptions = {|
   +loc?: SourceLocation,
   +env?: EnvironmentOpts,
   +meta?: Meta,
+  /** target FIXME why can this overwritten? cross-target? */
   +target?: Target,
   +symbols?: $ReadOnlyMap<
     CodeSymbol,

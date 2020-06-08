@@ -19,6 +19,15 @@
     font-size: 1rem;
     opacity: 1;
   }
+  .api .inline-method {
+    margin: 0.3em 3em;
+  }
+  .api .inline-method ul {
+    margin: 0;
+  }
+  .api .interface {
+    margin: 0;
+  }
 </style>
 </head>
 <body>
@@ -30,20 +39,15 @@
   <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1014"><i>website/generate-api-docs/example.flow:1014</i></a>
 </h4>
 
+<pre class="interface"><code>type ResolveResult = {|</code></pre>
+<pre class="interface"><code>  +filePath?: FilePath,</code></pre>
+<pre class="interface"><code>  +isExcluded?: boolean,</code></pre>
+<pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
+<pre class="interface"><code>  +code?: string,</code></pre>
+<pre class="interface"><code>|}</code></pre>
 
-<h5>Property Descriptions</h5><ul><li><b><code>sideEffects</code></b>: Corresponds to <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>'s <code>sideEffects</code>.</p>
-<li><b><code>code</code></b>: A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from".</p></ul>
-
-
-<h5>Type</h5>
-<pre><code>type <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a> = {|
-  +filePath?: <a href="/plugin-system/api/#FilePath">FilePath</a>,
-  +isExcluded?: boolean,
-  +sideEffects?: boolean,
-  +code?: string,
-|};</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>
 </div><div class="type">
 
 <h4 class="title">
@@ -51,18 +55,14 @@
   <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1110"><i>website/generate-api-docs/example.flow:1110</i></a>
 </h4>
 
-
-
-
-
-<h5>Type</h5>
-<pre><code>type <a href="/plugin-system/resolver/#Resolver">Resolver</a> = {|
-  resolve({|
-    dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+<pre class="interface"><code>type Resolver = {|</code></pre>
+<pre class="interface"><code>  resolve({|
+    dependency: Dependency,
+    options: PluginOptions,
     logger: PluginLogger,
-    filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,
-  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>&gt;
-|};</code></pre>
+    filePath: FilePath,
+  |}): Async<?ResolveResult>,</code></pre>
+<pre class="interface"><code>|}</code></pre>
+
 
 </div></div></body></html>

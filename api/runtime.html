@@ -19,6 +19,15 @@
     font-size: 1rem;
     opacity: 1;
   }
+  .api .inline-method {
+    margin: 0.3em 3em;
+  }
+  .api .inline-method ul {
+    margin: 0;
+  }
+  .api .interface {
+    margin: 0;
+  }
 </style>
 </head>
 <body>
@@ -29,21 +38,16 @@
   <span id="RuntimeAsset">RuntimeAsset</span>
   <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1057"><i>website/generate-api-docs/example.flow:1057</i></a>
 </h4>
-
 <p>A "synthetic" asset that will be inserted into the bundle graph.
 </p>
+<pre class="interface"><code>type RuntimeAsset = {|</code></pre>
+<pre class="interface"><code>  +filePath: FilePath,</code></pre>
+<pre class="interface"><code>  +code: string,</code></pre>
+<pre class="interface"><code>  +dependency?: Dependency,</code></pre>
+<pre class="interface"><code>  +isEntry?: boolean,</code></pre>
+<pre class="interface"><code>|}</code></pre>
 
 
-
-<h5>Type</h5>
-<pre><code>type <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a> = {|
-  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,
-  +code: string,
-  +dependency?: <a href="/plugin-system/transformer/#Dependency">Dependency</a>,
-  +isEntry?: boolean,
-|};</code></pre>
-<h5>Referenced by:</h5>
-<a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
 
 <h4 class="title">
@@ -51,18 +55,14 @@
   <a href="https://github.com/parcel-bundler/parcel/blob/v2/website/generate-api-docs/example.flow#L1067"><i>website/generate-api-docs/example.flow:1067</i></a>
 </h4>
 
-
-
-
-
-<h5>Type</h5>
-<pre><code>type <a href="/plugin-system/runtime/#Runtime">Runtime</a> = {|
-  apply({|
-    bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
-    bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+<pre class="interface"><code>type Runtime = {|</code></pre>
+<pre class="interface"><code>  apply({|
+    bundle: NamedBundle,
+    bundleGraph: BundleGraph<NamedBundle>,
+    options: PluginOptions,
     logger: PluginLogger,
-  |}): <a href="/plugin-system/api/#Async">Async</a>&lt;void | <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a> | Array&lt;<a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>&gt;&gt;
-|};</code></pre>
+  |}): Async<void | RuntimeAsset | Array<RuntimeAsset>>,</code></pre>
+<pre class="interface"><code>|}</code></pre>
+
 
 </div></div></body></html>

@@ -4,28 +4,28 @@ const t = require("@babel/types");
 const nullthrows = require("nullthrows");
 
 /*::
-declare type JSDocParam = {|
+export type JSDocParam = {|
   type: "param",
   name: string,
   description: string,
 |};
-declare type JSDocMethod = {|
+export type JSDocMethod = {|
   type: "method",
   name: string,
   description: string,
   params: Array<JSDocParam>,
   returns: ?string
 |};
-declare type JSDocProperty = {|
+export type JSDocProperty = {|
   type: "property",
   name: string,
   description: string,
 |};
 
 
-declare type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
+export type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
 
-declare type JSDocType = {|
+export type JSDocType = {|
   description: string,
   properties: Array<JSDoc>,
   section: ?string,
@@ -170,8 +170,20 @@ module.exports.escapeHtml = function escapeHtml(str /*: string */) {
     "<": "&lt;",
     ">": "&gt;",
   };
-  console.log(str)
+  console.log(str);
   return str.replace(/[&<>]/g, function (tag) {
     return tagsToReplace[tag] || tag;
   });
+};
+
+module.exports.indent = function indent(
+  str /*: string*/,
+  spaces /*: number*/ = 2
+) /*: string*/ {
+  let indentation = " ".repeat(spaces);
+  return str
+    .trim()
+    .split("\n")
+    .map((l) => indentation + l)
+    .join("\n");
 };
