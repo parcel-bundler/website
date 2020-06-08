@@ -45,4 +45,4 @@ export default new Transform({
 
 ## Relevant API
 
-{% include "../api/transformer.html" %}
+{% include "../../api/transformer.html" %}

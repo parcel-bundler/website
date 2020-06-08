@@ -10,4 +10,4 @@ summary: "The types specified in `@parcel/types`"
 The most important data types are listed on the page of the relevant plugin type.
 {% endnote %}
 
-{% include "../api/index.html" %}
+{% include "../../api/index.html" %}

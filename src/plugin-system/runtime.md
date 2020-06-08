@@ -21,4 +21,4 @@ export default new Runtime({
 
 ## Relevant API
 
-{% include "../api/runtime.html" %}
+{% include "../../api/runtime.html" %}

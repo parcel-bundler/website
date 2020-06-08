@@ -5,7 +5,7 @@
     "serve": "eleventy --serve --quiet",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'src/**/*.{json,md,scss}'",
-    "generate-api-docs": "node generate-api-docs/ ../parcel src/api"
+    "generate-api-docs": "node generate-api-docs/ ../parcel ./api"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",

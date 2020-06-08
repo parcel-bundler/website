@@ -37,4 +37,4 @@ If your plugin implements `validateAll`, Parcel will make sure to always invoke 
 
 ## Relevant API
 
-{% include "../api/validator.html" %}
+{% include "../../api/validator.html" %}

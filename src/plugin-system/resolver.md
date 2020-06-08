@@ -31,4 +31,4 @@ The [result object](/plugin-system/api/#ResolveResult) can also contain `sideEff
 
 ## Relevant API
 
-{% include "../api/resolver.html" %}
+{% include "../../api/resolver.html" %}

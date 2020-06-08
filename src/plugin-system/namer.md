@@ -41,4 +41,4 @@ If you want to include a hash in the filename that is based on the final bundle 
 
 ## Relevant API
 
-{% include "../api/namer.html" %}
+{% include "../../api/namer.html" %}

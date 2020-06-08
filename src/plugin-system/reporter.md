@@ -21,4 +21,4 @@ export default new Reporter({
 
 ## Relevant API
 
-{% include "../api/reporter.html" %}
+{% include "../../api/reporter.html" %}

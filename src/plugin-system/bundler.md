@@ -25,4 +25,4 @@ export default new Bundler({
 
 ## Relevant API
 
-{% include "../api/bundler.html" %}
+{% include "../../api/bundler.html" %}
