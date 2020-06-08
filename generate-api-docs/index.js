@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const nullthrows = require("nullthrows");
+const invariant = require("assert");
 
 const { parse } = require("@babel/parser");
 const generate = require("@babel/generator").default;
@@ -41,10 +42,11 @@ if (!PARCEL_ROOT || !OUTPUT_DIR) {
   process.exit(1);
 }
 
-const ROOT = PARCEL_ROOT;
-const TYPES = false
-  ? path.join(PARCEL_ROOT, "packages/core/types/index.js")
+const PARCEL_TYPES = false
+  ? path.join(PARCEL_ROOT, "parcel/packages/core/types/index.js")
   : path.join(__dirname, "example.flow");
+
+const PARCEL_SOURCE_MAP = path.join(PARCEL_ROOT, "source-map/src/SourceMap.js");
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 const PUBLIC_URL = "/"; //OUTPUT_DIR;
@@ -61,7 +63,7 @@ const SECTION_TO_URL = {
   runtime: "/plugin-system/runtime/",
   transformer: "/plugin-system/transformer/",
   validator: "/plugin-system/validator/",
-  validator: "/plugin-system/validator/",
+  "source-map": "/plugin-system/source-map/",
 };
 
 // ---------------------------
@@ -101,30 +103,104 @@ function replaceReferences(name /*: string*/, contents /*: string*/) {
 // COLLECT
 // ---------------------------
 
-let ast = parse(fs.readFileSync(TYPES, "utf8"), {
-  sourceType: "module",
-  plugins: ["flow"],
-  sourceFilename: path.relative(PARCEL_ROOT, TYPES),
-});
+function classToInterface(decl) {
+  return {
+    type: "InterfaceDeclaration",
+    id: decl.id,
+    extends: decl.superClass
+      ? [{ type: "InterfaceExtends", id: decl.superClass }]
+      : [],
+    implements: [],
+    mixins: [],
+    leadingComments: decl.leadingComments,
+    body: {
+      type: "ObjectTypeAnnotation",
+      properties: decl.body.body
+        .map((p) => {
+          switch (p.type) {
+            case "ClassMethod":
+              return {
+                type: "ObjectTypeProperty",
+                static: p.static,
+                kind: "init",
+                key: p.key,
+                proto: false,
+                method: true,
+                leadingComments: p.leadingComments,
+                value: {
+                  type: "FunctionTypeAnnotation",
+                  rest: null,
+                  typeParams: true,
+                  params: p.params.map((param) => {
+                    if (param.type === "AssignmentPattern") {
+                      param = param.left;
+                    }
+                    return {
+                      type: "FunctionTypeParam",
+                      name: { type: "Identifier", name: param.name },
+                      optional: param.optional,
+                      typeAnnotation: param.typeAnnotation.typeAnnotation,
+                    };
+                  }),
+                  returnType: p.returnType
+                    ? p.returnType.typeAnnotation
+                    : { type: "VoidTypeAnnotation" },
+                },
+              };
+            case "ClassPrivateProperty":
+              return;
+            default:
+              invariant(false, p.type);
+          }
+        })
+        .filter(Boolean),
+    },
+  };
+}
 
-traverse(ast, {
-  ExportNamedDeclaration(path) {
-    let { node } = path;
-    node.declaration.leadingComments = node.leadingComments;
-    let jsdoc = node.leadingComments && node.leadingComments[0];
-    collected.set(node.declaration.id.name, {
-      declaration: node.declaration,
-      loc: node.loc,
-    });
-    path.skip();
-  },
-  TypeAlias({ node }) {
-    collected.set(node.id.name, {
-      declaration: node,
-      loc: node.loc,
-    });
-  },
-});
+function collectExportDeclaration(node) {
+  let { declaration } = node;
+
+  declaration.leadingComments = node.leadingComments;
+  let jsdoc = node.leadingComments && node.leadingComments[0];
+
+  if (declaration.type === "ClassDeclaration") {
+    declaration = classToInterface(declaration);
+  }
+  collected.set(declaration.id.name, {
+    declaration: declaration,
+    loc: node.loc,
+  });
+}
+
+function collect(file) {
+  traverse(
+    parse(fs.readFileSync(file, "utf8"), {
+      sourceType: "module",
+      plugins: ["flow", "classPrivateProperties"],
+      sourceFilename: path.relative(PARCEL_ROOT, file),
+    }),
+    {
+      ExportDefaultDeclaration(path) {
+        collectExportDeclaration(path.node);
+        path.skip();
+      },
+      ExportNamedDeclaration(path) {
+        collectExportDeclaration(path.node);
+        path.skip();
+      },
+      TypeAlias({ node }) {
+        collected.set(node.id.name, {
+          declaration: node,
+          loc: node.loc,
+        });
+      },
+    }
+  );
+}
+
+// collect(PARCEL_TYPES);
+collect(PARCEL_SOURCE_MAP);
 
 // ---------------------------
 // PARSE JSDOC
@@ -135,8 +211,23 @@ for (let [name, { declaration, loc }] of collected) {
   let parsedJsDoc = parseJsDoc(declaration);
   let section = parsedJsDoc.section || "index";
   typeToSection.set(name, section);
+  let type;
+  if (declaration.type === "InterfaceDeclaration") {
+    type = [
+      generate(
+        { ...declaration, body: null },
+        { comments: false }
+      ).code.trim() + " {",
+      ...declaration.body.properties.map(
+        (p) => "  " + generate(p, { comments: false }).code.trim() + ","
+      ),
+      "}",
+    ];
+  } else {
+    type = [generate(declaration, { comments: false }).code.trim()];
+  }
   parsed.set(name, {
-    type: generate(declaration, { comments: false }).code.trim(),
+    type,
     jsdoc: parsedJsDoc,
     loc,
   });
@@ -150,7 +241,7 @@ let generated = new MapMap();
 for (let [name, { type, loc, jsdoc }] of parsed) {
   let section = nullthrows(typeToSection.get(name));
   generated.append(section, name, {
-    type: replaceReferences(name, escapeHtml(type)),
+    type: type.map((t) => replaceReferences(name, escapeHtml(t))),
     jsdoc: {
       description: replaceReferences(name, jsdoc.description),
       properties: jsdoc.properties.map((prop) => ({
@@ -203,6 +294,7 @@ function write(file, data) {
       loc,
     },
   ] of data) {
+    console.log(type);
     let props = properties.filter(({ type }) => type === "property");
     let methods = properties.filter(({ type }) => type === "method");
     let params = properties.filter(({ type }) => type === "param");
@@ -243,7 +335,7 @@ ${
     : ""
 }
 <h5>Type</h5>
-<pre><code>${type}</code></pre>
+<pre>${type.map((t) => `<code>${t}</code>`).join("\n")}</pre>
 ${
   refs && refs.size > 0
     ? `<h5>Referenced by:</h5>

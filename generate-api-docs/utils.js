@@ -1,11 +1,33 @@
 // @flow strict-local
 const invariant = require("assert");
 const t = require("@babel/types");
+const nullthrows = require("nullthrows");
 
 /*::
-declare type JSDoc = {|
+declare type JSDocParam = {|
+  type: "param",
+  name: string,
   description: string,
-  properties: Array<{| type: string, name: string, description: string |}>,
+|};
+declare type JSDocMethod = {|
+  type: "method",
+  name: string,
+  description: string,
+  params: Array<JSDocParam>,
+  returns: ?string
+|};
+declare type JSDocProperty = {|
+  type: "property",
+  name: string,
+  description: string,
+|};
+
+
+declare type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
+
+declare type JSDocType = {|
+  description: string,
+  properties: Array<JSDoc>,
   section: ?string,
 |};
 */
@@ -32,7 +54,7 @@ module.exports.SetMap = class SetMap /*::<T> */ extends Map /*:: <string, Set<T>
   }
 };
 
-function getJSDocCommentOfNode(node) /*: ?string*/ {
+function getJSDocCommentOfNode(node /*: any */) /*: ?string*/ {
   return (
     node.leadingComments &&
     node.leadingComments[0] &&
@@ -41,72 +63,101 @@ function getJSDocCommentOfNode(node) /*: ?string*/ {
   );
 }
 
-module.exports.parseJsDoc = function parseJsDoc(
-  declaration /*: any*/
-) /*: JSDoc*/ {
-  let contents = getJSDocCommentOfNode(declaration);
-
+function parseJsDocComment(contents) /*: JSDocType */ {
   let result = {
     description: "",
     properties: [],
     section: "",
   };
+  let lines = contents.split("\n");
+  for (let line of lines) {
+    if (line.startsWith("@")) {
+      if (line.startsWith("@section ")) {
+        result.section = line.slice(9).trim();
+        continue;
+      }
 
-  if (contents) {
-    let lines = contents.split("\n");
-    for (let line of lines) {
-      if (line.startsWith("@")) {
-        if (line.startsWith("@section ")) {
-          result.section = line.slice(9).trim();
-          continue;
-        }
-
-        let type;
-        if (line.startsWith("@property ")) {
-          line = line.slice(10);
-          type = "property";
-        } else if (line.startsWith("@method ")) {
-          line = line.slice(8);
-          type = "method";
-        } else if (line.startsWith("@param ")) {
-          line = line.slice(7);
-          type = "param";
-        } else {
+      let m = nullthrows(line.match(/@(\w+)\s*(\w*)\s*(.*)/));
+      let [, type, name, description] = m;
+      switch (type) {
+        // case "method":
+        //   result.properties.push({
+        //     type: "method",
+        //     name,
+        //     description,
+        //     params: [],
+        //     returns: null,
+        //   });
+        //   break;
+        case "returns":
+        case "property":
+        case "param":
+          result.properties.push(
+            // $FlowFixMe
+            {
+              type,
+              name,
+              description,
+            }
+          );
+          break;
+        default:
           invariant(false, "Unknown JSDoc directive: " + line);
-        }
-
-        let space = line.indexOf(" ");
-        let name = line.substring(0, space);
-        let description = line.substring(space + 1);
-        result.properties.push({
-          type,
-          name,
-          description,
-        });
+      }
+    } else {
+      if (line) {
+        result.description += line + "\n";
       } else {
-        if (line) {
-          result.description += line + "\n";
-        } else {
-          result.description += `<br>`;
-        }
+        result.description += `<br>`;
       }
     }
   }
+  return result;
+}
+
+module.exports.parseJsDoc = function parseJsDoc(
+  declaration /*: any*/
+) /*: JSDocType*/ {
+  let contents = getJSDocCommentOfNode(declaration);
+
+  let result = contents
+    ? parseJsDocComment(contents)
+    : {
+        description: "",
+        properties: [],
+        section: "",
+      };
 
   let body = declaration.body || declaration.right;
   if (t.isObjectTypeAnnotation(body)) {
     for (let prop of body.properties) {
-      let description = getJSDocCommentOfNode(prop);
-      if (!description) continue;
+      let nodeComment = getJSDocCommentOfNode(prop);
+      if (!nodeComment) continue;
 
       t.assertIdentifier(prop.key);
-      let type = t.isFunctionTypeAnnotation(prop.value) ? "method" : "property";
       let name = prop.key.name;
-      result.properties.push({
-        type,
-        name,
-        description,
-      });
+      let { description, properties } = parseJsDocComment(nodeComment);
+      if (t.isFunctionTypeAnnotation(prop.value)) {
+        result.properties.push({
+          type: "method",
+          name,
+          description,
+          params: properties
+            .filter((v) => v.type === "param")
+            .map((v) => {
+              invariant(v.type === "param", v.type);
+              return v;
+            }),
+          // $FlowFixMe
+          returns: properties.find((v) => v.type === "returns"),
+        });
+      } else {
+        result.properties.push({
+          type: "property",
+          name,
+          description,
+        });
+      }
     }
   }
 
@@ -119,6 +170,7 @@ module.exports.escapeHtml = function escapeHtml(str /*: string */) {
     "<": "&lt;",
     ">": "&gt;",
   };
+  console.log(str)
   return str.replace(/[&<>]/g, function (tag) {
     return tagsToReplace[tag] || tag;
   });
