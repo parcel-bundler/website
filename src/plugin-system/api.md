@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: API
   order: 14
-summary: "The types specified in `@parcel/types`"
+summary: "The remaining types specified in `@parcel/types`"
 ---
 
 {% note %}
