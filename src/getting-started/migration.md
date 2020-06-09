@@ -255,27 +255,6 @@ parcel build index.js --log-level error
 {% endsamplefile %}
 {% endmigration %}
 
-### `--detailed-report`
-
-This option has been removed without a replacement (and has never influenced the build output).
-
-{% migration %}
-{% samplefile %}
-
-```bash
-parcel build index.js --detailed-report
-```
-
-{% endsamplefile %}
-{% samplefile %}
-
-```bash
-parcel build index.js
-```
-
-{% endsamplefile %}
-{% endmigration %}
-
 ### `--no-content-hash`
 
 TODO we should add this again
