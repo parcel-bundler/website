@@ -105,6 +105,6 @@ browserslist 默认是：`> 0.25%`（支持全球大于 0.25%占比的浏览器�
 
 ## Flow
 
-[Flow](https://flow.org/) 是一个受欢迎的对 JavaScript 静态类型检查工具（译者注：Flow 已死，现在是 TypeScript 的天下）。Flow 配合 Parcel 使用就像在你的`js`文件第一行放置`// @flow`一样简单。
+[Flow](https://flow.org/) 是一个受欢迎的对 JavaScript 静态类型检查工具。Flow 配合 Parcel 使用就像在你的`js`文件第一行放置`// @flow`一样简单。
 
 Parcel 将自动安装所需的 Babel 配置，从已编译的输出中剥离 Flow 类型，所以你没什么担心的除了[编辑器集成](https://flow.org/en/docs/editors/)或者[flow 中的绝对路径解析模块](module_resolution.html#Flow-中的绝对路径和波浪号路径解析)。
