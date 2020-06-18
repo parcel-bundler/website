@@ -4,7 +4,7 @@ This is the website for Parcel v2. These docs are a **work in progress**. Please
 
 ## Contributing
 
-Start a local server using
+Start a local server using:
 
 ```bash
 yarn
