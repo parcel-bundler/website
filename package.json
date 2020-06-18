@@ -1,4 +1,8 @@
 {
+  "name": "parcel-website",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf _site; eleventy",
     "watch": "eleventy --watch",
@@ -20,7 +24,7 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "flow-bin": "^0.126.1",
+    "flow-bin": "^0.127.0",
     "nullthrows": "^1.1.1"
   }
 }
