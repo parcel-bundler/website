@@ -72,6 +72,8 @@ If a asset is imported both synchrounously and asynchrounously, it doesn't make 
 
 In this situation, Parcel instead turns `import("foo")` into `Promise.resolve(require("foo"))`. So in a larger build, you should think of dynamic/async imports as "I don't need this import synchronously" rather than "This will become a new bundle".
 
+<!--
+
 ## Bundle resolution
 
 TODO ???
@@ -81,3 +83,5 @@ Parcel infers the location of bundles automatically. This is done in the [bundle
 This means you don't need to configure where bundles should be loaded from, but also means you must serve the bundles from the same location.
 
 Parcel currently resolves bundles at the following protocols: `http`, `https`, `file`, `ftp`, `chrome-extension` and `moz-extension`.
+
+-->

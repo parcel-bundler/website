@@ -46,7 +46,7 @@ Because Parcel processes each file individually, it implicitly sets `isolatedMod
 
 ## Type Checking
 
-Neither the Babel transformer nor the tsc transformer perform type checking, they merely strip the type annotations. The only builtin way to validate the types is to use the tsc validator which runs after the bundles are generated. You need to add a `tsconfig.json` file that includes your source files (although the validator still only runs on the assets that Parcel processed, TODO does it?).
+Neither the Babel transformer nor the tsc transformer perform type checking, they merely strip the type annotations. The only builtin way to validate the types is to use the tsc validator which runs after the bundles are generated. You need to add a `tsconfig.json` file that includes your source files (although the validator still only runs on the assets that Parcel processed). TODO
 
 {% sample %}
 {% samplefile ".parcelrc" %}

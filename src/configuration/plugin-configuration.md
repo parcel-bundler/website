@@ -12,8 +12,6 @@ Contrary to what this page's title might suggest, this is not about configuring 
 
 Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are diffent plugins (see [Plugin System](/plugin-system/)).
 
-### `.parcelrc`
-
 Here is an excerpt from the default config that the `parcel` CLI uses. Generally, there are three categories of plugin types (with regards to the configuration):
 
 - only one plugin for the whole build (bundler)

@@ -448,8 +448,6 @@ function write(section, file, data) {
       });
     let refs = typeReferenced.get(name);
 
-    console.log(section, SECTION_TO_URL[section].repo || PARCEL_URL);
-
     output += `<div class="type">
 <h4 class="title">
   <span id="${name}">${name}</span>

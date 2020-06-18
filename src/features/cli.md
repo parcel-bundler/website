@@ -69,8 +69,6 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 
 ### Parameters related to the dev server/watch mode (`serve` and `watch`)
 
-TODO, ports for HMR can be specified separately?
-
 | Format              | Description                                                         |
 | ------------------- | ------------------------------------------------------------------- |
 | `--no-hmr`          | Disables [hot module replacement](/features/hmr)                    |

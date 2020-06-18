@@ -257,11 +257,28 @@ This option is more versatile that the CLI parameter (you can also selectively i
 
 ### `--out-dir`
 
-To align `--out-dir` with the options in `package.json#targets`, that option was renamed to `--dist-dir`.
+To align `--out-dir` with the options in [`package.json#targets`](/configuration/package-json/#targets), that option was renamed to `--dist-dir`.
+
+{% migration %}
+{% samplefile %}
+
+```bash
+parcel build index.html --out-dir www
+```
+
+{% endsamplefile %}
+{% samplefile %}
+
+```bash
+parcel build index.html --dist-dir www
+```
+
+{% endsamplefile %}
+{% endmigration %}
 
 ### `--out-file`
 
-This flag, was removed and should the path should instead be be specified in `package.json` instead (see [Configuration](/getting-started/configuration) TODO LINK).
+This flag, was removed and the path should instead be be specified in `package.json` (see [Configuration](/configuration/package-json/#custom-targets)).
 
 {% migration %}
 {% samplefile %}
@@ -304,32 +321,7 @@ parcel build index.js --log-level error
 {% endsamplefile %}
 {% endmigration %}
 
-### `--no-content-hash`
-
-TODO we should add this again
-
-This option has been removed without a replacement, but a custom namer plugin can have complete control over the bundle names.
-
-{% migration %}
-{% samplefile %}
-
-```bash
-parcel build index.js --no-content-hash
-```
-
-{% endsamplefile %}
-{% samplefile %}
-
-```bash
-parcel build index.js
-```
-
-{% endsamplefile %}
-{% endmigration %}
-
 ### `--global`
-
-TODO we should add this again
 
 This option has been removed without a replacement (for now).
 
@@ -342,10 +334,5 @@ parcel build index.js --global mylib
 
 {% endsamplefile %}
 {% samplefile %}
-
-```bash
-parcel build index.js
-```
-
 {% endsamplefile %}
 {% endmigration %}

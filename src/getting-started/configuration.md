@@ -6,9 +6,7 @@ eleventyNavigation:
 summary: How far you can get without any configuration and how to configure Parcel
 ---
 
-TODO: `parcel build index.js` vs `parcel build .` in a monorepo
-
-(The meaning of `~` in this section are described in [Module Resolution](/features/module-resolution/#tilde-paths).)
+(The meaning of `~` in this section is described in [Module Resolution](/features/module-resolution/#tilde-paths).)
 
 ### Targets
 
@@ -24,7 +22,7 @@ These are the files that contain the source code to your app before being
 compiled by Parcel and are picked up by:
 
 1. [`$ parcel <entries>`](cli/)
-2. `$ parcel <folder(s)>` will use [`~/package.json#source`](#source)
+2. `$ parcel <folder(s)>` uses [`<folder>/package.json#source`](#source) (respectively)
 3. `./src/index.*`
 4. `./index.*`
 

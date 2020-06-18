@@ -93,6 +93,8 @@ Now, removing unused exports has become trivial: the variable `$thing$export$Bar
 
 The only real downside is that builds take quite a bit longer and also use more memory than the wrapper-based approach (because every single statement needs to be modified and the bundle as a whole needs to remain in memory during the packaging).
 
+<!--
+
 ## How It Really Works
 
 {% note %}
@@ -101,9 +103,6 @@ This is a rather in-depth description of the Parcel's scope hoisting implementat
 
 {% endnote %}
 
-TODO
-
-<!--
 ```js
 var $id$exports$ = function () {
   var exports = this;

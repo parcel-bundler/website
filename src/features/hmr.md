@@ -47,8 +47,6 @@ if (module.hot) {
 {% endsamplefile %}
 {% endsample %}
 
-TODO api was slightly changed for React Fast Refresh
-
 ## Safe Write
 
 Some text editors and IDE's have a feature called `safe write` that basically prevents data loss, by taking a copy of the file and renaming it when saved.

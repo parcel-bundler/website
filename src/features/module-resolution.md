@@ -23,7 +23,7 @@ The Parcel resolver implements a modified version of [the node_modules resolutio
 
 If a package includes a [package.browser field](https://docs.npmjs.com/files/package.json#browser) (and it is a string), Parcel will use this instead of the package.main entry.
 
-If it is an object, it behaves just like [`aliases`](#aliases), but has a higher priority when [`target.context === "browser"`](/getting-started/configuration) TODO LINK.
+If it is an object, it behaves just like [`aliases`](#aliases), but has a higher priority when [`target.context === "browser"`](/configuration/package-json/#context).
 
 ### Aliases
 

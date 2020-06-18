@@ -83,8 +83,13 @@ Note: line numbers start at 1 due to mozilla's source-map library
 <div class="inline-method">Get the source file filepath for a certain index of the sources array
 <br><b>Params:</b>
 <ul><li><b><code>index</code></b>: the index of the source in the sources array</li></ul></div><pre class="interface"><code>  setSourceContent(sourceName: string, sourceContent: string): void,</code></pre>
-<pre class="interface"><code>  getSourceContent(sourceName: string): string,</code></pre>
-<pre class="interface"><code>  getNameIndex(name: string): number,</code></pre>
+<div class="inline-method">Set the sourceContent for a certain file
+this is optional and is only recommended for files that we cannot read in at the end when we serialise the sourcemap
+<br><b>Params:</b>
+<ul><li><b><code>sourceName</code></b>: the path of the sourceFile</li><li><b><code>sourceContent</code></b>: the content of the sourceFile</li></ul></div><pre class="interface"><code>  getSourceContent(sourceName: string): string,</code></pre>
+<div class="inline-method">Get the content of a source file if it is inlined as part of the source-map
+<br><b>Params:</b>
+<ul><li><b><code>sourceName</code></b>: filename</li></ul></div><pre class="interface"><code>  getNameIndex(name: string): number,</code></pre>
 <div class="inline-method">Get the index in the names array for a certain name
 <br><b>Params:</b>
 <ul><li><b><code>name</code></b>: the name you want to find the index of</li></ul></div><pre class="interface"><code>  getName(index: number): string,</code></pre>
@@ -171,13 +176,13 @@ This should only be used for tests, debugging and visualising sourcemaps
 </h4>
 
 <pre class="interface"><code>type VLQMap = {</code></pre>
-<pre class="interface"><code>  sources: Array&lt;string&gt;,</code></pre>
-<pre class="interface"><code>  sourcesContent?: Array&lt;string | null&gt;,</code></pre>
-<pre class="interface"><code>  names: Array&lt;string&gt;,</code></pre>
-<pre class="interface"><code>  mappings: string,</code></pre>
-<pre class="interface"><code>  version?: number,</code></pre>
-<pre class="interface"><code>  file?: string,</code></pre>
-<pre class="interface"><code>  sourceRoot?: string,</code></pre>
+<pre class="interface"><code>  +sources: $ReadOnlyArray&lt;string&gt;,</code></pre>
+<pre class="interface"><code>  +sourcesContent?: $ReadOnlyArray&lt;string | null&gt;,</code></pre>
+<pre class="interface"><code>  +names: $ReadOnlyArray&lt;string&gt;,</code></pre>
+<pre class="interface"><code>  +mappings: string,</code></pre>
+<pre class="interface"><code>  +version?: number,</code></pre>
+<pre class="interface"><code>  +file?: string,</code></pre>
+<pre class="interface"><code>  +sourceRoot?: string,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
