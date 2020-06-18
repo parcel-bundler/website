@@ -41,7 +41,7 @@ module.exports = function (eleventyConfig) {
     return `<figure class="well error"><div>${content}</div></figure>`;
   });
 
-  eleventyConfig.addPairedShortcode("sample", function (content, entry, mode) {
+  eleventyConfig.addPairedShortcode("sample", function (content, cmd, mode) {
     let data = content
       .split("\n")
       .filter(Boolean)
@@ -50,7 +50,7 @@ module.exports = function (eleventyConfig) {
       `<figure class="well sample ${
         mode === "column" ? "column" : "row"
       }">\n\n` +
-      (entry ? `<div class="cmd"><code>parcel ${entry}</code></div>` : "") +
+      (cmd ? `<div class="cmd"><code>${cmd}</code></div>` : "") +
       `<div class="assets">\n` +
       `${data
         .map(

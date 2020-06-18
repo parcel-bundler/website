@@ -22,7 +22,7 @@ You should also add some "scripts" to your `package.json` to run it easier.
 
 Now you can run `yarn start` to spin up a development server and `yarn build` to bundle your project for production.
 
-{% sample "src/index.html", "column" %}
+{% sample "parcel src/index.html", "column" %}
 {% samplefile "package.json" %}
 
 ```json

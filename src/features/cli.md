@@ -72,7 +72,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | Format              | Description                                                         |
 | ------------------- | ------------------------------------------------------------------- |
 | `--no-hmr`          | Disables [hot module replacement](/features/hmr)                    |
-| `-p, --port <port>` | The port for the HMR and HTTP server                                |
+| `-p, --port <port>` | The port for the HMR and HTTP server (the default port is `process.env.PORT` or 1234)                               |
 | `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces |
 | `--https`           | Serves files over HTTPS                                             |
 | `--cert <path>`     | Path to a certificate to use with HTTPS                             |
