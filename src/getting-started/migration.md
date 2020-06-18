@@ -8,6 +8,8 @@ summary: Some tips for migration from Parcel 1 to Parcel 2
 
 For the most part, you shouldn't have to change much when upgrading to Parcel 2:
 
+## Code Changes
+
 ### Importing non-code assets from Javascript
 
 If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (more details in [Plugin Configuration](</getting-started/plugin-config/#predefined-(offical)-named-pipelines>))
@@ -105,6 +107,53 @@ In case Babel doesn't work for you (e.g. because of an advanced `tsconfig.json`)
 {% warning %}
 This is expected to be slightly slower for large builds/assets, so transpiling using Babel is the default approach.
 {% endwarning %}
+
+### Importing GraphQL
+
+When import GraphQL files (`.gql`), imports are still resolved/inlined (using `graphql-import-macro`), but you now get the processed GraphQL query as a string instead of an Apollo AST.
+
+{% migration %}
+{% samplefile "DataComponent.js" %}
+
+```js
+import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is the parsed AST
+
+const DataComponent = () => {
+  const { data } = useQuery(test, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  // ...
+};
+```
+
+{% endsamplefile %}
+{% samplefile "DataComponent.js" %}
+
+```js/5
+import gql from 'graphql-tag';
+
+import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is a string
+
+// Convert to the Apollo Specific Query AST
+const parsedFetchDataQuery = gql(test);
+
+const DataComponent = () => {
+  const { data } = useQuery(parsedFetchDataQuery, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  // ...
+};
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
+
+{% note %}
+With Parcel 2's new plugin architecture, creating a plugin that parses the string into an AST at build time (as Parcel 1 did) is very easy.
+{% endnote %}
 
 ## Configuration/CLI
 
