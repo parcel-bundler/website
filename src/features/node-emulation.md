@@ -31,7 +31,7 @@ Notably:
 
 ## 🕳️ Polyfilling & Excluding Builtin Node Modules
 
-When (or more likely a dependency) importing packages such as `crypto`, `fs` or `process`, Parcel will either automatically use one of the listed polyfills and otherwise exclude that module. You can use [the `alises` field in your `package.json`](/getting-started/module-resolution/#aliases)
+When (or more likely a dependency) importing packages such as `crypto`, `fs` or `process`, Parcel will either automatically use one of the listed polyfills and otherwise exclude that module. You can use [the `aliases` field in your `package.json`](/features/module-resolution/#aliases)
 
 | native module | npm replacement            | native module  | npm replacement      |
 | ------------- | -------------------------- | -------------- | -------------------- |
