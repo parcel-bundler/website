@@ -343,14 +343,13 @@ body {
   padding-top: 1rem;
   display: flex;
   flex-direction: row;
-  max-width: 80rem;
   margin: auto;
 
   .sidebar {
     color: var(--sidebar-color);
     @include transition-color;
 
-    padding: 0 1rem 0 0.5rem;
+    padding: 0.5rem 1.5rem;
     border-right: 1px solid var(--border-color);
     font-family: $title-fonts;
     font-size: 1.1rem;
