@@ -359,7 +359,7 @@ body {
     flex-direction: row;
   }
 
-  .sidebar {
+  .docs-navigation {
     color: var(--sidebar-color);
     @include transition-color;
 
@@ -381,8 +381,8 @@ body {
     a {
       color: inherit;
       display: flex;
-      text-decoration: none;
       padding: 0.25rem 0.5rem;
+      text-decoration: none;
       border-radius: 2px;
 
       &:hover {
@@ -399,9 +399,19 @@ body {
       & > li:not(:first-child) {
         margin-bottom: 1.5rem;
 
-        & > ul > li {
-          margin-bottom: 0.25rem;
-          margin-left: 1.2rem;
+        & > ul {
+          a {
+            padding-left: 1.5rem;
+          }
+
+          @media (max-width: $breakpoint-tablet) {
+            display: flex;
+            flex-wrap: wrap;
+            
+            a {
+              padding: 0.5rem 0.75rem;
+            }
+          }
         }
       }
     }
