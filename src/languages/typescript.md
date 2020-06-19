@@ -38,7 +38,7 @@ If you are using more advanced TypeScript features that include custom config se
 {% endsamplefile %}
 {% endsample %}
 
-Because Parcel processes each file individually, it implicitly sets `isolatedModules: true` in the tsc options, this [comes with limitations as well](https://www.typescriptlang.org/tsconfig#isolatedModules), namely constant `const enum`s not being supported either.
+Because Parcel processes each file individually, it implicitly sets `isolatedModules: true` in the tsc options, this comes with limitations as well, namely constant `const enum`s not being supported either.
 
 - No type checking
 - `const enum` isn't supported

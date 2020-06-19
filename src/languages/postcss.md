@@ -8,13 +8,13 @@ eleventyNavigation:
 
 To motivate some of the following tips, here's an overview over how Parcel processes CSS files (in that order):
 
-- [@parcel/transformer-postcss](/official-plugins/transformer-postcss/):
+- `@parcel/transformer-postcss`:
   Applies `.postcssrc` and might generate a CSS modules map
-- [@parcel/transformer-css](/official-plugins/transformer-css/):
+- `@parcel/transformer-css`:
   Registers `@import ...` and `url(...)` into Parcel's graph
-- [@parcel/packager-css](/official-plugins/packager-css/):
+- `@parcel/packager-css`:
   Concat all CSS assets into a single bundle.
-- [@parcel/optimizer-cssnano](/official-plugins/optimizer-cssnano/):
+- `@parcel/optimizer-cssnano`:
   Minify the bundle output from `@parcel/packager-css`.
 
 As you can see, each asset is processed individually by PostCSS and concatenated with the others afterwards.
