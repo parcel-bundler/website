@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-production
   title: 🏭 Production
   order: 8
 summary: How Parcel helps you optimizing your project for production

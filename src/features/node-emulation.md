@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-node-emulation
   title: 🐢 Node Emulation
   order: 6
 summary: Some features that ultimately emulate Node.js's API

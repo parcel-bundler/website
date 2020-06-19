@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: configuration-package-json
   title: ❓ package.json
   order: 1
 summary: The targets object in package.json

@@ -1,7 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Debugging
+  key: recipes-debugging
   title: 🛠️ Debugging
   order: 2
 ---

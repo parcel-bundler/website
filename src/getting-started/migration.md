@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: getting-started-migration
   title: 🚚 Migration
   order: 5
 summary: Some tips for migration from Parcel 1 to Parcel 2

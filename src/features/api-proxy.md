@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-api-proxy
   title: 🚇 API Proxy
   order: 1
 summary: Configuration the builtin dev server to forward specific paths to another server

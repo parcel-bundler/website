@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-scope-hoisting
   title: 🌳 Scope Hoisting
   order: 9
 summary: What scope hoisting is and how it enables smaller builds and ESM output
