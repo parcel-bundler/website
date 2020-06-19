@@ -12,7 +12,7 @@ TODO
 
 Parcel has builtin plugins for a few tools to help with analyzing bundle size.
 
-### Bundle Analyzer 
+### Bundle Analyzer
 
 To generate a HTML file for every bundle, set the `PARCEL_BUNDLE_ANALYZER` environment variable.
 
@@ -39,6 +39,5 @@ and use the files (in the dist directory) on [the Bundle Buddy website](https://
 <div style="border: 1px solid black">
 
 ![A screenshot of the Bundle Buddy website with a loaded project](/assets/bundle-buddy.png)
-
 
 </div>
