@@ -31,6 +31,8 @@ html {
   --sidebar-color: #333;
   --code-mark-background-color: #ff0;
   --border-color: #eee;
+  --hover-nav-background: #f8f8f8;
+  --selected-nav-background: #eee;
 }
 
 html.dark {
@@ -42,6 +44,8 @@ html.dark {
   --sidebar-color: #ccc;
   --code-mark-background-color: #616104aa;
   --border-color: #aaa;
+  --hover-nav-background: #eee;
+  --selected-nav-background: #fff;
 }
 
 a {
@@ -395,6 +399,11 @@ body {
       display: none;
     }
 
+    .current a {
+      background-color: var(--selected-nav-background);
+      color: #4a4a4a;
+    }
+
     a {
       color: inherit;
       display: flex;
@@ -403,7 +412,7 @@ body {
       border-radius: 2px;
 
       &:hover {
-        background-color: #eee;
+        background-color: var(--hover-nav-background);
         color: #4a4a4a;
       }
     }
@@ -422,10 +431,6 @@ body {
           padding: 1rem 0;
           text-align: center;
         }
-      }
-
-      .current {
-        background-color: #4a4a4a;
       }
 
       & > li:not(:first-child) {
