@@ -9,7 +9,7 @@
         var isChecked = evt.target.checked;
 
         if (target) {
-          target.setAttribute("class", isChecked ? "" : "visually-hidden");
+          target.setAttribute("class", isChecked ? "" : "doc-nav-group-hidden");
         }
       } catch (err) {
         console.error(err);

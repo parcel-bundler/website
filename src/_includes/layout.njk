@@ -60,10 +60,10 @@
           <li>
             <label>
               <span>{{ tag }}</span>
-              <input type="checkbox" class="toggle-doc-nav-tree visually-hidden" id="{{ tag }} toggle" checked>
+              <input type="checkbox" class="toggle-doc-nav-tree visually-hidden" id="{{ tag }} toggle">
             </label>
           </li>
-          <li id="{{ tag }} nav-tree">
+          <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
             {{ collections[tag] | eleventyNavigation |
             eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
             activeListItemClass: 'current', activeKey:

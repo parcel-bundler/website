@@ -373,6 +373,19 @@ body {
     font-size: 1.1rem;
     white-space: nowrap;
 
+    .doc-nav-group-hidden {
+      // Only hide on mobile
+      @media (max-width: $breakpoint-tablet) {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap; /* added line */
+      }
+    }
+
     ul,
     li {
       list-style: none;
@@ -402,8 +415,11 @@ body {
 
       & > li:first-child > label {
         display: block;
-        cursor: pointer;
-        padding: 0.5rem 0;
+
+        @media (max-width: $breakpoint-tablet) {
+          cursor: pointer;
+          padding: 1rem 0;
+        }
       }
 
       & > li:not(:first-child) {
