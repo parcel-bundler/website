@@ -8,7 +8,7 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve --quiet",
     "debug": "DEBUG=* eleventy",
-    "lint": "prettier --write 'src/**/*.{json,md,scss}'",
+    "lint": "prettier --write 'src/**/*.{js,json,md,scss}'",
     "generate-api-docs": "node generate-api-docs/ ../ ./api"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "nullthrows": "^1.1.1"
   },
   "lint-staged": {
-    "*.{md,scss,json}": "prettier --write"
+    "*.{md,scss,js,json}": "prettier --write"
   },
   "husky": {
     "hooks": {

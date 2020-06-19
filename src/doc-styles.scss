@@ -8,12 +8,16 @@ $title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
 $text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
   serif;
 
+$breakpoint-tablet: 1000px;
+
 @mixin transition-background-color {
   transition: background 0.2s ease-in-out;
 }
+
 @mixin transition-color {
   transition: color 0.2s ease-in-out;
 }
+
 @mixin transition-colors {
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
@@ -28,6 +32,7 @@ html {
   --code-mark-background-color: #ff0;
   --border-color: #eee;
 }
+
 html.dark {
   --color: #fafafa;
   --header-background-color: #111d27;
@@ -176,15 +181,20 @@ body {
 
     & .asset:first-child mark {
       background: #f004;
+
       @include transition-colors;
+
       .dark & {
         color: white;
         background: #f006;
       }
     }
+
     & .asset:last-child mark {
       background: #4a06;
+
       @include transition-colors;
+
       .dark & {
         color: white;
       }
@@ -196,6 +206,7 @@ body {
   height: 35rem;
   max-height: 65vh;
   max-width: none;
+
   .dark & {
     filter: invert(1) hue-rotate(180deg);
   }
@@ -211,9 +222,11 @@ body {
   & .big-circle {
     transform-origin: center;
   }
+
   .dark & .big-circle {
     transform: scale(1.1);
   }
+
   .dark & .small-circle {
     transform: translate(-20px, 10px);
   }
@@ -256,14 +269,21 @@ body {
   color: #e7dacb;
   width: 100%;
 
+  border-bottom: 1px solid var(--border-color);
+
   .logo {
     display: flex;
     align-items: center;
     height: 30px;
     padding-right: 1rem;
 
-    .type {
+    .parcel-text {
       width: 120px;
+      display: none;
+
+      @media (min-width: $breakpoint-tablet) {
+        display: block;
+      }
     }
 
     .parcel {
@@ -334,27 +354,37 @@ body {
   }
 }
 
-.content-scroll {
-  flex: 0 1 auto;
-  overflow: scroll;
-}
-
 .content-container {
-  padding-top: 1rem;
   display: flex;
-  flex-direction: row;
-  max-width: 80rem;
-  margin: auto;
+  flex-direction: column;
+  margin-top: 1rem;
 
-  .sidebar {
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
+
+  .docs-navigation {
     color: var(--sidebar-color);
     @include transition-color;
 
-    padding: 0 1rem 0 0.5rem;
+    padding: 0.5rem 1.5rem;
     border-right: 1px solid var(--border-color);
     font-family: $title-fonts;
     font-size: 1.1rem;
     white-space: nowrap;
+
+    .doc-nav-group-hidden {
+      // Only hide on mobile
+      @media (max-width: $breakpoint-tablet) {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap; /* added line */
+      }
+    }
 
     ul,
     li {
@@ -368,8 +398,8 @@ body {
     a {
       color: inherit;
       display: flex;
-      text-decoration: none;
       padding: 0.25rem 0.5rem;
+      text-decoration: none;
       border-radius: 2px;
 
       &:hover {
@@ -383,12 +413,31 @@ body {
         margin-bottom: 0.5rem;
       }
 
+      & > li:first-child > label {
+        display: block;
+
+        @media (max-width: $breakpoint-tablet) {
+          cursor: pointer;
+          padding: 1rem 0;
+        }
+      }
+
       & > li:not(:first-child) {
         margin-bottom: 1.5rem;
 
-        & > ul > li {
-          margin-bottom: 0.25rem;
-          margin-left: 1.2rem;
+        & > ul {
+          a {
+            padding-left: 1.5rem;
+          }
+
+          @media (max-width: $breakpoint-tablet) {
+            display: flex;
+            flex-wrap: wrap;
+
+            a {
+              padding: 0.5rem 0.75rem;
+            }
+          }
         }
       }
     }
@@ -408,15 +457,25 @@ body {
     padding: 2rem;
     padding-top: 0;
     line-height: 1.5em;
+    box-sizing: border-box;
 
-    & > header {
-      h1 {
-        margin: 0;
-      }
-      .summary {
-        margin-top: 0.5rem;
-        margin-bottom: 0;
-        filter: opacity(0.7);
+    & > div {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+
+      & > header {
+        h1 {
+          margin: 0;
+          margin-top: 0.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .summary {
+          margin-top: 0.5rem;
+          margin-bottom: 1rem;
+          filter: opacity(0.7);
+        }
       }
     }
 

@@ -28,7 +28,7 @@
           alt=""
         />
         <img
-          class="type"
+          class="parcel-text"
           src="/assets/logo.svg"
           alt="Parcel"
           width="300"
@@ -53,23 +53,28 @@
       </div>
       {% include "darkmode.html" %}
     </header>
-    <div class="content-scroll">
-      <div id="content" class="content-container">
-        <nav class="sidebar">
-          {%- for tag in tagOrder -%}
-          <ul>
-            <li>{{ tag }}</li>
-            <li>
-              {{ collections[tag] | eleventyNavigation |
-              eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-              activeListItemClass: 'current', activeKey:
-              eleventyNavigation.key}) | safe }}
-            </li>
-          </ul>
-          {%- endfor -%}
-        </nav>
+    <div id="content" class="content-container">
+      <nav class="docs-navigation">
+        {%- for tag in tagOrder -%}
+        <ul>
+          <li>
+            <label>
+              <span>{{ tag }}</span>
+              <input type="checkbox" class="toggle-doc-nav-tree visually-hidden" id="{{ tag }} toggle">
+            </label>
+          </li>
+          <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
+            {{ collections[tag] | eleventyNavigation |
+            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+            activeListItemClass: 'current', activeKey:
+            eleventyNavigation.key}) | safe }}
+          </li>
+        </ul>
+        {%- endfor -%}
+      </nav>
 
-        <main class="main-content">
+      <main class="main-content">
+        <div>
           <header>
             <h1>
               {{ title | default(eleventyNavigation.title) |
@@ -87,12 +92,13 @@
               <a
                 href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}"
                 style="float: right;"
-                >Edit this page on GitHub</a
               >
+                Edit this page on GitHub
+              </a>
             </i>
           </footer>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
 
     <script>
@@ -105,4 +111,7 @@
         });
     </script>
   </body>
+  <script>
+    {% include "doc-nav-toggle.js" %}
+  </script>
 </html>
