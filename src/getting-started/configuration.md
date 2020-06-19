@@ -21,8 +21,8 @@ Every entrypoint will be processed (and outputted) once per target.
 These are the files that contain the source code to your app before being
 compiled by Parcel and are picked up by:
 
-1. [`$ parcel <entries>`](cli/)
-2. `$ parcel <folder(s)>` uses [`<folder>/package.json#source`](#source) (respectively)
+1. [`$ parcel <entries>`](/features/cli/)
+2. `$ parcel <folder(s)>` uses [`<folder>/package.json#source`](/configuration/package-json/#source) (respectively)
 3. `./src/index.*`
 4. `./index.*`
 
@@ -31,11 +31,11 @@ Parcel.
 
 ### Setting the output path
 
-The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](#main-%2F-module-%2F-browser) and [custom targets](#custom-targets)), using [`targets.*.distDir`](#targets) or the [`--dist-dir`](</getting-started/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)>) CLI parameter.
+The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](/configuration/package-json/#main-%2F-module-%2F-browser) and [custom targets](/configuration/package-json/#custom-targets)), using [`targets.*.distDir`](/configuration/package-json/#targets) or the [`--dist-dir`](</features/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)>>) CLI parameter.
 
 Default values for the output folder
 
-- for the [common targets](#main-%2F-module-%2F-browser) is `path.dirname(package.json#${targetName})`
+- for the common targets is `path.dirname(package.json#${targetName})`
 - for custom targets is `path.dirname(package.json#${targetName})` or `~/dist/${targetName}/`.
 
 The implicit default target has the output folder `~/dist/`.
@@ -74,7 +74,7 @@ You can configure environments through [`targets`](/configuration/package-json/#
 
 When you do need to configure Parcel, it will be in one of 3 places.
 
-- If you need to configure the CLI, it will be a [CLI flag](cli/)
+- If you need to configure the CLI, it will be a [CLI flag](/features/cli/)
 - If you need to configure your package, it will be in the [`package.json`](/configuration/package-json/)
 - If you need to configure something with your files or the Parcel asset
-  pipeline, it will be in [`.parcelrc`](plugin-config/)
+  pipeline, it will be in [`.parcelrc`](/configuration/plugin-configuration/)

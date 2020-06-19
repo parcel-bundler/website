@@ -55,29 +55,29 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 
 ### General parameters
 
-| Format                                       | Description                                                                                                                  |
-| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                        |
-| `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                           |
-| `--no-autoinstall`                           | Disables autoinstall                                                                                                         |
-| `--no-cache`                                 | Disables reading from the filesystem cache                                                                                   |
-| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMaps`](/getting-started/configuration/#sourcemap)                      |
-| `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                           |
-| `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/getting-started/configuration/#targets-2) |
-| `--target [name]`                            | Only build the specified target(s)                                                                                           |
-| `-V, --version`                              | Outputs the version number                                                                                                   |
+| Format                                       | Description                                                                                                             |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                   |
+| `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                      |
+| `--no-autoinstall`                           | Disables autoinstall                                                                                                    |
+| `--no-cache`                                 | Disables reading from the filesystem cache                                                                              |
+| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMap`](/configuration/package-json/#sourcemap)                     |
+| `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                      |
+| `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/configuration/package-json/#targets) |
+| `--target [name]`                            | Only build the specified target(s)                                                                                      |
+| `-V, --version`                              | Outputs the version number                                                                                              |
 
 ### Parameters related to the dev server/watch mode (`serve` and `watch`)
 
-| Format              | Description                                                         |
-| ------------------- | ------------------------------------------------------------------- |
-| `--no-hmr`          | Disables [hot module replacement](/features/hmr)                    |
-| `-p, --port <port>` | The port for the HMR and HTTP server (the default port is `process.env.PORT` or 1234)                               |
-| `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces |
-| `--https`           | Serves files over HTTPS                                             |
-| `--cert <path>`     | Path to a certificate to use with HTTPS                             |
-| `--key <path>`      | Path to a private key to use with HTTPS                             |
-| `--watch-for-stdin` | Stop Parcel once stdin is closed                                    |
+| Format              | Description                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| `--no-hmr`          | Disables [hot module replacement](/features/hmr)                                      |
+| `-p, --port <port>` | The port for the HMR and HTTP server (the default port is `process.env.PORT` or 1234) |
+| `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces                   |
+| `--https`           | Serves files over HTTPS                                                               |
+| `--cert <path>`     | Path to a certificate to use with HTTPS                                               |
+| `--key <path>`      | Path to a private key to use with HTTPS                                               |
+| `--watch-for-stdin` | Stop Parcel once stdin is closed                                                      |
 
 ### Parameters specific to `serve`
 
@@ -87,14 +87,14 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 
 ### Parameters specific to the non-server commands (`watch` and `build`)
 
-| Format             | Description                                                                                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--dist-dir <dir>` | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/getting-started/configuration/#targets-2) |
+| Format             | Description                                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--dist-dir <dir>` | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/configuration/package-json/#targets) |
 
 ### Parameters specific to `build`
 
-| Format                      | Description                                                                                                                                    |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--no-minify`               | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.minify`](/getting-started/configuration/#targets-2) |
-| `--no-scope-hoist`          | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/getting-started/configuration/#targets-2)                                     |
-| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report                                                 |
+| Format                      | Description                                                                                                                               |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--no-minify`               | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.minify`](/configuration/package-json/#targets) |
+| `--no-scope-hoist`          | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/configuration/package-json/#targets)                                     |
+| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report                                            |

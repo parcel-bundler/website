@@ -241,16 +241,14 @@ Specifies the [environment](#environments).
 
 See [Module Resolution](/features/module-resolution/#aliases)
 
-
-
 ### Which `package.json` is used when specifying multiple entries (packages)
 
 All paths are relative to `/some/dir/my-monorepo`.
 
-| cwd | entries | used `pkg.json#*` (fields described below) |
-|---|---| ---|
-| `..` | `packages/*/src/**/*.js` | `package.json`
-| `.` | `packages/*/src/**/*.js` | `package.json`
-| `packages/` | `packages/*/src/**/*.js` | `package.json`
-| `packages/pkg-a` | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`
-| `packages/pkg-a/src` | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`
+| cwd                  |  entries                      |  used `pkg.json#*` (fields described below)  |
+| -------------------- | ----------------------------- | -------------------------------------------- |
+| `..`                 | `packages/*/src/**/*.js`      | `package.json`                               |
+| `.`                  | `packages/*/src/**/*.js`      | `package.json`                               |
+| `packages/`          | `packages/*/src/**/*.js`      | `package.json`                               |
+| `packages/pkg-a`     | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`                |
+| `packages/pkg-a/src` | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`                |
