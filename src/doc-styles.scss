@@ -8,12 +8,16 @@ $title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
 $text-fonts: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman",
   serif;
 
+$breakpoint-tablet: 1000px;
+
 @mixin transition-background-color {
   transition: background 0.2s ease-in-out;
 }
+
 @mixin transition-color {
   transition: color 0.2s ease-in-out;
 }
+
 @mixin transition-colors {
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
@@ -28,6 +32,7 @@ html {
   --code-mark-background-color: #ff0;
   --border-color: #eee;
 }
+
 html.dark {
   --color: #fafafa;
   --header-background-color: #111d27;
@@ -262,8 +267,13 @@ body {
     height: 30px;
     padding-right: 1rem;
 
-    .type {
+    .parcel-text {
       width: 120px;
+      display: none;
+
+      @media (min-width: $breakpoint-tablet) {
+        display: block;
+      }
     }
 
     .parcel {
@@ -342,8 +352,12 @@ body {
 .content-container {
   padding-top: 1rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: auto;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
 
   .sidebar {
     color: var(--sidebar-color);
@@ -407,6 +421,7 @@ body {
     padding: 2rem;
     padding-top: 0;
     line-height: 1.5em;
+    box-sizing: border-box;
 
     & > header {
       h1 {
