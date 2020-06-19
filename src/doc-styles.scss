@@ -419,6 +419,7 @@ body {
         @media (max-width: $breakpoint-tablet) {
           cursor: pointer;
           padding: 1rem 0;
+          text-align: center;
         }
       }
 
@@ -431,7 +432,9 @@ body {
           }
 
           @media (max-width: $breakpoint-tablet) {
+            margin-bottom: 1rem;
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
 
             a {
