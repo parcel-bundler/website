@@ -30,7 +30,7 @@
     "nullthrows": "^1.1.1"
   },
   "lint-staged": {
-    "*.{md,scss,json}": "prettier --write"
+    "*.{md,scss,js,json}": "prettier --write"
   },
   "husky": {
     "hooks": {
