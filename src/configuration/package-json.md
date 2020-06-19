@@ -205,7 +205,7 @@ Can be a boolean (to simply enable / disable source maps) or an option (which is
 | inlineSources | `false`                             | Should the sourcemap contain the sources contents (otherwise, they will be loaded from `${sourceRoot}/$(name)`) |
 | sourceRoot    | `path.relative(bundle, pojectRoot)` | Essentially the public url for the sources                                                                      |
 
-The [--no-source-maps](getting-started/cli/#general-paramaters) CLI parameter sets the default value to `false` (as opposed to `true`).
+The [--no-source-maps](/features/cli/#general-parameters) CLI parameter sets the default value to `false` (as opposed to `true`).
 
 #### `engines` / `browserslist`
 
