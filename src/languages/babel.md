@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: languages-babel
   title: <img src="/assets/lang-icons/javascript.svg" alt=""/> Javascript (Babel)
   order: 1
 ---

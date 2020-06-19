@@ -1,7 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: React
+  key: recipes-react
   title: <img src="/assets/lang-icons/react.svg" alt=""/> React
   order: 6
 ---

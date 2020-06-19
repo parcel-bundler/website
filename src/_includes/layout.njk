@@ -66,9 +66,11 @@
           </li>
           <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
             {{ collections[tag] | eleventyNavigation |
-            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-            activeListItemClass: 'current', activeKey:
-            eleventyNavigation.key}) | safe }}
+            eleventyNavigationToHtml({
+              listItemHasChildrenClass: 'section',
+              activeListItemClass: 'current',
+              activeKey: eleventyNavigation.key
+            }) | safe }}
           </li>
         </ul>
         {%- endfor -%}

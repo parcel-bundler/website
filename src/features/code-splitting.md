@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-code-splitting
   title: ✂️ Code Splitting
   order: 3
 summary: Load code as you need it (if you need it)

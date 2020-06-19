@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: getting-started-webapp
   title: 🌐 Generic Webapp
   order: 1
 ---

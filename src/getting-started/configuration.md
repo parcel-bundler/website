@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: getting-started-no-configuration
   title: 🗒️ (No) configuration
   order: 3
 summary: How far you can get without any configuration and how to configure Parcel

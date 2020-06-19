@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: configuration-plugin-configuration
   title: 🔌 Plugin Configuration
   order: 2
 summary: How to use plugins and create named pipelines

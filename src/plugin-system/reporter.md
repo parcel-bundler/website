@@ -1,7 +1,8 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Reporter
+  key: plugin-system-reporter
+  title: Reporter
   order: 10
 summary: "A plugin type: Listen to events of the build"
 ---

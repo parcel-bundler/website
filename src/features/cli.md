@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-cli
   title: ⌨️ CLI
   order: 2
 summary: The "parcel" command

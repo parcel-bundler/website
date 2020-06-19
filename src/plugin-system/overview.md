@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: plugin-system-overview
   title: Overview
   order: 1
 summary: A high-level overview over the plugin system

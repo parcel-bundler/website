@@ -1,7 +1,8 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Authoring Plugins
+  key: plugin-system-authoring-plugins
+  title: Authoring Plugins
   order: 2
 summary: "What to take in mind when authoring a plugin"
 ---

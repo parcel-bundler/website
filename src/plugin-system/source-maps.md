@@ -1,7 +1,8 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: Source Maps
+  key: plugin-system-source-maps
+  title: Source Maps
   order: 14
 ---
 

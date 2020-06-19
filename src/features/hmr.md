@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-hmr
   title: 🔥 Hot Module Replacement
   order: 4
 summary: Refreshing your JS app without a full page reload

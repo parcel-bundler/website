@@ -1,7 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: (Post)CSS
+  key: languages-postcss
   title: <img src="/assets/lang-icons/postcss.svg" alt=""/> CSS (PostCSS)
   order: 2
 ---

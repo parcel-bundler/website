@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 eleventyNavigation:
+  key: features-module-resolution
   title: 📔 Module Resolution
   order: 5
 summary: How dependencies are resolved

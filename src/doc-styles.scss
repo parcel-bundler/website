@@ -424,6 +424,10 @@ body {
         }
       }
 
+      .current {
+        background-color: #4a4a4a;
+      }
+
       & > li:not(:first-child) {
         margin-bottom: 1.5rem;
 
