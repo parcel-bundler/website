@@ -269,7 +269,7 @@ body {
   color: #e7dacb;
   width: 100%;
 
-  border-bottom: 1px solid;
+  border-bottom: 1px solid var(--border-color);
 
   .logo {
     display: flex;
