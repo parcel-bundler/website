@@ -181,15 +181,20 @@ body {
 
     & .asset:first-child mark {
       background: #f004;
+
       @include transition-colors;
+
       .dark & {
         color: white;
         background: #f006;
       }
     }
+
     & .asset:last-child mark {
       background: #4a06;
+
       @include transition-colors;
+
       .dark & {
         color: white;
       }
@@ -201,6 +206,7 @@ body {
   height: 35rem;
   max-height: 65vh;
   max-width: none;
+
   .dark & {
     filter: invert(1) hue-rotate(180deg);
   }
@@ -216,9 +222,11 @@ body {
   & .big-circle {
     transform-origin: center;
   }
+
   .dark & .big-circle {
     transform: scale(1.1);
   }
+
   .dark & .small-circle {
     transform: translate(-20px, 10px);
   }
@@ -260,6 +268,8 @@ body {
   padding: 1rem;
   color: #e7dacb;
   width: 100%;
+
+  border-bottom: 1px solid;
 
   .logo {
     display: flex;
@@ -347,6 +357,7 @@ body {
 .content-container {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
@@ -440,6 +451,7 @@ body {
       & > header {
         h1 {
           margin: 0;
+          margin-top: 0.5rem;
           margin-bottom: 1rem;
         }
 
