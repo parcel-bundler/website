@@ -15,6 +15,7 @@
       {% include "darkmode.js" %}
     </script>
     <link href="/doc-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   </head>
   <body>
     <header class="parcel-docs-header">
@@ -109,6 +110,20 @@
           sessionStorage.setItem("isDarkMode", isDarkMode);
           updateMode(isDarkMode);
         });
+    </script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript">
+      docsearch({
+        apiKey: '8b6be780425a72d1a1683abea2636778',
+        indexName: 'parceljs',
+        inputSelector: '#search-input',
+        algoliaOptions: {
+          'facetFilters': [
+            "lang:v2"
+          ]
+        }
+      });
     </script>
   </body>
   <script>
