@@ -58,8 +58,13 @@
         <nav class="docs-navigation">
           {%- for tag in tagOrder -%}
           <ul>
-            <li>{{ tag }}</li>
             <li>
+              <label>
+                <span>{{ tag }}</span>
+                <input type="checkbox" class="toggle-doc-nav-tree visually-hidden" id="{{ tag }} toggle" checked>
+              </label>
+            </li>
+            <li id="{{ tag }} nav-tree">
               {{ collections[tag] | eleventyNavigation |
               eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
               activeListItemClass: 'current', activeKey:
@@ -105,4 +110,7 @@
         });
     </script>
   </body>
+  <script>
+    {% include "doc-nav-toggle.js" %}
+  </script>
 </html>

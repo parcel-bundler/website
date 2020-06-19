@@ -396,6 +396,12 @@ body {
         margin-bottom: 0.5rem;
       }
 
+      & > li:first-child > label {
+        display: block;
+        cursor: pointer;
+        padding: 0.5rem 0;
+      }
+
       & > li:not(:first-child) {
         margin-bottom: 1.5rem;
 
