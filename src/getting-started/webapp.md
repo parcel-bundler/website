@@ -63,12 +63,3 @@ render(<h1>Hello World</h1>, document.getElementById("root"));
 
 {% endsamplefile %}
 {% endsample %}
-
-### Configuring Parcel
-
-When you do need to configure Parcel, it will be in one of 3 places.
-
-- If you need to configure the CLI, it will be a [CLI flag](cli/)
-- If you need to configure your package, it will be in the [`package.json`](configuraiton/)
-- If you need to configure something with your files or the Parcel asset
-  pipeline, it will be in [`.parcelrc`](plugin-config/)

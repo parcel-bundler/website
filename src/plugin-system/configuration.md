@@ -6,7 +6,7 @@ eleventyNavigation:
 summary: "Not really a plugin type: A reuseable '.parcelrc' package"
 ---
 
-This is simply a [`.parcelrc`](/getting-started/plugin-config/) file wrapped into a published package, the `main` points to the config file.
+This is simply a [`.parcelrc`](/configuration/plugin-configuration/) file wrapped into a published package, the `main` points to the config file.
 
 ```json
 {
