@@ -415,6 +415,7 @@ body {
 
       & > li:first-child > label {
         display: block;
+        color: var(--color);
 
         @media (max-width: $breakpoint-tablet) {
           cursor: pointer;
