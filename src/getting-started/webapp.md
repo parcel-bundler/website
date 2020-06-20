@@ -44,7 +44,7 @@ To create a production build in this minimal example you can run `yarn run build
   "name": "my-project",
   "scripts": {
     "start": "parcel serve ./src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build ./src/index.html"
   },
   "devDependencies": {
     "parcel": "next"
@@ -157,6 +157,35 @@ You can find an example of such an html file below.
     <script type="module" src="./index.ts"></script>
   </body>
 </html>
+```
+
+{% endsamplefile %}
+
+{% samplefile "src/index.ts" %}
+
+```tsx
+import React from "react";
+import { render } from "react-dom";
+
+render(<h1>Hello World</h1>, document.getElementById("root"));
+```
+
+{% endsamplefile %}
+
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "differential-serving-example",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "browserslist": "> 0.2%",
+  "devDependencies": {
+    "parcel": "next"
+  }
+}
 ```
 
 {% endsamplefile %}
