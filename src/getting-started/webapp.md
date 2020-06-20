@@ -87,7 +87,7 @@ render(<h1>Hello World</h1>, document.getElementById("root"));
 
 In the above example you can see two commands, the development command `parcel serve ./src/index.html` and `parcel build ./src/index.html` for creating production builds.
 
-Note that the commands in the example have `./src/index.html` as an entry point instead of a JavaScript file, which is different from other bundlers. Using a HTML file as the entrypoint makes Parcel easier to use as it will be able to detect dependencies directly from the HTML file and bundle all these detected dependencies into their respective bundles automatically without any configuration. It can even do some more advanced features like differential serving and compiling inline scripts and styles without any configuration.
+Note that the commands in the example have `./src/index.html` as an entry point instead of a JavaScript file, which is different from other bundlers. Using a HTML file as the entrypoint makes Parcel easier to use as it will be able to detect dependencies directly from the HTML file and bundle all these detected dependencies into their respective bundles automatically without any configuration. Parcel can even do more advanced things automatically like differential serving and compiling inline scripts and styles without any configuration.
 
 #### Development command
 
