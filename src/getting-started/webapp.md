@@ -135,7 +135,7 @@ You don't have to add any config to make this work, the only thing you have to d
 
 To utilise this you need to have two script tags in your html one for `module` and one for older browsers also called `nomodule`.
 
-Example:
+You can find an example of such an html file below.
 
 {% sample "", "column" %}
 {% samplefile "src/index.html" %}
