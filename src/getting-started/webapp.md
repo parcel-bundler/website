@@ -36,7 +36,7 @@ To run the development environment in this minimal example you can run `yarn run
 
 To create a production build in this minimal example you can run `yarn run build` or `npm run build`.
 
-{% sample "parcel src/index.html", "column" %}
+{% sample "", "column" %}
 {% samplefile "package.json" %}
 
 ```json
@@ -58,6 +58,11 @@ To create a production build in this minimal example you can run `yarn run build
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Parcel Project</title>
+  </head>
+
   <body>
     <div id="root"></div>
     <script src="./index.ts"></script>
@@ -132,19 +137,27 @@ To utilise this you need to have two script tags in your html one for `module` a
 
 Example:
 
-```
+{% sample "", "column" %}
+{% samplefile "src/index.html" %}
+
+```html
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>HTML Example</title>
-    <!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
-    <script nomodule src="./index.js"></script>
-    <!-- This script tag will get a reference to the esmodule bundle -->
-    <script type="module" src="./index.js"></script>
+    <title>Differential Serving Example</title>
   </head>
+
   <body>
-    <h1>Hello world</h1>
+    <div id="root"></div>
+
+    <!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
+    <script nomodule src="./index.ts"></script>
+    <!-- This script tag will get a reference to the esmodule bundle -->
+    <script type="module" src="./index.ts"></script>
   </body>
 </html>
 ```
+
+{% endsamplefile %}
+{% endsample %}
