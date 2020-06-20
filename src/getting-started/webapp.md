@@ -129,7 +129,7 @@ Parcel also supports differential serving, which means you can serve a different
 
 You don't have to add any config to make this work, the only thing you have to do is add a script tag to your HTML file. Parcel automatically takes care of the browserslist target by implicitly removing all browsers from your (defined) browserslist that do not support esmodules.
 
-To utilise this you need to have two script tags in your html one for `module` and one for older browsers also called `nomodule`.
+To utilise this, you need to have two script tags in your HTML file: one with `type="module"` and one for older browsers with the `nomodule` attribute.
 
 You can find an example of such a html file below.
 
