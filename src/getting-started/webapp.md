@@ -36,7 +36,7 @@ To run the development environment in this example you can run `yarn run start` 
 
 To create a production build in this example you can run `yarn run build` or `npm run build`.
 
-{% sample "", "column" %}
+{% sample %}
 {% samplefile "package.json" %}
 
 ```json
@@ -133,7 +133,7 @@ To utilise this you need to have two script tags in your html one for `module` a
 
 You can find an example of such a html file below.
 
-{% sample "", "column" %}
+{% sample %}
 {% samplefile "src/index.html" %}
 
 ```html
