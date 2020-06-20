@@ -127,7 +127,7 @@ In our configuration section, we explain how you can set [targets](/getting-star
 
 Parcel also supports differential serving, which means you can serve a different bundle to modern browsers as you do to old browsers. This results in faster load time for newer browsers as the bundle size will be a lot smaller.
 
-You don't have to add any config to make this work, the only thing you have to do is add a script tag to your html file. Parcel automatically takes care of the browser target by subtracting all browsers from your defined browserslist that do not support esmodules.
+You don't have to add any config to make this work, the only thing you have to do is add a script tag to your HTML file. Parcel automatically takes care of the browserslist target by implicitly removing all browsers from your (defined) browserslist that do not support esmodules.
 
 To utilise this you need to have two script tags in your html one for `module` and one for older browsers also called `nomodule`.
 
