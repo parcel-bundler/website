@@ -12,7 +12,7 @@ The Parcel CLI is built into the main `parcel` package.
 
 While you can install and run Parcel globally, it is much better to install it locally into your project as a dev dependency. To do this navigate to the project in the terminal and run the install command listed below.
 
-To install the cli run the following command:
+To install Parcel, run the following command:
 
 ```bash
 yarn add -D parcel@next
