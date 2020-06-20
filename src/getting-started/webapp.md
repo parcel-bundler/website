@@ -89,7 +89,7 @@ In the above example you can see two commands, the development command `parcel s
 
 #### Development command
 
-The development command `parcel serve ./src/index.html` starts up a small development server for serving your `JS`, `HTML`, `CSS` and any other assets as the name of the command implies.
+The development command `parcel serve ./src/index.html` starts up a development server for serving your JS, HTML, CSS files and any other assets of your project.
 
 Besides the hosting of these assets, we also start a [Hot Module Reload](/features/hmr/) server which is a websocket that listens to build events and reloads a script, style or your entire page depending on what changed (If you are using React we even have [React Fast Refresh](</recipes/react/#hmr-(fast-refresh)>) built in). This is super useful as you no longer have to wait for the build to complete and manually refresh the page, although you can still do this if you want by adding the `--no-hmr` flag to the command.
 
