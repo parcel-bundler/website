@@ -119,7 +119,7 @@ On the other side it is also useful for reducing bundle size as supporting a lot
 
 To configure a browserslist you can take a couple approaches, you can define it in your `package.json` file under the `browserslist` key or in a seperate configuration file: `browserslist` or `.browserslistrc`.
 
-You can find more information you can have a look at the [browserslist repo](https://github.com/browserslist/browserslist)
+You can find more information over in the [Browserslist repo](https://github.com/browserslist/browserslist#readme)
 
 You can also have a look at our configuration section, [targets](/getting-started/configuration/#targets) for a more in depth look at all the options for configuring the browsers you're targetting.
 
