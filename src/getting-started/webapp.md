@@ -118,6 +118,33 @@ To configure a browserslist you can take a couple approaches, you can define it 
 
 You can find more information you can have a look at the [browserslist repo](https://github.com/browserslist/browserslist)
 
+You can also have a look at our configuration section, [targets](/getting-started/configuration/#targets) for a more in depth look at all the options for configuring the browsers you're targetting.
+
 ## Differential Serving
 
-TODO
+Parcel also supports differential serving, which means you can serve a different bundle to modern browsers as you do to old browsers. This results in faster load time for newer browsers as the bundle size will be a lot smaller, you actually don't have to do any config to make this work.
+
+Currently this is just esmodule for modern browsers and commonjs following your browserslist for legacy browsers.
+
+You don't have to add any config to make this work, the only thing you have to do is add a script tag to your html file. Parcel automatically takes care of the browser target by subtracting all browsers from your defined browserslist that do not support esmodules.
+
+To utilise this you need to have two script tags in your html one for `module` and one for older browsers also called `nomodule`.
+
+Example:
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Example</title>
+    <!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
+    <script nomodule src="./index.js"></script>
+    <!-- This script tag will get a reference to the esmodule bundle -->
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <h1>Hello world</h1>
+  </body>
+</html>
+```
