@@ -101,7 +101,7 @@ The production build command `parcel build ./src/index.html` does exactly what i
 
 It creates production-ready bundles that contain very little to no unused and development code, ensuring your end-user gets fast load times. We achieve this by telling frameworks and libraries we're building for production by setting the `process.env.NODE_ENV` variable to `production`.
 
-We also run a minifier over most assets to ensure code is as minimal as it can and do [scope-hoisting](/features/scope-hoisting/) on all the JavaScript bundles to ensure no unused code ends up in the JavaScript bundles.
+We also run a minifier over most assets to ensure code is as minimal as it can and do [scope hoisting](/features/scope-hoisting/) on all the JavaScript bundles to ensure as little unused code as possible ends up in the JavaScript bundles.
 
 These bundles are also named in such a way that any non-html assets can be cached safely in a cdn for a very long time without any user ever having an incorrect or outdated bundle as the name includes a hash of the final bundle content.
 
