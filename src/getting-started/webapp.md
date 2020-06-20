@@ -136,7 +136,7 @@ You can find an example of such a html file below.
 {% sample %}
 {% samplefile "src/index.html" %}
 
-```html
+```html/11,13
 <!DOCTYPE html>
 <html>
   <head>
