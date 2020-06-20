@@ -93,7 +93,7 @@ The development command `parcel serve ./src/index.html` starts up a development 
 
 Besides the hosting of these assets, we also start a [Hot Module Reload](/features/hmr/) server which is a websocket that listens to build events and reloads a script, style or your entire page depending on what changed (if you are using React, we even have [React Fast Refresh](</recipes/react/#hmr-(fast-refresh)>) built in). This is super useful as you no longer have to wait for the build to complete and manually refresh the page, although you can still do this if you want by adding the `--no-hmr` flag to the command.
 
-This command also ensures all used libraries and frameworks are built in development mode, meaning you will get additional debug information if they provide any. This means we set the `process.env.NODE_ENV` variable to `development` as well as not doing any minification and generating source-maps.
+It also ensures all used libraries and frameworks are built in development mode, meaning you will get additional debug information if they provide any. Parcel sets the `process.env.NODE_ENV` variable to `development`, generates source maps and doesn't do any minification.
 
 #### Production build command
 
