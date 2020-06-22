@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  deploy_to_now:
+    runs-on: ubuntu-latest
+    env:
+      NOW_TOKEN: ${{ secrets.NOW_TOKEN }}
+    name: Deploy to ZEIT Now
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Deploy
+        id: deploy
+        uses: ./
