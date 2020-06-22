@@ -31,7 +31,7 @@ This file controls the sass compilation with Parcel. Another thing that can be c
 ```
 {
   "includePaths": ["node_modules"],
-  outputStyle: "nested",
+  outputStyle: "compressed",
 }
 ```
 
