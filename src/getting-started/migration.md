@@ -36,7 +36,7 @@ document.body.innerHTML = `<img src="${logo}">`;
 {% endsamplefile %}
 {% endmigration %}
 
-Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
+Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour (add more asset extensions if you use them):
 
 {% migration %}
 {% samplefile ".parcelrc" %}
@@ -45,7 +45,7 @@ Alternatively, you can use a custom `.parcelrc` to opt into the old behaviour.
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*": ["@parcel/transformer-raw"]
+    "*.{jpg,png,svg}": ["@parcel/transformer-raw"]
   }
 }
 ```
