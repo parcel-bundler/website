@@ -65,13 +65,13 @@ To create a production build in this example you can run `yarn run build` or `np
 
   <body>
     <div id="root"></div>
-    <script src="./index.ts"></script>
+    <script src="./index.tsx"></script>
   </body>
 </html>
 ```
 
 {% endsamplefile %}
-{% samplefile "src/index.ts" %}
+{% samplefile "src/index.tsx" %}
 
 ```tsx
 import React from "react";
@@ -150,16 +150,16 @@ You can find an example of such a html file below.
     <div id="root"></div>
 
     <!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
-    <script nomodule src="./index.ts"></script>
+    <script nomodule src="./index.tsx"></script>
     <!-- This script tag will get a reference to the esmodule bundle -->
-    <script type="module" src="./index.ts"></script>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
 ```
 
 {% endsamplefile %}
 
-{% samplefile "src/index.ts" %}
+{% samplefile "src/index.tsx" %}
 
 ```tsx
 import React from "react";
