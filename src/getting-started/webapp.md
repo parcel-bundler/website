@@ -46,6 +46,10 @@ To create a production build in this example you can run `yarn run build` or `np
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html"
   },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "parcel": "next"
   }
@@ -180,6 +184,10 @@ render(<h1>Hello World</h1>, document.getElementById("root"));
     "build": "parcel build ./src/index.html"
   },
   "browserslist": "> 0.2%",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "parcel": "next"
   }
