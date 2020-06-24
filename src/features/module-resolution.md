@@ -73,8 +73,8 @@ Without scope hoisting however, `main` is preferred to `module` for better perfo
 
 - `package.json#source`
 - `package.json#browser`
-- `package.json#module`
 - `package.json#main`
+- `package.json#module`
 - `index.{js, json}`
 
 ## Common issues
