@@ -33,6 +33,20 @@ body {
   text-align: center;
 }
 
+.parcel2-note a {
+  color: #e7dacb;
+  text-decoration: none;
+  transition: color 125ms;
+}
+
+.parcel2-note a:hover {
+  color: #27ae60;
+}
+
+.parcel2-note a:visited {
+  color: currentColor;
+}
+
 header {
   position: -webkit-sticky;
   position: sticky;
@@ -76,6 +90,10 @@ header .links a {
 
 header .links a:hover {
   color: #27ae60;
+}
+
+header .links a:visited {
+  color: currentColor;
 }
 
 .language-dropdown {

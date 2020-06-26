@@ -1,0 +1,5 @@
+name: 'Deploy Parcel to ZEIT'
+description: 'Create ZEIT v2 production deployment on push'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
