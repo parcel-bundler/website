@@ -1,0 +1,48 @@
+const path = require('path')
+const { createDeployment } = require('now-client')
+const { readdir } = require('fs')
+
+try {
+  readdir(`${__dirname}/dist`, (err, locales) => {
+    console.log({ locales })
+    if (err) throw new Error(err)
+    let start = Date.now()
+    Promise.all(
+      locales.map(async locale => {
+        let sitePath = path.join(__dirname, 'dist', locale)
+        console.log({ sitePath })
+        console.log(`deploying ... ${locale}`)
+        try {
+          let deployment = await deploy(sitePath)
+          console.log({ [locale]: deployment })
+          return deployment
+        } catch (e) {
+          throw new Error(e)
+        }
+      })
+    )
+      .then(deployments => {
+        let time = Date.now() - start
+        console.log('total deployment time: ', time)
+      })
+      .catch(console.error)
+  })
+} catch ({ message }) {
+  console.error(message)
+}
+
+async function deploy(sitePath) {
+  console.log(`${sitePath}`)
+  let deployment
+  for await (const event of createDeployment(sitePath, {
+    token: process.env.NOW_TOKEN
+  })) {
+    if (event.type === 'ready') {
+      deployment = event.payload
+      break
+    } else {
+      console.log({ event })
+    }
+  }
+  return deployment
+}
