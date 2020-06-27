@@ -32,7 +32,7 @@ Parcel.
 
 ### Setting the output path
 
-The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](/configuration/package-json/#main-%2F-module-%2F-browser) and [custom targets](/configuration/package-json/#custom-targets)), using [`targets.*.distDir`](/configuration/package-json/#targets) or the [`--dist-dir`](</features/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)>>) CLI parameter.
+The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](/configuration/package-json/#main-%2F-module-%2F-browser) and [custom targets](/configuration/package-json/#custom-targets)), using [`targets.*.distDir`](/configuration/package-json/#targets) or the [`--dist-dir`](/features/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)) CLI parameter.
 
 Default values for the output folder
 
