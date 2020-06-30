@@ -30,7 +30,7 @@ There are two ways to enable CSS modules:
 {% sample %}
 {% samplefile ".postcssrc" %}
 
-```json
+```json/1
 {
   "modules": true,
   "plugins": {
@@ -58,7 +58,7 @@ There are two ways to enable CSS modules:
 {% endsamplefile %}
 {% samplefile "index.js" %}
 
-```jsx
+```jsx/1
 import { main } from "./app.module.css";
 
 export function App() {
@@ -73,16 +73,16 @@ export function App() {
 
 <!-- https://github.com/parcel-bundler/parcel/issues/1165 -->
 
-Some PostCSS plugins (e.g. `postcss-custom-properties`) potentionally need to access declarations from other `@import`ed CSS assets .
+Some PostCSS plugins (e.g. `postcss-custom-properties`) potentionally need to access declarations from other `@import`ed CSS assets.
 
-If you do want to run PostCSS on the whole bundle, we recommend you use `postcs-import` (to inline `@imports`) and `psotcss-url` (to rewrite `url(...)` expressions appropriately).
+If you do want to run PostCSS on the whole bundle, we recommend you use `postcss-import` (to inline `@imports`) and `postcss-url` (to rewrite `url(...)` expressions appropriately).
 
-This isn't done by default because it would have a negative effect on caching (Parcel could't reuse unchanged assets anymore).
+This isn't done by default because it would have a negative effect on caching (Parcel could't reuse unchanged CSS files anymore).
 
 {% sample "index.html", "column" %}
 {% samplefile "index.html" %}
 
-```json
+```html
 <link rel="stylesheet" type="text/css" href="./app.css" />
 <div id="icon"></div>
 ```
