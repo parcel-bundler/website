@@ -30,7 +30,7 @@ There are two ways to enable CSS modules:
 {% sample %}
 {% samplefile ".postcssrc" %}
 
-```json/2
+```json/1
 {
   "modules": true,
   "plugins": {
