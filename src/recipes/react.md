@@ -25,7 +25,7 @@ import ReactDom from "react-dom";
 
 const App = () => <h1>Hello!</h1>;
 
-ReactDom.render(document.getElementById("app"), <App />);
+ReactDom.render(<App />, document.getElementById("app"));
 ```
 
 {% endsamplefile %}
@@ -74,7 +74,7 @@ const App = (
   </h1>
 );
 
-ReactDom.render(..., <App />);
+ReactDom.render(<App />, ...);
 ```
 
 {% endsamplefile %}
@@ -120,7 +120,7 @@ const App = (
   </h1>
 );
 
-ReactDom.render(..., <App />);
+ReactDom.render(<App />, ...);
 ```
 
 {% endsamplefile %}
@@ -139,7 +139,7 @@ import ReactDom from "react-dom";
 
 const App = () => <h1>Hello!</h1>;
 
-ReactDom.render(..., <App />);
+ReactDom.render(<App />, ...);
 ```
 
 {% endsamplefile %}
