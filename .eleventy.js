@@ -31,6 +31,10 @@ module.exports = function (eleventyConfig) {
 
   // ---------- Macros ----------
 
+  eleventyConfig.addFilter("toDate", function (date) {
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  });
+
   eleventyConfig.addPairedShortcode("note", function (content) {
     return `<figure class="well"><div>${content}</div></figure>`;
   });

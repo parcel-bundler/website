@@ -15,7 +15,10 @@
       {% include "darkmode.js" %}
     </script>
     <link href="/doc-styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
+    />
   </head>
   <body>
     <header class="parcel-docs-header">
@@ -61,16 +64,18 @@
           <li>
             <label>
               <span>{{ tag }}</span>
-              <input type="checkbox" class="toggle-doc-nav-tree visually-hidden" id="{{ tag }} toggle">
+              <input
+                type="checkbox"
+                class="toggle-doc-nav-tree visually-hidden"
+                id="{{ tag }} toggle"
+              />
             </label>
           </li>
           <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
             {{ collections[tag] | eleventyNavigation |
-            eleventyNavigationToHtml({
-              listItemHasChildrenClass: 'section',
-              activeListItemClass: 'current',
-              activeKey: eleventyNavigation.key
-            }) | safe }}
+            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+            activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+            | safe }}
           </li>
         </ul>
         {%- endfor -%}
@@ -83,9 +88,13 @@
               {{ title | default(eleventyNavigation.title) |
               default(eleventyNavigation.key) | safe }}
             </h1>
-            {% if summary %}
-            <p class="summary">{{ summary }}</p>
-            {% endif %}
+            <p class="summary">
+              <span>{{ summary }}</span>
+              {% if date %}
+              <span style="float: right;">
+                📆 {{ date | toDate }} {% endif %}
+              </span>
+            </p>
           </header>
 
           {{ content | safe }}
@@ -114,17 +123,18 @@
         });
     </script>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
+    ></script>
     <script type="text/javascript">
       docsearch({
-        apiKey: '8b6be780425a72d1a1683abea2636778',
-        indexName: 'parceljs',
-        inputSelector: '#search-input',
+        apiKey: "8b6be780425a72d1a1683abea2636778",
+        indexName: "parceljs",
+        inputSelector: "#search-input",
         algoliaOptions: {
-          'facetFilters': [
-            "lang:v2"
-          ]
-        }
+          facetFilters: ["lang:v2"],
+        },
       });
     </script>
   </body>
