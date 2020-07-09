@@ -259,12 +259,14 @@ body {
 
 .parcel-docs-header {
   flex: 0 0 auto;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   font-family: $title-fonts;
+  flex-wrap: wrap;
 
   background-color: var(--header-background-color);
   @include transition-background-color;
@@ -275,61 +277,89 @@ body {
 
   border-bottom: 1px solid var(--border-color);
 
-  .logo {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    padding-right: 1rem;
+  @media (max-width: $break-sm) {
+  }
 
-    .parcel-text {
-      width: 120px;
-      display: none;
-
-      @media (min-width: $breakpoint-tablet) {
-        display: block;
-      }
-    }
-
-    .parcel {
-      margin-right: 10px;
+  & > * {
+    @media (max-width: $break-sm) {
     }
   }
 
-  .search-container {
-    // Take up what's left...
-    width: 100%;
+  .left {
+    display: flex;
+    .logo {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      padding-right: 1rem;
 
-    input {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: inherit;
-      box-sizing: border-box;
-      width: 140px;
-      display: inline-block;
-      padding: 0.25rem 0.5rem;
-      border: none;
-      border-radius: 2px;
-      font-size: inherit;
-      transition: width 500ms;
+      .parcel-text {
+        width: 120px;
+        display: none;
 
-      &:hover,
-      &:focus {
-        outline: none;
-
-        @media screen and (max-width: $break-md) {
-          width: 100%;
-        }
-
-        @media screen and (min-width: $break-md) {
-          width: 24rem;
+        @media (min-width: $breakpoint-tablet) {
+          display: block;
         }
       }
-      &::placeholder {
-        color: currentColor;
+
+      .parcel {
+        margin-right: 10px;
+      }
+    }
+
+    .search-container {
+      input {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: inherit;
+        box-sizing: border-box;
+        width: 200px;
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border: none;
+        border-radius: 2px;
+        font-size: inherit;
+        transition: width 500ms;
+
+        &:focus {
+          outline: 1px solid gray;
+        }
+        &::placeholder {
+          color: currentColor;
+        }
+      }
+    }
+  }
+
+  .section-picker {
+    display: flex;
+    justify-content: center;
+    @media (max-width: $break-sm) {
+      order: 1;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    a {
+      display: block;
+      padding: 0.6em 2.2em;
+      height: 100%;
+      background-color: var(--hover-nav-background);
+      color: #4a4a4a;
+      flex-grow: 1;
+      text-align: center;
+
+      &:visited {
+      }
+
+      &:not(.selected) {
+        background-color: var(--selected-nav-background);
       }
     }
   }
 
   .social-links {
+    display: flex;
+    justify-content: flex-end;
     padding-left: 1rem;
     white-space: nowrap;
 
@@ -349,6 +379,7 @@ body {
   }
 
   #color-scheme-toggle {
+    height: 100%;
     margin-left: 1em;
     cursor: pointer;
   }
@@ -399,7 +430,7 @@ body {
       display: none;
     }
 
-    .current a {
+    .current > a {
       background-color: var(--selected-nav-background);
       color: #4a4a4a;
     }

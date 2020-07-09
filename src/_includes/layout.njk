@@ -22,27 +22,33 @@
   </head>
   <body>
     <header class="parcel-docs-header">
-      <a class="logo" href="/">
-        <img
-          class="parcel"
-          src="/assets/parcel.png"
-          srcset="/assets/parcel@2x.png 2x"
-          width="38"
-          height="30"
-          alt=""
-        />
-        <img
-          class="parcel-text"
-          src="/assets/logo.svg"
-          alt="Parcel"
-          width="300"
-          height="160"
-        />
-      </a>
-      <div class="search-container">
-        <label for="search-input" class="visually-hidden">Search</label>
-        <input type="text" id="search-input" placeholder="Search..." />
+      <div class="left">
+        <a class="logo" href="/">
+          <img
+            class="parcel"
+            src="/assets/parcel.png"
+            srcset="/assets/parcel@2x.png 2x"
+            width="38"
+            height="30"
+            alt=""
+          />
+          <img
+            class="parcel-text"
+            src="/assets/logo.svg"
+            alt="Parcel"
+            width="300"
+            height="160"
+          />
+        </a>
+        <div class="search-container">
+          <label for="search-input" class="visually-hidden">Search</label>
+          <input type="text" id="search-input" placeholder="Search..." />
+        </div>
       </div>
+      <nav class="section-picker">
+        <a {% if not page.url.includes('blog') %}class="selected"{% endif %} href="/">Docs</a>
+        <a {% if page.url.includes('blog') %}class="selected"{% endif %} href="{{ collections.Blog | sortDate | first | pageUrl }}">Blog</a>
+      </nav>
       <div class="social-links">
         <a href="https://github.com/parcel-bundler/parcel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -54,11 +60,19 @@
             />
           </svg>
         </a>
+        {% include "darkmode.html" %}
       </div>
-      {% include "darkmode.html" %}
     </header>
     <div id="content" class="content-container">
       <nav class="docs-navigation">
+      {% if tags and tags.includes("Blog") %}
+        <ul id="blog nav-tree" class="doc-nav-group-hidden">
+            {{ collections.Blog | sortDate | eleventyNavigation |
+            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+            activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+            | safe }}
+        </ul>
+      {% else %}
         {%- for tag in tagOrder -%}
         <ul>
           <li>
@@ -79,6 +93,7 @@
           </li>
         </ul>
         {%- endfor -%}
+      {% endif %}
       </nav>
 
       <main class="main-content">
