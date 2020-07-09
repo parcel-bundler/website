@@ -6,7 +6,7 @@ When it comes time to bundle your application for production, you can use Parcel
 parcel build entry.js
 ```
 
-## Optimisations
+## Optimizations
 
 This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are [terser](https://github.com/fabiosantoscode/terser) for JavaScript, [cssnano](http://cssnano.co) for CSS, and [htmlnano](https://github.com/posthtml/htmlnano) for HTML.
 
