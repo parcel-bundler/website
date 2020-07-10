@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L357"><i>website/generate-api-docs/example.flow:357</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L366"><i>parcel/packages/core/types/index.js:366</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
 </p>
@@ -46,15 +46,17 @@
 <pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
 <pre class="interface"><code>  +isAsync?: boolean,</code></pre>
 <pre class="interface"><code>  +isEntry?: boolean,</code></pre>
-<pre class="interface"><code>  +isOptional?: boolean,</code></pre>
+<div class="inline-method">Is merged with the environment of the importer
+</div><pre class="interface"><code>  +isOptional?: boolean,</code></pre>
 <pre class="interface"><code>  +isURL?: boolean,</code></pre>
 <pre class="interface"><code>  +isWeak?: ?boolean,</code></pre>
+<pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
 <pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
 <pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
 <pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +target?: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>, {|
-    local: <a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>,
+<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
+    local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
   |}&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
@@ -64,26 +66,36 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L396"><i>website/generate-api-docs/example.flow:396</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L388"><i>parcel/packages/core/types/index.js:388</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
 <pre class="interface"><code>interface Dependency {</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
 <pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
-<pre class="interface"><code>  +isAsync: boolean,</code></pre>
-<pre class="interface"><code>  +isEntry: boolean,</code></pre>
-<pre class="interface"><code>  +isOptional: boolean,</code></pre>
-<pre class="interface"><code>  +isURL: boolean,</code></pre>
-<pre class="interface"><code>  +isWeak: ?boolean,</code></pre>
+<div class="inline-method">E.g. "lodash" in <code>import {add} from "lodash";</code>
+</div><pre class="interface"><code>  +isAsync: boolean,</code></pre>
+<pre class="interface"><code>  +isEntry: ?boolean,</code></pre>
+<div class="inline-method">Whether this should become a entry in a bundle.
+</div><pre class="interface"><code>  +isOptional: boolean,</code></pre>
+<div class="inline-method">Whether a failed resolution should not cause a build error.
+</div><pre class="interface"><code>  +isURL: boolean,</code></pre>
+<div class="inline-method">Whether an URL is expected (rather than the language-specific behaviour).
+</div><pre class="interface"><code>  +isWeak: ?boolean,</code></pre>
+<div class="inline-method">Whether this dependency does not provide any values for the importer itself.
+</div><pre class="interface"><code>  +isIsolated: boolean,</code></pre>
 <pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
-<pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
+<div class="inline-method">Used for error messages, the code location that caused this dependency.
+</div><pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +target: ?<a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <pre class="interface"><code>  +sourceAssetId: ?string,</code></pre>
-<pre class="interface"><code>  +sourcePath: ?string,</code></pre>
-<pre class="interface"><code>  +pipeline: ?string,</code></pre>
-<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableCodeSymbols">MutableCodeSymbols</a>,</code></pre>
+<div class="inline-method">Used for error messages, the importer.
+</div><pre class="interface"><code>  +sourcePath: ?string,</code></pre>
+<div class="inline-method">Used for error messages, the importer.
+</div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
+<div class="inline-method">a named pipeline (if the <code>moduleSpecifier</code> didn't specify one).
+</div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableSymbols">MutableSymbols</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -91,7 +103,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L425"><i>website/generate-api-docs/example.flow:425</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L427"><i>parcel/packages/core/types/index.js:427</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -104,26 +116,36 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L446"><i>website/generate-api-docs/example.flow:446</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L437"><i>parcel/packages/core/types/index.js:437</i></a>
 </h4>
 <p>An asset (usually represents one source file).
-<br><br></p>
+<br></p>
 <pre class="interface"><code>interface BaseAsset {</code></pre>
 <pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <pre class="interface"><code>  +fs: FileSystem,</code></pre>
-<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method">The file system where the source is located.
+</div><pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
 <pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +isIsolated: boolean,</code></pre>
 <pre class="interface"><code>  +isInline: boolean,</code></pre>
-<pre class="interface"><code>  +isSplittable: ?boolean,</code></pre>
+<div class="inline-method">Whether this asset will/should later be inserted back into the importer.
+</div><pre class="interface"><code>  +isSplittable: ?boolean,</code></pre>
 <pre class="interface"><code>  +isSource: boolean,</code></pre>
-<pre class="interface"><code>  +type: string,</code></pre>
-<pre class="interface"><code>  +sideEffects: boolean,</code></pre>
-<pre class="interface"><code>  +uniqueKey: ?string,</code></pre>
-<pre class="interface"><code>  +astGenerator: ?<a href="/plugin-system/transformer/#ASTGenerator">ASTGenerator</a>,</code></pre>
-<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#CodeSymbols">CodeSymbols</a>,</code></pre>
-<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
+<div class="inline-method">Whether this is asset is part of the users project (and not of an external dependencies) and should be transpiled.
+</div><pre class="interface"><code>  +type: string,</code></pre>
+<div class="inline-method">Usually corresponds to the file extension
+</div><pre class="interface"><code>  +sideEffects: boolean,</code></pre>
+<div class="inline-method">Whether this asset can be omitted if none if it's exports are being used (set by <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>)
+</div><pre class="interface"><code>  +uniqueKey: ?string,</code></pre>
+<div class="inline-method">Inline assets inheirit the parent's <code>id</code>, making it not be enough for a unique identification
+(this could be a counter that is unique per asset)
+</div><pre class="interface"><code>  +astGenerator: ?<a href="/plugin-system/transformer/#ASTGenerator">ASTGenerator</a>,</code></pre>
+<div class="inline-method">The type of the <a href="/plugin-system/api/#AST">AST</a>.
+</div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
+<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#Symbols">Symbols</a>,</code></pre>
+<div class="inline-method">a <code>Map&lt;export name, name of binding&gt;</code>
+</div><pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
 <div class="inline-method">Returns to current <a href="/plugin-system/api/#AST">AST</a>. See notes in subclasses (<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>).
 </div><pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
 <div class="inline-method">Returns to current source code. See notes in <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>.
@@ -151,7 +173,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L496"><i>website/generate-api-docs/example.flow:496</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L498"><i>parcel/packages/core/types/index.js:498</i></a>
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
@@ -163,13 +185,14 @@
 <pre class="interface"><code>  addDependency(dep: <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>): string,</code></pre>
 <pre class="interface"><code>  addIncludedFile(file: <a href="/plugin-system/api/#File">File</a>): void,</code></pre>
 <pre class="interface"><code>  addURLDependency(url: string, opts: $Shape&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;): string,</code></pre>
-<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableCodeSymbols">MutableCodeSymbols</a>,</code></pre>
+<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableSymbols">MutableSymbols</a>,</code></pre>
 <pre class="interface"><code>  isASTDirty(): boolean,</code></pre>
-<pre class="interface"><code>  getAST(): void,</code></pre>
+<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
 <div class="inline-method">Returns <code>null</code> if there is no <a href="/plugin-system/api/#AST">AST</a>.
 </div><pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
 <pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
 <pre class="interface"><code>  setCode(string): void,</code></pre>
+<pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
 <div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicity stringify the <a href="/plugin-system/api/#AST">AST</a>).
 </div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>): void,</code></pre>
 <pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
@@ -181,31 +204,29 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L523"><i>website/generate-api-docs/example.flow:523</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L526"><i>parcel/packages/core/types/index.js:526</i></a>
 </h4>
 
 <pre class="interface"><code>interface Asset extends BaseAsset {</code></pre>
-<pre class="interface"><code>  getAST(): void,</code></pre>
+<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
 <div class="inline-method">Throws if there is no <a href="/plugin-system/api/#AST">AST</a>.
 </div><pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/bundler/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L534"><i>website/generate-api-docs/example.flow:534</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L536"><i>parcel/packages/core/types/index.js:536</i></a>
 </h4>
-<p>FIXME
-</p>
+
 <pre class="interface"><code>interface Config {</code></pre>
 <pre class="interface"><code>  +isSource: boolean,</code></pre>
 <pre class="interface"><code>  +searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
 <pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
-<pre class="interface"><code>  +resolvedPath: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<pre class="interface"><code>  setResolvedPath(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
+<pre class="interface"><code>  +includedFiles: Set&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;,</code></pre>
 <pre class="interface"><code>  setResult(result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>): void,</code></pre>
 <pre class="interface"><code>  setResultHash(resultHash: string): void,</code></pre>
 <pre class="interface"><code>  addIncludedFile(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
@@ -215,12 +236,12 @@
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
-  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
+  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResultWithFilePath">ConfigResultWithFilePath</a> | null&gt;,</code></pre>
 <pre class="interface"><code>  getConfig(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
-  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
+  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResultWithFilePath">ConfigResultWithFilePath</a> | null&gt;,</code></pre>
 <pre class="interface"><code>  getPackage(): Promise&lt;<a href="/plugin-system/api/#PackageJSON">PackageJSON</a> | null&gt;,</code></pre>
 <pre class="interface"><code>  shouldRehydrate(): void,</code></pre>
 <pre class="interface"><code>  shouldReload(): void,</code></pre>
@@ -232,7 +253,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L578"><i>website/generate-api-docs/example.flow:578</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L579"><i>parcel/packages/core/types/index.js:579</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -245,7 +266,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L589"><i>website/generate-api-docs/example.flow:589</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L590"><i>parcel/packages/core/types/index.js:590</i></a>
 </h4>
 <p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
 </p>
@@ -264,8 +285,8 @@
 <pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <pre class="interface"><code>  +pipeline?: ?string,</code></pre>
 <pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>, {|
-    local: <a href="/plugin-system/api/#CodeSymbol">CodeSymbol</a>,
+<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
+    local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
   |}&gt;,</code></pre>
 <pre class="interface"><code>  +symbolsConfident?: boolean,</code></pre>
@@ -278,7 +299,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L618"><i>website/generate-api-docs/example.flow:618</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L616"><i>parcel/packages/core/types/index.js:616</i></a>
 </h4>
 
 
@@ -292,17 +313,11 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L682"><i>website/generate-api-docs/example.flow:682</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L680"><i>parcel/packages/core/types/index.js:680</i></a>
 </h4>
 <p>The methods for a transformer plugin.
 </p>
 <pre class="interface"><code>type Transformer = {|</code></pre>
-<pre class="interface"><code>  getConfig?: ({|
-    asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
-    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
-  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void&gt;,</code></pre>
 <pre class="interface"><code>  loadConfig?: ({|
     config: <a href="/plugin-system/transformer/#Config">Config</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
@@ -353,8 +368,7 @@
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;<a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>&gt;&gt;,</code></pre>
-<div class="inline-method">FIXME what is this even for?
-</div><pre class="interface"><code>|}</code></pre>
+<pre class="interface"><code>|}</code></pre>
 
 
 </div></div></body></html>

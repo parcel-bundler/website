@@ -90,6 +90,7 @@ export type TargetSourceMapOptions = {|
  */
 export interface Target {
   +distEntry: ?FilePath;
+  /** The output folder */
   +distDir: FilePath;
   +env: Environment;
   +sourceMap: ?TargetSourceMapOptions;

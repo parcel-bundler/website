@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const nullthrows = require("nullthrows");
 const invariant = require("assert");
+const { execSync } = require("child_process");
 
 const { parse } = require("@babel/parser");
 const generate = require("@babel/generator").default;
@@ -51,29 +52,36 @@ declare type ProcessedType =
     |};
 */
 
-const [PARCEL_ROOT, OUTPUT_DIR] = process.argv.slice(2);
+let [PARCEL_ROOT, OUTPUT_DIR] = process.argv.slice(2);
 if (!PARCEL_ROOT || !OUTPUT_DIR) {
   console.error(
-    "\tUsage: node generate-api-docs/index.js /path/to/parcel-monorepo"
+    "\tUsage: node generate-api-docs/index.js /path/to/folder-container-parcel-and-parcel-sourcemap-repo"
   );
   process.exit(1);
 }
+PARCEL_ROOT = fs.realpathSync(PARCEL_ROOT);
 
-const PARCEL_TYPES = false
+const PARCEL_TYPES = true
   ? path.join(PARCEL_ROOT, "parcel/packages/core/types/index.js")
   : path.join(__dirname, "example.flow");
+const PARCEL_TYPES_REV = execSync("git rev-parse HEAD", {
+  cwd: path.dirname(PARCEL_TYPES),
+  encoding: "utf8",
+}).trim();
 
 const PARCEL_SOURCE_MAP = [
   path.join(PARCEL_ROOT, "source-map/src/SourceMap.js"),
   path.join(PARCEL_ROOT, "source-map/src/types.js"),
 ];
+const PARCEL_SOURCE_MAP_REV = execSync("git rev-parse HEAD", {
+  cwd: path.dirname(PARCEL_SOURCE_MAP[0]),
+  encoding: "utf8",
+}).trim();
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-const PUBLIC_URL = "/"; //OUTPUT_DIR;
 
-const PARCEL_URL = "https://github.com/parcel-bundler/parcel/blob/v2";
-const SOURCE_MAP_URL =
-  "https://github.com/parcel-bundler/source-map/blob/master";
+const PARCEL_URL = `https://github.com/parcel-bundler/parcel/blob/${PARCEL_TYPES_REV}`;
+const SOURCE_MAP_URL = `https://github.com/parcel-bundler/source-map/blob/${PARCEL_SOURCE_MAP_REV}`;
 
 const SECTION_TO_URL = {
   index: {
@@ -472,6 +480,10 @@ ${description ? `<p>${description}</p>` : ""}
             output += `</ul>`;
           }
           output += `</div>`;
+        }
+        let prop = props.find((m) => m.name === t.key);
+        if (prop) {
+          output += `<div class="inline-method">${prop.description}</div>`;
         }
       }
     } else {
