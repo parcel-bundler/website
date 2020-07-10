@@ -31,6 +31,18 @@ module.exports = function (eleventyConfig) {
 
   // ---------- Macros ----------
 
+  eleventyConfig.addFilter("sortDate", function (data) {
+    return [...data].sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addFilter("pageUrl", function (page) {
+    return page.url;
+  });
+
+  eleventyConfig.addFilter("toDate", function (date) {
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  });
+
   eleventyConfig.addPairedShortcode("note", function (content) {
     return `<figure class="well"><div>${content}</div></figure>`;
   });
