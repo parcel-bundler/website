@@ -67,7 +67,7 @@ Prefixing global aliases with `window` or `globalThis` (e.g. `window.jQuery`) co
 
 ### Externals
 
-Externals must be configured on a target-by-target basis with `includeNodeModules`. Like globals, externals will not be bundled, but they will instead be `require`d at runtime.
+Externals must be configured on a target-by-target basis with [`includeNodeModules`](/configuration/package-json#includenodemodules). Like globals, externals will not be bundled, but they will instead be imported at runtime.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -75,7 +75,7 @@ Externals must be configured on a target-by-target basis with `includeNodeModule
 ```json/3-5
 {
   "targets": {
-    "main": {
+    "app": {
       "includeNodeModules": {
         "react": false
       }
