@@ -37,7 +37,7 @@ They can also map to global variables expected to exist at runtime. This can be 
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/5-9
+```json/5-11
 {
   "name": "some-package",
   "devDependencies": {
