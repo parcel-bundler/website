@@ -32,6 +32,8 @@ Aliases are supported through the `alias` field in `package.json`.
 
 This example aliases `react` to `preact` and some local custom module that is not in `node_modules`.
 
+They can also map to global variables expected to exist at runtime. This can be helpful for replacing a dependency with, for example, a version loaded from a CDN.
+
 {% sample %}
 {% samplefile "package.json" %}
 
@@ -39,12 +41,14 @@ This example aliases `react` to `preact` and some local custom module that is no
 {
   "name": "some-package",
   "devDependencies": {
-    "parcel-bundler": "^1.7.0"
+    "parcel-bundler": "^2.0.0-beta.1"
   },
   "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat",
-    "local-module": "./custom/modules"
+    "react": "preact/compat",
+    "react-dom": "preact/compat",
+    "local-module": "./custom/modules",
+    "other-local-module": { "fileName": "./custom/other-module" },
+    "lodash": { "global": "_" }
   }
 }
 ```
@@ -58,6 +62,30 @@ Avoid using any special characters in your aliases as some may be used by Parcel
 - `@` is used by npm to for packages by npm organizations.
 
 We advise being explicit when defining your aliases, so please **specify file extensions**, otherwise Parcel will need to guess. See [JavaScript Named Exports](#javascript-named-exports) for an example of this.
+
+Prefixing global aliases with `window` or `globalThis` (e.g. `window.jQuery`) could fail with multi-platform builds and is not recommended. Although file aliases can be `"path/to/file"` instead of `{ "fileName": "path/to/file" }`, globals must use the `{ "global": "name" }` format.
+
+### Externals
+
+Externals must be configured on a target-by-target basis with `includeNodeModules`. Like globals, externals will not be bundled, but they will instead be `require`d at runtime.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json/3-5
+{
+  "targets": {
+    "main": {
+      "includeNodeModules": {
+        "react": false
+      }
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Package entry fields
 
