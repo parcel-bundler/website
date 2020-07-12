@@ -55,15 +55,16 @@ declare type ProcessedType =
 let [PARCEL_ROOT, OUTPUT_DIR] = process.argv.slice(2);
 if (!PARCEL_ROOT || !OUTPUT_DIR) {
   console.error(
-    "\tUsage: node generate-api-docs/index.js /path/to/folder-container-parcel-and-parcel-sourcemap-repo"
+    "\tUsage: node generate-api-docs/index.js /path/to/folder-containing-parcel-and-parcel-sourcemap-repo"
   );
   process.exit(1);
 }
 PARCEL_ROOT = fs.realpathSync(PARCEL_ROOT);
 
-const PARCEL_TYPES = true
-  ? path.join(PARCEL_ROOT, "parcel/packages/core/types/index.js")
-  : path.join(__dirname, "example.flow");
+const PARCEL_TYPES = path.join(
+  PARCEL_ROOT,
+  "parcel/packages/core/types/index.js"
+);
 const PARCEL_TYPES_REV = execSync("git rev-parse HEAD", {
   cwd: path.dirname(PARCEL_TYPES),
   encoding: "utf8",
