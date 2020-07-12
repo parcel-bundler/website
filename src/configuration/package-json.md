@@ -196,6 +196,8 @@ This fields defaults to `false` when `isLibrary` is true. Possible values are:
 - an `array`: a list of packages names or wildcards to _include_
 - an `object`: `includeNodeModules[pkgName] ?? true` determines if it is included. (e.g. `{ "lodash": false }`)
 
+See [Module Resolution](/features/module-resolution#externals) for more information.
+
 ##### `sourceMap`
 
 Can be a boolean (to simply enable / disable source maps) or an option (which is somewhat equivlant to `true`):
