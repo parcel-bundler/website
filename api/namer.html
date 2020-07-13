@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="Namer">Namer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1043"><i>website/generate-api-docs/example.flow:1043</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1050"><i>parcel/packages/core/types/index.js:1050</i></a>
 </h4>
 
 <pre class="interface"><code>type Namer = {|</code></pre>
@@ -48,7 +48,7 @@
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: PluginLogger,
   |}): <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;,</code></pre>
-<div class="inline-method">Return a filename/filepath for <code>bundle</code>.
+<div class="inline-method">Return a filename/-path for <code>bundle</code> or nullish to leave it to the next namer plugin.
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>

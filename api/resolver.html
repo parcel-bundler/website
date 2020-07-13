@@ -38,22 +38,24 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveResult">ResolveResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1014"><i>website/generate-api-docs/example.flow:1014</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1008"><i>parcel/packages/core/types/index.js:1008</i></a>
 </h4>
 
 <pre class="interface"><code>type ResolveResult = {|</code></pre>
 <pre class="interface"><code>  +filePath?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +isExcluded?: boolean,</code></pre>
 <pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
-<pre class="interface"><code>  +code?: string,</code></pre>
-<pre class="interface"><code>|}</code></pre>
+<div class="inline-method">Corresponds to <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>'s <code>sideEffects</code>.
+</div><pre class="interface"><code>  +code?: string,</code></pre>
+<div class="inline-method">A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from".
+</div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Resolver">Resolver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1110"><i>website/generate-api-docs/example.flow:1110</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1118"><i>parcel/packages/core/types/index.js:1118</i></a>
 </h4>
 
 <pre class="interface"><code>type Resolver = {|</code></pre>
