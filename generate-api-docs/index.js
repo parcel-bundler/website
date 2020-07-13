@@ -325,11 +325,14 @@ for (let [name, { declaration, loc }] of collected) {
       definition: [
         {
           value:
-            escapeHtml(
-              generate(
-                { ...declaration, body: null },
-                { comments: false }
-              ).code.trim()
+            replaceReferencesDescription(
+              name,
+              escapeHtml(
+                generate(
+                  { ...declaration, body: null },
+                  { comments: false }
+                ).code.trim()
+              )
             ) + " {",
         },
         ...declaration.body.properties.map((p) => ({
@@ -520,7 +523,10 @@ ${
 ${
   refs && refs.size > 0
     ? `<h5>Referenced by:</h5>
-${[...refs].map((v) => `<a href="${urlToType(v)}">${v}</a>`).join(", ")}`
+${[...refs]
+  .sort()
+  .map((v) => `<a href="${urlToType(v)}">${v}</a>`)
+  .join(", ")}`
     : ""
 }
 </div>`;

@@ -42,7 +42,7 @@
 </h4>
 <p>Used to control a traversal
 </p>
-<pre class="interface"><code>interface TraversalActions {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#TraversalActions">TraversalActions</a> {</code></pre>
 <pre class="interface"><code>  skipChildren(): void,</code></pre>
 <div class="inline-method">Skip the current node's children and continue the traversal if there are other nodes in the queue.
 </div><pre class="interface"><code>  stop(): void,</code></pre>
@@ -68,7 +68,7 @@
   exit?: <a href="/plugin-system/bundler/#GraphTraversalCallback">GraphTraversalCallback</a>&lt;TNode, TContext&gt;,
 |};</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>
+<a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>
 </div><div class="type">
 <h4 class="title">
   <span id="GraphTraversalCallback">GraphTraversalCallback</span>
@@ -171,7 +171,7 @@
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> (a collection of assets)
 <br></p>
-<pre class="interface"><code>interface Bundle {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#Bundle">Bundle</a> {</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
 <pre class="interface"><code>  +hashReference: string,</code></pre>
 <div class="inline-method">Whether this value is inside <code>filePath</code> it will be replace with the real hash at the end.
@@ -198,7 +198,7 @@
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>
+<a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="NamedBundle">NamedBundle</span>
@@ -206,7 +206,7 @@
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> that got named by a <a href="/plugin-system/namer/#Namer">Namer</a>
 </p>
-<pre class="interface"><code>interface NamedBundle extends Bundle {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a> extends <a href="/plugin-system/bundler/#Bundle">Bundle</a> {</code></pre>
 <pre class="interface"><code>  +publicId: string,</code></pre>
 <pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +name: string,</code></pre>
@@ -214,7 +214,7 @@
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
+<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGroup">BundleGroup</span>
@@ -229,7 +229,7 @@
 <pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>
+<a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableBundleGraph">MutableBundleGraph</span>
@@ -237,7 +237,7 @@
 </h4>
 <p>A <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> in the <a href="/plugin-system/bundler/#Bundler">Bundler</a> that can be modified
 </p>
-<pre class="interface"><code>interface MutableBundleGraph extends BundleGraph&lt;Bundle&gt; {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a> extends <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#Bundle">Bundle</a>&gt; {</code></pre>
 <pre class="interface"><code>  addAssetGraphToBundle(<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>): void,</code></pre>
 <div class="inline-method">Add asset and all child nodes to the bundle.
 </div><pre class="interface"><code>  addEntryToBundle(<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>): void,</code></pre>
@@ -260,7 +260,7 @@
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/bundler/#Bundler">Bundler</a>
+<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGraph">BundleGraph</span>
@@ -268,7 +268,7 @@
 </h4>
 <p>A Graph that contains <a href="/plugin-system/bundler/#Bundle">Bundle</a>-s, <a href="/plugin-system/transformer/#Asset">Asset</a>-s, <a href="/plugin-system/transformer/#Dependency">Dependency</a>-s, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>-s
 </p>
-<pre class="interface"><code>interface BundleGraph&lt;TBundle: Bundle&gt; {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;TBundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>&gt; {</code></pre>
 <pre class="interface"><code>  getAssetById(id: string): <a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
 <pre class="interface"><code>  getAssetPublicId(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): string,</code></pre>
 <pre class="interface"><code>  getBundles(): Array&lt;TBundle&gt;,</code></pre>
@@ -317,7 +317,7 @@ stopping at the first asset after leaving `bundle`.
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/reporter/#BundlingProgressEvent">BundlingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
+<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>, <a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/reporter/#BundlingProgressEvent">BundlingProgressEvent</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
 <h4 class="title">
   <span id="BundleResult">BundleResult</span>
@@ -332,7 +332,7 @@ stopping at the first asset after leaving `bundle`.
 <pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>
+<a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Bundler">Bundler</span>

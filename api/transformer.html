@@ -70,7 +70,7 @@
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
-<pre class="interface"><code>interface Dependency {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/transformer/#Dependency">Dependency</a> {</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
 <pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
 <div class="inline-method">E.g. "lodash" in <code>import {add} from "lodash";</code>
@@ -99,7 +99,7 @@
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
@@ -120,7 +120,7 @@
 </h4>
 <p>An asset (usually represents one source file).
 <br></p>
-<pre class="interface"><code>interface BaseAsset {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
 <pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <pre class="interface"><code>  +fs: FileSystem,</code></pre>
 <div class="inline-method">The file system where the source is located.
@@ -169,7 +169,7 @@
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>
+<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
@@ -177,7 +177,7 @@
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
-<pre class="interface"><code>interface MutableAsset extends BaseAsset {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
 <pre class="interface"><code>  isIsolated: boolean,</code></pre>
 <pre class="interface"><code>  isInline: boolean,</code></pre>
 <pre class="interface"><code>  isSplittable: ?boolean,</code></pre>
@@ -207,21 +207,21 @@
   <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L526"><i>parcel/packages/core/types/index.js:526</i></a>
 </h4>
 
-<pre class="interface"><code>interface Asset extends BaseAsset {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
 <pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
 <div class="inline-method">Throws if there is no <a href="/plugin-system/api/#AST">AST</a>.
 </div><pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
   <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L536"><i>parcel/packages/core/types/index.js:536</i></a>
 </h4>
 
-<pre class="interface"><code>interface Config {</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
 <pre class="interface"><code>  +isSource: boolean,</code></pre>
 <pre class="interface"><code>  +searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
