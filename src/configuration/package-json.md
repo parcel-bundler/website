@@ -100,7 +100,7 @@ Specify the entry points for your source code which gets mapped to your targets,
 {% endsamplefile %}
 {% endsample %}
 
-See [Specifying Entrypoints](#specifying-entrypoints).
+See [Specifying Entrypoints](/getting-started/configuration/#specifying-entrypoints).
 
 #### `targets`
 
@@ -214,7 +214,7 @@ The [--no-source-maps](/features/cli/#general-parameters) CLI parameter sets the
 
 These top-level fields set the default value for `target.*.engines.browsers` and `target.*.engines`, respectively.
 
-Specifies the [environment](#environments).
+Specifies the [environment](/getting-started/configuration/#environments).
 {% sample %}
 {% samplefile "package.json" %}
 
