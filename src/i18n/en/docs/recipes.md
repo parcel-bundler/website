@@ -141,7 +141,7 @@ Done! 😄 Compiled `.js` file can be found inside the dist folder.
 First we need to install the dependencies for Bootstrap and FontAwesome.
 
 ```bash
-npm install bootstrap jquery popper.js
+npm install --save bootstrap jquery popper.js
 npm install --save-dev parcel-bundler @fortawesome/fontawesome-free
 ```
 
