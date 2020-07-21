@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 4
 ---
 
-Note that Parcel 2 _does not support Vue 2_ if you plan to use SFCs; you must use [Vue 3 beta](https://github.com/vuejs/vue-next) or later.
+Note that Parcel does not support using SFCs with Vue 2, you must use [Vue 3 beta](https://github.com/vuejs/vue-next) or later.
 
 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web. Parcel supports Vue without the need for any additional configuration.
 
@@ -53,7 +53,7 @@ app.mount("#app");
 
 ## HMR
 
-Parcel 2 uses the same HMR injection as the official [vue-loader](https://github.com/vuejs/vue-loader) for Webpack, so you'll have a fast, reactive development experience.
+Parcel uses the same HMR injection as the official [vue-loader](https://github.com/vuejs/vue-loader) for Webpack, so you'll have a fast, reactive development experience.
 
 ## Vue 3 Features
 
