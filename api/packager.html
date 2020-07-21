@@ -37,8 +37,41 @@
 <div class="api">
 <div class="type">
 <h4 class="title">
+  <span id="SymbolResolution">SymbolResolution</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L825"><i>parcel/packages/core/types/index.js:825</i></a>
+</h4>
+<p>Specifies a symbol in an asset
+</p>
+<pre class="interface"><code>type SymbolResolution = {|</code></pre>
+<pre class="interface"><code>  +asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
+<div class="inline-method">The <a href="/plugin-system/transformer/#Asset">Asset</a> which exports the symbol.
+</div><pre class="interface"><code>  +exportSymbol: <a href="/plugin-system/api/#Symbol">Symbol</a> | string,</code></pre>
+<div class="inline-method">under which name the symbol is exported
+</div><pre class="interface"><code>  +symbol: void | null | <a href="/plugin-system/api/#Symbol">Symbol</a>,</code></pre>
+<div class="inline-method">The identifier under which the symbol can be referenced.
+</div><pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
+<div class="inline-method">The location of the last specifier that lead to this result.
+</div><pre class="interface"><code>|}</code></pre>
+
+<h5>Referenced by:</h5>
+<a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/packager/#ExportSymbolResolution">ExportSymbolResolution</a>
+</div><div class="type">
+<h4 class="title">
+  <span id="ExportSymbolResolution">ExportSymbolResolution</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L839"><i>parcel/packages/core/types/index.js:839</i></a>
+</h4>
+
+<pre class="interface"><code>type ExportSymbolResolution = {|</code></pre>
+<pre class="interface"><code>  ...<a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>,</code></pre>
+<pre class="interface"><code>  +exportAs: <a href="/plugin-system/api/#Symbol">Symbol</a> | string,</code></pre>
+<pre class="interface"><code>|}</code></pre>
+
+<h5>Referenced by:</h5>
+<a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>
+</div><div class="type">
+<h4 class="title">
   <span id="Packager">Packager</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/v2/generate-api-docs/example.flow#L1079"><i>website/generate-api-docs/example.flow:1079</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1086"><i>parcel/packages/core/types/index.js:1086</i></a>
 </h4>
 
 <pre class="interface"><code>type Packager = {|</code></pre>

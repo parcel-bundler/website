@@ -32,7 +32,7 @@ Parcel.
 
 ### Setting the output path
 
-The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](/configuration/package-json/#main-%2F-module-%2F-browser) and [custom targets](/configuration/package-json/#custom-targets)), using [`targets.*.distDir`](/configuration/package-json/#targets) or the [`--dist-dir`](/features/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)) CLI parameter.
+The path where the output bundles should be placed can be specified (in that order) using a top-level field in `package.json` (see [common targets](/configuration/package-json/#main-%2F-module-%2F-browser) and [custom targets](/configuration/package-json/#custom-targets)), using [`targets.*.distDir`](/configuration/package-json/#targets) or the [`--dist-dir`](</features/cli/#parameters-specific-to-the-non-server-commands-(watch-and-build)>) CLI parameter.
 
 Default values for the output folder
 
@@ -64,12 +64,12 @@ With multiple entrypoints, you should use an explicit `distDir` as oppsed to the
 Environments tell Parcel how to transform and bundle each asset. They tell
 Parcel if an asset is going to be run in a browser or in Node/Electron.
 
-They also tell Parcel's plugins what their output should be. They tell
-[Babel](http://babeljs.io/docs/en/babel-preset-env#targetsbrowsers) or
-[Autoprefixer](https://github.com/postcss/autoprefixer#browsers) what browsers
-your asset is targeting.
+They also tell Parcel's plugins what their output should be by specifying which
+browsers (-versions) your build is targeting
+(e.g. [Babel](http://babeljs.io/docs/en/babel-preset-env#targetsbrowsers) or
+[Autoprefixer](https://github.com/postcss/autoprefixer#browsers)).
 
-You can configure environments through [`targets`](/configuration/package-json/#targets) and [`engines / browserslist`](/configuration/package-json/#engines-%2F-browserslist).
+You can configure environments through [`targets#context` and `targets#engines`](/configuration/package-json/#targets) and [`engines / browserslist`](/configuration/package-json/#engines-%2F-browserslist).
 
 ### Configuring Parcel
 
