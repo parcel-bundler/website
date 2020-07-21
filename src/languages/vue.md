@@ -1,14 +1,14 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: recipes-vue
+  key: languages-vue
   title: <img src="/assets/lang-icons/vue.svg" alt=""/> Vue
-  order: 7
+  order: 4
 ---
 
 Note that Parcel 2 _does not support Vue 2_ if you plan to use SFCs; you must use [Vue 3 beta](https://github.com/vuejs/vue-next) or later.
 
-As with [React](/recipes/react), it's typically easiest to use your HTML file as the entry point to your app.
+Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web. Parcel supports Vue without the need for any additional configuration.
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -65,7 +65,7 @@ Since Parcel uses the latest Vue 3 beta, you can use all Vue 3 features, such as
 ```html
 <template>
   <button @click="increment">
-    Count is: {% raw %}{{ state.count }}{% endraw %}, double is: {% raw %}{{
+    Count is: {% raw %}{{ state.count }}{% endraw %} Double is: {% raw %}{{
     state.double }}{% endraw %}
   </button>
 </template>
@@ -98,11 +98,11 @@ Since Parcel uses the latest Vue 3 beta, you can use all Vue 3 features, such as
 
 ## Language Support
 
-Parcel supports [JavaScript](/languages/babel), [TypeScript](/languages/typescript), and [CoffeeScript](/languages/coffeescript) (TODO: fix link) as scripting languages in Vue.
+Parcel supports [JavaScript](/languages/babel), [TypeScript](/languages/typescript), and [CoffeeScript](/languages/coffeescript) as scripting languages in Vue.
 
 Almost any templating language (all those supported by [consolidate](https://www.npmjs.com/package/consolidate)) can be used.
 
-For styling, [Less](/languages/less), [Sass](/languages/sass), and [Stylus](/languages/stylus) (TODO: fix links) are supported. In addition, [CSS Modules](/languages/postcss) and [scoped style](https://vue-loader.vuejs.org/guide/scoped-css.html) can be used with the `module` and `scoped` modifiers.
+For styling, [Less](/languages/less), [Sass](/languages/sass), and [Stylus](/languages/stylus) are supported. In addition, [CSS Modules](/languages/postcss) and [scoped style](https://vue-loader.vuejs.org/guide/scoped-css.html) can be used with the `module` and `scoped` modifiers.
 
 {% sample %}
 {% samplefile "App.vue" %}

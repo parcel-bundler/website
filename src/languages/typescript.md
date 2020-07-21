@@ -2,8 +2,8 @@
 layout: layout.njk
 eleventyNavigation:
   key: languages-typescript
-  title: <img src="/assets/lang-icons/typescript.svg" alt=""/> Typescript
-  order: 3
+  title: <img src="/assets/lang-icons/typescript.svg" alt=""/> TypeScript
+  order: 2
 summary: Explains the different ways TypeScript can be transpiled
 ---
 
