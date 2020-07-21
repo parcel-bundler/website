@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Compared to Webpack, Parcel's paradigm is to use your HTML file as the entry point, not merely the main script:
 
-{% sample "index.html" %}
+{% sample %}
 {% samplefile "index.html" %}
 
 ```html
