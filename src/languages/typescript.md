@@ -42,7 +42,7 @@ Because Parcel processes each file individually, it implicitly sets `isolatedMod
 
 - No type checking
 - `const enum` isn't supported
-- Some `tsconfig.json` options (such as `paths`) aren't currently not respected with the default config.
+- Some `tsconfig.json` options (such as `paths`) are currently not respected with the default config.
 
 ## Type Checking
 
