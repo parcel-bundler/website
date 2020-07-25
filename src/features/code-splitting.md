@@ -110,6 +110,8 @@ Options:
 | 1                      | 1            | 30000           | 6                     |
 | 2 (default)            | 1            | 20000           | 25                    |
 
+You can read more about this topic here on [web.dev](https://web.dev/granular-chunking-nextjs/)
+
 <!--
 
 ## Bundle resolution
