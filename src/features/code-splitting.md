@@ -29,7 +29,6 @@ import("./pages/about").then(function (page) {
 {% samplefile "pages/about.js" %}
 
 ```js
-// pages/about.js
 export function render() {
   // Render the page
 }
@@ -58,7 +57,6 @@ load();
 {% samplefile "pages/about.js" %}
 
 ```js
-// pages/about.js
 export function render() {
   // Render the page
 }
@@ -72,6 +70,45 @@ export function render() {
 If a asset is imported both synchrounously and asynchrounously, it doesn't make sense to create an actual async bundle (because the module is already loaded anyways).
 
 In this situation, Parcel instead turns `import("foo")` into `Promise.resolve(require("foo"))`. So in a larger build, you should think of dynamic/async imports as "I don't need this import synchronously" rather than "This will become a new bundle".
+
+## Shared Bundles
+
+In many situations (e.g. when two HTML entry with a JavaScript `<script>` use the asset(s) or when two dynamic imports have common assets), Parcel splits these into a separate sibling bundle ("shared" bundle) to minimize code duplication.
+
+The parameters for when this happens can be configured in `package.json`:
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json5
+{
+  "name": "my-project",
+  "dependencies": {
+    ...
+  },
+  "@parcel/bundler-default": {
+    "minBundles": 1,
+    "minBundleSize": 3000,
+    "maxParallelRequests": 20
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Options:
+
+- **minBundles**: for an asset to be split, it has to be used by more than `minBundles` bundles
+- **minBundleSize**: for a shared bundled to be created, it has to be at least `minBundleSize` bytes big (before minification/treeshaking)
+- **maxParallelRequests**: To prevent overloading the network with too many concurrent requests, this ensure that a given bundle can have only `maxParallelRequests - 1` sibling bundles (which have be loaded together with the actual bundle).
+
+- **http**: This is a shorthand for setting the above values to defaults which are optimized for HTTP/1 or HTTP/2:
+
+| HTTP version `version` | `minBundles` | `minBundleSize` | `maxParallelRequests` |
+| ---------------------- | ------------ | --------------- | --------------------- |
+| 1                      | 1            | 30000           | 6                     |
+| 2 (default)            | 1            | 20000           | 25                    |
 
 <!--
 
