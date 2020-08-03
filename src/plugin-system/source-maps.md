@@ -98,11 +98,11 @@ export default new Transform({
       // We get the original map buffer from the asset
       // to extend our mappings on top of it to ensure we are mapping to the original source
       // instead of the previous transformation
-      let originalMap = await asset.getMapBuffer();
-      if (originalMap) {
+      let originalMapBuffer = await asset.getMapBuffer();
+      if (originalMapBuffer) {
         // The `extends` function uses the provided map to remap the original source positions of the map it is called on
-        // So in this case the original source positions of `map` get remapped to the positions in `originalMap`
-        map.extends(originalMap);
+        // So in this case the original source positions of `map` get remapped to the positions in `originalMapBuffer`
+        map.extends(originalMapBuffer);
       }
     }
 
