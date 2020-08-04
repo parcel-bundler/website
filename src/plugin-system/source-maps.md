@@ -116,6 +116,21 @@ export default new Transform({
 });
 ```
 
+## Diagnosing issues
+
+If you encounter incorrect mappings and want to debug these mappings we have built tools that can help you diagnose these issues, this includes a specific reporter (`@parcel/reporter-sourcemap-visualiser`) to create a `sourcemap-info.json` file with all the necessary information to visualize all the mappings and source content.
+
+For it to work you can add a custom `.parcelrc`:
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "reporters": ["...", "@parcel/reporter-sourcemap-visualiser"]
+}
+```
+
+After the reporter has created the `sourcemap-info.json` file you can upload it to the [sourcemap visualizer](https://sourcemap-visualiser.now.sh/)
+
 ## `@parcel/source-maps`: API
 
 {% include "../../api/source-map.html" %}
