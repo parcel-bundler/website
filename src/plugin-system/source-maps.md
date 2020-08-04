@@ -74,7 +74,7 @@ The `asset` value that gets passed in the `parse`, `transform` and `generate` fu
 
 You are free to manipulate the sourcemap at any of these steps in the transformer as long as you ensure the sourcemap that gets returned in `generate` maps to the original sourcefile correctly.
 
-Below is an example of the recommended way on how to manipulate sourcemaps in a transformer plugin:
+Below is an example on how to manipulate sourcemaps in a transformer plugin:
 
 ```js
 import { Transform } from "@parcel/plugin";
@@ -111,6 +111,40 @@ export default new Transform({
       code: compilationResult.code,
       // Make sure to return the map
       // we need it for concatenating the sourcemaps together in the final bundle's sourcemap
+      map,
+    };
+  },
+});
+```
+
+If your compiler supports the option to pass in an existing sourcemap, you can also experiment with that as it might be a more accurate/better solution than what you see in the code snippet above.
+
+An example of how this would work:
+
+```js
+import { Transform } from "@parcel/plugin";
+import SourceMap from "@parcel/source-map";
+
+export default new Transform({
+  // ...
+
+  async generate({ asset, ast, resolve, options }) {
+    // Get the original map from the asset
+    let originalMap = await asset.getMap();
+    let compilationResult = dummyCompiler(await asset.getAST(), {
+      // Pass the VLQ encoded version of the originalMap to the compiler
+      originalMap: originalMap.toVLQ(),
+    });
+
+    // In this case the compiler is responsible for mapping to the original positions provided in the originalMap
+    // so we can just convert it to a Parcel SourceMap and return it
+    let map = new SourceMap();
+    if (compilationResult.map) {
+      map.addRawMappings(compilationResult.map);
+    }
+
+    return {
+      code: compilationResult.code,
       map,
     };
   },
@@ -189,7 +223,16 @@ export default new Packager({
 
 ## PostProcessing sourcemaps in Optimizers
 
-Using sourcemaps in optimizers is similar to using it in Transformers as you get one file as input and are expected to return that same file as output but optimized.
+Using sourcemaps in optimizers is identical to how you use it in Transformers as you get one file as input and are expected to return that same file as output but optimized.
+
+The only difference with optimizers is that the map is not provided as part of an asset but rather as a separate parameter/option as you can see in the code snippet below. As always the map is an instance of the Parcel SourceMap class.
+
+```js
+// The contents and map are passed separately
+async optimize({ bundle, contents, map }) {
+  return { contents, map }
+}
+```
 
 ## Diagnosing issues
 
