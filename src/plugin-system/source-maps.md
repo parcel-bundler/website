@@ -78,6 +78,7 @@ Below is an example of the recommended way on how to manipulate sourcemaps in a 
 
 ```js
 import { Transform } from "@parcel/plugin";
+import SourceMap from "@parcel/source-map";
 
 export default new Transform({
   // ...
@@ -115,6 +116,80 @@ export default new Transform({
   },
 });
 ```
+
+## Concatenating sourcemaps in Packagers
+
+If you're writing a custom packager, it's your responsibility to concatenate the sourcemaps of all the assets while packaging the assets. This is done by creating a new sourcemap instance using `new SourceMap()` and adding new mappings to it using the `addBufferMappings(buffer, lineOffset, columnOffset)` function. The lineOffset should be equal to the line index at which the asset output starts.
+
+Below is an example of how to do this in code:
+
+```js
+import { Packager } from "@parcel/plugin";
+import SourceMap from "@parcel/source-map";
+
+export default new Packager({
+  async package({ bundle, options }) {
+    // We instantiate the contents variable, which will content a string which represents the entire output bundle
+    let contents = "";
+
+    // We instantiate a new SourceMap to which we'll add all asset maps
+    let map = new SourceMap();
+
+    // This is a queue that reads in all file content and maps and saves them for use in the actual packaging
+    let queue = new PromiseQueue({ maxConcurrent: 32 });
+    bundle.traverse((node) => {
+      if (node.type === "asset") {
+        queue.add(async () => {
+          let [code, mapBuffer] = await Promise.all([
+            node.value.getCode(),
+            bundle.target.sourceMap && node.value.getMapBuffer(),
+          ]);
+          return { code, mapBuffer };
+        });
+      }
+    });
+
+    let i = 0;
+    // Process the entire queue...
+    let results = await queue.run();
+
+    // We traverse the bundle and add the contents of each asset to contents and the mapBuffer's to the map
+    bundle.traverse((node) => {
+      if (node.type === "asset") {
+        // Get the data from the queue results
+        let { code, mapBuffer } = results[i];
+
+        // Add the output to the contents
+        let output = code || "";
+        contents += output;
+
+        // If Parcel requires sourcemaps we add the mapBuffer to the map
+        if (options.sourceMaps) {
+          if (mapBuffer) {
+            // we add the mapBuffer to the map with the lineOffset
+            // The lineOffset is equal to the line the content of the asset starts at
+            // which is the same as the contents length before this asset was added
+            map.addBufferMappings(mapBuffer, lineOffset);
+          }
+
+          // We add the amount of lines of the current asset to the lineOffset
+          // this way we know the length of `contents` without having to recalculate it each time
+          lineOffset += countLines(output) + 1;
+        }
+
+        i++;
+      }
+    });
+
+    // Return the contents and map so Parcel Core can save these to disk or get post-processed by optimizers
+    return { contents, map };
+  },
+});
+```
+
+## PostProcessing sourcemaps in Optimizers
+
+Using sourcemaps in optimizers is similar to using it in Transformers as you get one file as input and are expected to return that same file as output but optimized.
 
 ## Diagnosing issues
 
