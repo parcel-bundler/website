@@ -12,7 +12,7 @@ Parcel utilizes the package `@parcel/source-maps` for processing all source maps
 
 To use the library, you start off by creating an instance of the exported `SourceMap` class, on which you can call various functions to add and edit source mappings.
 
-Below is an example with all the ways you can add mappings to a SourceMap instance:
+Below is an example covering all ways of adding mappings to a `SourceMap` instance:
 
 ```js
 import SourceMap from "@parcel/source-map";
