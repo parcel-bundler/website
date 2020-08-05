@@ -19,8 +19,8 @@ import SourceMap from "@parcel/source-map";
 
 let sourcemap = new SourceMap();
 
-// Each function that adds mappings, has optional offset arguments
-// these can be used to offset the generated mappings by a certain amount
+// Each function that adds mappings has optional offset arguments.
+// These can be used to offset the generated mappings by a certain amount.
 let lineOffset = 0;
 let columnOffset = 0;
 
