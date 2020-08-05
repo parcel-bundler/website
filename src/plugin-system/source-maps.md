@@ -72,8 +72,7 @@ sourcemap.addBufferMappings(originalMapBuffer, lineOffset, columnOffset);
 
 ## Transformations/Manipulations
 
-If your plugin does any code manipulations, you should ensure that it creates correct mappings to the original source code to guarantee that we still end up creating an accurate source map at the end of the bundling process. You are expected to return a `SourceMap` instance at the end of a transform in a [Transformer](/plugin-system/transformer/) plugin. We also provide the source 
- map from the previous transform to ensure you map to the original source code and not just the output of the previous transform.
+If your plugin does any code manipulations, you should ensure that it creates correct mappings to the original source code to guarantee that we still end up creating an accurate source map at the end of the bundling process. You are expected to return a `SourceMap` instance at the end of a transform in a [Transformer](/plugin-system/transformer/) plugin. We also provide the source map from the previous transform to ensure you map to the original source code and not just the output of the previous transform.
 
 The `asset` value that gets passed in the `parse`, `transform` and `generate` functions of a transformer plugin contains a function called `getMap()` and `getMapBuffer()`, these functions can be used to get a SourceMap instance (`getMap()`) and the cached SourceMap Buffer (`getMapBuffer()`).
 
