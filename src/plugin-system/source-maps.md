@@ -72,7 +72,7 @@ sourcemap.addBufferMappings(originalMapBuffer, lineOffset, columnOffset);
 
 ## Transformations/Manipulations
 
-If your plugin does any code manipulations it should ensure that it creates correct mappings to the original source-code to guarantee that we still end up creating an accurate source-map at the end of the bundling process. In this case you are expected to return a `SourceMap` instance at the end of a transform in a [Transformer](/plugin-system/transformer/) plugin. We also provide the source-map from the previous transform to ensure you map to the original source code and not the output of the previous transform.
+If your plugin does any code manipulations it should ensure that it creates correct mappings to the original source-code to guarantee that we still end up creating an accurate source-map at the end of the bundling process. You are expected to return a `SourceMap` instance at the end of a transform in a [Transformer](/plugin-system/transformer/) plugin. We also provide the source-map from the previous transform to ensure you map to the original source code and not the output of the previous transform.
 
 The `asset` value that gets passed in the `parse`, `transform` and `generate` functions of a transformer plugin contains a function called `getMap()` and `getMapBuffer()`, these functions can be used to get a SourceMap instance (`getMap()`) and the cached SourceMap Buffer (`getMapBuffer()`).
 
@@ -121,7 +121,7 @@ export default new Transform({
 });
 ```
 
-If your compiler supports the option to pass in an existing sourcemap, you can also experiment with that as it might be a more accurate/better solution than what you see in the code snippet above.
+If your compiler supports the option to pass in an existing sourcemap, you can also use that as it could result in more accurate/better sourcemaps than using the method in the previous example.
 
 An example of how this would work:
 
@@ -159,7 +159,7 @@ export default new Transform({
 
 If you're writing a custom packager, it's your responsibility to concatenate the sourcemaps of all the assets while packaging the assets. This is done by creating a new sourcemap instance using `new SourceMap()` and adding new mappings to it using the `addBufferMappings(buffer, lineOffset, columnOffset)` function. The lineOffset should be equal to the line index at which the asset output starts.
 
-Below is an example of how to do this in code:
+Below is an example of how to do this:
 
 ```js
 import { Packager } from "@parcel/plugin";
