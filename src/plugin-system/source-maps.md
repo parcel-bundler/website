@@ -157,7 +157,7 @@ export default new Transform({
 
 ## Concatenating sourcemaps in Packagers
 
-If you're writing a custom packager, it's your responsibility to concatenate the sourcemaps of all the assets while packaging the assets. This is done by creating a new sourcemap instance using `new SourceMap()` and adding new mappings to it using the `addBufferMappings(buffer, lineOffset, columnOffset)` function. The lineOffset should be equal to the line index at which the asset output starts.
+If you're writing a custom packager, it's your responsibility to concatenate the sourcemaps of all the assets while packaging the assets. This is done by creating a new `SourceMap` instance and adding new mappings to it using the `addBufferMappings(buffer, lineOffset, columnOffset)` function. `lineOffset` should be equal to the line index at which the asset output starts.
 
 Below is an example of how to do this:
 
