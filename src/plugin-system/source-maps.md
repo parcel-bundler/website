@@ -84,7 +84,7 @@ Below is an example on how to manipulate sourcemaps in a transformer plugin:
 import { Transformer } from "@parcel/plugin";
 import SourceMap from "@parcel/source-map";
 
-export default new Transform({
+export default new Transformer({
   // ...
 
   async generate({ asset, ast, resolve, options }) {
