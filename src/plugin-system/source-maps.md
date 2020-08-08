@@ -225,7 +225,7 @@ export default new Packager({
 });
 ```
 
-## PostProcessing sourcemaps in Optimizers
+## Postprocessing source maps in optimizers
 
 Using sourcemaps in optimizers is identical to how you use it in Transformers as you get one file as input and are expected to return that same file as output but optimized.
 
