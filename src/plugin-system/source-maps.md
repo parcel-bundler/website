@@ -251,7 +251,7 @@ To enable it, add a custom `.parcelrc`:
 }
 ```
 
-After the reporter has created the `sourcemap-info.json` file you can upload it to the [sourcemap visualizer](https://sourcemap-visualiser.now.sh/)
+After the reporter has created the `sourcemap-info.json` file, you can upload it to the [sourcemap visualizer](https://sourcemap-visualiser.now.sh/)
 
 ## `@parcel/source-maps`: API
 
