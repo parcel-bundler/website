@@ -229,7 +229,7 @@ export default new Packager({
 
 Using source maps in optimizers is identical to how you use it in transformers as you get one file as input and are expected to return that same file as output but optimized.
 
-The only difference with optimizers is that the map is not provided as part of an asset but rather as a separate parameter/option as you can see in the code snippet below. As always the map is an instance of the Parcel SourceMap class.
+The only difference with optimizers is that the map is not provided as part of an asset but rather as a separate parameter/option as you can see in the code snippet below. As always, the map is an instance of the `SourceMap` class.
 
 ```js
 // The contents and map are passed separately
