@@ -240,7 +240,7 @@ async optimize({ bundle, contents, map }) {
 
 ## Diagnosing issues
 
-If you encounter incorrect mappings and want to debug these mappings we have built tools that can help you diagnose these issues, this includes a specific reporter (`@parcel/reporter-sourcemap-visualiser`) to create a `sourcemap-info.json` file with all the necessary information to visualize all the mappings and source content.
+If you encounter incorrect mappings and want to debug these mappings we have built tools that can help you diagnose these issues. By running a specific reporter (`@parcel/reporter-sourcemap-visualiser`), Parcel create a `sourcemap-info.json` file with all the necessary information to visualize all the mappings and source content.
 
 For it to work you can add a custom `.parcelrc`:
 
