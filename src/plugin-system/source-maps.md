@@ -81,7 +81,7 @@ You are free to manipulate the sourcemap at any of these steps in the transforme
 Below is an example on how to manipulate sourcemaps in a transformer plugin:
 
 ```js
-import { Transform } from "@parcel/plugin";
+import { Transformer } from "@parcel/plugin";
 import SourceMap from "@parcel/source-map";
 
 export default new Transform({
