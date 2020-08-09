@@ -11,9 +11,9 @@ Transformers _transform_ single assets as they are discovered and added to the
 asset graph. They mostly call out to different compilers and preprocessors.
 
 ```js
-import { Transform } from "@parcel/plugin";
+import { Transformer } from "@parcel/plugin";
 
-export default new Transform({
+export default new Transformer({
   async canReuseAST({ ast, options, logger }) {
     return false;
   }
