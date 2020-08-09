@@ -126,10 +126,10 @@ If your compiler supports the option to pass in an existing sourcemap, you can a
 An example of how this would work:
 
 ```js
-import { Transform } from "@parcel/plugin";
+import { Transformer } from "@parcel/plugin";
 import SourceMap from "@parcel/source-map";
 
-export default new Transform({
+export default new Transformer({
   // ...
 
   async generate({ asset, ast, resolve, options }) {
