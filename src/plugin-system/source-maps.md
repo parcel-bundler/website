@@ -225,6 +225,36 @@ export default new Packager({
 });
 ```
 
+### Concatenating ASTs
+
+If you're concatenating ASTs instead of source contents you already have the source mappings embedded into the AST which you can use to generate the final sourcemap. You however have to ensure that those mappings stay intact while editing the nodes, sometimes this can be quite challenging if you're doing a lot of modifications.
+
+An example of how this works:
+
+```js
+import { Packager } from "@parcel/plugin";
+import SourceMap from "@parcel/source-map";
+
+export default new Packager({
+  async package({ bundle, options }) {
+    // Do the AST concatenation and return the compiled result
+    let compilationResult = concatAndCompile(bundle);
+
+    // Create the final packaged sourcemap
+    let map = new SourceMap();
+    if (compilationResult.map) {
+      map.addRawMappings(compilationResult.map);
+    }
+
+    // Return the compiled code and map
+    return {
+      code: compilationResult.code,
+      map,
+    };
+  },
+});
+```
+
 ## Postprocessing source maps in optimizers
 
 Using source maps in optimizers is identical to how you use it in transformers as you get one file as input and are expected to return that same file as output but optimized.
