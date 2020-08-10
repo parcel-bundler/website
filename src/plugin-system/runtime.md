@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-runtime
   title: Runtime
-  order: 7
+  order: 8
 summary: "A plugin type: Programatically insert assets out of thin air into bundles"
 ---
 

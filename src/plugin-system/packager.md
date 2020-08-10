@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-packager
   title: Packager
-  order: 8
+  order: 9
 summary: "A plugin type: Turn a group of assets into a bundle file"
 ---
 
