@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-namer
   title: Namer
-  order: 7
+  order: 6
 summary: "A plugin type: Generates an output-filepath for a bundle"
 ---
 

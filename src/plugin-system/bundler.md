@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-bundler
   title: Bundler
-  order: 6
+  order: 5
 summary: "A plugin type: Turns an asset graph into a bundle graph"
 ---
 

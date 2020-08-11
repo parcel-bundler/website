@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-logger
   title: Logger
-  order: 3
+  order: 14
 summary: The way to output messages to your users
 ---
 
