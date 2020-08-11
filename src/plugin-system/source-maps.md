@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-source-maps
   title: Source Maps
-  order: 14
+  order: 15
 ---
 
 Parcel utilizes the package `@parcel/source-maps` for processing all source maps to ensure performance and reliability when manipulating source maps across plugins and Parcel's core. This library has been written from the ground up in C++ with both source map manipulation and concatenation in mind and gave us a 20x performance improvement over our old solution using Mozilla's [`source-map`](https://github.com/mozilla/source-map) library and some internal utilities. This improvement in performance is mainly due to optimizations in the data structures and the way in which we cache source maps.
