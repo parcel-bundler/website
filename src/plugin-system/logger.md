@@ -130,6 +130,58 @@ export default new Transformer({
 });
 ```
 
+## Throwing a diagnostic
+
+Instead of logging a diagnostic you can also throw diagnostics, this can be used to fail a build while also providing all the context you can provide in a diagnostic.
+
+An example on how to use this:
+
+```js
+import { Transformer } from "@parcel/plugin";
+import ThrowableDiagnostic from "@parcel/diagnostic";
+
+export default new Transformer({
+  // ...
+
+  async transform({ asset, ast, config, logger, resolve, options }) {
+    try {
+      loadDummyCompiler();
+    } catch (err) {
+      throw new ThrowableDiagnostic({
+        diagnostic: {
+          message: err.message,
+          filePath: asset.filePath,
+          language: asset.type,
+          stack: err.stack,
+          name: err.name,
+          codeFrame: {
+            code: await asset.getCode(),
+            codeHighlights: [
+              {
+                start: {
+                  line: 1,
+                  column: 5,
+                },
+                end: {
+                  line: 2,
+                  column: 3,
+                },
+                message: "This is an example message inside a **codeframe**",
+              },
+            ],
+          },
+          hints: [
+            "Install __@dummy/compiler__ using *npm install @dummy/compiler*",
+          ],
+        },
+      });
+    }
+
+    // ...
+  },
+});
+```
+
 ## Automatically collected logs and errors
 
 Parcel core automatically collects any logs created by calling the global variable `console`, this means whenever you do a `console.log` we internally catch this and convert it to a Diagnostic object. This is not recommended as we do not have as much information as we do when calling the logger instance directly. We also do the same for errors, whenever you throw an error we convert it into a Diagnostic, append information about the plugin to it and send it to the logger.
