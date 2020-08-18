@@ -20,13 +20,14 @@ yarn add react-dom
 yarn add --dev parcel-bundler
 ```
 
-Add Start script to `package.json`
+Add Start script to `package.json` and add a homepage property for your production build if using react-router for your app
 
 ```javascript
 // package.json
 "scripts": {
   "start": "parcel index.html"
-}
+},
+"homepage": ".",
 ```
 
 ## Preact
