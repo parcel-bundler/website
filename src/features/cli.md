@@ -26,6 +26,16 @@ parcel a.html b.html
 parcel ./**/*.html
 ```
 
+NOTE: If a glob pattern ends in an asterisk `*`, be sure to wrap the glob in single quotes, otherwise you may experience issues caused by your shell.
+
+```bash
+# OK
+parcel './img/**/*'
+
+# Not OK
+parcel ./img/**/*
+```
+
 {% warning %}
 
 If you have specified multiple HTML entry points and none of them is has the output path `/index.html`, the dev server will respond to `localhost:1234/` with a 404, since Parcel doesn't know which HTML bundle is the index.
