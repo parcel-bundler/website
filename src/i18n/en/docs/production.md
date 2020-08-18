@@ -36,7 +36,7 @@ Parcel follows the following table, when it comes to naming bundles (Entrypoints
 |                          HTML | anchor link        |       ❌       |
 | Raw (Images, text files, ...) | Import/Require/... |       ✅       |
 
-The file hash follows the following naming pattern: `<directory name>-<hash>.<extension>`
+The file hash follows the following naming pattern: `<directory name>.<hash>.<extension>`
 
 ## Cross platform gotchas
 
