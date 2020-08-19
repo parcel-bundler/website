@@ -51,7 +51,7 @@ The `DiagnosticCodeFrame` Object describes how to format a code frame. A code fr
 
 For the formatting of these objects we've built our own code frame library `@parcel/codeframe` which supports multiple highlights and code formatting.
 
-##### Properties of a CodeFrame Object
+##### Properties
 
 - `code`(string): The contents of the source file (not required if a filePath is provided to the diagnostic, you however have to be 100% sure the code that this codeframe applies to is still identical to the code at the filePath's location)
 - `codeHighlights`: Array of CodeHighlight Object(s)
