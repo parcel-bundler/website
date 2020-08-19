@@ -15,6 +15,22 @@ The "entries" in all commands can be:
 - one or more globs
 - one or more directorises (see [Specifying Entrypoints](/getting-started/configuration/#specifying-entrypoints))
 
+{% warning %}
+
+If a glob pattern contains a wildcard `*`, be sure to wrap the pattern in single quotes. This ensures that Parcel reads the pattern correctly without it being manipulated by your shell.
+
+```bash
+# OK
+parcel './**/*.html'
+parcel './img/**/*'
+
+# Not OK
+parcel ./**/*.html
+parcel ./img/**/*
+```
+
+{% endwarning %}
+
 ### `parcel [serve] <entries>`
 
 Starts up a development server, which will automatically rebuild your app as you change files and supports [hot module replacement](/features/hmr/).
@@ -23,7 +39,7 @@ You may also pass a glob or list of globs for multiple entry points:
 ```bash
 parcel index.html
 parcel a.html b.html
-parcel ./**/*.html
+parcel './**/*.html'
 ```
 
 {% warning %}

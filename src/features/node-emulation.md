@@ -51,7 +51,7 @@ When (or more likely a dependency) importing packages such as `crypto`, `fs` or 
 
 ## 📄 Inlining fs.readFileSync
 
-Calls to `fs.readFileSync` are replaced with the file's contents if the filepath is statically determinable
+Calls to `fs.readFileSync` are replaced with the file's contents if the filepath is statically determinable and inside the [project root](/features/module-resolution/)
 
 - `fs.readFileSync(..., "utf8")`: with the contants as string with (or any other valid encoding)
 - `fs.readFileSync(...)`: a Buffer object (e.g. `Buffer.from(....)` together with the an potentionally necessary polyfill)
@@ -78,3 +78,51 @@ console.log("data");
 
 {% endsamplefile %}
 {% endsample %}
+
+## 🔧 Disabling These Features
+
+Inlining of [environment variables](#🌳-environment-variables) and [`readFileSync` calls](#%F0%9F%93%84-inlining-fs.readfilesync) can be disabled via a `@parcel/transformer-js` key in `package.json`:
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json5
+{
+  "name": "my-project",
+  "dependencies": {
+    ...
+  },
+  "@parcel/transformer-js": {
+    inlineFS: false,
+    inlineEnvironment: false
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+`inlineEnvironment` can also be an array of glob strings:
+
+```json5
+{
+  "name": "my-project",
+  "dependencies": {
+    ...
+  },
+  "@parcel/transformer-js": {
+    inlineEnvironment: ["SENTRY_*"]
+  }
+}
+```
+
+`inlineFS` applies to `readFileSync` calls and `inlineEnvironment` to `process.env.SOMETHING`:
+
+```ts
+{
+  inlineFS: boolean,
+  inlineEnvironment: boolean | Array<Glob>
+}
+```
+
+(This functionality is provided by `@parcel/transformer-js` and `@parcel/resolver-default`.)
