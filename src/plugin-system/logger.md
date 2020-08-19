@@ -35,7 +35,7 @@ A `Diagnostic` is a JavaScript object with a predefined set of properties that a
 - `message`(string): This is the message you want to log.
 - `filePath`(string): Path to the file this diagnostic is about (optional)
 - `language`(string): Language of the file this diagnostic is about (optional)
-- `codeFrame`[(CodeFrame)](#codeframe): A codeframe that points to a certain location(s) in the file this diagnostic is about (optional)
+- `codeFrame`[(DiagnosticCodeFrame)](#diagnosticcodeframe): A code frame points to a certain location(s) in the file this diagnostic is linked to (optional)
 - `hints`(Array\<string\>): A list of strings that suggest ways to resolve this issue. (optional)
 
 #### Error related fields
