@@ -61,7 +61,7 @@ For the formatting of these objects we've built our own code frame library `@par
 
 ### Formatting the messages
 
-To format the messages in a diagnostic we use a very minimal version of markdown specifically built to be compatible with terminals and anything else, while also not being too cryptic when displayed without any formatting. For Parcel's cli-reporter we use our own `@parcel/markdown-ansi` library that converts these markdown strings to ansi.
+To format the messages in a diagnostic, we use a very minimal version of markdown specifically built to be compatible with terminals and anything else, while also not being too cryptic when displayed without any formatting. For our `@parcel/reporter-cli  we use our own `@parcel/markdown-ansi` library that converts these markdown strings to ANSI escape sequences.
 
 The supported markdown features are `**bold**`, `*italic*`/`_italic_`, `__underlined__` and `~~strikethrough~~`.
 
