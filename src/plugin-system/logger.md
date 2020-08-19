@@ -26,7 +26,7 @@ There is a function for each type of log you can output, these functions are `ve
 
 ## Diagnostics
 
-A diagnostic is a JavaScript object with a predefined set of properties that are required to create a useful log message, this can be anything from a verbose message to an error. This object includes a message, information about the file, a codeframe, error information and hints on how to potentially resolve the issue.
+A `Diagnostic` is a JavaScript object with a predefined set of properties that are required to create a useful log message, this can be anything from a verbose message to an error. This object can includes a message, information about the file, a codeframe, error information and hints on how to potentially resolve the issue.
 
 ### The properties of a Diagnostic
 
