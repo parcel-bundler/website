@@ -9,7 +9,7 @@ summary: The way to output messages to your users
 
 ## Introduction
 
-Every time you want to log something in a plugin, you have to go through the logger. Every function of a plugin has a logger instance as one of it's parameters. This instance has been instantiated with all the information core needs to identify your plugin as the originator.
+Every time you want to log something in a plugin, you have to go through the logger. Every function of a plugin is passed a logger instance as a parameter. This instance has already all the information Parcel needs to identify your plugin as the origin of the message.
 
 The logger uses a format we called [Diagnostics](#diagnostics) which is a JavaScript object with a standardized set of properties, a [Reporter](/plugin-system/reporter/) uses this information to log your message to it's target format while having complete freedom as to how this data should be formatted and displayed.
 
