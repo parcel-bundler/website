@@ -11,7 +11,7 @@ summary: The way to output messages to your users
 
 Every time you want to log something in a plugin, you have to go through the logger. Every function of a plugin is passed a logger instance as a parameter. This instance has already all the information Parcel needs to identify your plugin as the origin of the message.
 
-The logger uses a format we called [Diagnostics](#diagnostics) which is a JavaScript object with a standardized set of properties, a [Reporter](/plugin-system/reporter/) uses this information to log your message to it's target format while having complete freedom as to how this data should be formatted and displayed.
+The logger uses a format we called [diagnostics](#diagnostics) which is a JavaScript object with a standardized set of properties, a [Reporter](/plugin-system/reporter/) uses this information to log your message to its target format while having complete freedom as to how this data should be formatted and displayed.
 
 There is a function for each type of log you can output, these functions are `verbose(diagnostic)`, `info(diagnostic)`, `log(diagnostic)`, `warn(diagnostic)` and `error(diagnostic)`. These log levels are used for defining the severity of your log message, this is useful for formatting and filtering. For example, the end user can use the flag [`--log-level`](/features/cli/#general-parameters) to define which messages it wants to see. Each of these functions also have a single parameter called diagnostic, this parameter can either be a single [diagnostic](#diagnostics) object or an array of [diagnostics](#diagnostics), depending on how many messages you want to log.
 
