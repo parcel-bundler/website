@@ -67,7 +67,7 @@ The supported markdown features are `**bold**`, `*italic*`/`_italic_`, `__underl
 
 ## How to log a message
 
-Once you're familiar with the Diagnostic format you can log anything you want, from verbose messages to errors with codeframes and hints so your users don't have to search the web for hours to find a solution.
+Once you're familiar with the Diagnostic format, you can log anything you want, from verbose messages to errors with codeframes and hints so your users don't have to search the web for hours to find a solution.
 
 For errors you can also throw an error that has been augmented with diagnostic information, this is very useful for failing a build while also providing a useful error message, with a codeframe and suggestions. This is also the recommended way of throwing errors in Parcel.
 
