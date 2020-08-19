@@ -45,11 +45,11 @@ These fields are intended for whenever you are describing an error.
 - `stack`(string): A stacktrace of an error (optional)
 - `name`(string): A name of an error (optional)
 
-#### CodeFrame
+#### `DiagnosticCodeFrame`
 
-The CodeFrame Object describes how to format a CodeFrame. A CodeFrame is a visualization of a piece of code, with a certain amount of code highlights that point to certain chunk(s) inside the code.
+The `DiagnosticCodeFrame` Object describes how to format a code frame. A code frame is a visualization of a piece of code, with a certain amount of code highlights that point to certain chunk(s) inside the code.
 
-For the formatting of these objects we've built our own CodeFrame library which supports multiple highlights and code formatting. This library is published as `@parcel/codeframe`.
+For the formatting of these objects we've built our own code frame library `@parcel/codeframe` which supports multiple highlights and code formatting.
 
 ##### Properties of a CodeFrame Object
 
