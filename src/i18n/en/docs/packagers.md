@@ -1,4 +1,4 @@
-# 📦 Packagers
+R3# 📦 Packagers
 
 In Parcel, a `Packager` combines multiple `Asset`s together into a final output bundle. This happens in the main process after all assets have been processed, and a bundle tree has been created. Packagers are registered based on output file type, and assets that have generated that output type are sent to that packager for production of the final output file.
 
