@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveResult">ResolveResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1008"><i>parcel/packages/core/types/index.js:1008</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L1011"><i>parcel/packages/core/types/index.js:1011</i></a>
 </h4>
 
 <pre class="interface"><code>type ResolveResult = {|</code></pre>
@@ -48,6 +48,10 @@
 <div class="inline-method">Corresponds to <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>'s <code>sideEffects</code>.
 </div><pre class="interface"><code>  +code?: string,</code></pre>
 <div class="inline-method">A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from".
+</div><pre class="interface"><code>  +canDefer?: boolean,</code></pre>
+<div class="inline-method">Whether this dependency can be deferred by Parcel itself (true by default)
+</div><pre class="interface"><code>  +diagnostics?: Diagnostic | Array&lt;Diagnostic&gt;,</code></pre>
+<div class="inline-method">A resolver might return diagnostics to also run subsequent resolvers while still providing a reason why it failed
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -55,14 +59,14 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Resolver">Resolver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1118"><i>parcel/packages/core/types/index.js:1118</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L1125"><i>parcel/packages/core/types/index.js:1125</i></a>
 </h4>
 
 <pre class="interface"><code>type Resolver = {|</code></pre>
 <pre class="interface"><code>  resolve({|
     dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
+    logger: <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a>,
     filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,
   |}): <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>

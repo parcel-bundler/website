@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="Optimizer">Optimizer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L1103"><i>parcel/packages/core/types/index.js:1103</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L1110"><i>parcel/packages/core/types/index.js:1110</i></a>
 </h4>
 
 <pre class="interface"><code>type Optimizer = {|</code></pre>
@@ -48,7 +48,7 @@
     contents: <a href="/plugin-system/api/#Blob">Blob</a>,
     map: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
+    logger: <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a>,
     getSourceMapReference: (map: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;?string&gt;,
   |}): <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/bundler/#BundleResult">BundleResult</a>&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>

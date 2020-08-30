@@ -19,7 +19,7 @@ const {
 } = require("./utils.js");
 
 /*::
-import type { JSDocType, JSDocParam } from "./utils.js";
+import type { JSDoc, JSDocType, JSDocParam } from "./utils.js";
 
 export type CollectedType = {|
   declaration: any,
@@ -65,10 +65,14 @@ const PARCEL_TYPES = path.join(
   PARCEL_ROOT,
   "parcel/packages/core/types/index.js"
 );
-const PARCEL_TYPES_REV = execSync("git rev-parse HEAD", {
+const PARCEL_REV = execSync("git rev-parse HEAD", {
   cwd: path.dirname(PARCEL_TYPES),
   encoding: "utf8",
 }).trim();
+const PARCEL_LOGGER = path.join(
+  PARCEL_ROOT,
+  "parcel/packages/core/logger/src/Logger.js"
+);
 
 const PARCEL_SOURCE_MAP = [
   path.join(PARCEL_ROOT, "source-map/src/SourceMap.js"),
@@ -81,7 +85,7 @@ const PARCEL_SOURCE_MAP_REV = execSync("git rev-parse HEAD", {
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const PARCEL_URL = `https://github.com/parcel-bundler/parcel/blob/${PARCEL_TYPES_REV}`;
+const PARCEL_URL = `https://github.com/parcel-bundler/parcel/blob/${PARCEL_REV}`;
 const SOURCE_MAP_URL = `https://github.com/parcel-bundler/source-map/blob/${PARCEL_SOURCE_MAP_REV}`;
 
 const SECTION_TO_URL = {
@@ -118,6 +122,9 @@ const SECTION_TO_URL = {
   validator: {
     link: "/plugin-system/validator/",
   },
+  logger: {
+    link: "/plugin-system/logger/",
+  },
   "source-map": {
     link: "/plugin-system/source-maps/",
     repo: SOURCE_MAP_URL,
@@ -128,7 +135,7 @@ const SECTION_TO_URL = {
 // CROSS REFERENCING
 // ---------------------------
 
-let collected /*: Map<string, CollectedType>*/ = new Map();
+let jsDocs /*: Map<string, JSDocType>*/ = new Map();
 let typeToSection = new Map();
 
 function urlToType(name) {
@@ -141,7 +148,7 @@ function replaceReferencesDescription(
   name /*: string*/,
   contents /*: string*/
 ) {
-  for (let [n] of collected) {
+  for (let [n] of jsDocs) {
     contents = contents.replace(
       new RegExp(`(^|\\W)(${n})($|\\W)`, "g"),
       (_, l, type, r) => {
@@ -160,7 +167,7 @@ function replaceReferencesDescription(
   return contents;
 }
 
-function replaceReferences /*::<T: { description: string, params?: ?Array<JSDocParam> }> */(
+function replaceReferences /*::<T: { description: string, params?: ?$ReadOnlyArray<JSDocParam> }> */(
   name,
   v /*: T */
 ) /*: T */ {
@@ -182,6 +189,7 @@ function replaceReferences /*::<T: { description: string, params?: ?Array<JSDocP
 // COLLECT
 // ---------------------------
 
+let collected /*: Map<string, CollectedType>*/ = new Map();
 function classToInterface(decl) {
   return {
     type: "InterfaceDeclaration",
@@ -233,6 +241,7 @@ function classToInterface(decl) {
                 return;
               }
 
+              console.log(p);
               invariant(false, p.type);
             default:
               invariant(false, p.type);
@@ -245,18 +254,43 @@ function classToInterface(decl) {
 
 function collectExportDeclaration(node, defaultSection) {
   let { declaration } = node;
+  if (declaration.type === "Identifier") return;
 
   declaration.leadingComments = node.leadingComments;
   let jsdoc = node.leadingComments && node.leadingComments[0];
 
-  if (declaration.type === "ClassDeclaration") {
-    declaration = classToInterface(declaration);
+  invariant(
+    declaration.type === "ClassDeclaration" ||
+      declaration.type === "TypeAlias" ||
+      declaration.type === "VariableDeclaration" ||
+      declaration.type === "FunctionDeclaration" ||
+      declaration.type === "InterfaceDeclaration",
+    declaration.type
+  );
+
+  if (declaration.type === "FunctionDeclaration") {
+    declaration.body = { type: "BlockStatement", body: [] };
   }
-  collected.set(declaration.id.name, {
-    declaration: declaration,
-    loc: node.loc,
-    defaultSection,
-  });
+
+  if (declaration.type === "VariableDeclaration") {
+    for (let decl of declaration.declarations) {
+      collected.set(decl.id.name, {
+        declaration: declaration,
+        loc: decl.loc,
+        defaultSection,
+      });
+    }
+  } else {
+    if (declaration.type === "ClassDeclaration") {
+      declaration = classToInterface(declaration);
+    }
+
+    collected.set(declaration.id.name, {
+      declaration: declaration,
+      loc: node.loc,
+      defaultSection,
+    });
+  }
 }
 
 function collect(file, defaultSection) {
@@ -287,15 +321,17 @@ function collect(file, defaultSection) {
 }
 
 collect(PARCEL_TYPES);
+collect(PARCEL_LOGGER, "logger");
 PARCEL_SOURCE_MAP.forEach((p) => collect(p, "source-map"));
 
 // ---------------------------
 // PARSE JSDOC
 // ---------------------------
 
-let jsDocs /*: Map<string, JSDocType>*/ = new Map();
 for (let [name, { declaration, loc, defaultSection }] of collected) {
   let parsedJsDoc = parseJsDoc(declaration);
+  if (!parsedJsDoc) continue;
+
   let section = parsedJsDoc.section || defaultSection || "index";
   typeToSection.set(name, section);
   jsDocs.set(name, parsedJsDoc);
@@ -307,14 +343,18 @@ for (let [name, { declaration, loc, defaultSection }] of collected) {
 
 let generated /*: MapMap<ProcessedType> */ = new MapMap();
 for (let [name, { declaration, loc }] of collected) {
-  let parsedJsDoc = nullthrows(jsDocs.get(name));
+  let parsedJsDoc = jsDocs.get(name);
+  if (!parsedJsDoc) continue;
   let section = nullthrows(typeToSection.get(name));
 
   let jsDoc /*: JSDocType*/ = {
     description: replaceReferencesDescription(name, parsedJsDoc.description),
-    // $FlowFixMe
-    properties: parsedJsDoc.properties.map((p) => replaceReferences(name, p)),
+    properties: parsedJsDoc.properties
+      .filter((p) => !parsedJsDoc.excludedProperties.has(p.name))
+      // $FlowFixMe
+      .map((p) => replaceReferences(name, p)),
     section: parsedJsDoc.section,
+    excludedProperties: parsedJsDoc.excludedProperties,
   };
 
   if (declaration.type === "InterfaceDeclaration") {
@@ -335,16 +375,18 @@ for (let [name, { declaration, loc }] of collected) {
               )
             ) + " {",
         },
-        ...declaration.body.properties.map((p) => ({
-          key: p.key.name,
-          value:
-            indent(
-              replaceReferencesDescription(
-                name,
-                escapeHtml(generate(p, { comments: false }).code)
-              )
-            ) + ",",
-        })),
+        ...declaration.body.properties
+          .filter((p) => !parsedJsDoc.excludedProperties.has(p.key.name))
+          .map((p) => ({
+            key: p.key.name,
+            value:
+              indent(
+                replaceReferencesDescription(
+                  name,
+                  escapeHtml(generate(p, { comments: false }).code)
+                )
+              ) + ",",
+          })),
         { value: "}" },
       ],
     });

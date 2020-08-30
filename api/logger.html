@@ -1,0 +1,54 @@
+<html>
+<head>
+<style>
+  div.api .type {
+   margin: 2rem 0;
+   padding: 0.4rem 1rem;
+   border: 1px solid var(--border-color);
+  }
+  div.api .type .title {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  div.api .type .title a {
+    font-size: 1rem;
+    opacity: 0.5;
+  }
+  div.api .type .title a:hover {
+    font-size: 1rem;
+    opacity: 1;
+  }
+  div.api div.inline-method {
+    padding: 0.3em 0.3em 1.3em 3.5em;
+    background: var(--code-background-color);
+    transition: background 0.2s ease-in-out;
+  }
+  div.api div.inline-method ul {
+    margin: 0;
+  }
+  div.api pre.interface {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+<div class="api">
+<div class="type">
+<h4 class="title">
+  <span id="PluginLogger">PluginLogger</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/logger/src/Logger.js#L86"><i>parcel/packages/core/logger/src/Logger.js:86</i></a>
+</h4>
+
+<pre class="interface"><code>interface <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a> {</code></pre>
+<pre class="interface"><code>  verbose(diagnostic: DiagnosticWithoutOrigin | Array&lt;DiagnosticWithoutOrigin&gt;): void,</code></pre>
+<pre class="interface"><code>  info(diagnostic: DiagnosticWithoutOrigin | Array&lt;DiagnosticWithoutOrigin&gt;): void,</code></pre>
+<pre class="interface"><code>  log(diagnostic: DiagnosticWithoutOrigin | Array&lt;DiagnosticWithoutOrigin&gt;): void,</code></pre>
+<pre class="interface"><code>  warn(diagnostic: DiagnosticWithoutOrigin | Array&lt;DiagnosticWithoutOrigin&gt;): void,</code></pre>
+<pre class="interface"><code>  error(input: Diagnostifiable | DiagnosticWithoutOrigin | Array&lt;DiagnosticWithoutOrigin&gt;): void,</code></pre>
+<pre class="interface"><code>}</code></pre>
+
+<h5>Referenced by:</h5>
+<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#Reporter">Reporter</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
+</div></div></body></html>

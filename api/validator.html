@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveConfigFn">ResolveConfigFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L621"><i>parcel/packages/core/types/index.js:621</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L624"><i>parcel/packages/core/types/index.js:624</i></a>
 </h4>
 
 
@@ -52,7 +52,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveConfigWithPathFn">ResolveConfigWithPathFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L628"><i>parcel/packages/core/types/index.js:628</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L631"><i>parcel/packages/core/types/index.js:631</i></a>
 </h4>
 
 
@@ -66,7 +66,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ValidateResult">ValidateResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L636"><i>parcel/packages/core/types/index.js:636</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L639"><i>parcel/packages/core/types/index.js:639</i></a>
 </h4>
 
 <pre class="interface"><code>type ValidateResult = {|</code></pre>
@@ -79,7 +79,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DedicatedThreadValidator">DedicatedThreadValidator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L644"><i>parcel/packages/core/types/index.js:644</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L647"><i>parcel/packages/core/types/index.js:647</i></a>
 </h4>
 
 <pre class="interface"><code>type DedicatedThreadValidator = {|</code></pre>
@@ -87,7 +87,7 @@
     assets: <a href="/plugin-system/transformer/#Asset">Asset</a>[],
     resolveConfigWithPath: <a href="/plugin-system/validator/#ResolveConfigWithPathFn">ResolveConfigWithPathFn</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
+    logger: <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;?<a href="/plugin-system/validator/#ValidateResult">ValidateResult</a>&gt;&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
@@ -96,7 +96,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MultiThreadValidator">MultiThreadValidator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L656"><i>parcel/packages/core/types/index.js:656</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L659"><i>parcel/packages/core/types/index.js:659</i></a>
 </h4>
 
 <pre class="interface"><code>type MultiThreadValidator = {|</code></pre>
@@ -104,13 +104,13 @@
     asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
     config: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
+    logger: <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/validator/#ValidateResult">ValidateResult</a> | void&gt;,</code></pre>
 <pre class="interface"><code>  getConfig?: ({|
     asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
     resolveConfig: <a href="/plugin-system/validator/#ResolveConfigFn">ResolveConfigFn</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: PluginLogger,
+    logger: <a href="/plugin-system/logger/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | void&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
@@ -119,7 +119,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Validator">Validator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/afc2c9efc2cfcd016bc743291706099eaab004e4/packages/core/types/index.js#L674"><i>parcel/packages/core/types/index.js:674</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L677"><i>parcel/packages/core/types/index.js:677</i></a>
 </h4>
 
 

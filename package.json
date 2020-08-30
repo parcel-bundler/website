@@ -8,25 +8,25 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve --quiet",
     "debug": "DEBUG=* eleventy",
-    "lint": "prettier --write 'src/**/*.{js,json,md,scss}'",
+    "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,scss}'",
     "generate-api-docs": "node generate-api-docs/ ../ ./api"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
-    "@babel/generator": "^7.10.4",
-    "@babel/parser": "^7.10.4",
-    "@babel/traverse": "^7.10.4",
+    "@babel/generator": "^7.11.4",
+    "@babel/parser": "^7.11.4",
+    "@babel/traverse": "^7.11.0",
     "eleventy-plugin-sass": "^1.0.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
+    "lint-staged": "^10.2.13",
     "markdown-it": "^11.0.0",
     "markdown-it-anchor": "^5.3.0",
-    "prettier": "^2.0.5"
+    "prettier": "2.1.1"
   },
   "dependencies": {
-    "flow-bin": "^0.129.0",
+    "flow-bin": "^0.132.0",
     "nullthrows": "^1.1.1"
   },
   "lint-staged": {

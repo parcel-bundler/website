@@ -2,12 +2,12 @@
 layout: layout.njk
 eleventyNavigation:
   key: plugin-system-logger
-  title: Logger
+  title: Logging
   order: 14
 summary: The way to output messages to your users
 ---
 
-## Introduction
+## Logger
 
 Every time you want to log something in a plugin, you have to go through the logger. Every function of a plugin is passed a logger instance as a parameter. This instance has already all the information Parcel needs to identify your plugin as the origin of the message.
 
@@ -23,6 +23,10 @@ There is a function for each type of log you can output, these functions are `ve
 | info    | Use this to log any information that is not related to a problem                                                                        | `logger.info(...)` or `logger.log(...)`                 |
 | warning | Use this to log anything related to a problem that is not critical                                                                      | `logger.warning(...)`                                   |
 | error   | Use this to log any critical issues, you probably want to throw a ThrowableDiagnostic instead                                           | `logger.error(...)` or `throw ThrowableDiagnostic(...)` |
+
+### Logger API
+
+{% include "../../api/logger.html" %}
 
 ## Diagnostics
 
@@ -61,7 +65,7 @@ For the formatting of these objects we've built our own code frame library `@par
 
 ### Formatting the messages
 
-To format the messages in a diagnostic, we use a very minimal version of markdown specifically built to be compatible with terminals and anything else, while also not being too cryptic when displayed without any formatting. For our `@parcel/reporter-cli`  we use our own `@parcel/markdown-ansi` library that converts these markdown strings to ANSI escape sequences.
+To format the messages in a diagnostic, we use a very minimal version of markdown specifically built to be compatible with terminals and anything else, while also not being too cryptic when displayed without any formatting. For our `@parcel/reporter-cli` we use our own `@parcel/markdown-ansi` library that converts these markdown strings to ANSI escape sequences.
 
 The supported markdown features are `**bold**`, `*italic*`/`_italic_`, `__underlined__` and `~~strikethrough~~`.
 
