@@ -28,40 +28,13 @@ There is a function for each type of log you can output, these functions are `ve
 
 {% include "../../api/logger.html" %}
 
+## Automatically collected logs and errors
+
+Parcel core automatically collects any logs created by calling the global variable `console`, this means whenever you do a `console.log` we internally catch this and convert it to a Diagnostic object. This is not recommended as we do not have as much information as we do when calling the logger instance directly. We also do the same for errors, whenever you throw an error we convert it into a Diagnostic, append information about the plugin to it and send it to the logger.
+
 ## Diagnostics
 
 A `Diagnostic` is a JavaScript object with a predefined set of properties that are required to create a useful log message, this can be anything from a verbose message to an error. This object can includes a message, information about the file, a codeframe, error information and hints on how to potentially resolve the issue.
-
-### The properties of a Diagnostic
-
-#### General fields
-
-- `message`(string): This is the message you want to log.
-- `filePath`(string): Path to the file this diagnostic is about (optional)
-- `language`(string): Language of the file this diagnostic is about (optional)
-- `codeFrame`[(DiagnosticCodeFrame)](#diagnosticcodeframe): A code frame points to a certain location(s) in the file this diagnostic is linked to (optional)
-- `hints`(Array\<string\>): A list of strings that suggest ways to resolve this issue. (optional)
-
-#### Error related fields
-
-These fields are intended for whenever you are describing an error.
-
-- `stack`(string): A stacktrace of an error (optional)
-- `name`(string): A name of an error (optional)
-
-#### `DiagnosticCodeFrame`
-
-The `DiagnosticCodeFrame` Object describes how to format a code frame. A code frame is a visualization of a piece of code, with a certain amount of code highlights that point to certain chunk(s) inside the code.
-
-For the formatting of these objects we've built our own code frame library `@parcel/codeframe` which supports multiple highlights and code formatting.
-
-##### Properties
-
-- `code`(string): The contents of the source file (not required if a filePath is provided to the diagnostic, you however have to be 100% sure the code that this codeframe applies to is still identical to the code at the filePath's location)
-- `codeHighlights`: Array of CodeHighlight Object(s)
-  - `start`({ line: number, column: number }): the location of the first character that should get highlighted for this highlight, both line and column start at **1**
-  - `end`({ line: number, column: number }): the location of the last character that should get highlighted for this highlight, both line and column start at **1**
-  - `message`(string): A message that should be displayed at this location in the code (optional)
 
 ### Formatting the messages
 
@@ -148,6 +121,6 @@ export default new Transformer({
 });
 ```
 
-## Automatically collected logs and errors
+### API
 
-Parcel core automatically collects any logs created by calling the global variable `console`, this means whenever you do a `console.log` we internally catch this and convert it to a Diagnostic object. This is not recommended as we do not have as much information as we do when calling the logger instance directly. We also do the same for errors, whenever you throw an error we convert it into a Diagnostic, append information about the plugin to it and send it to the logger.
+{% include "../../api/diagnostic.html" %}

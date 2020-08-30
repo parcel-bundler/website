@@ -38,7 +38,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveResult">ResolveResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L1011"><i>parcel/packages/core/types/index.js:1011</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c359be69c605669c240fd5acd94ccaa460c1b167/packages/core/types/index.js#L1011"><i>parcel/packages/core/types/index.js:1011</i></a>
 </h4>
 
 <pre class="interface"><code>type ResolveResult = {|</code></pre>
@@ -50,7 +50,7 @@
 <div class="inline-method">A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from".
 </div><pre class="interface"><code>  +canDefer?: boolean,</code></pre>
 <div class="inline-method">Whether this dependency can be deferred by Parcel itself (true by default)
-</div><pre class="interface"><code>  +diagnostics?: Diagnostic | Array&lt;Diagnostic&gt;,</code></pre>
+</div><pre class="interface"><code>  +diagnostics?: <a href="/plugin-system/logger/#Diagnostic">Diagnostic</a> | Array&lt;<a href="/plugin-system/logger/#Diagnostic">Diagnostic</a>&gt;,</code></pre>
 <div class="inline-method">A resolver might return diagnostics to also run subsequent resolvers while still providing a reason why it failed
 </div><pre class="interface"><code>|}</code></pre>
 
@@ -59,7 +59,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Resolver">Resolver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c4e494f3b9fd0eac672edc1a27c6c9216182dd6b/packages/core/types/index.js#L1125"><i>parcel/packages/core/types/index.js:1125</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c359be69c605669c240fd5acd94ccaa460c1b167/packages/core/types/index.js#L1125"><i>parcel/packages/core/types/index.js:1125</i></a>
 </h4>
 
 <pre class="interface"><code>type Resolver = {|</code></pre>

@@ -69,6 +69,10 @@ const PARCEL_REV = execSync("git rev-parse HEAD", {
   cwd: path.dirname(PARCEL_TYPES),
   encoding: "utf8",
 }).trim();
+const PARCEL_DIAGNOSTIC = path.join(
+  PARCEL_ROOT,
+  "parcel/packages/core/diagnostic/src/diagnostic.js"
+);
 const PARCEL_LOGGER = path.join(
   PARCEL_ROOT,
   "parcel/packages/core/logger/src/Logger.js"
@@ -123,6 +127,9 @@ const SECTION_TO_URL = {
     link: "/plugin-system/validator/",
   },
   logger: {
+    link: "/plugin-system/logger/",
+  },
+  diagnostic: {
     link: "/plugin-system/logger/",
   },
   "source-map": {
@@ -241,8 +248,17 @@ function classToInterface(decl) {
                 return;
               }
 
-              console.log(p);
-              invariant(false, p.type);
+              invariant(p.typeAnnotation);
+              return {
+                type: "ObjectTypeProperty",
+                static: p.static,
+                kind: "init",
+                key: p.key,
+                proto: false,
+                method: false,
+                leadingComments: p.leadingComments,
+                value: p.typeAnnotation.typeAnnotation,
+              };
             default:
               invariant(false, p.type);
           }
@@ -322,6 +338,7 @@ function collect(file, defaultSection) {
 
 collect(PARCEL_TYPES);
 collect(PARCEL_LOGGER, "logger");
+collect(PARCEL_DIAGNOSTIC, "diagnostic");
 PARCEL_SOURCE_MAP.forEach((p) => collect(p, "source-map"));
 
 // ---------------------------
