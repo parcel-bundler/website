@@ -23,7 +23,7 @@ These validators receive an asset, and can throw errors or log a warning if that
 
 To do this properly you should be using diagnostics, these are described in the logger docs under [`diagnostics`](/plugin-system/logger/#diagnostics).
 
-Below you can find a simple example on throwing an Error
+Below you can find a simple example of throwing an Error.
 
 ```js
 import { Validator } from "@parcel/plugin";
