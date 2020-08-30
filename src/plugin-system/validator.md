@@ -11,7 +11,9 @@ A validator is a plugin type that is used to validate assets, it is called on ea
 
 Validators run after a build has fully completed, this is to ensure we don't impact performance and focus on more important compilation errors first.
 
-When Parcel is being ran in watch mode, so `parcel watch` or `parcel serve` we still serve/save updated bundles even when a validator throws an error. We log the error and nothing else really happens. However when running `parcel build` we do exit the process with a failure status code to ensure you don't deploy any code that does not meet the criteria set out by your validators. This ensures developers can stay productive and not have too worry about every small typing or linting issue while trying to solve a problem.
+When Parcel runs in watch mode (`parcel watch` or `parcel serve`), we still serve/save updated bundles even if a validator throws an error (in this case the error is merely logged).
+
+But when running `parcel build`, Parcel exists with a failure status code to ensure you don't deploy any code that does not meet the criteria set by your validators. This ensures developers can stay productive and don't have to worry about every small typing or linting issue while trying to solve a problem.
 
 ## How to write a stateless validator plugin
 
