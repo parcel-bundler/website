@@ -466,10 +466,11 @@ function write(section, file, data) {
 <style>
   div.api .type {
    margin: 2rem 0;
-   padding: 0.4rem 1rem;
+   padding: 1rem 1rem;
    border: 1px solid var(--border-color);
   }
   div.api .type .title {
+    margin: 0.6rem 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
