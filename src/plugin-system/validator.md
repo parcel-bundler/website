@@ -13,7 +13,7 @@ Validators run after a build has fully completed, this is to ensure we don't imp
 
 When Parcel runs in watch mode (`parcel watch` or `parcel serve`), we still serve/save updated bundles even if a validator throws an error (in this case the error is merely logged).
 
-But when running `parcel build`, Parcel exists with a failure status code to ensure you don't deploy any code that does not meet the criteria set by your validators. This ensures developers can stay productive and don't have to worry about every small typing or linting issue while trying to solve a problem.
+But when running `parcel build`, Parcel exits with a failure status code to ensure you don't deploy any code that does not meet the criteria set by your validators. This ensures developers can stay productive and don't have to worry about every small typing or linting issue while trying to solve a problem.
 
 ## How to write a stateless validator plugin
 
