@@ -13,7 +13,7 @@ Every time you want to log something in a plugin, you have to go through the log
 
 The logger uses a format we called [diagnostics](#diagnostics) which is a JavaScript object with a standardized set of properties, a [Reporter](/plugin-system/reporter/) uses this information to log your message to its target format while having complete freedom as to how this data should be formatted and displayed.
 
-There is a function for each type of log you can output, these functions are `verbose(diagnostic)`, `info(diagnostic)`, `log(diagnostic)`, `warn(diagnostic)` and `error(diagnostic)`. These log levels are used for defining the severity of your log message, this is useful for formatting and filtering. For example, the end user can use the flag [`--log-level`](/features/cli/#general-parameters) to define which messages it wants to see. Each of these functions also have a single parameter called diagnostic, this parameter can either be a single [diagnostic](#diagnostics) object or an array of [diagnostics](#diagnostics), depending on how many messages you want to log.
+There is a function for each type of log you can output, these functions are `verbose(diagnostic)`, `info(diagnostic)`, `log(diagnostic)`, `warn(diagnostic)` and `error(diagnostic)`. These log levels are used for defining the severity of your log message, this is useful for formatting and filtering. For example, the end user can use the flag [`--log-level`](/features/cli/#general-parameters) to define which messages it wants to see. Each of these functions also have a single parameter called diagnostic, this parameter can either be a single [diagnostic](#diagnostics) object or an array of diagnostics, depending on how many messages you want to log.
 
 ### Log levels
 
@@ -34,7 +34,7 @@ Parcel core automatically collects any logs created by calling the global variab
 
 ## Diagnostics
 
-A `Diagnostic` is a JavaScript object with a predefined set of properties that are required to create a useful log message, this can be anything from a verbose message to an error. This object can includes a message, information about the file, a codeframe, error information and hints on how to potentially resolve the issue.
+A [`Diagnostic`](/plugin-system/logging/#Diagnostic) is a JavaScript object with a set of properties that are required to create a useful log message, this can be anything from a verbose message to an error. This object can includes a message, information about the file, a codeframe, error information and hints on how to potentially resolve the issue.
 
 ### Formatting the messages
 

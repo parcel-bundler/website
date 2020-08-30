@@ -127,10 +127,10 @@ const SECTION_TO_URL = {
     link: "/plugin-system/validator/",
   },
   logger: {
-    link: "/plugin-system/logger/",
+    link: "/plugin-system/logging/",
   },
   diagnostic: {
-    link: "/plugin-system/logger/",
+    link: "/plugin-system/logging/",
   },
   "source-map": {
     link: "/plugin-system/source-maps/",
@@ -426,16 +426,20 @@ for (let [name, { declaration, loc }] of collected) {
             } = {` + (exact ? "|" : "")
           ),
         },
-        ...declaration.right.properties.map((p) => ({
-          key: p.key?.name,
-          value:
-            indent(
-              replaceReferencesDescription(
-                name,
-                escapeHtml(generate(p, { comments: false }).code)
-              )
-            ) + ",",
-        })),
+        ...declaration.right.properties
+          .filter(
+            (p) => !p.key || !parsedJsDoc.excludedProperties.has(p.key.name)
+          )
+          .map((p) => ({
+            key: p.key?.name,
+            value:
+              indent(
+                replaceReferencesDescription(
+                  name,
+                  escapeHtml(generate(p, { comments: false }).code)
+                )
+              ) + ",",
+          })),
         { value: (exact ? "|" : "") + "}" },
       ],
     });
