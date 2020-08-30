@@ -12,6 +12,7 @@ Compared to Webpack, Parcel's paradigm is to use your HTML file as the entry poi
 {% samplefile "index.html" %}
 
 ```html
+<!DOCTYPE html>
 <div id="app"></div>
 <script src="./index.js"></script>
 ```

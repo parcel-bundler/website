@@ -83,6 +83,7 @@ This isn't done by default because it would have a negative effect on caching (P
 {% samplefile "index.html" %}
 
 ```html
+<!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="./app.css" />
 <div id="icon"></div>
 ```
