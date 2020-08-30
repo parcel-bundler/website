@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: "A plugin type: Analyze assets and emit warnings and errors"
 ---
 
-A validator is a plugin type that is used to validate assets, it gets each asset as an input and based on that asset you can throw errors or log warnings with diagnostics to ensure the input is as it should be. This can be linting issues, typing issues or any other validation issue.
+A validator is a plugin type that is used to validate assets, it is called on each asset and can throw errors or log warnings with diagnostics to validate the input. These can be linting issues, typing issues or similar.
 
 Validators run after a build has fully completed, this is to ensure we don't impact performance and focus on more important compilation errors first.
 
