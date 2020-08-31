@@ -31,7 +31,7 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 
 ### Dependencies
 
-Parcel detects most references in HTML files to other files (such as `<script src="..."`, `<img src="...">`, `<video>` or `<meta property="og:image">`) and processes these files as well. The references are rewritten in the HTML so that they link to the correct output files. Relative filenames are resolved relative to the current HTML file.
+Parcel detects most references in HTML to other files (such as `<script src="..."`, `<img src="...">`, `<video>` or `<meta property="og:image">`) and processes them as well. These references are rewritten so that they link to the correct output files. Relative filenames are resolved relative to the current HTML file.
 
 One noteworthy aspect of this is that `<script type="module">` automatically creates a ESM JavaScript bundle (and restricting the Browserslist config to browsers supporting ESM). Together with `<script nomodule>`, this makes differential serving very straight forward (see also [Generic Webapp](http://localhost:8080/getting-started/webapp/#differential-serving)).
 
@@ -76,7 +76,7 @@ Use this sparingly, as big inline scripts/styles can be detrimental to the (perc
 
 ### Inline `style` attribute
 
-Inline `style` properties on HTMl elements are turned into CSS assets, then PostCSS plugins are applied if configured and the result gets minified.
+Inline `style` properties on HTML elements are turned into CSS assets, then PostCSS plugins are applied if configured and the result gets minified.
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -117,9 +117,7 @@ Output:
 
 ```html
 <!DOCTYPE html>
-<div
-  style="-moz-text-decoration: underline red;text-decoration: underline red;"
->
+<div style="-moz-text-decoration:underline red;text-decoration:underline red">
   Hello!
 </div>
 ```
@@ -142,12 +140,7 @@ Then, create a config file:
 ```json
 {
   "plugins": {
-    "posthtml-img-autosize": {
-      "root": "./images"
-    },
-    "posthtml-modules": {
-      "root": "./src"
-    }
+    "posthtml-doctype": { "doctype": "HTML 5" }
   }
 }
 ```
