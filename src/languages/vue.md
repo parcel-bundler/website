@@ -14,6 +14,7 @@ Vue.js is a progressive, incrementally-adoptable JavaScript framework for buildi
 {% samplefile "index.html" %}
 
 ```html
+<!DOCTYPE html>
 <div id="app"></div>
 <script src="./index.js"></script>
 ```
