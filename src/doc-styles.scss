@@ -217,22 +217,31 @@ body {
 }
 
 #color-scheme-toggle {
-  height: 1.7em;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
 
-  & circle {
-    transition: transform 0.2s ease-in-out;
-  }
+  & > svg {
+    height: 1.7em;
 
-  & .big-circle {
-    transform-origin: center;
-  }
+    & circle {
+      transition: transform 0.2s ease-in-out;
+    }
 
-  .dark & .big-circle {
-    transform: scale(1.1);
-  }
+    & .big-circle {
+      transform-origin: center;
+    }
 
-  .dark & .small-circle {
-    transform: translate(-20px, 10px);
+    .dark & .big-circle {
+      transform: scale(1.1);
+    }
+
+    .dark & .small-circle {
+      transform: translate(-20px, 10px);
+    }
   }
 }
 

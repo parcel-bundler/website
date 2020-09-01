@@ -75,7 +75,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | Format                                       | Description                                                                                                             |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                   |
-| `--log-level (none|error|warn|info|verbose)` | Sets the log level                                                                                                      |
+| `--log-level (none/error/warn/info/verbose)` | Sets the log level                                                                                                      |
 | `--no-autoinstall`                           | Disables autoinstall                                                                                                    |
 | `--no-cache`                                 | Disables reading from the filesystem cache                                                                              |
 | `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMap`](/configuration/package-json/#sourcemap)                     |

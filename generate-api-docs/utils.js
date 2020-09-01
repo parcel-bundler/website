@@ -22,17 +22,18 @@ export type JSDocProperty = {|
   description: string,
 |};
 
-
 export type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
 
 export type JSDocType = {|
   description: string,
   properties: Array<JSDoc>,
+  excludedProperties: Set<string>,
   section: ?string,
 |};
 */
 
-module.exports.MapMap = class MapMap /*::<T> */ extends Map /*:: <string, Map<string, T>> */ {
+module.exports.MapMap = class MapMap /*::<T> */
+  extends Map /*:: <string, Map<string, T>> */ {
   append(key1 /*: string */, key2 /*: string */, value /*: T*/) {
     let otherMap = this.get(key1);
     if (!otherMap) {
@@ -43,7 +44,8 @@ module.exports.MapMap = class MapMap /*::<T> */ extends Map /*:: <string, Map<st
   }
 };
 
-module.exports.SetMap = class SetMap /*::<T> */ extends Map /*:: <string, Set<T>> */ {
+module.exports.SetMap = class SetMap /*::<T> */
+  extends Map /*:: <string, Set<T>> */ {
   add(key1 /*: string */, value /*: T*/) {
     let set /*: ?Set<T>*/ = this.get(key1);
     if (!set) {
@@ -64,11 +66,12 @@ function extractJSDocComment(node /*: any */) /*: ?string*/ {
 }
 module.exports.extractJSDocComment = extractJSDocComment;
 
-function parseJsDocComment(contents) /*: JSDocType */ {
+function parseJsDocComment(contents) /*: ?JSDocType */ {
   let result = {
     description: "",
     properties: [],
     section: "",
+    excludedProperties: new Set(),
   };
   let lines = contents.split("\n");
   for (let line of lines) {
@@ -102,6 +105,8 @@ function parseJsDocComment(contents) /*: JSDocType */ {
             }
           );
           break;
+        case "private":
+          return null;
         default:
           invariant(false, "Unknown JSDoc directive: " + line);
       }
@@ -118,16 +123,19 @@ function parseJsDocComment(contents) /*: JSDocType */ {
 
 module.exports.parseJsDoc = function parseJsDoc(
   declaration /*: any*/
-) /*: JSDocType*/ {
+) /*: ?JSDocType */ {
   let contents = extractJSDocComment(declaration);
 
-  let result = contents
+  let result /*: ?JSDocType */ = contents
     ? parseJsDocComment(contents)
     : {
         description: "",
         properties: [],
         section: "",
+        excludedProperties: new Set(),
       };
+
+  if (!result) return;
 
   let body = declaration.body || declaration.right;
   if (t.isObjectTypeAnnotation(body)) {
@@ -137,27 +145,32 @@ module.exports.parseJsDoc = function parseJsDoc(
 
       t.assertIdentifier(prop.key);
       let name = prop.key.name;
-      let { description, properties } = parseJsDocComment(nodeComment);
-      if (t.isFunctionTypeAnnotation(prop.value)) {
-        result.properties.push({
-          type: "method",
-          name,
-          description,
-          params: properties
-            .filter((v) => v.type === "param")
-            .map((v) => {
-              invariant(v.type === "param", v.type);
-              return v;
-            }),
-          // $FlowFixMe
-          returns: properties.find((v) => v.type === "returns"),
-        });
+      let parsed = parseJsDocComment(nodeComment);
+      if (!parsed) {
+        result.excludedProperties.add(name);
       } else {
-        result.properties.push({
-          type: "property",
-          name,
-          description,
-        });
+        let { description, properties } = parsed;
+        if (t.isFunctionTypeAnnotation(prop.value)) {
+          result.properties.push({
+            type: "method",
+            name,
+            description,
+            params: properties
+              .filter((v) => v.type === "param")
+              .map((v) => {
+                invariant(v.type === "param", v.type);
+                return v;
+              }),
+            // $FlowFixMe
+            returns: properties.find((v) => v.type === "returns"),
+          });
+        } else {
+          result.properties.push({
+            type: "property",
+            name,
+            description,
+          });
+        }
       }
     }
   }

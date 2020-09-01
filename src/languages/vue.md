@@ -14,6 +14,7 @@ Vue.js is a progressive, incrementally-adoptable JavaScript framework for buildi
 {% samplefile "index.html" %}
 
 ```html
+<!DOCTYPE html>
 <div id="app"></div>
 <script src="./index.js"></script>
 ```
@@ -128,10 +129,7 @@ For styling, [Less](/languages/less), [Sass](/languages/sass), and [Stylus](/lan
    the content of `src`. */
 </style>
 
-<template lang="pug">
-div
-  h1 This is the app
-</template>
+<template lang="pug"> div h1 This is the app </template>
 
 <script lang="coffee">
   module.exports =
@@ -179,13 +177,9 @@ export default function (component, blockContent, blockAttrs) {
   <div>Home Page</div>
 </template>
 
-<docs>
-  This component represents the home page of the application.
-</docs>
+<docs> This component represents the home page of the application. </docs>
 
-<docs brief>
-  Home Page
-</docs>
+<docs brief> Home Page </docs>
 ```
 
 {% endsamplefile %}
