@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Parcel, the application
+    url: https://github.com/parcel-bundler/parcel/issues
+    about: Have a feature request, bug report or question regarding Parcel itself?
