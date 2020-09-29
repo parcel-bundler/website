@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DiagnosticHighlightLocation">DiagnosticHighlightLocation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L10"><i>parcel/packages/core/diagnostic/src/diagnostic.js:10</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L10"><i>parcel/packages/core/diagnostic/src/diagnostic.js:10</i></a>
 </h4>
 <p>These positions are 1-based (so <code>1</code> is the first line/column)
 </p>
@@ -53,7 +53,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DiagnosticSeverity">DiagnosticSeverity</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L15"><i>parcel/packages/core/diagnostic/src/diagnostic.js:15</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L15"><i>parcel/packages/core/diagnostic/src/diagnostic.js:15</i></a>
 </h4>
 
 
@@ -66,7 +66,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DiagnosticCodeHighlight">DiagnosticCodeHighlight</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L21"><i>parcel/packages/core/diagnostic/src/diagnostic.js:21</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L21"><i>parcel/packages/core/diagnostic/src/diagnostic.js:21</i></a>
 </h4>
 <p>Note: A tab character is always counted as a single character
 This is to prevent any mismatch of highlighting across machines
@@ -85,7 +85,7 @@ This is to prevent any mismatch of highlighting across machines
 </div><div class="type">
 <h4 class="title">
   <span id="DiagnosticCodeFrame">DiagnosticCodeFrame</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L35"><i>parcel/packages/core/diagnostic/src/diagnostic.js:35</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L35"><i>parcel/packages/core/diagnostic/src/diagnostic.js:35</i></a>
 </h4>
 <p>Describes how to format a code frame.
 A code frame is a visualization of a piece of code with a certain amount of
@@ -96,7 +96,7 @@ code highlights that point to certain chunk(s) inside the code.
 <div class="inline-method">The contents of the source file.
 <br>If no code is passed, it will be read in from <a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>#filePath, remember that
 the asset's current code could be different from the input contents.
-</div><pre class="interface"><code>  codeHighlights: <a href="/plugin-system/logging/#DiagnosticCodeHighlight">DiagnosticCodeHighlight</a> | Array&lt;<a href="/plugin-system/logging/#DiagnosticCodeHighlight">DiagnosticCodeHighlight</a>&gt;,</code></pre>
+</div><pre class="interface"><code>  codeHighlights: Array&lt;<a href="/plugin-system/logging/#DiagnosticCodeHighlight">DiagnosticCodeHighlight</a>&gt;,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -104,7 +104,7 @@ the asset's current code could be different from the input contents.
 </div><div class="type">
 <h4 class="title">
   <span id="Diagnostic">Diagnostic</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L51"><i>parcel/packages/core/diagnostic/src/diagnostic.js:51</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L51"><i>parcel/packages/core/diagnostic/src/diagnostic.js:51</i></a>
 </h4>
 <p>A style agnostic way of emitting errors, warnings and info.
 Reporters are responsible for rendering the message, codeframes, hints, ...
@@ -129,11 +129,11 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a>, <a href="/plugin-system/logging/#DiagnosticCodeFrame">DiagnosticCodeFrame</a>, <a href="/plugin-system/reporter/#DiagnosticLogEvent">DiagnosticLogEvent</a>, <a href="/plugin-system/logging/#DiagnosticWithoutOrigin">DiagnosticWithoutOrigin</a>, <a href="/plugin-system/logging/#Diagnostifiable">Diagnostifiable</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>, <a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a>, <a href="/plugin-system/validator/#ValidateResult">ValidateResult</a>, <a href="/plugin-system/logging/#anyToDiagnostic">anyToDiagnostic</a>, <a href="/plugin-system/logging/#errorToDiagnostic">errorToDiagnostic</a>
+<a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a>, <a href="/plugin-system/logging/#DiagnosticCodeFrame">DiagnosticCodeFrame</a>, <a href="/plugin-system/reporter/#DiagnosticLogEvent">DiagnosticLogEvent</a>, <a href="/plugin-system/logging/#DiagnosticWithoutOrigin">DiagnosticWithoutOrigin</a>, <a href="/plugin-system/logging/#Diagnostifiable">Diagnostifiable</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>, <a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a>, <a href="/plugin-system/logging/#ThrowableDiagnosticOpts">ThrowableDiagnosticOpts</a>, <a href="/plugin-system/validator/#ValidateResult">ValidateResult</a>, <a href="/plugin-system/logging/#anyToDiagnostic">anyToDiagnostic</a>, <a href="/plugin-system/logging/#errorToDiagnostic">errorToDiagnostic</a>
 </div><div class="type">
 <h4 class="title">
   <span id="PrintableError">PrintableError</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L78"><i>parcel/packages/core/diagnostic/src/diagnostic.js:78</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L78"><i>parcel/packages/core/diagnostic/src/diagnostic.js:78</i></a>
 </h4>
 
 
@@ -159,7 +159,7 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 </div><div class="type">
 <h4 class="title">
   <span id="DiagnosticWithoutOrigin">DiagnosticWithoutOrigin</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L92"><i>parcel/packages/core/diagnostic/src/diagnostic.js:92</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L92"><i>parcel/packages/core/diagnostic/src/diagnostic.js:92</i></a>
 </h4>
 
 <pre class="interface"><code>type DiagnosticWithoutOrigin = {|</code></pre>
@@ -172,7 +172,7 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 </div><div class="type">
 <h4 class="title">
   <span id="Diagnostifiable">Diagnostifiable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L98"><i>parcel/packages/core/diagnostic/src/diagnostic.js:98</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L98"><i>parcel/packages/core/diagnostic/src/diagnostic.js:98</i></a>
 </h4>
 <p>Something that can be turned into a diagnostic.
 </p>
@@ -187,7 +187,7 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 </div><div class="type">
 <h4 class="title">
   <span id="anyToDiagnostic">anyToDiagnostic</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L106"><i>parcel/packages/core/diagnostic/src/diagnostic.js:106</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L106"><i>parcel/packages/core/diagnostic/src/diagnostic.js:106</i></a>
 </h4>
 <p>Normalize the given value into a diagnostic.
 </p>
@@ -196,12 +196,12 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 
 
 <h5>Type</h5>
-<pre><code>function <a href="/plugin-system/logging/#anyToDiagnostic">anyToDiagnostic</a>(input: <a href="/plugin-system/logging/#Diagnostifiable">Diagnostifiable</a>): <a href="/plugin-system/logging/#Diagnostic">Diagnostic</a> | Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt; {}</code></pre>
+<pre><code>function <a href="/plugin-system/logging/#anyToDiagnostic">anyToDiagnostic</a>(input: <a href="/plugin-system/logging/#Diagnostifiable">Diagnostifiable</a>): Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt; {}</code></pre>
 
 </div><div class="type">
 <h4 class="title">
   <span id="errorToDiagnostic">errorToDiagnostic</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L121"><i>parcel/packages/core/diagnostic/src/diagnostic.js:121</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L120"><i>parcel/packages/core/diagnostic/src/diagnostic.js:120</i></a>
 </h4>
 <p>Normalize the given error into a diagnostic.
 </p>
@@ -210,22 +210,31 @@ Reporters are responsible for rendering the message, codeframes, hints, ...
 
 
 <h5>Type</h5>
-<pre><code>function <a href="/plugin-system/logging/#errorToDiagnostic">errorToDiagnostic</a>(error: <a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a> | <a href="/plugin-system/logging/#PrintableError">PrintableError</a> | string, realOrigin?: string): <a href="/plugin-system/logging/#Diagnostic">Diagnostic</a> | Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt; {}</code></pre>
+<pre><code>function <a href="/plugin-system/logging/#errorToDiagnostic">errorToDiagnostic</a>(error: <a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a> | <a href="/plugin-system/logging/#PrintableError">PrintableError</a> | string, realOrigin?: string): Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt; {}</code></pre>
 
 </div><div class="type">
 <h4 class="title">
+  <span id="ThrowableDiagnosticOpts">ThrowableDiagnosticOpts</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L175"><i>parcel/packages/core/diagnostic/src/diagnostic.js:175</i></a>
+</h4>
+
+<pre class="interface"><code>type ThrowableDiagnosticOpts = {</code></pre>
+<pre class="interface"><code>  diagnostic: <a href="/plugin-system/logging/#Diagnostic">Diagnostic</a> | Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt;,</code></pre>
+<pre class="interface"><code>}</code></pre>
+
+<h5>Referenced by:</h5>
+<a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a>
+</div><div class="type">
+<h4 class="title">
   <span id="ThrowableDiagnostic">ThrowableDiagnostic</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L174"><i>parcel/packages/core/diagnostic/src/diagnostic.js:174</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L184"><i>parcel/packages/core/diagnostic/src/diagnostic.js:184</i></a>
 </h4>
 <p>An error wrapper around a diagnostic that can be <code>throw</code>n (e.g. to signal a
 build error).
 </p>
 <pre class="interface"><code>interface <a href="/plugin-system/logging/#ThrowableDiagnostic">ThrowableDiagnostic</a> extends Error {</code></pre>
 <pre class="interface"><code>  diagnostics: Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt;,</code></pre>
-<pre class="interface"><code>  constructor(opts: {
-    diagnostic: <a href="/plugin-system/logging/#Diagnostic">Diagnostic</a> | Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt;,
-    ...
-  }): void,</code></pre>
+<pre class="interface"><code>  constructor(opts: <a href="/plugin-system/logging/#ThrowableDiagnosticOpts">ThrowableDiagnosticOpts</a>): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -233,7 +242,7 @@ build error).
 </div><div class="type">
 <h4 class="title">
   <span id="generateJSONCodeHighlights">generateJSONCodeHighlights</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L199"><i>parcel/packages/core/diagnostic/src/diagnostic.js:199</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L209"><i>parcel/packages/core/diagnostic/src/diagnostic.js:209</i></a>
 </h4>
 <p>Turns a list of positions in a JSON file with messages into a list of diagnostics.
 Uses <a href="https://github.com/epoberezkin/json-source-map">epoberezkin/json-source-map</a>.
@@ -254,7 +263,7 @@ Uses <a href="https://github.com/epoberezkin/json-source-map">epoberezkin/json-s
 </div><div class="type">
 <h4 class="title">
   <span id="getJSONSourceLocation">getJSONSourceLocation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L218"><i>parcel/packages/core/diagnostic/src/diagnostic.js:218</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L228"><i>parcel/packages/core/diagnostic/src/diagnostic.js:228</i></a>
 </h4>
 <p>Converts entries in <a href="https://github.com/epoberezkin/json-source-map">epoberezkin/json-source-map</a>'s
 <code>result.pointers</code> array.
@@ -291,7 +300,7 @@ Uses <a href="https://github.com/epoberezkin/json-source-map">epoberezkin/json-s
 </div><div class="type">
 <h4 class="title">
   <span id="encodeJSONKeyComponent">encodeJSONKeyComponent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/b6ba17daceb4bbd7c2061509c15da3899a497b26/packages/core/diagnostic/src/diagnostic.js#L255"><i>parcel/packages/core/diagnostic/src/diagnostic.js:255</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/b2da8a221b9289b626cbef2742894101ca620677/packages/core/diagnostic/src/diagnostic.js#L265"><i>parcel/packages/core/diagnostic/src/diagnostic.js:265</i></a>
 </h4>
 <p>Sanitizes object keys before using them as <code>key</code> in <a href="/plugin-system/logging/#generateJSONCodeHighlights">generateJSONCodeHighlights</a>
 </p>
