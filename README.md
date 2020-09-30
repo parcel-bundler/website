@@ -1,4 +1,4 @@
-# 🌎 Parcel 2 website
+# 🌎 Parcel 2 website - an amazing website for users ease of use and also make sure to check out the website.
 
 This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues, and feel free to send pull requests for contributions. 😍
 
