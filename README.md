@@ -2,7 +2,7 @@
 
 This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues, and feel free to send pull requests for contributions. 😍
 
-## Contributing
+## amazing contribution
 
 Start a local server using:
 
