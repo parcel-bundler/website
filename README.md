@@ -10,7 +10,7 @@ Start a local server using:
 yarn
 yarn serve
 ```
-
+Start with developement taking references from this project. It's an amazing project.
 The website is automatically deployed using [Vercel](https://vercel.com).
 
 Search is powered by [Algolia DocSearch](https://docsearch.algolia.com/).
