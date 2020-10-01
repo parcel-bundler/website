@@ -1,6 +1,10 @@
 # 🌎 Parcel 2 website
 
-This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues, and feel free to send pull requests for contributions. 😍
+This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues and problems u may face , and feel free to send pull requests for contributions and suggestion for improvement and support us. 😍
+
+Keep Contribution and Supporting !!!
+
+WE will give our best.
 
 ## Contributing
 
