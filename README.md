@@ -7,8 +7,8 @@ This is the website for Parcel v2. These docs are a **work in progress**. Please
 Start a local server using:
 
 ```bash
-yarn
-yarn serve
+--> yarn
+--> yarn serve
 ```
 
 The website is automatically deployed using [Vercel](https://vercel.com).
