@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="800" alt="The parcel-bundler Logo" src="https://avatars3.githubusercontent.com/u/32607881?s=88&v=4">
+  <img width="80" alt="The parcel-bundler Logo" src="https://avatars3.githubusercontent.com/u/32607881?s=88&v=4">
 </p>
 </br>
 
