@@ -1,6 +1,8 @@
-# 🌎 Parcel 2 website
+# 🌎 global website
 
 This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues, and feel free to send pull requests for contributions. 😍
+
+this is one of the best websites and worth for contribution.
 
 ## Contributing
 
