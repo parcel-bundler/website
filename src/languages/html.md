@@ -188,6 +188,100 @@ Another example:
 {% endsamplefile %}
 {% endsample %}
 
+### posthtml.config.js
+
+Some plugins may require passing a **method as a configuration option**, or you would like to set up plugins based on `process.env.NODE_ENV` , in these cases you should use the `posthtml.config.js` file for configuration, instead of `.posthtmlrc`
+
+Install plugins in your app:
+
+```bash
+npm i posthtml-modules posthtml-shorten -D
+```
+
+Then create a config file:
+
+{% sample %}
+{% samplefile "posthtml.config.js" %}
+
+```js
+module.exports = {
+  plugins: {
+    "posthtml-modules": {},
+    "posthtml-shorten": {
+      shortener: {
+        process: function (url) {
+          return new Promise((resolve, reject) => {
+            resolve(url.replace(".html", ""));
+          });
+        },
+      },
+      tag: ["a"], // Allowed tags for URL shortening
+      attribute: ["href"], // Attributes to replace on the elements
+    },
+  },
+};
+```
+
+{% endsamplefile %}
+
+
+Note that for the usage of **posthtml-modules** defined *locals* cannot have a hyphen/dash `-` within their name, otherwise parcel fails at compilation. 
+
+Furthermore, modules do not reload with HMR, unless you modify the file where you use them (in this case index.html)
+
+
+{% samplefile "index.html" %}
+
+```html
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+   <module
+      href="./modules/header.html"
+      locals='{"headerTitle":"Work"}'
+    >I will be rendered into content</module>
+    <main>My content</main>
+  </body>
+</html>
+```
+
+{% endsamplefile %}
+{% samplefile "modules/header.html" %}
+
+```html
+<header>Welcome to {{headerTitle}} with content: <content></content></header>
+```
+
+{% endsamplefile %}
+
+
+The plugins are automatically executed during build phase :
+
+
+{% samplefile "package.json" %}
+
+```json
+"scripts": {
+    "build": "parcel build *.html",
+}
+```
+
+{% endsamplefile %}
+
+
+Run the build process
+
+
+```bash
+npm run build
+```
+{% endsample %}
+
+
+
+
 ## htmlnano
 
 If minification is enabled (e.g. `parcel build` without `--no-minify`) all bundles are automatically processed with [htmlnano](https://github.com/posthtml/htmlnano).
