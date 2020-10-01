@@ -150,6 +150,44 @@ Then, create a config file:
 
 Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
+Another example:
+
+{% sample %}
+{% samplefile ".posthtmlrc" %}
+
+```json
+{
+  "plugins": {
+    "posthtml-include": {}
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "index.html" %}
+
+```html
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <include src="header.html"></include>
+    <main>My content</main>
+  </body>
+</html>
+```
+
+{% endsamplefile %}
+{% samplefile "header.html" %}
+
+```html
+<header>This is my header</header>
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ## htmlnano
 
 If minification is enabled (e.g. `parcel build` without `--no-minify`) all bundles are automatically processed with [htmlnano](https://github.com/posthtml/htmlnano).
