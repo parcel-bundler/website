@@ -27,7 +27,7 @@ These validators receive an asset, and can throw errors or log a warning if that
 
 We recommend using [`diagnostics`](/plugin-system/logger/#diagnostics) to signal errors or warnings.
 
-Below you can find a simple example of throwing an Error.
+Here is a simple example of emitting an error:
 
 ```js
 import { Validator } from "@parcel/plugin";
