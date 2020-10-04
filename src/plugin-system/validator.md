@@ -71,7 +71,7 @@ Some validators (such as `@parcel/validator-typescript`) may wish to maintain a 
 
 For this validator type, Parcel also ensures to always invoke this validator on the same thread (so that your cache state is accessible). This means that you can define a top-level variable and it will always remain available (and that it retains its value across multiple invocations of `validateAll`).
 
-This type of validator is typically slower than the stateless validator type as it runs everything on a single thread, instead of multiple threads. Only use this if you really have no other choice, as is usually the case for validators that need to have access to the entire project, like Typing validators.
+This type of validator is typically slower than the stateless validator type as it runs everything on a single thread, instead of multiple threads. Only use this if you have no other choice, as is usually the case for validators that need to have access to the entire project, like typing validators.
 
 An example of such a validator can be found below.
 
