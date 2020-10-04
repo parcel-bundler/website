@@ -19,7 +19,7 @@ When Parcel runs in watch mode (`parcel watch` or `parcel serve`), we still serv
 
 But when running `parcel build`, Parcel exits with a failure status code to ensure you don't deploy any code that does not meet the criteria set by your validators. This ensures developers can stay productive and don't have to worry about every small typing or linting issue while trying to solve a problem.
 
-## How to write a stateless validator plugin
+## Stateless validator plugins
 
 If a validator shouldn't store any state about the application you can utilise the standard validator plugin format, this gives you one asset at a time allowing us to spread the work across threads, which improves performance.
 
