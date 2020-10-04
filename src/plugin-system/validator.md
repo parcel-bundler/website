@@ -8,7 +8,7 @@ summary: "A plugin type: Analyze assets and emit warnings and errors"
 ---
 
 {% warning %}
-The Validator API is an experimental API, therefore it might contain breaking changes in minor version changes.
+The Validator API is still experimental, therefore it might contain breaking changes even in minor version changes.
 {% endwarning %}
 
 A validator is a plugin type that is used to validate assets, it is called on each asset and can throw errors or log warnings with diagnostics to validate the input. These can be linting issues, typing issues or similar.
