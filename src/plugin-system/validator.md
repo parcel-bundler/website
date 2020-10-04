@@ -21,7 +21,7 @@ But when running `parcel build`, Parcel exits with a failure status code to ensu
 
 ## Stateless validator plugins
 
-If a validator shouldn't store any state about the application you can utilise the standard validator plugin format, this gives you one asset at a time allowing us to spread the work across threads, which improves performance.
+If a validator doesn't store any state about the application you can use the standard validator plugin interface, this gives you one asset at a time allowing Parcel to spread the work across threads, improving performance.
 
 These validators receive an asset, and can throw errors or log a warning if that asset is invalid in some way, e.g. type errors or linting errors.
 
