@@ -65,7 +65,7 @@ export default new Validator({
 });
 ```
 
-## How to write a stateful validator
+## Stateful validator plugins
 
 Some validators (such as `@parcel/validator-typescript`) may wish to maintain a project-wide state/cache for efficiency. For these cases, it is appropriate to use a different interface where parcel passses _all_ changed files to the validator at the same time.
 
