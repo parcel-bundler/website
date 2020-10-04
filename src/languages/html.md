@@ -33,7 +33,7 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 
 Parcel detects most references in HTML to other files (such as `<script src="..."`, `<img src="...">`, `<video>` or `<meta property="og:image">`) and processes them as well. These references are rewritten so that they link to the correct output files. Relative filenames are resolved relative to the current HTML file.
 
-One noteworthy aspect of this is that `<script type="module">` automatically creates a ESM JavaScript bundle (and restricting the Browserslist config to browsers supporting ESM). Together with `<script nomodule>`, this makes differential serving very straight forward (see also [Generic Webapp](http://localhost:8080/getting-started/webapp/#differential-serving)).
+One noteworthy aspect of this is that `<script type="module">` automatically creates a ESM JavaScript bundle (and restricting the Browserslist config to browsers supporting ESM). Together with `<script nomodule>`, this makes differential serving very straight forward (see also [Generic Webapp](/getting-started/webapp/#differential-serving)).
 
 {% sample %}
 {% samplefile "index.html" %}
