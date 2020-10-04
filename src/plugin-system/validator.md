@@ -25,7 +25,7 @@ If a validator doesn't store any state about the application you can use the sta
 
 These validators receive an asset, and can throw errors or log a warning if that asset is invalid in some way, e.g. type errors or linting errors.
 
-To do this properly you should be using diagnostics, these are described in the logger docs under [`diagnostics`](/plugin-system/logger/#diagnostics).
+We recommend using [`diagnostics`](/plugin-system/logger/#diagnostics) to signal errors or warnings.
 
 Below you can find a simple example of throwing an Error.
 
