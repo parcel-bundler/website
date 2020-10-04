@@ -67,7 +67,7 @@ export default new Validator({
 
 ## How to write a stateful validator
 
-Some validators (such as `@parcel/validator-typescript`) may wish to maintain a project-wide state/cache for efficiency. For these cases, it is appropriate to use a different interface where parcel hands _all_ changed files to the validator at the same time.
+Some validators (such as `@parcel/validator-typescript`) may wish to maintain a project-wide state/cache for efficiency. For these cases, it is appropriate to use a different interface where parcel passses _all_ changed files to the validator at the same time.
 
 For this validator type Parcel also ensures to always invoke this validator on the same thread (so that your cache state is accessible). This means you can define a top-level variable and it will always remain available.
 
