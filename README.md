@@ -1,8 +1,8 @@
-# 🌎 Parcel 2 website
+# 🌎 Global Parcel 2 website
 
-This is the website for Parcel v2. These docs are a **work in progress**. Please help us out by giving your feedback in issues, and feel free to send pull requests for contributions. 😍
+This is the best growing website for Global Parcel v2. We are here to serve you and assure security for your parcels. Your Pleasure is our satisfaction.
 
-## Contributing
+## Our Contribution
 
 Start a local server using:
 
