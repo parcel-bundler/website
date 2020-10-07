@@ -250,7 +250,7 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
 {% samplefile "modules/header.html" %}
 
 ```html
-<header>Welcome to \{\{headerTitle\}\} with content: <content></content></header>
+<header>Welcome to \u007b\u007b{headerTitle\u007d\u007d with content: <content></content></header>
 ```
 
 {% endsamplefile %}
