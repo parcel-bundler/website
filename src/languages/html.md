@@ -223,13 +223,13 @@ module.exports = {
 ```
 
 {% endsamplefile %}
+{% endsample %}
 
-
-Note that for the usage of **posthtml-modules** defined *locals* cannot have a hyphen/dash `-` within their name, otherwise parcel fails at compilation. 
+Note that for the usage of **posthtml-modules** defined _locals_ cannot have a hyphen/dash `-` within their name, otherwise parcel fails at compilation.
 
 Furthermore, modules do not reload with HMR, unless you modify the file where you use them (in this case index.html)
 
-
+{% sample %}
 {% samplefile "index.html" %}
 
 ```html
@@ -238,10 +238,9 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
     <title>Home</title>
   </head>
   <body>
-   <module
-      href="./modules/header.html"
-      locals='{"headerTitle":"Work"}'
-    >I will be rendered into content</module>
+    <module href="./modules/header.html" locals='{"headerTitle":"Work"}'
+      >I will be rendered into content</module
+    >
     <main>My content</main>
   </body>
 </html>
@@ -255,11 +254,11 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
 ```
 
 {% endsamplefile %}
-
+{% endsample %}
 
 The plugins are automatically executed during build phase :
 
-
+{% sample %}
 {% samplefile "package.json" %}
 
 ```json
@@ -269,18 +268,13 @@ The plugins are automatically executed during build phase :
 ```
 
 {% endsamplefile %}
-
+{% endsample %}
 
 Run the build process
-
 
 ```bash
 npm run build
 ```
-{% endsample %}
-
-
-
 
 ## htmlnano
 
