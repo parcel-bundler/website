@@ -238,9 +238,9 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
     <title>Home</title>
   </head>
   <body>
-    <module href="./modules/header.html" locals='{"headerTitle":"Work"}'
-      >I will be rendered into content</module
-    >
+    <module href="./modules/header.html" locals='{"headerTitle":"Work"}'>
+      <p>I will be rendered into content tag</p>
+    </module>
     <main>My content</main>
   </body>
 </html>
@@ -250,7 +250,7 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
 {% samplefile "modules/header.html" %}
 
 ```html
-<header>Welcome to {{headerTitle}} with content: <content></content></header>
+<header>Welcome to \{\{headerTitle\}\} with content: <content></content></header>
 ```
 
 {% endsamplefile %}
@@ -275,6 +275,26 @@ Run the build process
 ```bash
 npm run build
 ```
+
+The result should be:
+
+{% sample %}
+{% samplefile "index.html" %}
+
+```html
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <header>Welcome to Work with content: <p>I will be rendered into content tag</p></header>
+    <main>My content</main>
+  </body>
+</html>
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## htmlnano
 
