@@ -1,6 +1,6 @@
 # 🌎 Global Parcel 2 website
 
-This is the best growing website for Global Parcel v2. We are here to serve you and assure security for your parcels. Your Pleasure is our satisfaction.
+This is the best growing website for Global Parcel v2. We are here to serve you and assure security for your parcels. Your Pleasure is our satisfaction. We have a good staff which takes care of your parcel. 
 
 ## Our Contribution
 
