@@ -129,7 +129,7 @@ PostHTML is a tool for transforming HTML with plugins. You can configure PostHTM
 Install plugins in your app:
 
 ```bash
-yarn add posthtml-img-autosize
+yarn add posthtml-doctype
 ```
 
 Then, create a config file:
@@ -148,9 +148,7 @@ Then, create a config file:
 {% endsamplefile %}
 {% endsample %}
 
-Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
-
-Another example:
+Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` or an empty object instead, another example:
 
 {% sample %}
 {% samplefile ".posthtmlrc" %}
@@ -190,15 +188,11 @@ Another example:
 
 ### posthtml.config.js
 
-Some plugins may require passing a **method as a configuration option**, or you would like to set up plugins based on `process.env.NODE_ENV` , in these cases you should use the `posthtml.config.js` file for configuration, instead of `.posthtmlrc`
-
-Install plugins in your app:
+For some plugins that require passing a **method as a configuration option**, or to set up plugins based on `process.env.NODE_ENV`, you need to use a `posthtml.config.js` file for configuration, instead of `.posthtmlrc`.
 
 ```bash
 npm i posthtml-modules posthtml-shorten -D
 ```
-
-Then create a config file:
 
 {% sample %}
 {% samplefile "posthtml.config.js" %}
@@ -223,13 +217,7 @@ module.exports = {
 ```
 
 {% endsamplefile %}
-{% endsample %}
 
-Note that for the usage of **posthtml-modules** defined _locals_ cannot have a hyphen/dash `-` within their name, otherwise parcel fails at compilation.
-
-Furthermore, modules do not reload with HMR, unless you modify the file where you use them (in this case index.html)
-
-{% sample %}
 {% samplefile "index.html" %}
 
 ```html
@@ -256,25 +244,9 @@ Furthermore, modules do not reload with HMR, unless you modify the file where yo
 {% endsamplefile %}
 {% endsample %}
 
-The plugins are automatically executed during build phase :
+Note that for the usage of posthtml-modules defined _locals_ cannot have a hyphen/dash (`-`) within their name, otherwise Parcel fails at compilation.
 
-{% sample %}
-{% samplefile "package.json" %}
-
-```json
-"scripts": {
-    "build": "parcel build *.html",
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-Run the build process
-
-```bash
-npm run build
-```
+Furthermore, modules do not reload with HMR, unless you modify the file where you use them (in this case index.html).
 
 The result should be:
 
