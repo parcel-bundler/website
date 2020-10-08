@@ -41,7 +41,6 @@ import Parcel from "@parcel/core";
 ```js
 import path from "path";
 import Parcel, { createWorkerFarm } from "@parcel/core";
-import defaultConfigContents from "@parcel/config-default";
 import { NodeFS, MemoryFS } from "@parcel/fs";
 
 const DIST_DIR = "/dist";
