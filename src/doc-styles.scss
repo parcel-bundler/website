@@ -405,6 +405,8 @@ body {
 
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
+    justify-content: space-around;
+    max-width: 80rem;
   }
 
   .docs-navigation {
