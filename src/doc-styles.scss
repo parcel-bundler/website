@@ -413,15 +413,17 @@ body {
     color: var(--sidebar-color);
     @include transition-color;
 
-    padding: 0.5rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     border-right: 1px solid var(--border-color);
     font-family: $title-fonts;
     font-size: 1.1rem;
     white-space: nowrap;
 
-    //scroll on desktop
+    //desktop
     @media (min-width: $breakpoint-tablet) {
-      overflow: scroll;
+      overflow-y: scroll;
+      width: 30rem;
+      height: 100%;
     }
 
     .doc-nav-group-hidden {
@@ -516,6 +518,7 @@ body {
     min-width: 0;
     padding: 2rem;
     padding-top: 0;
+    margin: 0 5rem;
     line-height: 1.5em;
     box-sizing: border-box;
 
