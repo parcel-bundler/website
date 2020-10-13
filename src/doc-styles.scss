@@ -401,7 +401,7 @@ body {
 .content-container {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin: 0 auto;
 
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
