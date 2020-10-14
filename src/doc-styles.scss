@@ -523,6 +523,7 @@ body {
     margin: 0 5rem;
     line-height: 1.5em;
     box-sizing: border-box;
+    overflow-y: scroll;
 
     & > div {
       width: 100%;
