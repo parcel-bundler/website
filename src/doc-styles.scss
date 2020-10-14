@@ -64,6 +64,8 @@ body {
   display: flex;
   flex-direction: column;
 
+  overflow: hidden;
+
   @media print {
     font-size: 12pt;
     max-width: 100%;
