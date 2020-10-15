@@ -467,7 +467,9 @@ body {
       & > li:first-child > label {
         display: block;
         color: var(--font-color-2);
-        font-size: 0.9em;
+        font-size: 0.75em;
+        font-weight: bold;
+        text-transform: uppercase;
 
         @media (max-width: $breakpoint-tablet) {
           cursor: pointer;
