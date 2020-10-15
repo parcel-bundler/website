@@ -230,7 +230,13 @@ body {
   color: inherit;
 
   & > svg {
-    height: 1.7em;
+    .small-circle {
+      transform-origin: 70px 40px;
+    }
+
+    .sun-rays {
+      transform-origin: 50px 50px;
+    }
 
     & circle {
       transition: transform 0.2s ease-in-out;
@@ -240,12 +246,21 @@ body {
       transform-origin: center;
     }
 
+    & .sun-rays {
+      transform: scale(0);
+    }
+
     .dark & .big-circle {
-      transform: scale(1.1);
+      transform: scale(0.75);
     }
 
     .dark & .small-circle {
       transform: translate(-20px, 10px);
+      transform: scale(0);
+    }
+
+    .dark & .sun-rays {
+      transform: scale(1);
     }
   }
 }
