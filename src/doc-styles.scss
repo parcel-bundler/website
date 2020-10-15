@@ -53,6 +53,7 @@ a {
 }
 
 body {
+  overflow: hidden;
   color: var(--color);
   background: var(--background-color);
   @include transition-colors;
@@ -403,6 +404,9 @@ body {
   flex-direction: column;
   margin-top: 1rem;
 
+  min-height: 0;
+  flex-grow: 1;
+
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
   }
@@ -412,10 +416,12 @@ body {
     @include transition-color;
 
     padding: 0.5rem 1.5rem;
+    flex-shrink: 0;
     border-right: 1px solid var(--border-color);
     font-family: $title-fonts;
     font-size: 1.1rem;
     white-space: nowrap;
+    overflow-y: scroll;
 
     .doc-nav-group-hidden {
       // Only hide on mobile
@@ -506,18 +512,18 @@ body {
 
   .main-content {
     width: 100%;
-    max-width: 1000px;
     margin: 0 auto;
     min-width: 0;
-    padding: 2rem;
-    padding-top: 0;
     line-height: 1.5em;
     box-sizing: border-box;
+    overflow-x: scroll;
 
     & > div {
       width: 100%;
-      max-width: 80rem;
+      max-width: 1000px;
       margin: 0 auto;
+      padding: 2rem;
+      padding-top: 0;
 
       & > header {
         h1 {
@@ -531,6 +537,11 @@ body {
           margin-bottom: 1rem;
           filter: opacity(0.7);
         }
+      }
+
+      & > footer {
+        text-align: right;
+        font-style: italic;
       }
     }
 
