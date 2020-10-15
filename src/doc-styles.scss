@@ -506,6 +506,8 @@ body {
 
   .main-content {
     width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     min-width: 0;
     padding: 2rem;
     padding-top: 0;
