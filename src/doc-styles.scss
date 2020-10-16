@@ -5,6 +5,11 @@ $break-xl: 1280px;
 
 $breakpoint-tablet: 1000px;
 
+$title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+  Arial, sans-serif;
+$text-fonts: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Ubuntu, Arial, sans-serif;
+
 @mixin transition-background-color {
   transition: background 0.2s ease-in-out;
 }
@@ -63,8 +68,7 @@ body {
   @include transition-colors;
 
   margin: 0;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Ubuntu, Arial, sans-serif;
+  font-family: $text-fonts;
   height: 100vh;
 
   display: flex;
@@ -431,7 +435,7 @@ body {
   .docs-navigation {
     color: var(--sidebar-color);
     @include transition-color;
-
+    font-family: $title-fonts;
     padding: 0.5rem 1.5rem;
     flex-shrink: 0;
     border-right: 1px solid var(--border-color);
@@ -573,6 +577,7 @@ body {
       font-weight: 400;
       line-height: 1em;
       margin-top: 1.5rem;
+      font-family: $title-fonts;
 
       & img {
         height: 1em;
