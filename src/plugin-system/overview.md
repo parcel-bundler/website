@@ -71,9 +71,9 @@ separate bundles. For example, if your `index.html` file links to an
 - [Resolver](/plugin-system/resolver): Turns dependency requests into absolute paths (or exclude them) <br>
   _Example: add your own syntax for imports, e.g. `import "^/foo"`_
 - [Bundler](/plugin-system/bundler): Turns an asset graph into a bundle graph <br>
-  _Example: create a bundler that does Vendoring (splitting app and node_modules code)_
+  _Example: create a bundler that does vendoring (splitting app and node_modules code)_
 - [Namer](/plugin-system/namer): Generates a filename (or filepath) for a bundle <br>
-  _Example: create a bundler that does Vendoring (splitting app and node_modules code)_
+  _Example: place output bundles in a hierarchical file structure, omit hashes in bundle names_
 - [Runtime](/plugin-system/runtime): Programatically inserts (synthetic) assets into bundles" <br>
   _Example: add analytics to every bundle_
 - [Packager](/plugin-system/packager): Turns a group of assets (bundle) into a bundle file" <br>
@@ -84,7 +84,7 @@ separate bundles. For example, if your `index.html` file links to an
 <p></p> <!-- Force two lists -->
 
 - [Validator](/plugin-system/validator): Analyzes assets and emit warnings and errors <br>
-  _Example: do type-checking (Typescript, Flow)_
+  _Example: do type-checking (TypeScript, Flow)_
 - [Config](/plugin-system/configuration): A reuseable '.parcelrc' package <br>
   _Example: provide a tailor-made parcel config for your boilerplate_ <br>
 - [Reporter](/plugin-system/reporter): Listens to events of the build <br>
