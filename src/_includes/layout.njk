@@ -115,14 +115,9 @@
           {{ content | safe }}
 
           <footer>
-            <i>
-              <a
-                href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}"
-                style="float: right;"
-              >
-                Edit this page on GitHub
-              </a>
-            </i>
+            <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
+              Edit this page on GitHub
+            </a>
           </footer>
         </div>
       </main>
@@ -151,6 +146,9 @@
           facetFilters: ["lang:v2"],
         },
       });
+    </script>
+    <script>
+      {% include "remember-nav-scroll.js" %}
     </script>
   </body>
   <script>
