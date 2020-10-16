@@ -23,6 +23,10 @@ $breakpoint-tablet: 1000px;
 }
 
 html {
+  @media (min-width: $breakpoint-tablet) {
+    overflow: hidden;
+  }
+
   --color: black;
   --background-color: transparent;
   --header-background-color: #21374b;
@@ -53,20 +57,31 @@ a {
 }
 
 body {
-  @media (min-width: $breakpoint-tablet) {
-    overflow: hidden;
-  }
-
   color: var(--color);
   background: var(--background-color);
   @include transition-colors;
+
+  position: absolute;
+  width: 100%;
 
   margin: 0;
   font-family: $text-fonts;
   height: 100vh;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "a a a"
+    "b c c";
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-areas:
+      "a a a"
+      "b b b"
+      "c c c";
+  }
+
+  grid-template-rows: max-content 1fr;
+  grid-template-columns: max-content 1fr;
+  grid-row-gap: 1em;
 
   @media print {
     font-size: 12pt;
@@ -271,8 +286,7 @@ body {
 }
 
 .parcel-docs-header {
-  flex: 0 0 auto;
-  width: 100%;
+  grid-area: a;
 
   display: flex;
   justify-content: space-between;
@@ -289,14 +303,6 @@ body {
   width: 100%;
 
   border-bottom: 1px solid var(--border-color);
-
-  @media (max-width: $break-sm) {
-  }
-
-  & > * {
-    @media (max-width: $break-sm) {
-    }
-  }
 
   .left {
     display: flex;
@@ -402,394 +408,386 @@ body {
   }
 }
 
-.content-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
+.docs-navigation {
+  grid-area: b;
 
-  min-height: 0;
-  flex-grow: 1;
+  color: var(--sidebar-color);
+  @include transition-color;
 
+  padding: 0.5rem 1.5rem;
+  border-right: 1px solid var(--border-color);
+  font-family: $title-fonts;
+  font-size: 1.1rem;
+  white-space: nowrap;
   @media (min-width: $breakpoint-tablet) {
-    flex-direction: row;
+    overflow-y: scroll;
   }
 
-  .docs-navigation {
-    color: var(--sidebar-color);
-    @include transition-color;
-
-    padding: 0.5rem 1.5rem;
-    flex-shrink: 0;
-    border-right: 1px solid var(--border-color);
-    font-family: $title-fonts;
-    font-size: 1.1rem;
-    white-space: nowrap;
-    overflow-y: scroll;
-
-    .doc-nav-group-hidden {
-      // Only hide on mobile
-      @media (max-width: $breakpoint-tablet) {
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-        clip: rect(1px, 1px, 1px, 1px);
-        white-space: nowrap; /* added line */
-      }
+  .doc-nav-group-hidden {
+    // Only hide on mobile
+    @media (max-width: $breakpoint-tablet) {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; /* added line */
     }
+  }
 
-    ul,
-    li {
-      list-style: none;
-    }
+  ul,
+  li {
+    list-style: none;
+  }
 
-    @media print {
-      display: none;
-    }
+  @media print {
+    display: none;
+  }
 
-    .current > a {
-      background-color: var(--selected-nav-background);
+  .current > a {
+    background-color: var(--selected-nav-background);
+    color: #4a4a4a;
+  }
+
+  a {
+    color: inherit;
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: var(--hover-nav-background);
       color: #4a4a4a;
     }
+  }
 
-    a {
-      color: inherit;
-      display: flex;
-      padding: 0.25rem 0.5rem;
-      text-decoration: none;
-      border-radius: 2px;
+  & > ul {
+    & li {
+      margin-bottom: 0.5rem;
+    }
 
-      &:hover {
-        background-color: var(--hover-nav-background);
-        color: #4a4a4a;
+    & > li:first-child > label {
+      display: block;
+      color: var(--color);
+
+      @media (max-width: $breakpoint-tablet) {
+        cursor: pointer;
+        padding: 1rem 0;
+        text-align: center;
       }
     }
 
-    & > ul {
-      & li {
-        margin-bottom: 0.5rem;
-      }
+    & > li:not(:first-child) {
+      margin-bottom: 1.5rem;
 
-      & > li:first-child > label {
-        display: block;
-        color: var(--color);
+      & > ul {
+        a {
+          padding-left: 1.5rem;
+        }
 
         @media (max-width: $breakpoint-tablet) {
-          cursor: pointer;
-          padding: 1rem 0;
-          text-align: center;
-        }
-      }
+          margin-bottom: 1rem;
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
 
-      & > li:not(:first-child) {
-        margin-bottom: 1.5rem;
-
-        & > ul {
           a {
-            padding-left: 1.5rem;
-          }
-
-          @media (max-width: $breakpoint-tablet) {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            a {
-              padding: 0.5rem 0.75rem;
-            }
+            padding: 0.5rem 0.75rem;
           }
         }
       }
-    }
-
-    & a img {
-      height: 1em;
-      width: 1em;
-      vertical-align: middle;
-      display: inline-block;
-      margin-right: 0.25em;
     }
   }
 
-  .main-content {
-    width: 100%;
+  & a img {
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 0.25em;
+  }
+}
+
+.main-content {
+  grid-area: c;
+
+  width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+  line-height: 1.5em;
+  box-sizing: border-box;
+  @media (min-width: $breakpoint-tablet) {
+    overflow-x: scroll;
+  }
+
+  & > div {
+    max-width: 1000px;
     margin: 0 auto;
-    min-width: 0;
-    line-height: 1.5em;
-    box-sizing: border-box;
-    @media (min-width: $breakpoint-tablet) {
-      overflow-x: scroll;
-    }
+    padding: 1.5rem;
+    padding-top: 0;
 
-    & > div {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      padding-top: 0;
-
-      & > header {
-        h1 {
-          margin: 0;
-          margin-top: 0.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .summary {
-          margin-top: 0.5rem;
-          margin-bottom: 1rem;
-          filter: opacity(0.7);
-        }
+    & > header {
+      h1 {
+        margin: 0;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
       }
 
-      & > footer {
-        text-align: right;
-        font-style: italic;
+      .summary {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        filter: opacity(0.7);
       }
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      position: relative;
-      font-weight: 400;
-      line-height: 1em;
-      font-family: $title-fonts;
-      margin-top: 1.5rem;
+    & > footer {
+      text-align: right;
+      font-style: italic;
+    }
+  }
 
-      & img {
-        height: 1em;
-      }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    font-weight: 400;
+    line-height: 1em;
+    font-family: $title-fonts;
+    margin-top: 1.5rem;
+
+    & img {
+      height: 1em;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 1.5rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: 0.9em;
+  }
+
+  blockquote {
+    color: #666666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em var(--border-color) solid;
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    // color: #000;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+      monospace;
+    background-color: var(--code-background-color);
+    @include transition-background-color;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  p pre,
+  p code,
+  p kbd,
+  p samp {
+    font-size: 12px;
+  }
+
+  pre {
+    padding: 1rem;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  p code {
+    font-size: 0.95em;
+    border-radius: 3px;
+    padding: 0 0.2em;
+    display: inline-block;
+  }
+
+  p a code {
+    text-decoration: underline;
+    padding: 0;
+    color: inherit;
+  }
+
+  figure code {
+    font-size: 0.9rem;
+  }
+
+  b,
+  strong {
+    font-weight: bold;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  ins {
+    background: #ff9;
+    color: #000;
+    text-decoration: none;
+  }
+
+  code mark {
+    background: var(--code-mark-background-color);
+    @include transition-background-color;
+    font-weight: 700;
+    font-style: initial;
+
+    .dark & {
+      color: white;
+    }
+  }
+
+  mark {
+    background: #ff0;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  ul,
+  ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+  }
+
+  li p:last-child {
+    margin: 0;
+  }
+
+  dd {
+    margin: 0 0 0 2em;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  td,
+  th {
+    border: 1px solid #999;
+    padding: 0.5rem 1rem;
+  }
+
+  @media print {
+    a,
+    a:visited {
+      text-decoration: underline;
     }
 
-    h1,
-    h2,
-    h3 {
-      margin-bottom: 1.5rem;
+    a[href]:after {
+      content: " (" attr(href) ")";
     }
 
-    h4,
-    h5,
-    h6 {
-      margin-bottom: 1rem;
-      font-weight: bold;
+    abbr[title]:after {
+      content: " (" attr(title) ")";
     }
 
-    h1 {
-      font-size: 2.5em;
-    }
-
-    h2 {
-      font-size: 2em;
-    }
-
-    h3 {
-      font-size: 1.5em;
-    }
-
-    h4 {
-      font-size: 1.2em;
-    }
-
-    h5 {
-      font-size: 1em;
-    }
-
-    h6 {
-      font-size: 0.9em;
-    }
-
-    blockquote {
-      color: #666666;
-      margin: 0;
-      padding-left: 3em;
-      border-left: 0.5em var(--border-color) solid;
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+      content: "";
     }
 
     pre,
-    code,
-    kbd,
-    samp {
-      // color: #000;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-        monospace;
-      background-color: var(--code-background-color);
-      @include transition-background-color;
-      white-space: pre;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    p pre,
-    p code,
-    p kbd,
-    p samp {
-      font-size: 12px;
-    }
-
-    pre {
-      padding: 1rem;
-    }
-
-    p {
-      margin: 1rem 0;
-    }
-
-    p code {
-      font-size: 0.95em;
-      border-radius: 3px;
-      padding: 0 0.2em;
-      display: inline-block;
-    }
-
-    p a code {
-      text-decoration: underline;
-      padding: 0;
-      color: inherit;
-    }
-
-    figure code {
-      font-size: 0.9rem;
-    }
-
-    b,
-    strong {
-      font-weight: bold;
-    }
-
-    dfn {
-      font-style: italic;
-    }
-
-    ins {
-      background: #ff9;
-      color: #000;
-      text-decoration: none;
-    }
-
-    code mark {
-      background: var(--code-mark-background-color);
-      @include transition-background-color;
-      font-weight: 700;
-      font-style: initial;
-
-      .dark & {
-        color: white;
-      }
-    }
-
-    mark {
-      background: #ff0;
-      color: #000;
-      font-style: italic;
-      font-weight: bold;
-    }
-
-    sub,
-    sup {
-      font-size: 75%;
-      line-height: 0;
-      position: relative;
-      vertical-align: baseline;
-    }
-
-    sup {
-      top: -0.5em;
-    }
-
-    sub {
-      bottom: -0.25em;
-    }
-
-    ul,
-    ol {
-      margin: 1em 0;
-      padding: 0 0 0 2em;
-    }
-
-    li p:last-child {
-      margin: 0;
-    }
-
-    dd {
-      margin: 0 0 0 2em;
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-      width: 100%;
-    }
-
-    td {
-      vertical-align: top;
-    }
-
-    td,
-    th {
+    blockquote {
       border: 1px solid #999;
-      padding: 0.5rem 1rem;
+      padding-right: 1em;
+      page-break-inside: avoid;
     }
 
-    @media print {
-      a,
-      a:visited {
-        text-decoration: underline;
-      }
+    tr,
+    img {
+      page-break-inside: avoid;
+    }
 
-      a[href]:after {
-        content: " (" attr(href) ")";
-      }
+    @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+    }
 
-      abbr[title]:after {
-        content: " (" attr(title) ")";
-      }
+    @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+    }
 
-      .ir a:after,
-      a[href^="javascript:"]:after,
-      a[href^="#"]:after {
-        content: "";
-      }
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
 
-      pre,
-      blockquote {
-        border: 1px solid #999;
-        padding-right: 1em;
-        page-break-inside: avoid;
-      }
-
-      tr,
-      img {
-        page-break-inside: avoid;
-      }
-
-      @page :left {
-        margin: 15mm 20mm 15mm 10mm;
-      }
-
-      @page :right {
-        margin: 15mm 10mm 15mm 20mm;
-      }
-
-      p,
-      h2,
-      h3 {
-        orphans: 3;
-        widows: 3;
-      }
-
-      h2,
-      h3 {
-        page-break-after: avoid;
-      }
+    h2,
+    h3 {
+      page-break-after: avoid;
     }
   }
 }
