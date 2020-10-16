@@ -53,7 +53,10 @@ a {
 }
 
 body {
-  overflow: hidden;
+  @media (min-width: $breakpoint-tablet) {
+    overflow: hidden;
+  }
+
   color: var(--color);
   background: var(--background-color);
   @include transition-colors;
@@ -516,13 +519,14 @@ body {
     min-width: 0;
     line-height: 1.5em;
     box-sizing: border-box;
-    overflow-x: scroll;
+    @media (min-width: $breakpoint-tablet) {
+      overflow-x: scroll;
+    }
 
     & > div {
-      width: 100%;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
       padding-top: 0;
 
       & > header {
