@@ -82,6 +82,7 @@ body {
   grid-template-rows: max-content 1fr;
   grid-template-columns: max-content 1fr;
   grid-row-gap: 1em;
+  grid-column-gap: 0.5em;
 
   @media print {
     font-size: 12pt;
@@ -265,13 +266,12 @@ body {
 }
 
 .visually-hidden {
-  position: absolute !important;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
-  width: 1px;
   overflow: hidden;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap; /* added line */
+  white-space: nowrap;
+  width: 1px;
 }
 
 .header-anchor {
