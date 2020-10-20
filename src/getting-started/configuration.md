@@ -41,7 +41,7 @@ Default values for the output folder
 
 The implicit default target has the output folder `~/dist/`.
 
-With multiple entrypoints, you should use an explicit `distDir` as oppsed to the top-levle target fields because Parcel wouldn't know which bundle should have the specified name:
+With multiple entrypoints, you should use an explicit `distDir` as opposed to the top-level target fields because Parcel wouldn't know which bundle should have the specified name:
 
 {% sample "a.html b.html" %}
 {% samplefile "package.json" %}
