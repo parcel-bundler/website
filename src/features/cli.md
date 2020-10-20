@@ -17,14 +17,14 @@ The "entries" in all commands can be:
 
 {% warning %}
 
-If a glob pattern contains a wildcard `*`, be sure to wrap the pattern in single quotes. This ensures that Parcel reads the pattern correctly without it being manipulated by your shell.
+If a glob pattern contains a wildcard `*` (or generally, is a glob), be sure to wrap the pattern in single quotes to ensure that the glob is not resolved by your shell and is passed to Parcel directly. This way, globs like `./**/*` are resolved correctly and Parcel will also pick up newly created files without having to restart.
 
 ```bash
-# OK
+# ✅ Recommended
 parcel './**/*.html'
 parcel './img/**/*'
 
-# Not OK
+# ❌ Problematic
 parcel ./**/*.html
 parcel ./img/**/*
 ```
