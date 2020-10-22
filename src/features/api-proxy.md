@@ -41,7 +41,7 @@ For more complex configurations, a `.proxyrc.js` file allows you to attach any (
 {% samplefile ".proxyrc.js" %}
 
 ```js
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const createProxyMiddleware = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
