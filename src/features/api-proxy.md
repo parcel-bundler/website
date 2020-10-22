@@ -14,7 +14,7 @@ To better emulate the actual production environment when developing web apps, yo
 In this JSON file, you specify an object where every key is a pattern against which the URL is matched and the value is a [`http-proxy-middleware` options](https://github.com/chimurai/http-proxy-middleware#options) object:
 
 {% sample %}
-{% samplefile ".proxyrc.js" %}
+{% samplefile ".proxyrc" %}
 
 ```js
 {
