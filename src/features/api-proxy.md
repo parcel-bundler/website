@@ -38,10 +38,23 @@ This would cause `http://localhost:1234/api/endpoint` to be proxied to `http://l
 For more complex configurations, a `.proxyrc.js` file allows you to attach any (connect-compatible) middleware, this example has the same behaviour as the `.proxyrc` version above.
 
 {% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "devDependencies": {
+    "http-proxy-middleware": "^1.0.0",
+    "parcel": "next"
+  }
+}
+```
+
+{% endsamplefile %}
+
 {% samplefile ".proxyrc.js" %}
 
 ```js
-const createProxyMiddleware = require("http-proxy-middleware");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
