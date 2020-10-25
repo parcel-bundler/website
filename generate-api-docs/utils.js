@@ -178,7 +178,9 @@ module.exports.parseJsDoc = function parseJsDoc(
   return result;
 };
 
-module.exports.escapeHtml = function escapeHtml(str /*: string */) {
+module.exports.escapeHtml = function escapeHtml(
+  str /*: string */
+) /*: string*/ {
   const tagsToReplace = {
     "&": "&amp;",
     "<": "&lt;",
