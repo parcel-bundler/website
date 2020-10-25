@@ -7,6 +7,10 @@ eleventyNavigation:
 summary: How to use @parcel/core programatically
 ---
 
+The options that can be passed to the `Parcel` constructor are [InitialParcelOptions](/plugin-system/api/#InitialParcelOptions).
+
+By default, the behaviour is similar to `parcel serve` (building for development) — set `mode: 'production'` to create production builds (scope hoisting, minification, ...).
+
 ### A minimal example (or "What the `parcel` CLI does")
 
 {% sample %}
@@ -24,6 +28,7 @@ import Parcel from "@parcel/core";
       browsers: ["last 1 Chrome version"],
       node: "10",
     },
+    mode: "production",
   });
 
   await bundler.run();
@@ -65,6 +70,7 @@ const DIST_DIR = "/dist";
       },
       distDir: DIST_DIR,
       patchConsole: false,
+      mode: "production",
     });
 
     await b.run();
