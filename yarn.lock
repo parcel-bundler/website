@@ -3,7 +3,7 @@
 
 __metadata:
   version: 4
-  cacheKey: 6
+  cacheKey: 7
 
 "@11ty/dependency-tree@npm:^1.0.0":
   version: 1.0.0
@@ -188,6 +188,17 @@ __metadata:
     lodash: ^4.17.19
     to-fast-properties: ^2.0.0
   checksum: a1515b3ed19a8499f1f27d2c90537803b3e77f6d100ef1c327c86f85817ad2d915a61ae777eaacd9d955999db4ea68d6bb3b5933e0611d3d18a6ffc95430f44a
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.8.3":
+  version: 7.12.1
+  resolution: "@babel/types@npm:7.12.1"
+  dependencies:
+    "@babel/helper-validator-identifier": ^7.10.4
+    lodash: ^4.17.19
+    to-fast-properties: ^2.0.0
+  checksum: 0747b064093126e3ceba410c78e8ea438ed84cd68ad8abb2f98ffe88e2b600406096553bb5ef28cd40b29e68122820fe98e31ddfd0318fbb0efc2f4080d3417a
   languageName: node
   linkType: hard
 
@@ -2443,12 +2454,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flow-bin@npm:^0.132.0":
-  version: 0.132.0
-  resolution: "flow-bin@npm:0.132.0"
+"flow-bin@npm:^0.136.0":
+  version: 0.136.0
+  resolution: "flow-bin@npm:0.136.0"
   bin:
     flow: cli.js
-  checksum: ecaa7ff45608831e4a7634d3232dcb4114733036a58a4cc41403b37cfa073af55d8b7cedc11c308c41527c0728440d35628a62c2dc05d27a2d3f3d4d134132c6
+  checksum: 92f6bbbfb2c97ca4bdbeedac218a011a146f86eafc30ca234a96586634ffc0d053a5270983bee4bb76ce2bd0e9c47e2a40ba4b63700c6d482521f2044d74adb9
   languageName: node
   linkType: hard
 
@@ -2560,10 +2571,10 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.1.2#builtin<compat/fsevents>":
   version: 2.1.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.1.3#builtin<compat/fsevents>::version=2.1.3&hash=87eb42"
+  resolution: "fsevents@patch:fsevents@npm%3A2.1.3#builtin<compat/fsevents>::version=2.1.3&hash=127e8e"
   dependencies:
     node-gyp: latest
-  checksum: d8ae862048fc127cdbd00d02b2feb7c25946c3ce4cbc44e958134be87e239577a16dafafa1c270d010b8624e1b1e0372e23f7865c55c6f83e83fc9f68b0a30d2
+  checksum: e2b8c379340e21a786d32c653854c8876f94eb1202dd5be378fd42c062bc123aab5051c32bf0011865257c85982c41ded203f9fe8c9f9c8f8c84dc4672abc0e0
   languageName: node
   linkType: hard
 
@@ -4793,7 +4804,7 @@ fsevents@~2.1.2:
     "@babel/parser": ^7.11.4
     "@babel/traverse": ^7.11.0
     eleventy-plugin-sass: ^1.0.0
-    flow-bin: ^0.132.0
+    flow-bin: ^0.136.0
     husky: ^4.2.5
     lint-staged: ^10.2.13
     markdown-it: ^11.0.0
