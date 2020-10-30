@@ -77,7 +77,6 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                                        |
 | `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/configuration/package-json/#targets) |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level                                                                                                                           |
-| `--no-autoinstall`                           | Disables autoinstall                                                                                                                         |
 | `--no-cache`                                 | Disables reading from the filesystem cache                                                                                                   |
 | `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMap`](/configuration/package-json/#sourcemap)                                          |
 | `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                                           |
@@ -91,10 +90,12 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | ------------------- | ------------------------------------------------------------------------------------- |
 | `--no-hmr`          | Disables [hot module replacement](/features/hmr)                                      |
 | `-p, --port <port>` | The port for the HMR and HTTP server (the default port is `process.env.PORT` or 1234) |
+| `--hmr-port <port>` | The port for the HMR server (defaults to the HTTP server's port)                      |
 | `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces                   |
 | `--https`           | Serves files over HTTPS                                                               |
 | `--cert <path>`     | Path to a certificate to use with HTTPS                                               |
 | `--key <path>`      | Path to a private key to use with HTTPS                                               |
+| `--no-autoinstall`  | Disables autoinstall                                                                  |
 | `--watch-for-stdin` | Stop Parcel once stdin is closed                                                      |
 
 ### Parameters specific to `serve`
