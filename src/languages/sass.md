@@ -22,7 +22,7 @@ You can also directly include the SCSS file in a HTML file.
 <link rel="stylesheet" href="./style.scss">
 ```
 
-Directly compiling sass using Parcel CLI
+Directly compile sass using the Parcel CLI
 
 ```
 parcel ./style.scss
