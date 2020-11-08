@@ -6,6 +6,30 @@ eleventyNavigation:
   order: 6
 ---
 
-TODO
+Parcel supports [sass](https://sass-lang.com/) files out of the box by utilizing the `@parcel/transformer-sass` plugin, under the hood this plugin uses the `sass` npm package which is the JavaScript version of `dart-sass`.
 
-(This functionality is provided by `@parcel/transformer-sass`)
+## Example Usage
+
+Importing sass in JavaScript/TypeScript
+
+```JS
+import './custom.scss'
+```
+
+You can also directly include the SCSS file in a HTML file.
+
+```HTML
+<link rel="stylesheet" href="./style.scss">
+```
+
+Directly compiling sass using Parcel CLI
+
+```
+parcel ./style.scss
+```
+
+## Configuration
+
+To configure sass we support the following configuration files: `.sassrc` and `.sassrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
+
+For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api)
