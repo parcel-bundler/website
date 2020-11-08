@@ -25,7 +25,7 @@ You can also directly include the less file in a HTML file.
 Directly compile less using the Parcel CLI
 
 ```
-parcel ./style.less
+parcel build ./style.less
 ```
 
 ## Configuration
