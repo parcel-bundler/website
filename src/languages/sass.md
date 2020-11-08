@@ -10,7 +10,7 @@ Parcel supports [sass](https://sass-lang.com/) files out of the box by utilizing
 
 ## Example Usage
 
-Importing sass in JavaScript/TypeScript
+Importing Sass/SCSS in JavaScript/TypeScript
 
 ```js
 import "./custom.scss";
