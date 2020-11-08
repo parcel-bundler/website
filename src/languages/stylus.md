@@ -12,20 +12,20 @@ Parcel supports [stylus](https://stylus-lang.com/) files out of the box by utili
 
 Importing stylus in JavaScript/TypeScript
 
-```JS
-import './custom.styl'
+```js
+import "./custom.styl";
 ```
 
 You can also directly include the stylus file in a HTML file.
 
-```HTML
-<link rel="stylesheet" href="./style.styl">
+```html
+<link rel="stylesheet" href="./style.styl" />
 ```
 
 Directly compile stylus using the Parcel CLI
 
 ```
-parcel ./style.styl
+parcel build ./style.styl
 ```
 
 ## Configuration

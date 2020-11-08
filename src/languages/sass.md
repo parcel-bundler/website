@@ -12,20 +12,20 @@ Parcel supports [sass](https://sass-lang.com/) files out of the box by utilizing
 
 Importing sass in JavaScript/TypeScript
 
-```JS
-import './custom.scss'
+```js
+import "./custom.scss";
 ```
 
 You can also directly include the SCSS file in a HTML file.
 
-```HTML
-<link rel="stylesheet" href="./style.scss">
+```html
+<link rel="stylesheet" href="./style.scss" />
 ```
 
 Directly compile sass using the Parcel CLI
 
 ```
-parcel ./style.scss
+parcel build ./style.scss
 ```
 
 ## Configuration
