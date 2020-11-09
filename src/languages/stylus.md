@@ -8,6 +8,8 @@ eleventyNavigation:
 
 Parcel supports [stylus](https://stylus-lang.com/) files out of the box by utilizing the `@parcel/transformer-stylus` plugin, under the hood this plugin uses the `stylus` npm package.
 
+In the default Parcel config the [PostCSS](/languages/postcss) transformation pipeline also gets run over the compiled Stylus file to ensure minification and css modules just work.
+
 ## Example Usage
 
 Importing stylus in JavaScript/TypeScript

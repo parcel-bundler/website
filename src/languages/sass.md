@@ -8,6 +8,8 @@ eleventyNavigation:
 
 Parcel supports [sass](https://sass-lang.com/) files out of the box by utilizing the `@parcel/transformer-sass` plugin, under the hood this plugin uses the `sass` npm package which is the JavaScript version of `dart-sass`.
 
+In the default Parcel config the [PostCSS](/languages/postcss) transformation pipeline also gets run over the compiled Sass/SCSS file to ensure minification and css modules just work.
+
 ## Example Usage
 
 Importing Sass/SCSS in JavaScript/TypeScript
