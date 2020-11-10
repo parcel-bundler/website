@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Parcel supports [Less](https://lesscss.org/) files out of the box by utilizing the `@parcel/transformer-less` plugin, under the hood this plugin uses the `less` npm package.
 
-In the default Parcel config the [PostCSS](/languages/postcss) transformation pipeline also gets run over the compiled Less file to ensure minification and css modules just work.
+In the default Parcel config, the compiled Less files are also processed by [PostCSS](/languages/postcss) (meaning PostCSS plugins are executed and CSS modules just work: `import * as styles from "./style.module.less";`).
 
 ## Example Usage
 
