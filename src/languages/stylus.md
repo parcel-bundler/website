@@ -6,6 +6,32 @@ eleventyNavigation:
   order: 7
 ---
 
-TODO
+Parcel supports [stylus](https://stylus-lang.com/) files out of the box by utilizing the `@parcel/transformer-stylus` plugin, under the hood this plugin uses the `stylus` npm package.
 
-(This functionality is provided by `@parcel/transformer-stylus`)
+In the default Parcel config, the compiled stylus files are also processed by [PostCSS](/languages/postcss) (meaning PostCSS plugins are executed and CSS modules just work: `import * as styles from "./style.module.styl";`).
+
+## Example Usage
+
+Importing stylus in JavaScript/TypeScript
+
+```js
+import "./custom.styl";
+```
+
+You can also directly include the stylus file in a HTML file.
+
+```html
+<link rel="stylesheet" href="./style.styl" />
+```
+
+Directly compile stylus using the Parcel CLI
+
+```
+parcel build ./style.styl
+```
+
+## Configuration
+
+To configure stylus we support the following configuration files: `.stylusrc` and `.stylusrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
+
+To see the available options to configure stylus see the official [stylus documentation](https://stylus-lang.com/docs/js.html).
