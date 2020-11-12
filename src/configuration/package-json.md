@@ -55,7 +55,7 @@ To make Parcel ignore one of these fields, specify `false` in `target.(main|brow
 
 If the `browser` field is an [object](/features/module-resolution/#package.json-browser-field), `package.json#browser[pkgName]` can be used instead of `package.json#browser`.
 
-Note that there will always be at least one target, even with `main: false`(This doesn't mean that Parcel will do nothing when running parcel build src/index.js but that the default target will be used instead of main.)
+Note that there will always be at least one target, even with `main: false`. (So the default target will be used instead of `main`.)
 
 #### custom targets
 
