@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if summary %}
+    <meta name="description" content="{{ summary }}" />
+    {% endif %}
+    <title>
+      {{ title | default(eleventyNavigation.title) |
+      default(eleventyNavigation.key) | striptags | safe }}
+    </title>
+    <link href="/assets/reset.css" rel="stylesheet" />
+    <script>
+      {% include "darkmode.js" %}
+    </script>
+    <link href="/doc-styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
+    />
+  </head>
+  <body>
+    <header class="parcel-docs-header">
+      <div class="left">
+        <a class="logo" href="/">
+          <img
+            class="parcel"
+            src="/assets/parcel.png"
+            srcset="/assets/parcel@2x.png 2x"
+            width="38"
+            height="30"
+            alt=""
+          />
+          <img
+            class="parcel-text"
+            src="/assets/logo.svg"
+            alt="Parcel"
+            width="300"
+            height="160"
+          />
+        </a>
+        <div class="search-container">
+          <label for="search-input" class="visually-hidden">Search</label>
+          <input type="text" id="search-input" placeholder="Search..." />
+        </div>
+      </div>
+      <nav class="section-picker">
+        <a {% if not page.url.includes('blog') %}class="selected"{% endif %} href="/">Docs</a>
+        <a {% if page.url.includes('blog') %}class="selected"{% endif %} href="{{ collections.Blog | sortDate | first | pageUrl }}">Blog</a>
+      </nav>
+      <div class="social-links">
+        <a href="https://github.com/parcel-bundler/parcel">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <title>
+              GitHub
+            </title>
+            <path
+              d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"
+            />
+          </svg>
+        </a>
+        {% include "darkmode.html" %}
+      </div>
+    </header>
+    <nav class="docs-navigation">
+    {% if tags and tags.includes("Blog") %}
+      <ul id="blog nav-tree" class="doc-nav-group-hidden">
+          {{ collections.Blog | sortDate | eleventyNavigation |
+          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+          | safe }}
+      </ul>
+    {% else %}
+      {%- for tag in tagOrder -%}
+      <ul>
+        <li>
+          <label>
+            <span>{{ tag }}</span>
+            <input
+              type="checkbox"
+              class="toggle-doc-nav-tree visually-hidden"
+              id="{{ tag }} toggle"
+            />
+          </label>
+        </li>
+        <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
+          {{ collections[tag] | eleventyNavigation |
+          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+          | safe }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    {% endif %}
+    </nav>
+
+    <main class="main-content">
+      <div>
+        <header>
+          <h1>
+            {{ title | default(eleventyNavigation.title) |
+            default(eleventyNavigation.key) | safe }}
+          </h1>
+          <p class="summary">
+            <span>{{ summary }}</span>
+            {% if date %}
+            <span style="float: right;">
+              📆 {{ date | toDate }} {% endif %}
+            </span>
+          </p>
+        </header>
+
+        {{ content | safe }}
+
+        <footer>
+          <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
+            Edit this page on GitHub
+          </a>
+        </footer>
+      </div>
+    </main>
+
+    <script>
+      document
+        .querySelector("#color-scheme-toggle")
+        .addEventListener("click", () => {
+          isDarkMode = !isDarkMode;
+          sessionStorage.setItem("isDarkMode", isDarkMode);
+          updateMode(isDarkMode);
+        });
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
+    ></script>
+    <script type="text/javascript">
+      docsearch({
+        apiKey: "8b6be780425a72d1a1683abea2636778",
+        indexName: "parceljs",
+        inputSelector: "#search-input",
+        algoliaOptions: {
+          facetFilters: ["lang:v2"],
+        },
+      });
+    </script>
+    <script>
+      {% include "remember-nav-scroll.js" %}
+    </script>
+  </body>
+  <script>
+    {% include "doc-nav-toggle.js" %}
+  </script>
+</html>
