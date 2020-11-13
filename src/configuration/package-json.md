@@ -55,6 +55,8 @@ To make Parcel ignore one of these fields, specify `false` in `target.(main|brow
 
 If the `browser` field is an [object](/features/module-resolution/#package.json-browser-field), `package.json#browser[pkgName]` can be used instead of `package.json#browser`.
 
+Note that there will always be at least one target, even with `main: false`. (So the default target will be used instead of `main`.)
+
 #### custom targets
 
 To create your own target (without any of the semantics of the [common target](#main-%2F-module-%2F-browser) described previously), add a top-level field with your target's name and output path. You also need to add it to [`targets`](#targets) to make Parcel recognize that field.
@@ -141,7 +143,7 @@ Each of those targets contains the target's environment configuration (all of th
 | `includeNodeModules` | [see below](#includenodemodules)                    | Whether to bundle all/none/some `node_module` dependencies                                                                                                                  |
 | `isLibrary`          | `boolean`                                           | Library as in "npm library"                                                                                                                                                 |
 | `minify`             | `boolean`                                           | Whether to enable minification (exact behaviour is determined by plugins). <br> Set by [`--no-minify`](/features/cli/#parameters-specific-to-build)                         |
-| `outputFormat`       | `'global' | 'esmodule' | 'commonjs'`                | Which type of imports/exports should be emitted |
+| `outputFormat`       | `'global'                                           | 'esmodule'                                                                                                                                                                  | 'commonjs'` | Which type of imports/exports should be emitted |
 | `publicUrl`          | `string`                                            | The public url of the bundle at runtime                                                                                                                                     |
 | `scopeHoist`         | `boolean`                                           | Whether to enable scope hoisting <br> Needs to be `true` for ESM and CommonJS `outputFormat`. <br> Set by [`--no-scope-hoist`](/features/cli/#parameters-specific-to-build) |
 | `sourceMap`          | [see below](#sourcemap)                             | Enable/disable sourcemap and set options. <br> Overwritten by [`--no-source-maps`](/features/cli/#general-parameters)                                                       |
