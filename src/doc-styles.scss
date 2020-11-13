@@ -35,8 +35,8 @@ html {
   --sidebar-color: #333;
   --code-mark-background-color: #ff0;
   --border-color: #eee;
-  --hover-nav-background: #192a39;
-  --selected-nav-background: #21374b;
+  --hover-nav-background: #e5e5e5;
+  --selected-nav-background: #d8d8d8;
   --font-color-1: rgba(0, 0, 0, 0.97);
   --font-color-2: rgba(0, 0, 0, 0.7);
   --font-color-3: rgba(0, 0, 0, 0.48);
@@ -44,11 +44,12 @@ html {
 
 html.dark {
   --color: #fafafa;
-  // --header-background-color: #111d27;
   --background-color: #111d27;
   --code-background-color: #333;
   --link-color: #5e8af7;
   --sidebar-color: #ccc;
+  --hover-nav-background: #192a39;
+  --selected-nav-background: #21374b;
   --code-mark-background-color: #616104aa;
   --border-color: #192a39;
   --font-color-1: rgba(255, 255, 255, 0.77);
@@ -380,7 +381,7 @@ body {
       display: block;
       padding: 0.6em 2.2em;
       height: 100%;
-      background-color: var(--hover-nav-background);
+      background-color: #192a39;
       color: #fafafa;
       flex-grow: 1;
       text-align: center;
@@ -389,7 +390,7 @@ body {
       }
 
       &:not(.selected) {
-        background-color: var(--selected-nav-background);
+        background-color: #192a39;
       }
     }
   }
@@ -465,7 +466,7 @@ body {
 
   .current > a {
     background-color: var(--selected-nav-background);
-    color: #4a4a4a;
+    transition: background 0.2s ease-in-out;
   }
 
   a {
@@ -477,7 +478,6 @@ body {
 
     &:hover {
       background-color: var(--hover-nav-background);
-      color: #4a4a4a;
     }
   }
 
@@ -488,7 +488,9 @@ body {
 
     & > li:first-child > label {
       display: block;
-      color: var(--color);
+      font-size: 0.75em;
+      font-weight: bold;
+      text-transform: uppercase;
 
       @media (max-width: $breakpoint-tablet) {
         cursor: pointer;
