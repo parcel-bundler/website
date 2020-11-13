@@ -35,8 +35,8 @@ html {
   --sidebar-color: #333;
   --code-mark-background-color: #ff0;
   --border-color: #eee;
-  --hover-nav-background: #f8f8f8;
-  --selected-nav-background: #eee;
+  --hover-nav-background: #192a39;
+  --selected-nav-background: #21374b;
   --font-color-1: rgba(0, 0, 0, 0.97);
   --font-color-2: rgba(0, 0, 0, 0.7);
   --font-color-3: rgba(0, 0, 0, 0.48);
@@ -51,8 +51,6 @@ html.dark {
   --sidebar-color: #ccc;
   --code-mark-background-color: #616104aa;
   --border-color: #192a39;
-  --hover-nav-background: #192a39;
-  --selected-nav-background: #21374b;
   --font-color-1: rgba(255, 255, 255, 0.77);
   --font-color-2: rgba(255, 255, 255, 0.55);
   --font-color-3: rgba(255, 255, 255, 0.28);
@@ -383,7 +381,7 @@ body {
       padding: 0.6em 2.2em;
       height: 100%;
       background-color: var(--hover-nav-background);
-      color: var(--font-color-1);
+      color: #fafafa;
       flex-grow: 1;
       text-align: center;
 
