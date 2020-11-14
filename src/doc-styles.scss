@@ -19,7 +19,8 @@ $text-fonts: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
 }
 
 @mixin transition-colors {
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
+    border-right-color 0.2s ease-in-out;
 }
 
 html {
@@ -27,7 +28,7 @@ html {
     overflow: hidden;
   }
 
-  --color: black;
+  --color: rgba(0, 0, 0, 0.97);
   --background-color: transparent;
   --header-background-color: #21374b;
   --code-background-color: #f8f8f8;
@@ -37,13 +38,10 @@ html {
   --border-color: #eee;
   --hover-nav-background: #e5e5e5;
   --selected-nav-background: #d8d8d8;
-  --font-color-1: rgba(0, 0, 0, 0.97);
-  --font-color-2: rgba(0, 0, 0, 0.7);
-  --font-color-3: rgba(0, 0, 0, 0.48);
 }
 
 html.dark {
-  --color: #fafafa;
+  --color: rgba(255, 255, 255, 0.77);
   --background-color: #111d27;
   --code-background-color: #333;
   --link-color: #5e8af7;
@@ -52,9 +50,6 @@ html.dark {
   --selected-nav-background: #21374b;
   --code-mark-background-color: #616104aa;
   --border-color: #192a39;
-  --font-color-1: rgba(255, 255, 255, 0.77);
-  --font-color-2: rgba(255, 255, 255, 0.55);
-  --font-color-3: rgba(255, 255, 255, 0.28);
 }
 
 a {
@@ -388,7 +383,7 @@ body {
       }
 
       &:not(.selected) {
-        background-color: #192a39;
+        background-color: var(--header-background-color);
       }
     }
   }
