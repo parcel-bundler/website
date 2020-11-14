@@ -432,7 +432,7 @@ body {
   font-size: 1.1rem;
   white-space: nowrap;
   @media (min-width: $breakpoint-tablet) {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .doc-nav-group-hidden {
@@ -532,7 +532,7 @@ body {
   line-height: 1.5em;
   box-sizing: border-box;
   @media (min-width: $breakpoint-tablet) {
-    overflow-x: scroll;
+    overflow-y: auto;
   }
 
   & > div {
