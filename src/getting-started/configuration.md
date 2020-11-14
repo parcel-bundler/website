@@ -11,7 +11,7 @@ summary: How far you can get without any configuration and how to configure Parc
 
 ### Targets
 
-When Parcel runs, it can build your files in multiple different ways simultaneously. These are called [*targets*](/configuration/package-json/#targets).
+When Parcel runs, it can build your files in multiple different ways simultaneously. These are called [_targets_](/configuration/package-json/#targets).
 
 For example, you could have a "modern" target that targets newer browsers and a "legacy" target for older browsers.
 
