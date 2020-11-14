@@ -52,10 +52,6 @@ html.dark {
   --border-color: #192a39;
 }
 
-a {
-  color: var(--link-color);
-}
-
 body {
   color: var(--color);
   background: var(--background-color);
@@ -459,7 +455,7 @@ body {
 
   .current > a {
     background-color: var(--selected-nav-background);
-    transition: background 0.2s ease-in-out;
+    @include transition-background-color;
   }
 
   a {
@@ -533,6 +529,11 @@ body {
   box-sizing: border-box;
   @media (min-width: $breakpoint-tablet) {
     overflow-y: auto;
+  }
+
+  a {
+    color: var(--link-color);
+    @include transition-color;
   }
 
   & > div {
