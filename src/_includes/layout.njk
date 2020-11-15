@@ -14,11 +14,11 @@
     <script>
       {% include "darkmode.js" %}
     </script>
-    <link href="/doc-styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
     />
+    <link href="/doc-styles.css" rel="stylesheet" />
   </head>
   <body>
     <header class="parcel-docs-header">
@@ -142,7 +142,7 @@
         inputSelector: "#search-input",
         algoliaOptions: {
           facetFilters: ["lang:v2"],
-        },
+        }
       });
     </script>
     <script>

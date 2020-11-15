@@ -14,7 +14,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.setDataDeepMerge(true);
 
-  eleventyConfig.addPlugin(pluginSass, { watch: ["src/*.{scss,sass}"] });
+  eleventyConfig.addPlugin(pluginSass, {
+    watch: ["src/*.{scss,sass}"],
+  });
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg"]);
   eleventyConfig.addWatchTarget("./api/");
