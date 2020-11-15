@@ -227,7 +227,7 @@ module.exports = {
   </head>
   <body>
     <module href="./modules/header.html" locals='{"headerTitle":"Work"}'>
-      I will be rendered into content
+      <p>I will be rendered into content tag</p>
     </module>
     <main>My content</main>
   </body>
@@ -238,7 +238,7 @@ module.exports = {
 {% samplefile "modules/header.html" %}
 
 ```html
-<header>Welcome to {{headerTitle}} with content: <content></content></header>
+<header>Welcome to { {headerTitle} } with content: <content></content></header>
 ```
 
 {% endsamplefile %}
@@ -247,6 +247,26 @@ module.exports = {
 Note that for the usage of posthtml-modules defined _locals_ cannot have a hyphen/dash (`-`) within their name, otherwise Parcel fails at compilation.
 
 Furthermore, modules do not reload with HMR, unless you modify the file where you use them (in this case index.html).
+
+The result should be:
+
+{% sample %}
+{% samplefile "index.html" %}
+
+```html
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <header>Welcome to Work with content: <p>I will be rendered into content tag</p></header>
+    <main>My content</main>
+  </body>
+</html>
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## htmlnano
 
