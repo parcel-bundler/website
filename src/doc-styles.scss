@@ -268,8 +268,9 @@ body {
   height: 35rem;
   max-height: 65vh;
   max-width: none;
+  transition: filter 0.2s ease-in-out;
 
-  .dark & {
+  html.dark & {
     filter: invert(1) hue-rotate(180deg);
   }
 }
