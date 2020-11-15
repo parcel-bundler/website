@@ -50,6 +50,48 @@ html.dark {
   --selected-nav-background: #21374b;
   --code-mark-background-color: #616104aa;
   --border-color: #192a39;
+
+  .algolia-autocomplete {
+    .ds-dropdown-menu {
+      &::before {
+        @include transition-colors;
+        background: var(--background-color);
+        border-color: var(--header-background-color);
+      }
+
+      [class^="ds-dataset-"] {
+        @include transition-colors;
+        background: var(--background-color);
+        border-color: var(--header-background-color);
+      }
+    }
+
+    .algolia-docsearch-suggestion {
+      @include transition-colors;
+      background: var(--background-color);
+      text-decoration-color: var(--color);
+    }
+
+    .algolia-docsearch-suggestion--category-header {
+      @include transition-color;
+      color: var(--color);
+    }
+
+    .algolia-docsearch-suggestion--subcategory-column {
+      @include transition-color;
+      color: lightgrey;
+    }
+
+    .algolia-docsearch-suggestion--title {
+      @include transition-color;
+      color: var(--color);
+    }
+
+    .algolia-docsearch-suggestion--highlight {
+      @include transition-color;
+      color: white;
+    }
+  }
 }
 
 body {
@@ -802,50 +844,6 @@ body {
     h2,
     h3 {
       page-break-after: avoid;
-    }
-  }
-}
-
-html.dark {
-  .algolia-autocomplete {
-    .ds-dropdown-menu {
-      &::before {
-        @include transition-colors;
-        background: var(--background-color);
-        border-color: var(--header-background-color);
-      }
-
-      [class^="ds-dataset-"] {
-        @include transition-colors;
-        background: var(--background-color);
-        border-color: var(--header-background-color);
-      }
-    }
-
-    .algolia-docsearch-suggestion {
-      @include transition-colors;
-      background: var(--background-color);
-      text-decoration-color: var(--color);
-    }
-
-    .algolia-docsearch-suggestion--category-header {
-      @include transition-color;
-      color: var(--color);
-    }
-
-    .algolia-docsearch-suggestion--subcategory-column {
-      @include transition-color;
-      color: lightgrey;
-    }
-
-    .algolia-docsearch-suggestion--title {
-      @include transition-color;
-      color: var(--color);
-    }
-
-    .algolia-docsearch-suggestion--highlight {
-      @include transition-color;
-      color: white;
     }
   }
 }

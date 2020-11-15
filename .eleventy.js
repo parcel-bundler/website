@@ -16,9 +16,6 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginSass, {
     watch: ["src/*.{scss,sass}"],
-    cleanCSSOptions: {
-      level: 0,
-    },
   });
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg"]);
