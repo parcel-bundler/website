@@ -63,70 +63,63 @@
         {% include "darkmode.html" %}
       </div>
     </header>
-    <div id="content" class="content-container">
-      <nav class="docs-navigation">
-      {% if tags and tags.includes("Blog") %}
-        <ul id="blog nav-tree" class="doc-nav-group-hidden">
-            {{ collections.Blog | sortDate | eleventyNavigation |
-            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-            activeListItemClass: 'current', activeKey: eleventyNavigation.key })
-            | safe }}
-        </ul>
-      {% else %}
-        {%- for tag in tagOrder -%}
-        <ul>
-          <li>
-            <label>
-              <span>{{ tag }}</span>
-              <input
-                type="checkbox"
-                class="toggle-doc-nav-tree visually-hidden"
-                id="{{ tag }} toggle"
-              />
-            </label>
-          </li>
-          <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
-            {{ collections[tag] | eleventyNavigation |
-            eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-            activeListItemClass: 'current', activeKey: eleventyNavigation.key })
-            | safe }}
-          </li>
-        </ul>
-        {%- endfor -%}
-      {% endif %}
-      </nav>
+    <nav class="docs-navigation">
+    {% if tags and tags.includes("Blog") %}
+      <ul id="blog nav-tree" class="doc-nav-group-hidden">
+          {{ collections.Blog | sortDate | eleventyNavigation |
+          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+          | safe }}
+      </ul>
+    {% else %}
+      {%- for tag in tagOrder -%}
+      <ul>
+        <li>
+          <label>
+            <span>{{ tag }}</span>
+            <input
+              type="checkbox"
+              class="toggle-doc-nav-tree visually-hidden"
+              id="{{ tag }} toggle"
+            />
+          </label>
+        </li>
+        <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
+          {{ collections[tag] | eleventyNavigation |
+          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
+          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
+          | safe }}
+        </li>
+      </ul>
+      {%- endfor -%}
+    {% endif %}
+    </nav>
 
-      <main class="main-content">
-        <div>
-          <header>
-            <h1>
-              {{ title | default(eleventyNavigation.title) |
-              default(eleventyNavigation.key) | safe }}
-            </h1>
-            <p class="summary">
-              <span>{{ summary }}</span>
-              {% if date %}
-              <span style="float: right;">
-                📆 {{ date | toDate }} {% endif %}
-              </span>
-            </p>
-          </header>
+    <main class="main-content">
+      <div>
+        <header>
+          <h1>
+            {{ title | default(eleventyNavigation.title) |
+            default(eleventyNavigation.key) | safe }}
+          </h1>
+          <p class="summary">
+            <span>{{ summary }}</span>
+            {% if date %}
+            <span style="float: right;">
+              📆 {{ date | toDate }} {% endif %}
+            </span>
+          </p>
+        </header>
 
-          {{ content | safe }}
+        {{ content | safe }}
 
-          <footer>
-            <i>
-              <a
-                href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}"
-                style="float: right;"
-              >
-                Edit this page on GitHub
-              </a>
-            </i>
-          </footer>
-        </div>
-      </main>
-    </div>
+        <footer>
+          <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
+            Edit this page on GitHub
+          </a>
+        </footer>
+      </div>
+    </main>
 
     <script>
       document
@@ -151,6 +144,9 @@
           facetFilters: ["lang:v2"],
         },
       });
+    </script>
+    <script>
+      {% include "remember-nav-scroll.js" %}
     </script>
   </body>
   <script>

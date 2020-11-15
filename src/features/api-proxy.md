@@ -14,7 +14,7 @@ To better emulate the actual production environment when developing web apps, yo
 In this JSON file, you specify an object where every key is a pattern against which the URL is matched and the value is a [`http-proxy-middleware` options](https://github.com/chimurai/http-proxy-middleware#options) object:
 
 {% sample %}
-{% samplefile ".proxyrc.js" %}
+{% samplefile ".proxyrc" %}
 
 ```js
 {
@@ -38,6 +38,19 @@ This would cause `http://localhost:1234/api/endpoint` to be proxied to `http://l
 For more complex configurations, a `.proxyrc.js` file allows you to attach any (connect-compatible) middleware, this example has the same behaviour as the `.proxyrc` version above.
 
 {% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "devDependencies": {
+    "http-proxy-middleware": "^1.0.0",
+    "parcel": "next"
+  }
+}
+```
+
+{% endsamplefile %}
+
 {% samplefile ".proxyrc.js" %}
 
 ```js

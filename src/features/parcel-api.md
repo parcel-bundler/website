@@ -7,6 +7,10 @@ eleventyNavigation:
 summary: How to use @parcel/core programatically
 ---
 
+The options that can be passed to the `Parcel` constructor are [InitialParcelOptions](/plugin-system/api/#InitialParcelOptions).
+
+By default, the behaviour is similar to `parcel serve` (building for development) — set `mode: 'production'` to create production builds (scope hoisting, minification, ...).
+
 ### A minimal example (or "What the `parcel` CLI does")
 
 {% sample %}
@@ -14,20 +18,17 @@ summary: How to use @parcel/core programatically
 
 ```js
 import path from "path";
-import defaultConfigContents from "@parcel/config-default";
 import Parcel from "@parcel/core";
 
 (async () => {
   let bundler = new Parcel({
     entries: path.join(__dirname, "src/index.js"),
-    defaultConfig: {
-      ...defaultConfigContents,
-      filePath: require.resolve("@parcel/config-default"),
-    },
+    defaultConfig: require.resolve("@parcel/config-default"),
     defaultEngines: {
       browsers: ["last 1 Chrome version"],
       node: "10",
     },
+    mode: "production",
   });
 
   await bundler.run();
@@ -45,7 +46,6 @@ import Parcel from "@parcel/core";
 ```js
 import path from "path";
 import Parcel, { createWorkerFarm } from "@parcel/core";
-import defaultConfigContents from "@parcel/config-default";
 import { NodeFS, MemoryFS } from "@parcel/fs";
 
 const DIST_DIR = "/dist";
@@ -60,11 +60,7 @@ const DIST_DIR = "/dist";
   try {
     let b = new Parcel({
       entries: [path.join(__dirname, "src", "index.html")],
-      defaultConfig: {
-        ...defaultConfigContents,
-        reporters: [],
-        filePath: require.resolve("@parcel/config-default"),
-      },
+      defaultConfig: require.resolve("@parcel/config-default"),
       inputFS: inputFS,
       outputFS: outputFS,
       workerFarm,
@@ -74,6 +70,7 @@ const DIST_DIR = "/dist";
       },
       distDir: DIST_DIR,
       patchConsole: false,
+      mode: "production",
     });
 
     await b.run();

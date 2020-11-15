@@ -11,7 +11,7 @@ summary: How far you can get without any configuration and how to configure Parc
 
 ### Targets
 
-When Parcel runs, it can build your files in multiple different ways simultaneously. These are called [*targets*](/configuration/package-json/#targets).
+When Parcel runs, it can build your files in multiple different ways simultaneously. These are called [_targets_](/configuration/package-json/#targets).
 
 For example, you could have a "modern" target that targets newer browsers and a "legacy" target for older browsers.
 
@@ -41,7 +41,7 @@ Default values for the output folder
 
 The implicit default target has the output folder `~/dist/`.
 
-With multiple entrypoints, you should use an explicit `distDir` as oppsed to the top-levle target fields because Parcel wouldn't know which bundle should have the specified name:
+With multiple entrypoints, you should use an explicit `distDir` as opposed to the top-level target fields because Parcel wouldn't know which bundle should have the specified name:
 
 {% sample "a.html b.html" %}
 {% samplefile "package.json" %}
