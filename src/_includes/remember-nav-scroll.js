@@ -1,14 +1,14 @@
 "use strict";
 (function () {
   let KEY = "nav-scrollTop";
-  let sidebar = document.getElementsByClassName("docs-navigation");
+  let sidebar = document.getElementsByClassName("docs-navigation")[0];
 
   let value = sessionStorage.getItem(KEY);
   if (value != null) {
-    sidebar[0].scrollTop = Number(value);
+    sidebar.scrollTop = Number(value);
   }
 
-  window.addEventListener("beforeunload", function (event) {
-    sessionStorage.setItem(KEY, sidebar[0].scrollTop);
+  sidebar.addEventListener("scroll", function (event) {
+    sessionStorage.setItem(KEY, sidebar.scrollTop);
   });
 })();
