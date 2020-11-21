@@ -13,22 +13,22 @@
     "generate-api-docs:watch": "nodemon -w ../parcel -w generate-api-docs -x yarn generate-api-docs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-navigation": "^0.1.6",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
-    "@babel/generator": "^7.11.4",
-    "@babel/parser": "^7.11.4",
-    "@babel/traverse": "^7.11.0",
-    "eleventy-plugin-sass": "^1.0.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.13",
-    "markdown-it": "^11.0.0",
-    "markdown-it-anchor": "^5.3.0",
-    "nodemon": "^2.0.4",
-    "prettier": "2.1.1"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+    "@babel/generator": "^7.12.5",
+    "@babel/parser": "^7.12.7",
+    "@babel/traverse": "^7.12.7",
+    "eleventy-plugin-sass": "^1.1.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "markdown-it": "^12.0.2",
+    "markdown-it-anchor": "^6.0.1",
+    "nodemon": "^2.0.6",
+    "prettier": "2.2.0"
   },
   "dependencies": {
-    "flow-bin": "^0.136.0",
+    "flow-bin": "^0.138.0",
     "nullthrows": "^1.1.1"
   },
   "lint-staged": {
