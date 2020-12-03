@@ -92,6 +92,10 @@ html.dark {
       color: white;
     }
   }
+
+  .dark-invert {
+    filter: invert(1);
+  }
 }
 
 body {
