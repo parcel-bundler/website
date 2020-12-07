@@ -76,4 +76,4 @@ view model =
 
 ## Time-travelling debuggger
 
-Elm's debug mode is automatically enabled when not building for production (so it's disabled with `parcel build`). You can set the environment variable `PARCEL_ELM_NO_DEBUG=1` to disable it even in development.
+Elm's debug mode is automatically enabled when not building for production (it is disabled automatically with `parcel build`). You can set the environment variable `PARCEL_ELM_NO_DEBUG=1` to disable it even in development mode.
