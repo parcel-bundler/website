@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: Explains the different ways TypeScript can be transpiled
 ---
 
-Typescript works out of the box with Parcel, but there ...
+Typescript works out of the box with Parcel, but you have multiple options:
 
 ## Babel
 
