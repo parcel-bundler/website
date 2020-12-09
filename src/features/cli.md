@@ -66,7 +66,7 @@ Builds the assets once, it also enabled minification and sets the NODE_ENV=produ
 parcel build index.html
 ```
 
-As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-hoisting) enabled by default (so the other commmands implicity specify `--no-scope-hoist`).
+As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-hoisting) enabled by default (so the other commmands implicitly specify `--no-scope-hoist`).
 
 ## Parameters
 
