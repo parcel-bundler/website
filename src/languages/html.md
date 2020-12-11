@@ -60,7 +60,7 @@ One noteworthy aspect of this is that `<script type="module">` automatically tra
 <style>
   @import "./style.scss";
 </style>
-<script>
+<script type="module">
   import value from "./other.ts";
   console.log(value);
 </script>
