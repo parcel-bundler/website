@@ -21,7 +21,7 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
     <img src="./images/header.png" />
     More content: <a href="./other.html">Link to another page</a>.
 
-    <script src="./index.ts"></script>
+    <script type="module" src="./index.ts"></script>
   </body>
 </html>
 ```
@@ -33,14 +33,15 @@ HTML assets are often the entry file that you provide to Parcel, but can also be
 
 Parcel detects most references in HTML to other files (such as `<script src="..."`, `<img src="...">`, `<video>` or `<meta property="og:image">`) and processes them as well. These references are rewritten so that they link to the correct output files. Relative filenames are resolved relative to the current HTML file.
 
-One noteworthy aspect of this is that `<script type="module">` automatically creates a ESM JavaScript bundle (and restricting the Browserslist config to browsers supporting ESM). Together with `<script nomodule>`, this makes differential serving very straight forward (see also [Generic Webapp](/getting-started/webapp/#differential-serving)).
+Parcel treats `<script>` tags just like the browser does natively. By default, scripts execute in a global environment, and features like `import`, `export`, and `require` are not supported. However, when a `<script type="module">` is used, scripts are treated as modules in their own scope, and can import and export other modules. Features like dynamic `import()`, `new Worker`, and `navigator.serviceWorker.register` are supported in both module and classic scripts. In general, you will want to use `<script type="module">` for modern code, however, for legacy scripts like some older libraries that rely on being executed in a global environment, you can use a script without a `type="module"` attribute.
+
+One noteworthy aspect of this is that `<script type="module">` automatically transpiles to a modern browser target, which will generally be much smaller than transpiling for old browsers. If not all of your browser targets support ES modules natively, then Parcel will also automatically generate a `nomodule` fallback, which will be transpiled to your lowest browser target. See the [Generic Webapp](/getting-started/webapp/#differential-serving) guide for more details.
 
 {% sample %}
 {% samplefile "index.html" %}
 
 ```html/3,6,7,9
 <!DOCTYPE html>
-<script nomodule src="./index.ts"></script>
 <script type="module" src="./index.ts"></script>
 ```
 
@@ -49,7 +50,7 @@ One noteworthy aspect of this is that `<script type="module">` automatically cre
 
 ### Inline script and style tags
 
-`<script>` and `<style>` tags with text content are also processed just like standalone files and the generated bundles are inserted back into the HTML file.
+`<script>` and `<style>` tags with text content are also processed just like standalone files and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, if not all of your browser targets support ES modules natively, Parcel will only compile inline scripts to that target and will not output ESM in order to keep the generated HTML small.
 
 {% sample %}
 {% samplefile "index.html" %}
