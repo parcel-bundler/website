@@ -69,7 +69,7 @@ To create a production build in this example you can run `yarn run build` or `np
 
   <body>
     <div id="root"></div>
-    <script src="./index.tsx"></script>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
 ```
@@ -113,13 +113,7 @@ These bundles are also named in such a way that any non-html assets can be cache
 
 ## Browserslist
 
-By default Parcel uses the following browserslist config: [`> 0.25%`](https://browserl.ist/?q=%3E+0.25%25) this will be a good default for most applications.
-
-### Why configure browserslist
-
-Having a custom browserslist ensures you are in full control of which browsers your application supports, for example you need to support IE 11, than you can define: [`> 0.25%, ie 11`](https://browserl.ist/?q=%3E0.25%25%2C+ie+11). This will ensure IE 11 will always work regardless of the market percentage it will have in the future.
-
-On the other side it is also useful for reducing bundle size as supporting a lot and outdated browsers results in a lot of polyfills, for example if you don't need to support IE 11 or Opera Mini you can use [`> 0.25%, not ie 11, not op_mini all`](https://browserl.ist/?q=%3E+0.25%25%2C+not+ie+11%2C+not+op_mini+all) which should in turn reduce bundle size, which results in faster load times and happy users/customers.
+By default Parcel does not perform any code transpilation. This means that if you write in ES2020 syntax, that's what Parcel will output. You may wish to support older browsers that don't support these syntax features natively, however, which you can do by configuring a browserslist.
 
 ### How to configure browserslist
 
@@ -129,56 +123,13 @@ You can find more information over in the [Browserslist repo](https://github.com
 
 In our configuration section, we explain how you can set [targets](/getting-started/configuration/#targets) for configuring Parcel.
 
-## Differential Serving
-
-Parcel also supports differential serving, which means you can serve a different bundle to modern browsers as you do to old browsers. This results in faster load time for newer browsers as the bundle size will be a lot smaller.
-
-You don't have to add any config to make this work, the only thing you have to do is add a script tag to your HTML file. Parcel automatically takes care of the browserslist target by implicitly removing all browsers from your (defined) browserslist that do not support esmodules.
-
-To utilise this, you need to have two script tags in your HTML file: one with `type="module"` and one for older browsers with the `nomodule` attribute.
-
-You can find an example of such a html file below.
-
 {% sample %}
-{% samplefile "src/index.html" %}
-
-```html/11,13
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Differential Serving Example</title>
-  </head>
-
-  <body>
-    <div id="root"></div>
-
-    <!-- This script tag will get a reference to the bundle with targetting your defined browser target -->
-    <script nomodule src="./index.tsx"></script>
-    <!-- This script tag will get a reference to the esmodule bundle -->
-    <script type="module" src="./index.tsx"></script>
-  </body>
-</html>
-```
-
-{% endsamplefile %}
-
-{% samplefile "src/index.tsx" %}
-
-```tsx
-import React from "react";
-import { render } from "react-dom";
-
-render(<h1>Hello World</h1>, document.getElementById("root"));
-```
-
-{% endsamplefile %}
 
 {% samplefile "package.json" %}
 
 ```json
 {
-  "name": "differential-serving-example",
+  "name": "my-project",
   "scripts": {
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html"
@@ -196,3 +147,7 @@ render(<h1>Hello World</h1>, document.getElementById("root"));
 
 {% endsamplefile %}
 {% endsample %}
+
+## Differential Serving
+
+Parcel also supports differential serving, which means you can serve different bundles to modern browsers and legacy browsers. This results in faster load time for most users as the bundle size will be a lot smaller. Parcel will automatically generate a `<script nomodule>` tag when you use a `<script type="module">` in your HTML, and specify a browserslist that includes targets that do not support ES modules natively. This way, modern browsers will download the smaller `type="module"` version, and legacy browsers will download the `nomodule` version. If all of your browser targets support ES modules natively, or you do not specify a browserslist, then no `nomodule` version will be inserted.
