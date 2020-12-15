@@ -6,9 +6,9 @@ eleventyNavigation:
   order: 9
 ---
 
-You can import [Elm](https://elm-lang.org/) files like any another Javascript files.
+You can import [Elm](https://elm-lang.org/) files like any another JavaScript files.
 
-The npm package `elm` needs to be manually installed beforehand. You'll also need a `elm.json` configuration file (run `yarn elm init -y` to get started and modify it if neccessary).
+The npm package `elm` needs to be manually installed beforehand. You'll also need a `elm.json` configuration file (run `yarn elm init` to get started and modify it if necessary).
 
 {% sample null, "column" %}
 {% samplefile "index.html" %}
