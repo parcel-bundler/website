@@ -16,7 +16,7 @@ The query parameters you can use are:
 
 - `width`: The width to resize the image to
 - `height`: The height to resize the image to
-- `quality`: The image quality you want, for example `75`
+- `quality`: The image quality percentage you want, for example `75`
 - `format`: File format to use, for example: `webp`
 
 Supported image formats: `jpeg/jpg`, `png`, `webp`, `tiff`, `heic/heif` and `raw`
