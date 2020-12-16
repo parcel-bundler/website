@@ -19,7 +19,7 @@ The query parameters you can use are:
 - `quality`: The image quality percentage you want, for example `75`
 - `format`: File format to use, for example: `webp`
 
-Supported image formats: `jpeg/jpg`, `png`, `webp`, `tiff`, `heic/heif` and `raw`
+Supported image formats: `jpeg` / `jpg`, `png`, `webp`, `tiff`, `heic` / `heif` and `raw`
 
 An example:
 
