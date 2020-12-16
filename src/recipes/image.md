@@ -48,7 +48,10 @@ An HTML example:
     <title>HTML Example</title>
   </head>
   <body>
-    <img src="url:./image.jpeg?as=webp&width=250" alt="test image" />
+    <picture>
+      <source src="url:./image.jpeg?as=webp&width=800" type="image/webp" />
+      <img src="url:./image.jpeg?width=800" alt="test image" />
+    </picture>
   </body>
 </html>
 ```
