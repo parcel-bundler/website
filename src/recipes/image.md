@@ -50,7 +50,8 @@ An HTML example:
   <body>
     <picture>
       <source src="url:./image.jpeg?as=webp&width=800" type="image/webp" />
-      <img src="url:./image.jpeg?width=800" alt="test image" />
+      <source src="url:./image.jpeg?width=800" type="image/jpeg" />
+      <img src="url:./image.jpeg?width=200" alt="test image" />
     </picture>
   </body>
 </html>
