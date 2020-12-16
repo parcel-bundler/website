@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: recipes-react
   title: <img src="/assets/lang-icons/react.svg" alt=""/> React
-  order: 6
+  order: 3
 ---
 
 Compared to Webpack, Parcel's paradigm is to use your HTML file as the entry point, not merely the main script:
