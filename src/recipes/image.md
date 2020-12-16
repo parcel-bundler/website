@@ -16,18 +16,39 @@ The query parameters you can use are:
 
 - `width`: The width to resize the image to
 - `height`: The height to resize the image to
-- `quality`: The image quality percentage you want, for example `75`
-- `format`: File format to use, for example: `webp`
+- `quality`: The image quality percentage you want, for example `?quality=75`
+- `as`: File format to use, for example: `?as=webp`
 
 Supported image formats: `jpeg` / `jpg`, `png`, `webp`, `tiff`, `heic` / `heif` and `raw`
 
-An example:
+A JavaScript example:
 
 {% sample %}
-{% samplefile "index.js" %}
+{% samplefile "main.js" %}
 
 ```js
-import imageUrl from "url:./image.jpeg?format=webp&width=250";
+import imageUrl from "url:./image.jpeg?as=webp&width=250";
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+An HTML example:
+
+{% sample %}
+{% samplefile "index.html" %}
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Example</title>
+  </head>
+  <body>
+    <img src="url:./image.jpeg?as=webp&width=250" alt="test image" />
+  </body>
+</html>
 ```
 
 {% endsamplefile %}
