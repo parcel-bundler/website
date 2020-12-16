@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: recipes-debugging
   title: 🛠️ Debugging
-  order: 2
+  order: 1
 ---
 
 As Parcel automatically generates sourcemaps by default, setting up debugging with Parcel involves minimal effort for the most part.

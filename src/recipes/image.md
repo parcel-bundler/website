@@ -1,9 +1,9 @@
 ---
 layout: layout.njk
 eleventyNavigation:
-  key: languages-image
+  key: recipes-image
   title: <img src="/assets/lang-icons/image.svg" alt=""/> Image
-  order: 0
+  order: 2
 ---
 
 Image assets can be imported and processed like any other asset in Parcel. As with any other asset you can import this asset from any other asset, so you can import images from html, css, js, ts, ...
