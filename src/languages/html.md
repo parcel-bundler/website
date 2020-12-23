@@ -273,7 +273,9 @@ The result should be:
 
 If minification is enabled (e.g. `parcel build` without `--no-minify`) all bundles are automatically processed with [htmlnano](https://github.com/posthtml/htmlnano).
 
-It can be configured according to its documentation with a .htmlnanorc (JSON) or .htmlnanorc.js file, for example to retain HTML comments
+It can be configured according to its documentation with a .htmlnanorc (JSON) or .htmlnanorc.js file. Make sure to delete the .parcel-cache directory after changing htmlnano settings.
+
+For example to retain HTML comments
 
 {% sample %}
 {% samplefile ".htmlnanorc" %}
@@ -294,7 +296,7 @@ or to not minify SVG elements.
 
 ```json
 {
-  "minifySVG": false
+  "minifySvg": false
 }
 ```
 
