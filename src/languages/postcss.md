@@ -69,6 +69,43 @@ export function App() {
 {% endsamplefile %}
 {% endsample %}
 
+### CSS modules tree shaking
+
+With [scope hoisting](/features/scope-hoisting/), unused classes in CSS modules are removed if a namespace import (or a named import as above) is used:
+
+{% sample %}
+{% samplefile "app.module.css" %}
+
+```css
+.main {
+  color: grey;
+}
+
+.unused {
+  color: grey;
+}
+```
+
+{% endsamplefile %}
+{% samplefile "index.js" %}
+
+```jsx/1
+import * as style from "./app.module.css";
+
+export function App() {
+  return <div className={style.main} />;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+{% warning %}
+
+Tree shaking isn't possible with default imports: `import style from "./app.module.css";`. Use namespace imports as above — no other changes are neccessary.
+
+{% endwarning %}
+
 ## Using `postcss-import`
 
 <!-- https://github.com/parcel-bundler/parcel/issues/1165 -->

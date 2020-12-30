@@ -7,19 +7,21 @@ eleventyNavigation:
 summary: What scope hoisting is and how it enables smaller builds and ESM output
 ---
 
+Parcel can remove unused JS code with both CommonJS and ES modules, and unused [CSS modules classes](/languages/postcss/#css-modules-tree-shaking).
+
 ## Tips for smaller/faster builds
 
 ### Wrapped Assets
 
-There are a few cases where an asset needs to be _wrapped_, that is moved inside a function. This negates the advantages of scope-hoisting because moving the exports into the top-level was our original objective.
+There are a few cases where an asset needs to be _wrapped_, that is moved inside a function. This negates some advantages of scope-hoisting.
 
 - If a top-level `return` statement or `eval` are being used or a `module` variable is used freely (`module.exports` is fine), we cannot add it into the top-level scope (because `return` would stop the execution of the whole bundle and `eval` might use variables that have been renamed).
 
-- If an asset is imported conditionally (or generally in a try/catch, a function an if statement) using CommonJS `require`, this isn't possible with the ESM syntax), we cannot add it into the top-level scope because its content should only be execute when it is actually required.
+- If an asset is imported conditionally (or generally in a try/catch, a function an if statement) using CommonJS `require` (this isn't possible with the ESM syntax), we cannot add it into the top-level scope because its content should only be execute when it is actually required.
 
 ### `sideEffects: false`
 
-When `sideEffects: false` is specified in the `package.json`, Parcel can skip processing some assets entirely (e.g. not transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
+When `sideEffects: false` is specified in `package.json` (in most cases of some library), Parcel can skip processing some assets entirely (e.g. not even transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
 ## Motivation and Advantages of Scope Hoisting
 
@@ -56,19 +58,19 @@ This mechanism has both advantages and disadvantages:
 
 <ul style="list-style: none;">
   <li>
-    + The bundle can be generate very quickly, the asset's sources is simply copied into a string.
+    + The bundle can be generated very quickly, the asset's sources are simply copied into a string.
   </li>
   <li>
     – It is hard to optimize because the <code>require</code> function makes it hard to statically analyze which exports are used (think of <code>lodash</code>) and whether a asset that only does reexports could be removed entirely.
   </li>
   <li>
-    – To generate a bundle that does ESM exports, the <code>export</code> declarations cannot be inside of functions.
+    – This is incompatible with ES module exports, because <code>export</code> declarations cannot be inside of functions.
   </li>
 </ul>
 
 ## Solution
 
-Instead we take the individual assets and concatenate them directly in the top-level scope:
+Instead, the individual assets are concatenated directly in the top-level scope:
 
 ```js
 // thing.js
@@ -90,7 +92,7 @@ $index$export$var$obj.run();
 
 As you can see, the top-level variables from the assets need to be renamed to have a globally unique name.
 
-Now, removing unused exports has become trivial: the variable `$thing$export$Bar` is not used at all, so we can safely remove it (and a minifier like Terser would do this automatically), this step is sometimes referred to as **tree shaking**.
+Now, removing unused exports has become trivial: the variable `$thing$export$Bar` is not used at all, so we can safely remove it (and a minifier like Terser would do this automatically), this step is referred to as **tree shaking**.
 
 The only real downside is that builds take quite a bit longer and also use more memory than the wrapper-based approach (because every single statement needs to be modified and the bundle as a whole needs to remain in memory during the packaging).
 
