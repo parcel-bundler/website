@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L409"><i>parcel/packages/core/types/index.js:409</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L411"><i>parcel/packages/core/types/index.js:411</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
 </p>
@@ -54,6 +54,7 @@
 <pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
 <pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
 <pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<pre class="interface"><code>  +resolveFrom?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +target?: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
     local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
@@ -67,7 +68,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L433"><i>parcel/packages/core/types/index.js:433</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L436"><i>parcel/packages/core/types/index.js:436</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -92,7 +93,8 @@
 <div class="inline-method">Used for error messages, the importer.
 </div><pre class="interface"><code>  +sourcePath: ?string,</code></pre>
 <div class="inline-method">Used for error messages, the importer.
-</div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
+</div><pre class="interface"><code>  +resolveFrom: ?string,</code></pre>
+<pre class="interface"><code>  +pipeline: ?string,</code></pre>
 <div class="inline-method">a named pipeline (if the <code>moduleSpecifier</code> didn't specify one).
 </div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableDependencySymbols">MutableDependencySymbols</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
@@ -102,7 +104,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L470"><i>parcel/packages/core/types/index.js:470</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L474"><i>parcel/packages/core/types/index.js:474</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -115,7 +117,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L480"><i>parcel/packages/core/types/index.js:480</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L484"><i>parcel/packages/core/types/index.js:484</i></a>
 </h4>
 <p>An asset (usually represents one source file).
 <br></p>
@@ -172,7 +174,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L541"><i>parcel/packages/core/types/index.js:541</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L545"><i>parcel/packages/core/types/index.js:545</i></a>
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
@@ -193,7 +195,7 @@
 <pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
 <pre class="interface"><code>  setCode(string): void,</code></pre>
 <pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
-<div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicitly stringify the <a href="/plugin-system/api/#AST">AST</a>).
+<div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicity stringify the <a href="/plugin-system/api/#AST">AST</a>).
 </div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>): void,</code></pre>
 <pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
 <pre class="interface"><code>  setStream(Readable): void,</code></pre>
@@ -204,7 +206,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L570"><i>parcel/packages/core/types/index.js:570</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L574"><i>parcel/packages/core/types/index.js:574</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
@@ -218,7 +220,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L580"><i>parcel/packages/core/types/index.js:580</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L584"><i>parcel/packages/core/types/index.js:584</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -253,7 +255,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L623"><i>parcel/packages/core/types/index.js:623</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L627"><i>parcel/packages/core/types/index.js:627</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -266,7 +268,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L634"><i>parcel/packages/core/types/index.js:634</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L638"><i>parcel/packages/core/types/index.js:638</i></a>
 </h4>
 <p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
 </p>
@@ -298,7 +300,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L659"><i>parcel/packages/core/types/index.js:659</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L663"><i>parcel/packages/core/types/index.js:663</i></a>
 </h4>
 
 
@@ -312,7 +314,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/c7d86d7b05e68710f9993195efa93f92cebb2a15/packages/core/types/index.js#L723"><i>parcel/packages/core/types/index.js:723</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L727"><i>parcel/packages/core/types/index.js:727</i></a>
 </h4>
 <p>The methods for a transformer plugin.
 </p>
