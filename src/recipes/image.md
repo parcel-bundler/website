@@ -12,7 +12,7 @@ Image assets can be imported and processed like any other asset in Parcel. As wi
 
 Using the Parcel transformer `@parcel/transformer-image` you can resize, change the format and quality of an image. To do this we added the possibility to define query parameters.
 
-To do these image transformations we rely on the image transformation library [Sharp](https://sharp.pixelplumbing.com/), therefore we require you to install it locally using `npm install sharp -D` or `yarn install sharp -D`.
+To do these image transformations we rely on the image transformation library [Sharp](https://sharp.pixelplumbing.com/), therefore we require you to install it locally using `npm install sharp -D` or `yarn add sharp -D`.
 
 The query parameters you can use are:
 
