@@ -44,7 +44,7 @@ For the best experience, you'll also want to enable a few options:
     "webext-prod": {}
   },
   "scripts": {
-    "dev": "parcel src/manifest.json --host localhost --target webext-dev",
+    "start": "parcel src/manifest.json --host localhost --target webext-dev",
     "build": "parcel build src/manifest.json --target webext-prod"
   }
 }
