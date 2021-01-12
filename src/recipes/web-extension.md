@@ -20,7 +20,7 @@ Bundling WebExtensions is enabled by using `@parcel/config-webextension` like th
 {% endsamplefile %}
 {% endsample %}
 
-Running Parcel on your [`manifest.json`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) will automatically validate and bundle your web extension if you pass it as an entry.
+Running Parcel with your [`manifest.json`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) as an entry (`parcel build manifest.json`) will automatically validate and bundle your web extension.
 
 ## HMR
 
