@@ -6,14 +6,14 @@ eleventyNavigation:
   order: 7
 ---
 
-Web Extension development is enabled by `@parcel/config-webext`.
+Bundling WebExtensions is enabled by using `@parcel/config-webextension` like this:
 
 {% sample %}
 {% samplefile ".parcelrc" %}
 
 ```json
 {
-  "extends": "@parcel/config-webext"
+  "extends": "@parcel/config-webextension"
 }
 ```
 
