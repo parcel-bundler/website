@@ -75,7 +75,7 @@ Asset URLs will not have the extension prefix added, so trying to use assets suc
 
 ```js
 // If you have a file images/example.png and you've either added that image
-// or a glob that matches that image to web_acecssible_resources:
+// or a glob that matches that image to web_accessible_resources:
 const assetURL = browser.runtime.getURL("images/example.png");
 // Now this image loads
 document.getElementById("myImage").href = assetURL;
