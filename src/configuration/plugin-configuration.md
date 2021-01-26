@@ -87,7 +87,7 @@ If default config need to be extended (for example additional reporters needs to
 ```json/1
 {
   "extends": "@parcel/config-default",
-  "reporters": ["...", "@parcel/reporter-dev-server"]
+  "reporters": ["...", "parcel-reporter-custom"]
 }
 ```
 
