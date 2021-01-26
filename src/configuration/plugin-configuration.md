@@ -79,6 +79,22 @@ A common usecase is extending the default config, for this reason the `extends` 
 {% endsamplefile %}
 {% endsample %}
 
+To add additional plugins while not overwriting the but default ones, add `"..."` to use the plugins provided by config specified in the `extends` field. For example to add an additional reporter:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/1
+{
+  "extends": "@parcel/config-default",
+  "reporters": ["...", "parcel-reporter-custom"]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+
 ### Pipelines
 
 The observant reader might have noticed that the last config example didn't include `@parcel/transformer-js`, which is required for `@parcel/runtime-js` and `@parcel/runtime-packager`.
