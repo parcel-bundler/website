@@ -79,7 +79,7 @@ A common usecase is extending the default config, for this reason the `extends` 
 {% endsamplefile %}
 {% endsample %}
 
-If default config need to be extended (for example additional reporters needs to be added, but default ones need to stay), add `"..."` to extend list provided by config specified in `extends` field.
+To add additional plugins while not overwriting the but default ones, add `"..."` to use the plugins provided by config specified in the `extends` field. For example to add an additional reporter:
 
 {% sample %}
 {% samplefile ".parcelrc" %}
