@@ -1,3 +1,4 @@
+@import "https://cdn.jsdelivr.net/gh/verbose9/fonts/Roobert/style.css";
 $break-sm: 640px;
 $break-md: 768px;
 $break-lg: 1024px;
@@ -5,9 +6,9 @@ $break-xl: 1280px;
 
 $breakpoint-tablet: 1000px;
 
-$title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+$title-fonts: "Roobert","Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
   Arial, sans-serif;
-$text-fonts: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+$text-fonts: "Roobert", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
   "Helvetica Neue", Ubuntu, Arial, sans-serif;
 
 @mixin transition-background-color {
