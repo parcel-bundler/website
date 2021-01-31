@@ -202,7 +202,7 @@ See [Module Resolution](/features/module-resolution#externals) for more informat
 
 ##### `sourceMap`
 
-Can be a boolean (to simply enable / disable source maps) or an object (which is somewhat equivlant to `true`) containing:
+Can be a boolean (to simply enable / disable source maps) or an object (which is somewhat equivalent to `true`) containing:
 
 | Option        | Default value                       | Description                                                                                                     |
 | ------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
