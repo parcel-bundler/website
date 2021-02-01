@@ -4,7 +4,7 @@ eleventyNavigation:
   key: getting-started-migration
   title: 🚚 Migration
   order: 5
-summary: Some tips for migration from Parcel 1 to Parcel 2
+summary: Some tips for upgrading from Parcel 1 to Parcel 2
 ---
 
 For the most part, you shouldn't have to change much when upgrading to Parcel 2:
