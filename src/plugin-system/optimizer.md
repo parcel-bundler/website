@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: "A plugin type: Apply modifications to the finished bundle"
 ---
 
-Optimizers are similar to transformers, but they accept a bundle instead of a single asset. At this stage, any ASTs have already been serialized.
+Optimizers are similar to transformers, but they accept a bundle instead of a single asset. At this stage, any ASTs have already been stringified.
 
 ```js
 import { Optimizer } from "@parcel/plugin";
