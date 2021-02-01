@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L411"><i>parcel/packages/core/types/index.js:411</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L427"><i>parcel/packages/core/types/index.js:427</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
 </p>
@@ -52,8 +52,9 @@
 <pre class="interface"><code>  +isURL?: boolean,</code></pre>
 <pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
 <pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
-<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
+<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
 <pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<pre class="interface"><code>  +pipeline?: string,</code></pre>
 <pre class="interface"><code>  +resolveFrom?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +target?: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
@@ -68,7 +69,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L436"><i>parcel/packages/core/types/index.js:436</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L453"><i>parcel/packages/core/types/index.js:453</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -100,11 +101,11 @@
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L474"><i>parcel/packages/core/types/index.js:474</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L491"><i>parcel/packages/core/types/index.js:491</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -117,7 +118,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L484"><i>parcel/packages/core/types/index.js:484</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L501"><i>parcel/packages/core/types/index.js:501</i></a>
 </h4>
 <p>An asset (usually represents one source file).
 <br></p>
@@ -174,7 +175,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L545"><i>parcel/packages/core/types/index.js:545</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L562"><i>parcel/packages/core/types/index.js:562</i></a>
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
@@ -190,13 +191,12 @@
 <pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a>,</code></pre>
 <pre class="interface"><code>  isASTDirty(): boolean,</code></pre>
 <pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
-<div class="inline-method">Returns <code>null</code> if there is no <a href="/plugin-system/api/#AST">AST</a>.
-</div><pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
+<pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
 <pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
 <pre class="interface"><code>  setCode(string): void,</code></pre>
 <pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
 <div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicity stringify the <a href="/plugin-system/api/#AST">AST</a>).
-</div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>): void,</code></pre>
+</div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>): void,</code></pre>
 <pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
 <pre class="interface"><code>  setStream(Readable): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
@@ -206,13 +206,11 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L574"><i>parcel/packages/core/types/index.js:574</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L590"><i>parcel/packages/core/types/index.js:590</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
-<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
-<div class="inline-method">Throws if there is no <a href="/plugin-system/api/#AST">AST</a>.
-</div><pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
+<pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -220,7 +218,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L584"><i>parcel/packages/core/types/index.js:584</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L597"><i>parcel/packages/core/types/index.js:597</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -255,7 +253,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L627"><i>parcel/packages/core/types/index.js:627</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L640"><i>parcel/packages/core/types/index.js:640</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -268,7 +266,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L638"><i>parcel/packages/core/types/index.js:638</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L651"><i>parcel/packages/core/types/index.js:651</i></a>
 </h4>
 <p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
 </p>
@@ -276,8 +274,9 @@
 <pre class="interface"><code>  +ast?: ?<a href="/plugin-system/api/#AST">AST</a>,</code></pre>
 <pre class="interface"><code>  +content?: ?<a href="/plugin-system/api/#Blob">Blob</a>,</code></pre>
 <pre class="interface"><code>  +dependencies?: $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;,</code></pre>
-<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOpts">EnvironmentOpts</a>,</code></pre>
+<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
 <pre class="interface"><code>  +filePath?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<pre class="interface"><code>  +query?: ?<a href="/plugin-system/api/#QueryParameters">QueryParameters</a>,</code></pre>
 <pre class="interface"><code>  +includedFiles?: $ReadOnlyArray&lt;<a href="/plugin-system/api/#File">File</a>&gt;,</code></pre>
 <pre class="interface"><code>  +isInline?: boolean,</code></pre>
 <pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
@@ -300,7 +299,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L663"><i>parcel/packages/core/types/index.js:663</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L677"><i>parcel/packages/core/types/index.js:677</i></a>
 </h4>
 
 
@@ -314,7 +313,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L727"><i>parcel/packages/core/types/index.js:727</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L739"><i>parcel/packages/core/types/index.js:739</i></a>
 </h4>
 <p>The methods for a transformer plugin.
 </p>
@@ -362,14 +361,7 @@
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/transformer/#GenerateOutput">GenerateOutput</a>&gt;,</code></pre>
 <div class="inline-method">Stringify the <a href="/plugin-system/api/#AST">AST</a>
-</div><pre class="interface"><code>  postProcess?: ({|
-    assets: Array&lt;<a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>&gt;,
-    config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
-    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
-    logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
-  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;<a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>&gt;&gt;,</code></pre>
-<pre class="interface"><code>|}</code></pre>
+</div><pre class="interface"><code>|}</code></pre>
 
 
 </div></div></body></html>

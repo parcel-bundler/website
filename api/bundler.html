@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="TraversalActions">TraversalActions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L784"><i>parcel/packages/core/types/index.js:784</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L789"><i>parcel/packages/core/types/index.js:789</i></a>
 </h4>
 <p>Used to control a traversal
 </p>
@@ -55,7 +55,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GraphVisitor">GraphVisitor</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L795"><i>parcel/packages/core/types/index.js:795</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L800"><i>parcel/packages/core/types/index.js:800</i></a>
 </h4>
 <p>Essentially <a href="/plugin-system/bundler/#GraphTraversalCallback">GraphTraversalCallback</a>, but allows adding specific node enter and exit callbacks.
 </p>
@@ -73,7 +73,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GraphTraversalCallback">GraphTraversalCallback</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L808"><i>parcel/packages/core/types/index.js:808</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L813"><i>parcel/packages/core/types/index.js:813</i></a>
 </h4>
 <p>A generic callback for graph traversals
 </p>
@@ -88,7 +88,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleTraversable">BundleTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L817"><i>parcel/packages/core/types/index.js:817</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L822"><i>parcel/packages/core/types/index.js:822</i></a>
 </h4>
 
 
@@ -108,7 +108,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L824"><i>parcel/packages/core/types/index.js:824</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L829"><i>parcel/packages/core/types/index.js:829</i></a>
 </h4>
 
 
@@ -128,7 +128,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="CreateBundleOpts">CreateBundleOpts</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L840"><i>parcel/packages/core/types/index.js:840</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L845"><i>parcel/packages/core/types/index.js:845</i></a>
 </h4>
 <p>Options for <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>'s <code>createBundle</code>.
 <br>If an <code>entryAsset</code> is provided, <code>uniqueKey</code> (for the bundle id),
@@ -168,7 +168,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Bundle">Bundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L896"><i>parcel/packages/core/types/index.js:896</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L901"><i>parcel/packages/core/types/index.js:901</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> (a collection of assets)
 <br></p>
@@ -192,6 +192,7 @@
 </div><pre class="interface"><code>  getMainEntry(): ?<a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
 <div class="inline-method">The actual entry (which won't be a runtime).
 </div><pre class="interface"><code>  hasAsset(<a href="/plugin-system/transformer/#Asset">Asset</a>): boolean,</code></pre>
+<pre class="interface"><code>  hasDependency(<a href="/plugin-system/transformer/#Dependency">Dependency</a>): boolean,</code></pre>
 <pre class="interface"><code>  traverseAssets&lt;TContext&gt;(visit: <a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;<a href="/plugin-system/transformer/#Asset">Asset</a>, TContext&gt;): ?TContext,</code></pre>
 <div class="inline-method">Traverses the assets in the bundle.
 </div><pre class="interface"><code>  traverse&lt;TContext&gt;(visit: <a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;<a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, TContext&gt;): ?TContext,</code></pre>
@@ -203,7 +204,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="NamedBundle">NamedBundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L928"><i>parcel/packages/core/types/index.js:928</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L934"><i>parcel/packages/core/types/index.js:934</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> that got named by a <a href="/plugin-system/namer/#Namer">Namer</a>
 </p>
@@ -219,7 +220,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGroup">BundleGroup</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L939"><i>parcel/packages/core/types/index.js:939</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L945"><i>parcel/packages/core/types/index.js:945</i></a>
 </h4>
 <p>A collection of sibling bundles (which are stored in the <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>) that should be loaded together (in order).
 </p>
@@ -233,7 +234,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableBundleGraph">MutableBundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L948"><i>parcel/packages/core/types/index.js:948</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L954"><i>parcel/packages/core/types/index.js:954</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> in the <a href="/plugin-system/bundler/#Bundler">Bundler</a> that can be modified
 </p>
@@ -264,7 +265,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGraph">BundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L986"><i>parcel/packages/core/types/index.js:986</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L992"><i>parcel/packages/core/types/index.js:992</i></a>
 </h4>
 <p>A Graph that contains <a href="/plugin-system/bundler/#Bundle">Bundle</a>-s, <a href="/plugin-system/transformer/#Asset">Asset</a>-s, <a href="/plugin-system/transformer/#Dependency">Dependency</a>-s, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>-s
 </p>
@@ -285,6 +286,8 @@
 <div class="inline-method">Get the dependencies that the asset requires
 </div><pre class="interface"><code>  getIncomingDependencies(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): Array&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;,</code></pre>
 <div class="inline-method">Get the dependencies that require the asset
+</div><pre class="interface"><code>  getAssetWithDependency(dep: <a href="/plugin-system/transformer/#Dependency">Dependency</a>): ?<a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
+<div class="inline-method">Get the asset that created the dependency.
 </div><pre class="interface"><code>  resolveAsyncDependency(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?({|
     type: 'bundle_group',
     value: <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>,
@@ -312,7 +315,7 @@ stopping at the first asset after leaving `bundle`.
 `symbol === undefined`: symbol not found
 `symbol === false`: skipped
 <br><code>asset</code> exports <code>symbol</code>, try to find the asset where the corresponding variable lives (resolves re-exports). Stop resolving transitively once <code>boundary</code> was left (<code>bundle.hasAsset(asset) === false</code>), then <code>result.symbol</code> is undefined.
-</div><pre class="interface"><code>  getExportedSymbols(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, boundary: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?Array&lt;<a href="/plugin-system/packager/#ExportSymbolResolution">ExportSymbolResolution</a>&gt;,</code></pre>
+</div><pre class="interface"><code>  getExportedSymbols(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, boundary: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;<a href="/plugin-system/packager/#ExportSymbolResolution">ExportSymbolResolution</a>&gt;,</code></pre>
 <div class="inline-method">Gets the symbols that are (transivitely) exported by the asset
 </div><pre class="interface"><code>  traverseBundles&lt;TContext&gt;(visit: <a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;TBundle, TContext&gt;, startBundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?TContext,</code></pre>
 <pre class="interface"><code>  getUsedSymbols(<a href="/plugin-system/transformer/#Asset">Asset</a> | <a href="/plugin-system/transformer/#Dependency">Dependency</a>): $ReadOnlySet&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>&gt;,</code></pre>
@@ -323,7 +326,7 @@ stopping at the first asset after leaving `bundle`.
 </div><div class="type">
 <h4 class="title">
   <span id="BundleResult">BundleResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L1058"><i>parcel/packages/core/types/index.js:1058</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L1066"><i>parcel/packages/core/types/index.js:1066</i></a>
 </h4>
 
 <pre class="interface"><code>type BundleResult = {|</code></pre>
@@ -338,7 +341,7 @@ stopping at the first asset after leaving `bundle`.
 </div><div class="type">
 <h4 class="title">
   <span id="Bundler">Bundler</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/67aefd83f8a32813aa86c904952d6ceb63eb235c/packages/core/types/index.js#L1094"><i>parcel/packages/core/types/index.js:1094</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L1102"><i>parcel/packages/core/types/index.js:1102</i></a>
 </h4>
 <p>Turns an asset graph into a <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>.
 <br>bundle and optimize run in series and are functionally identitical.
