@@ -37,8 +37,6 @@ export function render() {
 {% endsamplefile %}
 {% endsample %}
 
-## Dynamic imports with async/await
-
 Because `import()` returns a Promise, you can also use async/await syntax.
 
 {% sample %}
@@ -63,6 +61,61 @@ export function render() {
 ```
 
 {% endsamplefile %}
+{% endsample %}
+
+### Unused exports
+
+If you use one of the following patterns with dynamic imports, unused exports in `b.js` can be removed (similarly to how they are removed with `import {x} from "./b.js";`).
+
+{% note %}
+
+For the `await` cases, unused exports can unfortunately only be removed when `await` is not transpilied away by Babel (= with a modern browserslist config).
+
+{% endnote %}
+
+{% sample null, "column" %}
+
+{% samplefile %}
+
+```js
+let { x: y } = await import("./b.js");
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+({ x } = await import("./b.js"));
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+let ns = await import("./b.js");
+console.log(ns.x);
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+import("./b.js").then((ns) => console.log(ns.x));
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+import("./b.js").then(({ x: y }) => console.log(y));
+```
+
+{% endsamplefile %}
+
 {% endsample %}
 
 ## "Internalized" Bundles

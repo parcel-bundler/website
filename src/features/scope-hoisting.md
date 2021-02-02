@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: What scope hoisting is and how it enables smaller builds and ESM output
 ---
 
-Parcel can remove unused JS code with both CommonJS and ES modules, and unused [CSS modules classes](/languages/postcss/#css-modules-tree-shaking).
+Parcel can remove unused JS code with both CommonJS and ES modules (including [dynamic imports](/features/code-splitting/#unused-exports) in many cases), and unused [CSS modules classes](/languages/postcss/#css-modules-tree-shaking).
 
 ## Tips for smaller/faster builds
 
@@ -22,6 +22,25 @@ There are a few cases where an asset needs to be _wrapped_, that is moved inside
 ### `sideEffects: false`
 
 When `sideEffects: false` is specified in `package.json` (in most cases of some library), Parcel can skip processing some assets entirely (e.g. not even transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
+
+### `import * as ns from "...";`
+
+Even if you use the `import * as` syntax, unused exports are removed reliably as long as the namespace object is only accessed with static member expressions (`ns.foo` or `ns['foo']`).
+
+{% sample %}
+{% samplefile %}
+
+```js
+import * as thing from "./foo.js";
+
+console.log(thing.x);
+
+let other = thing; // This causes everything to be included!
+console.log(other.x);
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## Motivation and Advantages of Scope Hoisting
 
