@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: What scope hoisting is and how it enables smaller builds and ESM output
 ---
 
-Parcel can remove unused JS code with both CommonJS and ES modules, and unused [CSS modules classes](/languages/postcss/#css-modules-tree-shaking).
+Parcel can remove unused JS code with both CommonJS and ES modules (including [dynamic imports](/features/code-splitting/#unused-exports) in many cases), and unused [CSS modules classes](/languages/postcss/#css-modules-tree-shaking).
 
 ## Tips for smaller/faster builds
 
