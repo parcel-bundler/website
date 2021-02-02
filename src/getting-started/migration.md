@@ -336,3 +336,24 @@ parcel build index.js --global mylib
 {% samplefile %}
 {% endsamplefile %}
 {% endmigration %}
+
+### `--no-minify`
+
+This option has been renamed to `--no-optimize`
+
+{% migration %}
+{% samplefile %}
+
+```bash
+parcel build index.js --no-minify
+```
+
+{% endsamplefile %}
+{% samplefile %}
+
+```bash
+parcel build index.js --no-optimize
+```
+
+{% endsamplefile %}
+{% endmigration %}

@@ -24,9 +24,11 @@ import Parcel from "@parcel/core";
   let bundler = new Parcel({
     entries: path.join(__dirname, "src/index.js"),
     defaultConfig: require.resolve("@parcel/config-default"),
-    defaultEngines: {
-      browsers: ["last 1 Chrome version"],
-      node: "10",
+    defaultTargetOptions: {
+      engines: {
+        browsers: ["last 1 Chrome version"],
+        node: "10",
+      },
     },
     mode: "production",
   });
@@ -64,11 +66,13 @@ const DIST_DIR = "/dist";
       inputFS: inputFS,
       outputFS: outputFS,
       workerFarm,
-      defaultEngines: {
-        browsers: ["last 1 Chrome version"],
-        node: "8",
+      defaultTargetOptions: {
+        engines: {
+          browsers: ["last 1 Chrome version"],
+          node: "8",
+        },
+        distDir: DIST_DIR,
       },
-      distDir: DIST_DIR,
       patchConsole: false,
       mode: "production",
     });
