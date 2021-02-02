@@ -23,6 +23,25 @@ There are a few cases where an asset needs to be _wrapped_, that is moved inside
 
 When `sideEffects: false` is specified in `package.json` (in most cases of some library), Parcel can skip processing some assets entirely (e.g. not even transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
+### `import * as ns from "...";`
+
+Even if you use the `import * as` syntax, unused exports are removed reliably as long as the namespace object is only accessed with static member expressions (`ns.foo` or `ns['foo']`).
+
+{% sample %}
+{% samplefile %}
+
+```js
+import * as thing from "./foo.js";
+
+console.log(thing.x);
+
+let other = thing; // This causes everything to be included!
+console.log(other.x);
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ## Motivation and Advantages of Scope Hoisting
 
 For a long time, many bundlers (like Webpack and Browserify, but not Rollup) achieved the actual bundling by wrapping all assets in a function, creating a map of all included assets and providing a CommonJS runtime. A (very) simplified example of that:
