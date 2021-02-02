@@ -260,7 +260,10 @@ The result should be:
     <title>Home</title>
   </head>
   <body>
-    <header>Welcome to Work with content: <p>I will be rendered into content tag</p></header>
+    <header>
+      Welcome to Work with content:
+      <p>I will be rendered into content tag</p>
+    </header>
     <main>My content</main>
   </body>
 </html>
@@ -271,7 +274,7 @@ The result should be:
 
 ## htmlnano
 
-If minification is enabled (e.g. `parcel build` without `--no-minify`) all bundles are automatically processed with [htmlnano](https://github.com/posthtml/htmlnano).
+If minification is enabled (e.g. `parcel build` without `--no-optimize`) all bundles are automatically processed with [htmlnano](https://github.com/posthtml/htmlnano).
 
 It can be configured according to its documentation with a .htmlnanorc (JSON) or .htmlnanorc.js file. Make sure to delete the .parcel-cache directory after changing htmlnano settings.
 
