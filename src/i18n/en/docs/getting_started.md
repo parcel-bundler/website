@@ -74,7 +74,7 @@ parcel index.html about.html
 Use tokens and create a glob:
 
 ```bash
-parcel *.html
+parcel **/*.html
 ```
 
 _NOTE:_ In case you have a file structure like this:
