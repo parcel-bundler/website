@@ -1,16 +1,16 @@
 # Stylus
 
-_Supported extensions: `styl`_
+_サポートしている拡張子: `styl`_
 
-It's not even necessary to install Stylus 😱, parcel will automatically install Stylus if it detects a Stylus file.
+Stylus をインストールしなくても大丈夫ですよ 😱、Stylus のファイルを検出すると、parcel が自動的に Stylus をインストールしてくれます。
 
-You can import Stylus files from JavaScript or html files.
+JavaScript または html ファイルから Stylus ファイルをインポートできます。
 
 ```javascript
 import './custom.styl'
 ```
 
-or
+または
 
 ```html
 <link href="./custom.styl" rel="stylesheet" />
