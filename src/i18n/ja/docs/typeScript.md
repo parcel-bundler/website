@@ -1,6 +1,6 @@
 # TypeScript
 
-_サポートされている拡張子: `ts`, `tsx`_
+_サポートしている拡張子: `ts`, `tsx`_
 
 [TypeScript](https://www.typescriptlang.org/) はプレーンな JavaScript にコンパイルされた JavaScript の型のスーパーセットであり、最新の ES2015+ 機能もサポートしています。TypeScript の変換は、追加の設定なしですぐに動作します。
 
