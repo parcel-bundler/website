@@ -1,16 +1,16 @@
 # LESS
 
-_Supported extensions: `less`_
+_サポートしている拡張子: `less`_
 
-It's not even necessary to install less 😱, parcel will automatically install less if it detects a less file.
+Less をインストールしなくても大丈夫ですよ 😱、less のファイルを検出すると、parcel が自動的に less をインストールしてくれます。
 
-You can import LESS files from JavaScript or html files.
+JavaScript または html ファイルから LESS ファイルをインポートできます。
 
 ```javascript
 import './custom.less'
 ```
 
-or
+または
 
 ```html
 <link href="./custom.less" rel="stylesheet" />
