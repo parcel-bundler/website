@@ -1,8 +1,8 @@
 # TypeScript
 
-_Supported extensions: `ts`, `tsx`_
+_サポートされている拡張子: `ts`, `tsx`_
 
-[TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles down to plain JavaScript, which also supports modern ES2015+ features. Transforming TypeScript works out of the box without any additional configuration.
+[TypeScript](https://www.typescriptlang.org/) はプレーンな JavaScript にコンパイルされた JavaScript の型のスーパーセットであり、最新の ES2015+ 機能もサポートしています。TypeScript の変換は、追加の設定なしですぐに動作します。
 
 ```html
 <!-- index.html -->
@@ -24,15 +24,15 @@ console.log(message)
 export default 'Hello, world'
 ```
 
-## When using React
+## React を使う場合
 
-To use Typescript + React + JSX, you need to:
+Typescript + React + JSX を使うためには:
 
-1. use the `.tsx` extension
-2. properly require React
-3. use a tsconfig with a [special option](https://www.typescriptlang.org/docs/handbook/jsx.html) `"jsx": "react"`
+1. `.tsx` 拡張子を使う
+2. React を正しく require する
+3. tsconfig に[特別なオプション](https://www.typescriptlang.org/docs/handbook/jsx.html) `"jsx": "react"` を設定して使う
 
-Full example:
+完全な例:
 
 ```html
 <!-- index.html -->
@@ -63,4 +63,4 @@ ReactDOM.render(<p>Hello</p>, document.getElementById('root'))
 }
 ```
 
-See this full thread for more details: https://github.com/parcel-bundler/parcel/issues/1199
+詳細はこのスレッドをご参照ください: https://github.com/parcel-bundler/parcel/issues/1199
