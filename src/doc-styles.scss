@@ -18,6 +18,10 @@ $text-fonts: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
   transition: color 0.2s ease-in-out;
 }
 
+@mixin transition-filter {
+  transition: filter 0.2s ease-in-out;
+}
+
 @mixin transition-colors {
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
     border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
@@ -96,6 +100,11 @@ html.dark {
   .dark-invert {
     filter: invert(1);
   }
+}
+
+.dark-invert {
+  @include transition-filter;
+  filter: invert(0);
 }
 
 body {
