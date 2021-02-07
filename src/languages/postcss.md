@@ -32,6 +32,21 @@ There are two ways to enable CSS modules:
 
 ```json/1
 {
+  "modules": true
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+To change [postcss-modules options](https://github.com/css-modules/postcss-modules#usage), pass them via `plugins`:
+
+
+{% sample %}
+{% samplefile ".postcssrc" %}
+
+```json/4
+{
   "modules": true,
   "plugins": {
     "postcss-modules": {
