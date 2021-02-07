@@ -45,7 +45,7 @@ To change [postcss-modules options](https://github.com/css-modules/postcss-modul
 {% sample %}
 {% samplefile ".postcssrc" %}
 
-```json/1
+```json/4
 {
   "modules": true,
   "plugins": {
