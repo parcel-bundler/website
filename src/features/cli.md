@@ -111,3 +111,4 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--no-optimize`             | Disables minification (exact behaviour is determined by plugins). <br> Related [`targets.*.optimize`](/configuration/package-json/#targets) |
 | `--no-scope-hoist`          | Disables scope hoisting. <br> Related: [`targets.*.scopeHoist`](/configuration/package-json/#targets)                                       |
 | `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report                                              |
+| `--no-content-hash`         | Disables content hashing of the output files                                                                                                |
