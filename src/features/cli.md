@@ -55,7 +55,7 @@ In this case, load the file directly e.g. `http://localhost:1234/a.html` and `ht
 The watch command is similar to `serve`, but only with a HMR server and no HTTP (dev) server.
 
 ```bash
-parcel index.html
+parcel watch index.html
 ```
 
 ### `parcel build <entries>`

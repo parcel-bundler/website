@@ -17,7 +17,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSass, {
     watch: ["src/*.{scss,sass}"],
   });
-  eleventyConfig.addPassthroughCopy("assets");
+
+  // Copy assets
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy({ "src/assets/favicon.ico": "favicon.ico" });
+
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg"]);
   eleventyConfig.addWatchTarget("./api/");
 
