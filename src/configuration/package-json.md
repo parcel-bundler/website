@@ -13,7 +13,13 @@ These are the fields that Parcel uses for its configuration:
 
 #### `main` / `module` / `browser`
 
-These are common fields used by other tools as well,
+{% warning %}
+
+These fields are intended for libraries, a [custom target](#custom-targets) requires less boilerplate for building webapps.
+
+{% endwarning %}
+
+These are fields that are used by Node (or other tools) for module resolution as well. These are the **output** paths for your bundles.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -32,9 +38,11 @@ These are common fields used by other tools as well,
 They default to library mode (meaning they don't bundle dependencies): (see also [`targets`](#targets))
 
 - `main` (and `module`) are the standard entry points to your library, `module` defaults to ESM module output.
-- `browser` is intended for a browser-specific build (e.g. without some native features).
+- `browser` is intended for a browser-specific build (e.g. without some Node features such as FS), this outputs CommonJS.
 
 If one these fields is specified, Parcel will create a target for that field (no property in [`targets`](#targets) is needed)
+
+If the `browser` field is an [object](/features/module-resolution/#package.json-browser-field), `package.json#browser[pkgName]` can be used instead of `package.json#browser`.
 
 To make Parcel ignore one of these fields, specify `false` in `target.(main|browser|module)`:
 
@@ -53,13 +61,11 @@ To make Parcel ignore one of these fields, specify `false` in `target.(main|brow
 {% endsamplefile %}
 {% endsample %}
 
-If the `browser` field is an [object](/features/module-resolution/#package.json-browser-field), `package.json#browser[pkgName]` can be used instead of `package.json#browser`.
-
 Note that there will always be at least one target, even with `main: false`. (So the default target will be used instead of `main`.)
 
 #### custom targets
 
-To create your own target (without any of the semantics of the [common target](#main-%2F-module-%2F-browser) described previously), add a top-level field with your target's name and output path. You also need to add it to [`targets`](#targets) to make Parcel recognize that field.
+To create your own target (without any of the semantics of the [common target](#main-%2F-module-%2F-browser) described previously), add a top-level field with your target's name and **output** path. You also need to add it to [`targets`](#targets) to make Parcel recognize that field.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -106,7 +112,7 @@ See [Specifying Entrypoints](/getting-started/configuration/#specifying-entrypoi
 
 #### `targets`
 
-Targets are configured via the `package.json#targets` field.
+Targets can be further configured via the `package.json#targets` object.
 
 ```json
 {
@@ -257,3 +263,5 @@ All paths are relative to `/some/dir/my-monorepo`.
 | `packages/`          | `packages/*/src/**/*.js`      | `package.json`                               |
 | `packages/pkg-a`     | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`                |
 | `packages/pkg-a/src` | `packages/pkg-a/src/index.js` | `packages/pkg-a/package.json`                |
+
+So the the nearest package.json from the current working directory (not the entries) is used.
