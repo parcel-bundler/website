@@ -79,7 +79,7 @@ A common usecase is extending the default config, for this reason the `extends` 
 {% endsamplefile %}
 {% endsample %}
 
-To add additional plugins while not overwriting the default ones, add `"..."` to use the plugins provided by the config specified in the `extends` field. For example to add an additional reporter:
+To add additional plugins without overwriting the default ones, add `"..."` to use the plugins provided by the config specified in the `extends` field. For example to add another reporter:
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -169,7 +169,7 @@ As you can see, `...` is now used to make sure that `data-url:./worker.js` will 
 
 If you're curious how this can be achieved without a deeper integration with Parcel core:
 
-`@parcel/transformer-inline-string` marks the asset to be an inlined asset. `@parcel/packager-js` then inlines this inline bundle (as a string `"${contents}"`). This inline bundle was previously processed by `@parcel/optimizer-data-url`, which encodes the JS code into a data url.
+`@parcel/transformer-inline-string` marks the asset as an inlined asset. `@parcel/packager-js` then inlines this inline bundle (as a string `"${contents}"`). This inline bundle was previously processed by `@parcel/optimizer-data-url`, which encoded the JavaScript code into a data url.
 
 {% endnote %}
 
