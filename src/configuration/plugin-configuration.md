@@ -11,7 +11,7 @@ summary: How to use plugins and create named pipelines
 Contrary to what this page's title might suggest, this is not about configuring individual plugins, but how to tell Parcel which plugin is responsible for (among others) which file type(s).
 {% endnote %}
 
-Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are diffent plugins (see [Plugin System](/plugin-system/)).
+Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are different plugins (see [Plugin System](/plugin-system/)).
 
 Here is an excerpt from the default config that the `parcel` CLI uses. Generally, there are three categories of plugin types (with regards to the configuration):
 
@@ -79,7 +79,7 @@ A common usecase is extending the default config, for this reason the `extends` 
 {% endsamplefile %}
 {% endsample %}
 
-To add additional plugins while not overwriting the but default ones, add `"..."` to use the plugins provided by config specified in the `extends` field. For example to add an additional reporter:
+To add additional plugins without overwriting the default ones, add `"..."` to use the plugins provided by the config specified in the `extends` field. For example to add another reporter:
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -107,7 +107,7 @@ Once a transformer sets the asset type to a type that is not covered by the curr
 
 {% endwarning %}
 
-If a transformer doesn't change the asset type and you still want to continue processing this asset, add `"..."` to continue the transformation (in an extended config). This can be useful if you want to modify an asset without changing its type and let a already defined pipeline handle the translation/dependency registration.
+If a transformer doesn't change the asset type and you still want to continue processing this asset, add `"..."` to continue the transformation (in an extended config). This can be useful if you want to modify an asset without changing its type and let an already-defined pipeline handle the translation/dependency registration.
 
 {% sample  %}
 {% samplefile ".parcelrc" %}
@@ -169,7 +169,7 @@ As you can see, `...` is now used to make sure that `data-url:./worker.js` will 
 
 If you're curious how this can be achieved without a deeper integration with Parcel core:
 
-`@parcel/transformer-inline-string` sets marks the asset to be an inlined asset. `@parcel/packager-js` then inlines this inline bundle (as a string `"${contents}"`). This inline bundle was previously processed by `@parcel/optimizer-data-url` which encodes the JS code into a data url.
+`@parcel/transformer-inline-string` marks the asset as an inlined asset. `@parcel/packager-js` then inlines this inline bundle (as a string `"${contents}"`). This inline bundle was previously processed by `@parcel/optimizer-data-url`, which encoded the JavaScript code into a data url.
 
 {% endnote %}
 
@@ -177,7 +177,7 @@ Named pipelines are currently implemented for transformers and optimizers (the n
 
 #### Predefined (offical) named pipelines
 
-- `data-url:` See above for an example. It isn't replaced by an URL to a new bundle but instead an isolated data url.
+- `data-url:` See above for an example. It isn't replaced with a URL to a new bundle but instead with an isolated data url.
 - `url:` Needed when e.g. importing "normal" assets such as media files as a URL
 
 {% sample %}
@@ -194,7 +194,7 @@ document.body.innerHTML = `<img src="${logo}">`;
 
 {% note %}
 
-You might ask why we chose to use this explicit syntax. The reason is that this way, adding a new asset type to Parcel isn't a breaking change anymore (this happened in the past when `import foo from "./other.html"` didn't return the URL but the HTML contents anymore).
+You might ask why we chose to use this explicit syntax. The reason is that this way, adding a new asset type to Parcel isn't a breaking change anymore (this happened in the past when `import foo from "./other.html"` didn't return the URL anymore, but rather the HTML contents).
 
 It's also possible to modify the parcel config to opt into the old behaviour: see [Migration](/getting-started/migration/#importing-non-code-assets-from-javascript).
 

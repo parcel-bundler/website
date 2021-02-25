@@ -64,7 +64,7 @@ import fs from "fs";
 import path from "path";
 
 const data = fs.readFileSync(path.join(__dirname, "data.json"), "utf8");
-console.log("data");
+console.log(data);
 ```
 
 {% endsamplefile %}

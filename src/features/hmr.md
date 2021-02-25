@@ -9,7 +9,7 @@ summary: Refreshing your JS app without a full page reload
 
 Hot Module Replacement (HMR) improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things. Parcel's HMR implementation supports both JavaScript and CSS assets.
 
-By default, Parcel fully refreshes the page when files change. You can opt-in to enable true HMR by adding the following in your app. This will only apply in development; HMR is automatically disabled when bundling in production mode.
+By default, Parcel fully refreshes the page when files change. In case you're not using a framework that configures HMR already, you can manually opt into HMR (so reexecuting your JavaScript) by adding the following in your app. This will only apply in development; HMR is automatically disabled when bundling in production mode.
 
 {% sample %}
 {% samplefile "index.js" %}

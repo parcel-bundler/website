@@ -21,7 +21,7 @@ The query parameters you can use are:
 - `quality`: The image quality percentage you want, for example `?quality=75`
 - `as`: File format to use, for example: `?as=webp`
 
-Supported image formats: `jpeg` / `jpg`, `png`, `webp`, `tiff`, `heic` / `heif` and `raw`
+Supported image formats: `jpeg` / `jpg`, `png`, `webp`, `tiff`, `heic` / `heif`, `avif` and `raw`. For `gif` support, you need to [setup a custom libvips build](https://github.com/lovell/sharp/issues/2437).
 
 A JavaScript example:
 
