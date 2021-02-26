@@ -20,7 +20,9 @@ module.exports = function (eleventyConfig) {
 
   // Copy assets
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy({ "src/assets/favicon.ico": "favicon.ico" });
+  eleventyConfig.addPassthroughCopy({
+    "src/assets/favicon.ico": "favicon.ico",
+  });
 
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg"]);
   eleventyConfig.addWatchTarget("./api/");
@@ -45,8 +47,8 @@ module.exports = function (eleventyConfig) {
     return page.url;
   });
 
-  eleventyConfig.addFilter("toDate", function (date) {
-    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  eleventyConfig.addFilter("toISODate", function (date) {
+    return date.toISOString().replace(/T.*/, "");
   });
 
   eleventyConfig.addPairedShortcode("note", function (content) {

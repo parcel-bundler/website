@@ -105,9 +105,10 @@
           <p class="summary">
             <span>{{ summary }}</span>
             {% if date %}
-            <span style="float: right;">
-              📆 {{ date | toDate }} {% endif %}
-            </span>
+            <time datetime="{{ date | toISODate }}" class="entry-date js-replace-date">
+              {{ date | toISODate }}
+            </time>
+            {% endif %}
           </p>
         </header>
 
@@ -120,6 +121,10 @@
         </footer>
       </div>
     </main>
+
+    <script>
+      {% include "replace-date.js" %}
+    </script>
 
     <script>
       document
