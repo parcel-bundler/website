@@ -28,7 +28,7 @@ export default new Transformer({
     return ast;
   },
 
-  async transform({ asset, ast, config, logger, resolve, options }) {
+  async transform({ asset, config, logger, resolve, options }) {
     // ...
     return [asset];
   },
@@ -36,10 +36,6 @@ export default new Transformer({
   async generate({ asset, ast, resolve, options }) {
     // ...
     return { code, map };
-  },
-
-  async postProcess({assets, config, options, resolve, logger}) {
-    return assets;
   }
 });
 ```

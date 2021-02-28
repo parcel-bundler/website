@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveResult">ResolveResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L1076"><i>parcel/packages/core/types/index.js:1076</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L1094"><i>parcel/packages/core/types/index.js:1094</i></a>
 </h4>
 
 <pre class="interface"><code>type ResolveResult = {|</code></pre>
@@ -55,14 +55,16 @@
 <div class="inline-method">A resolver might return diagnostics to also run subsequent resolvers while still providing a reason why it failed.
 </div><pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#JSONObject">JSONObject</a>,</code></pre>
 <div class="inline-method">Is spread (shallowly merged) onto the request's dependency.meta
-</div><pre class="interface"><code>|}</code></pre>
+</div><pre class="interface"><code>  +invalidateOnFileCreate?: Array&lt;<a href="/plugin-system/api/#FileCreateInvalidation">FileCreateInvalidation</a>&gt;,</code></pre>
+<pre class="interface"><code>  +invalidateOnFileChange?: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;,</code></pre>
+<pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Resolver">Resolver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/fbca3a93f8ff1178d35ecf55cd31f243c5359dd1/packages/core/types/index.js#L1198"><i>parcel/packages/core/types/index.js:1198</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L1218"><i>parcel/packages/core/types/index.js:1218</i></a>
 </h4>
 
 <pre class="interface"><code>type Resolver = {|</code></pre>
