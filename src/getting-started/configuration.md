@@ -23,7 +23,7 @@ These are the files that contain the source code to your app before being
 compiled by Parcel and are picked up by:
 
 1. [`$ parcel <entries>`](/features/cli/)
-2. `$ parcel <folder(s)>` uses [`<folder>/package.json#source`](/configuration/package-json/#source) (respectively)
+2. `$ parcel <folder(s)>` uses [`<folder>/package.json#source`](/configuration/package-json/#source) or [`<folder>/package.json#targets.*.source`](/configuration/package-json/#targets) (respectively)
 3. `./src/index.*`
 4. `./index.*`
 
