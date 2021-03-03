@@ -51,17 +51,22 @@ let loaded = Date.now();
 export function elapsed() {
   return Date.now() - loaded;
 }
+
+let cache = new Map();
+export function cached(param, func) {
+  /* ... */
+}
 ```
 
 {% endsamplefile %}
 
 {% endsample %}
 
-In this case, we doe't even have to load (and transpile) `node_modules/lib/multiply.js` because it's definitely unused. Furthermore `node_modules/lib/index.js` can be skipped when concatenating the bundle because none of its direct exports are used (`elapsed`), this alleviates the need to annotate the variable declaration with `/*@__PURE__*/`.
+In this case, we doe't even have to load (and transpile) `node_modules/lib/multiply.js` because it's definitely unused. Furthermore `node_modules/lib/index.js` can be skipped when concatenating the bundle because none of its direct exports are used (`elapsed`), this alleviates the need to annotate the variable declaration with `/*@__PURE__*/`. This is still neccesary however when only exports in the file are used - so if only `elapsed` is imported, `let cache = new Map()` cannot be removed even though `cached` is unused.
 
-If `export *` were used instead of `export { multiply }`, `multiply.js` would have to be transpiled but it would still not be included in the output (so this mainly causes longer build times).
+If `export *` is used instead of `export { multiply }`, `multiply.js` has to be transpiled but it's still not included in the output (so this mainly causes longer build times).
 
-Another benefit of `sideEffects` is that this even applies to bundling, so if `multiply.js` imported a CSS stylesheet or contained a dynamic `import()`, that bundle isn't created either if `multiply.js` is unused.
+Another benefit of `sideEffects` is that this even applies to bundling, so if `multiply.js` imports a CSS stylesheet or contains a dynamic `import()`, that bundle isn't created either if `multiply.js` itself is unused.
 
 ### Patterns to avoid
 
@@ -71,7 +76,7 @@ If a top-level `return` statement or `eval` are being used or a `module` variabl
 
 #### Avoid conditional `require()`
 
-this is a case where an asset needs to be _wrapped_, that is moved inside a function. This negates some advantages of scope-hoisting.
+This is a case where an asset needs to be _wrapped_, that is moved inside a function. This negates some advantages of scope-hoisting.
 
 If an asset is `require`d conditionally or generally no in the toplevel of the asset, we cannot add it into the top-level scope because its content should only be execute when it is actually required. This logic also needs to be applied recursively to not immediately execute dependencies of the wrapped asset.
 
