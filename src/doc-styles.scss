@@ -861,3 +861,11 @@ body {
     }
   }
 }
+
+.entry-date {
+  float: right;
+
+  &::before {
+    content: "📆\00a0";
+  }
+}
