@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: How Parcel helps you optimizing your project for production
 ---
 
-TODO
+See [Scope hoisting](/features/scope-hoisting/) for how to optimize your code for tree shaking.
 
 ## Inspecting bundle size
 

@@ -11,29 +11,82 @@ Parcel can remove unused JS code with both CommonJS and ES modules (including [d
 
 ## Tips for smaller/faster builds
 
-### Wrapped Assets
+### Hints for more optimization
 
-There are a few cases where an asset needs to be _wrapped_, that is moved inside a function. This negates some advantages of scope-hoisting.
+#### Specifying `sideEffects: false` for libraries
 
-- If a top-level `return` statement or `eval` are being used or a `module` variable is used freely (`module.exports` is fine), we cannot add it into the top-level scope (because `return` would stop the execution of the whole bundle and `eval` might use variables that have been renamed).
+When `sideEffects: false` is specified in `package.json` (in most cases of some library), we can skip processing some assets entirely (e.g. not even transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
 
-- If an asset is imported conditionally (or generally in a try/catch, a function an if statement) using CommonJS `require` (this isn't possible with the ESM syntax), we cannot add it into the top-level scope because its content should only be execute when it is actually required.
+For example:
 
-### `sideEffects: false`
+{% sample null, "column" %}
+{% samplefile "app.js" %}
 
-When `sideEffects: false` is specified in `package.json` (in most cases of some library), Parcel can skip processing some assets entirely (e.g. not even transpiling the `lodash` function that weren't imported) or not include them in the output bundle at all (e.g. because that asset merely does reexporting).
+```js
+import { add } from "lib";
 
-### `import * as ns from "...";`
+console.log(add(1, 2));
+```
+
+{% endsamplefile %}
+
+{% samplefile "node_modules/lib/package.json" %}
+
+```js
+{
+  "name": "lob"
+  "sideEffects": false
+}
+```
+
+{% endsamplefile %}
+
+{% samplefile "node_modules/lib/index.js" %}
+
+```js
+export { add } from "./add.js";
+export { multiply } from "./multiply.js";
+
+let loaded = Date.now();
+export function elapsed() {
+  return Date.now() - loaded;
+}
+```
+
+{% endsamplefile %}
+
+{% endsample %}
+
+In this case, we doe't even have to load (and transpile) `node_modules/lib/multiply.js` because it's definitely unused. Furthermore `node_modules/lib/index.js` can be skipped when concatenating the bundle because none of its direct exports are used (`elapsed`), this alleviates the need to annotate the variable declaration with `/*@__PURE__*/`.
+
+If `export *` were used instead of `export { multiply }`, `multiply.js` would have to be transpiled but it would still not be included in the output (so this mainly causes longer build times).
+
+Another benefit of `sideEffects` is that this even applies to bundling, so if `multiply.js` imported a CSS stylesheet or contained a dynamic `import()`, that bundle isn't created either if `multiply.js` is unused.
+
+### Patterns to avoid
+
+#### Avoid reliance on CommonJS specifics
+
+If a top-level `return` statement or `eval` are being used or a `module` variable is used freely (`module.exports` is fine), we cannot add it into the top-level scope (because `return` would stop the execution of the whole bundle and `eval` might use variables that have been renamed).
+
+#### Avoid conditional `require()`
+
+this is a case where an asset needs to be _wrapped_, that is moved inside a function. This negates some advantages of scope-hoisting.
+
+If an asset is `require`d conditionally or generally no in the toplevel of the asset, we cannot add it into the top-level scope because its content should only be execute when it is actually required. This logic also needs to be applied recursively to not immediately execute dependencies of the wrapped asset.
+
+#### `import * as ns from "...";` can be equivalent to named imports
 
 Even if you use the `import * as` syntax, unused exports are removed reliably as long as the namespace object is only accessed with static member expressions (`ns.foo` or `ns['foo']`).
 
 {% sample %}
 {% samplefile %}
 
-```js
+```js/5,6
 import * as thing from "./foo.js";
 
 console.log(thing.x);
+console.log(thing['y']);
 
 let other = thing; // This causes everything to be included!
 console.log(other.x);
