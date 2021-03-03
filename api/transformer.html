@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L430"><i>parcel/packages/core/types/index.js:430</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L435"><i>parcel/packages/core/types/index.js:435</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
 </p>
@@ -69,7 +69,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L456"><i>parcel/packages/core/types/index.js:456</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L461"><i>parcel/packages/core/types/index.js:461</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -105,7 +105,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L494"><i>parcel/packages/core/types/index.js:494</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L499"><i>parcel/packages/core/types/index.js:499</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -118,7 +118,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L504"><i>parcel/packages/core/types/index.js:504</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L509"><i>parcel/packages/core/types/index.js:509</i></a>
 </h4>
 <p>An asset (usually represents one source file).
 <br></p>
@@ -175,7 +175,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L565"><i>parcel/packages/core/types/index.js:565</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L570"><i>parcel/packages/core/types/index.js:570</i></a>
 </h4>
 <p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
 </p>
@@ -207,7 +207,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L594"><i>parcel/packages/core/types/index.js:594</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L599"><i>parcel/packages/core/types/index.js:599</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
@@ -219,7 +219,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L601"><i>parcel/packages/core/types/index.js:601</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L617"><i>parcel/packages/core/types/index.js:617</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -231,7 +231,7 @@
 <pre class="interface"><code>  setResult(result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>): void,</code></pre>
 <pre class="interface"><code>  setResultHash(resultHash: string): void,</code></pre>
 <pre class="interface"><code>  addIncludedFile(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
-<pre class="interface"><code>  addDevDependency(name: <a href="/plugin-system/api/#PackageName">PackageName</a>, version?: <a href="/plugin-system/api/#Semver">Semver</a>): void,</code></pre>
+<pre class="interface"><code>  addDevDependency(devDep: <a href="/plugin-system/api/#DevDepOptions">DevDepOptions</a>): void,</code></pre>
 <pre class="interface"><code>  invalidateOnFileCreate(invalidation: <a href="/plugin-system/api/#FileCreateInvalidation">FileCreateInvalidation</a>): void,</code></pre>
 <pre class="interface"><code>  getConfigFrom(searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>, filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
@@ -244,8 +244,6 @@
     exclude?: boolean,
   |}): Promise&lt;<a href="/plugin-system/api/#ConfigResultWithFilePath">ConfigResultWithFilePath</a> | null&gt;,</code></pre>
 <pre class="interface"><code>  getPackage(): Promise&lt;<a href="/plugin-system/api/#PackageJSON">PackageJSON</a> | null&gt;,</code></pre>
-<pre class="interface"><code>  shouldRehydrate(): void,</code></pre>
-<pre class="interface"><code>  shouldReload(): void,</code></pre>
 <pre class="interface"><code>  shouldInvalidateOnStartup(): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
@@ -254,7 +252,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L644"><i>parcel/packages/core/types/index.js:644</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L658"><i>parcel/packages/core/types/index.js:658</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -267,7 +265,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L655"><i>parcel/packages/core/types/index.js:655</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L669"><i>parcel/packages/core/types/index.js:669</i></a>
 </h4>
 <p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
 </p>
@@ -300,7 +298,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L681"><i>parcel/packages/core/types/index.js:681</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L695"><i>parcel/packages/core/types/index.js:695</i></a>
 </h4>
 
 
@@ -314,7 +312,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/349302cdf72fc3b549fe35bf113556760e2eb2f3/packages/core/types/index.js#L743"><i>parcel/packages/core/types/index.js:743</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L757"><i>parcel/packages/core/types/index.js:757</i></a>
 </h4>
 <p>The methods for a transformer plugin.
 </p>
@@ -323,10 +321,6 @@
     config: <a href="/plugin-system/transformer/#Config">Config</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
-  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
-<pre class="interface"><code>  preSerializeConfig?: ({|
-    config: <a href="/plugin-system/transformer/#Config">Config</a>,
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  canReuseAST?: ({|
     ast: <a href="/plugin-system/api/#AST">AST</a>,
