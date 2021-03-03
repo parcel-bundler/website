@@ -82,6 +82,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--profile`                                  | Profiles the build (a flamechart can be generated)                                                                                           |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for [`targets.*.publicUrl`](/configuration/package-json/#targets)                      |
 | `--target [name]`                            | Only build the specified target(s)                                                                                                           |
+| `--reporter <package name>`                  | Run the specified reporter in addition to the ones specified in the parcelrc. Can be specified multiple times                                |
 | `-V, --version`                              | Outputs the version number                                                                                                                   |
 
 ### Parameters related to the dev server/watch mode (`serve` and `watch`)
