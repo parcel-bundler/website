@@ -81,7 +81,7 @@ Parcel does not use the `baseUrl` or `paths` directives in `tsconfig.json`. You 
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "~*": ["./*"]
+      "~/*": ["./*"]
     },
   },
   "include": ["src/**/*"]
