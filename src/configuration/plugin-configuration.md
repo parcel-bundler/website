@@ -99,7 +99,7 @@ To add additional plugins without overwriting the default ones, add `"..."` to u
 
 The observant reader might have noticed that the last config example didn't include `@parcel/transformer-js`, which is required for `@parcel/runtime-js` and `@parcel/runtime-packager`.
 
-This is solved with _pipelines_. A Typescript asset is first processed by the `ts` pipeline and once the `@parcel/transformer-typescript-ts` plugin sets the asset type (which is essentially equivalent to the file extension) to `js`, Parcel reevaluates how the asset should be further processed. In this case, it will be put into the `js` pipeline specified in `@parcel/config-default`. This way, `@parcel/transformer-js` will still be executed.
+This is solved with _pipelines_. A Typescript asset is first processed by the `ts` pipeline and once the `@parcel/transformer-typescript-tsc` plugin sets the asset type (which is essentially equivalent to the file extension) to `js`, Parcel reevaluates how the asset should be further processed. In this case, it will be put into the `js` pipeline specified in `@parcel/config-default`. This way, `@parcel/transformer-js` will still be executed.
 
 {% warning %}
 
