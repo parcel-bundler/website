@@ -86,7 +86,7 @@ let { x: y } = await import("./b.js");
 {% samplefile %}
 
 ```js
-({ x } = await import("./b.js"));
+let ({ x } = await import("./b.js"));
 ```
 
 {% endsamplefile %}
