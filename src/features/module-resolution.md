@@ -89,7 +89,7 @@ Externals must be configured on a target-by-target basis with [`includeNodeModul
 
 ### Package entry fields
 
-When scope hoisting is enabled, a bare specified (e.g. `lodash`) is resolved in this order (the first field that specified and points to ane existing file):
+When scope hoisting is enabled, a bare specified (e.g. `lodash`) is resolved in this order (the first field that specified and points to any existing file):
 
 - `package.json#source`
 - `package.json#browser`
