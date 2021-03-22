@@ -19,7 +19,7 @@ This is not intended to be an API documentation but rather introduces the concep
 Any file supported by Parcel, such as JS, CSS, or HTML
 
 ##### Dependency
-When a file depends on or requires other files, those files are dependencies.
+When a file depends on or requires other files, those imports are dependencies.
 
 ##### AssetGraph
 Graph data structure representing all assets and their dependencies on one another
