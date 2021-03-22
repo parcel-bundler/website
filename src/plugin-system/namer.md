@@ -7,18 +7,13 @@ eleventyNavigation:
 summary: "A plugin type: Generates an output-filepath for a bundle"
 ---
 
-Namers accept a bundle and output a filepath for that bundle (the resulting path should be relative to `rootDir`).
+Namers accept a bundle and output a filepath for that bundle (the resulting path should be relative to `bundle.target.distDir`).
 
 ```js
 import { Namer } from "@parcel/plugin";
 
 export default new Namer({
   async name({ bundle, bundleGraph, logger, options }) {
-    if (bundle.filePath != null) {
-      // a target specified a output path
-      return bundle.filePath;
-    }
-
     let name = yourNamingFunction(bundle);
     if (!bundle.isEntry) {
       name += "." + bundle.hashReference;
@@ -32,10 +27,7 @@ export default new Namer({
 You have to ensure that the bundle filepaths are unique.
 {% enderror %}
 
-Namers have complete freedom over the filepaths, but they should still follow these rules:
-
-- Return `bundle.filePath` if it's set, to make sure that the output file set in `package.json#targets` is respected.
-- If `bundle.isEntry` is true, don't include [the hash in the filename](#Including-a-hash).
+Namers have complete freedom over the filepaths, but they should not include [the hash in the filename](#Including-a-hash) if `bundle.isEntry` is true.
 
 ## Overriding names for specific bundles
 
