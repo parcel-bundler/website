@@ -28,5 +28,4 @@ Graph data structure representing all assets and their dependencies on one anoth
 Groupings of assets that get placed together in a single file. Bundles will (generally) contain only assets in the same language.
 
 ##### BundleGraph
-Graph data structure graphing all assets, bundles, and their dependencies.
-
+Graph data structure containing bundles including their assets and dependencies.
