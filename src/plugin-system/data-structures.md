@@ -16,17 +16,17 @@ This is not intended to be an API documentation but rather introduces the concep
 {% endnote %}
 
 ##### Asset 
-Any file supported by Parcel, such as JS, CSS, or HTML
+Any file supported by Parcel, such as JS, CSS, or HTML.
 
 ##### Dependency
 When a file depends on or requires other files, those imports are dependencies.
 
 ##### AssetGraph
-Graph data structure representing all assets and their dependencies on one another
+Graph data structure representing all assets and their dependencies on one another.
 
 ##### Bundle
-Groupings of assets that get placed together in a single file. Bundles will (generally) contain only assets in the same language
+Groupings of assets that get placed together in a single file. Bundles will (generally) contain only assets in the same language.
 
 ##### BundleGraph
-Graph data structure graphing all assets, bundles, and their dependencies
+Graph data structure graphing all assets, bundles, and their dependencies.
 
