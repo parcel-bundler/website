@@ -132,3 +132,6 @@ yarn build
 # or
 npm run build
 ```
+## Next Steps Explore
+Now that you have gotten started, here are a some useful links to explore next.
+-  [Working with Assets](assets.html)
