@@ -137,7 +137,7 @@ import gql from "graphql-tag";
 import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is a string
 
 // Convert to the Apollo Specific Query AST
-const parsedFetchDataQuery = gql(test);
+const parsedFetchDataQuery = gql(fetchDataQuery);
 
 const DataComponent = () => {
   const { data } = useQuery(parsedFetchDataQuery, {
