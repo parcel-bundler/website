@@ -182,16 +182,16 @@ parcel build index.js --target node
 
 ```json5/3,5,10
 {
-  targets: {
-    default: {
-      context: "node", // <--- (1)
-      engines: {
-        node: "10", // <------ (2)
+  "targets": {
+    "default": {
+      "context": "node", // <--- (1)
+      "engines": {
+        "node": "10", // <------ (2)
       },
     },
   },
-  engines: {
-    node: "10", // <---------- (3)
+  "engines": {
+    "node": "10", // <---------- (3)
   },
 }
 ```
@@ -296,7 +296,7 @@ parcel build index.js --out-file lib.js
 
 ```json5/1
 {
-  default: "lib.js",
+  "default": "lib.js",
   // ...
 }
 ```
