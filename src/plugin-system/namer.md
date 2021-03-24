@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: "A plugin type: Generates an output-filepath for a bundle"
 ---
 
-Namers accept a bundle and output a filepath for that bundle (the resulting path should be relative to `bundle.target.distDir`).
+Namers accept a bundle and return a filepath for that bundle (this path has to be relative to `bundle.target.distDir`).
 
 ```js
 import { Namer } from "@parcel/plugin";
