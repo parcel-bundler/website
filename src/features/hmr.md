@@ -58,5 +58,6 @@ When using Hot Module Reload (HMR) this feature blocks the automatic detection o
 - IntelliJ: use search in the preferences to find "safe write" and disable it.
 - Vim: add `:set backupcopy=yes` to your settings.
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
+- vis: add `:set savemethod inplace` to your settings.
 
 (This functionality is provided by `@parcel/runtime-browser-hmr`.)
