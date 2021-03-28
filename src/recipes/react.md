@@ -69,7 +69,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import Component from "./Component.js";
 
-const App = (
+const App = () => (
   <h1>
     <Component />
   </h1>
@@ -115,7 +115,7 @@ import Component, { utility } from "./Component.js";
 
 console.log(utility());
 
-const App = (
+const App = () => (
   <h1>
     <Component />
   </h1>
