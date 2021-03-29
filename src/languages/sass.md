@@ -34,4 +34,4 @@ parcel build ./style.scss
 
 To configure Sass we support the following configuration files: `.sassrc` and `.sassrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
 
-For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api)
+For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api#options)
