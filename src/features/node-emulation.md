@@ -93,8 +93,8 @@ Inlining of [environment variables](#🌳-environment-variables) and [`readFileS
     ...
   },
   "@parcel/transformer-js": {
-    inlineFS: false,
-    inlineEnvironment: false
+    "inlineFS": false,
+    "inlineEnvironment": false
   }
 }
 ```
@@ -111,7 +111,7 @@ Inlining of [environment variables](#🌳-environment-variables) and [`readFileS
     ...
   },
   "@parcel/transformer-js": {
-    inlineEnvironment: ["SENTRY_*"]
+    "inlineEnvironment": ["SENTRY_*"]
   }
 }
 ```
