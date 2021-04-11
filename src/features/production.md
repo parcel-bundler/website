@@ -15,7 +15,7 @@ Parcel has builtin plugins for a few tools to help with analyzing bundle size.
 
 ### Bundle Analyzer
 
-To generate a HTML file for every bundle, run the `@parcel/reporter-bundle-analyzer` plugin (eith with the `--reporter` flag or via `"reporters"` in .parcelrc):
+To generate a HTML file for every bundle, run the `@parcel/reporter-bundle-analyzer` plugin (using the `--reporter` flag or via `"reporters"` in .parcelrc):
 
 {% sample "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer" %}
 {% endsample %}
