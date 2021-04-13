@@ -7,6 +7,10 @@ eleventyNavigation:
 summary: "A plugin type: Turns an asset graph into a bundle graph"
 ---
 
+{% warning %}
+The Bundler API is experimental and therefore subject to change, even between minor updates.
+{% endwarning %}
+
 Bundlers accept the entire asset graph and modify it to add bundle nodes that group the assets
 into output bundles.
 
