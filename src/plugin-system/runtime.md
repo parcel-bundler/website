@@ -7,6 +7,10 @@ eleventyNavigation:
 summary: "A plugin type: Programatically insert assets out of thin air into bundles"
 ---
 
+{% warning %}
+The Runtime API is experimental and therefore subject to change, even between minor updates.
+{% endwarning %}
+
 Runtimes accept a bundle and return assets to be inserted into that bundle.
 
 ```js
