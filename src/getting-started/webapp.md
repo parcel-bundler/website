@@ -15,13 +15,13 @@ While you can install and run Parcel globally, it is much better to install it l
 To install Parcel, run the following command:
 
 ```bash
-yarn add -D parcel@next
+yarn add -D parcel@next postcss @babel/core
 ```
 
 Or when using NPM run:
 
 ```bash
-npm install -D parcel@next
+npm install -D parcel@next postcss @babel/core
 ```
 
 ## Setting up the Project
