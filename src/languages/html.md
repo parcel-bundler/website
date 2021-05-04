@@ -149,7 +149,7 @@ Then, create a config file:
 {% endsamplefile %}
 {% endsample %}
 
-Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` or an empty object instead, another example:
+Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to an empty object instead, another example:
 
 {% sample %}
 {% samplefile ".posthtmlrc" %}
