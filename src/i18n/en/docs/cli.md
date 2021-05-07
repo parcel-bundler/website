@@ -69,9 +69,7 @@ Default: "dist"
 Available in: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --out-dir build/output
-# or
-parcel build entry.js -d build/output
+parcel build entry.js --dist-dir build/output
 ```
 
 ```base

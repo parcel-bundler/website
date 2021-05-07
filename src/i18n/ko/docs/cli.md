@@ -51,9 +51,7 @@ parcel --version
 같이 사용 가능한 명령어: `serve`, `watch`, `build`
 
 ```bash
-parcel build entry.js --out-dir build/output
-# 혹은
-parcel build entry.js -d build/output
+parcel build entry.js --dist-dir build/output
 ```
 
 ```base

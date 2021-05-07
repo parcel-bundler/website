@@ -69,9 +69,7 @@ parcel --version
 適用指令： `serve`、`watch` 及 `build`
 
 ```bash
-parcel build entry.js --out-dir build/output
-# 或
-parcel build entry.js -d build/output
+parcel build entry.js --dist-dir build/output
 ```
 
 ```base

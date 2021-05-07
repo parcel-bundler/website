@@ -52,9 +52,7 @@ parcel --version
 Доступно для: `serve`,`watch`, `build`
 
 ```Bash
-parcel build entry.js --out-dir build/output
-#або
-parcel build entry.js -d build/output
+parcel build entry.js --dist-dir build/output
 ```
 
 ```Base
