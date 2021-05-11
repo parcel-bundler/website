@@ -11,7 +11,7 @@ summary: How to use plugins and create named pipelines
 Contrary to what this page's title might suggest, this is not about configuring individual plugins, but how to tell Parcel which plugin is responsible for (among others) which file type(s).
 {% endnote %}
 
-Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are different plugins (see [Plugin System](/plugin-system/)).
+Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are different plugins (see [Plugin System](/plugin-system/overview)).
 
 Here is an excerpt from the default config that the `parcel` CLI uses. Generally, there are three categories of plugin types (with regards to the configuration):
 
