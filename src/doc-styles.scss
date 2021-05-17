@@ -5,10 +5,9 @@ $break-xl: 1280px;
 
 $breakpoint-tablet: 1000px;
 
-$title-fonts: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
-  Arial, sans-serif;
 $text-fonts: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
   "Helvetica Neue", Ubuntu, Arial, sans-serif;
+$title-fonts: $text-fonts;
 
 @mixin transition-background-color {
   transition: background 0.2s ease-in-out;
@@ -481,7 +480,7 @@ body {
   padding: 0.5rem 1.5rem;
   border-right: 1px solid var(--border-color);
   font-family: $title-fonts;
-  font-size: 1.1rem;
+  font-size: 1rem;
   white-space: nowrap;
   @media (min-width: $breakpoint-tablet) {
     overflow-y: auto;
@@ -593,7 +592,7 @@ body {
   }
 
   & > div {
-    max-width: 1000px;
+    max-width: 70ch;
     margin: 0 auto;
     padding: 1.5rem;
     padding-top: 0;
@@ -625,8 +624,8 @@ body {
   h5,
   h6 {
     position: relative;
-    font-weight: 400;
-    line-height: 1em;
+    font-weight: bold;
+    line-height: 1.2em;
     font-family: $title-fonts;
     margin-top: 1.5rem;
 
@@ -645,19 +644,18 @@ body {
   h5,
   h6 {
     margin-bottom: 1rem;
-    font-weight: bold;
   }
 
   h1 {
-    font-size: 2.5em;
+    font-size: 2.4em;
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 1.7em;
   }
 
   h3 {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 
   h4 {
@@ -788,8 +786,9 @@ body {
     margin: 0 0 0 2em;
   }
 
-  img {
+  img, video {
     max-width: 100%;
+    border-radius: 6px;
   }
 
   table {

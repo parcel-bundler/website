@@ -24,7 +24,7 @@ module.exports = function (eleventyConfig) {
     "src/assets/favicon.ico": "favicon.ico",
   });
 
-  eleventyConfig.setTemplateFormats(["md", "css", "png", "svg"]);
+  eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg"]);
   eleventyConfig.addWatchTarget("./api/");
 
   eleventyConfig.setLibrary(

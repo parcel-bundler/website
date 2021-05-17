@@ -20,7 +20,7 @@
 
   Array.prototype.forEach.call(replaceElements, function (elem) {
     try {
-      const date = Date.parse(elem.dateTime);
+      const date = Date.parse(elem.dateTime + "T00:00:00");
       elem.innerHTML = dateFormatter.format(date);
     } catch (e) {
       // skip
