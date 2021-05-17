@@ -10,9 +10,11 @@ them together into a smaller set of output files that can be used to run your
 code.
 
 Parcel supports many different languages and file types out of the box, from
-web technologies like HTML, CSS, and JavaScript, to lower level languages like
-Rust, and anything that compiles to WebAssembly (WASM), to assets like images,
+web technologies like HTML, CSS, and JavaScript, to assets like images,
 fonts, videos, and more.
+
+<!--  to lower level languages like
+Rust, and anything that compiles to WebAssembly (WASM) -->
 
 Parcel makes your code portable. You can build your code for different
 environments, for the web for your server, or for an app. You can even build
