@@ -88,15 +88,15 @@ A side benefit of all of this work on cache invalidation is that watch mode also
 
 It also works with Babel plugins, PostCSS plugins, and any other dev dependency involved in your build. You can even edit plugins in `node_modules` and Parcel will recompile automatically. This is useful when you need to debug something in your build pipeline, or make use of tools like [patch-package](https://github.com/ds300/patch-package).
 
-## Reduced npm install size
+## Fewer dependencies
 
 Parcel supports many different languages and tools out of the box, which makes it really easy to get started. But one downside of this is that installing Parcel includes many dependencies that you might not use. This not only uses up disk space and network bandwidth, but is also more dependencies for you to maintain and audit.
 
-We wanted to make Parcel smaller while still keeping things really simple to use. To do this, we now only install essential plugins by default, and auto install additional plugins into your project on demand. **This reduces the default install size of node_modules by 62%!**
+We wanted to reduce Parcel's dependencies while still keeping things really simple to use. To do this, we now only install essential plugins by default, and auto install additional plugins into your project on demand.
 
 <video src="autoinstall.mp4" playsinline loop autoplay muted></video>
 
-By default, we include support for standard web languages like HTML, CSS, and JavaScript. But as soon as you include a SASS file, Vue, Elm, CoffeeScript, or any other file type that Parcel recognizes, we’ll automatically install the necessary plugins and all peer dependencies into your project. This keeps Parcel super easy to use (zero config) but also reduces its size.
+By default, we include support for standard web languages like HTML, CSS, and JavaScript. But as soon as you include a SASS file, Vue, Elm, CoffeeScript, or any other file type that Parcel recognizes, we’ll automatically install the necessary plugins and all peer dependencies into your project. This keeps Parcel super easy to use (zero config) but also reduces the number of dependencies in your project.
 
 ## Roadmap
 
