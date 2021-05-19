@@ -98,6 +98,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | `--key <path>`      | Path to a private key to use with HTTPS                                               |
 | `--no-autoinstall`  | Disables autoinstall                                                                  |
 | `--watch-for-stdin` | Stop Parcel once stdin is closed                                                      |
+| `--lazy`            | Lazy mode, only bundle requested bundles                                              |
 
 ### Parameters specific to `serve`
 
