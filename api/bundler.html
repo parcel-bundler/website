@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="TraversalActions">TraversalActions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L798"><i>parcel/packages/core/types/index.js:798</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L798"><i>parcel/packages/core/types/index.js:798</i></a>
 </h4>
 <p>Used to control a traversal
 </p>
@@ -55,7 +55,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GraphVisitor">GraphVisitor</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L809"><i>parcel/packages/core/types/index.js:809</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L809"><i>parcel/packages/core/types/index.js:809</i></a>
 </h4>
 <p>Essentially <a href="/plugin-system/bundler/#GraphTraversalCallback">GraphTraversalCallback</a>, but allows adding specific node enter and exit callbacks.
 </p>
@@ -73,7 +73,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GraphTraversalCallback">GraphTraversalCallback</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L822"><i>parcel/packages/core/types/index.js:822</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L822"><i>parcel/packages/core/types/index.js:822</i></a>
 </h4>
 <p>A generic callback for graph traversals
 </p>
@@ -88,7 +88,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleTraversable">BundleTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L831"><i>parcel/packages/core/types/index.js:831</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L831"><i>parcel/packages/core/types/index.js:831</i></a>
 </h4>
 
 
@@ -108,7 +108,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L838"><i>parcel/packages/core/types/index.js:838</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L838"><i>parcel/packages/core/types/index.js:838</i></a>
 </h4>
 
 
@@ -128,7 +128,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="CreateBundleOpts">CreateBundleOpts</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L854"><i>parcel/packages/core/types/index.js:854</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L854"><i>parcel/packages/core/types/index.js:854</i></a>
 </h4>
 <p>Options for <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>'s <code>createBundle</code>.
 <br>If an <code>entryAsset</code> is provided, <code>uniqueKey</code> (for the bundle id),
@@ -168,7 +168,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Bundle">Bundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L910"><i>parcel/packages/core/types/index.js:910</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L910"><i>parcel/packages/core/types/index.js:910</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> (a collection of assets)
 <br></p>
@@ -178,9 +178,7 @@
 <div class="inline-method">Whether this value is inside <code>filePath</code> it will be replace with the real hash at the end.
 </div><pre class="interface"><code>  +type: string,</code></pre>
 <pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
-<pre class="interface"><code>  +filePath: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<div class="inline-method">The output filespath (if not inline), can contain <code>hashReference</code> before the optimizer ran.
-</div><pre class="interface"><code>  +isEntry: ?boolean,</code></pre>
+<pre class="interface"><code>  +isEntry: ?boolean,</code></pre>
 <div class="inline-method">Whether this is an entry (e.g. should not be hashed).
 </div><pre class="interface"><code>  +isInline: ?boolean,</code></pre>
 <div class="inline-method">Whether this bundle should be inlined into the parent bundle(s),
@@ -204,23 +202,22 @@
 </div><div class="type">
 <h4 class="title">
   <span id="NamedBundle">NamedBundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L943"><i>parcel/packages/core/types/index.js:943</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L941"><i>parcel/packages/core/types/index.js:941</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> that got named by a <a href="/plugin-system/namer/#Namer">Namer</a>
 </p>
 <pre class="interface"><code>interface <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a> extends <a href="/plugin-system/bundler/#Bundle">Bundle</a> {</code></pre>
 <pre class="interface"><code>  +publicId: string,</code></pre>
-<pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +name: string,</code></pre>
 <pre class="interface"><code>  +displayName: string,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>
+<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/reporter/#OptimizingProgressEvent">OptimizingProgressEvent</a>, <a href="/plugin-system/api/#PackagedBundle">PackagedBundle</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/reporter/#PackagingProgressEvent">PackagingProgressEvent</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGroup">BundleGroup</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L954"><i>parcel/packages/core/types/index.js:954</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L955"><i>parcel/packages/core/types/index.js:955</i></a>
 </h4>
 <p>A collection of sibling bundles (which are stored in the <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>) that should be loaded together (in order).
 </p>
@@ -234,7 +231,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="MutableBundleGraph">MutableBundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L963"><i>parcel/packages/core/types/index.js:963</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L964"><i>parcel/packages/core/types/index.js:964</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> in the <a href="/plugin-system/bundler/#Bundler">Bundler</a> that can be modified
 </p>
@@ -265,7 +262,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGraph">BundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L1001"><i>parcel/packages/core/types/index.js:1001</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1002"><i>parcel/packages/core/types/index.js:1002</i></a>
 </h4>
 <p>A Graph that contains <a href="/plugin-system/bundler/#Bundle">Bundle</a>-s, <a href="/plugin-system/transformer/#Asset">Asset</a>-s, <a href="/plugin-system/transformer/#Dependency">Dependency</a>-s, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>-s
 </p>
@@ -327,7 +324,7 @@ stopping at the first asset after leaving `bundle`.
 </div><div class="type">
 <h4 class="title">
   <span id="BundleResult">BundleResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L1076"><i>parcel/packages/core/types/index.js:1076</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1077"><i>parcel/packages/core/types/index.js:1077</i></a>
 </h4>
 
 <pre class="interface"><code>type BundleResult = {|</code></pre>
@@ -342,16 +339,17 @@ stopping at the first asset after leaving `bundle`.
 </div><div class="type">
 <h4 class="title">
   <span id="Bundler">Bundler</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L1132"><i>parcel/packages/core/types/index.js:1132</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1133"><i>parcel/packages/core/types/index.js:1133</i></a>
 </h4>
 <p>Turns an asset graph into a <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>.
 <br>bundle and optimize run in series and are functionally identitical.
 </p>
 <pre class="interface"><code>type Bundler = {|</code></pre>
 <pre class="interface"><code>  loadConfig?: ({|
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
-  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#ConfigOutput">ConfigOutput</a>&gt;,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  bundle({|
     bundleGraph: <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>,
     config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
