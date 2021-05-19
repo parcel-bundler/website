@@ -39,7 +39,7 @@
 <div class="type">
 <h4 class="title">
   <span id="RuntimeAsset">RuntimeAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L1168"><i>parcel/packages/core/types/index.js:1168</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1176"><i>parcel/packages/core/types/index.js:1176</i></a>
 </h4>
 <p>A "synthetic" asset that will be inserted into the bundle graph.
 </p>
@@ -55,13 +55,19 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Runtime">Runtime</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/6ce9e707443e609e1961d24a6563bc68a83a1486/packages/core/types/index.js#L1178"><i>parcel/packages/core/types/index.js:1178</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1186"><i>parcel/packages/core/types/index.js:1186</i></a>
 </h4>
 
 <pre class="interface"><code>type Runtime = {|</code></pre>
+<pre class="interface"><code>  loadConfig?: ({|
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
+    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
+    logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  apply({|
     bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
     bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,
+    config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}): <a href="/plugin-system/api/#Async">Async</a>&lt;void | <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a> | Array&lt;<a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>&gt;&gt;,</code></pre>
