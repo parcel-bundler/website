@@ -114,11 +114,13 @@
 
         {{ content | safe }}
 
+        {% if not tags or not tags.includes("Blog") %}
         <footer>
           <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
             Edit this page on GitHub
           </a>
         </footer>
+        {% endif %}
       </div>
     </main>
 
