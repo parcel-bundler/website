@@ -52,7 +52,7 @@ If you’re curious to read more about how our scope hoisting implementation wor
 
 ## Tree shaking dynamic import
 
-Another feature related to our scope hoisting implementation is support for tree shaking dynamic `import()`. Parcel can detect which properties of a dynaimc import are accessed, and exclude the exports from the resolved module that aren't used. This works with promise chaining, async/await, destructuring, and static object property accesses. If anything is accessed non-statically, e.g. a computed property, then all of the exports will be included.
+Another feature related to our scope hoisting implementation is support for tree shaking dynamic `import()`. Parcel can detect which properties of a dynamic import are accessed, and exclude the exports from the resolved module that aren't used. This works with promise chaining, async/await, destructuring, and static object property accesses. If anything is accessed non-statically, e.g. a computed property, then all of the exports will be included.
 
 <img src="tree-shaking-dynamic-import.jpg" alt="Example of tree shaking dynamic import">
 
@@ -116,4 +116,3 @@ At this point, it is very likely that the plugin APIs for bundlers, runtimes, an
 ## Thanks!
 
 As always, thanks for trying out our betas and giving us feedback on [Github](https://github.com/parcel-bundler/parcel/issues). You can also donate to our [open collective](https://opencollective.com/parcel), which helps support our contributors.
-
