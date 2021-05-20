@@ -185,7 +185,7 @@ TypeScript will need to know about your use of the `~` module resolution or alia
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }
