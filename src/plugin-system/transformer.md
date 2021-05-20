@@ -16,7 +16,7 @@ import { Transformer } from "@parcel/plugin";
 export default new Transformer({
   async canReuseAST({ ast, options, logger }) {
     return false;
-  }
+  },
 
   async loadConfig({ config, options, logger }) {
     // ...
