@@ -13,7 +13,7 @@ For the most part, you shouldn't have to change much when upgrading to Parcel 2:
 
 ### Importing non-code assets from Javascript
 
-If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (read more about named pipelines in [Plugin Configuration](</configuration/plugin-configuration/#predefined-(offical)-named-pipelines>))
+If you want import the url to an image (or a soundfile, etc.) from Javascript, you need to prepend `url:` to the module specifier (read more about named pipelines in [Plugin Configuration](</configuration/plugin-configuration/#predefined-(offical)-named-pipelines>)) or use `new URL("...", import.meta.url)`, which also gaining support across other bundlers.
 
 {% migration %}
 {% samplefile "index.js" %}
@@ -31,6 +31,13 @@ document.body.innerHTML = `<img src="${logo}">`;
 import logo from "url:./logo.svg";
 
 document.body.innerHTML = `<img src="${logo}">`;
+```
+
+or
+
+```js/1
+document.body.innerHTML =
+  `<img src="${new URL("./logo.svg", import.meta.url)}">`;
 ```
 
 {% endsamplefile %}
