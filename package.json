@@ -13,22 +13,22 @@
     "generate-api-docs:watch": "nodemon -w ../parcel -w generate-api-docs -x yarn generate-api-docs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.1",
-    "@11ty/eleventy-navigation": "^0.1.6",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
-    "@babel/generator": "^7.12.11",
-    "@babel/parser": "^7.12.11",
-    "@babel/traverse": "^7.12.12",
-    "eleventy-plugin-sass": "^1.1.1",
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-navigation": "^0.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.1",
+    "@babel/generator": "^7.14.3",
+    "@babel/parser": "^7.14.3",
+    "@babel/traverse": "^7.14.2",
+    "eleventy-plugin-sass": "^1.2.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
-    "markdown-it": "^12.0.4",
-    "markdown-it-anchor": "^6.0.1",
-    "nodemon": "^2.0.6",
-    "prettier": "2.2.1"
+    "markdown-it": "^12.0.6",
+    "markdown-it-anchor": "^7.1.0",
+    "nodemon": "^2.0.7",
+    "prettier": "2.3.0"
   },
   "dependencies": {
-    "flow-bin": "^0.141.0",
+    "flow-bin": "^0.151.0",
     "nullthrows": "^1.1.1"
   },
   "lint-staged": {
@@ -38,5 +38,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "resolutions": {
+    "node-sass": "6.0.0"
   }
 }
