@@ -32,6 +32,47 @@ ReactDom.render(<App />, document.getElementById("app"));
 {% endsamplefile %}
 {% endsample %}
 
+## Converting SVG to React components
+
+After adding two plugins to your parcelrc, all imports to SVG files are automatically converted into React Components.
+
+{% sample "parcel index.html" %}
+
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.svg": ["@parcel/transformer-svgo", "@parcel/transformer-svg-react"]
+  }
+}
+```
+
+{% endsamplefile %}
+
+{% samplefile "index.html" %}
+
+```html
+<!DOCTYPE html>
+<div id="app"></div>
+<script src="./index.js"></script>
+```
+
+{% endsamplefile %}
+{% samplefile "index.js" %}
+
+```jsx
+import React from "react";
+import ReactDom from "react-dom";
+import MyIcon from "./MyIcon.svg";
+
+ReactDom.render(<MyIcon />, document.getElementById("app"));
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ## HMR (Fast Refresh)
 
 Parcel has first-class support for _React Fast Refresh_ (which supersedes [react-hot-loader](https://github.com/gaearon/react-hot-loader), a userland plugin that botched HMR support onto React). It is (in most cases) able to retain state between reloads (even after an error).
