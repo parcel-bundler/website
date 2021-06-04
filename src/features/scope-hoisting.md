@@ -62,7 +62,7 @@ export function cached(param, func) {
 
 {% endsample %}
 
-In this case, we doe't even have to load (and transpile) `node_modules/lib/multiply.js` because it's definitely unused. Furthermore `node_modules/lib/index.js` can be skipped when concatenating the bundle because none of its direct exports are used (`elapsed`), this alleviates the need to annotate the variable declaration with `/*@__PURE__*/`. This is still neccesary however when only exports in the file are used - so if only `elapsed` is imported, `let cache = new Map()` cannot be removed even though `cached` is unused.
+In this case, we don't even have to load (and transpile) `node_modules/lib/multiply.js` because it's definitely unused. Furthermore `node_modules/lib/index.js` can be skipped when concatenating the bundle because none of its direct exports are used (`elapsed`), this alleviates the need to annotate the variable declaration with `/*@__PURE__*/`. This is still neccesary however when only exports in the file are used - so if only `elapsed` is imported, `let cache = new Map()` cannot be removed even though `cached` is unused.
 
 If `export *` is used instead of `export { multiply }`, `multiply.js` has to be transpiled but it's still not included in the output (so this mainly causes longer build times).
 
