@@ -73,7 +73,7 @@ const DIST_DIR = "/dist";
         },
         distDir: DIST_DIR,
       },
-      patchConsole: false,
+      shouldPatchConsole: false,
       mode: "production",
     });
 
