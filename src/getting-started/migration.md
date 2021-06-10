@@ -155,11 +155,47 @@ const DataComponent = () => {
 With Parcel 2's new plugin architecture, creating a plugin that parses the string into an AST at build time (as Parcel 1 did) is very easy.
 {% endnote %}
 
+### Hooking into Bundle Events
+
+Parcel 1 let you hook in and listen to events like `buildEnd` or `buildError`. The API has changed but you can still listen for events like so:
+
+{% migration %}
+{% samplefile "index.js" %}
+
+```js/0
+import Bundler from "parcel-bundler"
+
+const bundler = new Bundler({ /* ... */ })
+bundler.bundle()
+
+bundler.on("buildEnd", () => { /* ... */ })
+
+bundler.on("buildError", (error) => { /* ... */ })
+```
+
+{% endsamplefile %}
+{% samplefile %}
+
+```js/0
+import Parcel from "@parcel/core"
+
+const bundler = new Parcel({ /* ... */ })
+
+bundler.watch((err, buildEvent) => {
+  if(buildEvent.type === "buildSuccess") { /* ... */ }
+
+  if(buildEvent.type === "buildFailure") { /* ... */ }
+})
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
 ## Configuration/CLI
 
 ### Transpilation with Babel
 
-By default, Parcel 2 doesn't downlevel your source code anymore. If you want this to happen, you should [specify a browserslist](/getting-started/webapp/#browserslist) to only target the browsers you want to support. 
+By default, Parcel 2 doesn't downlevel your source code anymore. If you want this to happen, you should [specify a browserslist](/getting-started/webapp/#browserslist) to only target the browsers you want to support.
 
 ### `package.json#main`
 
