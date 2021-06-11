@@ -227,6 +227,7 @@ function classToInterface(decl) {
                   typeParams: true,
                   params: p.params.map((param) => {
                     if (param.type === "AssignmentPattern") {
+                      // $FlowFixMe
                       param = param.left;
                     } else if (param.type === "ObjectPattern") {
                       param = {
@@ -494,6 +495,10 @@ function write(section, file, data) {
     background: var(--code-background-color);
     transition: background 0.2s ease-in-out;
   }
+  div.api div.inline-method p:first-child {
+    margin-top: 0;
+  }
+
   div.api div.inline-method ul {
     margin: 0;
   }
@@ -528,6 +533,8 @@ function write(section, file, data) {
         invariant(p.type === "param");
         return p;
       });
+    let experimental =
+      properties.find(({ type }) => type === "experimental") != null;
     let refs = typeReferenced.get(name);
 
     output += `<div class="type">
@@ -537,8 +544,12 @@ function write(section, file, data) {
       loc.filename.indexOf("/") + 1
     )}#L${loc.start.line}"><i>${loc.filename}:${loc.start.line}</i></a>
 </h4>
-${description ? `<p>${description}</p>` : ""}
+${description ? `${description}` : ""}
 `;
+
+    if (experimental) {
+      output += `<figure class="well warning"><div>Marked as experimental</div></figure>`;
+    }
 
     if (type.type === "interface") {
       for (let t of type.definition) {
@@ -557,7 +568,11 @@ ${description ? `<p>${description}</p>` : ""}
         }
         let prop = props.find((m) => m.name === t.key);
         if (prop) {
-          output += `<div class="inline-method">${prop.description}</div>`;
+          output += `<div class="inline-method">`;
+          output += prop.description;
+          if (prop.default != null)
+            output += `<p>Default value: <code>${prop.default}</code></p>`;
+          output += `</div>`;
         }
       }
     } else {
