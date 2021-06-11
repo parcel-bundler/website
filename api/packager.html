@@ -25,6 +25,10 @@
     background: var(--code-background-color);
     transition: background 0.2s ease-in-out;
   }
+  div.api div.inline-method p:first-child {
+    margin-top: 0;
+  }
+
   div.api div.inline-method ul {
     margin: 0;
   }
@@ -39,19 +43,19 @@
 <div class="type">
 <h4 class="title">
   <span id="SymbolResolution">SymbolResolution</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L886"><i>parcel/packages/core/types/index.js:886</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1033"><i>parcel/packages/core/types/index.js:1033</i></a>
 </h4>
-<p>Specifies a symbol in an asset
-</p>
+<p>Specifies a symbol in an asset</p>
+
 <pre class="interface"><code>type SymbolResolution = {|</code></pre>
 <pre class="interface"><code>  +asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
-<div class="inline-method">The <a href="/plugin-system/transformer/#Asset">Asset</a> which exports the symbol.
+<div class="inline-method"><p>The <a href="/plugin-system/transformer/#Asset">Asset</a> which exports the symbol.</p>
 </div><pre class="interface"><code>  +exportSymbol: <a href="/plugin-system/api/#Symbol">Symbol</a> | string,</code></pre>
-<div class="inline-method">under which name the symbol is exported
+<div class="inline-method"><p>under which name the symbol is exported</p>
 </div><pre class="interface"><code>  +symbol: void | null | false | <a href="/plugin-system/api/#Symbol">Symbol</a>,</code></pre>
-<div class="inline-method">The identifier under which the symbol can be referenced.
+<div class="inline-method"><p>The identifier under which the symbol can be referenced.</p>
 </div><pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
-<div class="inline-method">The location of the specifier that lead to this result.
+<div class="inline-method"><p>The location of the specifier that lead to this result.</p>
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -59,7 +63,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ExportSymbolResolution">ExportSymbolResolution</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L900"><i>parcel/packages/core/types/index.js:900</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1047"><i>parcel/packages/core/types/index.js:1047</i></a>
 </h4>
 
 <pre class="interface"><code>type ExportSymbolResolution = {|</code></pre>
@@ -72,15 +76,15 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Packager">Packager</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1204"><i>parcel/packages/core/types/index.js:1204</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1348"><i>parcel/packages/core/types/index.js:1348</i></a>
 </h4>
 
 <pre class="interface"><code>type Packager = {|</code></pre>
 <pre class="interface"><code>  loadConfig?: ({|
-    bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
+    config: <a href="/plugin-system/transformer/#Config">Config</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
-  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/api/#ConfigOutput">ConfigOutput</a>&gt;,</code></pre>
+  |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;,</code></pre>
 <pre class="interface"><code>  package({|
     bundle: <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>,
     bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a>&gt;,
