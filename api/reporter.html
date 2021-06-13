@@ -25,6 +25,10 @@
     background: var(--code-background-color);
     transition: background 0.2s ease-in-out;
   }
+  div.api div.inline-method p:first-child {
+    margin-top: 0;
+  }
+
   div.api div.inline-method ul {
     margin: 0;
   }
@@ -39,7 +43,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ProgressLogEvent">ProgressLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1254"><i>parcel/packages/core/types/index.js:1254</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1405"><i>parcel/packages/core/types/index.js:1405</i></a>
 </h4>
 
 <pre class="interface"><code>type ProgressLogEvent = {|</code></pre>
@@ -54,10 +58,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DiagnosticLogEvent">DiagnosticLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1265"><i>parcel/packages/core/types/index.js:1265</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1416"><i>parcel/packages/core/types/index.js:1416</i></a>
 </h4>
-<p>A log event with a rich diagnostic
-</p>
+<p>A log event with a rich diagnostic</p>
+
 <pre class="interface"><code>type DiagnosticLogEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'log',</code></pre>
 <pre class="interface"><code>  +level: 'error' | 'warn' | 'info' | 'verbose',</code></pre>
@@ -69,7 +73,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TextLogEvent">TextLogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1274"><i>parcel/packages/core/types/index.js:1274</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1425"><i>parcel/packages/core/types/index.js:1425</i></a>
 </h4>
 
 <pre class="interface"><code>type TextLogEvent = {|</code></pre>
@@ -83,7 +87,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="LogEvent">LogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1283"><i>parcel/packages/core/types/index.js:1283</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1434"><i>parcel/packages/core/types/index.js:1434</i></a>
 </h4>
 
 
@@ -97,10 +101,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildStartEvent">BuildStartEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1289"><i>parcel/packages/core/types/index.js:1289</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1440"><i>parcel/packages/core/types/index.js:1440</i></a>
 </h4>
-<p>The build just started.
-</p>
+<p>The build just started.</p>
+
 <pre class="interface"><code>type BuildStartEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildStart',</code></pre>
 <pre class="interface"><code>|}</code></pre>
@@ -110,10 +114,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="WatchStartEvent">WatchStartEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1297"><i>parcel/packages/core/types/index.js:1297</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1448"><i>parcel/packages/core/types/index.js:1448</i></a>
 </h4>
-<p>The build just started in watch mode.
-</p>
+<p>The build just started in watch mode.</p>
+
 <pre class="interface"><code>type WatchStartEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'watchStart',</code></pre>
 <pre class="interface"><code>|}</code></pre>
@@ -123,10 +127,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="WatchEndEvent">WatchEndEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1305"><i>parcel/packages/core/types/index.js:1305</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1456"><i>parcel/packages/core/types/index.js:1456</i></a>
 </h4>
-<p>The build just ended in watch mode.
-</p>
+<p>The build just ended in watch mode.</p>
+
 <pre class="interface"><code>type WatchEndEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'watchEnd',</code></pre>
 <pre class="interface"><code>|}</code></pre>
@@ -136,10 +140,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolvingProgressEvent">ResolvingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1313"><i>parcel/packages/core/types/index.js:1313</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1464"><i>parcel/packages/core/types/index.js:1464</i></a>
 </h4>
-<p>A new <a href="/plugin-system/transformer/#Dependency">Dependency</a> is being resolved.
-</p>
+<p>A new <a href="/plugin-system/transformer/#Dependency">Dependency</a> is being resolved.</p>
+
 <pre class="interface"><code>type ResolvingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildProgress',</code></pre>
 <pre class="interface"><code>  +phase: 'resolving',</code></pre>
@@ -151,10 +155,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformingProgressEvent">TransformingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1323"><i>parcel/packages/core/types/index.js:1323</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1474"><i>parcel/packages/core/types/index.js:1474</i></a>
 </h4>
-<p>A new <a href="/plugin-system/transformer/#Asset">Asset</a> is being transformed.
-</p>
+<p>A new <a href="/plugin-system/transformer/#Asset">Asset</a> is being transformed.</p>
+
 <pre class="interface"><code>type TransformingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildProgress',</code></pre>
 <pre class="interface"><code>  +phase: 'transforming',</code></pre>
@@ -166,10 +170,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundlingProgressEvent">BundlingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1333"><i>parcel/packages/core/types/index.js:1333</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1484"><i>parcel/packages/core/types/index.js:1484</i></a>
 </h4>
-<p>The <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> is generated.
-</p>
+<p>The <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> is generated.</p>
+
 <pre class="interface"><code>type BundlingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildProgress',</code></pre>
 <pre class="interface"><code>  +phase: 'bundling',</code></pre>
@@ -180,10 +184,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PackagingProgressEvent">PackagingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1342"><i>parcel/packages/core/types/index.js:1342</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1493"><i>parcel/packages/core/types/index.js:1493</i></a>
 </h4>
-<p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being packaged.
-</p>
+<p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being packaged.</p>
+
 <pre class="interface"><code>type PackagingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildProgress',</code></pre>
 <pre class="interface"><code>  +phase: 'packaging',</code></pre>
@@ -195,10 +199,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="OptimizingProgressEvent">OptimizingProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1352"><i>parcel/packages/core/types/index.js:1352</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1503"><i>parcel/packages/core/types/index.js:1503</i></a>
 </h4>
-<p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being optimized.
-</p>
+<p>A new <a href="/plugin-system/bundler/#Bundle">Bundle</a> is being optimized.</p>
+
 <pre class="interface"><code>type OptimizingProgressEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildProgress',</code></pre>
 <pre class="interface"><code>  +phase: 'optimizing',</code></pre>
@@ -210,7 +214,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildProgressEvent">BuildProgressEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1361"><i>parcel/packages/core/types/index.js:1361</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1512"><i>parcel/packages/core/types/index.js:1512</i></a>
 </h4>
 
 
@@ -224,10 +228,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildSuccessEvent">BuildSuccessEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1372"><i>parcel/packages/core/types/index.js:1372</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1523"><i>parcel/packages/core/types/index.js:1523</i></a>
 </h4>
-<p>The build was successful.
-</p>
+<p>The build was successful.</p>
+
 <pre class="interface"><code>type BuildSuccessEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildSuccess',</code></pre>
 <pre class="interface"><code>  +bundleGraph: <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/api/#PackagedBundle">PackagedBundle</a>&gt;,</code></pre>
@@ -241,10 +245,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildFailureEvent">BuildFailureEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1384"><i>parcel/packages/core/types/index.js:1384</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1535"><i>parcel/packages/core/types/index.js:1535</i></a>
 </h4>
-<p>The build failed.
-</p>
+<p>The build failed.</p>
+
 <pre class="interface"><code>type BuildFailureEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'buildFailure',</code></pre>
 <pre class="interface"><code>  +diagnostics: Array&lt;<a href="/plugin-system/logging/#Diagnostic">Diagnostic</a>&gt;,</code></pre>
@@ -255,7 +259,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildEvent">BuildEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1392"><i>parcel/packages/core/types/index.js:1392</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1543"><i>parcel/packages/core/types/index.js:1543</i></a>
 </h4>
 
 
@@ -268,10 +272,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ValidationEvent">ValidationEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1398"><i>parcel/packages/core/types/index.js:1398</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1549"><i>parcel/packages/core/types/index.js:1549</i></a>
 </h4>
-<p>A new file is being validated.
-</p>
+<p>A new file is being validated.</p>
+
 <pre class="interface"><code>type ValidationEvent = {|</code></pre>
 <pre class="interface"><code>  +type: 'validation',</code></pre>
 <pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
@@ -282,7 +286,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ReporterEvent">ReporterEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1406"><i>parcel/packages/core/types/index.js:1406</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1557"><i>parcel/packages/core/types/index.js:1557</i></a>
 </h4>
 
 
@@ -296,7 +300,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Reporter">Reporter</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L1419"><i>parcel/packages/core/types/index.js:1419</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1570"><i>parcel/packages/core/types/index.js:1570</i></a>
 </h4>
 
 <pre class="interface"><code>type Reporter = {|</code></pre>

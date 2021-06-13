@@ -2,6 +2,7 @@
 const invariant = require("assert");
 const t = require("@babel/types");
 const nullthrows = require("nullthrows");
+const marked = require("marked");
 
 /*::
 export type JSDocParam = {|
@@ -20,6 +21,7 @@ export type JSDocProperty = {|
   type: "property",
   name: string,
   description: string,
+  default?: ?string,
 |};
 
 export type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
@@ -96,6 +98,8 @@ function parseJsDocComment(contents) /*: ?JSDocType */ {
         case "returns":
         case "property":
         case "param":
+        case "default":
+        case "experimental":
           result.properties.push(
             // $FlowFixMe
             {
@@ -118,6 +122,7 @@ function parseJsDocComment(contents) /*: ?JSDocType */ {
       }
     }
   }
+  result.description = marked(result.description);
   return result;
 }
 
@@ -165,10 +170,13 @@ module.exports.parseJsDoc = function parseJsDoc(
             returns: properties.find((v) => v.type === "returns"),
           });
         } else {
+          let defaultValue = properties.find((v) => v.type === "default")
+            ?.description;
           result.properties.push({
             type: "property",
             name,
             description,
+            default: defaultValue,
           });
         }
       }
