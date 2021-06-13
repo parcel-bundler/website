@@ -25,6 +25,10 @@
     background: var(--code-background-color);
     transition: background 0.2s ease-in-out;
   }
+  div.api div.inline-method p:first-child {
+    margin-top: 0;
+  }
+
   div.api div.inline-method ul {
     margin: 0;
   }
@@ -39,78 +43,132 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L435"><i>parcel/packages/core/types/index.js:435</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L443"><i>parcel/packages/core/types/index.js:443</i></a>
 </h4>
-<p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.
-</p>
+<p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.</p>
+
 <pre class="interface"><code>type DependencyOptions = {|</code></pre>
-<pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
-<pre class="interface"><code>  +isAsync?: boolean,</code></pre>
-<pre class="interface"><code>  +isEntry?: boolean,</code></pre>
-<div class="inline-method">Is merged with the environment of the importer
+<pre class="interface"><code>  +specifier: <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>,</code></pre>
+<div class="inline-method"><p>The specifier used to resolve the dependency.</p>
+</div><pre class="interface"><code>  +specifierType: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a>,</code></pre>
+<div class="inline-method"><p>How the specifier should be interpreted.</p>
+<ul>
+<li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
+<li>commonjs: A CommonJS specifier. It is not parsed as a URL.</li>
+<li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
+<li>custom: A custom specifier. Must be handled by a custom resolver plugin.</li>
+</ul>
+</div><pre class="interface"><code>  +priority?: <a href="/plugin-system/api/#DependencyPriority">DependencyPriority</a>,</code></pre>
+<div class="inline-method"><p>When the dependency should be loaded.</p>
+<ul>
+<li>sync: The dependency should be resolvable synchronously. The resolved asset will be placed
+  in the same bundle as the parent, or another bundle that&#39;s already on the page.</li>
+<li>parallel: The dependency should be placed in a separate bundle that&#39;s loaded in parallel
+  with the current bundle.</li>
+<li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
+</ul>
+<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +needsStableName?: boolean,</code></pre>
+<div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
+of that bundle. <code>needsStableName</code> indicates that the name should be stable over time, even when the
+content of the bundle changes. This is useful for entries that a user would manually enter the URL
+for, as well as for things like service workers or RSS feeds, where the URL must remain consistent
+over time.</p>
 </div><pre class="interface"><code>  +isOptional?: boolean,</code></pre>
-<pre class="interface"><code>  +isURL?: boolean,</code></pre>
-<pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
-<pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
-<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
-<pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
-<pre class="interface"><code>  +pipeline?: string,</code></pre>
-<pre class="interface"><code>  +resolveFrom?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<pre class="interface"><code>  +target?: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
+<div class="inline-method"><p>Whether the dependency is optional. If the dependency cannot be resolved, this will not fail the build.</p>
+</div><pre class="interface"><code>  +loc?: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
+<div class="inline-method"><p>The location within the source file where the dependency was found.</p>
+</div><pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
+<div class="inline-method"><p>The environment of the dependency.</p>
+</div><pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<div class="inline-method"><p>Plugin-specific metadata for the dependency.</p>
+</div><pre class="interface"><code>  +pipeline?: string,</code></pre>
+<div class="inline-method"><p>The pipeline defined in .parcelrc that the dependency should be processed with.</p>
+</div><pre class="interface"><code>  +resolveFrom?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method"><p>The file path where the dependency should be resolved from.
+By default, this is the path of the source file where the dependency was specified.</p>
+</div><pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
     local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
     isWeak: boolean,
   |}&gt;,</code></pre>
-<pre class="interface"><code>|}</code></pre>
+<div class="inline-method"><p>The symbols within the resolved module that the source file depends on.</p>
+</div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L461"><i>parcel/packages/core/types/index.js:461</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L500"><i>parcel/packages/core/types/index.js:500</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
+
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Dependency">Dependency</a> {</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
-<pre class="interface"><code>  +moduleSpecifier: <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>,</code></pre>
-<div class="inline-method">E.g. "lodash" in <code>import {add} from "lodash";</code>
-</div><pre class="interface"><code>  +isAsync: boolean,</code></pre>
-<pre class="interface"><code>  +isEntry: ?boolean,</code></pre>
-<div class="inline-method">Whether this should become a entry in a bundle.
+<div class="inline-method"><p>The id of the dependency.</p>
+</div><pre class="interface"><code>  +specifier: <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>,</code></pre>
+<div class="inline-method"><p>The specifier used to resolve the dependency.</p>
+</div><pre class="interface"><code>  +specifierType: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a>,</code></pre>
+<div class="inline-method"><p>How the specifier should be interpreted.</p>
+<ul>
+<li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
+<li>commonjs: A CommonJS specifier. It is not parsed as a URL.</li>
+<li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
+<li>custom: A custom specifier. Must be handled by a custom resolver plugin.</li>
+</ul>
+</div><pre class="interface"><code>  +priority: <a href="/plugin-system/api/#DependencyPriority">DependencyPriority</a>,</code></pre>
+<div class="inline-method"><p>When the dependency should be loaded.</p>
+<ul>
+<li>sync: The dependency should be resolvable synchronously. The resolved asset will be placed
+  in the same bundle as the parent, or another bundle that&#39;s already on the page.</li>
+<li>parallel: The dependency should be placed in a separate bundle that&#39;s loaded in parallel
+  with the current bundle.</li>
+<li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
+</ul>
+<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +needsStableName: boolean,</code></pre>
+<div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
+of that bundle. <code>needsStableName</code> indicates that the name should be stable over time, even when the
+content of the bundle changes. This is useful for entries that a user would manually enter the URL
+for, as well as for things like service workers or RSS feeds, where the URL must remain consistent
+over time.</p>
 </div><pre class="interface"><code>  +isOptional: boolean,</code></pre>
-<div class="inline-method">Whether a failed resolution should not cause a build error.
-</div><pre class="interface"><code>  +isURL: boolean,</code></pre>
-<div class="inline-method">Whether an URL is expected (rather than the language-specific behaviour).
-</div><pre class="interface"><code>  +isIsolated: boolean,</code></pre>
-<pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
-<div class="inline-method">Used for error messages, the code location that caused this dependency.
+<div class="inline-method"><p>Whether the dependency is optional. If the dependency cannot be resolved, this will not fail the build.</p>
+</div><pre class="interface"><code>  +isEntry: boolean,</code></pre>
+<div class="inline-method"><p>Whether the dependency is an entry.</p>
+</div><pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
+<div class="inline-method"><p>The location within the source file where the dependency was found.</p>
 </div><pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
-<pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
-<pre class="interface"><code>  +target: ?<a href="/plugin-system/api/#Target">Target</a>,</code></pre>
-<pre class="interface"><code>  +sourceAssetId: ?string,</code></pre>
-<div class="inline-method">Used for error messages, the importer.
-</div><pre class="interface"><code>  +sourcePath: ?string,</code></pre>
-<div class="inline-method">Used for error messages, the importer.
-</div><pre class="interface"><code>  +resolveFrom: ?string,</code></pre>
-<pre class="interface"><code>  +pipeline: ?string,</code></pre>
-<div class="inline-method">a named pipeline (if the <code>moduleSpecifier</code> didn't specify one).
+<div class="inline-method"><p>The environment of the dependency.</p>
+</div><pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<div class="inline-method"><p>Plugin-specific metadata for the dependency.</p>
+</div><pre class="interface"><code>  +target: ?<a href="/plugin-system/api/#Target">Target</a>,</code></pre>
+<div class="inline-method"><p>If this is an entry, this is the target that is associated with that entry.</p>
+</div><pre class="interface"><code>  +sourceAssetId: ?string,</code></pre>
+<div class="inline-method"><p>The id of the asset with this dependency.</p>
+</div><pre class="interface"><code>  +sourcePath: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method"><p>The file path of the asset with this dependency.</p>
+</div><pre class="interface"><code>  +sourceAssetType: ?string,</code></pre>
+<div class="inline-method"><p>The type of the asset that referenced this dependency.</p>
+</div><pre class="interface"><code>  +resolveFrom: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method"><p>The file path where the dependency should be resolved from.
+By default, this is the path of the source file where the dependency was specified.</p>
+</div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
+<div class="inline-method"><p>The pipeline defined in .parcelrc that the dependency should be processed with.</p>
 </div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableDependencySymbols">MutableDependencySymbols</a>,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#ModuleSpecifier">ModuleSpecifier</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>
+<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/reporter/#ResolvingProgressEvent">ResolvingProgressEvent</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L499"><i>parcel/packages/core/types/index.js:499</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L570"><i>parcel/packages/core/types/index.js:570</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
 <pre class="interface"><code>  type: string,</code></pre>
-<pre class="interface"><code>  version: string,</code></pre>
+<pre class="interface"><code>  version: <a href="/plugin-system/api/#Semver">Semver</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -118,108 +176,144 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L509"><i>parcel/packages/core/types/index.js:509</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L583"><i>parcel/packages/core/types/index.js:583</i></a>
 </h4>
-<p>An asset (usually represents one source file).
+<p>An asset represents a file or part of a file. It may represent any data type, including source code,
+binary data, etc. Assets may exist in the file system or may be virtual.
 <br></p>
+
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
-<pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
-<pre class="interface"><code>  +fs: FileSystem,</code></pre>
-<div class="inline-method">The file system where the source is located.
-</div><pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<pre class="interface"><code>  +query: <a href="/plugin-system/api/#QueryParameters">QueryParameters</a>,</code></pre>
 <pre class="interface"><code>  +id: string,</code></pre>
-<pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
-<pre class="interface"><code>  +isIsolated: boolean,</code></pre>
-<pre class="interface"><code>  +isInline: boolean,</code></pre>
-<div class="inline-method">Whether this asset will/should later be inserted back into the importer.
-</div><pre class="interface"><code>  +isSplittable: ?boolean,</code></pre>
-<pre class="interface"><code>  +isSource: boolean,</code></pre>
-<div class="inline-method">Whether this is asset is part of the users project (and not of an external dependencies) and should be transpiled.
+<div class="inline-method"><p>The id of the asset.</p>
+</div><pre class="interface"><code>  +fs: FileSystem,</code></pre>
+<div class="inline-method"><p>The file system where the source is located.</p>
+</div><pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method"><p>The file path of the asset.</p>
 </div><pre class="interface"><code>  +type: string,</code></pre>
-<div class="inline-method">Usually corresponds to the file extension
+<div class="inline-method"><p>The asset&#39;s type. This initially corresponds to the source file extension,
+but it may be changed during transformation.</p>
+</div><pre class="interface"><code>  +query: <a href="/plugin-system/api/#QueryParameters">QueryParameters</a>,</code></pre>
+<div class="inline-method"><p>The transformer options for the asset from the dependency query string.</p>
+</div><pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
+<div class="inline-method"><p>The environment of the asset.</p>
+</div><pre class="interface"><code>  +isSource: boolean,</code></pre>
+<div class="inline-method"><p>Whether this asset is part of the project, and not an external dependency (e.g. in node_modules).
+This indicates that transformation using the project&#39;s configuration should be applied.</p>
+</div><pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<div class="inline-method"><p>Plugin-specific metadata for the asset.</p>
+</div><pre class="interface"><code>  +bundleBehavior: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls which bundle the asset is placed into.</p>
+<ul>
+<li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
+  to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The asset will be placed into a separate bundle.</li>
+</ul>
+</div><pre class="interface"><code>  +isBundleSplittable: boolean,</code></pre>
+<div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
+into multiple, or whether all of the dependencies must be placed in a single bundle.</p>
 </div><pre class="interface"><code>  +sideEffects: boolean,</code></pre>
-<div class="inline-method">Whether this asset can be omitted if none of its exports are being used (set by <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>)
+<div class="inline-method"><p>Whether this asset can be omitted if none of its exports are being used.
+This is initially set by the resolver, but can be overridden by transformers.</p>
 </div><pre class="interface"><code>  +uniqueKey: ?string,</code></pre>
-<div class="inline-method">Inline assets inheirit the parent's <code>id</code>, making it not be enough for a unique identification
-(this could be a counter that is unique per asset)
+<div class="inline-method"><p>When a transformer returns multiple assets, it can give them unique keys to identify them.
+This can be used to find assets during packaging, or to create dependencies between multiple
+assets returned by a transformer by using the unique key as the dependency specifier.</p>
 </div><pre class="interface"><code>  +astGenerator: ?<a href="/plugin-system/transformer/#ASTGenerator">ASTGenerator</a>,</code></pre>
-<div class="inline-method">The type of the <a href="/plugin-system/api/#AST">AST</a>.
+<div class="inline-method"><p>The type of the <a href="/plugin-system/api/#AST">AST</a>.</p>
 </div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
-<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#AssetSymbols">AssetSymbols</a>,</code></pre>
-<div class="inline-method">a <code>Map&lt;export name, name of binding&gt;</code>
+<div class="inline-method"><p>The pipeline defined in .parcelrc that the asset should be processed with.</p>
+</div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#AssetSymbols">AssetSymbols</a>,</code></pre>
+<div class="inline-method"><p>The symbols that the asset exports.</p>
 </div><pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
-<div class="inline-method">Returns to current <a href="/plugin-system/api/#AST">AST</a>. See notes in subclasses (<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>).
+<div class="inline-method"><p>Returns the current <a href="/plugin-system/api/#AST">AST</a>.</p>
 </div><pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
-<div class="inline-method">Returns to current source code. See notes in <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>.
+<div class="inline-method"><p>Returns the asset contents as a string.</p>
 </div><pre class="interface"><code>  getBuffer(): Promise&lt;Buffer&gt;,</code></pre>
-<div class="inline-method">Returns the contents as a buffer.
+<div class="inline-method"><p>Returns the asset contents as a buffer.</p>
 </div><pre class="interface"><code>  getStream(): Readable,</code></pre>
-<div class="inline-method">Returns the contents as a stream.
+<div class="inline-method"><p>Returns the asset contents as a stream.</p>
 </div><pre class="interface"><code>  getMap(): Promise&lt;?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>&gt;,</code></pre>
-<div class="inline-method">Returns the sourcemap (if existent).
+<div class="inline-method"><p>Returns the source map for the asset, if available.</p>
 </div><pre class="interface"><code>  getMapBuffer(): Promise&lt;?Buffer&gt;,</code></pre>
-<div class="inline-method">A buffer representation of the sourcemap (if existent).
+<div class="inline-method"><p>Returns a buffer representation of the source map, if available.</p>
 </div><pre class="interface"><code>  getDependencies(): $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;,</code></pre>
-<pre class="interface"><code>  getConfig(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
-    packageKey?: string,
-    parse?: boolean,
-  |}): Promise&lt;<a href="/plugin-system/api/#ConfigResult">ConfigResult</a> | null&gt;,</code></pre>
-<div class="inline-method">Used to load config files, (looks in every parent folder until a module root) for the specified filenames. <code>packageKey</code> can be used to also check <code>pkg#[packageKey]</code>.
-</div><pre class="interface"><code>  getPackage(): Promise&lt;<a href="/plugin-system/api/#PackageJSON">PackageJSON</a> | null&gt;,</code></pre>
-<div class="inline-method">Returns the package.json this file belongs to.
+<div class="inline-method"><p>Returns a list of dependencies for the asset.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
+<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L570"><i>parcel/packages/core/types/index.js:570</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L655"><i>parcel/packages/core/types/index.js:655</i></a>
 </h4>
-<p>A somewhat modifiable version of <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> (for transformers)
-</p>
+<p>A mutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available during transformation.</p>
+
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
-<pre class="interface"><code>  isIsolated: boolean,</code></pre>
-<pre class="interface"><code>  isInline: boolean,</code></pre>
-<pre class="interface"><code>  isSplittable: ?boolean,</code></pre>
 <pre class="interface"><code>  type: string,</code></pre>
-<pre class="interface"><code>  addDependency(dep: <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>): string,</code></pre>
-<pre class="interface"><code>  addIncludedFile(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
-<pre class="interface"><code>  invalidateOnFileCreate(invalidation: <a href="/plugin-system/api/#FileCreateInvalidation">FileCreateInvalidation</a>): void,</code></pre>
-<pre class="interface"><code>  addURLDependency(url: string, opts: $Shape&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;): string,</code></pre>
-<pre class="interface"><code>  invalidateOnEnvChange(env: string): void,</code></pre>
-<pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a>,</code></pre>
-<pre class="interface"><code>  isASTDirty(): boolean,</code></pre>
-<pre class="interface"><code>  getAST(): Promise&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
-<pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
-<pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
-<pre class="interface"><code>  setCode(string): void,</code></pre>
-<pre class="interface"><code>  getCode(): Promise&lt;string&gt;,</code></pre>
-<div class="inline-method">Throws if the <a href="/plugin-system/api/#AST">AST</a> is dirty (meaning: this won't implicity stringify the <a href="/plugin-system/api/#AST">AST</a>).
+<div class="inline-method"><p>The asset&#39;s type. This initially corresponds to the source file extension,
+but it may be changed during transformation.</p>
+</div><pre class="interface"><code>  bundleBehavior: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls which bundle the asset is placed into.</p>
+<ul>
+<li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
+  to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The asset will be placed into a separate bundle.</li>
+</ul>
+</div><pre class="interface"><code>  isBundleSplittable: boolean,</code></pre>
+<div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
+into multiple, or whether all of the dependencies must be placed in a single bundle.</p>
+<p>Default value: <code></code></p></div><pre class="interface"><code>  sideEffects: boolean,</code></pre>
+<div class="inline-method"><p>Whether this asset can be omitted if none of its exports are being used.
+This is initially set by the resolver, but can be overridden by transformers.</p>
+</div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a>,</code></pre>
+<div class="inline-method"><p>The symbols that the asset exports.</p>
+</div><pre class="interface"><code>  addDependency(<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>): string,</code></pre>
+<div class="inline-method"><p>Adds a dependency to the asset.</p>
+</div><pre class="interface"><code>  addURLDependency(url: string, opts: $Shape&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;): string,</code></pre>
+<div class="inline-method"><p>Adds a url dependency to the asset.
+This is a shortcut for addDependency that sets the specifierType to &#39;url&#39; and priority to &#39;lazy&#39;.</p>
+</div><pre class="interface"><code>  invalidateOnFileChange(<a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
+<div class="inline-method"><p>Invalidates the transformation when the given file is modified or deleted.</p>
+</div><pre class="interface"><code>  invalidateOnFileCreate(<a href="/plugin-system/api/#FileCreateInvalidation">FileCreateInvalidation</a>): void,</code></pre>
+<div class="inline-method"><p>Invalidates the transformation when matched files are created.</p>
+</div><pre class="interface"><code>  invalidateOnEnvChange(string): void,</code></pre>
+<div class="inline-method"><p>Invalidates the transformation when the given environment variable changes.</p>
+</div><pre class="interface"><code>  setCode(string): void,</code></pre>
+<div class="inline-method"><p>Sets the asset contents as a string.</p>
+</div><pre class="interface"><code>  setBuffer(Buffer): void,</code></pre>
+<div class="inline-method"><p>Sets the asset contents as a buffer.</p>
+</div><pre class="interface"><code>  setStream(Readable): void,</code></pre>
+<div class="inline-method"><p>Sets the asset contents as a stream.</p>
+</div><pre class="interface"><code>  setAST(<a href="/plugin-system/api/#AST">AST</a>): void,</code></pre>
+<div class="inline-method"><p>Returns whether the <a href="/plugin-system/api/#AST">AST</a> has been modified.</p>
+</div><pre class="interface"><code>  isASTDirty(): boolean,</code></pre>
+<div class="inline-method"><p>Sets the asset&#39;s <a href="/plugin-system/api/#AST">AST</a>.</p>
+</div><pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
+<div class="inline-method"><p>Sets the asset&#39;s source map.</p>
 </div><pre class="interface"><code>  setEnvironment(opts: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>): void,</code></pre>
-<pre class="interface"><code>  setMap(?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>): void,</code></pre>
-<pre class="interface"><code>  setStream(Readable): void,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L599"><i>parcel/packages/core/types/index.js:599</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L714"><i>parcel/packages/core/types/index.js:714</i></a>
 </h4>
+<p>An immutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available after transformation.</p>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> extends <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a> {</code></pre>
 <pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
-<pre class="interface"><code>}</code></pre>
+<div class="inline-method"><p>Statistics about the asset.</p>
+</div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#BundlerBundleGraphTraversable">BundlerBundleGraphTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
+<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L617"><i>parcel/packages/core/types/index.js:617</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L734"><i>parcel/packages/core/types/index.js:734</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -227,12 +321,11 @@
 <pre class="interface"><code>  +searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>  +result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
 <pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
-<pre class="interface"><code>  +includedFiles: Set&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;,</code></pre>
 <pre class="interface"><code>  setResult(result: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>): void,</code></pre>
 <pre class="interface"><code>  setResultHash(resultHash: string): void,</code></pre>
-<pre class="interface"><code>  addIncludedFile(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
-<pre class="interface"><code>  addDevDependency(devDep: <a href="/plugin-system/api/#DevDepOptions">DevDepOptions</a>): void,</code></pre>
+<pre class="interface"><code>  invalidateOnFileChange(filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>): void,</code></pre>
 <pre class="interface"><code>  invalidateOnFileCreate(invalidation: <a href="/plugin-system/api/#FileCreateInvalidation">FileCreateInvalidation</a>): void,</code></pre>
+<pre class="interface"><code>  addDevDependency(devDep: <a href="/plugin-system/api/#DevDepOptions">DevDepOptions</a>): void,</code></pre>
 <pre class="interface"><code>  getConfigFrom(searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>, filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
     packageKey?: string,
     parse?: boolean,
@@ -248,11 +341,11 @@
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L658"><i>parcel/packages/core/types/index.js:658</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L774"><i>parcel/packages/core/types/index.js:774</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -265,40 +358,60 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L669"><i>parcel/packages/core/types/index.js:669</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L788"><i>parcel/packages/core/types/index.js:788</i></a>
 </h4>
-<p>Will be used to generate a new <a href="/plugin-system/transformer/#BaseAsset">BaseAsset</a>, see that.
-</p>
+<p>Transformers can return multiple result objects to create new assets.
+For example, a file may contain multiple parts of different types,
+which should be processed by their respective transformation pipelines.
+<br></p>
+
 <pre class="interface"><code>type TransformerResult = {|</code></pre>
-<pre class="interface"><code>  +ast?: ?<a href="/plugin-system/api/#AST">AST</a>,</code></pre>
-<pre class="interface"><code>  +content?: ?<a href="/plugin-system/api/#Blob">Blob</a>,</code></pre>
-<pre class="interface"><code>  +dependencies?: $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;,</code></pre>
-<pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
-<pre class="interface"><code>  +filePath?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<pre class="interface"><code>  +query?: ?<a href="/plugin-system/api/#QueryParameters">QueryParameters</a>,</code></pre>
-<pre class="interface"><code>  +includedFiles?: $ReadOnlyArray&lt;<a href="/plugin-system/api/#File">File</a>&gt;,</code></pre>
-<pre class="interface"><code>  +isInline?: boolean,</code></pre>
-<pre class="interface"><code>  +isIsolated?: boolean,</code></pre>
-<pre class="interface"><code>  +isSource?: boolean,</code></pre>
-<pre class="interface"><code>  +isSplittable?: boolean,</code></pre>
-<pre class="interface"><code>  +map?: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>,</code></pre>
-<pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
-<pre class="interface"><code>  +pipeline?: ?string,</code></pre>
-<pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
-<pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
+<pre class="interface"><code>  +type: string,</code></pre>
+<div class="inline-method"><p>The asset&#39;s type.</p>
+</div><pre class="interface"><code>  +content?: ?<a href="/plugin-system/api/#Blob">Blob</a>,</code></pre>
+<div class="inline-method"><p>The content of the asset. Either content or an <a href="/plugin-system/api/#AST">AST</a> is required.</p>
+</div><pre class="interface"><code>  +ast?: ?<a href="/plugin-system/api/#AST">AST</a>,</code></pre>
+<div class="inline-method"><p>The asset&#39;s <a href="/plugin-system/api/#AST">AST</a>. Either content or an <a href="/plugin-system/api/#AST">AST</a> is required.</p>
+</div><pre class="interface"><code>  +map?: ?<a href="/plugin-system/source-maps/#SourceMap">SourceMap</a>,</code></pre>
+<div class="inline-method"><p>The source map for the asset.</p>
+</div><pre class="interface"><code>  +dependencies?: $ReadOnlyArray&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>&gt;,</code></pre>
+<div class="inline-method"><p>The dependencies of the asset.</p>
+</div><pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
+<div class="inline-method"><p>The environment of the asset. The options are merged with the input asset&#39;s environment.</p>
+</div><pre class="interface"><code>  +bundleBehavior?: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls which bundle the asset is placed into.</p>
+<ul>
+<li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
+  to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The asset will be placed into a separate bundle.</li>
+</ul>
+</div><pre class="interface"><code>  +isBundleSplittable?: boolean,</code></pre>
+<div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
+into multiple, or whether all of the dependencies must be placed in a single bundle.</p>
+</div><pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
+<div class="inline-method"><p>Plugin-specific metadata for the asset.</p>
+</div><pre class="interface"><code>  +pipeline?: ?string,</code></pre>
+<div class="inline-method"><p>The pipeline defined in .parcelrc that the asset should be processed with.</p>
+</div><pre class="interface"><code>  +sideEffects?: boolean,</code></pre>
+<div class="inline-method"><p>Whether this asset can be omitted if none of its exports are being used.
+This is initially set by the resolver, but can be overridden by transformers.</p>
+</div><pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
     local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
   |}&gt;,</code></pre>
-<pre class="interface"><code>  +type: string,</code></pre>
-<pre class="interface"><code>  +uniqueKey?: ?string,</code></pre>
-<pre class="interface"><code>|}</code></pre>
+<div class="inline-method"><p>The symbols that the asset exports.</p>
+</div><pre class="interface"><code>  +uniqueKey?: ?string,</code></pre>
+<div class="inline-method"><p>When a transformer returns multiple assets, it can give them unique keys to identify them.
+This can be used to find assets during packaging, or to create dependencies between multiple
+assets returned by a transformer by using the unique key as the dependency specifier.</p>
+</div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L695"><i>parcel/packages/core/types/index.js:695</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L837"><i>parcel/packages/core/types/index.js:837</i></a>
 </h4>
 
 
@@ -312,10 +425,10 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/bf03f018093f8c7ca4c3a544524e15065a637b3b/packages/core/types/index.js#L757"><i>parcel/packages/core/types/index.js:757</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L904"><i>parcel/packages/core/types/index.js:904</i></a>
 </h4>
-<p>The methods for a transformer plugin.
-</p>
+<p>The methods for a transformer plugin.</p>
+
 <pre class="interface"><code>type Transformer = {|</code></pre>
 <pre class="interface"><code>  loadConfig?: ({|
     config: <a href="/plugin-system/transformer/#Config">Config</a>,
@@ -327,7 +440,7 @@
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}) =&gt; boolean,</code></pre>
-<div class="inline-method">Whether an <a href="/plugin-system/api/#AST">AST</a> from a previous transformer can be reused (to prevent double-parsing)
+<div class="inline-method"><p>Whether an <a href="/plugin-system/api/#AST">AST</a> from a previous transformer can be reused (to prevent double-parsing)</p>
 </div><pre class="interface"><code>  parse?: ({|
     asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
     config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
@@ -335,7 +448,7 @@
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;?<a href="/plugin-system/api/#AST">AST</a>&gt;,</code></pre>
-<div class="inline-method">Parse the contents into an ast
+<div class="inline-method"><p>Parse the contents into an ast</p>
 </div><pre class="interface"><code>  transform({|
     asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>,
     config: ?<a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,
@@ -343,14 +456,14 @@
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}): <a href="/plugin-system/api/#Async">Async</a>&lt;Array&lt;<a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a> | <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>&gt;&gt;,</code></pre>
-<div class="inline-method">Transform the asset and/or add new assets
+<div class="inline-method"><p>Transform the asset and/or add new assets</p>
 </div><pre class="interface"><code>  generate?: ({|
     asset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
     ast: <a href="/plugin-system/api/#AST">AST</a>,
     options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>,
     logger: <a href="/plugin-system/logging/#PluginLogger">PluginLogger</a>,
   |}) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/transformer/#GenerateOutput">GenerateOutput</a>&gt;,</code></pre>
-<div class="inline-method">Stringify the <a href="/plugin-system/api/#AST">AST</a>
+<div class="inline-method"><p>Stringify the <a href="/plugin-system/api/#AST">AST</a></p>
 </div><pre class="interface"><code>|}</code></pre>
 
 
