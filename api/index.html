@@ -43,7 +43,7 @@
 <div class="type">
 <h4 class="title">
   <span id="AST">AST</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L15"><i>parcel/packages/core/types/index.js:15</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L15"><i>parcel/packages/core/types/index.js:15</i></a>
 </h4>
 <p>Plugin-specific <a href="/plugin-system/api/#AST">AST</a>, <code>any</code></p>
 
@@ -58,7 +58,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ConfigResult">ConfigResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L16"><i>parcel/packages/core/types/index.js:16</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L16"><i>parcel/packages/core/types/index.js:16</i></a>
 </h4>
 
 
@@ -68,16 +68,16 @@
 <h5>Type</h5>
 <pre><code>type <a href="/plugin-system/api/#ConfigResult">ConfigResult</a> = _ConfigResult;</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/transformer/#Config">Config</a>, <a href="/plugin-system/api/#ConfigOutput">ConfigOutput</a>, <a href="/plugin-system/api/#ConfigResultWithFilePath">ConfigResultWithFilePath</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>
 </div><div class="type">
 <h4 class="title">
   <span id="ConfigResultWithFilePath">ConfigResultWithFilePath</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L18"><i>parcel/packages/core/types/index.js:18</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L18"><i>parcel/packages/core/types/index.js:18</i></a>
 </h4>
 <p>Plugin-specific config result, <code>any</code></p>
 
-<pre class="interface"><code>type ConfigResultWithFilePath = {|</code></pre>
-<pre class="interface"><code>  contents: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
+<pre class="interface"><code>type ConfigResultWithFilePath&lt;T&gt; = {|</code></pre>
+<pre class="interface"><code>  contents: T,</code></pre>
 <pre class="interface"><code>  filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
@@ -86,7 +86,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="EnvMap">EnvMap</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L23"><i>parcel/packages/core/types/index.js:23</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L23"><i>parcel/packages/core/types/index.js:23</i></a>
 </h4>
 <p><code>process.env</code></p>
 
@@ -101,7 +101,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="QueryParameters">QueryParameters</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L25"><i>parcel/packages/core/types/index.js:25</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L25"><i>parcel/packages/core/types/index.js:25</i></a>
 </h4>
 
 <pre class="interface"><code>type QueryParameters = {</code></pre>
@@ -112,7 +112,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="JSONValue">JSONValue</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L27"><i>parcel/packages/core/types/index.js:27</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L27"><i>parcel/packages/core/types/index.js:27</i></a>
 </h4>
 
 
@@ -125,7 +125,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="JSONObject">JSONObject</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L37"><i>parcel/packages/core/types/index.js:37</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L37"><i>parcel/packages/core/types/index.js:37</i></a>
 </h4>
 <p>A JSON object (as in &quot;map&quot;)</p>
 
@@ -137,7 +137,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PackageName">PackageName</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L39"><i>parcel/packages/core/types/index.js:39</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L39"><i>parcel/packages/core/types/index.js:39</i></a>
 </h4>
 
 
@@ -151,7 +151,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="FilePath">FilePath</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L40"><i>parcel/packages/core/types/index.js:40</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L40"><i>parcel/packages/core/types/index.js:40</i></a>
 </h4>
 
 
@@ -165,7 +165,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Glob">Glob</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L41"><i>parcel/packages/core/types/index.js:41</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L41"><i>parcel/packages/core/types/index.js:41</i></a>
 </h4>
 
 
@@ -179,7 +179,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Semver">Semver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L42"><i>parcel/packages/core/types/index.js:42</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L42"><i>parcel/packages/core/types/index.js:42</i></a>
 </h4>
 
 
@@ -193,7 +193,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="SemverRange">SemverRange</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L43"><i>parcel/packages/core/types/index.js:43</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L43"><i>parcel/packages/core/types/index.js:43</i></a>
 </h4>
 
 
@@ -207,7 +207,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DependencySpecifier">DependencySpecifier</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L45"><i>parcel/packages/core/types/index.js:45</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L45"><i>parcel/packages/core/types/index.js:45</i></a>
 </h4>
 <p>See <a href="/plugin-system/transformer/#Dependency">Dependency</a></p>
 
@@ -222,7 +222,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GlobMap">GlobMap</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L48"><i>parcel/packages/core/types/index.js:48</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L48"><i>parcel/packages/core/types/index.js:48</i></a>
 </h4>
 <p>A pipeline as specified in the config mapping to <code>T</code></p>
 
@@ -233,7 +233,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="RawParcelConfigPipeline">RawParcelConfigPipeline</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L50"><i>parcel/packages/core/types/index.js:50</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L50"><i>parcel/packages/core/types/index.js:50</i></a>
 </h4>
 
 
@@ -247,7 +247,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="HMROptions">HMROptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L52"><i>parcel/packages/core/types/index.js:52</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L52"><i>parcel/packages/core/types/index.js:52</i></a>
 </h4>
 
 <pre class="interface"><code>type HMROptions = {</code></pre>
@@ -260,7 +260,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="RawParcelConfig">RawParcelConfig</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L55"><i>parcel/packages/core/types/index.js:55</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L55"><i>parcel/packages/core/types/index.js:55</i></a>
 </h4>
 <p>The format of .parcelrc</p>
 
@@ -294,7 +294,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ResolvedParcelConfigFile">ResolvedParcelConfigFile</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L69"><i>parcel/packages/core/types/index.js:69</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L69"><i>parcel/packages/core/types/index.js:69</i></a>
 </h4>
 <p>A .parcelrc where all package names are resolved</p>
 
@@ -308,7 +308,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Engines">Engines</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L76"><i>parcel/packages/core/types/index.js:76</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L76"><i>parcel/packages/core/types/index.js:76</i></a>
 </h4>
 <p>Corresponds to <code>pkg#engines</code></p>
 
@@ -324,7 +324,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TargetSourceMapOptions">TargetSourceMapOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L85"><i>parcel/packages/core/types/index.js:85</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L85"><i>parcel/packages/core/types/index.js:85</i></a>
 </h4>
 <p>Corresponds to <code>pkg#targets.*.sourceMap</code></p>
 
@@ -339,7 +339,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Target">Target</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L94"><i>parcel/packages/core/types/index.js:94</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L94"><i>parcel/packages/core/types/index.js:94</i></a>
 </h4>
 <p>A parsed version of <a href="/plugin-system/api/#PackageTargetDescriptor">PackageTargetDescriptor</a></p>
 
@@ -360,7 +360,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="EnvironmentContext">EnvironmentContext</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L107"><i>parcel/packages/core/types/index.js:107</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L107"><i>parcel/packages/core/types/index.js:107</i></a>
 </h4>
 <p>In which environment the output should run (influces e.g. bundle loaders)</p>
 
@@ -375,7 +375,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="OutputFormat">OutputFormat</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L116"><i>parcel/packages/core/types/index.js:116</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L116"><i>parcel/packages/core/types/index.js:116</i></a>
 </h4>
 <p>The JS module format for the bundle output</p>
 
@@ -390,7 +390,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PackageTargetDescriptor">PackageTargetDescriptor</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L123"><i>parcel/packages/core/types/index.js:123</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L123"><i>parcel/packages/core/types/index.js:123</i></a>
 </h4>
 <p>The format of <code>pkg#targets.*</code>
 <br>See <a href="/plugin-system/api/#Environment">Environment</a> and <a href="/plugin-system/api/#Target">Target</a>.</p>
@@ -417,7 +417,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="TargetDescriptor">TargetDescriptor</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L145"><i>parcel/packages/core/types/index.js:145</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L145"><i>parcel/packages/core/types/index.js:145</i></a>
 </h4>
 <p>The target format when using the JS API.
 <br>(Same as <a href="/plugin-system/api/#PackageTargetDescriptor">PackageTargetDescriptor</a>, but <code>distDir</code> is required.)</p>
@@ -432,8 +432,22 @@
 <a href="/plugin-system/api/#InitialParcelOptions">InitialParcelOptions</a>
 </div><div class="type">
 <h4 class="title">
+  <span id="SourceType">SourceType</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L151"><i>parcel/packages/core/types/index.js:151</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/api/#SourceType">SourceType</a> = 'script' | 'module';</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/api/#Environment">Environment</a>, <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>
+</div><div class="type">
+<h4 class="title">
   <span id="EnvironmentOptions">EnvironmentOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L154"><i>parcel/packages/core/types/index.js:154</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L156"><i>parcel/packages/core/types/index.js:156</i></a>
 </h4>
 <p>This is used when creating an <a href="/plugin-system/api/#Environment">Environment</a> (see that).</p>
 
@@ -445,18 +459,20 @@
     ...
   },</code></pre>
 <pre class="interface"><code>  +outputFormat?: <a href="/plugin-system/api/#OutputFormat">OutputFormat</a>,</code></pre>
+<pre class="interface"><code>  +sourceType?: <a href="/plugin-system/api/#SourceType">SourceType</a>,</code></pre>
 <pre class="interface"><code>  +isLibrary?: boolean,</code></pre>
 <pre class="interface"><code>  +shouldOptimize?: boolean,</code></pre>
 <pre class="interface"><code>  +shouldScopeHoist?: boolean,</code></pre>
 <pre class="interface"><code>  +sourceMap?: ?<a href="/plugin-system/api/#TargetSourceMapOptions">TargetSourceMapOptions</a>,</code></pre>
+<pre class="interface"><code>  +loc?: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
+<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/runtime/#RuntimeAsset">RuntimeAsset</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
 </div><div class="type">
 <h4 class="title">
   <span id="VersionMap">VersionMap</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L180"><i>parcel/packages/core/types/index.js:180</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L184"><i>parcel/packages/core/types/index.js:184</i></a>
 </h4>
 <p>A resolved browserslist, e.g.:</p>
 <pre><code>
@@ -476,8 +492,22 @@
 <a href="/plugin-system/api/#Environment">Environment</a>
 </div><div class="type">
 <h4 class="title">
+  <span id="EnvironmentFeature">EnvironmentFeature</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L189"><i>parcel/packages/core/types/index.js:189</i></a>
+</h4>
+
+
+
+
+
+<h5>Type</h5>
+<pre><code>type <a href="/plugin-system/api/#EnvironmentFeature">EnvironmentFeature</a> = 'esmodules' | 'dynamic-import' | 'worker-module' | 'service-worker-module';</code></pre>
+<h5>Referenced by:</h5>
+<a href="/plugin-system/api/#Environment">Environment</a>
+</div><div class="type">
+<h4 class="title">
   <span id="Environment">Environment</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L188"><i>parcel/packages/core/types/index.js:188</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L198"><i>parcel/packages/core/types/index.js:198</i></a>
 </h4>
 <p>Defines the environment in for the output bundle</p>
 
@@ -491,6 +521,7 @@
   },</code></pre>
 <div class="inline-method"><p>Whether to include all/none packages  (<code>true / false</code>), an array of package names to include, or an object  (of a package is not specified, it&#39;s included).</p>
 </div><pre class="interface"><code>  +outputFormat: <a href="/plugin-system/api/#OutputFormat">OutputFormat</a>,</code></pre>
+<pre class="interface"><code>  +sourceType: <a href="/plugin-system/api/#SourceType">SourceType</a>,</code></pre>
 <pre class="interface"><code>  +isLibrary: boolean,</code></pre>
 <div class="inline-method"><p>Whether this is a library build (e.g. less loaders)</p>
 </div><pre class="interface"><code>  +shouldOptimize: boolean,</code></pre>
@@ -498,6 +529,7 @@
 </div><pre class="interface"><code>  +shouldScopeHoist: boolean,</code></pre>
 <div class="inline-method"><p>Whether scope hoisting is enabled.</p>
 </div><pre class="interface"><code>  +sourceMap: ?<a href="/plugin-system/api/#TargetSourceMapOptions">TargetSourceMapOptions</a>,</code></pre>
+<pre class="interface"><code>  +loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,</code></pre>
 <pre class="interface"><code>  isBrowser(): boolean,</code></pre>
 <div class="inline-method"><p>Whether <code>context</code> specifies a browser context.</p>
 </div><pre class="interface"><code>  isNode(): boolean,</code></pre>
@@ -508,7 +540,8 @@
 <div class="inline-method"><p>Whether <code>context</code> specifies a worker context.</p>
 </div><pre class="interface"><code>  isIsolated(): boolean,</code></pre>
 <div class="inline-method"><p>Whether <code>context</code> specifies an isolated context (can&#39;t access other loaded ancestor bundles).</p>
-</div><pre class="interface"><code>  matchesEngines(minVersions: <a href="/plugin-system/api/#VersionMap">VersionMap</a>): boolean,</code></pre>
+</div><pre class="interface"><code>  matchesEngines(minVersions: <a href="/plugin-system/api/#VersionMap">VersionMap</a>, defaultValue?: boolean): boolean,</code></pre>
+<pre class="interface"><code>  supports(feature: <a href="/plugin-system/api/#EnvironmentFeature">EnvironmentFeature</a>, defaultValue?: boolean): boolean,</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -516,7 +549,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PackageDependencies">PackageDependencies</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L225"><i>parcel/packages/core/types/index.js:225</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L238"><i>parcel/packages/core/types/index.js:238</i></a>
 </h4>
 <p>Format of <code>pkg#dependencies</code>, <code>pkg#devDependencies</code>, <code>pkg#peerDependencies</code></p>
 
@@ -528,7 +561,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PackageJSON">PackageJSON</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L232"><i>parcel/packages/core/types/index.js:232</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L245"><i>parcel/packages/core/types/index.js:245</i></a>
 </h4>
 <p>Format of <code>package.json</code></p>
 
@@ -569,7 +602,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="LogLevel">LogLevel</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L252"><i>parcel/packages/core/types/index.js:252</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L265"><i>parcel/packages/core/types/index.js:265</i></a>
 </h4>
 
 
@@ -583,7 +616,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BuildMode">BuildMode</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L253"><i>parcel/packages/core/types/index.js:253</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L266"><i>parcel/packages/core/types/index.js:266</i></a>
 </h4>
 
 
@@ -597,7 +630,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="DetailedReportOptions">DetailedReportOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L254"><i>parcel/packages/core/types/index.js:254</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L267"><i>parcel/packages/core/types/index.js:267</i></a>
 </h4>
 
 <pre class="interface"><code>type DetailedReportOptions = {|</code></pre>
@@ -609,7 +642,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="InitialParcelOptions">InitialParcelOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L258"><i>parcel/packages/core/types/index.js:258</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L271"><i>parcel/packages/core/types/index.js:271</i></a>
 </h4>
 
 <pre class="interface"><code>type InitialParcelOptions = {|</code></pre>
@@ -657,7 +690,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="InitialServerOptions">InitialServerOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L303"><i>parcel/packages/core/types/index.js:303</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L316"><i>parcel/packages/core/types/index.js:316</i></a>
 </h4>
 
 <pre class="interface"><code>type InitialServerOptions = {|</code></pre>
@@ -672,7 +705,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="PluginOptions">PluginOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L310"><i>parcel/packages/core/types/index.js:310</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L323"><i>parcel/packages/core/types/index.js:323</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#PluginOptions">PluginOptions</a> {</code></pre>
@@ -698,7 +731,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="ServerOptions">ServerOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L328"><i>parcel/packages/core/types/index.js:328</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L341"><i>parcel/packages/core/types/index.js:341</i></a>
 </h4>
 
 <pre class="interface"><code>type ServerOptions = {|</code></pre>
@@ -714,7 +747,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="HTTPSOptions">HTTPSOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L336"><i>parcel/packages/core/types/index.js:336</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L349"><i>parcel/packages/core/types/index.js:349</i></a>
 </h4>
 
 <pre class="interface"><code>type HTTPSOptions = {|</code></pre>
@@ -727,7 +760,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="SourceLocation">SourceLocation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L344"><i>parcel/packages/core/types/index.js:344</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L357"><i>parcel/packages/core/types/index.js:357</i></a>
 </h4>
 <p>Source locations are 1-based, meaning lines and columns start at 1</p>
 
@@ -746,11 +779,11 @@
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/api/#AssetSymbols">AssetSymbols</a>, <a href="/plugin-system/transformer/#Dependency">Dependency</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a>, <a href="/plugin-system/api/#MutableDependencySymbols">MutableDependencySymbols</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/api/#Target">Target</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
+<a href="/plugin-system/api/#AssetSymbols">AssetSymbols</a>, <a href="/plugin-system/transformer/#Dependency">Dependency</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#Environment">Environment</a>, <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>, <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a>, <a href="/plugin-system/api/#MutableDependencySymbols">MutableDependencySymbols</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/api/#Target">Target</a>, <a href="/plugin-system/transformer/#TransformerResult">TransformerResult</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Meta">Meta</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L361"><i>parcel/packages/core/types/index.js:361</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L374"><i>parcel/packages/core/types/index.js:374</i></a>
 </h4>
 <p>An object that plugins can write arbitatry data to.</p>
 
@@ -765,7 +798,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Symbol">Symbol</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L366"><i>parcel/packages/core/types/index.js:366</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L379"><i>parcel/packages/core/types/index.js:379</i></a>
 </h4>
 <p>An identifier in an asset (likely imported/exported).</p>
 
@@ -780,7 +813,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="AssetSymbols">AssetSymbols</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L371"><i>parcel/packages/core/types/index.js:371</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L384"><i>parcel/packages/core/types/index.js:384</i></a>
 </h4>
 <p>A map of export names to the corresponding asset&#39;s local variable names.</p>
 
@@ -807,7 +840,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAssetSymbols">MutableAssetSymbols</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L388"><i>parcel/packages/core/types/index.js:388</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L401"><i>parcel/packages/core/types/index.js:401</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#MutableAssetSymbols">MutableAssetSymbols</a> extends <a href="/plugin-system/api/#AssetSymbols">AssetSymbols</a> {</code></pre>
@@ -822,7 +855,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableDependencySymbols">MutableDependencySymbols</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L405"><i>parcel/packages/core/types/index.js:405</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L418"><i>parcel/packages/core/types/index.js:418</i></a>
 </h4>
 <p>isWeak means: the symbol is not used by the parent asset itself and is merely reexported</p>
 
@@ -855,7 +888,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="DependencyPriority">DependencyPriority</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L436"><i>parcel/packages/core/types/index.js:436</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L449"><i>parcel/packages/core/types/index.js:449</i></a>
 </h4>
 
 
@@ -869,7 +902,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="SpecifierType">SpecifierType</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L437"><i>parcel/packages/core/types/index.js:437</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L450"><i>parcel/packages/core/types/index.js:450</i></a>
 </h4>
 
 
@@ -883,7 +916,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="File">File</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L562"><i>parcel/packages/core/types/index.js:562</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L575"><i>parcel/packages/core/types/index.js:575</i></a>
 </h4>
 
 <pre class="interface"><code>type File = {|</code></pre>
@@ -891,12 +924,11 @@ This is the default state.</p>
 <pre class="interface"><code>  +hash?: string,</code></pre>
 <pre class="interface"><code>|}</code></pre>
 
-<h5>Referenced by:</h5>
-<a href="/plugin-system/api/#ConfigOutput">ConfigOutput</a>
+
 </div><div class="type">
 <h4 class="title">
   <span id="BundleBehavior">BundleBehavior</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L575"><i>parcel/packages/core/types/index.js:575</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L588"><i>parcel/packages/core/types/index.js:588</i></a>
 </h4>
 
 
@@ -910,7 +942,7 @@ This is the default state.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="DevDepOptions">DevDepOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L719"><i>parcel/packages/core/types/index.js:719</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L732"><i>parcel/packages/core/types/index.js:732</i></a>
 </h4>
 
 <pre class="interface"><code>type DevDepOptions = {|</code></pre>
@@ -928,7 +960,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="Stats">Stats</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L766"><i>parcel/packages/core/types/index.js:766</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L810"><i>parcel/packages/core/types/index.js:810</i></a>
 </h4>
 
 <pre class="interface"><code>type Stats = {|</code></pre>
@@ -941,7 +973,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="Blob">Blob</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L779"><i>parcel/packages/core/types/index.js:779</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L823"><i>parcel/packages/core/types/index.js:823</i></a>
 </h4>
 
 
@@ -955,7 +987,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="Async">Async</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L832"><i>parcel/packages/core/types/index.js:832</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L876"><i>parcel/packages/core/types/index.js:876</i></a>
 </h4>
 
 
@@ -969,20 +1001,22 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="PackagedBundle">PackagedBundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1093"><i>parcel/packages/core/types/index.js:1093</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1183"><i>parcel/packages/core/types/index.js:1183</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#PackagedBundle">PackagedBundle</a> extends <a href="/plugin-system/bundler/#NamedBundle">NamedBundle</a> {</code></pre>
 <pre class="interface"><code>  +filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
-<pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
-<pre class="interface"><code>}</code></pre>
+<div class="inline-method"><p>The absolute file path of the written bundle, including the final content hash if any.</p>
+</div><pre class="interface"><code>  +stats: <a href="/plugin-system/api/#Stats">Stats</a>,</code></pre>
+<div class="inline-method"><p>Statistics about the bundle.</p>
+</div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="GlobInvalidation">GlobInvalidation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1226"><i>parcel/packages/core/types/index.js:1226</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1320"><i>parcel/packages/core/types/index.js:1320</i></a>
 </h4>
 
 <pre class="interface"><code>type GlobInvalidation = {|</code></pre>
@@ -994,7 +1028,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="FileInvalidation">FileInvalidation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1230"><i>parcel/packages/core/types/index.js:1230</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1324"><i>parcel/packages/core/types/index.js:1324</i></a>
 </h4>
 
 <pre class="interface"><code>type FileInvalidation = {|</code></pre>
@@ -1006,7 +1040,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="FileAboveInvalidation">FileAboveInvalidation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1234"><i>parcel/packages/core/types/index.js:1234</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1328"><i>parcel/packages/core/types/index.js:1328</i></a>
 </h4>
 
 <pre class="interface"><code>type FileAboveInvalidation = {|</code></pre>
@@ -1019,7 +1053,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="FileCreateInvalidation">FileCreateInvalidation</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1239"><i>parcel/packages/core/types/index.js:1239</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1333"><i>parcel/packages/core/types/index.js:1333</i></a>
 </h4>
 
 
@@ -1032,20 +1066,8 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 <a href="/plugin-system/transformer/#Config">Config</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>
 </div><div class="type">
 <h4 class="title">
-  <span id="ConfigOutput">ConfigOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1266"><i>parcel/packages/core/types/index.js:1266</i></a>
-</h4>
-
-<pre class="interface"><code>type ConfigOutput = {|</code></pre>
-<pre class="interface"><code>  config: <a href="/plugin-system/api/#ConfigResult">ConfigResult</a>,</code></pre>
-<pre class="interface"><code>  files: Array&lt;<a href="/plugin-system/api/#File">File</a>&gt;,</code></pre>
-<pre class="interface"><code>|}</code></pre>
-
-
-</div><div class="type">
-<h4 class="title">
   <span id="ErrorWithCode">ErrorWithCode</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1578"><i>parcel/packages/core/types/index.js:1578</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1668"><i>parcel/packages/core/types/index.js:1668</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#ErrorWithCode">ErrorWithCode</a> extends Error {</code></pre>
@@ -1056,7 +1078,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="IDisposable">IDisposable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1582"><i>parcel/packages/core/types/index.js:1582</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1672"><i>parcel/packages/core/types/index.js:1672</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#IDisposable">IDisposable</a> {</code></pre>
@@ -1067,7 +1089,7 @@ has its own cache for this dev dependency other than Node&#39;s require cache.</
 </div><div class="type">
 <h4 class="title">
   <span id="AsyncSubscription">AsyncSubscription</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/276356493ac2ad8337829935ff7dd4351862fb2d/packages/core/types/index.js#L1586"><i>parcel/packages/core/types/index.js:1586</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1676"><i>parcel/packages/core/types/index.js:1676</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/api/#AsyncSubscription">AsyncSubscription</a> {</code></pre>
