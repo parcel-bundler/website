@@ -51,8 +51,8 @@ This example aliases `react` to `preact` and some local custom module that is no
     "parcel-bundler": "^1.7.0"
   },
   "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat",
+    "react": "preact/compat",
+    "react-dom": "preact/compat",
     "local-module": "./custom/modules"
   }
 }
