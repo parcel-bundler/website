@@ -44,7 +44,7 @@ After adding two plugins to your parcelrc, all imports to SVG files are automati
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["@parcel/transformer-svgo", "@parcel/transformer-svg-react"]
+    "*.svg": ["@parcel/transformer-svg-react"]
   }
 }
 ```
