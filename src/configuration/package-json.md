@@ -44,7 +44,7 @@ If one these fields is specified, Parcel will create a target for that field (no
 
 If the `browser` field is an [object](/features/module-resolution/#package.json-browser-field), `package.json#browser[pkgName]` can be used instead of `package.json#browser`.
 
-To make Parcel ignore one of these fields, specify `false` in `target.(main|browser|module)`:
+To make Parcel ignore one of these fields, specify `false` in `targets.(main|browser|module)`:
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -221,7 +221,7 @@ The [--no-source-maps](/features/cli/#general-parameters) CLI parameter sets the
 
 #### `engines` / `browserslist`
 
-These top-level fields set the default value for `target.*.engines.browsers` and `target.*.engines`, respectively.
+These top-level fields set the default value for `targets.*.engines.browsers` and `targets.*.engines`, respectively.
 
 Specifies the [environment](/getting-started/configuration/#environments).
 {% sample %}
