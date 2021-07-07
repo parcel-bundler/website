@@ -34,7 +34,7 @@ ReactDom.render(<App />, document.getElementById("app"));
 
 ## Converting SVG to React components
 
-After adding two plugins to your parcelrc, all imports to SVG files are automatically converted into React Components.
+By specifying the appropriate plugin in your .parcelrc, all imports to SVG files are automatically converted into React Components:
 
 {% sample "parcel index.html" %}
 
@@ -44,7 +44,7 @@ After adding two plugins to your parcelrc, all imports to SVG files are automati
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["@parcel/transformer-svgo", "@parcel/transformer-svg-react"]
+    "*.svg": ["@parcel/transformer-svg-react"]
   }
 }
 ```
@@ -72,6 +72,8 @@ ReactDom.render(<MyIcon />, document.getElementById("app"));
 
 {% endsamplefile %}
 {% endsample %}
+
+You could also do something like `"react-svg:*.svg": ["@parcel/transformer-svg-react"]` instead, then only imports with that prefix would be transformed into React Components: `import MyIcon from "react-svg:./MyIcon.svg";`
 
 ## HMR (Fast Refresh)
 
