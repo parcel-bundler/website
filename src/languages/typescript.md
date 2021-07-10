@@ -7,7 +7,7 @@ eleventyNavigation:
 summary: Explains the different ways TypeScript can be transpiled
 ---
 
-Typescript works out of the box with Parcel, but you have multiple options:
+TypeScript type checking doesn't work. Only transpiling is supported, but you have multiple options:
 
 ## Babel
 
