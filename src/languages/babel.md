@@ -8,7 +8,23 @@ eleventyNavigation:
 
 ## Dependencies
 
-TODO: require, import, require.resolve, import(), navigator.serviceWorker, new Worker, new SharedWorker, preloading
+To retrieve the final (and hashed) URL of assets (images, videos, ...), you can either use `new URL("file.mp4", import.meta.url)` (which is the recommended way as it also works in modern browsers without bundling and because it's also picked up by Webpack):
+
+{% sample %}
+{% samplefile %}
+
+```js/1
+var img = document.createElement("img");
+img.src = new URL("file.mp4", import.meta.url);
+document.body.appendChild(p);
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+or using `import src from "url:./file.mp4";` (though `url:` is optional for the popular image formats).
+
+Parcel also recognizes `require`, `require.resolve`, `import`, `import()`, `navigator.serviceWorker`, `new Worker` and `new SharedWorker`.
 
 ## Transpilation
 
