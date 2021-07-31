@@ -43,23 +43,23 @@
 <div class="type">
 <h4 class="title">
   <span id="TraversalActions">TraversalActions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L989"><i>parcel/packages/core/types/index.js:989</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1053"><i>parcel/packages/core/types/index.js:1053</i></a>
 </h4>
 <p>Used to control a traversal</p>
 
-<pre class="interface"><code>interface <a href="/plugin-system/bundler/#TraversalActions">TraversalActions</a> {</code></pre>
+<pre class="interface"><code>type TraversalActions = {|</code></pre>
 <pre class="interface"><code>  skipChildren(): void,</code></pre>
 <div class="inline-method"><p>Skip the current node&#39;s children and continue the traversal if there are other nodes in the queue.</p>
 </div><pre class="interface"><code>  stop(): void,</code></pre>
 <div class="inline-method"><p>Stop the traversal</p>
-</div><pre class="interface"><code>}</code></pre>
+</div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/bundler/#GraphTraversalCallback">GraphTraversalCallback</a>
 </div><div class="type">
 <h4 class="title">
   <span id="GraphVisitor">GraphVisitor</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1000"><i>parcel/packages/core/types/index.js:1000</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1064"><i>parcel/packages/core/types/index.js:1064</i></a>
 </h4>
 <p>Essentially <a href="/plugin-system/bundler/#GraphTraversalCallback">GraphTraversalCallback</a>, but allows adding specific node enter and exit callbacks.</p>
 
@@ -77,7 +77,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="GraphTraversalCallback">GraphTraversalCallback</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1013"><i>parcel/packages/core/types/index.js:1013</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1077"><i>parcel/packages/core/types/index.js:1077</i></a>
 </h4>
 <p>A generic callback for graph traversals</p>
 
@@ -92,7 +92,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleTraversable">BundleTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1022"><i>parcel/packages/core/types/index.js:1022</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1086"><i>parcel/packages/core/types/index.js:1086</i></a>
 </h4>
 
 
@@ -112,7 +112,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGraphTraversable">BundleGraphTraversable</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1029"><i>parcel/packages/core/types/index.js:1029</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1093"><i>parcel/packages/core/types/index.js:1093</i></a>
 </h4>
 
 
@@ -132,7 +132,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="CreateBundleOpts">CreateBundleOpts</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1045"><i>parcel/packages/core/types/index.js:1045</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1109"><i>parcel/packages/core/types/index.js:1109</i></a>
 </h4>
 <p>Options for <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>&#39;s <code>createBundle</code>.
 <br>If an <code>entryAsset</code> is provided, <code>uniqueKey</code> (for the bundle id),
@@ -150,13 +150,14 @@
   +entryAsset: <a href="/plugin-system/transformer/#Asset">Asset</a>,
   +target: <a href="/plugin-system/api/#Target">Target</a>,
   +needsStableName?: ?boolean,
+  +bundleBehavior?: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,
 |} | {|
   +type: string,
   +env: <a href="/plugin-system/api/#Environment">Environment</a>,
   +uniqueKey: string,
   +target: <a href="/plugin-system/api/#Target">Target</a>,
   +needsStableName?: ?boolean,
-  +isInline?: ?boolean,
+  +bundleBehavior?: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,
   +isSplittable?: ?boolean,
   +pipeline?: ?string,
 |};</code></pre>
@@ -165,7 +166,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Bundle">Bundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1117"><i>parcel/packages/core/types/index.js:1117</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1193"><i>parcel/packages/core/types/index.js:1193</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> (a collection of assets)
 <br></p>
@@ -180,11 +181,14 @@
 </div><pre class="interface"><code>  +target: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <div class="inline-method"><p>The bundle&#39;s target.</p>
 </div><pre class="interface"><code>  +needsStableName: ?boolean,</code></pre>
-<div class="inline-method"><p>Indicates that the bundle&#39;s file name should be stable over time, even when the content of the bundle
-changes. This is useful for entries that a user would manually enter the URL for, as well as for things
-like service workers or RSS feeds, where the URL must remain consistent over time.</p>
-</div><pre class="interface"><code>  +isInline: ?boolean,</code></pre>
-<div class="inline-method"><p>Whether this bundle should be inlined into the parent bundle(s),</p>
+<div class="inline-method"><p>Assets that run when the bundle is loaded (e.g. runtimes could be added). VERIFY</p>
+</div><pre class="interface"><code>  +bundleBehavior: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls the behavior of the bundle.
+to determine when the bundle is loaded.</p>
+<ul>
+<li>inline: Inline bundles are not written to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The bundle will be isolated from its parents. Shared assets will be duplicated.</li>
+</ul>
 </div><pre class="interface"><code>  +isSplittable: ?boolean,</code></pre>
 <div class="inline-method"><p>Whether the bundle can be split. If false, then all dependencies of the bundle will be kept
 internal to the bundle, rather than referring to other bundles. This may result in assets
@@ -213,7 +217,7 @@ Some bundles do not have a main entry, for example, shared bundles.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="NamedBundle">NamedBundle</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1171"><i>parcel/packages/core/types/index.js:1171</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1253"><i>parcel/packages/core/types/index.js:1253</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#Bundle">Bundle</a> that got named by a <a href="/plugin-system/namer/#Namer">Namer</a></p>
 
@@ -232,27 +236,27 @@ The bundle name may include a hash reference, but not the final content hash.</p
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGroup">BundleGroup</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1194"><i>parcel/packages/core/types/index.js:1194</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1276"><i>parcel/packages/core/types/index.js:1276</i></a>
 </h4>
 <p>A collection of sibling bundles (which are stored in the <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>) that should be loaded together (in order).</p>
 
-<pre class="interface"><code>type BundleGroup = {|</code></pre>
+<pre class="interface"><code>interface <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a> {</code></pre>
 <pre class="interface"><code>  +target: <a href="/plugin-system/api/#Target">Target</a>,</code></pre>
 <div class="inline-method"><p>The target of the bundle group.</p>
 </div><pre class="interface"><code>  +entryAssetId: string,</code></pre>
 <div class="inline-method"><p>The id of the entry asset in the bundle group, which is executed immediately when the bundle group is loaded.</p>
-</div><pre class="interface"><code>|}</code></pre>
+</div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>
 </div><div class="type">
 <h4 class="title">
   <span id="MutableBundleGraph">MutableBundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1205"><i>parcel/packages/core/types/index.js:1205</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1288"><i>parcel/packages/core/types/index.js:1288</i></a>
 </h4>
 <p>A <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a> in the <a href="/plugin-system/bundler/#Bundler">Bundler</a> that can be modified</p>
 
-<pre class="interface"><code>interface <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a> extends <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#Bundle">Bundle</a>&gt; {</code></pre>
+<figure class="well warning"><div>Marked as experimental</div></figure><pre class="interface"><code>interface <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a> extends <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;<a href="/plugin-system/bundler/#Bundle">Bundle</a>&gt; {</code></pre>
 <pre class="interface"><code>  addAssetGraphToBundle(<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, shouldSkipDependency?: (<a href="/plugin-system/transformer/#Dependency">Dependency</a>) =&gt; boolean): void,</code></pre>
 <div class="inline-method"><p>Add asset and all child nodes to the bundle.</p>
 </div><pre class="interface"><code>  addEntryToBundle(<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, shouldSkipDependency?: (<a href="/plugin-system/transformer/#Dependency">Dependency</a>) =&gt; boolean): void,</code></pre>
@@ -277,23 +281,40 @@ The bundle name may include a hash reference, but not the final content hash.</p
 </div><div class="type">
 <h4 class="title">
   <span id="BundleGraph">BundleGraph</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1237"><i>parcel/packages/core/types/index.js:1237</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1320"><i>parcel/packages/core/types/index.js:1320</i></a>
 </h4>
 <p>A Graph that contains <a href="/plugin-system/bundler/#Bundle">Bundle</a>-s, <a href="/plugin-system/transformer/#Asset">Asset</a>-s, <a href="/plugin-system/transformer/#Dependency">Dependency</a>-s, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>-s</p>
 
 <pre class="interface"><code>interface <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>&lt;TBundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>&gt; {</code></pre>
 <pre class="interface"><code>  getAssetById(id: string): <a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
-<pre class="interface"><code>  getAssetPublicId(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): string,</code></pre>
-<pre class="interface"><code>  getBundles(): Array&lt;TBundle&gt;,</code></pre>
-<pre class="interface"><code>  getBundleGroupsContainingBundle(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;<a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>&gt;,</code></pre>
-<pre class="interface"><code>  getBundlesInBundleGroup(bundleGroup: <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>): Array&lt;TBundle&gt;,</code></pre>
-<pre class="interface"><code>  getChildBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;TBundle&gt;,</code></pre>
-<div class="inline-method"><p>Child bundles are Bundles that might be loaded by an asset in the bundle</p>
-</div><pre class="interface"><code>  getParentBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;TBundle&gt;,</code></pre>
-<pre class="interface"><code>  getReferencedBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, opts?: {|
-    recursive: boolean
+<div class="inline-method"><p>Retrieves an asset by id.</p>
+</div><pre class="interface"><code>  getAssetPublicId(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): string,</code></pre>
+<div class="inline-method"><p>Returns the public (short) id for an asset.</p>
+</div><pre class="interface"><code>  getBundles(opts?: {|
+    includeInline: boolean
   |}): Array&lt;TBundle&gt;,</code></pre>
-<div class="inline-method"><p>Bundles that are referenced (by filename)</p>
+<div class="inline-method"><p>Returns a list of bundles in the bundle graph. By default, inline bundles are excluded.</p>
+</div><pre class="interface"><code>  traverse&lt;TContext&gt;(<a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;<a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, TContext&gt;): ?TContext,</code></pre>
+<div class="inline-method"><p>Traverses the assets and dependencies in the bundle graph, in depth first order.</p>
+</div><pre class="interface"><code>  traverseBundles&lt;TContext&gt;(visit: <a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;TBundle, TContext&gt;, startBundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?TContext,</code></pre>
+<div class="inline-method"><p>Traverses all bundles in the bundle graph, including inline bundles, in depth first order.</p>
+</div><pre class="interface"><code>  getBundleGroupsContainingBundle(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;<a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundle groups that load the given bundle.</p>
+</div><pre class="interface"><code>  getBundlesInBundleGroup(bundleGroup: <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>, opts?: {|
+    includeInline: boolean
+  |}): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that load together in the given bundle group.</p>
+</div><pre class="interface"><code>  getChildBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that this bundle loads asynchronously.</p>
+</div><pre class="interface"><code>  getParentBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that load this bundle asynchronously.</p>
+</div><pre class="interface"><code>  hasParentBundleOfType(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, type: string): boolean,</code></pre>
+<div class="inline-method"><p>Returns whether the bundle was loaded by another bundle of the given type.</p>
+</div><pre class="interface"><code>  getReferencedBundles(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, opts?: {|
+    recursive?: boolean,
+    includeInline?: boolean,
+  |}): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that are referenced by this bundle. By default, inline bundles are excluded.</p>
 </div><pre class="interface"><code>  getDependencies(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): Array&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;,</code></pre>
 <div class="inline-method"><p>Get the dependencies that the asset requires</p>
 </div><pre class="interface"><code>  getIncomingDependencies(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): Array&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;,</code></pre>
@@ -301,7 +322,8 @@ The bundle name may include a hash reference, but not the final content hash.</p
 </div><pre class="interface"><code>  getAssetWithDependency(dep: <a href="/plugin-system/transformer/#Dependency">Dependency</a>): ?<a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
 <div class="inline-method"><p>Get the asset that created the dependency.</p>
 </div><pre class="interface"><code>  isEntryBundleGroup(bundleGroup: <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>): boolean,</code></pre>
-<pre class="interface"><code>  resolveAsyncDependency(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?({|
+<div class="inline-method"><p>Returns whether the given bundle group is an entry.</p>
+</div><pre class="interface"><code>  resolveAsyncDependency(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?({|
     type: 'bundle_group',
     value: <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>,
   |} | {|
@@ -310,37 +332,44 @@ The bundle name may include a hash reference, but not the final content hash.</p
   |}),</code></pre>
 <div class="inline-method"><p>Returns undefined if the specified dependency was excluded or wasn&#39;t async and otherwise the <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a> or <a href="/plugin-system/transformer/#Asset">Asset</a> that the dependency resolves to.</p>
 </div><pre class="interface"><code>  isDependencySkipped(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>): boolean,</code></pre>
-<div class="inline-method"><p>If a dependency was excluded since it&#39;s unused based on symbol data.</p>
-</div><pre class="interface"><code>  getDependencyResolution(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?<a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
-<div class="inline-method"><p>Find out which asset the dependency resolved to.</p>
+<div class="inline-method"><p>Returns whether a dependency was excluded because it had no used symbols.</p>
+</div><pre class="interface"><code>  getResolvedAsset(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?<a href="/plugin-system/transformer/#Asset">Asset</a>,</code></pre>
+<div class="inline-method"><p>Returns the asset that the dependency resolved to.
+If a bundle is given, assets in that bundle are preferred.
+Returns null if the dependency was excluded.</p>
 </div><pre class="interface"><code>  getReferencedBundle(dependency: <a href="/plugin-system/transformer/#Dependency">Dependency</a>, bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?TBundle,</code></pre>
-<pre class="interface"><code>  findBundlesWithAsset(<a href="/plugin-system/transformer/#Asset">Asset</a>): Array&lt;TBundle&gt;,</code></pre>
-<pre class="interface"><code>  findBundlesWithDependency(<a href="/plugin-system/transformer/#Dependency">Dependency</a>): Array&lt;TBundle&gt;,</code></pre>
-<pre class="interface"><code>  isAssetReachableFromBundle(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): boolean,</code></pre>
-<div class="inline-method"><p>Whether the asset is already included in a compatible (regarding <a href="/plugin-system/api/#EnvironmentContext">EnvironmentContext</a>) parent bundle.</p>
-</div><pre class="interface"><code>  findReachableBundleWithAsset(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): ?TBundle,</code></pre>
-<pre class="interface"><code>  isAssetReferencedByDependant(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): boolean,</code></pre>
-<pre class="interface"><code>  hasParentBundleOfType(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, type: string): boolean,</code></pre>
-<pre class="interface"><code>  resolveSymbol(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, symbol: <a href="/plugin-system/api/#Symbol">Symbol</a>, boundary: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>,</code></pre>
-<div class="inline-method"><p>Resolve the export <code>symbol</code> of <code>asset</code> to the source,
+<div class="inline-method"><p>Returns the bundle that a dependency in a given bundle references, if any.</p>
+</div><pre class="interface"><code>  getBundlesWithAsset(<a href="/plugin-system/transformer/#Asset">Asset</a>): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that contain the given asset.</p>
+</div><pre class="interface"><code>  getBundlesWithDependency(<a href="/plugin-system/transformer/#Dependency">Dependency</a>): Array&lt;TBundle&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of bundles that contain the given dependency.</p>
+</div><pre class="interface"><code>  isAssetReachableFromBundle(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>): boolean,</code></pre>
+<div class="inline-method"><p>Returns whether the given asset is reachable in a sibling, or all possible
+ancestries of the given bundle. This indicates that the asset may be excluded
+from the given bundle.</p>
+</div><pre class="interface"><code>  isAssetReferenced(bundle: <a href="/plugin-system/bundler/#Bundle">Bundle</a>, asset: <a href="/plugin-system/transformer/#Asset">Asset</a>): boolean,</code></pre>
+<div class="inline-method"><p>Returns whether an asset is referenced outside the given bundle.</p>
+</div><pre class="interface"><code>  getSymbolResolution(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, symbol: <a href="/plugin-system/api/#Symbol">Symbol</a>, boundary: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>,</code></pre>
+<div class="inline-method"><p>Resolves the export <code>symbol</code> of <code>asset</code> to the source,
 stopping at the first asset after leaving <code>bundle</code>.
 <code>symbol === null</code>: bailout (== caller should do <code>asset.exports[exportsSymbol]</code>)
 <code>symbol === undefined</code>: symbol not found
 <code>symbol === false</code>: skipped
 <br><code>asset</code> exports <code>symbol</code>, try to find the asset where the corresponding variable lives (resolves re-exports). Stop resolving transitively once <code>boundary</code> was left (<code>bundle.hasAsset(asset) === false</code>), then <code>result.symbol</code> is undefined.</p>
 </div><pre class="interface"><code>  getExportedSymbols(asset: <a href="/plugin-system/transformer/#Asset">Asset</a>, boundary: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): Array&lt;<a href="/plugin-system/packager/#ExportSymbolResolution">ExportSymbolResolution</a>&gt;,</code></pre>
-<div class="inline-method"><p>Gets the symbols that are (transivitely) exported by the asset</p>
-</div><pre class="interface"><code>  traverse&lt;TContext&gt;(<a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;<a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, TContext&gt;): ?TContext,</code></pre>
-<pre class="interface"><code>  traverseBundles&lt;TContext&gt;(visit: <a href="/plugin-system/bundler/#GraphVisitor">GraphVisitor</a>&lt;TBundle, TContext&gt;, startBundle: ?<a href="/plugin-system/bundler/#Bundle">Bundle</a>): ?TContext,</code></pre>
-<pre class="interface"><code>  getUsedSymbols(<a href="/plugin-system/transformer/#Asset">Asset</a> | <a href="/plugin-system/transformer/#Dependency">Dependency</a>): $ReadOnlySet&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>&gt;,</code></pre>
-<pre class="interface"><code>}</code></pre>
+<div class="inline-method"><p>Returns a list of symbols that are exported by the asset, including re-exports.</p>
+</div><pre class="interface"><code>  getUsedSymbols(<a href="/plugin-system/transformer/#Asset">Asset</a> | <a href="/plugin-system/transformer/#Dependency">Dependency</a>): $ReadOnlySet&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>&gt;,</code></pre>
+<div class="inline-method"><p>Returns a list of symbols from an asset or dependency that are referenced by a dependent asset.</p>
+</div><pre class="interface"><code>  getEntryRoot(target: <a href="/plugin-system/api/#Target">Target</a>): <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
+<div class="inline-method"><p>Returns the common root directory for the entry assets of a target.</p>
+</div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
 <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#BundleGroup">BundleGroup</a>, <a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/reporter/#BundlingProgressEvent">BundlingProgressEvent</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>
 </div><div class="type">
 <h4 class="title">
   <span id="BundleResult">BundleResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1313"><i>parcel/packages/core/types/index.js:1313</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1423"><i>parcel/packages/core/types/index.js:1423</i></a>
 </h4>
 
 <pre class="interface"><code>type BundleResult = {|</code></pre>
@@ -355,7 +384,7 @@ stopping at the first asset after leaving <code>bundle</code>.
 </div><div class="type">
 <h4 class="title">
   <span id="Bundler">Bundler</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L1366"><i>parcel/packages/core/types/index.js:1366</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1477"><i>parcel/packages/core/types/index.js:1477</i></a>
 </h4>
 <p>Turns an asset graph into a <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>.
 <br>bundle and optimize run in series and are functionally identitical.</p>
