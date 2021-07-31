@@ -41,6 +41,36 @@ To not opt out of caching, you should:
 - avoid Javascript config files (`.babelrc.js` and `babel.config.js`). Use the JSON versions instead (`.babelrc` or `babel.config.json`).
 - avoid relative/local Babel plugins (this includes using a Babel plugin from the same monorepo).
 
+### Adding a Babel plugin while still using swc for transpilation
+
+In the most basic case, you can create a Babel config that only includes that Babel plugin (e.g. some CSS-in-JS plugin). Note that this will still apply your browserslist config because swc runs after Babel:
+
+{% sample %}
+{% samplefile ".babelrc" %}
+
+```json
+{
+  "plugins": ["babel-plugin-css-in-js"]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+If you're using TypeScript or JSX however, you need to add the corresponding syntax plugins so that Babel can correctly parse your code (this will still transform JSX via swc).
+
+{% sample %}
+{% samplefile ".babelrc" %}
+
+```json
+{
+  "plugins": ["@babel/plugin-syntax-jsx", "babel-plugin-css-in-js"]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ### Extending the default Babel config
 
 Parcel doesn't modify your Babel config, so if you want to add a Babel plugin, you'll need to replicate the default configuration:
