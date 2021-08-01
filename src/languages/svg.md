@@ -10,11 +10,11 @@ SVG assets can be used as images, icons or as a more flexible alternative to htm
 
 ## Importing SVG
 
-You can import an svg file in Parcel using either a url or as a React component, other use-cases can be supported by writing a custom `.parcelrc` file or using a third-party plugin.
+You can import an SVG file in Parcel using either a URL or as a React component, other use-cases can be supported by writing a custom `.parcelrc` file or using a third-party plugin.
 
-### Importing as a url
+### Importing as a URL
 
-To import an svg as a url you can use the by default supported `url:` pipeline, by doing something as follows:
+To import an SVG as a URL you can use the by default supported `url:` pipeline, by doing something as follows:
 
 {% sample %}
 {% samplefile "App.jsx" %}
@@ -30,9 +30,9 @@ export const App = () => <img src={iconUrl} />;
 
 ### Importing as a React component
 
-To import an svg as a React component, you have to install the parcel plugin `@parcel/transformer-svg-react`, create a `.parcelrc` file and add the `@parcel/transformer-svg-react` plugin to it so Parcel runs svg imports through this transformer. This plugin uses `svgr` under the hood to transform the files from svg to valid react components, for more details on how this works you can have a look at [their documentation](https://react-svgr.com/)
+To import an SVG as a React component, you have to install the parcel plugin `@parcel/transformer-svg-react`, create a `.parcelrc` file and add the `@parcel/transformer-svg-react` plugin to it so Parcel runs SVG imports through this transformer. This plugin uses `svgr` under the hood to transform the files from svg to valid react components, for more details on how this works you can have a look at [their documentation](https://react-svgr.com/)
 
-After setting up the configuration correctly you should be able to import any svg file as a react component as demonstrated in the example below.
+After setting up the configuration correctly you should be able to import any SVG file as a react component as demonstrated in the example below.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -61,8 +61,8 @@ export const App = () => <Icon />;
 
 ## Optimizing SVG
 
-To optimize svg files we have developed an official Parcel plugin that is included in the default config `@parcel/config-default`, named `@parcel/optimizer-svgo`, so any imported svg will get optimized by default.
+To optimize SVG files we have developed an official Parcel plugin that is included in the default config `@parcel/config-default`, named `@parcel/optimizer-svgo`, so any imported SVG will get optimized by default.
 
-If you'd like to configure how the svgo optimizer handles your svg files you can create a configuration file named: `svgo.config.json` or `svgo.config.js` (be aware that using a javascript configuration will disable some caching functionality, it's recommended to use the json version)
+If you'd like to configure how the svgo optimizer handles your SVG files you can create a configuration file named: `svgo.config.json` or `svgo.config.js` (be aware that using a javascript configuration will disable some caching functionality, it's recommended to use the json version)
 
 To see all the available configuration options for svgo you can have a look at the official svgo documentation here: [https://github.com/svg/svgo#configuration](https://github.com/svg/svgo#configuration)
