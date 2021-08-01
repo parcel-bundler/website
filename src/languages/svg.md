@@ -41,7 +41,7 @@ After setting up the configuration correctly you should be able to import any sv
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg*": ["@parcel/transformer-svg-react"]
+    "*.svg": ["@parcel/transformer-svg-react"]
   }
 }
 ```
