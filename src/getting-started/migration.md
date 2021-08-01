@@ -317,7 +317,7 @@ parcel build index.html --dist-dir www
 
 ### `--out-file`
 
-This flag, was removed and the path should instead be be specified in `package.json` (see [Configuration](/configuration/package-json/#custom-targets)).
+This flag was removed and the path should instead be specified in `package.json` (see [Configuration](/configuration/package-json/#custom-targets)).
 
 {% migration %}
 {% samplefile %}
