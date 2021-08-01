@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: languages-elm
   title: <img src="/assets/lang-icons/elm.svg" alt=""/> Elm
-  order: 9
+  order: 10
 ---
 
 You can import [Elm](https://elm-lang.org/) files like any another JavaScript files.
