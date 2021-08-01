@@ -68,16 +68,17 @@ When using Hot Module Reload (HMR) this feature blocks the automatic detection o
 
 #### Linux: No space left on device
 
-Depending on the size of your project and configured watching limit, this error might pop up when you're running Parcel on linux, to resolve this issue you have to change the `sysctl` configuration for `fs.inotify` to have a higher value for `max_user_watches`, something like this:
+Depending on the size of your project and configured watching limit, this error might pop up when you're running Parcel on linux, to resolve this issue you have to change the `sysctl` configuration for `fs.inotify` to have a higher value for `max_user_watches`.
 
-```shell
-# sysctl fs.inotify
+You do this by adding or changing the following lines in `/etc/sysctl.conf`:
+
+```
 fs.inotify.max_queued_events = 16384
 fs.inotify.max_user_instances = 128
-fs.inotify.max_user_watches = 8192
-
-# sysctl fs.inotify.max_user_watches=16384
+fs.inotify.max_user_watches = 16384
 ```
+
+If this error persists you can try increasing the values even more.
 
 #### Using Dropbox, Google Drive or other cloud storage solutions
 
