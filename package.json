@@ -19,18 +19,22 @@
     "@babel/generator": "^7.12.11",
     "@babel/parser": "^7.12.11",
     "@babel/traverse": "^7.12.12",
-    "eleventy-plugin-sass": "^1.1.1",
+    "eleventy-plugin-sass": "patch:eleventy-plugin-sass@^1.2.0#./patches/eleventy-plugin-sass.diff",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "markdown-it": "^12.0.4",
     "markdown-it-anchor": "^6.0.1",
     "nodemon": "^2.0.6",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "sass": "^1.35.2"
   },
   "dependencies": {
     "flow-bin": "^0.152.0",
     "marked": "^2.0.7",
     "nullthrows": "^1.1.1"
+  },
+  "resolutions": {
+    "gulp-sass": "5.0.0"
   },
   "lint-staged": {
     "*.{md,scss,js,json}": "prettier --write"
