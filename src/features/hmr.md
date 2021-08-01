@@ -48,7 +48,13 @@ if (module.hot) {
 {% endsamplefile %}
 {% endsample %}
 
-## Safe Write
+## File watcher
+
+To support an optimal caching and development experience we've build a very fast watcher in C++ that utilizes built-in low-level watching functionality of each operating system. Using this watcher we watch every single file in your project root (including all node_modules), based on events and metadata from these files we decide whether to rebuild and which files need to be updated/looked at during a cached build.
+
+### Known issues with file watching
+
+#### Safe Write
 
 Some text editors and IDE's have a feature called `safe write` that basically prevents data loss, by taking a copy of the file and renaming it when saved.
 
@@ -59,5 +65,23 @@ When using Hot Module Reload (HMR) this feature blocks the automatic detection o
 - Vim: add `:set backupcopy=yes` to your settings.
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 - vis: add `:set savemethod inplace` to your settings.
+
+#### Linux: No space left on device
+
+Depending on the size of your project and configured watching limit, this error might pop up when you're running Parcel on linux, to resolve this issue you have to change the `sysctl` configuration for `fs.inotify` to have a higher value for `max_user_watches`.
+
+You do this by adding or changing the following lines in `/etc/sysctl.conf`:
+
+```
+fs.inotify.max_queued_events = 16384
+fs.inotify.max_user_instances = 128
+fs.inotify.max_user_watches = 16384
+```
+
+If this error persists you can try increasing the values even more.
+
+#### Using Dropbox, Google Drive or other cloud storage solutions
+
+It is best practice to not place a Parcel project in a folder that is synced to the cloud using something like Dropbox or Google Drive, as these solutions create a lot of file system events that can mess with our watcher and cause unnecessary rebuilds.
 
 (This functionality is provided by `@parcel/runtime-browser-hmr`.)
