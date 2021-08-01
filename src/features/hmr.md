@@ -48,7 +48,13 @@ if (module.hot) {
 {% endsamplefile %}
 {% endsample %}
 
-## Safe Write
+## File watcher
+
+To support an optimal caching and development experience we've build a very fast watcher in C++ that utilizes built-in low-level watching functionality of each operating system. Using this watcher we watch every single file in your project root (including all node_modules), based on events and metadata from these files we decide whether to rebuild and which files need to be updated/looked at during a cached build.
+
+### Known issues with file watching
+
+#### Safe Write
 
 Some text editors and IDE's have a feature called `safe write` that basically prevents data loss, by taking a copy of the file and renaming it when saved.
 
@@ -59,12 +65,6 @@ When using Hot Module Reload (HMR) this feature blocks the automatic detection o
 - Vim: add `:set backupcopy=yes` to your settings.
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 - vis: add `:set savemethod inplace` to your settings.
-
-## File watcher
-
-To support an optimal caching and development experience we've build a very fast watcher in C++ that utilizes built-in low-level watching functionality of each operating system. Using this watcher we watch every single file in your project root (including all node_modules), based on events and metadata from these files we decide whether to rebuild and which files need to be updated/looked at during a cached build.
-
-### Known issues with file watching
 
 #### Linux: No space left on device
 
