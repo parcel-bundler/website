@@ -81,6 +81,6 @@ fs.inotify.max_user_watches = 8192
 
 #### Using Dropbox, Google Drive or other cloud storage solutions
 
-It is best practice to not place a Parcel project in a folder that is synced to the cloud using something like dropbox or Google Drive, as these solutions create a lot of file system events that can mess with our watcher and cause unnecessary rebuilds.
+It is best practice to not place a Parcel project in a folder that is synced to the cloud using something like Dropbox or Google Drive, as these solutions create a lot of file system events that can mess with our watcher and cause unnecessary rebuilds.
 
 (This functionality is provided by `@parcel/runtime-browser-hmr`.)
