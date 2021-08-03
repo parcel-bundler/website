@@ -65,7 +65,11 @@ Neither the Babel transformer nor the tsc transformer perform type checking, the
 
 ```json
 {
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "target": "es2021",
+    "strict": true  
+  }
 }
 ```
 
