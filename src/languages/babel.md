@@ -42,7 +42,7 @@ Parcel doesn't modify your Babel config, so if you want to add a Babel plugin, y
 {% endsamplefile %}
 {% endsample %}
 
-These two are wrappers of their Babel conterparts that enable Parcel to set the target browsers based on the Parcel configuration (e.g. target specific environment, dual module/nomodule transpilation, not transpiling ES modules with scope hoisting). You can still pass the same options to these presets/plugins as to `@babel/preset-env` and `@babel/plugin-transform-runtime`.
+These two are wrappers of their Babel counterparts that enable Parcel to set the target browsers based on the Parcel configuration (e.g. target specific environment, dual module/nomodule transpilation, not transpiling ES modules with scope hoisting). You can still pass the same options to these presets/plugins as to `@babel/preset-env` and `@babel/plugin-transform-runtime`.
 
 If you use React, TypeScript or Flow, you'll need to add `@babel/preset-react`, `@babel/plugin-transform-typescript`, and `@babel/plugin-transform-flow-strip-types` yourself, respectively.
 
