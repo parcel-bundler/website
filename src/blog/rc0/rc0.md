@@ -221,7 +221,7 @@ Finally, we now publish TypeScript definitions along with all of our public pack
 
 ## Miscellaneous
 
-This release includes a lot of other small improvements and bug fixes. A few highlights are below. See the [commit diff](https://github.com/parcel-bundler/parcel/compare/v2.0.0-beta.3.1...v2.0.0-rc.0) for a full list of changes, or the list of bugs fixed in the Github [milestone](https://github.com/parcel-bundler/parcel/milestone/9?closed=1).
+This release includes a lot of other small improvements and bug fixes. A few highlights are below. See the [commit diff](https://github.com/parcel-bundler/parcel/compare/v2.0.0-beta.3.1...v2.0.0-rc.0) for a full list of changes, or the list of bugs fixed in the GitHub [milestone](https://github.com/parcel-bundler/parcel/milestone/9?closed=1).
 
 ### SVG optimizer
 
@@ -249,5 +249,4 @@ Parcel supports [web manifest](https://developer.mozilla.org/en-US/docs/Web/Mani
 
 ## Try it out!
 
-Please try out the release candidate and give us feedback on [Github](https://github.com/parcel-bundler/parcel/issues). We will be fixing bugs, and improving the documentation over the next month or so before our stable release. You can also donate to our [open collective](https://opencollective.com/parcel), which helps support our contributors. Thanks!
-
+Please try out the release candidate and give us feedback on [GitHub](https://github.com/parcel-bundler/parcel/issues). We will be fixing bugs, and improving the documentation over the next month or so before our stable release. You can also donate to our [open collective](https://opencollective.com/parcel), which helps support our contributors. Thanks!
