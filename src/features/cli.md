@@ -75,7 +75,7 @@ As opposed to `serve` and `watch`, `build` has [scope hoisting](/features/scope-
 | Format                                       | Description                                                                                                                                  |
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--cache-dir <path>`                         | Sets the cache directory. defaults to `.parcel-cache`                                                                                        |
-| `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/configuration/package-json/#targets) |
+| `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for [`targets.*.distDir`](/configuration/package-json/#targets) <br> Parameter ignored when package.json contains `main: <file>` specification |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level                                                                                                                           |
 | `--no-cache`                                 | Disables reading from the filesystem cache                                                                                                   |
 | `--no-source-maps`                           | Disables sourcemaps, <br> Overrides [`targets.*.sourceMap`](/configuration/package-json/#sourcemap)                                          |
