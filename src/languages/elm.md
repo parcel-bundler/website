@@ -16,7 +16,7 @@ The npm package `elm` needs to be manually installed beforehand. You'll also nee
 ```html
 <!DOCTYPE html>
 <div id="root"></div>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
 ```
 
 {% endsamplefile %}
