@@ -217,7 +217,7 @@ span {
 {% samplefile "index.js" %}
 
 ```js/0,9
-import style from "bundle-text:./logo.less";
+import styleSheet from "bundle-text:./logo.less";
 
 class MyTest extends HTMLElement {
   constructor() {
@@ -225,8 +225,8 @@ class MyTest extends HTMLElement {
 
     let shadow = this.attachShadow({ mode: "open" });
 
-    let style = document.createElement("style");
-    style.textContent = style;
+    let styleSheet = document.createElement("style");
+    style.textContent = styleSheet;
     shadow.appendChild(style);
 
     let info = document.createElement("span");
