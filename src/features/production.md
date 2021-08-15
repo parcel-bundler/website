@@ -59,7 +59,7 @@ Parcel supports resizing, converting, and optimizing images. You can use query p
 </picture>
 ```
 
-See the [Image transformer](/recipes/image/) docs for more details.
+Resizing and converting images occurs both in development and production mode, so you can test with the correct image dimentions and formats as well. See the [Image transformer](/recipes/image/) docs for more details.
 
 ### Differential bundling
 
