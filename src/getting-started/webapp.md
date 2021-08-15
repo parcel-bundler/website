@@ -1,146 +1,118 @@
 ---
 layout: layout.njk
+title: Building a web app with Parcel
 eleventyNavigation:
   key: getting-started-webapp
-  title: 🌐 Generic Webapp
+  title: 🌐 Web app
   order: 1
 ---
 
-## Installing the Parcel CLI
+## Installation
 
-The Parcel CLI is built into the main `parcel` package.
+Before we get started, you'll need to install Node and Yarn or npm, and create a directory for your project. Then, install Parcel into your app using Yarn:
 
-While you can install and run Parcel globally, it is much better to install it locally into your project as a dev dependency. To do this navigate to the project in the terminal and run the install command listed below.
-
-To install Parcel, run the following command:
-
-```bash
-yarn add -D parcel@next
+```shell
+yarn add --dev parcel
 ```
 
-Or when using NPM run:
+Or when using npm run:
 
-```bash
-npm install -D parcel@next
+```shell
+npm install --save-dev parcel
 ```
 
-## Setting up the Project
+## Project setup
 
-### Example Project
-
-To make running parcel easier, you should add some `scripts` to your `package.json`, these are a kind of shortcut to a usually longer command. Below we're gonna suggest some minimal Parcel commands to get you started.
-
-Common names for these scripts are `start` for starting the development environment and `build` for building a production version of your application. We will be using these naming conventions in the example below.
-
-To run the development environment in this example you can run `yarn run start` or `npm run start`.
-
-To create a production build in this example you can run `yarn run build` or `npm run build`.
+Now that Parcel is installed, let’s create some source files for our app. Parcel accepts any type of file as an entry point, but an HTML file is a good place to start. Parcel will follow all of your dependencies from there to build your app.
 
 {% sample %}
-{% samplefile "package.json" %}
-
-```json
-{
-  "name": "my-project",
-  "scripts": {
-    "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html"
-  },
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  },
-  "devDependencies": {
-    "parcel": "next"
-  }
-}
-```
-
-{% endsamplefile %}
 {% samplefile "src/index.html" %}
 
 ```html
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>My Parcel Project</title>
+    <meta charset="utf-8"/>
+    <title>My First Parcel App</title>
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    <h1>Hello, World!</h1>
   </body>
 </html>
 ```
 
 {% endsamplefile %}
-{% samplefile "src/index.tsx" %}
+{% endsample %}
 
-```tsx
-import React from "react";
-import { render } from "react-dom";
+Parcel has a development server built in, which will automatically rebuild your app as you make changes. To start it, run the `parcel` CLI pointing to your entry file:
 
-render(<h1>Hello World</h1>, document.getElementById("root"));
+```shell
+yarn parcel src/index.html
+```
+
+Now open [http://localhost:1234/](http://localhost:1234/) in your browser to see the HTML file you created above.
+
+Next, you can start adding dependencies to your HTML file, such as a JavaScript or CSS file. For example, you could create a `styles.css` file and reference it from your `index.html` file with a `<link>` tag, and an `app.js` file referenced with a `<script>` tag.
+
+{% sample %}
+{% samplefile "src/styles.css" %}
+
+```css
+h1 {
+  color: hotpink;
+  font-family: cursive;
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/app.js" %}
+
+```javascript
+console.log('Hello world!');
+```
+
+{% endsamplefile %}
+{% samplefile "src/index.html" %}
+
+```html/5-6
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>My First Parcel App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js" />
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-### Parcel commands explained
+As you make changes, you should see your app automatically update in the browser without even refreshing the page!
 
-In the above example you can see two commands, the development command `parcel serve ./src/index.html` and `parcel build ./src/index.html` for creating production builds.
+In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but Parcel also works with many common web frameworks and languages like [React](/recipes/react/) and [TypeScript](/languages/typescript/) out of the box. Check out the Recipes and Languages sections of the docs to learn more.
 
-Note that the commands in the example have `./src/index.html` as an entry point instead of a JavaScript file, which is different from other bundlers. Using a HTML file as the entrypoint makes Parcel easier to use as it will be able to detect dependencies directly from the HTML file and bundle all these detected dependencies into their respective bundles automatically without any configuration. Parcel can even do more advanced things automatically like differential serving and compiling inline scripts and styles without any configuration.
+## Package scripts
 
-#### Development command
-
-The development command `parcel serve ./src/index.html` starts up a development server for serving your JS, HTML, CSS files and any other assets of your project.
-
-Besides the hosting of these assets, we also start a [Hot Module Reload](/features/hmr/) server which is a websocket that listens to build events and reloads a script, style or your entire page depending on what changed (if you are using React, we even have [React Fast Refresh](</recipes/react/#hmr-(fast-refresh)>) built in). This is super useful as you no longer have to wait for the build to complete and manually refresh the page, although you can still do this if you want by adding the `--no-hmr` flag to the command.
-
-It also ensures all used libraries and frameworks are built in development mode, meaning you will get additional debug information if they provide any. Parcel sets the `process.env.NODE_ENV` variable to `development`, generates source maps and doesn't do any minification.
-
-#### Production build command
-
-The production build command `parcel build ./src/index.html` does exactly what it says it does, which is building your application.
-
-It creates production-ready bundles that contain very little to no unused and development code, ensuring your end-user gets fast load times. We achieve this by telling frameworks and libraries we're building for production by setting the `process.env.NODE_ENV` variable to `production`.
-
-We also run a minifier over most assets to ensure code is as minimal as it can and do [scope hoisting](/features/scope-hoisting/) on all the JavaScript bundles to ensure as little unused code as possible ends up in the JavaScript bundles.
-
-These bundles are also named in such a way that any non-html assets can be cached safely by a CDN for a very long time without any user ever having an incorrect or outdated bundle as the name includes a hash of the final bundle content.
-
-## Browserslist
-
-By default Parcel does not perform any code transpilation. This means that if you write in ES2020 syntax, that's what Parcel will output. You may wish to support older browsers that don't support these syntax features natively, however, which you can do by configuring a browserslist.
-
-### How to configure browserslist
-
-To configure a browserslist you can take a couple approaches, you can define it in your `package.json` file under the `browserslist` key or in a seperate configuration file: `browserslist` or `.browserslistrc`.
-
-You can find more information over in the [Browserslist repo](https://github.com/browserslist/browserslist#readme)
-
-In our configuration section, we explain how you can set [targets](/getting-started/configuration/#targets) for configuring Parcel.
+So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command. Finally, you can also declare your [entries](/features/targets/#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
 
 {% sample %}
-
 {% samplefile "package.json" %}
 
 ```json
 {
   "name": "my-project",
+  "source": "src/index.html",
   "scripts": {
-    "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html"
-  },
-  "browserslist": "> 0.2%",
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "start": "parcel",
+    "build": "parcel build",
   },
   "devDependencies": {
-    "parcel": "next"
+    "parcel": "latest"
   }
 }
 ```
@@ -148,6 +120,36 @@ In our configuration section, we explain how you can set [targets](/getting-star
 {% endsamplefile %}
 {% endsample %}
 
-## Differential Serving
+Now you can run `yarn build` to build your project for production and `yarn start` to start the development server.
 
-Parcel also supports differential serving, which means you can serve different bundles to modern browsers and legacy browsers. This results in faster load time for most users as the bundle size will be a lot smaller. Parcel will automatically generate a `<script nomodule>` tag when you use a `<script type="module">` in your HTML, and specify a browserslist that includes targets that do not support ES modules natively. This way, modern browsers will download the smaller `type="module"` version, and legacy browsers will download the `nomodule` version. If all of your browser targets support ES modules natively, or you do not specify a browserslist, then no `nomodule` version will be inserted.
+## Declaring browser targets
+
+By default Parcel does not perform any code transpilation. This means that if you write your code using modern language features, that’s what Parcel will output. You can declare your app’s supported browsers using the `browserslist` field. When this field is declared, Parcel will transpile your code accordingly to ensure compatibility with your supported browsers.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json/3
+{
+  "name": "my-project",
+  "source": "src/index.html",
+  "browserslist": ">= 0.25%",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+  },
+  "devDependencies": {
+    "parcel": "latest"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+You can learn more about targets, as well as Parcel’s automatic support for differential bundling on the [Targets](/features/targets/) page.
+
+## Next steps
+
+Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [development](/features/development/) and [production](/features/production/), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.
+
