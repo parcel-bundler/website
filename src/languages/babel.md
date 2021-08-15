@@ -8,7 +8,23 @@ eleventyNavigation:
 
 ## Dependencies
 
-TODO: require, import, require.resolve, import(), navigator.serviceWorker, new Worker, new SharedWorker, preloading
+To retrieve the final (and hashed) URL of assets (images, videos, ...), you can either use `new URL("file.mp4", import.meta.url)` (which is the recommended way as it also works in modern browsers without bundling and because it's also picked up by Webpack):
+
+{% sample %}
+{% samplefile %}
+
+```js/1
+var img = document.createElement("img");
+img.src = new URL("file.mp4", import.meta.url);
+document.body.appendChild(p);
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+or using `import src from "url:./file.mp4";` (though `url:` is optional for the popular image formats).
+
+Parcel also recognizes `require`, `require.resolve`, `import`, `import()`, `navigator.serviceWorker`, `new Worker` and `new SharedWorker`.
 
 ## Transpilation
 
@@ -24,6 +40,36 @@ To not opt out of caching, you should:
 
 - avoid Javascript config files (`.babelrc.js` and `babel.config.js`). Use the JSON versions instead (`.babelrc` or `babel.config.json`).
 - avoid relative/local Babel plugins (this includes using a Babel plugin from the same monorepo).
+
+### Adding a Babel plugin while still using swc for transpilation
+
+In the most basic case, you can create a Babel config that only includes that Babel plugin (e.g. some CSS-in-JS plugin). Note that this will still apply your browserslist config because swc runs after Babel:
+
+{% sample %}
+{% samplefile ".babelrc" %}
+
+```json
+{
+  "plugins": ["babel-plugin-css-in-js"]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+If you're using TypeScript or JSX however, you need to add the corresponding syntax plugins so that Babel can correctly parse your code (this will still transform JSX via swc).
+
+{% sample %}
+{% samplefile ".babelrc" %}
+
+```json
+{
+  "plugins": ["@babel/plugin-syntax-jsx", "babel-plugin-css-in-js"]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Extending the default Babel config
 

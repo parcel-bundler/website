@@ -43,7 +43,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L456"><i>parcel/packages/core/types/index.js:456</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L465"><i>parcel/packages/core/types/index.js:465</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.</p>
 
@@ -67,7 +67,16 @@
   with the current bundle.</li>
 <li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
 </ul>
-<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +needsStableName?: boolean,</code></pre>
+<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +bundleBehavior?: <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls the behavior of the bundle the resolved asset is placed into. Use in combination with <code>priority</code>
+to determine when the bundle is loaded.</p>
+<ul>
+<li>inline: The resolved asset will be placed into a new inline bundle. Inline bundles are not written
+  to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The resolved asset will be isolated from its parents in a separate bundle.
+  Shared assets will be duplicated.</li>
+</ul>
+</div><pre class="interface"><code>  +needsStableName?: boolean,</code></pre>
 <div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
 of that bundle. <code>needsStableName</code> indicates that the name should be stable over time, even when the
 content of the bundle changes. This is useful for entries that a user would manually enter the URL
@@ -90,6 +99,7 @@ By default, this is the path of the source file where the dependency was specifi
     local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
     isWeak: boolean,
+    meta?: <a href="/plugin-system/api/#Meta">Meta</a>,
   |}&gt;,</code></pre>
 <div class="inline-method"><p>The symbols within the resolved module that the source file depends on.</p>
 </div><pre class="interface"><code>|}</code></pre>
@@ -99,7 +109,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L513"><i>parcel/packages/core/types/index.js:513</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L531"><i>parcel/packages/core/types/index.js:531</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -126,7 +136,16 @@ By default, this is the path of the source file where the dependency was specifi
   with the current bundle.</li>
 <li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
 </ul>
-<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +needsStableName: boolean,</code></pre>
+<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  +bundleBehavior: ?<a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a>,</code></pre>
+<div class="inline-method"><p>Controls the behavior of the bundle the resolved asset is placed into. Use in combination with <code>priority</code>
+to determine when the bundle is loaded.</p>
+<ul>
+<li>inline: The resolved asset will be placed into a new inline bundle. Inline bundles are not written
+  to a separate file, but embedded into the parent bundle.</li>
+<li>isolated: The resolved asset will be isolated from its parents in a separate bundle.
+  Shared assets will be duplicated.</li>
+</ul>
+</div><pre class="interface"><code>  +needsStableName: boolean,</code></pre>
 <div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
 of that bundle. <code>needsStableName</code> indicates that the name should be stable over time, even when the
 content of the bundle changes. This is useful for entries that a user would manually enter the URL
@@ -163,7 +182,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L583"><i>parcel/packages/core/types/index.js:583</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L610"><i>parcel/packages/core/types/index.js:610</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -176,7 +195,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L596"><i>parcel/packages/core/types/index.js:596</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L623"><i>parcel/packages/core/types/index.js:623</i></a>
 </h4>
 <p>An asset represents a file or part of a file. It may represent any data type, including source code,
 binary data, etc. Assets may exist in the file system or may be virtual.
@@ -206,7 +225,8 @@ This indicates that transformation using the project&#39;s configuration should 
 <ul>
 <li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
   to a separate file, but embedded into the parent bundle.</li>
-<li>isolated: The asset will be placed into a separate bundle.</li>
+<li>isolated: The asset will be isolated from its parents in a separate bundle. Shared assets
+  will be duplicated.</li>
 </ul>
 </div><pre class="interface"><code>  +isBundleSplittable: boolean,</code></pre>
 <div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
@@ -245,7 +265,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L668"><i>parcel/packages/core/types/index.js:668</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L696"><i>parcel/packages/core/types/index.js:696</i></a>
 </h4>
 <p>A mutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available during transformation.</p>
 
@@ -258,7 +278,8 @@ but it may be changed during transformation.</p>
 <ul>
 <li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
   to a separate file, but embedded into the parent bundle.</li>
-<li>isolated: The asset will be placed into a separate bundle.</li>
+<li>isolated: The asset will be isolated from its parents in a separate bundle. Shared assets
+  will be duplicated.</li>
 </ul>
 </div><pre class="interface"><code>  isBundleSplittable: boolean,</code></pre>
 <div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
@@ -299,7 +320,7 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L727"><i>parcel/packages/core/types/index.js:727</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L756"><i>parcel/packages/core/types/index.js:756</i></a>
 </h4>
 <p>An immutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available after transformation.</p>
 
@@ -313,7 +334,7 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L747"><i>parcel/packages/core/types/index.js:747</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L780"><i>parcel/packages/core/types/index.js:780</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -365,7 +386,7 @@ of the passed searchPath.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L818"><i>parcel/packages/core/types/index.js:818</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L851"><i>parcel/packages/core/types/index.js:851</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -378,7 +399,7 @@ of the passed searchPath.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L832"><i>parcel/packages/core/types/index.js:832</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L865"><i>parcel/packages/core/types/index.js:865</i></a>
 </h4>
 <p>Transformers can return multiple result objects to create new assets.
 For example, a file may contain multiple parts of different types,
@@ -403,7 +424,8 @@ which should be processed by their respective transformation pipelines.
 <ul>
 <li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
   to a separate file, but embedded into the parent bundle.</li>
-<li>isolated: The asset will be placed into a separate bundle.</li>
+<li>isolated: The asset will be isolated from its parents in a separate bundle. Shared assets
+  will be duplicated.</li>
 </ul>
 </div><pre class="interface"><code>  +isBundleSplittable?: boolean,</code></pre>
 <div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
@@ -431,7 +453,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L881"><i>parcel/packages/core/types/index.js:881</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L945"><i>parcel/packages/core/types/index.js:945</i></a>
 </h4>
 
 
@@ -445,7 +467,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e66dc12f0257faa4395f903b67d03b627dc62016/packages/core/types/index.js#L948"><i>parcel/packages/core/types/index.js:948</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/c444af0d739438be7c73e01b0f2a6b4ff10a0903/packages/core/types/index.js#L1012"><i>parcel/packages/core/types/index.js:1012</i></a>
 </h4>
 <p>The methods for a transformer plugin.</p>
 
