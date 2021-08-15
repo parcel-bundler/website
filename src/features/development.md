@@ -129,7 +129,7 @@ This example would cause `http://localhost:1234/api/endpoint` to be proxied to `
 
 #### `.proxyrc.js`
 
-For more complex configurations, a `.proxyrc.js` file allows you to attach any [connect](https://github.com/senchalabs/connect)-compatible middleware. This example has the same behaviour as the `.proxyrc` version above.
+For more complex configurations, a `.proxyrc.js` file allows you to attach any [connect](https://github.com/senchalabs/connect)-compatible middleware. First, make sure you install `http-proxy-middleware` into your project. This example has the same behaviour as the `.proxyrc` version above.
 
 {% sample %}
 {% samplefile ".proxyrc.js" %}

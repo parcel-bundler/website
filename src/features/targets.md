@@ -126,8 +126,10 @@ navigator.serviceWorker.register(new URL('service-worker.js', import.meta.url));
 <script type="module" src="app.js"></script>
 ```
 
+is compiled to:
+
 ```html
-​<script type="module" src="app.c9a6fe.js"></script>
+<script type="module" src="app.c9a6fe.js"></script>
 <script nomodule src="app.f7d631.js"></script>
 ```
 

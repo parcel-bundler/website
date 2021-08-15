@@ -149,7 +149,7 @@ See the [Image transformer](/recipes/image/) docs for more details on images. Yo
 
 {% note %}
 
-**Note**: query parameters are not supported for CommonJS specifiers (created by the `require` function).
+**Note**: Query parameters are not supported for CommonJS specifiers (created by the `require` function).
 
 {% endnote %}
 

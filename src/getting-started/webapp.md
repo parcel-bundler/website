@@ -133,7 +133,7 @@ By default Parcel does not perform any code transpilation. This means that if yo
 {
   "name": "my-project",
   "source": "src/index.html",
-  "browserslist": ">= 0.25%",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
