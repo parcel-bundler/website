@@ -225,9 +225,9 @@ class MyTest extends HTMLElement {
 
     let shadow = this.attachShadow({ mode: "open" });
 
-    let style = document.createElement("style");
-    style.textContent = style;
-    shadow.appendChild(style);
+    let styleSheet = document.createElement("style");
+    styleSheet.textContent = style;
+    shadow.appendChild(styleSheet);
 
     let info = document.createElement("span");
     info.textContent = this.getAttribute("label");
