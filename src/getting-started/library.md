@@ -127,7 +127,7 @@ Parcel also supports building libraries written in TypeScript. The `source` fiel
 {
   "name": "my-library",
   "version": "1.0.0",
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "types": "dist/types.d.ts",
