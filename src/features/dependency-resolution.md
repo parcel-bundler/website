@@ -415,13 +415,56 @@ For example, to map tilde paths to the root directory, this configuration could 
 {% endsamplefile %}
 {% endsample %}
 
+Support for [URL schemes](#url-schemes) can also be enabled by creating an [ambient module](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules) declaration in your project. For example, to map dependencies loaded with the `bundle-text:` scheme to a string, you could use the following declaration. This can be placed in a file such as `parcel.d.ts` anywhere in your project.
+
+{% sample %}
+{% samplefile "parcel.d.ts" %}
+
+```typescript
+declare module 'bundle-text:*' {
+  const value: string;
+  export default value;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ### Flow
 
 Flow needs to be configured to support absolute and tilde specifiers, and aliases. This can be done using the [module.name_mapper](https://flow.org/en/docs/config/options/#toc-module-name-mapper-regex-string) feature in your `.flowconfig`.
 
 For example, to map absolute specifiers to resolve from the project root, this configuration could be used:
 
+{% sample %}
+{% samplefile ".flowconfig" %}
+
 ```
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/\1'
 ```
+
+{% endsamplefile %}
+{% endsample %}
+
+To enable [URL schemes](#url-schemes), you'll need to create a mapping to a `.flow` [declaration file](https://flow.org/en/docs/declarations/) which exports the expected type. For example, to map dependencies loaded with the `bundle-text:` scheme to a string, you could create a file called `bundle-text.js.flow` and map all dependencies referencing the scheme to it.
+
+{% sample %}
+{% samplefile "bundle-text.js.flow" %}
+
+```javascript
+// @flow
+declare var value: string;
+export default value;
+```
+
+{% endsamplefile %}
+{% samplefile ".flowconfig" %}
+
+```
+[options]
+module.name_mapper='^bundle-text:.*$' -> '<PROJECT_ROOT>/bundle-text.js'
+```
+
+{% endsamplefile %}
+{% endsample %}

@@ -117,3 +117,7 @@ const sourceCode = fs.readFileSync(__dirname + '/foo.js', 'utf8');
 ```
 
 In the above example, the `sourceCode` variable would be the contents of `foo.js` *without* being compiled, i.e. the original source code rather than the bundled result.
+
+## Integration with other tools
+
+Since bundle inlining is a Parcel-specific feature, you’ll need to configure other tools such as TypeScript or Flow to support it. See the [Configuring other tools](/features/dependency-resolution/#configuring-other-tools) section in the dependency resolution docs for details on how to do this.
