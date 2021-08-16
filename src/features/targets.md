@@ -94,7 +94,7 @@ For browser targets, the `browserslist` field in package.json can be used to spe
 
 ```json
 {
-  "browserslist": ">= 0.25%"
+  "browserslist": "> 0.5%, last 2 versions, not dead"
 }
 ```
 
@@ -153,7 +153,7 @@ Targets are configured using the `targets` field in package.json. Each target ha
     },
     "legacy": {
       "engines": {
-        "browsers": ">= 0.25%"
+        "browsers": "> 0.5%, last 2 versions, not dead"
       }
     }
   }
@@ -174,7 +174,7 @@ When multiple targets are specified, the outputs will be written to `dist/${targ
     },
     "legacy": {
       "engines": {
-        "browsers": ">= 0.25%"
+        "browsers": "> 0.5%, last 2 versions, not dead"
       }
     }
   }
