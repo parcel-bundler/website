@@ -2,14 +2,10 @@
 layout: layout.njk
 eleventyNavigation:
   key: configuration-plugin-configuration
-  title: 🔌 Plugin Configuration
-  order: 2
+  title: 🔌 Parcel configuration
+  order: 1
 summary: How to use plugins and create named pipelines
 ---
-
-{% note %}
-Contrary to what this page's title might suggest, this is not about configuring individual plugins, but how to tell Parcel which plugin is responsible for (among others) which file type(s).
-{% endnote %}
 
 Parcel is designed to be very modular, `@parcel/core` itself is (almost) not specific to bundling Javascript or Webpages. To actually specify the behaviour, there are different plugins (see [Plugin System](/plugin-system/overview)).
 
