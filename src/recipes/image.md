@@ -49,9 +49,9 @@ An HTML example:
   </head>
   <body>
     <picture>
-      <source src="url:./image.jpeg?as=webp&width=800" type="image/webp" />
-      <source src="url:./image.jpeg?width=800" type="image/jpeg" />
-      <img src="url:./image.jpeg?width=200" alt="test image" />
+      <source src="./image.jpeg?as=webp&width=800" type="image/webp" />
+      <source src="./image.jpeg?width=800" type="image/jpeg" />
+      <img src="./image.jpeg?width=200" alt="test image" />
     </picture>
   </body>
 </html>
