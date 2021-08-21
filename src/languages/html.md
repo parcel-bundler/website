@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: languages-html
   title: <img src="/assets/lang-icons/html5.svg" alt=""/> HTML (PostHTML)
-  order: 0
+  order: 1
 ---
 
 HTML assets are often the entry file that you provide to Parcel, but can also be referenced by JavaScript files, e.g. to provide links to other pages.
