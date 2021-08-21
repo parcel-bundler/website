@@ -390,7 +390,7 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [Terser](https://github.com/terser/terser) to perform minification. To configure Terser, you can create a `.terserrc` file in the your project root directory. See the [Terser docs](https://github.com/terser/terser#minify-options) for information about the available options.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [Terser](https://github.com/terser/terser) to perform minification. To configure Terser, you can create a `.terserrc` file in your project root directory. See the [Terser docs](https://github.com/terser/terser#minify-options) for information about the available options.
 
 ### Tree shaking
 
