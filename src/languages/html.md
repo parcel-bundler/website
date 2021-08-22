@@ -229,7 +229,8 @@ When referencing a script or style, sometimes Parcel will need to insert another
 ```javascript
 import './app.css';
 
-let app = document.createElement('app');
+let app = document.createElement('div');
+app.className = 'app';
 app.textContent = 'My Parcel app!';
 root.appendChild(app);
 ```
