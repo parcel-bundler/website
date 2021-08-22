@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Compared to Webpack, Parcel's paradigm is to use your HTML file as the entry point, not merely the main script:
+Compared to webpack, Parcel's paradigm is to use your HTML file as the entry point, not merely the main script:
 
 {% sample "parcel index.html" %}
 {% samplefile "index.html" %}

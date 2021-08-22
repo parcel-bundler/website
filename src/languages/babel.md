@@ -8,7 +8,7 @@ eleventyNavigation:
 
 ## Dependencies
 
-To retrieve the final (and hashed) URL of assets (images, videos, ...), you can either use `new URL("file.mp4", import.meta.url)` (which is the recommended way as it also works in modern browsers without bundling and because it's also picked up by Webpack):
+To retrieve the final (and hashed) URL of assets (images, videos, ...), you can either use `new URL("file.mp4", import.meta.url)` (which is the recommended way as it also works in modern browsers without bundling and because it's also picked up by webpack):
 
 {% sample %}
 {% samplefile %}

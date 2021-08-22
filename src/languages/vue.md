@@ -54,7 +54,7 @@ app.mount("#app");
 
 ## HMR
 
-Parcel uses the same HMR injection as the official [vue-loader](https://github.com/vuejs/vue-loader) for Webpack, so you'll have a fast, reactive development experience.
+Parcel uses the same HMR injection as the official [vue-loader](https://github.com/vuejs/vue-loader) for webpack, so you'll have a fast, reactive development experience.
 
 ## Vue 3 Features
 
