@@ -14,7 +14,7 @@ Compared to webpack, Parcel's paradigm is to use your HTML file as the entry poi
 ```html
 <!DOCTYPE html>
 <div id="app"></div>
-<script src="./index.js"></script>
+<script src="./index.js" type="module"></script>
 ```
 
 {% endsamplefile %}
@@ -56,7 +56,7 @@ By specifying the appropriate plugin in your .parcelrc, all imports to SVG files
 ```html
 <!DOCTYPE html>
 <div id="app"></div>
-<script src="./index.js"></script>
+<script src="./index.js" type"module"></script>
 ```
 
 {% endsamplefile %}
