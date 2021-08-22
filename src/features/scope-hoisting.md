@@ -102,7 +102,7 @@ console.log(other.x);
 
 ## Motivation and Advantages of Scope Hoisting
 
-For a long time, many bundlers (like Webpack and Browserify, but not Rollup) achieved the actual bundling by wrapping all assets in a function, creating a map of all included assets and providing a CommonJS runtime. A (very) simplified example of that:
+For a long time, many bundlers (like webpack and Browserify, but not Rollup) achieved the actual bundling by wrapping all assets in a function, creating a map of all included assets and providing a CommonJS runtime. A (very) simplified example of that:
 
 ```js
 (function (modulesMap, entry) {
