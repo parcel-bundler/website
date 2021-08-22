@@ -46,7 +46,7 @@ export function multiply(a, b) {
 
 To learn more about ES modules, see the documentation on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
-## CommonJS
+### CommonJS
 
 CommonJS is a legacy module system supported in Node, and widely used by libraries on npm. If you’re writing new code, you should generally prefer ES module syntax as described above. CommonJS provides a `require` function, which can be used to access the `exports` object exposed by another file.
 

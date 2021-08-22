@@ -137,7 +137,7 @@ By default, CSS modules are only enabled for files ending with `.module.css`. Al
 Install plugins in your app:
 
 ```shell
-yarn add autoprefixer
+yarn add autoprefixer --dev
 ```
 
 Then, create a `.postcssrc`:
