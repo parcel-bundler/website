@@ -57,7 +57,7 @@ Referenced files should be [relative](/features/dependency-resolution/#relative-
 
 ```css
 .logo {
-  background: url(data-url:./logo.png);
+  background: url('data-url:./logo.png');
 }
 ```
 

@@ -240,7 +240,7 @@ Parcel supports JSX out of the box. JSX is automatically enabled in a `.jsx` or 
 - `nervjs`
 - `hyperapp`
 
-The correct JSX pragma is also automatically inferred based on the library you use. If none of the above libraries are installed, then the pragma defaults to `React.createElement`. Parcel also automatically detects the version of React or Preact that is installed, and enables the [modern JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) if supported.
+The correct JSX pragma is also automatically inferred based on the library you use. Parcel also automatically detects the version of React or Preact that is installed, and enables the [modern JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) if supported.
 
 JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json` file. This allows overriding the runtime, pragma, and other options. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for more information.
 
@@ -263,7 +263,7 @@ JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json
 
 [Flow](https://flow.org) support is automatically enabled when `flow-bin` is listed as a dependency in your project's root package.json. You must also use a `@flow` directive in the files you wish to be compiled.
 
-Parcel currently uses Babel to strip flow types. If you have a custom Babel config, you will need to add the Flow plugin yourself. See Babel for more details.
+Parcel currently uses Babel to strip flow types. If you have a custom Babel config, you will need to add the Flow plugin yourself. See [Babel](#babel) for more details.
 
 ### TypeScript
 
