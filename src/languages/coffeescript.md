@@ -8,7 +8,7 @@ eleventyNavigation:
 
 [CoffeeScript](https://coffeescript.org) is a language that transpiles to JavaScript, which allows you to use a shorter syntax and other features like [the existential operator](https://coffeescript.org/#existential-operator), [shorter array-splicing syntax](https://coffeescript.org/#slices), [block regular expressions](https://coffeescript.org/#regexes) and more.
 
-Parcel supports CoffeeScript automatically using the `@parcel/transformer-coffeescript` plugin. When a `.coffee` is detected, it will be installed into your project automatically.
+Parcel supports CoffeeScript automatically using the `@parcel/transformer-coffeescript` plugin. When a `.coffee` file is detected, it will be installed into your project automatically.
 
 CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](/languages/javascript/).
 
