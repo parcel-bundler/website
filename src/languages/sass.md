@@ -6,32 +6,38 @@ eleventyNavigation:
   order: 6
 ---
 
-Parcel supports [sass](https://sass-lang.com/) files out of the box by utilizing the `@parcel/transformer-sass` plugin, under the hood this plugin uses the `sass` npm package which is the JavaScript version of `dart-sass`.
+Parcel supports [Sass](https://sass-lang.com/) files automatically using the `@parcel/transformer-sass` plugin. When a `.sass` or `.scss` file is detected, it will be installed into your project automatically.
 
-In the default Parcel config, the compiled Sass/SCSS files are also processed by [PostCSS](/languages/postcss) (meaning PostCSS plugins are executed and CSS modules just work: `import * as styles from "./style.module.scss";`).
+Compiled Sass files are also processed the same way as [CSS](/languages/css/), which means [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.scss` extension.
 
-## Example Usage
+## Example usage
 
-Importing Sass/SCSS in JavaScript/TypeScript
-
-```js
-import "./custom.scss";
-```
-
-You can also directly include the SCSS file in a HTML file.
+Referencing an SCSS file in an HTML file:
 
 ```html
-<link rel="stylesheet" href="./style.scss" />
+<link rel="stylesheet" href="style.scss" />
 ```
 
-Directly compile Sass/SCSS using the Parcel CLI
+Importing a Sass/SCSS file as a CSS module in JavaScript or TypeScript:
+
+```js
+import * as classes './style.module.scss';
+
+document.body.className = classes.body;
+```
+
+Directly compiling Sass/SCSS using the Parcel CLI:
 
 ```
-parcel build ./style.scss
+parcel build style.scss
 ```
 
 ## Configuration
 
-To configure Sass we support the following configuration files: `.sassrc` and `.sassrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
+To configure Sass, create a `.sassrc` or `.sassrc.json` file. For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api#options)
 
-For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api#options)
+{% warning %}
+
+**Note**: `.sassrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.sassrc.json`) instead.
+
+{% endwarning %}

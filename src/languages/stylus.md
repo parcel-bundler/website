@@ -6,32 +6,38 @@ eleventyNavigation:
   order: 7
 ---
 
-Parcel supports [stylus](https://stylus-lang.com/) files out of the box by utilizing the `@parcel/transformer-stylus` plugin, under the hood this plugin uses the `stylus` npm package.
+Parcel supports [Stylus](https://stylus-lang.com/) files automatically using the `@parcel/transformer-stylus` plugin. When a `.styl` file is detected, it will be installed into your project automatically.
 
-In the default Parcel config, the compiled stylus files are also processed by [PostCSS](/languages/postcss) (meaning PostCSS plugins are executed and CSS modules just work: `import * as styles from "./style.module.styl";`).
+Compiled Stylus files are also processed the same way as [CSS](/languages/css/), which means [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.styl` extension.
 
-## Example Usage
+## Example usage
 
-Importing stylus in JavaScript/TypeScript
-
-```js
-import "./custom.styl";
-```
-
-You can also directly include the stylus file in a HTML file.
+Referencing a Stylus file in an HTML file:
 
 ```html
-<link rel="stylesheet" href="./style.styl" />
+<link rel="stylesheet" href="style.styl" />
 ```
 
-Directly compile stylus using the Parcel CLI
+Importing a Stylus file as a CSS module in JavaScript or TypeScript:
+
+```js
+import * as classes './style.module.styl';
+
+document.body.className = classes.body;
+```
+
+Directly compiling Stylus using the Parcel CLI
 
 ```
-parcel build ./style.styl
+parcel build style.styl
 ```
 
 ## Configuration
 
-To configure stylus we support the following configuration files: `.stylusrc` and `.stylusrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
+To configure Stylus, create a `.stylusrc` file. To see the available options to configure stylus see the official [Stylus documentation](https://stylus-lang.com/docs/js.html).
 
-To see the available options to configure stylus see the official [stylus documentation](https://stylus-lang.com/docs/js.html).
+{% warning %}
+
+**Note**: `.stylusrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.stylusrc`) instead.
+
+{% endwarning %}
