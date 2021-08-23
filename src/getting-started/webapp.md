@@ -109,7 +109,7 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "latest"
@@ -136,7 +136,7 @@ By default Parcel does not perform any code transpilation. This means that if yo
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "latest"
