@@ -6,32 +6,38 @@ eleventyNavigation:
   order: 8
 ---
 
-Parcel supports [Less](https://lesscss.org/) files out of the box by utilizing the `@parcel/transformer-less` plugin, under the hood this plugin uses the `less` npm package.
+Parcel supports [Less](https://lesscss.org/) files automatically using the `@parcel/transformer-less` plugin. When a `.less` file is detected, it will be installed into your project automatically.
 
-In the default Parcel config, the compiled Less files are also processed by [PostCSS](/languages/postcss) (meaning PostCSS plugins are executed and CSS modules just work: `import * as styles from "./style.module.less";`).
+Compiled Less files are also processed the same way as [CSS](/languages/css/), which means [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.less` extension.
 
-## Example Usage
+## Example usage
 
-Importing Less in JavaScript/TypeScript
-
-```js
-import "./custom.less";
-```
-
-You can also directly include the Less file in a HTML file.
+Referencing a Less file in an HTML file:
 
 ```html
-<link rel="stylesheet" href="./style.less" />
+<link rel="stylesheet" href="style.less" />
 ```
 
-Directly compile Less using the Parcel CLI
+Importing a Less file as a CSS module in JavaScript or TypeScript:
+
+```js
+import * as classes './style.module.less';
+
+document.body.className = classes.body;
+```
+
+Directly compiling Less using the Parcel CLI
 
 ```
-parcel build ./style.less
+parcel build style.less
 ```
 
 ## Configuration
 
-To configure Less we support the following configuration files: `.lessrc` and `.lessrc.js` (we highly recommend to use the JSON version whenever possible for the best performance/cache experience)
+To configure Sass, create a `.lessrc` file. To see the available options to configure Less see the official [Less documentation](http://lesscss.org/usage/#less-options).
 
-To see the available options to configure Less see the official [Less documentation](http://lesscss.org/usage/#less-options).
+{% warning %}
+
+**Note**: `.lessrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.lessrc`) instead.
+
+{% endwarning %}
