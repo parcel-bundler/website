@@ -34,7 +34,7 @@ parcel build style.less
 
 ## Configuration
 
-To configure Sass, create a `.lessrc` file. To see the available options to configure Less see the official [Less documentation](http://lesscss.org/usage/#less-options).
+To configure Less, create a `.lessrc` file. To see the available options to configure Less see the official [Less documentation](http://lesscss.org/usage/#less-options).
 
 {% warning %}
 
