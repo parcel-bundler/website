@@ -181,7 +181,13 @@ navigator.serviceWorker.register(
 
 {% endnote %}
 
-Service workers are commonly used for pre-caching static assets like JavaScript, CSS, and images. `@parcel/runtime-service-worker` can be used to access a list of bundle URLs from within your service worker. It also provides a `version` hash, which changes every time the manifest does. You can use this to generate a cache name.
+Service workers are commonly used for pre-caching static assets like JavaScript, CSS, and images. `@parcel/service-worker` can be used to access a list of bundle URLs from within your service worker. It also provides a `version` hash, which changes every time the manifest does. You can use this to generate a cache name.
+
+First, install it as a dependency into your project.
+
+```shell
+yarn add @parcel/service-worker
+```
 
 This example shows how you could pre-cache all bundles when the service worker is installed, and clean up old versions when it is activated.
 
@@ -189,7 +195,7 @@ This example shows how you could pre-cache all bundles when the service worker i
 {% samplefile "service-worker.js" %}
 
 ```javascript
-import {manifest, version} from '@parcel/runtime-service-worker';
+import {manifest, version} from '@parcel/service-worker';
 
 async function install() {
   const cache = await caches.open(version);
