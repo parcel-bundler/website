@@ -65,6 +65,53 @@ Resizing and converting images occurs both in development and production mode, s
 
 Parcel automatically produces a `<script type="module">` with modern JavaScript syntax, as well as a fallback `<script nomodule>` for older browsers when necessary. This reduces bundle sizes for a majority of users by avoiding transpilation of features like classes, async/await, and more. See [Differential bundling](/features/targets/#differential-bundling) in the Targets documentation for more details.
 
+### Compression
+
+
+Parcel supports compressing bundles using [Gzip](https://en.wikipedia.org/wiki/Gzip) and [Brotli](https://en.wikipedia.org/wiki/Brotli). While many servers compress data on the fly, others require you to upload pre-compressed payloads ahead of time. This may also allow for better compression, which would be too slow to do on every network request.
+
+Because not everyone needs it, compression is not enabled by default. To enable it, add `@parcel/compressor-gzip` and/or `@parcel/compressor-brotli` to your `.parcelrc`.
+
+```shell
+yarn add @parcel/compressor-gzip @parcel/compressor-brotli --dev
+```
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "compressors": {
+    "*.{html,css,js,svg,map}": [
+      "...",
+      "@parcel/compressor-gzip",
+      "@parcel/compressor-brotli"
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Now you’ll get a `.gz` and a `.br` file along side the original uncompressed bundle. If you have more text-based file types than listed in the above example, you'll need to extend the glob accordingly.
+
+If you don’t need the uncompressed bundle, you can also remove the `"..."` from the above example to *only* output compressed files. For example, to only output a `.gz` file, you could use the following config:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "compressors": {
+    "*.{html,css,js,svg,map}": ["@parcel/compressor-gzip"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ## Cache optimization
 
 Parcel includes several optimizations related to browser and CDN caching, including content hashing, bundle manifests, and shared bundles.
