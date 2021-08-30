@@ -61,6 +61,8 @@ Parcel supports resizing, converting, and optimizing images. You can use query p
 
 Resizing and converting images occurs both in development and production mode, so you can test with the correct image dimentions and formats as well. See the [Image transformer](/recipes/image/) docs for more details.
 
+Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
+
 ### Differential bundling
 
 Parcel automatically produces a `<script type="module">` with modern JavaScript syntax, as well as a fallback `<script nomodule>` for older browsers when necessary. This reduces bundle sizes for a majority of users by avoiding transpilation of features like classes, async/await, and more. See [Differential bundling](/features/targets/#differential-bundling) in the Targets documentation for more details.
