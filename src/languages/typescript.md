@@ -11,7 +11,7 @@ eleventyNavigation:
 
 ## Transpilation
 
-Parcel automatically transpiles TypeScript whenever you use a `.ts` or `.tsx` file. In addition to stripping the types to convert TypeScript to JavaScript, parcel also compiles modern language features like classes and async await as necessary, [according to your browser targets](/languages/javascript/#browser-compatibility). It also transpiles [JSX](/languages/javascript/#jsx) automatically. See the [Transpilation](/languages/javascript/#transpilation) section of the JavaScript docs for more details.
+Parcel automatically transpiles TypeScript whenever you use a `.ts` or `.tsx` file. In addition to stripping the types to convert TypeScript to JavaScript, Parcel also compiles modern language features like classes and async await as necessary, [according to your browser targets](/languages/javascript/#browser-compatibility). It also transpiles [JSX](/languages/javascript/#jsx) automatically. See the [Transpilation](/languages/javascript/#transpilation) section of the JavaScript docs for more details.
 
 A `tsconfig.json` file can be used to configure some aspects of the transpilation. Currently, JSX options are supported, as well as the `experimentalDecorators` option. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for details.
 
