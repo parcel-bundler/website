@@ -23,15 +23,15 @@ Most Parcel apps start with an HTML file. Parcel follows the dependencies (such 
 {% samplefile "src/index.html" %}
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="utf-8"/>
-  <title>My Parcel App</title>
+    <meta charset="utf-8" />
+    <title>My Parcel App</title>
   </head>
   <body>
-  <div id="app"></div>
-  <script type="module" src="index.js"></script>
+    <div id="app"></div>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
 ```
@@ -40,10 +40,10 @@ Most Parcel apps start with an HTML file. Parcel follows the dependencies (such 
 {% samplefile "src/index.js" %}
 
 ```jsx
-import ReactDOM from 'react-dom';
-import App from './App';
+import ReactDOM from "react-dom";
+import App from "./App";
 
-const app = document.getElementById('app');
+const app = document.getElementById("app");
 ReactDOM.render(<App />, app);
 ```
 
@@ -52,9 +52,7 @@ ReactDOM.render(<App />, app);
 
 ```jsx
 export function App() {
-  return (
-    <h1>Hello world!</h1>
-  );
+  return <h1>Hello world!</h1>;
 }
 ```
 
@@ -229,17 +227,18 @@ Now, you can render elements with CSS-in-JS:
 {% samplefile "Button.js" %}
 
 ```jsx
-import {css} from '@emotion/react'
+import { css } from "@emotion/react";
 
 export function Button({ children }) {
   return (
-    <button 
+    <button
       css={css`
         background: hotpink;
         &:hover {
           background: purple;
         }
-      `}>
+      `}
+    >
       {children}
     </button>
   );
@@ -278,12 +277,10 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 
 ```javascript
 module.exports = {
-  mode: 'jit',
-  purge: [
-  './src/*.{html,js}'
-  ],
+  mode: "jit",
+  purge: ["./src/*.{html,js}"],
   theme: {
-  extend: {},
+    extend: {},
   },
   variants: {},
   plugins: [],
