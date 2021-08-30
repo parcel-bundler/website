@@ -1,41 +1,62 @@
 ---
 layout: layout.njk
+title: Image
 eleventyNavigation:
   key: recipes-image
   title: <img src="/assets/lang-icons/image.svg" alt=""/> Image
   order: 2
 ---
 
-Image assets can be imported and processed like any other asset in Parcel. As with any other asset you can import this asset from any other asset, so you can import images from html, css, js, ts, ...
+Parcel has built in support for resizing, converting, and optimizing images. Images can be referenced from HTML, CSS, JavaScript, or any other file type.
 
-## Parcel image transformer
+## Resizing and converting images
 
-Using the Parcel transformer `@parcel/transformer-image` you can resize, change the format and quality of an image. To do this we added the possibility to define query parameters.
+Parcel includes an image transformer out of the box, which allows you to resize images, convert them to a different format, or adjust the quality to reduce file size. This can be done using query parameters when referencing the image.
 
-To do these image transformations we rely on the image transformation library [Sharp](https://sharp.pixelplumbing.com/), therefore we require you to install it locally using `npm install sharp -D` or `yarn add sharp -D`.
+The image transformer relies on the [Sharp](https://sharp.pixelplumbing.com/) image transformation library, which will be automatically installed as a dev dependency into your project when needed.
 
 The query parameters you can use are:
 
-- `width`: The width to resize the image to
-- `height`: The height to resize the image to
-- `quality`: The image quality percentage you want, for example `?quality=75`
-- `as`: File format to use, for example: `?as=webp`
+- `width` – The width to resize the image to
+- `height` – The height to resize the image to
+- `quality` – The image quality percentage you want, for example `?quality=75`
+- `as` – File format to convert the image to, for example: `?as=webp`
 
-Supported image formats: `jpeg` / `jpg`, `png`, `webp`, `tiff`, `heic` / `heif`, `avif` and `raw`. For `gif` support, you need to [setup a custom libvips build](https://github.com/lovell/sharp/issues/2437).
+### Image formats
 
-A JavaScript example:
+The following image formats are supported, both as input and as output via the `as` query parameter: 
+
+- `jpeg` / `jpg` - [JPEG](https://en.wikipedia.org/wiki/JPEG) is a very widely supported lossy image format. It's often used for photos, and offers reasonably good compression, but does not support transparency or lossless compression.
+- `png` - [Portable Network Graphics](https://en.wikipedia.org/wiki/Portable_Network_Graphics) (PNG) is a lossless image format. PNGs are typically much larger than JPEGs or other lossy image formats, but support transparency and offer much higher quality for fine details.
+- `webp` – [WebP](https://en.wikipedia.org/wiki/WebP) supports both lossy and lossless compression as well as animation and transparency. It's [supported](https://caniuse.com/webp) in all modern browsers, and offers better compression for the same quality as JPEGs and PNGs.
+- `avif` – [AVIF](https://jakearchibald.com/2020/avif-has-landed/) is a new lossy image format based on the AV1 video codec which offers significant compression and quality improvements over JPEG and WebP. It's currently [supported](https://caniuse.com/avif) in the latest versions of Chrome and Firefox.
+
+The following formats are also supported as inputs, but are not generally supported by browsers: `tiff`, `heic` / `heif`, and `raw`.
+
+GIFs are also supported if you [setup a custom libvips build](https://github.com/lovell/sharp/issues/2437), however, using GIFs is discouraged due to their large file sizes. [Use a video format instead](https://web.dev/replace-gifs-with-videos/).
+
+For more guidance on choosing the right image formats, see the guide on [web.dev](https://web.dev/choose-the-right-image-format/).
+
+### JavaScript
+
+To reference an image from JavaScript, use the `URL` constructor. For more details, see [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScript docs.
 
 {% sample %}
 {% samplefile "main.js" %}
 
 ```js
-import imageUrl from "url:./image.jpeg?as=webp&width=250";
+const imageUrl = new URL(
+  'image.jpeg?as=webp&width=250',
+  import.meta.url
+);
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-An HTML example:
+### HTML
+
+To reference an image from HTML, use the `<img>` or `<picture>` element. The same image can be referenced multiple times with different query parameters to create multiple versions in different formats or sizes. See the [HTML docs](/languages/html/#images) for more details.
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -49,9 +70,10 @@ An HTML example:
   </head>
   <body>
     <picture>
-      <source src="./image.jpeg?as=webp&width=800" type="image/webp" />
-      <source src="./image.jpeg?width=800" type="image/jpeg" />
-      <img src="./image.jpeg?width=200" alt="test image" />
+      <source src="image.jpeg?as=avif&width=800" type="image/avif" />
+      <source src="image.jpeg?as=webp&width=800" type="image/webp" />
+      <source src="image.jpeg?width=800" type="image/jpeg" />
+      <img src="image.jpeg?width=200" alt="test image" />
     </picture>
   </body>
 </html>
@@ -59,3 +81,7 @@ An HTML example:
 
 {% endsamplefile %}
 {% endsample %}
+
+## Image optimization
+
+Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
