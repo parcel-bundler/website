@@ -17,8 +17,8 @@ By default, the behaviour is similar to `parcel serve` (building for development
 {% samplefile %}
 
 ```js
-import path from "path";
-import Parcel from "@parcel/core";
+const path = require("path");
+const { default: Parcel } = require("@parcel/core");
 
 (async () => {
   let bundler = new Parcel({
@@ -46,9 +46,9 @@ import Parcel from "@parcel/core";
 {% samplefile %}
 
 ```js
-import path from "path";
-import Parcel, { createWorkerFarm } from "@parcel/core";
-import { NodeFS, MemoryFS } from "@parcel/fs";
+const path = require("path");
+const { default: Parcel, createWorkerFarm } = require("@parcel/core");
+const { NodeFS, MemoryFS } = require("@parcel/fs");
 
 const DIST_DIR = "/dist";
 
@@ -61,7 +61,7 @@ const DIST_DIR = "/dist";
 
   try {
     let b = new Parcel({
-      entries: [path.join(__dirname, "src", "index.html")],
+      entries: [path.join(__dirname, "src/index.js")],
       defaultConfig: require.resolve("@parcel/config-default"),
       inputFS: inputFS,
       outputFS: outputFS,
