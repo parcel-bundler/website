@@ -181,7 +181,41 @@ navigator.serviceWorker.register(
 
 {% endnote %}
 
-To learn more about service workers, see the docs on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers).
+Service workers are commonly used for pre-caching static assets like JavaScript, CSS, and images. `@parcel/service-worker` can be used to access a list of bundle URLs from within your service worker. It also provides a `version` hash, which changes every time the manifest does. You can use this to generate a cache name.
+
+First, install it as a dependency into your project.
+
+```shell
+yarn add @parcel/service-worker
+```
+
+This example shows how you could pre-cache all bundles when the service worker is installed, and clean up old versions when it is activated.
+
+{% sample %}
+{% samplefile "service-worker.js" %}
+
+```javascript
+import {manifest, version} from '@parcel/service-worker';
+
+async function install() {
+  const cache = await caches.open(version);
+  await cache.addAll(manifest);
+}
+addEventListener('install', e => e.waitUntil(install()));
+
+async function activate() {
+  const keys = await caches.keys();
+  await Promise.all(
+    keys.map(key => key !== version && caches.delete(key))
+  );
+}
+addEventListener('activate', e => e.waitUntil(activate()));
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+To learn more about service workers, see the docs on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers), and the [Offline Cookbook](https://web.dev/offline-cookbook/) on web.dev.
 
 ### Classic script workers
 
