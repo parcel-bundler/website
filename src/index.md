@@ -17,7 +17,7 @@ fonts, videos, and more.
 Rust, and anything that compiles to WebAssembly (WASM) -->
 
 Parcel makes your code portable. You can build your code for different
-environments, for the web for your server, or for an app. You can even build
+environments, for the web, for your server, or for an app. You can even build
 multiple targets at once and have them live update as you make changes.
 
 Parcel is fast and predictable. It compiles all of your files in isolation in
