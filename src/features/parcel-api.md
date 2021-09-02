@@ -11,10 +11,10 @@ The Parcel API can be used to programmatically run builds or watch a project for
 
 ## The `Parcel` constructor
 
-The Parcel API can be used through the `@parcel/core` package. First, you need to install it into your project:
+The Parcel API can be used through the `@parcel/core` package. You'll also need a default configuration, such as `@parcel/config-default`.
 
 ```shell
-yarn add @parcel/core
+yarn add @parcel/core @parcel/config-default
 ```
 
 Next, import this package into your program and call the `Parcel` constructor. It accepts an [`InitialParcelOptions`](/plugin-system/api/#InitialParcelOptions) object, which contains all of the options used by the Parcel CLI and a few more.
@@ -66,7 +66,7 @@ let bundler = new Parcel({
 {% endsamplefile %}
 {% endsample %}
 
-When set to an array, the `targets` option can be used to specify which of the project’s targets to build. For example, to only build the project’s `modern` target:
+When set to an array, the `targets` option can be used to specify which of the project’s targets (as described in `package.json`) to build. For example, to only build the project’s `modern` target:
 
 {% sample %}
 {% samplefile "build.mjs" %}
