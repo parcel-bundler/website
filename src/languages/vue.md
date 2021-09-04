@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: languages-vue
   title: <img src="/assets/lang-icons/vue.svg" alt=""/> Vue
-  order: 4
+  order: 9
 ---
 
 Note that Parcel does not support using SFCs with Vue 2, you must use [Vue 3 beta](https://github.com/vuejs/vue-next) or later.

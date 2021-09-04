@@ -17,7 +17,7 @@ File names are resolved relative to the current HTML file, but you can also use 
 
 ### Stylesheets
 
-The `<link rel="stylesheet">` element can be used to reference stylesheets from HTML. You can reference a CSS file, or any other file that compiles to CSS such as SASS, Less, or Stylus.
+The `<link rel="stylesheet">` element can be used to reference stylesheets from HTML. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](/languages/sass/), [Less](/languages/less/), or [Stylus](/languages/stylus).
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -50,7 +50,7 @@ See the [CSS](/languages/css/) docs for details on how CSS is processed by Parce
 
 ### Scripts
 
-The `<script>` element can be used to reference a script file from HTML. You can reference a JavaScript file, or any other file that compiles to JavaScript such as TypeScript, JSX, or CoffeeScript.
+The `<script>` element can be used to reference a script file from HTML. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](/languages/typescript/), [JSX](/languages/javascript/#jsx), or [CoffeeScript](/languages/coffeescript/).
 
 {% sample %}
 {% samplefile "index.html" %}
