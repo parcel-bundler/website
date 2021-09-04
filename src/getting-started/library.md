@@ -76,7 +76,7 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
   "main": "dist/main.js",
   "scripts": {
     "watch": "parcel watch",
-    "build": "parcel build",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "latest"
