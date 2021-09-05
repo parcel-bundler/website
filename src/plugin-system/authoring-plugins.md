@@ -4,7 +4,7 @@ eleventyNavigation:
   key: plugin-system-authoring-plugins
   title: Authoring Plugins
   order: 2
-summary: "What to take in mind when authoring a plugin"
+summary: "What to keep in mind when authoring a plugin"
 ---
 
 ## Plugin APIs
@@ -36,15 +36,131 @@ export default new NameOfPluginType({
 });
 ```
 
-They are made up of modules with well-known named exports of async functions
-that:
+Each method of a plugin is an async function that:
 
-- Accept a strictly validated JSON-serializable `opts` object.
-- Return a strictly validated JSON-serializable `vals` object.
+- Accept a strictly validated `opts` object.
+- Return a strictly validated `result` object.
 
 If something you need is not being passed through `opts`, please come talk to
 the Parcel team about it. Avoid trying to get information yourself from other
 sources, especially from the file system.
+
+## Loading configuration
+
+Many plugins will need to load configuration of some kind from the user’s project. In some cases, the compiler or tool the plugin is wrapping will have a config loading mechanism built in. In other cases, you’ll need to create a config file format for your plugin.
+
+{% warning %}
+
+**Note**: it’s important to use Parcel’s config loading mechanism rather than reading from the file system directly. The results of all plugins are cached by Parcel, and if you don’t use Parcel’s config loading system it will not be aware of files you read yourself and will not be able to properly invalidate the cache.
+
+{% endwarning %}
+
+Config loading is done in the `loadConfig` method, which is supported by most plugin types. It receives a [`Config`](/plugin-system/transformer/#Config) object, which includes utility methods for loading config files, as well as methods for telling Parcel about files and dependencies the config file relies on that should invalidate the result. The result returned from the `loadConfig` function is passed into the other plugin functions.
+
+```javascript
+import {Transformer} from '@parcel/plugin';
+
+export default new Transformer({
+  async loadConfig({config}) {
+    let {contents, filePath} = await config.getConfig([
+      'tool.config.json'
+    ]);
+
+    return contents;
+  },
+  async transform({asset, config}) {
+    // ...
+    return [asset];
+  }
+});
+```
+
+The above example uses the `getConfig` method of the `Config` object to load a config file. This searches up the directory tree from the asset's file path for config files matching the file names given. It can load files using JSON5 (default), JavaScript, or TOML, and the file path is automatically added as an invalidation to the config.
+
+### Adding invalidations
+
+If you’re using a config loading mechanism that’s built into a compiler or tool you’re wrapping, you’ll need to tell Parcel about any files that were loaded in the process by calling `invalidateOnFileChange`. This way, Parcel can invalidate files that are compiled using this config whenever it changes. A list of loaded files is often returned along with the loaded config by various tools.
+
+If no config is loaded, or a new config file closer to the asset would change result, you should use the `invalidateOnFileCreate` method to watch for the config file to be created. This way, when Parcel detects a new config file, the plugin will be re-run and the new config will be loaded.
+
+```javascript
+import {Transformer} from '@parcel/plugin';
+
+export default new Transformer({
+  async loadConfig({config}) {
+    let {result, files} = await loadToolConfigSomehow(config.searchPath);
+
+    if (result) {
+      // Invalidate whenever one of the loaded files changes.
+      for (let file of files) {
+        config.invalidateOnFileChange(file);
+      }
+    } else {
+      // Invalidate when a new config is created.
+      config.invalidateOnFileCreate({
+        fileName: 'tool.config.json',
+        aboveFilePath: config.searchPath
+      });
+    }
+
+    return result;
+  }
+});
+```
+
+### Dev dependencies
+
+Parcel automatically tracks the source files of Parcel plugins themselves and all of their dependencies for changes. If the code for a plugin changes, the cache must be invalidated and any assets that were produced by the plugin must be rebuilt.
+
+Some plugins may load other dependencies dynamically. For example, a transformer might have plugins of its own that are configured in the user’s project (e.g. Babel). These cannot be automatically tracked, and must be added as dev dependencies to the Config object. This is done using the `addDevDependency` method.
+
+```javascript
+import {Transformer} from '@parcel/plugin';
+
+export default new Transformer({
+  async loadConfig({config}) {
+    let {result, filePath} = await loadToolConfigSomehow(config.searchPath);
+
+    for (let plugin of result.plugins) {
+      config.addDevDependency({
+        specifier: plugin,
+        resolveFrom: filePath
+      });
+    }
+
+    return result;
+  }
+});
+```
+
+### JavaScript configs
+
+Some tools use config files written in JavaScript, rather than a static config language like JSON, YAML, or TOML. Unfortunately, these programatic config files can cause issues for caching in Parcel because they may return non-deterministic results.
+
+A convention for dealing with this in Parcel is to always invalidate the config when the Parcel process restarts. This way, JavaScript configs aren’t invalidated on every build (which would be too slow), but in the case where the config is non-deterministic, restarting Parcel ensures it is up to date.
+
+This can be done by using the `invalidateOnStartup` method of the `Config` object.
+
+```javascript
+import {Transformer} from '@parcel/plugin';
+
+export default new Transformer({
+  async loadConfig({config}) {
+    let {contents, filePath} = await config.getConfig([
+      'tool.config.json',
+      'tool.config.js'
+    ]);
+
+    if (filePath.endsWith('.js') {
+      config.invalidateOnStartup();
+    }
+
+    return contents;
+  }
+});
+```
+
+See the [`Config`](/plugin-system/transformer/#Config) object API docs for more details on all of the available methods and properties.
 
 ## Naming
 
