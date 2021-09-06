@@ -105,6 +105,9 @@ const SECTION_TO_URL = {
   optimizer: {
     link: "/plugin-system/optimizer/",
   },
+  compressor: {
+    link: "/plugin-system/compressor/",
+  },
   packager: {
     link: "/plugin-system/packager/",
   },
