@@ -21,3 +21,7 @@ export default new Compressor({
   },
 });
 ```
+
+## Relevant API
+
+{% include "../../api/compressor.html" %}
