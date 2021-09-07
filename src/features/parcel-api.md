@@ -230,7 +230,7 @@ await subscription.unsubscribe();
 
 ## Dev server
 
-The development server is include in the default Parcel config. It can be enabled by passing `serveOptions` to the `Parcel` constructor and running Parcel in watch mode. Hot reloading can be enabled by setting `hmrOptions`. A `port` is the only required option, but others such as HTTPS options may also be set.
+The development server is included in the default Parcel config. It can be enabled by passing `serveOptions` to the `Parcel` constructor and running Parcel in watch mode. Hot reloading can be enabled by setting `hmrOptions`. A `port` is the only required option, but others such as HTTPS options may also be set.
 
 {% sample %}
 {% samplefile "build.mjs" %}

@@ -10,7 +10,7 @@ Transformer plugins transform a single asset to compile it, discover dependencie
 
 ## Transforming assets
 
-There is one required function that must be passed to the [`Transformer`](#Transformer) constructor: `transform`. This function receives a [`MutableAsset`](#MutableAsset) object, which represents a file. The source code or content of the asset can be retrieved, along with any associated source map. The transformer can then transform this content in some way, and set the compiled result back on the asset.
+There is one required function that must be passed to the [`Transformer`](#Transformer) constructor: `transform`. This function receives a [`MutableAsset`](#MutableAsset) object, which represents a file. The source code or content of the asset can be retrieved, along with any associated source map ([see below](#source-maps)). The transformer can then transform this content in some way, and set the compiled result back on the asset.
 
 ```javascript
 import {Transformer} from '@parcel/plugin';
@@ -190,6 +190,36 @@ export default new Transformer({
       content,
       map
     };
+  }
+});
+```
+
+## Source maps
+
+
+Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Transformer plugins should add a source map to assets when transforming their content if possible. Since assets may be processed by multiple Transformers, you should also transform the existing source map included with the asset in addition to its content.
+
+Parcel uses the `@parcel/source-map` library for source map manipulation. See [Source Maps](/plugin-system/source-maps/) for more details on how to use it. You may need to convert the source map you pass to and from other tools.
+
+```javascript
+import {Transformer} from '@parcel/plugin';
+import SourceMap from '@parcel/source-map';
+
+export default new Transformer({
+  async transform({asset, options}) {
+    let source = await asset.getCode();
+    let sourceMap = await asset.getMap();
+
+    // Convert the input source map to JSON.
+    let result = compile(source, sourceMap.toVLQ());
+    asset.setCode(result.code);
+
+    // Convert returned JSON source map to a Parcel SourceMap.
+    let map = new SourceMap(options.projectRoot);
+    map.addVLQMap(result.map);
+    asset.setMap(map);
+
+    return [asset];
   }
 });
 ```
