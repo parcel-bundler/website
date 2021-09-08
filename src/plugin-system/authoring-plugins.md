@@ -10,7 +10,7 @@ summary: "What to keep in mind when authoring a plugin"
 ## Plugin APIs
 
 There are several different types of plugins. They all look very similar, but
-are kept separate so we can have strict contracts one what each one is allowed
+are kept separate so we can have strict contracts on what each one is allowed
 to do.
 
 There are some rules that should be followed across every type of plugin:
@@ -151,7 +151,7 @@ export default new Transformer({
       'tool.config.js'
     ]);
 
-    if (filePath.endsWith('.js') {
+    if (filePath.endsWith('.js')) {
       config.invalidateOnStartup();
     }
 
