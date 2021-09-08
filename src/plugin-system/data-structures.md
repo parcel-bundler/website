@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-data-structures
   title: Data Structures
-  order: 13
+  order: 14
 summary: A high-level description of the important data structures
 ---
 

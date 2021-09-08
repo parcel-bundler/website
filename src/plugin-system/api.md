@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-api
   title: API
-  order: 16
+  order: 17
 summary: "The remaining types specified in `@parcel/types`"
 ---
 
