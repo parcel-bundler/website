@@ -109,6 +109,12 @@ The logger accepts [diagnostics](#diagnostics), which are JavaScript objects wit
 
 A [`Logger`](#PluginLogger) has a function for each log level, including `verbose`, `info`, `log`, `warn` and `error`. These log levels specify the severity of log messages, which is useful for formatting and filtering. For example, the [`--log-level`](/features/cli/#parameters) CLI option can be used to choose which messages you want to see. Each logging function also has a single parameter, which can either be a single [`Diagnostic`](#Diagnostic) object or an array of diagnostics, depending on how many messages you want to log.
 
+{% note %}
+
+**Note**: The results of Parcel plugins are cached. This means any logs or warnings that a plugin emits will only be shown during a rebuild, and not when cached.
+
+{% endnote %}
+
 ### Log levels
 
 | Level   | When to use                                                                                                                             | function(s)                                             |
