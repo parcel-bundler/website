@@ -23,6 +23,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@11ty/eleventy-plugin-rss@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@11ty/eleventy-plugin-rss@npm:1.1.1"
+  dependencies:
+    debug: ^4.3.1
+    posthtml: ^0.15.1
+    posthtml-urls: 1.0.0
+  peerDependencies:
+    "@11ty/eleventy": ">=0.11.0"
+  checksum: d02a2283a9b0d6d13257ce2a384400531c81f1b4de3326df57d57f63ab9296d9ae6cd2bdaab88d493e255e82b9fa75f7e1fead2f3a4e32ba28730ff2590fd0e6
+  languageName: node
+  linkType: hard
+
 "@11ty/eleventy-plugin-syntaxhighlight@npm:^3.0.4":
   version: 3.0.4
   resolution: "@11ty/eleventy-plugin-syntaxhighlight@npm:3.0.4"
@@ -1662,6 +1675,13 @@ __metadata:
   version: 1.0.0
   resolution: "ansi-styles@npm:1.0.0"
   checksum: ae73b4e77dc35d47bf2c2eaf023c2a935a5bca01fe11eecaea307ee70ffb9d531db36e2cfc4cc0448e26cc40986b55a708a64c6f3e8589ec5d3cd44d2934b471
+  languageName: node
+  linkType: hard
+
+"any-promise@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "any-promise@npm:0.1.0"
+  checksum: 01e35a09137bf1f577a58aa962df057dd720d9f565392a5bd2e63335cdbf064132569997f4f41999463fefa57f4c5e401aad9b14af653a2bbb190fe3a67a2b5b
   languageName: node
   linkType: hard
 
@@ -3571,6 +3591,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debug@npm:^4.3.1":
+  version: 4.3.2
+  resolution: "debug@npm:4.3.2"
+  dependencies:
+    ms: 2.1.2
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 5543570879e2274f6725d4285a034d6e0822d35faefc6f55965933fb440e8c21eb3a0bef934e66f4b6b491f898ee2de37cab980e9d4fd61372136c19d3ce4527
+  languageName: node
+  linkType: hard
+
 "decamelize@npm:^1.0.0, decamelize@npm:^1.2.0":
   version: 1.2.0
   resolution: "decamelize@npm:1.2.0"
@@ -5395,7 +5427,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^6.1.0":
+"htmlparser2@npm:^6.0.0, htmlparser2@npm:^6.1.0":
   version: 6.1.0
   resolution: "htmlparser2@npm:6.1.0"
   dependencies:
@@ -5423,6 +5455,13 @@ fsevents@~2.3.2:
   version: 4.1.0
   resolution: "http-cache-semantics@npm:4.1.0"
   checksum: 451df9784af2acbe0cc1fd70291285c08ca4a8966ab5ee4d3975e003d1ad4d74c81473086d628f31296b31221966fda8bc5ea1e29dd8f1f33f9fc2b0fdca65ca
+  languageName: node
+  linkType: hard
+
+"http-equiv-refresh@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "http-equiv-refresh@npm:1.0.0"
+  checksum: 7e1b82fee758197d0a31548a0bbad8b382c1e881afa4658f46ccba9032bc5846ae7c702e520cbf5cc126978bc7f9ea9e9aa720874d240f42ea02d5ebb3a984e9
   languageName: node
   linkType: hard
 
@@ -6753,6 +6792,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"list-to-array@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "list-to-array@npm:1.1.0"
+  checksum: 9413613806da0f4658ef5d694d968c09d83af44186b9f03d3d8cc92e6ca9803c550398761252be8944573c77492c0f1bd23d83778fd611ead98431ee24a6fa27
+  languageName: node
+  linkType: hard
+
 "listr2@npm:^3.2.2":
   version: 3.2.2
   resolution: "listr2@npm:3.2.2"
@@ -8007,6 +8053,7 @@ fsevents@~2.3.2:
   dependencies:
     "@11ty/eleventy": ^0.11.1
     "@11ty/eleventy-navigation": ^0.1.6
+    "@11ty/eleventy-plugin-rss": ^1.1.1
     "@11ty/eleventy-plugin-syntaxhighlight": ^3.0.4
     "@babel/generator": ^7.12.11
     "@babel/parser": ^7.12.11
@@ -8114,6 +8161,13 @@ fsevents@~2.3.2:
   version: 0.1.2
   resolution: "parse-ms@npm:0.1.2"
   checksum: c96836facb1b082858cd0696763ca16c5abe16322068149d66f1f447bfa3cb27d40033cd377ac647e80e9ceec3069eb9b1f2c428afbed9b8c07fc063c211e9a2
+  languageName: node
+  linkType: hard
+
+"parse-srcset@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "parse-srcset@npm:1.0.2"
+  checksum: f79a26845a6ec70c5b97713798cc8492854ac246e5979cd081db68fa811a96a90399bfea7691edf516491c79e8450ed2cfacdcd2c75ff18250c4847dd552dbc4
   languageName: node
   linkType: hard
 
@@ -8936,12 +8990,50 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"posthtml-parser@npm:^0.7.2":
+  version: 0.7.2
+  resolution: "posthtml-parser@npm:0.7.2"
+  dependencies:
+    htmlparser2: ^6.0.0
+  checksum: f2b855cd794fe86b119348e8a299cec0dcfdd7448545e059541546c7146b269212c15c0d4bc99090810c6b86db54026638e0432e2fa11d50933438d6a8cf89a4
+  languageName: node
+  linkType: hard
+
+"posthtml-render@npm:^1.3.1":
+  version: 1.4.0
+  resolution: "posthtml-render@npm:1.4.0"
+  checksum: b7f9ac2dcd2af1baf129bbf48f95cb3186194085556a008a72791263a54603a6e05525eb8e345c115d32b0bb37a07de85467ad8e0de5b7900ccc1d0e48e19cb6
+  languageName: node
+  linkType: hard
+
 "posthtml-render@npm:^3.0.0":
   version: 3.0.0
   resolution: "posthtml-render@npm:3.0.0"
   dependencies:
     is-json: ^2.0.1
   checksum: 3df0775715383d5652143542df04ca9db7c83bc46bd993eacfc9bde70aa2d654dafb62359f92baf984c617f6b3220f0a669ae3b5edb748142b159a4a1e15ae61
+  languageName: node
+  linkType: hard
+
+"posthtml-urls@npm:1.0.0":
+  version: 1.0.0
+  resolution: "posthtml-urls@npm:1.0.0"
+  dependencies:
+    http-equiv-refresh: ^1.0.0
+    list-to-array: ^1.1.0
+    parse-srcset: ^1.0.2
+    promise-each: ^2.2.0
+  checksum: f3b487511ee707e07bd0b7420085bb23cbcc77a03db0ce558445064799ba16a7e36b7272465632114a6e0458897d304d4b3e13b0c956f88c073e57dad0f043fd
+  languageName: node
+  linkType: hard
+
+"posthtml@npm:^0.15.1":
+  version: 0.15.2
+  resolution: "posthtml@npm:0.15.2"
+  dependencies:
+    posthtml-parser: ^0.7.2
+    posthtml-render: ^1.3.1
+  checksum: dac27389dcf8b8567c510ddaecb9449859fbb2dc4838f5d8f03ac63aa31d465c5960be35a3c23dc77ec461b267c28ff2d05aec776c4f2f8fbe6f66c8d254b689
   languageName: node
   linkType: hard
 
@@ -9030,6 +9122,15 @@ fsevents@~2.3.2:
   version: 0.11.10
   resolution: "process@npm:0.11.10"
   checksum: ed93a85e9185b40fb01788c588a87c1a9da0eb925ef7cebebbe1b8bbf0eba1802130366603a29e3b689c116969d4fe018de6aed3474bbeb5aefb3716b85d6449
+  languageName: node
+  linkType: hard
+
+"promise-each@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "promise-each@npm:2.2.0"
+  dependencies:
+    any-promise: ^0.1.0
+  checksum: de38101fa7c19029a7f7c0ce87c5a20ec6e471271430df8e024c4369e8f858f7bebeb9a856037c7735926ed12d7341c6fd16e29dd184141649a0bab181d2dee3
   languageName: node
   linkType: hard
 
