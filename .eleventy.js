@@ -16,12 +16,6 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginTOC);
 
-  // Copy assets
-  eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy({
-    "src/assets/favicon.ico": "favicon.ico",
-  });
-
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg"]);
   eleventyConfig.addWatchTarget("./api/");
 
