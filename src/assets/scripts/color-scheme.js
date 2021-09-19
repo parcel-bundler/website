@@ -5,4 +5,4 @@ toggle.onclick = () => {
   updateMode(isDarkMode);
 };
 
-document.body.classList.add('loaded');
+document.documentElement.classList.add('loaded');
