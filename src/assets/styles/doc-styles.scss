@@ -477,7 +477,10 @@ body {
   }
 
   a {
-    @apply text-gray-500 hover:text-gray-900 hover:bg-sky-500 hover:bg-opacity-10 dark:text-gray-400 dark:hover:text-gray-100 dark:hover:bg-sky-900 dark:hover:bg-opacity-30 transition-colors rounded-md px-4 py-1 block;
+    @apply text-gray-600 hover:text-gray-900 hover:bg-sky-500 hover:bg-opacity-10 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-sky-900 dark:hover:bg-opacity-30 transition-colors rounded-md px-4 py-1 block;
+    @media (min-width: 768px) {
+      font-size: .95rem;
+    }
   }
 
   & > ul > li {
