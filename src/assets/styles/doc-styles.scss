@@ -456,8 +456,10 @@ body {
 
   @media (max-width: 1024px) {
     visibility: hidden;
-    transition: transform 200ms, visibility 0s 200ms;
     z-index: 100;
+    .loaded & {
+      transition: transform 200ms, visibility 0s 200ms;
+    }
 
     &.visible {
       transform: translateX(100%);
@@ -465,7 +467,7 @@ body {
       visibility: unset;
     }
 
-    &.visible +main:after {
+    &.visible ~ main:after {
       opacity: 1;
     }
   }
