@@ -9,3 +9,12 @@ search.onfocus = () => {
 search.onblur = () => {
   header.classList.remove('search');
 };
+
+docsearch({
+  apiKey: "8b6be780425a72d1a1683abea2636778",
+  indexName: "parceljs",
+  inputSelector: "#search-input",
+  algoliaOptions: {
+    facetFilters: ["lang:v2"],
+  }
+});

@@ -10,14 +10,13 @@
       {{ title | default(eleventyNavigation.title) |
       default(eleventyNavigation.key) | striptags | safe }}
     </title>
+    <link href="/assets/styles/doc-styles.scss" rel="stylesheet" />
     <script>
       {% include "darkmode.js" %}
     </script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
-    />
-    <link href="/assets/styles/doc-styles.scss" rel="stylesheet" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="module" src="/assets/scripts/docs.js"></script>
   </head>
   <body{% if tags and tags.includes("Blog") %} class="blog"{% endif %}>
     <header class="parcel-docs-header">
@@ -136,21 +135,5 @@
       {% endif %}
       {% endif %}
     </main>
-
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
-    ></script>
-    <script type="text/javascript">
-      docsearch({
-        apiKey: "8b6be780425a72d1a1683abea2636778",
-        indexName: "parceljs",
-        inputSelector: "#search-input",
-        algoliaOptions: {
-          facetFilters: ["lang:v2"],
-        }
-      });
-    </script>
-    <script type="module" src="/assets/scripts/docs.js"></script>
   </body>
 </html>
