@@ -76,7 +76,7 @@ module.exports = function (eleventyConfig) {
         .map(
           ({ name, content }) =>
             `<div class="asset">` +
-            (name ? `<em>${name}</em>:` : '') +
+            (name ? `<em>${name}:</em>` : '') +
             content +
             `</div>`
         )
