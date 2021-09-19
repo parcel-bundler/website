@@ -146,9 +146,6 @@ body {
 
     pre {
       @apply border-gray-200 dark:border-gray-800 my-2;
-      &, * {
-        @include transition-colors;
-      }
     }
   }
 
@@ -633,8 +630,10 @@ body {
   code,
   kbd,
   samp {
-    @include transition-colors;
-    white-space: pre;  
+    white-space: pre;
+    &, * {
+      @include transition-colors;
+    }
   }
 
   pre {
@@ -661,12 +660,16 @@ body {
     }
   }
 
+  :not(pre) > code {
+    @apply whitespace-pre-wrap break-words rounded-md text-gray-800 dark:text-gray-50 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-1;
+    @include transition-colors;
+  }
+
   p > code,
   p a code,
   li > code,
   td code {
-    @apply text-base whitespace-pre-wrap break-words sm:text-sm rounded-md text-gray-800 dark:text-gray-50 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-1;
-    @include transition-colors;
+    @apply text-base sm:text-sm;
   }
 
   p a code {
