@@ -241,6 +241,7 @@ body {
 
   & > svg {
     .small-circle {
+      fill: black; /* work around SVGO bug */
       transform-origin: 70px 40px;
     }
 
