@@ -286,8 +286,7 @@ body {
     }
     
     .logo {
-      @apply sm:mr-16;
-      display: flex;
+      @apply hidden xs:flex sm:mr-16;
       align-items: center;
       height: 30px;
       flex-shrink: 0;
@@ -323,7 +322,7 @@ body {
       @apply px-5 md:pl-8 focus:pl-8 py-1 bg-blueGray-700 border border-transparent;
       @apply md:rounded-full md:bg-blueGray-800 md:bg-opacity-70 md:border-blueGray-600;
       @apply focus:rounded-full focus:bg-blueGray-800 focus:bg-opacity-70;
-      @apply w-0 focus:w-48 md:w-48 transition-all;
+      @apply w-0 focus:w-40 xs:focus:w-48 md:w-48 transition-all;
   
       &:focus {
         outline: none;
@@ -346,12 +345,12 @@ body {
     justify-content: center;
     position: absolute;
 
-    @apply rounded-full bg-blueGray-800 transition;
+    @apply text-base rounded-full bg-blueGray-800 transition p-1;
 
     a {
       display: block;
 
-      @apply transition text-blueGray-400 hover:text-blueGray-200 rounded-full m-1 px-3 sm:px-5 py-1;
+      @apply transition text-blueGray-400 hover:text-blueGray-200 rounded-full px-2 xs:px-3 sm:px-5 py-1;
       &.selected {
         @apply bg-sky-900 text-gray-100;
       }
