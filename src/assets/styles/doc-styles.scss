@@ -306,23 +306,19 @@ body {
     position: relative;
     grid-area: search;
     svg {
-      @apply h-6 w-6 md:h-5 md:w-5;
+      @apply h-6 w-6 md:h-5 md:w-5 left-0 top-0 md:translate-x-2 transition;
       position: absolute;
-      top: 6px;
-      left: 8px;
+      top: 7px;
       z-index: 1;
       pointer-events: none;
-
-      @media (min-width: 768px) {
-        top: 7px;
-      }
     }
 
     input {
-      @apply px-5 md:pl-8 focus:pl-8 py-1 bg-blueGray-700 border border-transparent;
+      width: 24px;
+      @apply px-5 pl-0 md:pl-8 focus:pl-8 py-1 bg-blueGray-700 border border-transparent;
       @apply md:rounded-full md:bg-blueGray-800 md:bg-opacity-70 md:border-blueGray-600;
       @apply focus:rounded-full focus:bg-blueGray-800 focus:bg-opacity-70;
-      @apply w-0 focus:w-40 xs:focus:w-48 md:w-48 transition-all;
+      @apply opacity-0 focus:opacity-100 md:opacity-100 focus:w-40 xs:focus:w-48 md:w-48 transition-all;
   
       &:focus {
         outline: none;
@@ -332,7 +328,7 @@ body {
   }
 
   &.search .search-container svg {
-    @apply h-5 w-5;
+    @apply h-5 w-5 translate-x-2;
     top: 7px;
     @media (max-width: 768px) {
       top: 8px;
