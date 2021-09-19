@@ -666,7 +666,7 @@ body {
   p a code,
   li > code,
   td code {
-    @apply text-base sm:text-sm rounded-md text-gray-800 dark:text-gray-50 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-1;
+    @apply text-base whitespace-pre-wrap sm:text-sm rounded-md text-gray-800 dark:text-gray-50 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-1;
     @include transition-colors;
   }
 
