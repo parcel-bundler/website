@@ -41,50 +41,6 @@ html.dark {
   filter: invert(0);
 }
 
-.algolia-autocomplete {
-  .ds-dropdown-menu {
-    &::before {
-      @include transition-colors;
-      @apply bg-gray-700 border-gray-500;
-    }
-
-    [class^="ds-dataset-"] {
-      @include transition-colors;
-      @apply bg-gray-700 border-gray-500;
-    }
-  }
-
-  .algolia-docsearch-suggestion {
-    @include transition-colors;
-    @apply bg-gray-700;
-  } 
-
-  .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.algolia-docsearch-suggestion .algolia-docsearch-suggestion--content {
-    @apply bg-sky-800;
-  }
-
-  .algolia-docsearch-suggestion--category-header {
-    @include transition-color;
-    @apply text-gray-100 font-bold;
-  }
-
-  .algolia-docsearch-suggestion--subcategory-column {
-    @include transition-color;
-    @apply text-gray-100;
-  }
-
-  .algolia-docsearch-suggestion--title,
-  .algolia-docsearch-suggestion--text {
-    @include transition-color;
-    @apply text-gray-100;
-  }
-
-  .algolia-docsearch-suggestion--highlight {
-    @include transition-color;
-    @apply text-white bg-sky-500 bg-opacity-40;
-  }
-}
-
 body {
   @apply bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-300;
   @apply text-lg sm:text-base;
@@ -428,6 +384,50 @@ body {
   &.search {
     .section-picker {
       @apply opacity-0 sm:opacity-100;
+    }
+  }
+
+  .algolia-autocomplete {
+    .ds-dropdown-menu {
+      &::before {
+        @include transition-colors;
+        @apply bg-gray-700 border-gray-500;
+      }
+  
+      [class^="ds-dataset-"] {
+        @include transition-colors;
+        @apply bg-gray-700 border-gray-500;
+      }
+    }
+  
+    .algolia-docsearch-suggestion {
+      @include transition-colors;
+      @apply bg-gray-700;
+    } 
+  
+    .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.algolia-docsearch-suggestion .algolia-docsearch-suggestion--content {
+      @apply bg-sky-800;
+    }
+  
+    .algolia-docsearch-suggestion--category-header {
+      @include transition-color;
+      @apply text-gray-100 font-bold;
+    }
+  
+    .algolia-docsearch-suggestion--subcategory-column {
+      @include transition-color;
+      @apply text-gray-100;
+    }
+  
+    .algolia-docsearch-suggestion--title,
+    .algolia-docsearch-suggestion--text {
+      @include transition-color;
+      @apply text-gray-100;
+    }
+  
+    .algolia-docsearch-suggestion--highlight {
+      @include transition-color;
+      @apply text-white bg-sky-500 bg-opacity-40;
     }
   }
 
