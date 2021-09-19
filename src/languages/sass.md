@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Sass
 eleventyNavigation:
   key: languages-sass
   title: <img src="/assets/lang-icons/sass.svg" alt=""/> Sass

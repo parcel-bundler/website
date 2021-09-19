@@ -1,9 +1,8 @@
-"use strict";
-(function () {
+(function() {
   const replaceElements = document.querySelectorAll(
     "time[datetime].js-replace-date"
   );
-
+  
   if (replaceElements.length === 0) {
     return;
   }

@@ -5,6 +5,7 @@ node_modules/
 package-lock.json
 _site/
 .now
+.parcel-cache
 
 .yarn/*
 !.yarn/releases

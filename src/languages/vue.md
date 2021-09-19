@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Vue
 eleventyNavigation:
   key: languages-vue
   title: <img src="/assets/lang-icons/vue.svg" alt=""/> Vue

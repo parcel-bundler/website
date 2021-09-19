@@ -235,7 +235,7 @@ Parcel 2 no longer requires the `url:` prefix when referencing image files. Thes
 
 Parcel also includes an image transformer, which you can enable by using a query parameter. This allows you to resize or convert images from a source file automatically. For example, in HTML you could reference the same image multiple times with different query params to generate multiple different representations in different formats.
 
-```js
+```html
 <picture>
   <source src="snow.jpg?as=webp&width=400" type="image/webp" />
   <source src="snow.jpg?as=jpg&width=400" type="image/jpeg" />

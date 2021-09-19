@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Stylus
 eleventyNavigation:
   key: languages-stylus
   title: <img src="/assets/lang-icons/stylus.svg" alt=""/> Stylus

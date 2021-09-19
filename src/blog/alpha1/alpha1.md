@@ -103,7 +103,7 @@ From the beginning, Parcel went farther than many other tools in bundling your w
 
 Parcel 2 plugins are organized into pipelines, which can be composed very easily to specify advanced transformations and build steps. Assets match an initial pipeline by a glob, and run through all of the plugins in that pipeline until the file type changes (e.g. .ts → .js). Then, they continue through the next pipeline, and so on until the end of a pipeline is reached. This allows individual plugins to focus on a single task, and lets the user compose multiple plugins together to do something more complex.
 
-Transformations can also output multiple assets, in case there are inline assets of a different type, such as an inline <script> or <style> tag in an HTML file, a multi-part Vue SFC, or other types of multi-part files yet to be invented. These inline assets will be processed the same way separate files would, and can be re-inserted back into the file they came from after they are processed by their respective pipelines.
+Transformations can also output multiple assets, in case there are inline assets of a different type, such as an inline `<script>` or `<style>` tag in an HTML file, a multi-part Vue SFC, or other types of multi-part files yet to be invented. These inline assets will be processed the same way separate files would, and can be re-inserted back into the file they came from after they are processed by their respective pipelines.
 
 This kind of flexibility and composability has never been possible before in a JavaScript bundler, and I’m super excited to see what types of new tools built on top of Parcel this enables!
 
