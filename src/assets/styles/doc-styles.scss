@@ -146,6 +146,9 @@ body {
 
     pre {
       @apply border-gray-200 dark:border-gray-800 my-2;
+      &, * {
+        @include transition-colors;
+      }
     }
   }
 
