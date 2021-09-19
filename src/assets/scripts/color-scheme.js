@@ -4,3 +4,5 @@ toggle.onclick = () => {
   sessionStorage.setItem("isDarkMode", isDarkMode);
   updateMode(isDarkMode);
 };
+
+document.body.classList.add('loaded');

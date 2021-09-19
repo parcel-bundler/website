@@ -4,11 +4,15 @@
 @import "highlight.css";
 
 @mixin transition-background-color {
-  transition: background 0.2s ease-in-out;
+  body.loaded & {
+    transition: background 0.2s ease-in-out;
+  }
 }
 
 @mixin transition-color {
-  transition: color 0.2s ease-in-out;
+  body.loaded & {
+    transition: color 0.2s ease-in-out;
+  }
 }
 
 @mixin transition-filter {
@@ -16,8 +20,10 @@
 }
 
 @mixin transition-colors {
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
-    border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+  body.loaded & {
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+  }
 }
 
 html {
