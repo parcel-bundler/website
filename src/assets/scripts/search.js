@@ -18,3 +18,9 @@ docsearch({
     facetFilters: ["lang:v2"],
   }
 });
+
+if (typeof visualViewport !== 'undefined') {
+  visualViewport.addEventListener('resize', () => {
+    document.documentElement.style.setProperty('--viewport-height', visualViewport.height + 'px');
+  });
+}

@@ -398,31 +398,70 @@ body {
     .algolia-docsearch-suggestion {
       @include transition-colors;
       @apply bg-gray-700;
+
+      .algolia-docsearch-suggestion--category-header {
+        @include transition-color;
+        @apply text-gray-100 font-bold;
+      }
+    
+      .algolia-docsearch-suggestion--subcategory-column {
+        @include transition-color;
+        @apply text-gray-100;
+      }
+    
+      .algolia-docsearch-suggestion--title,
+      .algolia-docsearch-suggestion--text {
+        @include transition-color;
+        @apply text-gray-100;
+      }
+    
+      .algolia-docsearch-suggestion--highlight {
+        @include transition-color;
+        @apply text-white bg-sky-500 bg-opacity-40;
+      }  
     } 
   
     .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.algolia-docsearch-suggestion .algolia-docsearch-suggestion--content {
       @apply bg-sky-800;
     }
   
-    .algolia-docsearch-suggestion--category-header {
-      @include transition-color;
-      @apply text-gray-100 font-bold;
-    }
-  
-    .algolia-docsearch-suggestion--subcategory-column {
-      @include transition-color;
-      @apply text-gray-100;
-    }
-  
-    .algolia-docsearch-suggestion--title,
-    .algolia-docsearch-suggestion--text {
-      @include transition-color;
-      @apply text-gray-100;
-    }
-  
-    .algolia-docsearch-suggestion--highlight {
-      @include transition-color;
-      @apply text-white bg-sky-500 bg-opacity-40;
+    @media (max-width: 640px) {
+      .ds-dropdown-menu {
+        position: fixed !important;
+        left: 0;
+        top: 60px !important;
+        max-width: unset;
+        min-width: unset;
+
+        > div {
+          height: calc(var(--viewport-height) - 60px);
+          overflow: auto;
+        }
+
+        &,
+        .algolia-docsearch-suggestion--wrapper {
+          width: 100vw !important;
+        }
+
+        &:before,
+        .algolia-docsearch-suggestion--subcategory-column {
+          display: none;
+        }
+
+        .algolia-docsearch-suggestion--content {
+          width: 100%;
+        }
+
+        > div,
+        .algolia-docsearch-suggestion {
+          padding-left: 0;
+        }
+
+        .algolia-docsearch-suggestion--category-header,
+        .algolia-docsearch-suggestion--title {
+          @apply pl-2;
+        }
+      }
     }
   }
 
