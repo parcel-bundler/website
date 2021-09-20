@@ -691,6 +691,10 @@ body {
   .api .type {
     border: 1px solid;
     @apply border border-gray-200 dark:border-gray-700 rounded-md;
+
+    i {
+      @apply break-all;
+    }
   }
 
   article {
