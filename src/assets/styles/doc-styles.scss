@@ -76,7 +76,7 @@ body {
 
   & > div {
     padding: 0.5rem;
-    @apply bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-70; 
+    @apply bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-70 rounded-r-md; 
     @include transition-background-color;
   }
 
