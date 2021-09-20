@@ -16,7 +16,7 @@ Code splitting is controlled by use of the dynamic `import()` syntax, which work
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
 {% sample %}
-{% samplefile %}
+{% samplefile "pages/index.js" %}
 
 ```js
 import("./pages/about").then(function (page) {
@@ -40,7 +40,7 @@ export function render() {
 Because `import()` returns a Promise, you can also use async/await syntax.
 
 {% sample %}
-{% samplefile %}
+{% samplefile "pages/index.js" %}
 
 ```js
 async function load() {

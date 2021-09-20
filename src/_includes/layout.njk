@@ -10,19 +10,23 @@
       {{ title | default(eleventyNavigation.title) |
       default(eleventyNavigation.key) | striptags | safe }}
     </title>
-    <link href="/assets/reset.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link href="/assets/styles/doc-styles.scss" rel="stylesheet" />
     <script>
       {% include "darkmode.js" %}
     </script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
-    />
-    <link href="/doc-styles.css" rel="stylesheet" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="module" src="/assets/scripts/docs.js"></script>
   </head>
-  <body>
+  <body{% if tags and tags.includes("Blog") %} class="blog"{% endif %}>
     <header class="parcel-docs-header">
       <div class="left">
+        <button class="hamburger-button" aria-label="Open navigation panel" aria-pressed="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>  
         <a class="logo" href="/">
           <img
             class="parcel"
@@ -36,19 +40,21 @@
             class="parcel-text"
             src="/assets/logo.svg"
             alt="Parcel"
-            width="300"
-            height="160"
+            width="120"
+            height="25"
           />
         </a>
-        <div class="search-container">
-          <label for="search-input" class="visually-hidden">Search</label>
-          <input type="text" id="search-input" placeholder="Search..." />
-        </div>
       </div>
       <nav class="section-picker">
         <a {% if not page.url.includes('blog') %}class="selected"{% endif %} href="/">Docs</a>
         <a {% if page.url.includes('blog') %}class="selected"{% endif %} href="{{ collections.Blog | sortDate | first | pageUrl }}">Blog</a>
       </nav>
+      <div class="search-container">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" id="search-input" aria-label="Search" placeholder="Search..." />
+      </div>
       <div class="social-links">
         <a href="https://github.com/parcel-bundler/parcel">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -65,38 +71,37 @@
     </header>
     <nav class="docs-navigation">
     {% if tags and tags.includes("Blog") %}
-      <ul id="blog nav-tree" class="doc-nav-group-hidden">
-          {{ collections.Blog | sortDate | eleventyNavigation |
-          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
-          | safe }}
+      <ul>
+        {% set navPages = collections.Blog | sortDate | eleventyNavigation %}
+        {%- for entry in navPages %}
+          <li{% if entry.url == page.url %} class="current"{% endif %}>
+            <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title | safe }}</a>
+          </li>
+        {%- endfor %}
       </ul>
     {% else %}
-      {%- for tag in tagOrder -%}
       <ul>
+      {%- for tag in tagOrder -%}
         <li>
-          <label>
-            <span>{{ tag }}</span>
-            <input
-              type="checkbox"
-              class="toggle-doc-nav-tree visually-hidden"
-              id="{{ tag }} toggle"
-            />
-          </label>
+          <h3 id="{{ tag | headingID }}">{{ tag }}</h3>
+          <ul aria-labelledby="{{ tag | headingID }}">
+            {% set navPages = collections[tag] | eleventyNavigation %}
+            {%- for entry in navPages %}
+              <li{% if entry.url == page.url %} class="current"{% endif %}>
+                <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title | safe }}</a>
+              </li>
+            {%- endfor %}
+          </ul>
         </li>
-        <li id="{{ tag }} nav-tree" class="doc-nav-group-hidden">
-          {{ collections[tag] | eleventyNavigation |
-          eleventyNavigationToHtml({ listItemHasChildrenClass: 'section',
-          activeListItemClass: 'current', activeKey: eleventyNavigation.key })
-          | safe }}
-        </li>
+        {%- endfor -%}
       </ul>
-      {%- endfor -%}
     {% endif %}
     </nav>
-
+    <script type="module">
+      {% include "remember-nav-scroll.js" %}
+    </script>
     <main class="main-content">
-      <div>
+      <article>
         <header>
           <h1>
             {{ title | default(eleventyNavigation.title) |
@@ -121,42 +126,15 @@
           </a>
         </footer>
         {% endif %}
-      </div>
+      </article>
+      {% if not tags or not tags.includes("Blog") %}
+      {% if content | toc %}
+      <aside>
+        <h3>On this page</h3>
+        {{ content | toc | safe }}
+      </aside>
+      {% endif %}
+      {% endif %}
     </main>
-
-    <script>
-      {% include "replace-date.js" %}
-    </script>
-
-    <script>
-      document
-        .querySelector("#color-scheme-toggle")
-        .addEventListener("click", () => {
-          isDarkMode = !isDarkMode;
-          sessionStorage.setItem("isDarkMode", isDarkMode);
-          updateMode(isDarkMode);
-        });
-    </script>
-
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
-    ></script>
-    <script type="text/javascript">
-      docsearch({
-        apiKey: "8b6be780425a72d1a1683abea2636778",
-        indexName: "parceljs",
-        inputSelector: "#search-input",
-        algoliaOptions: {
-          facetFilters: ["lang:v2"],
-        }
-      });
-    </script>
-    <script>
-      {% include "remember-nav-scroll.js" %}
-    </script>
   </body>
-  <script>
-    {% include "doc-nav-toggle.js" %}
-  </script>
 </html>

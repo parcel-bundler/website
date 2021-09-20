@@ -1,0 +1,79 @@
+pre {
+  @apply rounded-md p-4;
+  @apply text-gray-700 dark:text-gray-100;
+  @apply bg-blueGray-50 border-gray-200;
+  @apply dark:bg-gray-900 border dark:border-gray-700;
+
+  * {
+    @include transition-colors;
+  }
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.token.punctuation {
+  @apply text-gray-700 dark:text-gray-100;
+}
+
+.namespace {
+	@apply dark:opacity-80;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-pink-700 dark:text-pink-500;
+}
+
+.token.boolean,
+.token.number {
+  @apply text-purple-600 dark:text-purple-400;
+}
+
+.token.attr-name,
+.token.string,
+.token.url,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-green-700 dark:text-green-500;
+}
+
+.token.operator,
+.token.entity,
+.token.variable {
+  @apply text-gray-700 dark:text-gray-100
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  @apply text-orange-700 dark:text-yellow-300;
+}
+
+.token.selector,
+.token.keyword {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+.token.regex,
+.token.important {
+  @apply text-yellow-600;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}

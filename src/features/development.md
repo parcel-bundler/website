@@ -103,7 +103,7 @@ parcel src/index.html --cert certificate.cert --key private.key
 
 To better emulate the actual production environment when developing web apps, you can specify paths that should be proxied to another server (e.g. your real API server or a local testing server) in a `.proxyrc`, `.proxyrc.json` or `.proxyrc.js` file.
 
-#### `.proxyrc` / `.proxyrc.json`
+### `.proxyrc` / `.proxyrc.json`
 
 In this JSON file, you specify an object where every key is a pattern against which the URL is matched and the value is a [`http-proxy-middleware` options](https://github.com/chimurai/http-proxy-middleware#options) object:
 
@@ -127,7 +127,7 @@ In this JSON file, you specify an object where every key is a pattern against wh
 
 This example would cause `http://localhost:1234/api/endpoint` to be proxied to `http://localhost:8000/endpoint`.
 
-#### `.proxyrc.js`
+### `.proxyrc.js`
 
 For more complex configurations, a `.proxyrc.js` file allows you to attach any [connect](https://github.com/senchalabs/connect)-compatible middleware. First, make sure you install `http-proxy-middleware` into your project. This example has the same behaviour as the `.proxyrc` version above.
 

@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Elm
 eleventyNavigation:
   key: languages-elm
   title: <img src="/assets/lang-icons/elm.svg" alt=""/> Elm

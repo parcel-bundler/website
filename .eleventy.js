@@ -1,9 +1,9 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const pluginSass = require("eleventy-plugin-sass");
 
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const pluginTOC = require('eleventy-plugin-toc');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
@@ -14,28 +14,24 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.setDataDeepMerge(true);
 
-  eleventyConfig.addPlugin(pluginSass, {
-    watch: ["src/*.{scss,sass}"],
-  });
-
-  // Copy assets
-  eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy({
-    "src/assets/favicon.ico": "favicon.ico",
-  });
+  eleventyConfig.addPlugin(pluginTOC);
 
   eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg"]);
   eleventyConfig.addWatchTarget("./api/");
 
-  eleventyConfig.setLibrary(
-    "md",
-    markdownIt({
-      html: true,
-    }).use(markdownItAnchor, {
-      permalink: true,
-      permalinkBefore: true,
-    })
-  );
+  let md = markdownIt({
+    html: true,
+  }).use(markdownItAnchor, {
+    permalink: markdownItAnchor.permalink.linkAfterHeader({
+      style: 'aria-labelledby'
+    }),
+    tabIndex: false
+  });
+
+  md.renderer.rules.table_open = () => '<div class="table-wrapper"><table>';
+  md.renderer.rules.table_close = () => '</table></div>'
+
+  eleventyConfig.setLibrary("md", md);
 
   // ---------- Macros ----------
 
@@ -49,6 +45,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("toISODate", function (date) {
     return date.toISOString().replace(/T.*/, "");
+  });
+
+  eleventyConfig.addFilter("headingID", function (tag) {
+    return tag.toLowerCase().replace(/[^a-z]/gi, '') + '-heading';
   });
 
   eleventyConfig.addPairedShortcode("note", function (content) {
@@ -76,7 +76,7 @@ module.exports = function (eleventyConfig) {
         .map(
           ({ name, content }) =>
             `<div class="asset">` +
-            (name ? `<em>${name}</em>:` : "<span>&nbsp;</span>") +
+            (name ? `<em>${name}:</em>` : '') +
             content +
             `</div>`
         )
