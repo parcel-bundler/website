@@ -18,6 +18,25 @@
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script type="module" src="/assets/scripts/docs.js"></script>
+    {% if tags and tags.includes("Blog") %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="img:/og/{{ eleventyNavigation.key }}-preview.svg?as=jpg" />
+    {% else %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="/assets/avatar.png?width=512" />
+    {% endif %}
+    <meta name="twitter:site" content="@parceljs" />
+    <meta name="twitter:creator" content="@parceljs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://v2.parceljs.org{{ page.url }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description | default(content | excerpt | striptags) }}" />
+    {% if tags and tags.includes("Blog") %}
+    <meta property="og:image" content="img:/og/{{ eleventyNavigation.key }}-preview.svg?as=jpg" />
+    {% else %}
+    <meta property="og:image" content="/assets/avatar.png?width=512" />
+    {% endif %}
   </head>
   <body{% if tags and tags.includes("Blog") %} class="blog"{% endif %}>
     <header class="parcel-docs-header">

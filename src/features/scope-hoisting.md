@@ -1,6 +1,7 @@
 ---
 layout: layout.njk
 title: Scope hoisting
+description: In production builds, Parcel concatenates modules into a single scope. This is called "scope hoisting". Parcel also statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called "tree shaking".
 eleventyNavigation:
   key: features-scope-hoisting
   title: 🌳 Scope hoisting
