@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html'",
+    "build": "rm -rf _site dist; eleventy; PARCEL_WORKERS=0 parcel build _site/index.html '_site/*/*/*.html'",
     "watch": "eleventy --watch",
     "serve": "parcel _site/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
@@ -20,9 +20,6 @@
     "@babel/generator": "^7.12.11",
     "@babel/parser": "^7.12.11",
     "@babel/traverse": "^7.12.12",
-    "@parcel/config-default": "nightly",
-    "@parcel/optimizer-data-url": "nightly",
-    "@parcel/transformer-image": "nightly",
     "@parcel/transformer-sass": "nightly",
     "autoprefixer": "^10.3.4",
     "eleventy-plugin-toc": "^1.1.0",
