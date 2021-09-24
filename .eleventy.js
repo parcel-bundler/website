@@ -4,7 +4,6 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const pluginTOC = require('eleventy-plugin-toc');
-const {decode} = require('html-entities');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
@@ -17,7 +16,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginTOC);
 
-  eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg", "njk"]);
+  eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg"]);
   eleventyConfig.addWatchTarget("./api/");
 
   eleventyConfig.setFrontMatterParsingOptions({
@@ -140,34 +139,6 @@ module.exports = function (eleventyConfig) {
     });
   
     return excerpt;
-  });
-
-  eleventyConfig.addFilter('decode_entities', function(input) {
-    return decode(input);
-  });
-
-  eleventyConfig.addFilter('splitlines', function(input, limit = 80) {
-    if (!input) {
-      return [];
-    }
-    const parts = input.split(' ');
-    const lines = parts.reduce(function(prev, current) {
-      if (!prev.length) {
-          return [current];
-      }
-      
-      let lastOne = prev[prev.length - 1];
-
-      if (lastOne.length + current.length > limit) {
-          return [...prev, current];
-      }
-
-      prev[prev.length - 1] = lastOne + ' ' + current;
-
-      return prev;
-    }, []);
-
-    return lines;
   });
 
   return {
