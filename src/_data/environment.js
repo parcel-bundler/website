@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: process.env.VERCEL_URL || 'https://v2.parceljs.org'
+  baseUrl: 'https://' + (process.env.VERCEL_URL || 'v2.parceljs.org')
 };
