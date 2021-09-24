@@ -1117,12 +1117,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-image@npm:2.0.0-nightly.2465+b6faa0c8, @parcel/transformer-image@npm:nightly":
+"@parcel/transformer-image@2.0.0-nightly.2465+b6faa0c8":
   version: 2.0.0-nightly.2465
   resolution: "@parcel/transformer-image@npm:2.0.0-nightly.2465"
   dependencies:
     "@parcel/plugin": 2.0.0-nightly.843+b6faa0c8
   checksum: f4e423985182e4275744dc5c62c8b7fee7cf7be1bde39beee1ef4a2ae8aed4964e138679b466d6f9ce816579b64a8a5889b047d01f31d4f3367a18dc40c1b18d
+  languageName: node
+  linkType: hard
+
+"@parcel/transformer-image@patch:@parcel/transformer-image@2.0.0-nightly.2465+b6faa0c8#./patches/parcel-transformer-image.patch::locator=parcel-website%40workspace%3A.":
+  version: 2.0.0-nightly.2465
+  resolution: "@parcel/transformer-image@patch:@parcel/transformer-image@npm%3A2.0.0-nightly.2465#./patches/parcel-transformer-image.patch::version=2.0.0-nightly.2465&hash=dc99b3&locator=parcel-website%40workspace%3A."
+  dependencies:
+    "@parcel/plugin": 2.0.0-nightly.843+b6faa0c8
+  checksum: a661c49d8bf44fffaa03e8de6037d4cf17538c7869f775b008555ed8b402b557a063bbd8c0610419583f573f240214bc877abbf99d27fe457ebbadced2eb98e9
   languageName: node
   linkType: hard
 

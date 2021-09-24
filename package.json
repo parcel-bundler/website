@@ -46,7 +46,8 @@
     "nullthrows": "^1.1.1"
   },
   "resolutions": {
-    "gulp-sass": "5.0.0"
+    "gulp-sass": "5.0.0",
+    "@parcel/transformer-image": "patch:@parcel/transformer-image@2.0.0-nightly.2465+b6faa0c8#./patches/parcel-transformer-image.patch"
   },
   "lint-staged": {
     "*.{md,scss,js,json}": "prettier --write"
