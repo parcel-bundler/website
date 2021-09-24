@@ -19,15 +19,15 @@
     <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script type="module" src="/assets/scripts/docs.js"></script>
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="{{ environment.baseUrl }}/assets/og.png" />
+    <meta name="twitter:image" content="/assets/og.png" />
     <meta name="twitter:site" content="@parceljs" />
     <meta name="twitter:creator" content="@parceljs" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="{{ environment.baseUrl }}{{ page.url }}" />
+    <meta property="og:url" content="{{ page.url }}" />
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ description | default(content | excerpt | striptags) }}" />
-    <meta property="og:image" content="{{ environment.baseUrl }}/assets/og.png" />
+    <meta property="og:image" content="/assets/og.png" />
   </head>
   <body{% if tags and tags.includes("Blog") %} class="blog"{% endif %}>
     <header class="parcel-docs-header">

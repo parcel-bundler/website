@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; PARCEL_WORKERS=0 parcel build _site/index.html '_site/*/*/*.html'",
+    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html' --public-url https://${VERCEL_URL:-v2.parceljs.org}",
     "watch": "eleventy --watch",
     "serve": "parcel _site/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
