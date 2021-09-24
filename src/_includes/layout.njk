@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% if summary %}
-    <meta name="description" content="{{ summary }}" />
+    <meta name="description" content="{{ description | default(content | excerpt | striptags) }}" />
     {% endif %}
     <title>
       {{ title | default(eleventyNavigation.title) |
@@ -25,7 +25,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="{{ page.url }}" />
-    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:title" content="{{ title | default(eleventyNavigation.title) }}" />
     <meta property="og:description" content="{{ description | default(content | excerpt | striptags) }}" />
     <meta property="og:image" content="/assets/og.png" />
   </head>
