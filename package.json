@@ -34,7 +34,6 @@
     "postcss-focus-visible": "^5.0.0",
     "prettier": "2.2.1",
     "sass": "^1.35.2",
-    "sharp": "^0.28.3",
     "tailwindcss": "^2.2.15"
   },
   "dependencies": {
