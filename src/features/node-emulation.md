@@ -75,10 +75,10 @@ When your code, or more likely a dependency, imports builtin Node modules such a
 
 Calls to `fs.readFileSync` are replaced with the file's contents if the filepath is statically determinable and inside the project root.
 
-- `fs.readFileSync("file", "utf8")` – the contents of the file as a string. The "utf8", "utf-8", "hex", and "base64" encodings are supported.
-- `fs.readFileSync("file")` – a [Buffer](https://nodejs.org/dist/latest-v16.x/docs/api/buffer.html) object. Note that the Buffer polyfill is quite large so this may be undesired.
+- `fs.readFileSync(__dirname + "/file", "utf8")` – the contents of the file as a string. The "utf8", "utf-8", "hex", and "base64" encodings are supported.
+- `fs.readFileSync(__dirname + "/file")` – a [Buffer](https://nodejs.org/dist/latest-v16.x/docs/api/buffer.html) object. Note that the Buffer polyfill is quite large so this may be undesired.
 
-The `__dirname` and `__filename` variables can be used in the filename argument. String concatenation via the `+` operator and the `path.join` function may be used. Other functions, variables, or dynamic computations are not supported.
+The `__dirname` and `__filename` variables can be used in the filename argument. String concatenation via the `+` operator and the `path.join` function may be used. Other functions, variables, or dynamic computations are not supported. Computed paths should always be absolute, and not rely on the current working directory.
 
 {% sample %}
 {% samplefile "index.js" %}
