@@ -2,7 +2,7 @@
 layout: layout.njk
 eleventyNavigation:
   key: languages-coffee
-  title: <img src="/assets/lang-icons/coffeescript.svg" alt=""/> CoffeeScript
+  title: <img src="/assets/lang-icons/coffeescript.svg" class="dark-invert" alt=""/> CoffeeScript
   order: 5
 ---
 
