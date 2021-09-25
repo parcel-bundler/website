@@ -47,15 +47,16 @@ pre {
 }
 
 .token.operator,
-.token.entity,
-.token.variable {
+.token.entity {
   @apply text-gray-700 dark:text-gray-100
 }
 
 .token.atrule,
 .token.attr-value,
+.token.attr-value .string,
 .token.function,
-.token.class-name {
+.token.class-name,
+.token.variable {
   @apply text-orange-700 dark:text-yellow-300;
 }
 
