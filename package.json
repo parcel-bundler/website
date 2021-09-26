@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html'",
+    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html' --public-url https://${VERCEL_URL:-v2.parceljs.org}",
     "watch": "eleventy --watch",
     "serve": "parcel _site/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
@@ -14,7 +14,7 @@
     "generate-api-docs:watch": "nodemon -w ../parcel -w generate-api-docs -x yarn generate-api-docs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-rss": "^1.1.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
