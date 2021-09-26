@@ -8,6 +8,7 @@
       {{ title | default(eleventyNavigation.title) |
       default(eleventyNavigation.key) | striptags | safe }}
     </title>
+    <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link href="/assets/styles/doc-styles.scss" rel="stylesheet" />
     <script>

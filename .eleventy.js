@@ -1,5 +1,6 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
@@ -16,7 +17,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginTOC);
 
-  eleventyConfig.setTemplateFormats(["md", "css", "png", "svg", "mp4", "jpg"]);
+  eleventyConfig.addPlugin(pluginRss);
+
+  eleventyConfig.setTemplateFormats(["md", "njk", "css", "png", "svg", "mp4", "jpg"]);
   eleventyConfig.addWatchTarget("./api/");
 
   eleventyConfig.setFrontMatterParsingOptions({

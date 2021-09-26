@@ -1,12 +1,31 @@
 ---
 layout: layout.njk
+title: Web Extension
 eleventyNavigation:
   key: recipes-webext
   title: <img class="dark-invert" src="/assets/lang-icons/webext.svg" alt=""/> Web Extension
   order: 7
 ---
 
-Bundling WebExtensions is enabled by using `@parcel/config-webextension` like this:
+[Web Extensions](https://developer.chrome.com/docs/extensions/) are a set of APIs for building browser extensions that work across many browsers. Parcel supports building Web Extensions using `@parcel/config-webextension`.
+
+## Getting started
+
+First, install `@parcel/config-webextension` into your project:
+
+```shell
+yarn add @parcel/config-webextension --dev
+```
+
+Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up.
+
+To build your extension, run Parcel using your `manifest.json` as an entry, and `@parcel/config-webextension` as the config:
+
+```shell
+parcel build manifest.json --config @parcel/config-webextension
+```
+
+You can also create a `.parcelrc` file in your project extending `@parcel/config-webextension`. This way you don't need to pass the `--config` option to the Parcel CLI every time.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -20,14 +39,14 @@ Bundling WebExtensions is enabled by using `@parcel/config-webextension` like th
 {% endsamplefile %}
 {% endsample %}
 
-Running Parcel with your [`manifest.json`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) as an entry (`parcel build manifest.json`) will automatically validate and bundle your web extension.
-
 ## HMR
 
 For the best experience, you'll also want to enable a few options:
 
 - `sourceMap#inline` and `sourceMap#inlineSources`: Source maps don't work unless inlined in web extensions
 - `--host localhost`: Needed for HMR to work properly in content scripts
+
+To do this, create two [targets](/features/targets/) in your `package.json`: one for development with inline source maps enabled, and one for production without. Then, create some scripts to start the development server and build for production.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -44,8 +63,8 @@ For the best experience, you'll also want to enable a few options:
     "webext-prod": {}
   },
   "scripts": {
-    "start": "parcel src/manifest.json --host localhost --target webext-dev",
-    "build": "parcel build src/manifest.json --target webext-prod"
+    "start": "parcel src/manifest.json --host localhost --target webext-dev --config @parcel/config-webextension",
+    "build": "parcel build src/manifest.json --target webext-prod --config @parcel/config-webextension"
   }
 }
 ```

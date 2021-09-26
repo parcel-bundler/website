@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Debugging
 eleventyNavigation:
   key: recipes-debugging
   title: 🛠️ Debugging
@@ -10,22 +11,9 @@ As Parcel automatically generates sourcemaps by default, setting up debugging wi
 
 ## Chrome Developer Tools
 
-Assuming that source maps are enabled, no extra configuration is required here.
+Assuming that source maps are enabled, no extra configuration is required. For example, suppose you had a folder structure like the following:
 
-For example, suppose you had a folder structure like the following:
-
-{% sample "src/index.html" %}
-{% samplefile %}
-
-```
-├── package.json
-├── src
-│   ├── index.html
-│   └── index.ts
-└── yarn.lock
-```
-
-{% endsamplefile %}
+{% sample %}
 {% samplefile "src/index.html" %}
 
 ```html
@@ -52,8 +40,6 @@ document.getElementById("greeting").innerHTML = variable;
 
 {% endsamplefile %}
 {% endsample %}
-
-(`package.json` only has `parcel-bundler` installed)
 
 With this setup, you can run `parcel src/index.html` and set breakpoints in the source code, as seen below:
 

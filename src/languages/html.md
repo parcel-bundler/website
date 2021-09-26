@@ -141,6 +141,31 @@ Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.
 <meta property="og:image" content="100x100.png" />
 ```
 
+### JSON-LD
+
+Parcel supports [JSON-LD](https://json-ld.org) metadata embedded in HTML via `<script>` tags. Images and other URLs referenced in JSON-LD are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing). This is handled by the `@parcel/transformer-jsonld` plugin, which will automatically be installed into your project when needed.
+
+In this example, the image referenced from the `logo` object will be processed by Parcel.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Joe's Pizza",
+  "description": "Delicious pizza for over 30 years.",
+  "telephone": "555-111-2345",
+  "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "images/logo.png",
+    "width": 180,
+    "height": 120
+  }
+}
+</script>
+```
+
 ### Web manifests
 
 The `<link rel="manifest">` element is supported to reference a [Web manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest). This is a JSON file that includes various metadata about the app, and allows it to be installed to the user's home screen or desktop. Parcel processes the URLs referenced in the `icons` and `screenshots` keys in this file. Web manifests may be written in either a `.json` or `.webmanifest` file.
