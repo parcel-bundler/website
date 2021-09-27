@@ -3,7 +3,7 @@ layout: layout.njk
 title: Stylus
 eleventyNavigation:
   key: languages-stylus
-  title: <img src="/assets/lang-icons/stylus.svg" alt=""/> Stylus
+  title: <img src="/assets/lang-icons/stylus.svg" class="dark-invert" alt=""/> Stylus
   order: 7
 ---
 

@@ -3,7 +3,7 @@ layout: layout.njk
 title: Less
 eleventyNavigation:
   key: languages-less
-  title: <img src="/assets/lang-icons/less.svg" alt=""/> Less
+  title: <img src="/assets/lang-icons/less.svg" class="dark-invert" alt=""/> Less
   order: 8
 ---
 
