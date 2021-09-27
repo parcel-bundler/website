@@ -191,7 +191,7 @@ Parcel 1 automatically transpiled your JavaScript to support a default set of br
 
 ### Babel
 
-Like Parcel 1, Parcel 2 automatically detects `.babelrc` and other Babel config files. However, if you're only using `@babel/preset-env`, `@babel/preset-typescript`, `@babel/preset-react`, and `@babel/preset-flow`, Babel may no longer be necessary. Parcel supports all of these features automatically without a Babel config, and Parcel's default transpiler is much faster than Babel.
+Like Parcel 1, Parcel 2 automatically detects `.babelrc` and other Babel config files. However, if you're only using `@babel/preset-env`, `@babel/preset-typescript`, and `@babel/preset-react`, Babel may no longer be necessary. Parcel supports all of these features automatically without a Babel config, and Parcel's default transpiler is much faster than Babel.
 
 If you only use the above presets, you can delete your Babel config entirely. This will use Parcel's default transpiler instead, which should improve your build performance significantly. Make sure to configure `browserslist` in your `package.json` to match the targets previously used by `@babel/preset-env`.
 
@@ -254,6 +254,12 @@ yarn add @parcel/config-default @parcel/transformer-typescript-tsc --dev
 {% endsample %}
 
 See the [TypeScript docs](/languages/typescript) for more information on using TypeScript with Parcel.
+
+### Flow
+
+Just like Parcel 1, Parcel 2 supports Flow automatically when `flow-bin` is installed. This is currently implemented using `@babel/preset-flow`. If you have a Babel config with only that preset, it can be removed as described [above](#babel).
+
+Unlike Parcel 1, your Babel config overrides the default in Parcel 2 rather than being merged into it. If you have custom Babel plugins other than Flow, you'll need to add `@babel/preset-flow` as well.
 
 ### Importing GraphQL
 
