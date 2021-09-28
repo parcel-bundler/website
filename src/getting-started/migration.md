@@ -578,4 +578,4 @@ The plugin system has been completely changed in Parcel 2. Parcel 1 plugins are 
 
 ### Using plugins
 
-In Parcel 1, installing plugins into your project and listing them in `package.json` dependencies enabled them automatically. In Parcel 2, plugins are configured in `.parcelrc`. See [Parcel configuration](/configuration/plugin-configuration/) for details.
+In Parcel 1, installing plugins into your project and listing them in `package.json` dependencies enabled them automatically. In Parcel 2, plugins are configured in `.parcelrc`. See [Parcel configuration](/features/plugins/) for details.

@@ -1,5 +1,6 @@
 ---
 layout: layout.njk
+title: Plugin System Overview
 eleventyNavigation:
   key: plugin-system-overview
   title: Overview
@@ -8,14 +9,9 @@ summary: A high-level overview over the plugin system
 ---
 
 <figure>
-  <div style="overflow-x: auto;">
-    <img class="img-plugin-diagram" style="height: 35rem; max-height: 65vh; max-width: none;" src="/assets/diagram-plugin-system.opt.png"/>
-  </div>
-  <figcaption style="text-align: center;">
-
-_Scroll to the right to see more_
-
-  </figcaption>
+  <a href="/assets/diagram-plugin-system.opt.png" target="_blank">
+    <img class="img-plugin-diagram" alt="A diagram of the Parcel plugin system" src="/assets/diagram-plugin-system.opt.png"/>
+  </a>
 </figure>
 
 ## Parcel Architecture
@@ -30,20 +26,23 @@ At a high level Parcel runs through several phases:
 - Resolving
 - Transforming
 - Bundling
+- Naming
 - Packaging
 - Optimizing
-- (Validating)
+- Compressing
 
 The **resolving** and **transforming** phases work together in parallel to
 build a graph of all your assets.
 
-This asset graph gets translated into bundles in the **bundling** phase.
+The asset graph gets translated into bundles in the **bundling** phase. The output filename of each bundle is determined in the **naming** phase.
 
-Then the **packaging** phase takes the assets in the calculated bundles and
-merges them together into files each containing an entire bundle.
+Then, the **packaging**, **optimizing**, and **compressing** phases work together to generate the final contents of every bundle, in parallel.
 
-Finally, in the **optimizing** phase, Parcel takes these bundles files and runs
-them through optimizing transforms.
+The **packaging** phase merges the assets in each bundle together into output files.
+
+The **optimizing** phase transforms the contents of each bundle. When this is done, Parcel determines the content hashes of each bundle, which are applied to the final output filenames.
+
+Finally, the **compressing** phase generates one or more encodings for each output file as they are being written to the file system.
 
 ### Asset Graph
 
@@ -64,7 +63,7 @@ Some assets are considered "entry" points into your app, and will stay as
 separate bundles. For example, if your `index.html` file links to an
 `about.html` file, they won't be merged together.
 
-### Complete List of Plugin Types (in a somewhat correct order)
+### Complete List of Plugin Types
 
 - [Transformer](/plugin-system/transformer): Converts an asset (into another asset) <br>
   _Example: convert Typescript to Javascript (per file)_
@@ -80,9 +79,8 @@ separate bundles. For example, if your `index.html` file links to an
   _Example: concatenate all input CSS files into a CSS bundle_
 - [Optimizer](/plugin-system/optimizer): Applies modifications to the finished bundle (similar to a transformer) <br>
   _Example: run a minifier or convert into a data-url for inline usage_
-
-<p></p> <!-- Force two lists -->
-
+- [Compressor](/plugin-system/compressor): Compresses or encodes bundles in one or more ways <br>
+  _Example: compress a bundle with Gzip_
 - [Validator](/plugin-system/validator): Analyzes assets and emit warnings and errors <br>
   _Example: do type-checking (TypeScript, Flow)_
 - [Config](/plugin-system/configuration): A reuseable '.parcelrc' package <br>

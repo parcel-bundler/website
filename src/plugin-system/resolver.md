@@ -10,7 +10,7 @@ Resolver plugins are responsible for turning a dependency specifier into a full 
 
 ## Example
 
-This example overrides the resolution of `special-module`, and otherwise returns `null` to allow the next resolver in the pipeline to handle the dependency. See [Resolvers](/configuration/plugin-configuration/#resolvers) in the Parcel configuration docs for details on how this works.
+This example overrides the resolution of `special-module`, and otherwise returns `null` to allow the next resolver in the pipeline to handle the dependency. See [Resolvers](/features/plugins/#resolvers) in the Parcel configuration docs for details on how this works.
 
 ```javascript
 import {Resolver} from '@parcel/plugin';

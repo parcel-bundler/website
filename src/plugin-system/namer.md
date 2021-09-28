@@ -10,7 +10,7 @@ Namer plugins determine the output filename for a bundle. Namers run in a pipeli
 
 ## Overriding names for specific bundles
 
-A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. Namers may return `null` when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](/configuration/plugin-configuration/#namers) in the Parcel configuration docs for details on how this works.
+A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. Namers may return `null` when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](/features/plugins/#namers) in the Parcel configuration docs for details on how this works.
 
 This example places all `png` and `jpg` files into an `images` folder with the same name as their original filename.
 

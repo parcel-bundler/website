@@ -186,10 +186,25 @@ body {
 }
 
 .img-plugin-diagram {
-  height: 35rem;
-  max-height: 65vh;
-  max-width: none;
+  width: calc(100vw - 33rem);
+  margin-left: calc((100vw - 30rem - 80ch) / -2);
+  max-width: unset !important;
   transition: filter 0.2s ease-in-out;
+
+  @media (max-width: 1280px) {
+    width: calc(100vw - 19rem);
+    margin-left: calc((100vw - 16rem - 80ch) / -2);
+  }
+
+  @media (max-width: 1024px) {
+    width: calc(100vw - 3rem);
+    margin-left: calc((100vw - 80ch) / -2);
+  }
+
+  @media (max-width: 760px) {
+    width: 100%;
+    margin-left: 0;
+  }
 
   html.dark & {
     filter: invert(1) hue-rotate(180deg);

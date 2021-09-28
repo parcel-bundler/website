@@ -45,7 +45,7 @@ Loading configuration from the user’s project should be done in the `loadConfi
 
 ## Changing the asset type
 
-Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's `type` property to the new file type (e.g. `js`). The asset will then be processed by the pipeline matching the new type. See [Transformers](/configuration/plugin-configuration/#transformers) in the Parcel configuration docs for details.
+Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's `type` property to the new file type (e.g. `js`). The asset will then be processed by the pipeline matching the new type. See [Transformers](/features/plugins/#transformers) in the Parcel configuration docs for details.
 
 ```javascript/7
 import {Transformer} from '@parcel/plugin';
