@@ -1,10 +1,10 @@
 ---
 layout: layout.njk
-title: Parcel configuration
+title: Plugins
 eleventyNavigation:
-  key: configuration-plugin-configuration
-  title: 🔌 Parcel configuration
-  order: 1
+  key: features-plugins
+  title: 🔌 Plugins
+  order: 11
 ---
 
 Parcel works out of the box for many projects with zero configuration. But if you want more control, or need to extend or override Parcel’s defaults, you can do so by creating a `.parcelrc` file in your project.

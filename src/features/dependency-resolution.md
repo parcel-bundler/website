@@ -155,7 +155,7 @@ See the [Image transformer](/recipes/image/) docs for more details on images. Yo
 
 ### URL schemes
 
-Dependency specifiers may use URL schemes to target [Named pipelines](/configuration/plugin-configuration/#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](/features/bundle-inlining/) for more details.
+Dependency specifiers may use URL schemes to target [Named pipelines](/features/plugins/#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](/features/bundle-inlining/) for more details.
 
 There are a few reserved URL schemes that may not be used for named pipelines, and have builtin behavior.
 

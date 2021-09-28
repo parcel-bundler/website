@@ -85,7 +85,7 @@ These parameters are supported by all Parcel commands.
 | `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`. |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for the [`publicUrl`](/features/targets/#publicurl) option in package.json `targets`.                     |
 | `--no-source-maps`                           | Disables sourcemaps, <br> Overrides the [`sourceMap`](/features/targets/#sourcemap) option in package.json `targets`.                                          |
-| `--config <path>`                            | Specify which Parcel config to use. <br> Can be a file path or package name. Defaults to `@parcel/config-default`. See [Parcel configuration](/configuration/plugin-configuration/). |
+| `--config <path>`                            | Specify which Parcel config to use. <br> Can be a file path or package name. Defaults to `@parcel/config-default`. See [Parcel configuration](/features/plugins/). |
 | `--reporter <package name>`                  | Run the specified reporter plugin in addition to the ones specified in the `.parcelrc`. Can be specified multiple times.                                |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                           |
 | `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).

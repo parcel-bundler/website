@@ -88,7 +88,7 @@ One unfortunate consequence of using web extensions is that importing style file
 
 ### Asset URLs
 
-Asset URLs will not have the extension prefix added, so trying to use assets such as images by [importing them with the `url:` pipeline](</configuration/plugin-configuration#predefined-(offical)-named-pipelines>) in content scripts will fail. However, when add the assets you need to the [`web_accessible_resources` key](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/web_accessible_resources) (which is necessary anyway to use them in content scripts), the filepaths will remain the same as during build time. With that in mind, you can just do:
+Asset URLs will not have the extension prefix added, so trying to use assets such as images by [importing them with the `url:` pipeline](</features/plugins#predefined-(offical)-named-pipelines>) in content scripts will fail. However, when add the assets you need to the [`web_accessible_resources` key](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/web_accessible_resources) (which is necessary anyway to use them in content scripts), the filepaths will remain the same as during build time. With that in mind, you can just do:
 {% sample %}
 {% samplefile "content_script.js" %}
 
