@@ -147,7 +147,7 @@ module.exports = function (eleventyConfig) {
     return excerpt;
   });
 
-  eleventyConfig.addNunjucksAsyncFilter('htmlToAbsolute', function (content, base, callback) {
+  eleventyConfig.addNunjucksAsyncFilter('feedHTML', function (content, base, callback) {
     posthtml()
       .use(urls({
         eachURL(url, attr, element) {
@@ -160,6 +160,15 @@ module.exports = function (eleventyConfig) {
           return urlJoin(baseUrl, url);
         }
       }))
+      .use(tree => {
+        tree.walk(node => {
+          if (node?.attrs?.class === 'header-anchor') {
+            return null;
+          }
+
+          return node;
+        })
+      })
       .process(content, {closingSingleTag: "slash"})
       .then(html => callback(null, html.html));
   });
