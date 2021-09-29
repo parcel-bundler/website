@@ -5,6 +5,9 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const pluginTOC = require('eleventy-plugin-toc');
+const posthtml = require('posthtml');
+const urls = require('posthtml-urls');
+const {urlJoin} = require('@parcel/utils');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
@@ -142,6 +145,32 @@ module.exports = function (eleventyConfig) {
     });
   
     return excerpt;
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter('feedHTML', function (content, base, callback) {
+    posthtml()
+      .use(urls({
+        eachURL(url, attr, element) {
+          if (/^https?:/.test(url)) {
+            return url;
+          }
+          // Generate absolute urls for <a> tags - Parcel doesn't rename them anyway.
+          // Otherwise, prepend the base URL so we get an absolute path.
+          let baseUrl = element === 'a' ? 'https://v2.parceljs.org' + base : base;
+          return urlJoin(baseUrl, url);
+        }
+      }))
+      .use(tree => {
+        tree.walk(node => {
+          if (node && node.attrs && node.attrs.class === 'header-anchor') {
+            return null;
+          }
+
+          return node;
+        })
+      })
+      .process(content, {closingSingleTag: "slash"})
+      .then(html => callback(null, html.html));
   });
 
   return {
