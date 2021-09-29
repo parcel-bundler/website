@@ -162,7 +162,7 @@ module.exports = function (eleventyConfig) {
       }))
       .use(tree => {
         tree.walk(node => {
-          if (node?.attrs?.class === 'header-anchor') {
+          if (node && node.attrs && node.attrs.class === 'header-anchor') {
             return null;
           }
 
