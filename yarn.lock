@@ -2716,7 +2716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-convert@npm:^1.9.0, color-convert@npm:^1.9.3":
+"color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
   dependencies:
@@ -2755,16 +2755,6 @@ __metadata:
     color-name: ^1.0.0
     simple-swizzle: ^0.2.2
   checksum: d48692037a6d38bd1deb91886a075d8af82e4e8269c5ab33eadf174d8aa5e82753a2f3edfe6749e24e48898ea2eb76df706b603c65a721e10ddc57c5d6a078cf
-  languageName: node
-  linkType: hard
-
-"color@npm:^3.1.3":
-  version: 3.2.1
-  resolution: "color@npm:3.2.1"
-  dependencies:
-    color-convert: ^1.9.3
-    color-string: ^1.6.0
-  checksum: 2cf9436cba4cf0cd2da88d82aa69cbad548a850ec24abc1a64930778aa4bc6ef2839b178d85fa2bc254b2a5b982e7db1040c05764f6161a1266880bb0dd14d4f
   languageName: node
   linkType: hard
 
@@ -7293,12 +7283,21 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^3.0.2, node-addon-api@npm:^3.2.0":
+"node-addon-api@npm:^3.0.2":
   version: 3.2.1
   resolution: "node-addon-api@npm:3.2.1"
   dependencies:
     node-gyp: latest
   checksum: b4c69283fc7baa813e7f38085ee8cd3bd9fd1463a11621eb7e9be12cd494bfabd83b1e7880dc7f7a8d664f8545238ce310d61301b3c4ae608e6e49f4862c41e5
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^4.1.0":
+  version: 4.2.0
+  resolution: "node-addon-api@npm:4.2.0"
+  dependencies:
+    node-gyp: latest
+  checksum: e0911dd01efed65c0a70db660570225904bf24d77b17801be42ecea01c8aaa9423c511b78fd89ce84b09149a7a4ed115bf9a84ff9ee6b779a1f68eefeef3972c
   languageName: node
   linkType: hard
 
@@ -7849,7 +7848,7 @@ fsevents@~2.3.2:
     posthtml-prism: ^1.0.4
     prettier: 2.2.1
     sass: ^1.35.2
-    sharp: ^0.28.3
+    sharp: ^0.29.1
     tailwindcss: ^2.2.15
     tailwindcss-safe-area: ^0.2.1
   languageName: unknown
@@ -8841,7 +8840,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"prebuild-install@npm:^6.1.2":
+"prebuild-install@npm:^6.1.4":
   version: 6.1.4
   resolution: "prebuild-install@npm:6.1.4"
   dependencies:
@@ -9925,20 +9924,20 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.28.3":
-  version: 0.28.3
-  resolution: "sharp@npm:0.28.3"
+"sharp@npm:^0.29.1":
+  version: 0.29.1
+  resolution: "sharp@npm:0.29.1"
   dependencies:
-    color: ^3.1.3
+    color: ^4.0.1
     detect-libc: ^1.0.3
-    node-addon-api: ^3.2.0
+    node-addon-api: ^4.1.0
     node-gyp: latest
-    prebuild-install: ^6.1.2
+    prebuild-install: ^6.1.4
     semver: ^7.3.5
     simple-get: ^3.1.0
     tar-fs: ^2.1.1
     tunnel-agent: ^0.6.0
-  checksum: 7490ab4afbb7a1987c011a5eb40be15873841d5dd92a66d47ec424f618daed616ed597533bb985dfabc2e186b5d8476a06003c84a618b749ae6f3de413cad736
+  checksum: 48ace872de75659ceab33bc9923ef057efbea5e997af71a37ffee91d7527a857e335e2c29c8be5b023d93db7a95d217386a7535cda5dbebc0baacaeda6870d9c
   languageName: node
   linkType: hard
 
