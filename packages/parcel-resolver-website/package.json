@@ -1,0 +1,11 @@
+{
+  "name": "parcel-resolver-website",
+  "version": "1.0.0",
+  "main": "WebsiteResolver.js",
+  "engines": {
+    "parcel": "^2.0.0-beta.1"
+  },
+  "dependencies": {
+    "@parcel/plugin": "nightly"
+  }
+}

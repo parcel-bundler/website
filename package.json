@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
+    "build": "rm -rf _site dist; eleventy; parcel build src/home/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
     "watch": "eleventy --watch",
-    "serve": "parcel _site/index.html '_site/*/*/*.html'",
+    "serve": "parcel src/home/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,scss}'",
@@ -35,11 +38,18 @@
     "parcel": "nightly",
     "postcss": "^8.3.6",
     "postcss-focus-visible": "^5.0.0",
+    "posthtml-include": "^1.7.0",
+    "posthtml-prism": "^1.0.4",
     "prettier": "2.2.1",
     "sass": "^1.35.2",
-    "tailwindcss": "^2.2.15"
+    "sharp": "^0.28.3",
+    "tailwindcss": "^2.2.15",
+    "tailwindcss-safe-area": "^0.2.1"
   },
   "dependencies": {
+    "@alpinejs/intersect": "^3.4.2",
+    "alpinejs": "^3.4.2",
+    "focus-visible": "^5.2.0",
     "marked": "^2.0.7",
     "nullthrows": "^1.1.1"
   },
@@ -55,9 +65,6 @@
     }
   },
   "alias": {
-    "./assets/**": "./src/assets/$1",
-    "./src/**": "./src/$1",
-    "./_site/**": "./_site/$1",
-    "./**": "./_site/$1"
+    "./assets/**": "./src/assets/$1"
   }
 }
