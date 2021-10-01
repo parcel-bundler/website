@@ -11,7 +11,7 @@ Parcel has built in support for resizing, converting, and optimizing images. Ima
 
 ## Resizing and converting images
 
-Parcel includes an image transformer out of the box, which allows you to resize images, convert them to a different format, or adjust the quality to reduce file size. This can be done using query parameters when referencing the image.
+Parcel includes an image transformer out of the box, which allows you to resize images, convert them to a different format, or adjust the quality to reduce file size. This can be done using query parameters when referencing the image, or using a [configuration](#configuration) file.
 
 The image transformer relies on the [Sharp](https://sharp.pixelplumbing.com/) image transformation library, which will be automatically installed as a dev dependency into your project when needed.
 
@@ -77,6 +77,47 @@ To reference an image from HTML, use the `<img>` or `<picture>` element. The sam
     </picture>
   </body>
 </html>
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+## Configuration
+
+In addition to query parameters, Parcel also supports using a configuration file to define options that apply to all of the images in your project. For example, you could re-encode all images at a certain quality setting to reduce file size, or define more advanced options for each output format.
+
+To set the quality across all images in your project, create a `sharp.config.json` file in your project and define the `quality` field. This will re-encode every image, not just ones referenced with query params.
+
+{% sample %}
+{% samplefile "sharp.config.json" %}
+
+```json
+{
+  "quality": 80
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+You can also define more advanced options per format. All images in formats with options defined in `sharp.config.json` will be re-encoded. See the full list of supported options [here](https://sharp.pixelplumbing.com/api-output#jpeg).
+
+{% sample %}
+{% samplefile "sharp.config.json" %}
+
+```json
+{
+  "jpeg": {
+    "quality": 75,
+    "chromaSubsampling": "4:4:4"
+  },
+  "webp": {
+    "nearLossless": true
+  },
+  "png": {
+    "palette": true
+  }
+}
 ```
 
 {% endsamplefile %}
