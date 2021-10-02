@@ -91,7 +91,7 @@ Raster images or other SVGs can be embedded in an SVG file using the [`<image>`]
 Parcel’s image transformer can also be used to resize and convert images by using [Query parameters](/features/dependency-resolution/#query-parameters).
 
 ```xml
-<image href="image.jpg?format=webp" width="100" height="50" />
+<image href="image.jpg?as=webp" width="100" height="50" />
 ```
 
 {% note %}
