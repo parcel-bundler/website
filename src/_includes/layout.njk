@@ -55,7 +55,7 @@
         </a>
       </div>
       <nav class="section-picker">
-        <a {% if not page.url.includes('blog') %}class="selected"{% endif %} href="/">Docs</a>
+        <a {% if not page.url.includes('blog') %}class="selected"{% endif %} href="/docs/">Docs</a>
         <a {% if page.url.includes('blog') %}class="selected"{% endif %} href="{{ collections.Blog | sortDate | first | pageUrl }}">Blog</a>
       </nav>
       <div class="search-container">
@@ -109,7 +109,7 @@
     <script type="module">
       {% include "remember-nav-scroll.js" %}
     </script>
-    <main class="main-content">
+    <main class="main-content{% if page.url == '/docs/' %} docs-home{% endif %}">
       <article>
         <header>
           <h1>
@@ -128,7 +128,7 @@
 
         {{ content | safe }}
 
-        {% if not tags or not tags.includes("Blog") %}
+        {% if tags and not tags.includes("Blog") %}
         <footer>
           <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
             Edit this page on GitHub
