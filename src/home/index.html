@@ -8,7 +8,9 @@
     <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="libs.js" async></script>
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="module" src="libs.js"></script>
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:image" content="/assets/og.png" />
     <meta name="twitter:site" content="@parceljs" />
@@ -21,7 +23,7 @@
     <meta property="og:image" content="/assets/og.png" />
   </head>
   <body class="bg-white dark:bg-gray-800">
-    <header aria-labelledby="parcel" class="py-8 md:py-16 relative">
+    <header aria-labelledby="parcel" class="pt-20 md:pt-16 pb-8 md:pb-16 relative">
       <div class="absolute top-0 left-0 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 dark:from-blue-700 dark:via-purple-800 dark:to-pink-800 transform -skew-y-6 -translate-y-28" style="z-index: -1; width: 100%; height: 120%;" role="presentation"></div>
       <div class="max-w-screen-xl mx-auto px-6 md:px-8 box-border">
         <div class="flex flex-row items-center px-safe">
@@ -201,7 +203,7 @@
           </script>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-none md:grid-flow-col gap-4 gap-y-8 justify-center md:justify-start items-center px-safe" style="grid-auto-columns: auto auto 1fr;">
-          <a href="/getting-started/webapp/" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Get started</a>
+          <a href="/docs/" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Get started</a>
           <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener" class="bg-purple-200 dark:bg-purple-300 text-purple-700 hover:bg-purple-100 dark:hover:bg-purple-200 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Github</a>
           <button type="button" class="col-span-2 justify-self-center md:justify-self-end text-purple-200 hover:text-purple-50 transition-colors cursor-pointer border-white border-opacity-20 border py-2 px-6 rounded-xl text-left flex" style="-webkit-tap-highlight-color: transparent" onclick="navigator.clipboard.writeText(this.firstElementChild.textContent.slice(2))" x-data="{copied: false}" @click="copied = true" x-effect="copied ? setTimeout(() => copied = false, 3000) : null">
             <code>$ yarn add parcel</code>
@@ -215,6 +217,16 @@
           </button>
         </div>
       </div>
+      <nav class="absolute top-0 right-0 p-4 text-pink-300 text-lg sm:text-base flex items-center gap-5">
+        <div class="search-container home text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" id="search-input" aria-label="Search" placeholder="Search..." />
+        </div>
+        <a href="/docs/" class="hover:text-pink-200 transition">Docs</a>
+        <a href="/blog/" class="hover:text-pink-200 transition">Blog</a>
+      </nav>
     </header>
     <section class="pt-20 lg:pt-32 -mb-10 flex flex-row flex-wrap gap-x-10 gap-y-6 items-center justify-center max-w-xl lg:max-w-full mx-auto px-8 text-gray-700 dark:text-gray-300">
       <div class="font-semibold uppercase w-full lg:w-auto text-center text-gray-500 dark:text-gray-400">Trusted by:</div>
