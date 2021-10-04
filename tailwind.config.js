@@ -17,7 +17,8 @@ module.exports = {
         orange: colors.orange,
         rose: colors.rose,
         fuchsia: colors.fuchsia,
-        blueGray: colors.blueGray
+        blueGray: colors.blueGray,
+        violet: colors.violet
       },
       maxWidth: {
         'full-screen': 'calc(100vw - 20px)'
