@@ -47,7 +47,7 @@ See [Production](/features/production/) for more details.
 
 ## Entries
 
-All Parcel commands accept one or more entries. Entries may be relative or absolute paths, or globs. They may also be directories containing a `package.json` with a `source` field. If entries are omitted entirely, the `source` field in the `package.json` in the current working directory is used. See [Entries](/features/targes/#entries) in the Targets documentation for more details.
+All Parcel commands accept one or more entries. Entries may be relative or absolute paths, or globs. They may also be directories containing a `package.json` with a `source` field. If entries are omitted entirely, the `source` field in the `package.json` in the current working directory is used. See [Entries](/features/targets/#entries) in the Targets documentation for more details.
 
 {% warning %}
 
