@@ -4,9 +4,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
+    "build": "rm -rf _site dist; eleventy; parcel build _site/index.html _site/docs/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
     "watch": "eleventy --watch",
-    "serve": "parcel _site/index.html '_site/*/*/*.html'",
+    "serve": "parcel _site/index.html _site/docs/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,scss}'",
