@@ -156,7 +156,7 @@ module.exports = function (eleventyConfig) {
           }
           // Generate absolute urls for <a> tags - Parcel doesn't rename them anyway.
           // Otherwise, prepend the base URL so we get an absolute path.
-          let baseUrl = element === 'a' ? 'https://v2.parceljs.org' + base : base;
+          let baseUrl = element === 'a' ? 'https://parceljs.org' + base : base;
           return urlJoin(baseUrl, url);
         }
       }))
