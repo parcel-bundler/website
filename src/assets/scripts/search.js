@@ -1,13 +1,13 @@
 // When the search input is focused, add a class to the header.
 // This is used to hide some other elements and expand the search bar.
-let search = document.querySelector('#search-input');
-let header = document.querySelector('.parcel-docs-header');
+let search = document.querySelector("#search-input");
+let header = document.querySelector(".parcel-docs-header");
 search.onfocus = () => {
-  header.classList.add('search');
+  header.classList.add("search");
 };
 
 search.onblur = () => {
-  header.classList.remove('search');
+  header.classList.remove("search");
 };
 
 docsearch({
@@ -15,12 +15,15 @@ docsearch({
   indexName: "parceljs",
   inputSelector: "#search-input",
   algoliaOptions: {
-    facetFilters: ["lang:v2"],
-  }
+    facetFilters: ["lang:en", "version:v2"],
+  },
 });
 
-if (typeof visualViewport !== 'undefined') {
-  visualViewport.addEventListener('resize', () => {
-    document.documentElement.style.setProperty('--viewport-height', visualViewport.height + 'px');
+if (typeof visualViewport !== "undefined") {
+  visualViewport.addEventListener("resize", () => {
+    document.documentElement.style.setProperty(
+      "--viewport-height",
+      visualViewport.height + "px"
+    );
   });
 }
