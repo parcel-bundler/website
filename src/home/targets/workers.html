@@ -1,7 +1,7 @@
 <div class="flex flex-col">
-  <div class="text-lg lg:text-xl font-medium text-gray-500 dark:text-purple-300 mb-8">
-    <p class="mb-4">Parcel supports <strong class="font-medium text-gray-800 dark:text-purple-100">web workers</strong>, <strong class="font-medium text-gray-800 dark:text-purple-100">service workers</strong>, and <strong class="font-medium text-gray-800 dark:text-purple-100">worklets</strong> out of the box! Just use the standard browser APIs and Parcel will automatically follow the dependency.</p>
-    <p class="text-base lg:text-lg">It even generates <strong class="font-medium text-gray-800 dark:text-purple-100">native ES module workers</strong> when possible, depending on your browser targets!</p>
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300 mb-8">
+    <p class="mb-4">Parcel supports <strong class="font-semibold text-gray-800 dark:text-purple-100">web workers</strong>, <strong class="font-semibold text-gray-800 dark:text-purple-100">service workers</strong>, and <strong class="font-semibold text-gray-800 dark:text-purple-100">worklets</strong> out of the box! Just use the standard browser APIs and Parcel will automatically follow the dependency.</p>
+    <p class="text-base lg:text-lg">It even generates <strong class="font-semibold text-gray-800 dark:text-purple-100">native ES module workers</strong> when possible, depending on your browser targets!</p>
     <a class="mt-8 block text-lg font-medium text-pink-500 dark:text-pink-400 hover:underline" href="/languages/javascript/#workers">Learn more →</a>
   </div>
   <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="flex flex-col bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden self-center w-full-screen sm:w-auto transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">

@@ -58,32 +58,49 @@
               <h2 class="text-4xl md:text-5xl xl:text-6xl font-extrabold text-white my-5 lg:my-10 leading-tight">
                 The zero configuration build tool for 
                 <ul id="languageMarquee" class="inline-block align-top relative z-0 whitespace-nowrap">
-                  <li><span class="text-green-400 dark:text-green-400">JavaScript</span>.</li>
-                  <li><span class="text-blue-300 dark:text-blue-400">CSS</span>.</li>
-                  <li><span class="text-yellow-400 dark:text-purple-300">HTML</span>.</li>
-                  <li><span class="text-indigo-200 dark:text-indigo-300">TypeScript</span>.</li>
-                  <li><span class="text-pink-400 dark:text-pink-500">SASS</span>.</li>
-                  <li><span class="text-red-400 dark:text-red-500">Less</span>.</li>
-                  <li><span class="text-yellow-400 dark:text-yellow-400">Stylus</span>.</li>
-                  <li><span class="text-green-400 dark:text-green-400">React</span>.</li>
-                  <li><span class="text-blue-300 dark:text-blue-400">Vue</span>.</li>
-                  <li><span class="text-red-400 dark:text-purple-300">CoffeeScript</span>.</li>
-                  <li><span class="text-indigo-200 dark:text-indigo-300">Elm</span>.</li>
-                  <li><span class="text-pink-400 dark:text-pink-500">WebGL</span>.</li>
-                  <li><span class="text-red-400 dark:text-red-500">Pug</span>.</li>
-                  <li><span class="text-yellow-400 dark:text-yellow-400">SVG</span>.</li>
-                  <li><span class="text-pink-400 dark:text-pink-400">Extensions</span>.</li>
+                  <li><span class="text-green-400">the web</span>.</li>
+                  <li><span class="text-cyan-400">JavaScript</span>.</li>
+                  <li><span class="text-rose-400 dark:text-rose-500">CSS</span>.</li>
+                  <li><span class="text-yellow-400">HTML</span>.</li>
+                  <li><span class="text-emerald-400">TypeScript</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">React</span>.</li>
+                  <li><span class="text-cyan-400">images</span>.</li>
+                  <li><span class="text-orange-400 dark:text-orange-500">SASS</span>.</li>
+                  <li><span class="text-sky-400">SVG</span>.</li>
+                  <li><span class="text-green-400">Vue</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">libraries</span>.</li>
+                  <li><span class="text-pink-400 dark:text-pink-500">Less</span>.</li>
+                  <li><span class="text-yellow-400">CoffeeScript</span>.</li>
+                  <li><span class="text-emerald-400">Node</span>.</li>
+                  <li><span class="text-red-400 dark:text-red-500">Stylus</span>.</li>
+                  <li><span class="text-lime-400">Pug</span>.</li>
+                  <li><span class="text-sky-400">Electron</span>.</li>
+                  <li><span class="text-red-400 dark:text-red-500">Elm</span>.</li>
+                  <li><span class="text-yellow-400">WebGL</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">extensions</span>.</li>
+                  <li><span class="text-lime-400">GraphQL</span>.</li>
+                  <li><span class="text-cyan-400">MDX</span>.</li>
+                  <li><span class="text-rose-400 dark:text-rose-500">XML</span>.</li>
                 </ul>
               </h2>
               <style>
                 #languageMarquee li {
                   position: absolute;
                   display: inline;
-                  animation: fade-up 39.750s ease-in-out infinite;
+                  --animation-duration: calc(23 * 2650ms);
+                  animation: var(--animation-duration) fade-up 2650ms ease-in-out infinite;
                   will-change: opacity, transform;
                   opacity: 0;
                   transform: translateY(100%);
                   z-index: -1;
+                }
+
+                #languageMarquee li:first-child {
+                  transform: translateY(0);
+                  opacity: 1;
+                  animation: 
+                    var(--animation-duration) fade-up-first 2650ms ease-in-out,
+                    var(--animation-duration) fade-up calc(2650ms + var(--animation-duration)) ease-in-out infinite;
                 }
 
                 #languageMarquee li:last-child {
@@ -96,12 +113,28 @@
                     transform: translateY(100%);
                   }
 
-                  .35%, 6.25% {
+                  /* When adding a value, these need to be recalculated */
+                  /* 0.25% = 150ms / 60950ms */
+                  /* 4.1% = 2500ms / 60950ms */
+                  0.25%, 4.1% {
                     opacity: 1;
                     transform: translateY(0);
                   }
 
-                  6.6%, 100% {
+                  /* 4.35% = 2650ms / 60950ms */
+                  4.35%, 100% {
+                    opacity: 0;
+                    transform: translateY(-100%);
+                  }
+                }
+
+                @keyframes fade-up-first {
+                  0%, 4.1% {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+
+                  4.35%, 100% {
                     opacity: 0;
                     transform: translateY(-100%);
                   }
@@ -109,7 +142,9 @@
               </style>
               <script type="module">
                 for (let [i, li] of [...languageMarquee.children].entries()) {
-                  li.style.animationDelay = 2650 * i + 'ms';
+                  if (i > 0) {
+                    li.style.animationDelay = 2650 + 2650 * i + 'ms';
+                  }
                 }
               </script>
             </div>
@@ -217,21 +252,21 @@
           </button>
         </div>
       </div>
-      <nav class="absolute top-0 right-0 p-4 text-pink-300 text-lg sm:text-base flex items-center gap-5">
+      <nav class="absolute top-0 right-0 p-4 text-pink-200 dark:text-pink-300 text-lg sm:text-base flex items-center gap-5">
         <div class="search-container home text-base">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input type="text" id="search-input" aria-label="Search" placeholder="Search..." />
         </div>
-        <a href="/docs/" class="hover:text-pink-200 transition">Docs</a>
-        <a href="/blog/" class="hover:text-pink-200 transition">Blog</a>
+        <a href="/docs/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Docs</a>
+        <a href="/blog/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Blog</a>
       </nav>
     </header>
     <section class="pt-20 lg:pt-32 -mb-10 flex flex-row flex-wrap gap-x-10 gap-y-6 items-center justify-center max-w-xl lg:max-w-full mx-auto px-8 text-gray-700 dark:text-gray-300">
       <div class="font-semibold uppercase w-full lg:w-auto text-center text-gray-500 dark:text-gray-400">Trusted by:</div>
       <include src="logos/atlassian.svg"></include>
-      <include src="logos/adobe.svg"></include>
+      <!-- <include src="logos/adobe.svg"></include> -->
       <include src="logos/microsoft.svg"></include>
       <include src="logos/sourcegraph.svg"></include>
       <include src="logos/xchart.svg"></include>
@@ -273,9 +308,11 @@
         <nav>
           <h3>Plugin system</h3>
           <ul>
-            <li><a href="/features/plugins/">Using plugins</a></li>
-            <li><a href="/plugin-system/overview/">Plugin system overview</a></li>
-            <li><a href="/plugin-system/authoring-plugins/">Authoring plugins</a></li>
+            <li><a href="/features/plugins/">Using Plugins</a></li>
+            <li><a href="/plugin-system/overview/">Plugin System</a></li>
+            <li><a href="/plugin-system/authoring-plugins/">Authoring Plugins</a></li>
+            <li><a href="/plugin-system/logging/">Diagnostics</a></li>
+            <li><a href="/plugin-system/source-maps/">Source Maps</a></li>
           </ul>
         </nav>
         <nav>
@@ -284,6 +321,8 @@
             <li><a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener">GitHub</a></li>
             <li><a href="https://www.npmjs.com/package/parcel" target="_blank" rel="noopener">npm</a></li>
             <li><a href="https://twitter.com/parceljs" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://discord.gg/XSCzqGRuvr" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank" rel="noopener">Swag store</a></li>
           </ul>
         </nav>
       </div>
@@ -305,7 +344,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>
-        Devon Govett. This website is
+        Devon Govett and Parcel Contributors. This website is
         <a href="https://github.com/parcel-bundler/website" target="_blank" rel="noopener">open source</a>.
       </div>
     </footer>

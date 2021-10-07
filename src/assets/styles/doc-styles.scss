@@ -405,6 +405,7 @@ body {
 
     &.visible ~ main:after {
       opacity: 1;
+      pointer-events: all;
     }
   }
 

@@ -23,9 +23,9 @@
   }
 
   &.home input {
-    @apply placeholder-pink-300 bg-opacity-40 border-pink-400 border-opacity-50;
+    @apply placeholder-pink-300 bg-opacity-30 dark:bg-opacity-40 border-pink-300 dark:border-pink-400 border-opacity-50;
     &:focus {
-      @apply ring-pink-700 ring-opacity-50 border-pink-600;
+      @apply ring-pink-400 dark:ring-pink-700 ring-opacity-50 border-pink-400 dark:border-pink-600;
     }
   }
 }
