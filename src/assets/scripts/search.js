@@ -3,11 +3,11 @@
 let search = document.querySelector('#search-input');
 let header = document.querySelector('header');
 search.onfocus = () => {
-  header.classList.add('search');
+  header.classList.add("search");
 };
 
 search.onblur = () => {
-  header.classList.remove('search');
+  header.classList.remove("search");
 };
 
 docsearch({
@@ -15,12 +15,15 @@ docsearch({
   indexName: "parceljs",
   inputSelector: "#search-input",
   algoliaOptions: {
-    facetFilters: ["lang:v2"],
-  }
+    facetFilters: ["lang:en", "version:v2"],
+  },
 });
 
-if (typeof visualViewport !== 'undefined') {
-  visualViewport.addEventListener('resize', () => {
-    document.documentElement.style.setProperty('--viewport-height', visualViewport.height + 'px');
+if (typeof visualViewport !== "undefined") {
+  visualViewport.addEventListener("resize", () => {
+    document.documentElement.style.setProperty(
+      "--viewport-height",
+      visualViewport.height + "px"
+    );
   });
 }
