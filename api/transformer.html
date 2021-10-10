@@ -43,7 +43,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L466"><i>parcel/packages/core/types/index.js:466</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L464"><i>parcel/packages/core/types/index.js:464</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.</p>
 
@@ -109,7 +109,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L532"><i>parcel/packages/core/types/index.js:532</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L530"><i>parcel/packages/core/types/index.js:530</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -182,7 +182,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L611"><i>parcel/packages/core/types/index.js:611</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L609"><i>parcel/packages/core/types/index.js:609</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -195,7 +195,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L624"><i>parcel/packages/core/types/index.js:624</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L622"><i>parcel/packages/core/types/index.js:622</i></a>
 </h4>
 <p>An asset represents a file or part of a file. It may represent any data type, including source code,
 binary data, etc. Assets may exist in the file system or may be virtual.
@@ -211,7 +211,7 @@ binary data, etc. Assets may exist in the file system or may be virtual.
 </div><pre class="interface"><code>  +type: string,</code></pre>
 <div class="inline-method"><p>The asset&#39;s type. This initially corresponds to the source file extension,
 but it may be changed during transformation.</p>
-</div><pre class="interface"><code>  +query: <a href="/plugin-system/api/#QueryParameters">QueryParameters</a>,</code></pre>
+</div><pre class="interface"><code>  +query: URLSearchParams,</code></pre>
 <div class="inline-method"><p>The transformer options for the asset from the dependency query string.</p>
 </div><pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <div class="inline-method"><p>The environment of the asset.</p>
@@ -265,7 +265,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L697"><i>parcel/packages/core/types/index.js:697</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L695"><i>parcel/packages/core/types/index.js:695</i></a>
 </h4>
 <p>A mutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available during transformation.</p>
 
@@ -320,7 +320,7 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L757"><i>parcel/packages/core/types/index.js:757</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L755"><i>parcel/packages/core/types/index.js:755</i></a>
 </h4>
 <p>An immutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available after transformation.</p>
 
@@ -334,7 +334,7 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L781"><i>parcel/packages/core/types/index.js:781</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L779"><i>parcel/packages/core/types/index.js:779</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -386,7 +386,7 @@ of the passed searchPath.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L852"><i>parcel/packages/core/types/index.js:852</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L850"><i>parcel/packages/core/types/index.js:850</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -399,7 +399,7 @@ of the passed searchPath.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L866"><i>parcel/packages/core/types/index.js:866</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L864"><i>parcel/packages/core/types/index.js:864</i></a>
 </h4>
 <p>Transformers can return multiple result objects to create new assets.
 For example, a file may contain multiple parts of different types,
@@ -453,7 +453,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L946"><i>parcel/packages/core/types/index.js:946</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L944"><i>parcel/packages/core/types/index.js:944</i></a>
 </h4>
 
 
@@ -467,7 +467,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/0f99998de0bbbaf67ceff5a6d6fa11fc224fa55a/packages/core/types/index.js#L1013"><i>parcel/packages/core/types/index.js:1013</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/5afe766e637827ede728ec7a9fefcfea691dfa35/packages/core/types/index.js#L1011"><i>parcel/packages/core/types/index.js:1011</i></a>
 </h4>
 <p>The methods for a transformer plugin.</p>
 
