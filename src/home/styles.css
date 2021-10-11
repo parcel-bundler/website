@@ -31,7 +31,7 @@ pre {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  @apply text-pink-600 dark:text-pink-500;
+  @apply text-pink-400 dark:text-pink-500;
 }
 
 .token.boolean,
@@ -99,9 +99,13 @@ pre {
 }
 
 [role="radio"] {
-  @apply bg-opacity-0 text-gray-600 dark:text-rose-200 lg:text-gray-500 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-none focus-visible:ring-4 focus-visible:ring-orange-500 focus-visible:ring-opacity-50 transition-all mb-2 text-xl;
+  @apply bg-opacity-0 text-gray-600 dark:text-rose-200 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-none focus-visible:ring-4 focus-visible:ring-orange-500 focus-visible:ring-opacity-50 transition-all mb-2 text-xl;
 }
 
 [role="radio"][aria-checked="true"] {
   @apply lg:bg-orange-200 lg:text-orange-700 lg:dark:bg-orange-400 lg:dark:text-rose-900 lg:dark:bg-opacity-75;
+}
+
+[role="radio"][aria-checked="true"] p:last-child {
+  @apply lg:text-orange-800 lg:dark:text-rose-900;
 }
