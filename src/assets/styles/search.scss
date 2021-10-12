@@ -4,9 +4,19 @@
   svg {
     @apply h-6 w-6 md:h-5 md:w-5 left-0 top-0 md:translate-x-2 transition;
     position: absolute;
-    top: 7px;
+    top: 5px;
     z-index: 1;
     pointer-events: none;
+
+    @media (min-width: 768px) {
+      top: 7px;
+    }
+  }
+
+  &:not(.home) svg {
+    @media (max-width: 640px) {
+      top: 7px;
+    }
   }
 
   input {
@@ -30,11 +40,17 @@
   }
 }
 
-.search .search-container svg {
-  @apply h-5 w-5 translate-x-2;
-  top: 7px;
-  @media (max-width: 768px) {
-    top: 8px;
+.search .search-container {
+  svg {
+    @apply h-5 w-5 translate-x-2;
+    top: 7px;
+  }
+
+  &:not(.home) svg {
+    @media (max-width: 640px) {
+      /* font size gets bigger, compensate. */
+      top: 9px;
+    }
   }
 }
 
