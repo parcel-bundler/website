@@ -114,7 +114,7 @@ Parcel 2 matches browser behavior: classic `<script>` tags do not support import
 
 See [Classic scripts](/languages/javascript/#classic-scripts) for more details about classic scripts vs module scripts.
 
-### Importing non-code assets from Javascript
+### Importing non-code assets from JavaScript
 
 In Parcel 1, importing any non-JavaScript file such as an image or video resulted in a URL. In Parcel 2, this still works for known file types such as images, but other file types without default support will require code changes.
 

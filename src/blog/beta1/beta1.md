@@ -7,7 +7,7 @@ date: 2020-06-19
 summary: 📦 Parcel 2 beta 1 - improved stability, tree shaking, source map performance, and more! 🚀
 ---
 
-The Parcel team is super excited to release the first beta of Parcel 2 today! This marks the first Parcel 2 release that’s more stable than our nightly and alpha releases, and our commitment to avoid changing most user facing APIs. Please try it out and give us your feedback on Github!
+The Parcel team is super excited to release the first beta of Parcel 2 today! This marks the first Parcel 2 release that’s more stable than our nightly and alpha releases, and our commitment to avoid changing most user facing APIs. Please try it out and give us your feedback on GitHub!
 
 ![](banner.png)
 
@@ -95,8 +95,8 @@ As mentioned earlier, this is the first beta release of Parcel 2. This means it 
 
 ## Try it out!
 
-If you’ve been waiting to try out Parcel 2, now would be a great time! You can install it by running yarn add parcel@next. If you need assistance, you can ask questions on [Github discussions](https://github.com/parcel-bundler/parcel/discussions), and if you run into bugs, please report them on [Github issues](https://github.com/parcel-bundler/parcel/issues). You can also find me [@devongovett](https://twitter.com/devongovett) on Twitter. We’re really excited to hear your feedback!
+If you’ve been waiting to try out Parcel 2, now would be a great time! You can install it by running yarn add parcel@next. If you need assistance, you can ask questions on [GitHub discussions](https://github.com/parcel-bundler/parcel/discussions), and if you run into bugs, please report them on [GitHub issues](https://github.com/parcel-bundler/parcel/issues). You can also find me [@devongovett](https://twitter.com/devongovett) on Twitter. We’re really excited to hear your feedback!
 
-- [Github](https://github.com/parcel-bundler/parcel)
+- [GitHub](https://github.com/parcel-bundler/parcel)
 
 - [Support us on Open Collective](https://opencollective.com/parcel)
