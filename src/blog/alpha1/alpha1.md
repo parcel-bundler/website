@@ -7,7 +7,7 @@ date: 2019-09-13
 summary: Parcel 2.0.0-alpha.1 is here!
 ---
 
-Today I’m incredibly excited to release the first alpha version of Parcel 2! Please try it out and help us take Parcel 2 to the finish line. Check it out on Github!
+Today I’m incredibly excited to release the first alpha version of Parcel 2! Please try it out and help us take Parcel 2 to the finish line. Check it out on GitHub!
 
 ![](./banner.png)
 
@@ -131,11 +131,11 @@ Thanks to [Atlassian](https://www.atlassian.com) for investing so much into Parc
 
 You can install Parcel 2 with yarn add parcel@v2 to try it out. A [getting started guide](https://github.com/parcel-bundler/parcel/tree/v2#getting-started) is available in the readme. The CLI is mostly compatible with Parcel 1, but there are some differences you may come across in this early version. Also note that any Parcel 1 plugins you were using will no longer work in Parcel 2, and will need to be ported.
 
-This is the first alpha of Parcel 2, and as it is alpha, there will be bugs and missing features. In particular, many of the plugins haven’t been ported from Parcel 1 to Parcel 2 yet. If you’d like to help, please feel free to check out the existing plugins on the [v2 branch](https://github.com/parcel-bundler/parcel/tree/v2/packages) for inspiration (we’ll have full docs by Parcel 2’s final release), and the [Parcel 2 label](https://github.com/parcel-bundler/parcel/issues?q=is%3Aissue+is%3Aopen+label%3A%22✨+Parcel+2%22) on Github. Some of the issues there are labeled with “Good First Issue” as well, and would be a good place to start.
+This is the first alpha of Parcel 2, and as it is alpha, there will be bugs and missing features. In particular, many of the plugins haven’t been ported from Parcel 1 to Parcel 2 yet. If you’d like to help, please feel free to check out the existing plugins on the [v2 branch](https://github.com/parcel-bundler/parcel/tree/v2/packages) for inspiration (we’ll have full docs by Parcel 2’s final release), and the [Parcel 2 label](https://github.com/parcel-bundler/parcel/issues?q=is%3Aissue+is%3Aopen+label%3A%22✨+Parcel+2%22) on GitHub. Some of the issues there are labeled with “Good First Issue” as well, and would be a good place to start.
 
-Please [report any bugs](https://github.com/parcel-bundler/parcel/issues) you find on Github. You can also find me [@devongovett](https://twitter.com/devongovett) on Twitter.
+Please [report any bugs](https://github.com/parcel-bundler/parcel/issues) you find on GitHub. You can also find me [@devongovett](https://twitter.com/devongovett) on Twitter.
 
-- [Github](https://github.com/parcel-bundler/parcel)
+- [GitHub](https://github.com/parcel-bundler/parcel)
 
 - [Spectrum Community](https://spectrum.chat/parcel)
 

@@ -66,7 +66,7 @@ separate bundles. For example, if your `index.html` file links to an
 ### Complete List of Plugin Types
 
 - [Transformer](/plugin-system/transformer): Converts an asset (into another asset) <br>
-  _Example: convert Typescript to Javascript (per file)_
+  _Example: convert Typescript to JavaScript (per file)_
 - [Resolver](/plugin-system/resolver): Turns dependency requests into absolute paths (or exclude them) <br>
   _Example: add your own syntax for imports, e.g. `import "^/foo"`_
 - [Bundler](/plugin-system/bundler): Turns an asset graph into a bundle graph <br>

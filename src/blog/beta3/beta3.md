@@ -115,4 +115,4 @@ At this point, it is very likely that the plugin APIs for bundlers, runtimes, an
 
 ## Thanks!
 
-As always, thanks for trying out our betas and giving us feedback on [Github](https://github.com/parcel-bundler/parcel/issues). You can also donate to our [open collective](https://opencollective.com/parcel), which helps support our contributors.
+As always, thanks for trying out our betas and giving us feedback on [GitHub](https://github.com/parcel-bundler/parcel/issues). You can also donate to our [open collective](https://opencollective.com/parcel), which helps support our contributors.
