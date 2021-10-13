@@ -87,7 +87,7 @@ Upgrading from the previous alpha release of Parcel 2 should be fairly straightf
 
 ## Documentation
 
-We’ve been working on a [new documentation website](https://v2.parceljs.org/) for Parcel 2! It’s still very much a work in progress, but we plan to cover everything from getting started with building a basic application or library with Parcel, to more advanced features, recipes, and building your own plugins. Please check it out and give us your feedback!
+We’ve been working on a [new documentation website](/) for Parcel 2! It’s still very much a work in progress, but we plan to cover everything from getting started with building a basic application or library with Parcel, to more advanced features, recipes, and building your own plugins. Please check it out and give us your feedback!
 
 ## Stability
 

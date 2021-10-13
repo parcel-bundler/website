@@ -185,7 +185,7 @@ Since glob imports are non-standard, they are not included in the default Parcel
 
 ## Performance improvements
 
-In our last release, we [announced](https://v2.parceljs.org/blog/beta3/) our new JavaScript compiler written in Rust that improves performance by up to 10x. This release continues our work on improving performance, and is overall **~38% faster** than the previous beta. There have been many small changes that add up, but some of the highlights are described below.
+In our last release, we [announced](/blog/beta3/) our new JavaScript compiler written in Rust that improves performance by up to 10x. This release continues our work on improving performance, and is overall **~38% faster** than the previous beta. There have been many small changes that add up, but some of the highlights are described below.
 
 ### LMDB
 
