@@ -41,5 +41,7 @@ module.exports = {
       ringOpacity: ['focus-visible'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-safe-area'),
+  ],
 };

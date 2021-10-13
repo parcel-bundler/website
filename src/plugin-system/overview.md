@@ -83,7 +83,7 @@ separate bundles. For example, if your `index.html` file links to an
   _Example: compress a bundle with Gzip_
 - [Validator](/plugin-system/validator): Analyzes assets and emit warnings and errors <br>
   _Example: do type-checking (TypeScript, Flow)_
-- [Config](/plugin-system/configuration): A reuseable '.parcelrc' package <br>
+- [Config](/features/plugins/): A reuseable '.parcelrc' package <br>
   _Example: provide a tailor-made parcel config for your boilerplate_ <br>
 - [Reporter](/plugin-system/reporter): Listens to events of the build <br>
   _Example: generate a bundle report, run a dev server_

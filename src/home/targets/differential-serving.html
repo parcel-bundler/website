@@ -1,0 +1,15 @@
+<div class="flex flex-col">
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300">
+    <p>When you use <code class="font-semibold text-gray-800 dark:text-purple-100">&lt;script type="module"&gt;</code>, Parcel automatically generates a <code class="font-semibold text-gray-800 dark:text-purple-100">nomodule</code> fallback for old browsers as well, depending on your browser targets.</p>
+    <p class="mt-4 text-base lg:text-lg">This results in <strong class="font-semibold text-gray-800 dark:text-purple-100">much smaller bundles</strong> for a majority of users in modern browsers, while still supporting older browsers as well!</p>
+    <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-400 hover:underline" href="/features/targets/#differential-bundling">Learn more →</a>
+  </div>
+  <div class="mt-8 w-full max-w-md mx-auto">
+    <pre class="text-xs lg:text-sm mb-4 overflow-auto"><code class="language-html">​<script type="module" src="app.js"></script></code></pre>
+    <svg height="35" width="100%" viewBox="0 0 13 35">
+      <line x1="0" y1="0" x2="0" y2="30" stroke="currentColor" class="text-green-600 dark:text-green-400" stroke-width="2" marker-end="url(#arrow-green)" />
+    </svg>
+    <pre class="text-xs mt-4 overflow-auto"><code class="language-html">​<script type="module" src="app.c9a6fe.js"></script>
+<script nomodule src="app.f7d631.js"></script></code></pre>
+  </div>
+</div>

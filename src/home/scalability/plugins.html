@@ -1,0 +1,111 @@
+<div class="grid grid-cols-12 gap-y-8 lg:gap-x-8" x-data="{'tab': 'transformer'}">
+  <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="col-span-12 lg:col-span-7 h-128 lg:h-auto justify-self-center bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl flex flex-col overflow-hidden max-w-full-screen md:w-full transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">
+    <div class="flex flex-row justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+      <div class="flex flex-row absolute left-2 top-2">
+        <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-green-500 rounded-full w-3 h-3"></div>
+      </div>
+      <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500 select-none cursor-default" x-text="document.querySelector(`#${tab}-tab`).textContent" aria-hidden="true">Transformer.js</div>
+    </div>
+    <div role="tablist" class="flex flex-row border-b border-gray-300 dark:border-gray-800 bg-gray-400 dark:bg-gray-900 overflow-auto">
+      <div role="tab" aria-controls="transformer-tabpanel" id="transformer-tab" :aria-selected="tab === 'transformer'" @click="tab = 'transformer'">Transformer.js</div>
+      <div role="tab" aria-controls="resolver-tabpanel" id="resolver-tab" :aria-selected="tab === 'resolver'" @click="tab = 'resolver'">Resolver.js</div>
+      <div role="tab" aria-controls="namer-tabpanel" id="namer-tab" :aria-selected="tab === 'namer'" @click="tab = 'namer'">Namer.js</div>
+      <div role="tab" aria-controls="packager-tabpanel" id="packager-tab" :aria-selected="tab === 'packager'" @click="tab = 'packager'">Packager.js</div>
+      <div role="tab" aria-controls="optimizer-tabpanel" id="optimizer-tab" :aria-selected="tab === 'optimizer'" @click="tab = 'optimizer'">Optimizer.js</div>
+      <div role="tab" aria-controls="compressor-tabpanel" id="compressor-tab" :aria-selected="tab === 'compressor'" @click="tab = 'compressor'">Compressor.js</div>
+      <div role="tab" aria-controls="reporter-tabpanel" id="reporter-tab" :aria-selected="tab === 'reporter'" @click="tab = 'reporter'">Reporter.js</div>
+    </div>
+    <pre role="tabpanel" id="transformer-tabpanel" aria-labelledby="transformer-tab" x-show="tab === 'transformer'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1"><code class="language-js text-xs lg:text-sm">import {Transformer} from '@parcel/plugin';
+
+export default new Transformer({
+  async transform({asset}) {
+    let source = await asset.getCode();
+    let sourceMap = await asset.getMap();
+
+    let {code, map} = compile(source, sourceMap);
+    asset.setCode(code);
+    asset.setMap(map);
+
+    return [asset];
+  }
+});</code></pre>
+  <pre role="tabpanel" id="resolver-tabpanel" aria-labelledby="resolver-tab" x-show="tab === 'resolver'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Resolver} from '@parcel/plugin';
+import path from 'path';
+
+export default new Resolver({
+  async resolve({specifier}) {
+    if (specifier === 'special-module') {
+      return {
+        filePath: path.join(__dirname, 'special-module.js'),
+        code: 'export default "This is a special module!";'
+      };
+    }
+  }
+});</code></pre>
+  <pre role="tabpanel" id="namer-tabpanel" aria-labelledby="namer-tab" x-show="tab === 'namer'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Namer} from '@parcel/plugin';
+import path from 'path';
+
+export default new Namer({
+  name({bundle}) {
+    if (bundle.type === 'png' || bundle.type === 'jpg') {
+      let filePath = bundle.getMainEntry().filePath;
+      return `images/${path.basename(filePath)`;
+    }
+  }
+});</code></pre>
+  <pre role="tabpanel" id="packager-tabpanel" aria-labelledby="packager-tab" x-show="tab === 'packager'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Packager} from '@parcel/plugin';
+
+export default new Packager({
+  async package({bundle}) {
+    let promises = [];
+    bundle.traverseAssets(asset => {
+      promises.push(asset.getCode());
+    });
+
+    let contents = await Promise.all(promises);
+    return {
+      contents: contents.join('\n')
+    };
+  }
+});</code></pre>
+  <pre role="tabpanel" id="optimizer-tabpanel" aria-labelledby="optimizer-tab" x-show="tab === 'optimizer'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Optimizer} from '@parcel/plugin';
+
+export default new Optimizer({
+  async optimize({contents, map}) {
+    let {code, sourceMap} = optimize(contents, map);
+    return {
+      contents: code,
+      map: sourceMap
+    };
+  }
+});</code></pre>
+  <pre role="tabpanel" id="compressor-tabpanel" aria-labelledby="compressor-tab" x-show="tab === 'compressor'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Compressor} from '@parcel/plugin';
+
+export default new Compressor({
+  async compress({stream}) {
+    return {
+      stream: gzipStream(stream),
+      type: 'gz'
+    };
+  },
+});</code></pre>
+  <pre role="tabpanel" id="reporter-tabpanel" aria-labelledby="reporter-tab" x-show="tab === 'reporter'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-js text-xs lg:text-sm">import {Reporter} from '@parcel/plugin';
+
+export default new Reporter({
+  report({event}) {
+    if (event.type === 'buildSuccess') {
+      let bundles = event.bundleGraph.getBundles();
+      process.stdout.write(`✨ Built ${bundles.length} bundles in ${event.buildTime}ms!\n`);
+    }
+  }
+});</code></pre>
+  </div>
+  <div class="col-span-12 lg:col-span-5 text-gray-700 dark:text-orange-200">
+    <p class="mb-4 max-w-4xl text-lg lg:text-xl font-medium">Parcel has a plugin for everything. In fact, Parcel core is <strong class="font-semibold text-gray-900 dark:text-orange-300">completely language agnostic</strong>! From transforming files, to resolving dependencies, to bundling and optimizing – everything is customizable.</p>
+    <p class="mb-4 text-base lg:text-lg font-medium">Each plugin type has a specific, well defined API  designed for its purpose. All objects and methods are <strong class="font-semibold text-gray-900 dark:text-orange-300">fully documented, and include TypeScript definitions</strong> for autocomplete and type safety.</p>
+    <p class="mb-4 text-base lg:text-lg font-medium">As you're developing a plugin, it even hot reloads as you save without needing to re-run your build from scratch! This makes it super fast to debug and iterate. It even works with dependencies in <code>node_modules</code>!</p>
+    <a class="block mt-10 text-lg font-medium text-orange-800 dark:text-orange-300 hover:underline" href="/plugin-system/authoring-plugins/">Learn more →</a>
+  </div>
+</div>

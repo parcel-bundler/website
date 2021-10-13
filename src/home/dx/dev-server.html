@@ -1,0 +1,21 @@
+<div class="flex flex-col flex-grow">
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300 mt-4 md:mt-8 mb-4">
+    <p class="mb-4">Parcel includes a development server out of the box. Just run <code class="text-gray-800 font-semibold dark:text-purple-100">parcel index.html</code> to get started.</p>
+  </div>
+  <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" role="img" aria-label="A browser showing a hello world message" class="w-full max-w-sm mx-auto bg-gray-100 dark:bg-gray-900 h-60 lg:h-80 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 md:translate-y-0 opacity-70': !shown}">
+    <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-3">
+      <div class="flex flex-row absolute left-4 top-4">
+        <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-green-500 rounded-full w-3 h-3"></div>
+      </div>
+      <div class="ml-16 md:ml-0 text-xs text-gray-500 bg-gray-300 dark:bg-gray-700 py-1 px-10 md:px-4 lg:px-10 rounded-md">http://localhost:1234</div>
+    </div>
+    <span class="text-2xl p-4 font-serif">Hello world!</span>
+  </div>
+  <div class="flex flex-col flex-grow text-xl font-medium text-gray-600 dark:text-purple-300 mt-8">
+    <p class="mb-4 text-base md:text-lg">Need HTTPS? Run Parcel with the <code class="text-gray-800 font-semibold dark:text-purple-100">--https</code> flag, and it will automatically generate a certificate for you! Or, if you like, you can provide your own.</p>
+    <p class="flex-grow text-base md:text-lg">Parcel also has a built-in API proxy, which can help simulate your production environment.</p>
+    <a class="block mt-8 text-lg font-medium text-blue-700 dark:text-blue-400 hover:underline" href="/features/development/#dev-server">Learn more →</a>
+  </div>
+</div>

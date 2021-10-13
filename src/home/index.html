@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen-safe overflow-x-hidden">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Parcel</title>
+    <meta name="description" content="The zero configuration build tool for the web.">
+    <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="module" src="libs.js"></script>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/assets/home-og.png?as=jpeg" />
+    <meta name="twitter:site" content="@parceljs" />
+    <meta name="twitter:creator" content="@parceljs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://parceljs.org" />
+    <meta property="og:title" content="Parcel – The zero configuration build tool for the web." />
+    <meta property="og:description" content="Parcel combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production application." />
+    <meta property="og:image" content="/assets/home-og.png?as=jpeg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-110647385-1');
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-800 overflow-x-hidden">
+    <header aria-labelledby="parcel" class="pt-20 md:pt-16 pb-8 md:pb-16 relative">
+      <div class="absolute top-0 left-0 bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 dark:from-blue-700 dark:via-purple-800 dark:to-pink-800 transform -skew-y-6 -translate-y-28" style="z-index: -1; width: 100%; height: 120%;" role="presentation"></div>
+      <div class="max-w-screen-xl mx-auto px-6 md:px-8 box-border">
+        <div class="flex flex-row items-center px-safe">
+          <div class="relative h-20 lg:h-36 mr-4 lg:mr-8 flex-shrink-0" role="presentation">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="../assets/avatar.png?as=avif&height=144 1x, ../assets/avatar.png?as=avif&height=288 2x, ../assets/avatar.png?as=avif&height=432 3x"
+              />
+              <source
+                type="image/webp"
+                srcset="../assets/avatar.png?as=webp&height=144 1x, ../assets/avatar.png?as=webp&height=288 2x, ../assets/avatar.png?as=webp&height=432 3x"
+              />
+              <img
+                src="../assets/avatar.png?height=144"
+                srcset="../assets/avatar.png?height=144 1x, ../assets/avatar.png?height=288 2x, ../assets/avatar.png?height=432 3x"
+                height="144"
+                width="191"
+                class="h-full w-auto"
+                alt="Parcel logo"
+              />
+            </picture>
+          </div>
+          <h1 id="parcel" class="text-red-400 h-10 lg:h-16">
+            <span class="sr-only">Parcel</span>
+            <include src="assets/logo.svg"></include>
+          </h1>
+        </div>
+        <div class="flex flex-col lg:flex-row px-safe">
+          <div class="lg:mr-12">
+            <div class="flex flex-row items-center">
+              <h2 class="text-4xl md:text-5xl xl:text-6xl font-extrabold text-white my-5 lg:my-10 leading-tight">
+                The zero configuration build tool for 
+                <ul id="languageMarquee" class="inline-block align-top relative z-0 whitespace-nowrap">
+                  <li><span class="text-green-400">the web</span>.</li>
+                  <li><span class="text-cyan-400">JavaScript</span>.</li>
+                  <li><span class="text-rose-400 dark:text-rose-500">CSS</span>.</li>
+                  <li><span class="text-yellow-400">HTML</span>.</li>
+                  <li><span class="text-emerald-400">TypeScript</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">React</span>.</li>
+                  <li><span class="text-cyan-400">images</span>.</li>
+                  <li><span class="text-orange-400 dark:text-orange-500">SASS</span>.</li>
+                  <li><span class="text-sky-400">SVG</span>.</li>
+                  <li><span class="text-green-400">Vue</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">libraries</span>.</li>
+                  <li><span class="text-pink-400 dark:text-pink-500">Less</span>.</li>
+                  <li><span class="text-yellow-400">CoffeeScript</span>.</li>
+                  <li><span class="text-emerald-400">Node</span>.</li>
+                  <li><span class="text-red-400 dark:text-red-500">Stylus</span>.</li>
+                  <li><span class="text-lime-400">Pug</span>.</li>
+                  <li><span class="text-sky-400">Electron</span>.</li>
+                  <li><span class="text-red-400 dark:text-red-500">Elm</span>.</li>
+                  <li><span class="text-yellow-400">WebGL</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">extensions</span>.</li>
+                  <li><span class="text-lime-400">GraphQL</span>.</li>
+                  <li><span class="text-cyan-400">MDX</span>.</li>
+                  <li><span class="text-rose-400 dark:text-rose-500">XML</span>.</li>
+                </ul>
+              </h2>
+              <style>
+                #languageMarquee li {
+                  position: absolute;
+                  display: inline;
+                  --animation-duration: calc(23 * 2650ms);
+                  animation: var(--animation-duration) fade-up 2650ms ease-in-out infinite;
+                  will-change: opacity, transform;
+                  opacity: 0;
+                  transform: translateY(100%);
+                  z-index: -1;
+                }
+
+                #languageMarquee li:first-child {
+                  transform: translateY(0);
+                  opacity: 1;
+                  animation: 
+                    var(--animation-duration) fade-up-first 2650ms ease-in-out,
+                    var(--animation-duration) fade-up calc(2650ms + var(--animation-duration)) ease-in-out infinite;
+                }
+
+                #languageMarquee li:last-child {
+                  position: static;
+                }
+                
+                @keyframes fade-up {
+                  0% {
+                    opacity: 0;
+                    transform: translateY(100%);
+                  }
+
+                  /* When adding a value, these need to be recalculated */
+                  /* 0.25% = 150ms / 60950ms */
+                  /* 4.1% = 2500ms / 60950ms */
+                  0.25%, 4.1% {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+
+                  /* 4.35% = 2650ms / 60950ms */
+                  4.35%, 100% {
+                    opacity: 0;
+                    transform: translateY(-100%);
+                  }
+                }
+
+                @keyframes fade-up-first {
+                  0%, 4.1% {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+
+                  4.35%, 100% {
+                    opacity: 0;
+                    transform: translateY(-100%);
+                  }
+                }
+              </style>
+              <script type="module">
+                for (let [i, li] of [...languageMarquee.children].entries()) {
+                  if (i > 0) {
+                    li.style.animationDelay = 2650 + 2650 * i + 'ms';
+                  }
+                }
+              </script>
+            </div>
+            <p class="text-indigo-100 dark:text-purple-200 text-xl lg:text-2xl mb-8 lg:mb-16">Parcel combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production application.</p>
+          </div>
+          <div class="hidden lg:block bg-gray-100 dark:bg-gray-900 h-80 w-1/3 flex-shrink-0 rounded-md p-4 border-gray-200 dark:border-gray-800 border-solid border shadow-xl overflow-hidden">
+            <div class="flex flex-row mb-4">
+              <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+              <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+              <div class="bg-green-500 rounded-full w-3 h-3"></div>
+            </div>
+          <pre class="text-xs p-0 bg-transparent text-black dark:text-gray-200 font-semibold"><code prism-ignore><span class="font-normal" id="heroPrompt">$ </span><span class="w-2 h-3 align-middle inline-block bg-gray-500" style="margin-top: -2px" id="heroCursor"></span>
+<span class="text-blue-600 dark:text-blue-500" id="heroServer" hidden>Server running at <span class="underline">http://localhost:1234</span></span>
+<span class="text-green-600 dark:text-green-500 font-bold" id="heroStatus" hidden>✨ Built in 48ms</code></pre>
+          </div>
+          <script type="module">
+            async function run() {
+              await sleep(500);
+
+              let text = 'parcel index.html';
+              let c = '$ ';
+              for (let ch of text) {
+                await sleep(Math.floor(Math.random() * 80) + 40);
+                c += ch;
+                heroPrompt.textContent = c;
+              }
+
+              await sleep(500);
+              heroCursor.style.display = 'none';
+              await sleep(20);
+              heroServer.hidden = false;
+              await sleep(28);
+              heroStatus.hidden = false;
+
+              // await loop();
+            }
+
+            let filenames = [
+              'Profile.js', 'Dashboard.js', 'Header.js', 'Sidebar.js', 'SidebarItem.js', 'Navigation.js', 'Footer.js', 'Avatar.js', 'Post.js', 'User.js',
+              'Profile.css', 'Dashboard.css', 'Header.css', 'Sidebar.css', 'SidebarItem.css', 'Navigation.css', 'Footer.css', 'Avatar.css', 'Post.css', 'User.css',
+              'index.html'
+            ];
+
+            let spinners = [
+              "⠋",
+              "⠙",
+              "⠹",
+              "⠸",
+              "⠼",
+              "⠴",
+              "⠦",
+              "⠧",
+              "⠇",
+              "⠏"
+            ];
+
+            async function loop() {
+              await sleep(Math.floor(Math.random() * 10000) + 1000);
+
+              heroStatus.classList.remove('text-green-500');
+              heroStatus.classList.add('text-gray-500');
+
+              let file = filenames[Math.floor(Math.random() * filenames.length)];
+              let time = Math.floor(Math.random() * 600) + 45;
+              let spins = Math.floor(time / 80);
+              
+              for (let i = 0; i < spins; i++) {
+                heroStatus.textContent = `${spinners[i % spinners.length]} Building ${file}...`;
+                await sleep(80);
+              }
+
+              await sleep(time % 80);
+
+              heroStatus.classList.remove('text-gray-500');
+              heroStatus.classList.add('text-green-500');
+
+              if (time >= 1000) {
+                heroStatus.textContent = `✨ Built in ${(time / 1000).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}s`;
+              } else {
+                heroStatus.textContent = `✨ Built in ${time}ms`;
+              }
+
+              await loop();
+            }
+
+            run();
+
+            function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+            }
+          </script>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-none md:grid-flow-col gap-4 gap-y-8 justify-center md:justify-start items-center px-safe" style="grid-auto-columns: auto auto 1fr;">
+          <a href="/docs/" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Get started</a>
+          <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener" class="bg-purple-200 dark:bg-purple-300 text-purple-700 hover:bg-purple-100 dark:hover:bg-purple-200 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Github</a>
+          <button type="button" class="col-span-2 justify-self-center md:justify-self-end text-purple-200 hover:text-purple-50 transition-colors cursor-pointer border-white border-opacity-20 border py-2 px-6 rounded-xl text-left flex" style="-webkit-tap-highlight-color: transparent" onclick="navigator.clipboard.writeText(this.firstElementChild.textContent.slice(2))" x-data="{copied: false}" @click="copied = true" x-effect="copied ? setTimeout(() => copied = false, 3000) : null">
+            <code>$ yarn add parcel</code>
+            <span class="sr-only">(click to copy to clipboard)</span>
+            <svg class="h-6 w-6 ml-4" style="padding-left: 1px" x-show="copied == false" x-transition:enter.scale.80 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <svg class="h-6 w-6 ml-4 text-green-300 dark:text-green-400" style="display: none" x-show="copied == true" x-transition:enter.scale.80 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="absolute top-0 right-0 p-4 text-pink-200 dark:text-pink-300 text-lg sm:text-base flex items-center gap-5">
+        <div class="search-container home text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" id="search-input" aria-label="Search" placeholder="Search..." />
+        </div>
+        <a href="/docs/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Docs</a>
+        <a href="/blog/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Blog</a>
+      </nav>
+    </header>
+    <section class="pt-20 lg:pt-32 -mb-10 flex flex-row flex-wrap gap-x-10 gap-y-6 items-center justify-center max-w-xl lg:max-w-full mx-auto px-8 text-gray-700 dark:text-gray-300">
+      <div class="font-semibold uppercase w-full lg:w-auto text-center text-gray-500 dark:text-gray-400">Trusted by:</div>
+      <include src="logos/atlassian.svg"></include>
+      <!-- <include src="logos/adobe.svg"></include> -->
+      <include src="logos/microsoft.svg"></include>
+      <include src="logos/sourcegraph.svg"></include>
+      <include src="logos/xchart.svg"></include>
+    </section>
+    <main class="px-safe">
+      <include src="dev-server.html"></include>
+      <include src="perf.html"></include>
+      <include src="optimization.html"></include>
+      <include src="targets.html"></include>
+      <include src="scalable.html"></include>
+    </main>
+    <footer class="max-w-screen-lg mx-auto px-6 md:px-8 mt-32 dark:text-gray-300">
+      <div class="flex flex-wrap mb-10 gap-x-20 gap-y-10 justify-start px-safe">
+        <nav class="text-white">
+          <h3>Getting Started</h3>
+          <ul>
+            <li><a href="/getting-started/webapp/">🌐 Web app</a></li>
+            <li><a href="/getting-started/library/">📔 Library</a></li>
+            <li><a href="/getting-started/migration/">🚚 Migration</a></li>
+          </ul>
+        </nav>
+        <nav class="grid grid-cols-2 gap-x-16">
+          <h3 class="col-span-2">Features</h3>
+          <ul>
+            <li><a href="/features/development/">🧑‍💻 Development</a></li>
+            <li><a href="/features/code-splitting/">✂️ Code Splitting</a></li>
+            <li><a href="/features/dependency-resolution/">📔 Dependency resolution</a></li>
+            <li><a href="/features/bundle-inlining/">🪆 Bundle inlining</a></li>
+            <li><a href="/features/targets/">🎯 Targets</a></li>
+          </ul>
+          <ul>
+            <li><a href="/features/production/">🚀 Production</a></li>
+            <li><a href="/features/scope-hoisting/">🌳 Scope Hoisting</a></li>
+            <li><a href="/features/node-emulation/">🐢 Node Emulation</a></li>
+            <li><a href="/features/cli/">⌨️ CLI</a></li>
+            <li><a href="/features/parcel-api/">📚 Parcel API</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h3>Plugin system</h3>
+          <ul>
+            <li><a href="/features/plugins/">Using Plugins</a></li>
+            <li><a href="/plugin-system/overview/">Plugin System</a></li>
+            <li><a href="/plugin-system/authoring-plugins/">Authoring Plugins</a></li>
+            <li><a href="/plugin-system/logging/">Diagnostics</a></li>
+            <li><a href="/plugin-system/source-maps/">Source Maps</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h3>Links</h3>
+          <ul>
+            <li><a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.npmjs.com/package/parcel" target="_blank" rel="noopener">npm</a></li>
+            <li><a href="https://twitter.com/parceljs" target="_blank" rel="noopener">Twitter</a></li>
+            <li><a href="https://discord.gg/XSCzqGRuvr" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank" rel="noopener">Swag store</a></li>
+          </ul>
+        </nav>
+      </div>
+      <style>
+        footer nav h3 {
+          @apply uppercase font-semibold text-xs pb-2 text-gray-500 dark:text-gray-400;
+        }
+
+        footer ul li {
+          @apply py-1 text-sm;
+        }
+
+        footer a {
+          @apply text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 transition;
+        }
+      </style>
+      <div class="text-center text-xs text-gray-400 pb-10">
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Devon Govett and Parcel Contributors. This website is
+        <a href="https://github.com/parcel-bundler/website" target="_blank" rel="noopener">open source</a>.
+      </div>
+    </footer>
+    <script type="module">
+      let tablists = document.querySelectorAll('[role="tablist"]');
+      for (let tablist of tablists) {
+        let tabs = tablist.querySelectorAll('[role="tab"]');
+        for (let tab of tabs) {
+          tab.tabIndex = -1;
+          tab.onfocus = (e) => {
+            let prev = [...tabs].find(t => t.tabIndex === 0);
+            if (prev) {
+              prev.tabIndex = -1;
+            }
+
+            tab.tabIndex = 0;
+          }
+        }
+
+        tabs[0].tabIndex = 0;
+
+        tablist.onkeydown = e => {
+          switch (e.key) {
+            case 'ArrowRight': {
+              let idx = [...tabs].indexOf(document.activeElement);
+              let next = tabs[idx + 1];
+              if (next) {
+                e.preventDefault();
+                next.focus();
+                next.click();
+              }
+              break;
+            }
+            case 'ArrowLeft': {
+              let idx = [...tabs].indexOf(document.activeElement);
+              let prev = tabs[idx - 1];
+              if (prev) {
+                e.preventDefault();
+                prev.focus();
+                prev.click();
+              }
+              break;
+            }
+          }
+        };
+      }
+
+      let radiogroups = document.querySelectorAll('[role="radiogroup"]');
+      for (let radiogroup of radiogroups) {
+        let radios = radiogroup.querySelectorAll('[role="radio"]');
+        for (let radio of radios) {
+          radio.tabIndex = -1;
+          radio.onfocus = (e) => {
+            let prev = [...radios].find(r => r.tabIndex === 0);
+            if (prev) {
+              prev.tabIndex = -1;
+            }
+
+            radio.tabIndex = 0;
+          }
+        }
+
+        radios[0].tabIndex = 0;
+
+        radiogroup.onkeydown = e => {
+          switch (e.key) {
+            case 'ArrowDown': {
+              let idx = [...radios].indexOf(document.activeElement);
+              let next = radios[idx + 1];
+              if (next) {
+                e.preventDefault();
+                next.focus();
+                next.click();
+              }
+              break;
+            }
+            case 'ArrowUp': {
+              let idx = [...radios].indexOf(document.activeElement);
+              let prev = radios[idx - 1];
+              if (prev) {
+                e.preventDefault();
+                prev.focus();
+                prev.click();
+              }
+              break;
+            }
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

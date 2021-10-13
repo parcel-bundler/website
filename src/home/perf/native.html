@@ -1,0 +1,41 @@
+<div class="grid lg:grid-cols-2 gap-4 lg:gap-12 mt-4 lg:md-8">
+  <div class="relative w-full max-w-sm" role="img" aria-label="A speedometer-like dial that animates to maximum speed.">
+    <svg viewBox="0 0 375 187.5" class="max-w-full">
+      <mask id="mask">
+        <path d="M 375 187.5 A 7.5 7.5 90 0 0 0 187.5 L 42 187.5 A 1.5 1.5 90 0 1 331.5 187.5 L 375 187.5" fill="white"></path>
+      </mask>
+      <foreignObject x="0" y="0" width="375" height="187.5" mask="url(#mask)">
+        <div style="width: 375px; height: 187.5px; background: conic-gradient(from -90deg, rgb(37, 99, 235), rgb(52, 211, 153) 10%, rgb(251, 191, 36) 35%, rgb(220, 38, 38) 50%); background-size: 375px 375px;"></div>
+      </foreignObject>
+    </svg>
+    <svg viewBox="0 0 375 187.5" id="speedometer" x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="max-w-full absolute top-0 left-0 text-gray-700 dark:text-gray-100" style="transform: rotate(-88deg); transform-origin: center 91.6%; will-change: transform" :style="{animation: shown && 'speedometer 2s linear 300ms, speedometer-done 4s ease-in-out 2.3s infinite'}">
+      <g transform="translate(170 0) scale(2)">
+        <path fill="currentColor" d="M13.886,84.243L2.83,83.875c0,0,3.648-70.77,3.956-74.981C7.104,4.562,7.832,0,8.528,0
+        c0.695,0,1.752,4.268,2.053,8.894C10.883,13.521,13.886,84.243,13.886,84.243z"/>
+        <path fill="currentColor" d="M16.721,85.475c0,4.615-3.743,8.359-8.36,8.359S0,90.09,0,85.475c0-4.62,3.743-8.363,8.36-8.363
+          S16.721,80.855,16.721,85.475z"/>
+        <circle fill="currentColor" class="text-white dark:text-gray-800" cx="8.426" cy="85.471" r="2.691"/>
+      </g>
+    </svg>
+  </div>
+  <style>
+    @keyframes speedometer {
+      0% { transform: rotate(-85deg); }
+      10% { transform: rotate(-15deg); }
+      40% { transform: rotate(45deg); }
+      60% { transform: rotate(75deg); }
+      85% { transform: rotate(90deg); }
+      100% { transform: rotate(85deg); }
+    }
+
+    @keyframes speedometer-done {
+      0% { transform: rotate(85deg); }
+      50% { transform: rotate(80deg); }
+      100% { transform: rotate(85deg); }
+    }
+  </style>
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-indigo-300">
+    <p class="mb-4">Parcel's JavaScript compiler and source maps implementation are written in <strong class="font-medium text-gray-800 dark:text-indigo-100">Rust</strong> for maximum performance. It's <strong class="font-semibold text-gray-800 dark:text-gray-200">10-20x faster</strong> than other JavaScript-based tools!</p>
+    <p class="mb-4 text-base lg:text-lg">Parcel is built on the <a href="https://swc.rs" target="_blank" rel="noopener" class="font-semibold text-gray-800 dark:text-indigo-100 hover:text-gray-700 dark:hover:text-indigo-50 transition-colors">SWC</a> compiler, which handles transpiling JavaScript, JSX, and TypeScript. On top of SWC, Parcel implements dependency collection, bundling, scope hoisting, tree shaking, Node emulation, hot reloading, and more.</p>
+  </div>
+</div>

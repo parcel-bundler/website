@@ -1,0 +1,24 @@
+<div class="grid lg:grid-cols-2 gap-x-4 gap-y-8 lg:gap-12">
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300">
+    <p class="mb-4">Parcel transpiles your code for your target browsers automatically! Just declare a <code class="font-semibold text-gray-800 dark:text-gray-200">browserslist</code> in your <code class="text-gray-800 dark:text-gray-200">package.json</code>, and Parcel takes care of transpiling only what's needed.</p>
+    <p class="mb-4 text-base lg:text-lg">In addition to standard JavaScript, Parcel automatically handles <strong class="font-semibold text-gray-800 dark:text-gray-200">JSX</strong>, <strong class="font-semibold text-gray-800 dark:text-gray-200">TypeScript</strong>, and <strong class="font-semibold text-gray-800 dark:text-gray-200">Flow</strong>, along with Node.js features like <strong class="font-semibold text-gray-800 dark:text-gray-200">process.env</strong> and <strong class="font-semibold text-gray-800 dark:text-gray-200">fs.readFileSync</strong> – no configuration needed!</p>
+    <p class="text-base lg:text-lg">And if you need more advanced control, or support for custom transforms, just add a <code class="font-semibold text-gray-800 dark:text-gray-200">.babelrc</code> or <code class="font-semibold text-gray-800 dark:text-gray-200">.postcssrc</code> and it'll be picked up automatically.</p>
+    <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-400 hover:underline" href="/languages/javascript/#transpilation">Learn more →</a>
+  </div>
+  <div class="w-full max-w-md mx-auto">
+    <pre class="text-xs mb-2 whitespace-pre-wrap overflow-auto"><code class="language-jsx">function DogName(props) {
+  return <span>{props.dog?.name ?? 'Buddy'}</span>;
+}</code></pre>
+    <svg height="35" width="100%" viewBox="0 0 13 35">
+      <line x1="0" y1="0" x2="0" y2="30" stroke="currentColor" class="text-green-600 dark:text-green-400" stroke-width="2" marker-end="url(#arrow-green)" />
+    </svg>
+  <pre class="text-xs mt-2 whitespace-pre-wrap overflow-auto"><code class="language-javascript">function DogName(props) {
+  var ref, ref1;
+  return /*#__PURE__*/ React.createElement(
+    "span",
+    null,
+    (ref1 = (ref = props.dog) === null || ref === void 0 ? void 0 : ref.name) !== null && ref1 !== void 0 ? ref1 : "Buddy"
+  );
+}</code></pre>
+  </div>  
+</div>

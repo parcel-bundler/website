@@ -1,0 +1,33 @@
+<section aria-labelledby="optimization" class="my-40 max-w-screen-xl mx-auto px-6 md:px-8">
+  <h3 id="optimization" class="text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-indigo-500 via-blue-500 to-green-500 dark:from-indigo-400 dark:via-blue-400 dark:to-green-400 bg-clip-text text-transparent mb-4 lg:mb-8 inline-block">Automatic production optimization.</h3>
+  <p class="max-w-6xl text-xl lg:text-3xl font-medium text-gray-500 dark:text-gray-400">Parcel optimizes your whole app for production automatically. This includes tree-shaking and minifying your JavaScript, CSS, and HTML, resizing and optimizing images, content hashing, automatic code splitting, and much more.</p>
+  <div class="grid grid-cols-2 gap-5 mt-10">
+    <section class="col-span-2 p-5 md:p-10 bg-gradient-to-br from-green-100 to-blue-100 dark:from-blue-900 dark:to-indigo-900 rounded-xl">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Tree shaking</h4>
+      <include src="optimization/tree-shaking.html"></include>
+    </section>
+    <section class="col-span-2 md:col-span-1 p-5 md:p-10 bg-gradient-to-b from-blue-100 to-green-100 dark:from-blue-900 dark:to-green-900 rounded-xl" style="background-size: 100% 200%">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Minification</h4>
+      <include src="optimization/minification.html"></include>
+    </section>
+    <section class="col-span-2 md:col-span-1 row-span-2 p-5 md:p-10 bg-gradient-to-b from-blue-100 to-green-100 dark:from-blue-900 dark:to-green-900 rounded-xl">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Image optimization</h4>
+      <include src="optimization/image.html"></include>
+    </section>
+    <section class="col-span-2 md:col-span-1 p-5 md:p-10 bg-gradient-to-b from-blue-100 to-green-100 dark:from-blue-900 dark:to-green-900 rounded-xl" style="background-size: 100% 200%; background-position: bottom left">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Compression</h4>
+      <div class="mr-2 mt-4 lg:mt-8 text-lg lg:text-xl font-medium text-gray-600 dark:text-blue-300">
+        <p>Compress your app before you deploy using Gzip and Brotli.</p>
+        <a class="mt-8 block text-lg font-medium text-green-700 dark:text-green-400 hover:underline" href="/features/production/#compression">Learn more →</a>
+      </div>
+    </section>
+    <section class="col-span-2 p-5 md:p-10 bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-900 dark:to-indigo-900 rounded-xl" style="background-size: 100% 200%">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Code splitting</h4>
+      <include src="optimization/code-splitting.html"></include>
+    </section>
+    <section class="col-span-2 p-5 md:p-10 bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-900 dark:to-indigo-900 rounded-xl" style="background-size: 100% 200%; background-position: bottom left;">
+      <h4 class="text-xl font-semibold text-green-600 dark:text-green-400">Content hashing</h4>
+      <include src="optimization/content-hashing.html"></include>
+    </section>
+  </div>
+</section>

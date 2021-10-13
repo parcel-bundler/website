@@ -1,0 +1,77 @@
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-8" x-data="{'tab': 'extends'}">
+  <div class="lg:col-span-2">
+    <p class="mb-4 max-w-4xl text-lg lg:text-xl font-medium text-gray-600 dark:text-orange-200">Configuring Parcel is like a breath of fresh air. <code class="font-semibold text-gray-800 dark:text-orange-100">.parcelrc</code> is a simple JSON-based config format that uses globs to match your source files to build pipelines. You can extend the default config and add plugins to handle custom file types, or override and extend the defaults.</p>
+    <a class="block text-lg font-medium text-orange-700 dark:text-orange-300 hover:underline" href="/features/plugins/">Learn more →</a>
+  </div>
+  <div class="order-2 lg:order-1" role="radiogroup">
+    <div role="radio" :aria-checked="tab === 'extends'" @click="tab = 'extends'" @mouseover="tab = 'extends'">
+      <p class="font-semibold">Extends</p>
+      <p class="text-base">Start with the default config, or a community preset.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'transformers'" @click="tab = 'transformers'" @mouseover="tab = 'transformers'">
+      <p class="font-semibold">Transformers</p>
+      <p class="text-base">Compile individual source files and extract dependencies.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'resolvers'" @click="tab = 'resolvers'" @mouseover="tab = 'resolvers'">
+      <p class="font-semibold">Resolvers</p>
+      <p class="text-base">Resolve a dependency to a file path or virtual module.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'namers'" @click="tab = 'namers'" @mouseover="tab = 'namers'">
+      <p class="font-semibold">Namers</p>
+      <p class="text-base">Determine the name of an output file.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'packagers'" @click="tab = 'packagers'" @mouseover="tab = 'packagers'">
+      <p class="font-semibold">Packagers</p>
+      <p class="text-base">Combine multiple assets together into a single output file.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'optimizers'" @click="tab = 'optimizers'" @mouseover="tab = 'optimizers'">
+      <p class="font-semibold">Optimizers</p>
+      <p class="text-base">Minify, optimize, and transform output files.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'compressors'" @click="tab = 'compressors'" @mouseover="tab = 'compressors'">
+      <p class="font-semibold">Compressors</p>
+      <p class="text-base">Compress and encode output files in multiple formats.</p>
+    </div>
+    <div role="radio" :aria-checked="tab === 'reporters'" @click="tab = 'reporters'" @mouseover="tab = 'reporters'">
+      <p class="font-semibold">Reporters</p>
+      <p class="text-base">Receive events on build progress and completion.</p>
+    </div>
+  </div>
+  <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="order-1 lg:order-2 flex flex-col bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden justify-self-center max-w-full-screen transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">
+    <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+      <div class="flex flex-row absolute left-2 top-2">
+        <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-green-500 rounded-full w-3 h-3"></div>
+      </div>
+      <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">.parcelrc</div>
+    </div>
+    <pre class="pt-0 bg-transparent flex-grow overflow-auto text-xs md:text-sm lg:text-base">{
+<code class="language-json code-plugin" id="plugin-extends" :class="{'inactive': tab && tab !== 'extends'}">  "extends": ["@parcel/config-default"],</code>
+<code class="language-json code-plugin" id="plugin-transformers" :class="{'inactive': tab && tab !== 'transformers'}">  "transformers": {
+    "*.svg": ["@parcel/transformer-svg-react"]
+  },</code>
+<code class="language-json code-plugin" id="plugin-resolvers" :class="{'inactive': tab && tab !== 'resolvers'}">  "resolvers": ["@parcel/resolver-glob", "..."],</code>
+<code class="language-json code-plugin" id="plugin-namers" :class="{'inactive': tab && tab !== 'namers'}">  "namers": ["@company/parcel-namer", "..."],</code>
+<code class="language-json code-plugin" id="plugin-packagers" :class="{'inactive': tab && tab !== 'packagers'}">  "packagers": {
+    "*.{jpg,png}": "parcel-packager-image-sprite"
+  },</code>
+<code class="language-json code-plugin" id="plugin-optimizers" :class="{'inactive': tab && tab !== 'optimizers'}">  "optimizers": {
+    "*.js": ["parcel-optimizer-license-headers"]
+  },</code>
+<code class="language-json code-plugin" id="plugin-compressors" :class="{'inactive': tab && tab !== 'compressors'}">  "compressors": {
+    "*.js": ["...", "@parcel/compressor-gzip"]
+  },</code>
+<code class="language-json code-plugin" id="plugin-reporters" :class="{'inactive': tab && tab !== 'reporters'}">  "reporters": ["...", "parcel-reporter-manifest"]</code>
+}</code></pre>
+    <style>
+      code.code-plugin * {
+        @apply transition-colors !important;
+      }
+
+      code.inactive * {
+        @apply lg:text-gray-600 !important;
+      }
+    </style>
+  </div>
+</div>

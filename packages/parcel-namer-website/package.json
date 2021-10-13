@@ -1,0 +1,11 @@
+{
+  "name": "parcel-namer-website",
+  "version": "1.0.0",
+  "main": "WebsiteNamer.js",
+  "engines": {
+    "parcel": "^2.0.0-beta.1"
+  },
+  "dependencies": {
+    "@parcel/plugin": "nightly"
+  }
+}

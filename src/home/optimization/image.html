@@ -1,0 +1,21 @@
+<div class="flex flex-col mt-4 lg:mt-8">
+  <div class="mr-2 text-lg lg:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p class="mb-4"><strong class="font-semibold text-gray-800 dark:text-blue-100">Parcel supports resizing, converting, and optimizing images!</strong> Just pass query parameters for the format and size you need when referencing the image file in your HTML, CSS, JavaScript, etc. and Parcel will take care of the conversion and optimization process.</p>
+    <p class="text-base lg:text-lg mb-4">You can even request multiple sizes or formats of the same source image for different devices or browsers!</p>
+    <a class="my-8 block text-lg font-medium text-green-700 dark:text-green-400 hover:underline" href="/recipes/image/">Learn more →</a>
+  </div>
+  <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden self-center w-full-screen md:w-full transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">
+    <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+      <div class="flex flex-row absolute left-2 top-2">
+        <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-green-500 rounded-full w-3 h-3"></div>
+      </div>
+      <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">index.html</div>
+    </div>
+    <pre class="pt-0 bg-transparent whitespace-pre-wrap"><code class="language-html text-xs"><picture>
+  <source type="image/webp" srcset="image.jpg?as=webp&width=400, image.jpg?as=webp&width=800 2x">
+  <source type="image/jpeg" srcset="image.jpg?width=400, image.jpg?width=800 2x">
+  <img src="image.jpg?width=400" width="400">
+</picture></code></pre></div>
+</div>

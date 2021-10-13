@@ -1,0 +1,60 @@
+<div class="flex flex-col">
+  <div class="my-4 lg:my-8 text-lg lg:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p class="mb-4"><strong class="font-semibold text-gray-800 dark:text-blue-100">Everything Parcel does is cached</strong> – transformation, dependency resolution, bundling, optimizing, and everything in between. This means the dev server restarts instantly, and the same code is never built twice.</p>
+  </div>
+  <div>
+    <svg role="img" aria-label="Caching diagram. Shows dashboard.js and profile.js connected to package.json, and dashboard.css and profile.css connected to .postcssrc. Changing .postcssrc invalidates dashboard.css and profile.css." width="450" height="155" viewBox="0 0 450 155" class="font-semibold w-full max-w-md mx-auto" x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false">
+      <g transform="translate(0, -40)">
+        <g class="text-green-600 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 1s forwards, caching-fade-out 500ms ease-out 6s forwards'}">
+          <rect x="10" y="40" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="19" y="67" fill="white">dashboard.js</text>
+        </g>
+        <g class="text-green-600 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 3s forwards, caching-fade-out 500ms ease-out 6s forwards'}">
+          <rect x="120" y="40" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="142" y="67" fill="white">profile.js</text>
+        </g>
+        <line x1="168" y1="90" x2="130" y2="140" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 3.5s forwards, caching-fade-out 500ms ease-out 6s forwards'}" />
+        <g class="text-blue-600 dark:text-blue-500 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 1.5s forwards, caching-fade-out 500ms ease-out 6s forwards'}">
+          <rect x="60" y="150" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="69" y="177" fill="white">package.json</text>
+          <line x1="55" y1="90" x2="90" y2="140" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" />
+        </g>
+      </g>
+      <g transform="translate(220, -40)">
+        <g class="text-pink-600 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 2s forwards, caching-fade-out 500ms ease-out 6s forwards, fade-in-2 300ms ease-in 8.5s forwards'}">
+          <rect x="10" y="40" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="13" y="67" fill="white">dashboard.css</text>
+        </g>
+        <g class="text-pink-600 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 4s forwards, caching-fade-out 500ms ease-out 6s forwards, fade-in-2 300ms ease-in 8.5s forwards'}">
+          <rect x="120" y="40" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="137" y="67" fill="white">profile.css</text>
+        </g>
+        <line x1="170" y1="90" x2="130" y2="140" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 4.5s forwards, caching-fade-out 500ms ease-out 6s forwards, fade-in-2 300ms ease-in 8.5s forwards'}" />
+        <g class="text-blue-600 dark:text-blue-500 text-sm" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 2.5s forwards, caching-fade-out 500ms ease-out 6s forwards, fade-in-2 300ms ease-in 8s forwards'}">
+          <rect x="60" y="150" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="75" y="177" fill="white">.postcssrc</text>
+        </g>
+        <line x1="55" y1="90" x2="90" y2="140" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0;" :style="{animation: shown && 'fade-in-3 300ms ease-in 2.5s forwards, caching-fade-out 500ms ease-out 6s forwards, fade-in-2 300ms ease-in 8.5s forwards'}" />
+      </g>
+    </svg>
+    <style>
+      @keyframes fade-in-2 {
+        from { opacity: 0.3 }
+        to { opacity: 1; }
+      }
+
+      @keyframes fade-in-3 {
+        from { opacity: 0 }
+        to { opacity: 1; }
+      }
+
+      @keyframes caching-fade-out {
+        from { opacity: 1 }
+        to { opacity: 0.3 }
+      }
+    </style>
+  </div>
+  <div class="mt-4 lg:mt-8 text-lg lg:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p class="text-base lg:text-lg">Parcel automatically tracks all of the files, configuration, plugins, and dev dependencies that are involved in your build, and granularly invalidates the cache when something changes. It integrates with low-level operating system APIs to determine what files have changed in milliseconds, no matter the project size.</p>
+  </div>
+</div>

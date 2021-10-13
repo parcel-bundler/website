@@ -1,0 +1,36 @@
+<div class="flex flex-col">
+  <div class="text-lg lg:text-xl font-medium text-gray-700 dark:text-pink-200">
+    <p class="mb-4">Want to transform the same types of files in multiple ways in a single build? Create a named pipeline, and use it as a URL scheme in your code.</p>
+    <p class="mb-8 text-base lg:text-lg">For example, you could inline the compiled contents of a bundle as text, a data URL, an ArrayBuffer, or anything else! Or if you're building a documentation site, you could import both the generated API docs and source code for a file. The possibilities are endless.</p>
+    <a class="mb-8 block text-lg font-medium text-orange-800 dark:text-orange-300 hover:underline" href="/features/plugins/#named-pipelines">Learn more →</a>
+  </div>
+  <div class="self-center max-w-full-screen" x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false">
+    <div class="mr-10 bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden transition duration-700 ease-out delay-100" :class="{'translate-y-0 translate-x-0 opacity-100': shown, 'motion-safe:-translate-y-3 motion-safe:-translate-x-3 opacity-70': !shown}">
+      <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+        <div class="flex flex-row absolute left-2 top-2">
+          <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-green-500 rounded-full w-3 h-3"></div>
+        </div>
+        <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">.parcelrc</div>
+      </div>
+      <pre class="pt-0 bg-transparent overflow-auto"><code class="language-json text-xs lg:text-sm">{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "buffer:*": ["...", "parcel-transformer-buffer"]
+  }
+}</code></pre>
+    </div>
+    <div class="ml-20 -mt-10 bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden transition duration-700 ease-out delay-100" :class="{'translate-y-0 translate-x-0 opacity-100': shown, 'motion-safe:translate-y-3 motion-safe:translate-x-3 opacity-70': !shown}">
+      <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+        <div class="flex flex-row absolute left-2 top-2">
+          <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-green-500 rounded-full w-3 h-3"></div>
+        </div>
+        <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">App.js</div>
+      </div>
+      <pre class="pt-0 bg-transparent overflow-auto"><code class="language-js text-xs lg:text-sm">import buffer from 'buffer:./logo.png';</code></pre>
+    </div>
+  </div>
+</div>

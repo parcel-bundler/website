@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "/assets/styles/search.scss";
+
+pre {
+  @apply rounded-md;
+  @apply p-4;
+  @apply text-gray-200;
+  @apply bg-gray-800;
+  @apply dark:bg-gray-900;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-500;
+}
+
+.token.punctuation {
+  @apply text-gray-200;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-pink-400 dark:text-pink-500;
+}
+
+.token.boolean,
+.token.number {
+  @apply text-purple-400;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-green-500;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  @apply text-gray-200
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  @apply text-yellow-300;
+}
+
+.token.keyword {
+  @apply text-blue-400;
+}
+
+.token.regex,
+.token.important {
+  @apply text-yellow-600;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+[role="tab"] {
+  @apply text-xs text-gray-600 p-2 xl:px-3 border-l border-gray-300 dark:border-gray-800 outline-none focus-visible:ring focus-visible:ring-orange-400 focus-visible:ring-inset focus-visible:z-10 cursor-default select-none;
+}
+
+[role="tab"][aria-selected="true"] {
+  @apply text-gray-500 bg-gray-200 dark:bg-gray-800 border-gray-200 dark:border-gray-800;
+}
+
+[role="tab"][aria-selected="true"] + [role="tab"] {
+  @apply border-gray-200 dark:border-gray-800;
+}
+
+[role="tab"]:first-child {
+  @apply border-none;
+}
+
+[role="radio"] {
+  @apply bg-opacity-0 text-gray-600 dark:text-rose-200 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-none focus-visible:ring-4 focus-visible:ring-orange-500 focus-visible:ring-opacity-50 transition-all mb-2 text-xl;
+}
+
+[role="radio"][aria-checked="true"] {
+  @apply lg:bg-orange-200 lg:text-orange-700 lg:dark:bg-orange-400 lg:dark:text-rose-900 lg:dark:bg-opacity-75;
+}
+
+[role="radio"][aria-checked="true"] p:last-child {
+  @apply lg:text-orange-800 lg:dark:text-rose-900;
+}

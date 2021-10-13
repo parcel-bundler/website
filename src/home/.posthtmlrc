@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "posthtml-include": {
+      "root": "./src/home"
+    },
+    "posthtml-prism": {}
+  }
+}

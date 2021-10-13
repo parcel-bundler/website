@@ -1,0 +1,5 @@
+{
+  "extends": "@parcel/config-default",
+  "resolvers": ["...", "parcel-resolver-website"],
+  "namers": ["parcel-namer-website", "..."]
+}

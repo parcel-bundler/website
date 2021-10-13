@@ -1,0 +1,78 @@
+<div class="flex flex-col">
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300 mt-4 md:mt-8">
+    <p>When you make a change, Parcel automatically updates your code in the browser – no page reload necessary!</p>
+  </div>
+  <div class="relative mt-8 self-center max-w-full-screen" x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false">
+    <div role="img" aria-label="A browser showing a page that is being edited by a text editor. The text updates to reflect the changes." class="bg-gray-100 dark:bg-gray-900 h-48 md:h-64 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden transition duration-700 ease-out delay-100" :class="{'translate-y-0 translate-x-0 opacity-100': shown, 'motion-safe:-translate-y-3 motion-safe:-translate-x-3 opacity-70': !shown}" style="max-width: min(90%, 20rem)">
+      <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-3">
+        <div class="flex flex-row absolute left-4 top-4">
+          <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-green-500 rounded-full w-3 h-3"></div>
+        </div>
+        <div class="ml-10 text-xs text-gray-500 bg-gray-300 dark:bg-gray-700 py-1 px-4 lg:px-10 rounded-md">http://localhost:1234</div>
+      </div>
+      <span id="hmrPreview" class="text-2xl p-4 font-serif">Hello world!</span>
+    </div>
+    <div role="img" aria-label="A code editor that is editing the source code for a React component. The changes are reflected in the web browser." class="ml-20 -mt-20 w-72 lg:w-80 bg-gray-800 dark:bg-gray-900 h-48 md:h-64 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl overflow-hidden transition duration-700 ease-out delay-100" :class="{'translate-y-0 translate-x-0 opacity-100': shown, 'motion-safe:translate-y-3 motion-safe:translate-x-3 opacity-70': !shown}">
+      <div class="flex flex-row mb-4 justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+        <div class="flex flex-row absolute left-2 top-2">
+          <div class="bg-red-500 rounded-full w-3 h-3 mr-2">
+            <div hidden id="hmrUnsaved" class="bg-gray-900 rounded-full w-1 h-1 m-1"></div>
+          </div>
+          <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+          <div class="bg-green-500 rounded-full w-3 h-3"></div>
+        </div>
+        <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">Greeting.tsx</div>
+      </div>
+      <pre class="pt-0 bg-transparent"><code id="hmrCode" class="language-jsx text-xs lg:text-sm">import React from 'react';
+
+export function Greeting() {
+  return <h1>Hello world!</h1>;
+}</code></pre>
+    </div>  
+  </div>
+  <script type="module">
+    let plain = hmrCode.querySelector('.plain-text');
+    plain.textContent = hmrPreview.textContent = 'Hello world!';
+    hmrUnsaved.hidden = true;
+
+    async function run(text) {
+      await sleep(1000);
+      let word = plain.textContent.split(' ').pop().slice(0, -1);
+      plain.innerHTML = `Hello <span class="bg-green-700">${word}</span>!`;
+
+      await sleep(1000);
+      let sp = '<span style="width: 1px; margin-right: -1px; height: 1.2em" class="inline-block align-text-top bg-white"></span>';
+      plain.innerHTML = `Hello ${sp}!`;
+
+      let c = '';
+      for (let ch of text) {
+        await sleep(Math.floor(Math.random() * 120) + 60);
+        c += ch;
+        plain.innerHTML = `Hello ${c}${sp}!`;
+        hmrUnsaved.hidden = false;
+      }
+      
+      await sleep(300);
+      hmrUnsaved.hidden = true;
+      plain.innerHTML = `Hello ${c}!`;
+
+      await sleep(200);
+      hmrPreview.textContent = `Hello ${c}!`;
+
+      await sleep(3000);
+      await run(text === 'Parcel' ? 'world' : 'Parcel');
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    run('Parcel');
+  </script>
+  <div class="text-xl font-medium text-gray-600 dark:text-purple-300 mt-8">
+    <p class="mb-4 text-base md:text-lg">Parcel also integrates with <strong class="font-semibold text-gray-800 dark:text-purple-100">React Fast Refresh</strong> and the <strong class="font-semibold text-gray-800 dark:text-purple-100">Vue Hot Reloading API</strong> to automatically preserve your application state between updates. This gives you instant feedback as you make changes, without taking you out of context.</p>
+    <a class="block mt-8 text-lg font-medium text-blue-700 dark:text-blue-400 hover:underline" href="/features/development/#hot-reloading">Learn more →</a>
+  </div>  
+</div>

@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "tailwindcss": {
+      "config": "./src/home/tailwind.config.js"
+    },
+    "postcss-focus-visible": {},
+    "autoprefixer": {}
+  }
+}

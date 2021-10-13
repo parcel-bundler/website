@@ -1,0 +1,66 @@
+<div class="flex flex-col mt-4 lg:mt-8">
+  <div class="mr-2 text-lg lg:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p>Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box! Just run <code class="font-semibold text-gray-800 dark:text-blue-100">parcel build index.html</code>, and your whole application will be built and optimized automatically.</p>
+    <a class="mt-8 block text-lg font-medium text-green-700 dark:text-green-400 hover:underline" href="/features/production/#minification">Learn more →</a>
+  </div>
+  <div class="flex flex-row mb-4 mt-8 lg:mt-10" role="img" aria-label="An animation showing a file size reduction from 2.18 MB to 32.42 kB.">
+    <svg width="48" height="48" viewBox="0 0 48 48" class="text-green-600 dark:text-green-500" fill="none" style="margin-right: 1em">
+      <circle cx="24" cy="24" r="20" stroke-width="8" stroke="currentColor" stroke-opacity="0.3" />
+      <circle cx="24" cy="24" r="20" stroke-width="8" stroke="currentColor" stroke-linecap="round" id="progress" style="transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.35s;" />
+    </svg>
+    <div class="text-4xl lg:text-5xl font-semibold text-green-600 dark:text-green-500 tabular-nums" id="size">542 KB</div>
+  </div>
+  <script type="module">
+    let c = parseInt(progress.getAttribute('r')) * 2 * Math.PI;
+    progress.style.strokeDasharray = `${c} ${c}`;
+
+    let start = 2187;
+    let end = 32.42;
+    let s = start;
+    let updateSize = () => {
+      size.textContent = (s > 1024 ? s / 1024 : s).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'unit', unit: s > 1024 ? 'megabyte' : 'kilobyte'});
+      size.classList.remove('text-green-600', 'dark:text-green-500', 'text-yellow-600', 'text-red-600', 'dark:text-yellow-400', 'dark:text-red-500');
+      if (s > 1024) {
+        size.classList.add('text-red-600', 'dark:text-red-500');
+      } else if (s > 128) {
+        size.classList.add('text-yellow-600', 'dark:text-yellow-400');
+      } else {
+        size.classList.add('text-green-600', 'dark:text-green-500');
+      }
+
+      progress.style.strokeDashoffset = c - (start - s) / (start - end) * c;
+      if (s <= end) {
+        progress.parentElement.setAttribute('hidden', 'true');
+        size.textContent = '✨ ' + size.textContent;
+      }
+    };
+
+    let f;
+    let observer = new IntersectionObserver(async () => {
+      cancelAnimationFrame(f);
+
+      let frame = async () => {
+        s -= Math.random() * (s > 1024 ? 30 : s > 256 ? 20 : 5) + (s > 256 ? 10 : 2);
+        s = Math.max(s, end);
+        updateSize();
+        if (s > end) {
+          await sleep(s > 1024 ? 5 : s > 256 ? 20 : 50);
+          f = requestAnimationFrame(frame);
+        }
+      };
+
+      s = start;
+      updateSize();
+      progress.parentElement.removeAttribute('hidden');
+      await sleep(800);
+      f = requestAnimationFrame(frame);
+    }, {threshold: 1});
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    observer.observe(size);
+    updateSize();
+  </script>
+</div>

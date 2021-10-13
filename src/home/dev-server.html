@@ -1,0 +1,22 @@
+<section aria-labelledby="dx" class="my-40 max-w-screen-xl mx-auto px-6 md:px-8" x-data="{tab: 'zero-config'}">
+  <h3 id="dx" class="text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 dark:from-blue-500 dark:via-blue-300 dark:to-blue-500 bg-clip-text text-transparent mb-8 inline-block">A build tool for the rest of us.</h3>
+  <p class="max-w-5xl text-xl lg:text-3xl font-medium text-gray-500 dark:text-gray-400">Parcel starts with a great development experience, from starting a new project, to iterating and debugging, and shipping to production. No more fiddling with configuration, or spending hours to keep up with best practices – it just works!</p>
+  <div class="grid grid-cols-2 gap-5 mt-10">
+    <section class="col-span-2 p-5 md:p-10 bg-gradient-to-br from-purple-100 dark:from-purple-900 to-blue-100 dark:to-blue-900 rounded-xl">
+      <h4 id="zero-config" class="text-xl font-semibold text-blue-500 dark:text-blue-400">Zero config</h4>
+      <include src="dx/zero-config.html"></include>
+    </section>
+    <section class="col-span-2 md:col-span-1 flex flex-col p-5 md:p-10 bg-gradient-to-br from-indigo-100 dark:from-indigo-900 to-pink-100 dark:to-pink-900 rounded-xl" style="background-size: 200% 400%; background-position: top left">
+      <h4 class="text-xl font-semibold text-blue-500 dark:text-blue-400">Dev server</h4>
+      <include src="dx/dev-server.html"></include>
+    </section>
+    <section class="col-span-2 md:col-span-1 p-5 md:p-10 bg-gradient-to-br from-indigo-100 dark:from-indigo-900 to-pink-100 dark:to-pink-900 rounded-xl" style="background-size: 200% 400%; background-position: top right;">
+      <h4 class="text-xl font-semibold text-blue-500 dark:text-blue-400">Hot reloading</h4>
+      <include src="dx/hmr.html"></include>
+    </section>
+    <section class="col-span-2 p-5 md:p-10 bg-gradient-to-bl from-purple-100 dark:from-purple-900 to-pink-100 dark:to-pink-900 rounded-xl"  style="background-size: 100% 200%; background-position: bottom right;">
+      <h4 class="text-xl font-semibold text-blue-500 dark:text-blue-400">Diagnostics</h4>
+      <include src="dx/diagnostics.html"></include>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+<div class="flex flex-col mt-4 md:mt-8">
+  <div class="flex flex-col overflow-hidden" role="img" aria-label="An animated bar chart showing the activity of 4 CPU cores over time.">
+    <div class="h-10 overflow-hidden mb-4 flex flex-row items-end">
+      <div id="bars1" class="flex flex-row items-end h-full" style="animation: bars 10s linear, bars-loop 20s linear 10s infinite; will-change: transform;"></div>
+      <div id="bars2" class="flex flex-row items-end h-full" style="animation: bars-2 20s linear infinite; will-change: transform;"></div>
+    </div>
+    <div class="h-10 overflow-hidden mb-4 flex flex-row items-end">
+      <div id="bars3" class="flex flex-row items-end h-full" style="animation: bars 10s linear, bars-loop 20s linear 10s infinite; will-change: transform;"></div>
+      <div id="bars4" class="flex flex-row items-end h-full" style="animation: bars-2 20s linear infinite; will-change: transform;"></div>
+    </div>
+    <div class="h-10 overflow-hidden mb-4 flex flex-row items-end">
+      <div id="bars5" class="flex flex-row items-end h-full" style="animation: bars 10s linear, bars-loop 20s linear 10s infinite; will-change: transform;"></div>
+      <div id="bars6" class="flex flex-row items-end h-full" style="animation: bars-2 20s linear infinite; will-change: transform;"></div>
+    </div>
+    <div class="h-10 overflow-hidden mb-4 flex flex-row items-end">
+      <div id="bars7" class="flex flex-row items-end h-full" style="animation: bars 10s linear, bars-loop 20s linear 10s infinite; will-change: transform;"></div>
+      <div id="bars8" class="flex flex-row items-end h-full" style="animation: bars-2 20s linear infinite; will-change: transform;"></div>
+    </div>
+    <script type="module">
+      function createBars(parent) {
+        for (let i = 0; i < 20; i++) {
+          let h = Math.random() * (100 - 60) + 60;
+          let color = h > 90 ? 'to-red-500' : h > 70 ? 'to-yellow-500' : 'to-yellow-300';
+          let div = document.createElement('div');
+          div.className = `bg-gradient-to-t from-green-400 via-yellow-400 ${color} mr-1 rounded-t-sm`;
+          div.style.width = '20px';
+          div.style.marginRight = '5px';
+          div.style.height = h + '%';
+          parent.appendChild(div);
+        }
+      }
+
+      createBars(bars1);
+      createBars(bars2);
+      createBars(bars3);
+      createBars(bars4);
+      createBars(bars5);
+      createBars(bars6);
+      createBars(bars7);
+      createBars(bars8);
+    </script>
+    <style>
+      @keyframes bars {
+        from { transform: translateX(0) }
+        to { transform: translateX(-100%) }
+      }
+
+      @keyframes bars-2 {
+        from { transform: translateX(0) }
+        to { transform: translateX(-200%) }
+      }
+
+      @keyframes bars-loop {
+        from { transform: translateX(100%) }
+        to { transform: translateX(-100%) }
+      }
+
+      @media (prefers-reduced-motion) {
+        #bars1, #bars2, #bars3, #bars4, #bars5, #bars6, #bars7, #bars8 {
+          animation: none !important;
+        }
+      }
+    </style>
+  </div>
+  <div class="mt-4 md:mt-8 text-lg md:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p class="mb-4"><strong class="font-medium text-gray-800 dark:text-blue-100">Parcel is designed around a multi-core architecture that parallelizes work across all of your cores and takes full advantage of modern hardware.</strong></p>
+    <p class="text-base md:text-lg">Transforming individual source files is parallelized, as well as packaging and optimizing output bundles. All of this is completely automatic and does not require any work by plugin authors or other tools that integrate with Parcel.</p>
+  </div>
+</div>

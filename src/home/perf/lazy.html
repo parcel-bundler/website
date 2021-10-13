@@ -1,0 +1,45 @@
+<div class="grid lg:grid-cols-2 gap-4 items-center lg:gap-12 mt-4 md:mt-8">
+  <div>
+    <svg role="img" aria-label="Diagram showing the resources needed for two pages. Only one of them is built." width="450" height="200" viewBox="0 0 450 200" class="font-normal w-full max-w-md mx-auto" x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false">
+      <g transform="translate(0, 35)">
+        <g class="text-green-600 text-sm">
+          <rect x="10" y="40" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="34" y="67" fill="white">browser</text>
+        </g>
+        <g class="text-pink-600 text-sm" :style="{animation: shown && 'fade-in-2 0.5s ease-out 1s backwards'}">
+          <rect x="170" y="5" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="185" y="32" fill="white">/dashboard</text>
+        </g>
+        <g class="text-pink-600 text-sm" style="opacity: 0.3">
+          <rect x="170" y="80" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="200" y="107" fill="white">/profile</text>
+        </g>
+      </g>
+      <g transform="translate(160, 0)">
+        <g class="text-blue-600 dark:text-blue-500 text-sm" :style="{animation: shown && 'fade-in-2 0.5s ease-out 1.7s backwards'}">
+          <rect x="170" y="5" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="182" y="32" fill="white">dashboard.js</text>
+        </g>
+        <g class="text-blue-600 dark:text-blue-500 text-sm" :style="{animation: shown && 'fade-in-2 0.5s ease-out 1.7s backwards'}">
+          <rect x="170" y="80" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="198" y="107" fill="white">react.js</text>
+        </g>
+        <g class="text-blue-600 dark:text-blue-500 text-sm" style="opacity: 0.3">
+          <rect x="170" y="155" width="100" height="45" rx="10" fill="currentColor" stroke-width="2" />
+          <text x="195" y="182" fill="white">profile.js</text>
+        </g>
+      </g>
+      <line x1="115" y1="90" x2="160" y2="62" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="animation: fade-in-2 0.5s ease-out 1s backwards" />
+      <line x1="115" y1="100" x2="160" y2="137" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0.3" />
+      <line x1="275" y1="57" x2="320" y2="28" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="animation: fade-in-2 0.5s ease-out 1.7s backwards" />
+      <line x1="275" y1="67" x2="320" y2="95" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="animation: fade-in-2 0.5s ease-out 1.7s backwards" />
+      <line x1="275" y1="132" x2="320" y2="110" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0.3" />
+      <line x1="275" y1="142" x2="320" y2="175" stroke="currentColor" class="text-blue-600 dark:text-blue-400" stroke-width="2" marker-end="url(#arrow-blue)" style="opacity: 0.3" />
+    </svg>
+  </div>
+  <div class="text-lg lg:text-xl font-medium text-gray-600 dark:text-purple-300">
+    <p class="mb-4"><strong class="font-semibold text-gray-800 dark:text-purple-100">In development, Parcel can defer building files until they are requested in the browser.</strong> This means you only need to wait for the page you're actually working on to build! If your project has many entries or code split points, this can massively reduce dev server startup time.</p>
+    <p class="text-base lg:text-lg">And when you do request a page, Parcel is smart enough to eagerly build all of the dependencies of that page at once, without waiting for them to be requested as well – no network waterfalls!</p>
+    <a class="block mt-8 text-lg font-medium text-orange-700 dark:text-yellow-500 hover:underline" href="/features/development/#lazy-mode">Learn more →</a>
+  </div>
+</div>
