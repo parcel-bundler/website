@@ -73,7 +73,7 @@ separate bundles. For example, if your `index.html` file links to an
   _Example: create a bundler that does vendoring (splitting app and node_modules code)_
 - [Namer](/plugin-system/namer): Generates a filename (or filepath) for a bundle <br>
   _Example: place output bundles in a hierarchical file structure, omit hashes in bundle names_
-- [Runtime](/plugin-system/runtime): Programatically inserts (synthetic) assets into bundles" <br>
+- [Runtime](/plugin-system/runtime): Programmatically inserts (synthetic) assets into bundles" <br>
   _Example: add analytics to every bundle_
 - [Packager](/plugin-system/packager): Turns a group of assets (bundle) into a bundle file" <br>
   _Example: concatenate all input CSS files into a CSS bundle_
