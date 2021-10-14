@@ -4,7 +4,7 @@ eleventyNavigation:
   key: plugin-system-runtime
   title: Runtime
   order: 7
-summary: "A plugin type: Programatically insert assets out of thin air into bundles"
+summary: "A plugin type: Programmatically insert assets out of thin air into bundles"
 ---
 
 {% warning %}
