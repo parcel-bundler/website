@@ -274,7 +274,7 @@ Determines whether to bundle `node_modules` or treat them as external. The defau
   {
     "targets": {
       "main": {
-        "includeNodeModules" ["react"]
+        "includeNodeModules": ["react"]
       }
     }
   }
