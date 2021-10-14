@@ -22,7 +22,7 @@ Referencing an SCSS file in an HTML file:
 Importing a Sass/SCSS file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes './style.module.scss';
+import * as classes from './style.module.scss';
 
 document.body.className = classes.body;
 ```
