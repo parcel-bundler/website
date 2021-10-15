@@ -388,7 +388,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 
 Reporters that you use infrequently may also be specified on the [CLI](/features/cli/) using the `--reporter` option, or via the [API](/features/parcel-api/) using the `additionalReporters` option. Reporters specified in `.parcelrc` always run.
 
-## Local plugins
+### Local plugins
 
 Parcel plugins are NPM packages. This means they have a `package.json` which declares the version of Parcel they are compatible with, along with any dependencies they may have. They must also follow a naming system to ensure clarity.
 
@@ -396,7 +396,7 @@ Usually, Parcel plugins are published to the NPM registry, or to an internal com
 
 However, when developing a plugin, it can be useful to run it directly in your project without publishing it first. There are a few ways of doing this.
 
-### Yarn and NPM workspaces
+#### Yarn and NPM workspaces
 
 One way is to use a monorepo setup via [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) or [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces). This allows you to depend on other packages within your repo the same way you depend on published packages. To do this, set up a project structure like this:
 
@@ -433,7 +433,7 @@ Then, in your `.parcelrc` you can reference `parcel-transformer-foo` as you woul
 
 You can also choose to keep your app in the root (e.g. in a `src` folder) rather than inside `packages/app`.
 
-### The `link:` protocol
+#### The `link:` protocol
 
 Yarn supports defining dependencies using the `link:` protocol to reference local directories as packages. For example, you could set up a project structure like this:
 
