@@ -388,7 +388,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 
 Reporters that you use infrequently may also be specified on the [CLI](/features/cli/) using the `--reporter` option, or via the [API](/features/parcel-api/) using the `additionalReporters` option. Reporters specified in `.parcelrc` always run.
 
-## Local plugins
+### Local plugins
 
 Parcel plugins are NPM packages. This means they have a `package.json` which declares the version of Parcel they are compatible with, along with any dependencies they may have. They must also follow a naming system to ensure clarity.
 

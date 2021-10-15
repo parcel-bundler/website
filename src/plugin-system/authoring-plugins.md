@@ -214,6 +214,9 @@ resolve them. If someone made a better version of your plugin, please consider
 giving the better package name over, have them make a major version bump, and
 redirect people to the new tool.
 
+See [Local plugins](/features/plugins/#local-plugins) for recommendations on using
+plugins in your project without publishing them.
+
 ## Versioning
 
 You must follow semantic versioning (to the best of your ability). No, it's not
