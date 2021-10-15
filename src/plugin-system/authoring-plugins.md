@@ -215,7 +215,7 @@ giving the better package name over, have them make a major version bump, and
 redirect people to the new tool.
 
 See [Local plugins](/features/plugins/#local-plugins) for recommendations on using
-plugins in project without publishing them.
+plugins in your project without publishing them.
 
 ## Versioning
 
