@@ -273,7 +273,7 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 ```
 
 {% endsamplefile %}
-{% samplefile "tailwindcss.config.js" %}
+{% samplefile "tailwind.config.js" %}
 
 ```javascript
 module.exports = {
@@ -290,7 +290,7 @@ module.exports = {
 {% endsamplefile %}
 {% endsample %}
 
-Finally, you can reference Tailwind classes from any files that match the `purge` glob listed in `tailwindcss.config.js`.
+Finally, you can reference Tailwind classes from any files that match the `purge` glob listed in `tailwind.config.js`.
 
 {% sample %}
 {% samplefile "Button.js" %}
