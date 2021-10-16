@@ -2,15 +2,15 @@
 
 Parcel`[파설, /parsəl/]`은 개발 경험에서 차이를 느낄수 있는 웹 애플리케이션 번들러 입니다. 멀티코어 프로세싱으로 불꽃 튀게 빠른 성능을 제공하고 그 어떤 설정도 요구하지 않습니다.
 
-먼저 Yarn 이나 npm 으로 Parcel 을 설치하세요.
+먼저 Yarn 이나 NPM 으로 Parcel 을 설치하세요.
 
-Yarn:
+Yarn으로 설치하는 경우
 
 ```bash
 yarn global add parcel-bundler
 ```
 
-npm:
+NPM으로 설치하는 경우
 
 ```bash
 npm install -g parcel-bundler
@@ -58,4 +58,54 @@ parcel index.html
 parcel watch index.html
 ```
 
+
+
+## 프로덕션으로 빌드하기
+
 프로덕션을 위한 빌드를 할 준비가 되었다면, `build` 모드로 감시 기능을 끄고 한 번만 빌드 합니다. [프로덕션](production.html) 섹션에서 보다 자세한 사항들을 확인해 보세요.
+
+
+
+## 프로젝트에 Parcel 추가하기
+
+다른 사람의 빌드를 기반으로 하거나, CI를 사용하여 프로젝트를 빌드하려는 경우 Parcel을 전역적으로 설치해서 사용하지 못할 수도 있습니다. 이 경우 Parcel을 로컬 패키지로 설치하여 실행할 수 있습니다.
+
+
+
+Yarn으로 설치하는 경우
+
+```
+yarn add parcel-bundler --dev
+```
+
+NPM으로 설치하는 경우
+
+```
+npm install parcel-bundler --save-dev
+```
+
+그 다음 `package.json` 파일에 다음 스크립트를 추가합니다.
+
+```
+{
+  "scripts": {
+    "dev": "parcel <your entry file>",
+    "build": "parcel build <your entry file>"
+  }
+}
+```
+
+스크립트를 추가한 다음 아래의 명령어들로 실행할 수 있습니다.
+
+```
+# development mode로 실행하기
+yarn dev
+# or
+npm run dev
+
+# production mode로 실행하기
+yarn build
+# or
+npm run build
+```
+
