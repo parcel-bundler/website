@@ -60,7 +60,7 @@ export function add(a, b) {
 
 Now, our library exports a single function called `add`, which adds its two parameters together and returns the result. Since this is written in ES module syntax using the `export` keyword, Parcel will compile our code to a CommonJS module as expected by default in the `main` field.
 
-To build our library, run `parcel build` within the project directory. Parcel will build your source code and output a JavaScript file in `dist/main.js` as referenced by the `main` field.
+To build our library, run `npx parcel build` within the project directory. Parcel will build your source code and output a JavaScript file in `dist/main.js` as referenced by the `main` field.
 
 ## Package scripts
 
