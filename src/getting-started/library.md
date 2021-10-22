@@ -115,7 +115,7 @@ Parcel accepts both CommonJS and ES modules as input, and can output one or more
 
 Now Parcel will output `dist/main.js` as a CommonJS module, and `dist/module.js` as an ES module. Tools that consume your library will choose whichever of these they support.
 
-You can also use the file extension to indicate what type of module to output. The `.mjs` extension will produce an ES module, and the `.cjs` extension will produce an ES module. This overrides the default behavior of the `main` field. The `"type": "module"` field can also be set in package.json to treat the `main` field as an ES module as well. See the [Node.js docs](https://nodejs.org/dist/latest-v16.x/docs/api/packages.html#packages_determining_module_system) for more details.
+You can also use the file extension to indicate what type of module to output. The `.mjs` extension will produce an ES module, and the `.cjs` extension will produce a CommonJS module. This overrides the default behavior of the `main` field. The `"type": "module"` field can also be set in package.json to treat the `main` field as an ES module as well. See the [Node.js docs](https://nodejs.org/dist/latest-v16.x/docs/api/packages.html#packages_determining_module_system) for more details.
 
 ## TypeScript
 
