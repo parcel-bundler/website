@@ -51,6 +51,12 @@ Parcel has a development server built in, which will automatically rebuild your 
 yarn parcel src/index.html
 ```
 
+Or when using npm run:
+
+```shell
+npx parcel src/index.html
+```
+
 Now open [http://localhost:1234/](http://localhost:1234/) in your browser to see the HTML file you created above.
 
 Next, you can start adding dependencies to your HTML file, such as a JavaScript or CSS file. For example, you could create a `styles.css` file and reference it from your `index.html` file with a `<link>` tag, and an `app.js` file referenced with a `<script>` tag.

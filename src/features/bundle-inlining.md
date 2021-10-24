@@ -95,7 +95,7 @@ You may want to inline the contents of a bundle as a [blob URL](https://develope
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "blob-url:*": ["...", "@parcel/transformer-inline"],
+    "blob-url:*": ["...", "@parcel/transformer-inline"]
   },
   "optimizers": {
     "blob-url:*": ["...", "@parcel/optimizer-blob-url"]
