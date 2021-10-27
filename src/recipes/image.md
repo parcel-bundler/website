@@ -126,3 +126,22 @@ You can also define more advanced options per format. All images in formats with
 ## Image optimization
 
 Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
+
+## Disabling image optimization
+
+To disable the default image optimization for JPEGs and PNGs in production mode, add the following to your .parcelrc configuration file:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "optimizers": {
+    "*.{jpg,jpeg,png}": []
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
