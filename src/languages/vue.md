@@ -23,7 +23,7 @@ eleventyNavigation:
 ```html
 <!DOCTYPE html>
 <div id="app"></div>
-<script src="./index.js"></script>
+<script type="module" src="./index.js"></script>
 ```
 
 {% endsamplefile %}
