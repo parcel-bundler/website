@@ -150,6 +150,7 @@ export default new Resolver({
       return {
         invalidateOnFileCreate: [{filePath: aliasFile}],
         diagnostics: [
+        {
           message: 'Could not read alias.json',
           hints: ['Create an alias.json file in the project root.']
         }]
