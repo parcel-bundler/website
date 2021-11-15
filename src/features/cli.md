@@ -69,7 +69,7 @@ parcel 'src/*.html'
 parcel packages/frontend
 
 # Multiple packages with a glob
-packages 'packages/*'
+parcel 'packages/*'
 
 # Current directory with package.json#source
 parcel
