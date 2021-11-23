@@ -6,7 +6,7 @@ module.exports = new Namer({
     if (bundle.needsStableName) {
       let filePath = bundle.getMainEntry().filePath;
       let relative = path.relative(options.projectRoot, filePath);
-      return relative.replace(/^(_site|src[\\/]home)[\\/]/, '');
+      return relative.replace(/^(_site|src[\\/]home|src)[\\/]/, '');
     }
   }
 });
