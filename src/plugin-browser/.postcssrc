@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "tailwindcss": {
+      "config": "./src/plugin-browser/tailwind.config.js"
+    },
+    "autoprefixer": {}
+  }
+}

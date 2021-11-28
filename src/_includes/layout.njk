@@ -137,7 +137,7 @@
     <script type="module">
       {% include "remember-nav-scroll.js" %}
     </script>
-    <main class="main-content{% if page.url == '/docs/' %} docs-home{% endif %}">
+    <main class="main-content{% if page.url == '/docs/' %} docs-home{% endif %}{% if page.url == '/plugin-browser/' %} plugin-search{% endif %}">
       <article>
         <header>
           <h1>
@@ -156,7 +156,7 @@
 
         {{ content | safe }}
 
-        {% if tags and not tags.includes("Blog") %}
+        {% if tags and not tags.includes("Blog") and page.url != '/plugin-browser/' %}
         <footer>
           <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
             Edit this page on GitHub
