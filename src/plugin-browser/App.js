@@ -59,7 +59,7 @@ export default function App() {
             <select
               value={type}
               onChange={(e) => setState({ type: e.target.value, page: 0 })}
-              className={`py-1 pl-2 pr-6 bg-white appearance-none dark:bg-gray-700 rounded-md border-gray-300 dark:border-gray-600 border transition ${FOCUS_STYLES}`}
+              className={`py-1 pl-2 pr-6 bg-gray-50 appearance-none dark:bg-gray-700 rounded-md border-gray-300 dark:border-gray-600 border transition ${FOCUS_STYLES}`}
             >
               {[
                 "transformer",
