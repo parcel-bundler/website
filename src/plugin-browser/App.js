@@ -51,7 +51,7 @@ export default function App() {
   });
 
   return (
-    <div className="bg-white text-black dark:bg-gray-800 dark:text-white flex gap-8 flex-col">
+    <div className="flex gap-8 flex-col">
       <div className="flex gap-4 flex-row flex-wrap">
         <label className="flex flex-col items-start sm:text-sm gap-1">
           <span className="text-gray-600 text-sm">Plugin type</span>
