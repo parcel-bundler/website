@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDebounce } from "react-use";
 import { useSearch, useHashState } from "./hooks.js";
 
@@ -33,7 +33,7 @@ export default function App() {
     includeOfficial: false,
   });
 
-  let [debouncedFilter, setDebouncedFilter] = useState("");
+  let [debouncedFilter, setDebouncedFilter] = useState(filter);
 
   useDebounce(
     () => {
@@ -51,11 +51,11 @@ export default function App() {
   });
 
   return (
-    <div className="bg-white text-black dark:bg-gray-800 dark:text-white flex gap-8 flex-col p-2 min-h-screen">
-      <div className="flex gap-4 flex-col md:flex-row">
-        <label className="flex flex-col text-sm gap-1">
-          Plugin type
-          <div className="relative">
+    <div className="bg-white text-black dark:bg-gray-800 dark:text-white flex gap-8 flex-col">
+      <div className="flex gap-4 flex-row flex-wrap">
+        <label className="flex flex-col items-start sm:text-sm gap-1">
+          <span className="text-gray-600 text-sm">Plugin type</span>
+          <div className="relative inline-block">
             <select
               value={type}
               onChange={(e) => setState({ type: e.target.value, page: 0 })}
@@ -79,15 +79,15 @@ export default function App() {
                 </option>
               ))}
             </select>
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 absolute top-0 right-1 h-full pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 absolute top-0 right-1 h-full pointer-events-none text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
             </svg>
           </div>
         </label>
-        <label className="flex flex-col text-sm gap-1">
-          Filter
+        <label className="flex flex-col sm:text-sm gap-1">
+          <span className="text-gray-600 text-sm">Filter</span>
           <div className="relative">
-            <svg aria-hidden="true" fill="none" className="w-4 absolute left-2 top-0 h-full" viewBox="0 0 24 24" stroke="currentColor">
+            <svg aria-hidden="true" fill="none" className="w-5 sm:w-4 absolute left-2 top-0 h-full text-gray-500" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input
@@ -98,7 +98,7 @@ export default function App() {
             />
           </div>
         </label>
-        <label className="flex gap-1 items-center self-end text-sm py-1">
+        <label className="flex gap-1 items-center self-end sm:text-sm py-1">
           <input
             type="checkbox"
             checked={includeOfficial}
@@ -155,14 +155,14 @@ function Button(props) {
 function Result({ name, downloads, modified, description }) {
   return (
     <a href={`https://www.npmjs.com/package/${name}`} target="_blank" className={`bg-sky-50 hover:bg-sky-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition p-3 rounded-xl gap-2 grid ${FOCUS_STYLES}`} style={{gridTemplateColumns: '1fr auto'}}>
-      <span className="font-semibold text-lg">
+      <span className="font-semibold text-xl sm:text-lg col-span-2 sm:col-span-1">
         {name}
       </span>
-      <div className="text-right text-gray-500 dark:text-gray-400 text-sm leading-relaxed row-span-2 flex flex-col">
+      <div className="text-base sm:text-sm col-span-2 sm:col-span-1 sm:order-1">{description}</div>
+      <div className="text-right text-gray-500 dark:text-gray-400 text-sm gap-2 row-span-1 sm:row-span-2 col-span-2 sm:col-span-1 flex flex-row sm:flex-col">
         <span>{formatAgo(modified)}</span>
         <span><DownloadIcon /> {downloads}</span>
       </div>
-      <div className="text-sm">{description}</div>
     </a>
   );
 }
