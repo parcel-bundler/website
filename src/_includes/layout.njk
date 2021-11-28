@@ -137,7 +137,7 @@
     <script type="module">
       {% include "remember-nav-scroll.js" %}
     </script>
-    <main class="main-content{% if page.url == '/docs/' %} docs-home{% endif %}">
+    <main class="main-content{% if page.url == '/docs/' %} docs-home{% endif %}{% if page.url == '/plugin-browser/' %} plugin-search{% endif %}">
       <article>
         <header>
           <h1>

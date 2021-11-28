@@ -23,6 +23,8 @@ function formatAgo(date) {
   return dateFormatter.format(Math.round(diff), unit);
 }
 
+const FOCUS_STYLES = 'focus:outline-none focus:ring focus:ring-offset-0 focus:ring-sky-300 focus:border-sky-500 dark:focus:ring-sky-700 dark:focus:border-sky-600';
+
 export default function App() {
   const [{ type, page, filter, includeOfficial }, setState] = useHashState({
     type: "transformer",
@@ -57,7 +59,7 @@ export default function App() {
             <select
               value={type}
               onChange={(e) => setState({ type: e.target.value, page: 0 })}
-              className="py-1 pl-2 pr-6 bg-white appearance-none dark:bg-gray-700 shadow-md rounded-md border-gray-400 dark:border-gray-600 border transition focus:outline-none focus:ring focus:ring-offset-0 focus:ring-sky-700 dark:focus:border-sky-600"
+              className={`py-1 pl-2 pr-6 bg-white appearance-none dark:bg-gray-700 rounded-md border-gray-300 dark:border-gray-600 border transition ${FOCUS_STYLES}`}
             >
               {[
                 "transformer",
@@ -92,7 +94,7 @@ export default function App() {
               type="text"
               value={filter}
               onChange={(e) => setState({ filter: e.target.value, page: 0 })}
-              className="bg-white dark:bg-gray-800 rounded-full pr-2 pl-8 py-1 w-48 transition border-gray-400 dark:border-gray-600 border focus:outline-none focus:ring focus:ring-offset-0 focus:ring-sky-700 dark:focus:border-sky-600"
+              className={`bg-white dark:bg-gray-800 rounded-full pr-2 pl-8 py-1 w-48 transition border-gray-300 dark:border-gray-600 border ${FOCUS_STYLES}`}
             />
           </div>
         </label>
@@ -103,7 +105,7 @@ export default function App() {
             onChange={(e) =>
               setState({ includeOfficial: e.target.checked, page: 0 })
             }
-            className="shadow-md rounded-md px-1 border-gray-400 border"
+            className="px-1"
           />
           Include offical Plugins
         </label>
@@ -146,17 +148,17 @@ function Button(props) {
   return (
     <button 
       {...props}
-      className="cursor-auto disabled:opacity-30 px-2 py-1 rounded-md transition dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-700 dark:disabled:bg-gray-700" />
+      className={`cursor-auto disabled:opacity-30 px-2 py-1 rounded-md transition bg-gray-100 hover:bg-gray-200 active:bg-gray-300 disabled:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:active:bg-gray-700 dark:disabled:bg-gray-700 ${FOCUS_STYLES}`} />
   );
 }
 
 function Result({ name, downloads, modified, description }) {
   return (
-    <a href={`https://www.npmjs.com/package/${name}`} target="_blank" className="bg-white dark:bg-gray-700 dark:hover:bg-gray-600 transition p-3 rounded-xl shadow-md gap-2 grid" style={{gridTemplateColumns: '1fr auto'}}>
+    <a href={`https://www.npmjs.com/package/${name}`} target="_blank" className={`bg-sky-50 hover:bg-sky-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition p-3 rounded-xl gap-2 grid ${FOCUS_STYLES}`} style={{gridTemplateColumns: '1fr auto'}}>
       <span className="font-semibold text-lg">
         {name}
       </span>
-      <div className="text-right text-gray-400 text-sm leading-relaxed row-span-2 flex flex-col">
+      <div className="text-right text-gray-500 dark:text-gray-400 text-sm leading-relaxed row-span-2 flex flex-col">
         <span>{formatAgo(modified)}</span>
         <span><DownloadIcon /> {downloads}</span>
       </div>
