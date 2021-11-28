@@ -156,7 +156,7 @@
 
         {{ content | safe }}
 
-        {% if tags and not tags.includes("Blog") %}
+        {% if tags and not tags.includes("Blog") and page.url != '/plugin-browser/' %}
         <footer>
           <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
             Edit this page on GitHub
