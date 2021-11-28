@@ -5,7 +5,8 @@ module.exports = {
   purge: [
     './src/plugin-browser/*.js',
     './src/**/*.html',
-    './src/**/*.njk'
+    './src/**/*.njk',
+    './src/**/*.md'
   ],
   darkMode: 'class',
   theme: {

@@ -3609,13 +3609,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.26.0":
-  version: 2.26.0
-  resolution: "date-fns@npm:2.26.0"
-  checksum: 325ddcdb6aa3ebd614421db243abe3a072c67cada500df4fd1bd8b04e89dff1a64bbe173157d1758d39590825519f15667de8c919176840e9eafa3671219056d
-  languageName: node
-  linkType: hard
-
 "date-time@npm:^0.1.1":
   version: 0.1.1
   resolution: "date-time@npm:0.1.1"
@@ -8216,7 +8209,6 @@ fsevents@~2.3.2:
     "@parcel/transformer-xml": ^2.0.1
     alpinejs: ^3.4.2
     autoprefixer: ^10.3.4
-    date-fns: ^2.26.0
     eleventy-plugin-toc: ^1.1.0
     focus-visible: ^5.2.0
     husky: ^4.3.6

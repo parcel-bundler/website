@@ -7,9 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build src/home/index.html src/plugin-browser/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
+    "build": "rm -rf _site dist; eleventy; parcel build src/home/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
     "watch": "eleventy --watch",
-    "serve": "parcel src/home/index.html src/plugin-browser/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html'",
+    "serve": "parcel src/home/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html'",
     "start": "run-p watch serve",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,scss}'",
@@ -51,7 +51,6 @@
   "dependencies": {
     "@alpinejs/intersect": "^3.4.2",
     "alpinejs": "^3.4.2",
-    "date-fns": "^2.26.0",
     "focus-visible": "^5.2.0",
     "marked": "^2.0.7",
     "react": "^17.0.2",
@@ -70,6 +69,7 @@
     }
   },
   "alias": {
-    "./assets/**": "./src/assets/$1"
+    "./assets/**": "./src/assets/$1",
+    "./plugin-browser/**": "./src/plugin-browser/$1"
   }
 }
