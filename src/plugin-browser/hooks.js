@@ -65,6 +65,7 @@ export function useSearch({ type, page, filter, includeOfficial }) {
         }
         console.log(results);
         setResult(results);
+        window.scrollTo(0, 0);
       }
     });
 

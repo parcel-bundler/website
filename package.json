@@ -51,7 +51,6 @@
   "dependencies": {
     "@alpinejs/intersect": "^3.4.2",
     "alpinejs": "^3.4.2",
-    "date-fns": "^2.26.0",
     "focus-visible": "^5.2.0",
     "marked": "^2.0.7",
     "react": "^17.0.2",
