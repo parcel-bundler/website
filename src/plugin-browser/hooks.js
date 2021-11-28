@@ -1,5 +1,4 @@
 import { useMemo, useEffect, useState } from "react";
-import { useHash } from "react-use";
 
 export function useSearch({ type, page, filter, includeOfficial }) {
   let [result, setResult] = useState();
@@ -63,7 +62,6 @@ export function useSearch({ type, page, filter, includeOfficial }) {
             (r) => "@parcel/plugin" in r.dependencies
           );
         }
-        console.log(results);
         setResult(results);
         window.scrollTo(0, 0);
       }
@@ -78,33 +76,43 @@ export function useSearch({ type, page, filter, includeOfficial }) {
 }
 
 export function useHashState(initialValue) {
-  const [hash, setHash] = useHash();
+  const [search, setSearch] = useState(window.location.search);
 
-  const normalizedHash = hash.length > 0 ? hash.substr(1) : "";
+  useEffect(() => {
+    let onPopState = e => {
+      setSearch(window.location.search);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+    };
+  }, []);
+
+  const normalizedSearch = search.length > 0 ? search.substr(1) : "";
 
   let state = useMemo(() => {
-    if (normalizedHash.length > 0) {
+    if (normalizedSearch.length > 0) {
       try {
-        let params = new URLSearchParams(normalizedHash);
+        let params = new URLSearchParams(normalizedSearch);
         return Object.fromEntries(
           [...params.entries()].map(([k, v]) => [k, JSON.parse(v)])
         );
       } catch (e) {}
     }
     return initialValue;
-  }, [normalizedHash]);
+  }, [normalizedSearch]);
 
   return [
     state,
     (change) => {
       let newState = { ...state, ...change };
-      // setHash(encodeURIComponent(JSON.stringify(newState)));
 
       let params = new URLSearchParams();
       for (let [k, v] of Object.entries(newState)) {
         params.set(k, JSON.stringify(v));
       }
-      setHash(params.toString());
+      setSearch('?' + params);
+      history.pushState(null, null, '?' + params);
     },
   ];
 }
