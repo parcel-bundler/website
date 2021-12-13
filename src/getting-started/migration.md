@@ -395,6 +395,7 @@ parcel build index.js --no-scope-hoist
 
 ### `--bundle-node-modules`
 
+Note: this CLI option does not exist for Parcel 2.
 To bundle packages from `node_modules` when targetting Node.js, you now should specify that in the target configuration:
 
 {% migration %}
@@ -406,6 +407,10 @@ parcel build index.js --target node --bundle-node-modules
 
 {% endsamplefile %}
 {% samplefile "package.json" %}
+
+```bash
+parcel build index.js --target default
+```
 
 ```json5/3,7
 {
