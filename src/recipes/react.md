@@ -258,7 +258,7 @@ To use it, first, install the necessary dependencies:
 yarn add tailwindcss postcss autoprefixer --dev
 ```
 
-Next, create the config files needed for PostCSS and Tailwind. This example will use Tailwind’s [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) to speed up builds by only compiling the classes you use. Make sure you modify the glob passed to the `purge` option so it matches all of the source files where you'll use Tailwind classes.
+Next, create the config files needed for PostCSS and Tailwind. This example will use Tailwind’s [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) to speed up builds by only compiling the classes you use. Make sure you modify the glob passed to the `content` option so it matches all of the source files where you'll use Tailwind classes.
 
 {% sample %}
 {% samplefile ".postcssrc" %}
@@ -278,7 +278,7 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 ```javascript
 module.exports = {
   mode: "jit",
-  purge: ["./src/*.{html,js}"],
+  content: ["./src/*.{html,js}"],
   theme: {
     extend: {},
   },
