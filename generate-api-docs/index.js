@@ -501,7 +501,6 @@ function write(section, file, data) {
   div.api div.inline-method p:first-child {
     margin-top: 0;
   }
-
   div.api div.inline-method ul {
     margin: 0;
   }
