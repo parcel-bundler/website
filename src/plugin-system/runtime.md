@@ -14,7 +14,7 @@ The Runtime API is experimental and therefore subject to change, even between mi
 Runtimes accept a bundle and return assets to be inserted into that bundle.
 
 ```js
-import { Runtime } from "@parcel/runtime";
+import { Runtime } from "@parcel/plugin";
 
 export default new Runtime({
   async apply({ bundle, bundleGraph }) {
