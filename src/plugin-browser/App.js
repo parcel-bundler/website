@@ -107,7 +107,7 @@ export default function App() {
             }
             className="px-1"
           />
-          Include offical Plugins
+          Include official Plugins
         </label>
       </div>
       <div className="w-full md:w-3xl mt-3 flex flex-col flex-1 gap-3">
