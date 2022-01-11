@@ -1,0 +1,22 @@
+@mixin transition-color {
+  .loaded & {
+    transition: color 0.2s ease-in-out;
+  }
+}
+
+@mixin transition-filter {
+  transition: filter 0.2s ease-in-out;
+}
+
+@mixin transition-colors {
+  .loaded & {
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+  }
+}
+
+@mixin transition-background-color {
+  .loaded & {
+    transition: background 0.2s ease-in-out;
+  }
+}

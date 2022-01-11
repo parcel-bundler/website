@@ -2,6 +2,9 @@
   "extends": "@parcel/config-default",
   "resolvers": ["...", "parcel-resolver-website"],
   "namers": ["parcel-namer-website", "..."],
+  "transformers": {
+    "*.css": ["@parcel/transformer-postcss", "@parcel/transformer-css-experimental"]
+  },
   "optimizers": {
     "*.css": ["@parcel/optimizer-css"]
   }
