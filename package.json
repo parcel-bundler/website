@@ -29,10 +29,11 @@
     "@babel/generator": "^7.12.11",
     "@babel/parser": "^7.12.11",
     "@babel/traverse": "^7.12.12",
-    "@parcel/optimizer-css": "2.0.2-nightly.2569",
-    "@parcel/packager-xml": "2.0.2-nightly.2569",
-    "@parcel/transformer-sass": "2.0.0-nightly.947",
-    "@parcel/transformer-xml": "2.0.2-nightly.2569",
+    "@parcel/optimizer-css": "^2.2.0",
+    "@parcel/packager-xml": "^2.2.0",
+    "@parcel/transformer-css-experimental": "^2.2.0",
+    "@parcel/transformer-sass": "^2.2.0",
+    "@parcel/transformer-xml": "^2.2.0",
     "eleventy-plugin-toc": "^1.1.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
@@ -41,9 +42,8 @@
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "nullthrows": "^1.1.1",
-    "parcel": "2.0.0-nightly.945",
+    "parcel": "^2.2.0",
     "postcss": "^8.3.6",
-    "postcss-focus-visible": "^5.0.0",
     "posthtml-include": "^1.7.0",
     "posthtml-prism": "^1.0.4",
     "posthtml-render": "^3.0.0",
@@ -76,5 +76,10 @@
   "alias": {
     "./assets/**": "./src/assets/$1",
     "./plugin-browser/**": "./src/plugin-browser/$1"
+  },
+  "@parcel/transformer-css": {
+    "pseudoClasses": {
+      "focusVisible": "focus-visible"
+    }
   }
 }
