@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg style="max-width: 800px; padding: 10px 0" viewBox="0 0 658 113" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg style="max-width: 800px; padding: 10px 0" viewBox="0 0 665 113" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <polygon id="path-1" points="0 0 24 0 24 12.7439539 0 12.7439539"></polygon>
         <polygon id="path-3" points="3.55271368e-15 0 49 0 49 9.53409385 3.55271368e-15 9.53409385"></polygon>
         <polygon id="path-5" points="-3.55271368e-15 0 39 0 39 9.53410385 -3.55271368e-15 9.53410385"></polygon>
         <polygon id="path-7" points="0 0 56 0 56 9.53410385 0 9.53410385"></polygon>
-        <polygon id="path-9" points="-7.10542736e-15 0 17 0 17 10.9400931 -7.10542736e-15 10.9400931"></polygon>
-        <polygon id="path-11" points="0 0 26 0 26 10.9400931 0 10.9400931"></polygon>
-        <polygon id="path-13" points="0 0 17 0 17 10.9400931 0 10.9400931"></polygon>
-        <polygon id="path-15" points="0 0 26 0 26 10.9400931 0 10.9400931"></polygon>
-        <polygon id="path-17" points="0 0 17 0 17 10.9400931 0 10.9400931"></polygon>
+        <polygon id="path-9" points="0 0 22 0 22 10.9400931 0 10.9400931"></polygon>
+        <polygon id="path-11" points="0 0 28 0 28 10.9400931 0 10.9400931"></polygon>
+        <polygon id="path-13" points="0 0 28 0 28 10.9400931 0 10.9400931"></polygon>
+        <polygon id="path-15" points="0 0 33 0 33 10.9400931 0 10.9400931"></polygon>
+        <polygon id="path-17" points="0 0 33 0 33 10.9400931 0 10.9400931"></polygon>
         <polygon id="path-19" points="0 0 46 0 46 9.37074385 0 9.37074385"></polygon>
         <polygon id="path-21" points="0 0 52 0 52 8.82594385 0 8.82594385"></polygon>
         <polygon id="path-23" points="0 0 52 0 52 9.28115385 0 9.28115385"></polygon>
@@ -43,46 +43,46 @@
                     <tspan x="0" y="10">Parcel CSS</tspan>
                 </text>
             </g>
-            <g id="Group-21" transform="translate(60.079460, 101.831270)">
-                <text id="130" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
-                    <tspan x="-7.10542736e-15" y="8.94009314">130</tspan>
+            <g id="Group-21" transform="translate(57.489460, 101.831270)">
+                <text id="0-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
+                    <tspan x="0" y="8.94009314">0 KB</tspan>
                 </text>
             </g>
-            <g id="Group-23" transform="translate(200.909500, 101.831270)">
-                <text id="137.5" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
-                    <tspan x="0" y="8.94009314">137.5</tspan>
+            <g id="Group-23" transform="translate(199.709500, 101.831270)">
+                <text id="40-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
+                    <tspan x="0" y="8.94009314">40 KB</tspan>
                 </text>
             </g>
-            <g id="Group-25" transform="translate(350.079500, 101.831270)">
-                <text id="145" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
-                    <tspan x="0" y="8.94009314">145</tspan>
+            <g id="Group-25" transform="translate(344.709500, 101.831270)">
+                <text id="80-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
+                    <tspan x="0" y="8.94009314">80 KB</tspan>
                 </text>
             </g>
-            <g id="Group-27" transform="translate(490.909500, 101.831270)">
-                <text id="152.5" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
-                    <tspan x="0" y="8.94009314">152.5</tspan>
+            <g id="Group-27" transform="translate(486.929500, 101.831270)">
+                <text id="120-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
+                    <tspan x="0" y="8.94009314">120 KB</tspan>
                 </text>
             </g>
-            <g id="Group-29" transform="translate(640.079500, 101.831270)">
-                <text id="160" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
-                    <tspan x="0" y="8.94009314">160</tspan>
+            <g id="Group-29" transform="translate(631.929500, 101.831270)">
+                <text id="160-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="10" font-weight="normal" fill="currentColor">
+                    <tspan x="0" y="8.94009314">160 KB</tspan>
                 </text>
             </g>
-            <polygon id="Fill-30" fill="#CB297B" points="68.5 30.55127 569.5 30.55127 569.5 47.55127 68.5 47.55127"></polygon>
-            <polygon id="Fill-32" fill="#CB297B" points="68.5 54.55127 582.5 54.55127 582.5 71.55127 68.5 71.55127"></polygon>
-            <polygon id="Fill-34" fill="#CB297B" points="68.5 77.55127 257.5 77.55127 257.5 94.55127 68.5 94.55127"></polygon>
-            <g id="Group-37" transform="translate(260.363500, 79.551270)">
-                <text id="139.8-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="currentColor">
+            <polygon id="Fill-30" fill="#CB297B" points="68.5 30.55127 633.5 30.55127 633.5 47.55127 68.5 47.55127"></polygon>
+            <polygon id="Fill-32" fill="#CB297B" points="68.5 54.55127 636.5 54.55127 636.5 71.55127 68.5 71.55127"></polygon>
+            <polygon id="Fill-34" fill="#CB297B" points="68.5 77.55127 575.5 77.55127 575.5 94.55127 68.5 94.55127"></polygon>
+            <g id="Group-37" transform="translate(527.238200, 79.551270)">
+                <text id="139.8-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="#FFFFFF">
                     <tspan x="0" y="10">139.8 KB</tspan>
                 </text>
             </g>
-            <g id="Group-39" transform="translate(584.687700, 56.551270)">
-                <text id="156.57-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="currentColor">
+            <g id="Group-39" transform="translate(581.933000, 56.551270)">
+                <text id="156.57-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="#FFFFFF">
                     <tspan x="0" y="10">156.57 KB</tspan>
                 </text>
             </g>
-            <g id="Group-41" transform="translate(571.547100, 32.551270)">
-                <text id="155.89-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="currentColor">
+            <g id="Group-41" transform="translate(579.469100, 32.551270)">
+                <text id="155.89-KB" font-family="HelveticaNeue, Helvetica Neue" font-size="11" font-weight="normal" fill="#FFFFFF">
                     <tspan x="0" y="10">155.89 KB</tspan>
                 </text>
             </g>
