@@ -65,7 +65,7 @@ query UserQuery($id: ID) {
   user(id: $id) {
     ...UserFragment
     address {
-      ...Address
+      ...AddressFragment
     }
   }
 }
