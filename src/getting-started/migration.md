@@ -271,7 +271,7 @@ When import GraphQL files (`.gql`), imports are still resolved/inlined (using `g
 import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is the parsed AST
 
 const DataComponent = () => {
-  const { data } = useQuery(test, {
+  const { data } = useQuery(fetchDataQuery, {
     fetchPolicy: "cache-and-network",
   });
 
