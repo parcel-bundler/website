@@ -134,10 +134,16 @@ By default, CSS modules are only enabled for files ending with `.module.css`. Al
 
 [PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins, like [autoprefixer](https://github.com/postcss/autoprefixer), [Preset Env](https://github.com/csstools/postcss-preset-env), and many others. You can configure PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, or `postcss.config.js`.
 
-Install plugins in your app:
+Install plugins in your app run:
 
 ```shell
 yarn add autoprefixer --dev
+```
+
+Or when using npm run:
+
+```shell
+npm install --save-dev autoprefixer
 ```
 
 Then, create a `.postcssrc`:
