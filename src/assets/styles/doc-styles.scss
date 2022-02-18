@@ -1,31 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "highlight.css";
+@import "mixins.scss";
+@import "highlight.scss";
 @import "search.scss";
-
-@mixin transition-background-color {
-  .loaded & {
-    transition: background 0.2s ease-in-out;
-  }
-}
-
-@mixin transition-color {
-  .loaded & {
-    transition: color 0.2s ease-in-out;
-  }
-}
-
-@mixin transition-filter {
-  transition: filter 0.2s ease-in-out;
-}
-
-@mixin transition-colors {
-  .loaded & {
-    transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
-      border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
-  }
-}
 
 html {
   scroll-padding-top: 80px;

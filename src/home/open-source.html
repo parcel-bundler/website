@@ -1,0 +1,60 @@
+<section class="my-40 max-w-screen-xl mx-auto px-6 md:px-8 text-lg lg:text-xl font-medium text-gray-500 dark:text-gray-400">
+  <h3 id="optimization" class="text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 dark:from-emerald-500 dark:via-green-500 dark:to-lime-500 bg-clip-text text-transparent mb-4 lg:mb-8 inline-block">Powered by open source.</h3>
+  <p class="max-w-5xl text-xl lg:text-3xl font-medium text-gray-500 dark:text-gray-400">Parcel is an open source project, powered by code and financial contributions from companies and individuals around the world.</p>
+  <div class="my-12 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12 max-w-5xl">
+    <div>
+      <h4 class="mb-2 text-xl font-semibold text-blue-600 dark:text-green-400">🥇 Gold sponsors</h4>
+      <p class="text-sm lg:text-base py-2">Gold sponsors donate $1,000 or more per month to Parcel.</p>
+      <div class="flex items-center mt-2 gap-2">
+        <object data="https://opencollective.com/parcel/tiers/gold-sponsor.svg?button=false&margin=1" title="Gold sponsors"></object>
+        <a class="text-center vert w-32 sm:w-36 py-1 px-4 rounded-full border-2 border-blue-400 dark:border-green-700 text-sm font-medium text-blue-600 hover:border-blue-500 hover:bg-blue-100 dark:text-green-400 dark:hover:border-green-500 dark:hover:bg-green-900 hover:bg-opacity-25 transition-colors" href="https://opencollective.com/parcel#support" target="_blank">Become a sponsor →</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="mb-2 text-xl font-semibold text-blue-600 dark:text-green-400">🥈 Silver sponsors</h4>
+      <p class="text-sm lg:text-base py-2">Silver sponsors donate $500 or more per month to Parcel.</p>
+      <div class="flex items-center mt-2 gap-2">
+        <object data="https://opencollective.com/parcel/tiers/silver-sponsor.svg?button=false&margin=1" title="Silver sponsors"></object>
+        <a class="text-center vert w-32 sm:w-36 py-1 px-4 rounded-full border-2 border-blue-400 dark:border-green-700 text-sm font-medium text-blue-600 hover:border-blue-500 hover:bg-blue-100 dark:text-green-400 dark:hover:border-green-500 dark:hover:bg-green-900 hover:bg-opacity-25 transition-colors" href="https://opencollective.com/parcel#support" target="_blank">Become a sponsor →</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="mb-2 text-xl font-semibold text-blue-600 dark:text-green-400">🥉 Bronze sponsors</h4>
+      <p class="text-sm lg:text-base py-2">Bronze sponsors donate $100 or more per month to Parcel.</p>
+      <div class="flex items-center mt-2 gap-2">
+        <object data="https://opencollective.com/parcel/tiers/bronze-sponsor.svg?button=false&margin=1" title="Bronze sponsors"></object>
+        <a class="text-center vert w-32 sm:w-36 py-1 px-4 rounded-full border-2 border-blue-400 dark:border-green-700 text-sm font-medium text-blue-600 hover:border-blue-500 hover:bg-blue-100 dark:text-green-400 dark:hover:border-green-500 dark:hover:bg-green-900 hover:bg-opacity-25 transition-colors" href="https://opencollective.com/parcel#support" target="_blank">Become a sponsor →</a>
+      </div>
+    </div>
+  </div>
+  <h4 class="mb-2 text-xl font-semibold text-blue-600 dark:text-green-400">💵 Backers</h4>
+  <p class="text-sm lg:text-base py-2">Backers have donated any amount of money to Parcel. <a class="text-blue-600 dark:text-green-400 hover:underline" href="https://opencollective.com/parcel#support" target="_blank">Become a backer →</a></p>
+  <object data="https://opencollective.com/parcel/backers.svg?width=1024&limit=162&button=false" data-md="https://opencollective.com/parcel/backers.svg?width=680&limit=108&button=false" data-sm="https://opencollective.com/parcel/backers.svg?width=300&limit=45&button=false" title="Backers" class="mt-2 max-w-full"></object>
+  <h4 class="mt-12 mb-2 text-xl font-semibold text-blue-600 dark:text-green-400">😍 Contributors</h4>
+  <p class="text-sm lg:text-base py-2">Contributors help fix bugs and implement new features in Parcel. <a class="text-blue-600 dark:text-green-400 hover:underline" href="https://github.com/parcel-bundler/parcel" target="_blank">Become a contributor →</a></p>
+  <object data="https://opencollective.com/parcel/contributors.svg?width=1024&avatarHeight=40&limit=72&button=false" data-md="https://opencollective.com/parcel/contributors.svg?width=680&limit=48&avatarHeight=40&button=false" data-sm="https://opencollective.com/parcel/contributors.svg?width=300&limit=27&avatarHeight=30&button=false" title="Contributors" class="mt-2 max-w-full"></object>
+  <script type="module">
+    let md = window.matchMedia('(max-width: 1024px)');
+    let sm = window.matchMedia('(max-width: 640px)');
+
+    let update = () => {
+      for (let object of document.querySelectorAll('object[data-sm]')) {
+        if (sm.matches) {
+          object.data = object.dataset.sm;
+        } else if (md.matches) {
+          object.data = object.dataset.md;
+        } else {
+          object.data = object.dataset.lg;
+        }
+      }
+    };
+
+    for (let object of document.querySelectorAll('object[data-sm]')) {
+      object.dataset.lg = object.data;
+    }
+
+    md.addEventListener('change', update);
+    sm.addEventListener('change', update);
+    update();
+  </script>
+</section>
