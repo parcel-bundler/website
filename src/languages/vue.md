@@ -11,7 +11,7 @@ eleventyNavigation:
 
 {% note %}
 
-**Note**: Parcel does not support using SFCs with Vue 2, you must use [Vue 3 beta](https://github.com/vuejs/vue-next) or later.
+**Note**: Parcel does not support using SFCs with Vue 2, you must use [Vue 3](https://github.com/vuejs/core) or later.
 
 {% endnote %}
 
@@ -65,7 +65,7 @@ Parcel uses the official Vue SFC compiler, which supports HMR out of the box so 
 
 ## Vue 3 Features
 
-Since Parcel uses the latest Vue 3 beta, you can use all Vue 3 features, such as the [Composition API](https://composition-api.vuejs.org/).
+Since Parcel uses Vue 3, you can use all Vue 3 features, such as the [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html).
 
 {% sample %}
 {% samplefile "App.vue" %}
