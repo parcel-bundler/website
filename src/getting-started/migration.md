@@ -22,7 +22,7 @@ The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm
 
 ```json/2
 {
-  "dependencies": {
+  "devDependencies": {
     "parcel-bundler": "^1.12.5"
   }
 }
@@ -33,7 +33,7 @@ The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm
 
 ```json/2
 {
-  "dependencies": {
+  "devDependencies": {
     "parcel": "^2.0.0"
   }
 }
