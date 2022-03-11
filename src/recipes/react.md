@@ -277,7 +277,6 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 
 ```javascript
 module.exports = {
-  mode: "jit",
   content: ["./src/*.{html,js}"],
   theme: {
     extend: {},
