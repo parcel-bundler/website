@@ -9,7 +9,7 @@ eleventyNavigation:
 
 Parcel supports [Stylus](https://stylus-lang.com/) files automatically using the `@parcel/transformer-stylus` plugin. When a `.styl` file is detected, it will be installed into your project automatically.
 
-Compiled Stylus files are also processed the same way as [CSS](/languages/css/), which means [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.styl` extension.
+Compiled Stylus files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.styl` extension.
 
 ## Example usage
 

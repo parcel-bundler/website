@@ -185,7 +185,7 @@ CSS files referenced via `@import`, and JavaScript referenced via `import` will 
 
 ## Inline `style` attribute
 
-The [`style`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/style) attribute can be used on any SVG element to define CSS styles. Parcel will process the inline CSS, and insert the result back into the `style` attribute. This includes following referenced URLs, as well as applying [PostCSS](/languages/css/#postcss) plugins like autoprefixer.
+The [`style`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/style) attribute can be used on any SVG element to define CSS styles. Parcel will process the inline CSS, and insert the result back into the `style` attribute. This includes following referenced URLs, as well as transforming modern CSS for your target browsers.
 
 ```xml
 <circle 
