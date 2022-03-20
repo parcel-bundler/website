@@ -130,6 +130,16 @@ body {
     }
   }
 
+  &.warning,
+  &.error {
+    .well {
+      @apply bg-transparent border-none ;
+      .assets {
+        @apply bg-opacity-10 rounded-md;
+      }
+    }
+  }
+
   &.migration {
     &::before {
       content: "🚚";

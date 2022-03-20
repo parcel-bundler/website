@@ -49,7 +49,7 @@ The [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url()) function c
 
 ```css
 body {
-  background: url('images/background.png');
+  background: url(images/background.png);
 }
 ```
 
@@ -60,6 +60,38 @@ Referenced files should be [relative](/features/dependency-resolution/#relative-
   background: url('data-url:./logo.png');
 }
 ```
+
+{% warning %}
+
+**Note**: Only [absolute paths](/features/dependency-resolution/#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
+
+{% sample %}
+{% samplefile "/src/index.css" %}
+
+```css
+body {
+  /* ❌ relative paths are not allowed in custom properties. */
+  --logo: url(images/logo.png);
+  /* ✅ use absolute paths instead. */
+  --logo: url(/src/images/logo.png);
+}
+```
+
+{% endsamplefile %}
+{% samplefile "/src/home/header.css" %}
+
+```css
+.logo {
+  background: var(--logo);
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, the relative path `images/logo.png` would resolve to `/src/home/images/logo.png` rather than `/src/images/logo.png` as you might expect, because it is referenced in `/src/home/header.css`. The absolute path `/src/images/logo.png` resolves consistently no matter which file `var(--logo)` is used in.
+
+{% endwarning %}
 
 ## CSS modules
 
@@ -419,7 +451,7 @@ module.exports = {
 {% endsamplefile %}
 {% endsample %}
 
-#### Default plugins
+### Default plugins
 
 Parcel includes equivalents of `autoprefixer` and `postcss-preset-env` automatically when a `browserslist` is specified in your `package.json`. These are [implemented in Rust](https://github.com/parcel-bundler/parcel-css) and are significantly faster than PostCSS. If these are the only transforms you need in your project, then you may not need PostCSS at all.
 
@@ -427,7 +459,7 @@ If you have an existing project with a PostCSS config containing only the above 
 
 See [above](#transpilation) for more details about Parcel’s builtin transpilation support.
 
-#### postcss-import
+### postcss-import
 
 By default, Parcel transforms each CSS file with PostCSS independently. However, some PostCSS plugins (e.g. `postcss-custom-properties`) potentially need to access declarations from other `@import`ed CSS assets.
 
