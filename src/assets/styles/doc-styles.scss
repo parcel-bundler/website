@@ -130,6 +130,16 @@ body {
     }
   }
 
+  &.warning,
+  &.error {
+    .well {
+      @apply bg-transparent border-none ;
+      .assets {
+        @apply bg-opacity-10 rounded-md;
+      }
+    }
+  }
+
   &.migration {
     &::before {
       content: "🚚";
@@ -611,6 +621,12 @@ body {
     p, ul, ol, table {
       @apply my-4;
     }
+
+    ul, ol {
+      ul, ol {
+        @apply my-1;
+      }
+    }
   }
 
   :not(pre) > code {
@@ -619,13 +635,13 @@ body {
   }
 
   p > code,
-  p a code,
+  a code,
   li > code,
   td code {
     @apply text-base sm:text-sm;
   }
 
-  p a code {
+  a code {
     @apply text-blue-700 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition-colors;
     text-decoration: underline;
   }

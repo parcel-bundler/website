@@ -207,7 +207,7 @@ The `<link rel="manifest">` element is supported to reference a [Web manifest](h
 
 ## Inline `style` attribute
 
-The [`style`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style) attribute can be used on any HTML element to define CSS styles. Parcel will process the inline CSS, and insert the result back into the `style` attribute. This includes following referenced URLs such as background images, as well as applying [PostCSS](/languages/css/#postcss) plugins like autoprefixer.
+The [`style`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style) attribute can be used on any HTML element to define CSS styles. Parcel will process the inline CSS, and insert the result back into the `style` attribute. This includes following referenced URLs such as background images, as well as transforming modern CSS for your target browsers.
 
 ```html
 <div style="background: url(background.jpg)">Hello!</div>

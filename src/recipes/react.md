@@ -266,8 +266,7 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 ```json
 {
   "plugins": {
-    "tailwindcss": {},
-    "autoprefixer": {}
+    "tailwindcss": {}
   }
 }
 ```
