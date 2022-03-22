@@ -6,14 +6,18 @@
     <p class="text-base lg:text-lg">And if you need more advanced control, or support for custom transforms, just add a <code class="font-semibold text-gray-800 dark:text-gray-200">.babelrc</code> or <code class="font-semibold text-gray-800 dark:text-gray-200">.postcssrc</code> and it'll be picked up automatically.</p>
     <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-400 hover:underline" href="/languages/javascript/#transpilation">Learn more →</a>
   </div>
-  <div class="w-full max-w-md mx-auto">
-    <pre class="text-xs mb-2 whitespace-pre-wrap overflow-auto"><code class="language-jsx">function DogName(props) {
-  return <span>{props.dog?.name ?? 'Buddy'}</span>;
+  <div class="w-full max-w-md lg:max-w-full mx-auto">
+    <pre class="text-xs lg:text-sm mb-2 whitespace-pre-wrap overflow-auto"><code class="language-jsx">function DogName(props) {
+  return (
+    <span>
+      {props.dog?.name ?? 'Buddy'}
+    </span>
+  );
 }</code></pre>
     <svg height="35" width="100%" viewBox="0 0 13 35">
       <line x1="0" y1="0" x2="0" y2="30" stroke="currentColor" class="text-green-600 dark:text-green-400" stroke-width="2" marker-end="url(#arrow-green)" />
     </svg>
-  <pre class="text-xs mt-2 whitespace-pre-wrap overflow-auto"><code class="language-javascript">function DogName(props) {
+  <pre class="text-xs lg:text-sm mt-2 whitespace-pre-wrap overflow-auto"><code class="language-javascript">function DogName(props) {
   var ref, ref1;
   return /*#__PURE__*/ React.createElement(
     "span",
