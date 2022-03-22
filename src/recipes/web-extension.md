@@ -17,7 +17,7 @@ First, install `@parcel/config-webextension` into your project:
 yarn add @parcel/config-webextension --dev
 ```
 
-Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up.
+Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up. Both Manifest V2 and V3 are supported.
 
 To build your extension, run Parcel using your `manifest.json` as an entry, and `@parcel/config-webextension` as the config:
 
@@ -41,30 +41,18 @@ You can also create a `.parcelrc` file in your project extending `@parcel/config
 
 ## HMR
 
-For the best experience, you'll also want to enable a few options:
+Due to [restrictions on Content Security Policy](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy) in MV3, HMR support is limited in MV3. For MV2, HMR is fully supported by default. Reloading pages with content scripts will reload the extension in both versions.
 
-- `sourceMap#inline` and `sourceMap#inlineSources`: Source maps don't work unless inlined in web extensions
-- `--host localhost`: Needed for HMR to work properly in content scripts
-
-To do this, create two [targets](/features/targets/) in your `package.json`: one for development with inline source maps enabled, and one for production without. Then, create some scripts to start the development server and build for production.
+For the best developer experience, use `--host localhost` for development builds (this is sometimes necessary for content script reloading). You can copy the following configuration:
 
 {% sample %}
 {% samplefile "package.json" %}
 
 ```json
 {
-  "targets": {
-    "webext-dev": {
-      "sourceMap": {
-        "inline": true,
-        "inlineSources": true
-      }
-    },
-    "webext-prod": {}
-  },
   "scripts": {
-    "start": "parcel src/manifest.json --host localhost --target webext-dev --config @parcel/config-webextension",
-    "build": "parcel build src/manifest.json --target webext-prod --config @parcel/config-webextension"
+    "start": "parcel src/manifest.json --host localhost--config @parcel/config-webextension",
+    "build": "parcel build src/manifest.json --config @parcel/config-webextension"
   }
 }
 ```
@@ -72,7 +60,7 @@ To do this, create two [targets](/features/targets/) in your `package.json`: one
 {% endsamplefile %}
 {% endsample %}
 
-Running `yarn start` or `npm start` will start the development server. HMR and source maps will work for background scripts, content scripts, the popup page, and the options page. To add the extension to your browser, research how to load an extension unpacked (for example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest)).
+Running `yarn start` or `npm start` will start the development server. Source maps (and HMR for MV2) will work for background scripts, content scripts, the popup page, and the options page. To add the extension to your browser, research how to load an extension unpacked (for example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest)).
 
 Running `yarn run build` or `npm run build` will give you the final web extension package, ready to be published. After zipping the output directory, you should be able to upload your file to your platform of choice, such as the Chrome Web Store.
 
@@ -80,27 +68,28 @@ Running `yarn run build` or `npm run build` will give you the final web extensio
 
 ### Unexpected messages
 
-In development mode, your background scripts will receive a message event with the content `{ __parcel_hmr_reload__: true }` whenever the page is reloaded. Parcel will use this automatically to refresh the extension when necessary, so you'll want to ensure any messages your background scripts receive do not have the `__parcel_hmr_reload__` property before handling them.
+In development mode, your background scripts will receive a message event with the content `{ __parcel_hmr_reload__: true }` whenever a content script page is reloaded. Parcel will use this automatically to refresh the extension when necessary. Therefore, you'll want to ensure any messages your background scripts receive do not have the `__parcel_hmr_reload__` property before handling them.
 
 ### Styling
 
-One unfortunate consequence of using web extensions is that importing style files from content scripts will not work properly. This may be revisited in the future, but for now you'll need to include whatever stylesheets you use in the [`css` property in `manifest.json`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/content_scripts#css).
+Any styles imported in a content script will be injected into the `css` property of that content script and will thus apply to the entire page. Usually this is what you want, but if not you can always use [CSS modules](</languages/css#css-modules>) to prevent the styles from applying to the original site.
 
-### Asset URLs
+### `web_accessible_resources`
+Any resources you use in a content script will automatically be added into `web_accessible_resources`, so you don't usually need to specify anything in `web_accessible_resources` at all. For example, the following content script will work without issues:
 
-Asset URLs will not have the extension prefix added, so trying to use assets such as images by [importing them with the `url:` pipeline](</features/plugins#predefined-(offical)-named-pipelines>) in content scripts will fail. However, when add the assets you need to the [`web_accessible_resources` key](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/web_accessible_resources) (which is necessary anyway to use them in content scripts), the filepaths will remain the same as during build time. With that in mind, you can just do:
+
 {% sample %}
-{% samplefile "content_script.js" %}
+{% samplefile "content-script.js" %}
 
 ```js
-// If you have a file images/example.png and you've either added that image
-// or a glob that matches that image to web_accessible_resources:
-const assetURL = browser.runtime.getURL("images/example.png");
-// Now this image loads
-document.getElementById("myImage").href = assetURL;
+import myImage from 'url:./image.png';
+
+const injectedImage = document.createElement('img');
+injectedImage.src = myImage;
+document.body.appendChild(injectedImage);
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-Note that if you're only supporting Chrome, you should use `chrome.runtime.getURL`.
+However, if you actually want resources from your extension to be accessible from other extensions or websites, you can specify file paths or globs within `web_accessible_resources`. Note that Parcel treats entries in `web_accessible_resources` like Unix globs (as in, `examples/*.png` will retrieve every PNG in the examples folder, and `examples/**.png` will do it recursively). This is different from the globbing in Chrome, which is always recursive.
