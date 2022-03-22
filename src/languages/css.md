@@ -520,7 +520,7 @@ In production mode, Parcel automatically minifies your code to reduce the file s
 
 **Note**: In prior versions, Parcel used [cssnano](http://cssnano.co/) for minification. If your project contains a cssnano config file such as `.cssnanorc` or `cssnano.config.json`, you may see a warning that it is no longer applied after upgrading Parcel.
 
-In most cases, you can simply remove the cssnano config file and allow Parcel to handle minification. However, if you do rely on certain settings in this configuration and want to continue using cssnano instead of `@parcel/css` for minifcation, you can configure Parcel to use `@parcel/optimizer-cssnano` instead.
+In most cases, you can simply remove the cssnano config file and allow Parcel to handle minification. However, if you do rely on certain settings in this configuration and want to continue using cssnano instead of `@parcel/css` for minification, you can configure Parcel to use `@parcel/optimizer-cssnano` instead.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
