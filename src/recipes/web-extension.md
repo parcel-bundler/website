@@ -41,7 +41,7 @@ You can also create a `.parcelrc` file in your project extending `@parcel/config
 
 ## HMR
 
-Due to [restrictions on Content Security Policy](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy) in MV3, HMR is supported for background workers and configuration pages but not content scripts. For MV2, HMR is fully supported by default. Reloading pages with content scripts will reload the extension in both versions.
+Due to [restrictions on Content Security Policy](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy) in MV3, HMR is not supported, but updating your code will cause the extension to reload. For MV2, HMR is fully supported by default. Reloading pages with content scripts will reload the extension in both versions.
 
 For the best developer experience, use `--host localhost` for development builds (this is sometimes necessary for content script reloading). You can copy the following configuration:
 
