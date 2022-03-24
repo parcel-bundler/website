@@ -41,7 +41,7 @@ You can also create a `.parcelrc` file in your project extending `@parcel/config
 
 ## HMR
 
-Due to [restrictions on Content Security Policy](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy) in MV3, HMR support is limited in MV3. For MV2, HMR is fully supported by default. Reloading pages with content scripts will reload the extension in both versions.
+Due to [restrictions on Content Security Policy](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#content-security-policy) in MV3, HMR is supported for background workers and configuration pages but not content scripts. For MV2, HMR is fully supported by default. Reloading pages with content scripts will reload the extension in both versions.
 
 For the best developer experience, use `--host localhost` for development builds (this is sometimes necessary for content script reloading). You can copy the following configuration:
 
@@ -51,7 +51,7 @@ For the best developer experience, use `--host localhost` for development builds
 ```json
 {
   "scripts": {
-    "start": "parcel src/manifest.json --host localhost--config @parcel/config-webextension",
+    "start": "parcel watch src/manifest.json --host localhost--config @parcel/config-webextension",
     "build": "parcel build src/manifest.json --config @parcel/config-webextension"
   }
 }
@@ -60,7 +60,7 @@ For the best developer experience, use `--host localhost` for development builds
 {% endsamplefile %}
 {% endsample %}
 
-Running `yarn start` or `npm start` will start the development server. Source maps (and HMR for MV2) will work for background scripts, content scripts, the popup page, and the options page. To add the extension to your browser, research how to load an extension unpacked (for example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest)).
+Running `yarn start` or `npm start` will start the development server. Source maps and HMR will work for background scripts, the popup page, and the options page. For MV2, HMR will usually also work on content scripts. To add the extension to your browser, research how to load an extension unpacked (for example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest)).
 
 Running `yarn run build` or `npm run build` will give you the final web extension package, ready to be published. After zipping the output directory, you should be able to upload your file to your platform of choice, such as the Chrome Web Store.
 
