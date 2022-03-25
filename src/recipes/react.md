@@ -288,7 +288,7 @@ module.exports = {
 {% endsamplefile %}
 {% endsample %}
 
-Finally, you can reference Tailwind classes from any files that match the `purge` glob listed in `tailwind.config.js`.
+Finally, you can reference Tailwind classes from any files that match the `content` glob listed in `tailwind.config.js`.
 
 {% sample %}
 {% samplefile "Button.js" %}
