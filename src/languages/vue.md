@@ -31,7 +31,7 @@ eleventyNavigation:
 
 ```jsx
 import { createApp } from "vue";
-import App from "./App";
+import App from "./App.vue";
 
 const app = createApp(App);
 app.mount("#app");
@@ -202,7 +202,7 @@ export default function (component, blockContent, blockAttrs) {
 </template>
 
 <script>
-  import Child from "./HomePage";
+  import Child from "./HomePage.vue";
   export default {
     components: {
       child: Child,
