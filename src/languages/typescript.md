@@ -159,4 +159,4 @@ The `@parcel/validator-typescript` plugin is an experimental way to type check w
 
 ### Module API types
 
-To interact with Parcel's Module API (e.g. when setting up [Hot Module Replacement](https://parceljs.org/hmr.html)), make sure to install the `@types/parcel-env` package.
+To interact with Parcel's Module API (e.g. when setting up [Hot Module Replacement](https://parceljs.org/features/development/#hot-reloading)), make sure to install the `@types/parcel-env` package.
