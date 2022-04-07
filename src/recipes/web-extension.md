@@ -74,6 +74,29 @@ In development mode, your background scripts will receive a message event with t
 
 Any styles imported in a content script will be injected into the `css` property of that content script and will thus apply to the entire page. Usually this is what you want, but if not you can always use [CSS modules](</languages/css#css-modules>) to prevent the styles from applying to the original site.
 
+Additionally, content script CSS resolves links to the site they are injected into, so you won't be able to reference local assets. You should [inline your bundles](</languages/css#url()>) to resolve this issue.
+
+{% sample %}
+{% samplefile "content-script.css" %}
+
+```css
+.my-class {
+  /* Equivalent to: https://injected-site.com/custom-bg.png */
+  /* This is probably not what you want! */
+  background-image: url(./custom-bg.png)
+}
+
+.my-other-class {
+  /* This will use the local file custom-bg.png */
+  background-image: url(data-url:./custom-bg.png)
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Lastly, hot reload may not work when adding or removing CSS linked from inside an `import()` in content scripts, while synchronous `import` has no such issues. This is a known limitation and will be fixed in a future version.
+
 ### `web_accessible_resources`
 Any resources you use in a content script will automatically be added into `web_accessible_resources`, so you don't usually need to specify anything in `web_accessible_resources` at all. For example, the following content script will work without issues:
 
