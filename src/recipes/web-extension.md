@@ -83,12 +83,12 @@ Additionally, content script CSS resolves links to the site they are injected in
 .my-class {
   /* Equivalent to: https://injected-site.com/custom-bg.png */
   /* This is probably not what you want! */
-  background-image: url(./custom-bg.png)
+  background-image: url(./custom-bg.png);
 }
 
 .my-other-class {
   /* This will use the local file custom-bg.png */
-  background-image: url(data-url:./custom-bg.png)
+  background-image: url(data-url:./custom-bg.png);
 }
 ```
 
