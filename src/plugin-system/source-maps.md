@@ -269,10 +269,10 @@ If you encounter incorrect mappings and want to debug these, we have built tools
 To enable it, use the `--reporter` option, or add it to your `.parcelrc`.
 
 ```bash
-parcel build src/index.js --reporter @parcel/reporter-sourcemap-visualizer
+parcel build src/index.js --reporter @parcel/reporter-sourcemap-visualiser
 ```
 
-After the reporter has created the `sourcemap-info.json` file, you can upload it to the [sourcemap visualizer](https://sourcemap-visualiser.now.sh/).
+After the reporter has created the `sourcemap-info.json` file, you can upload it to the [sourcemap visualiser](https://sourcemap-visualiser.now.sh/).
 
 ## API
 
