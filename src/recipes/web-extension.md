@@ -51,7 +51,7 @@ For the best developer experience, use `--host localhost` for development builds
 ```json
 {
   "scripts": {
-    "start": "parcel watch src/manifest.json --host localhost--config @parcel/config-webextension",
+    "start": "parcel watch src/manifest.json --host localhost --config @parcel/config-webextension",
     "build": "parcel build src/manifest.json --config @parcel/config-webextension"
   }
 }
