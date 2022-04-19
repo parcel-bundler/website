@@ -60,9 +60,11 @@ For the best developer experience, use `--host localhost` for development builds
 {% endsamplefile %}
 {% endsample %}
 
-Running `yarn start` or `npm start` will start the development server. Source maps and HMR will work for background scripts, the popup page, and the options page. For MV2, HMR will usually also work on content scripts. To add the extension to your browser, research how to load an extension unpacked (for example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest)).
+Running `yarn start` or `npm start` will start the development server. Source maps and HMR will work for background scripts, the popup page, and the options page. For MV2, HMR will usually also work on content scripts.
 
-Running `yarn run build` or `npm run build` will give you the final web extension package, ready to be published. After zipping the output directory, you should be able to upload your file to your platform of choice, such as the Chrome Web Store.
+To add the extension to your browser, load Parcel's output folder unpacked. For example, in Chrome, [click "Load Unpacked"](https://developer.chrome.com/extensions/getstarted#manifest) in the `chrome://extensions` page and select `path/to/project/dist`.
+
+Running `yarn build` or `npm run build` will give you the final web extension package, ready to be published. After zipping the output directory, you should be able to upload your file to your platform of choice, such as the Chrome Web Store.
 
 ## Special Considerations
 
