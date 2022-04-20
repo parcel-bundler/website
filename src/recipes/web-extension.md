@@ -17,7 +17,30 @@ First, install `@parcel/config-webextension` into your project:
 yarn add @parcel/config-webextension --dev
 ```
 
-Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up. Both Manifest V2 and V3 are supported.
+Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up. Both Manifest V2 and V3 are supported. You can use [TypeScript](</languages/typescript>), [Vue](</languages/vue>), and any other languages supported by Parcel within your web extension code.
+
+
+{% sample %}
+{% samplefile "manifest.json" %}
+
+```json
+{
+  "manifest_version": 3,
+  "name": "Sample Web Extension",
+  "version": "0.0.1",
+  "background": {
+    "service_worker": "background.ts",
+    "type": "module"
+  },
+  "content_scripts": [{
+    "matches": ["*://github.com/parcel-bundler/*"],
+    "js": ["parcel-content-script.ts"]
+  }]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 To build your extension, run Parcel using your `manifest.json` as an entry, and `@parcel/config-webextension` as the config:
 
