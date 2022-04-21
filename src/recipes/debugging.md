@@ -67,7 +67,6 @@ Assuming a folder/file structure similar to the one shown above for Chrome devel
       "webRoot": "${workspaceFolder}",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "../*": "${webRoot}/*",
         "/__parcel_source_root/*": "${webRoot}/*"
       }
     }
