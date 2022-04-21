@@ -54,7 +54,7 @@ The `.env.local` file is also supported for local overrides of environment varia
 
 ## Polyfilling & Excluding Builtin Node Modules
 
-When your code, or more likely a dependency, imports builtin Node modules such as `crypto`, `fs` or `process`, Parcel will automatically use one of the following polyfills. If no polyfill is available, then an empty module will be used instead. You can also use [aliases](/features/dependency-resolution/#aliases) to override these.
+When targetting the browser and your code, or more likely a dependency, imports builtin Node modules such as `crypto`, `fs` or `process`, Parcel will automatically use one of the following polyfills. If no polyfill is available, then an empty module will be used instead. You can also use [aliases](/features/dependency-resolution/#aliases) to override these.
 
 | native module | npm replacement            | native module  | npm replacement      |
 | ------------- | -------------------------- | -------------- | -------------------- |
@@ -70,6 +70,19 @@ When your code, or more likely a dependency, imports builtin Node modules such a
 | os            | `os-browserify/browser.js` | util           | `util/util.js`       |
 | path          | `path-browserify`          | vm             | `vm-browserify`      |
 | zlib          | `browserify-zlib`          |
+
+## Shimming Builtin Node Globals
+
+When targetting the browser, usages of global variables that are available in Node are replaced to not break code written for Node:
+
+- `process` is imported automatically from the `process` module, unless it's part of a `process.browser` or `process.env.FOO` expression which is replaced by a boolean or the value of the environment variable.
+
+- `Buffer` is imported automatically from the `buffer` module.
+
+- `__filename` and `dirname` are replaced by string literals of the asset's filepath (or the parent folder) relative to the project root.
+
+- `global` is replaced with a reference to the global variable (behaving like the newer `globalThis`).
+
 
 ## Inlining fs.readFileSync
 
