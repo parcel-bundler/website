@@ -470,6 +470,8 @@ for (let [name, { declaration, loc }] of collected) {
 // GENERATE
 // ---------------------------
 
+const EXPERIMENTAL = `<figure class="well warning"><div>Marked as experimental</div></figure>`;
+
 function write(section, file, data) {
   let output = `<html>
 <head>
@@ -550,7 +552,7 @@ ${description ? `${description}` : ""}
 `;
 
     if (experimental) {
-      output += `<figure class="well warning"><div>Marked as experimental</div></figure>`;
+      output += EXPERIMENTAL;
     }
 
     if (type.type === "interface") {
@@ -558,7 +560,11 @@ ${description ? `${description}` : ""}
         output += `<pre class="interface"><code>${t.value}</code></pre>\n`;
         let method = methods.find((m) => m.name === t.key);
         if (method) {
-          output += `<div class="inline-method">${method.description}`;
+          output += `<div class="inline-method">`;
+          if (method.experimental) {
+            output += EXPERIMENTAL;
+          }
+          output += method.description;
           if (method.params.length) {
             output += `<b>Params:</b>\n<ul>`;
             for (let param of method.params) {
@@ -571,6 +577,9 @@ ${description ? `${description}` : ""}
         let prop = props.find((m) => m.name === t.key);
         if (prop) {
           output += `<div class="inline-method">`;
+          if (prop.experimental) {
+            output += EXPERIMENTAL;
+          }
           output += prop.description;
           if (prop.default != null)
             output += `<p>Default value: <code>${prop.default}</code></p>`;
