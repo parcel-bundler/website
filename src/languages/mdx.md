@@ -14,7 +14,7 @@ eleventyNavigation:
 First, install `@mdx-js/react`. This is needed to render MDX files as React components.
 
 ```shell
-yarn add @mdx-js/react
+yarn add @mdx-js/react@^1
 ```
 
 Then, you can import a `.mdx` file into your JavaScript and render it using React:
