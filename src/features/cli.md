@@ -29,7 +29,7 @@ See [Development](/features/development/) for more details.
 
 ## `parcel watch <entries>`
 
-The `watch` command is similar to `serve`, but does not start a dev server. However, it automatically rebuilds your app as you make changes, and supports [hot reloading](/features/development/#hot-reloading). Use `watch` if you're building a library, a backend, or have your own dev server. See [below](#entries) for how to specify entries.
+The `watch` command is similar to `serve`, but does not start a dev server (only a HMR server). However, it automatically rebuilds your app as you make changes, and supports [hot reloading](/features/development/#hot-reloading). Use `watch` if you're building a library, a backend, or have your own dev (HTTP) server. See [below](#entries) for how to specify entries.
 
 ```bash
 parcel watch src/index.html
