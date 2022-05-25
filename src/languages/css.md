@@ -95,9 +95,9 @@ In the above example, the relative path `images/logo.png` would resolve to `/src
 
 ## CSS modules
 
-By default, CSS imported from JavaScript is global. If two CSS files define the same class names, they will potentially clash and overwrite each other. To solve this, Parcel supports [CSS modules](https://github.com/css-modules/css-modules).
+By default, CSS imported from JavaScript is global. If two CSS files define the same class names, ids, custom properties, `@keyframes`, etc., they will potentially clash and overwrite each other. To solve this, Parcel supports [CSS modules](https://github.com/css-modules/css-modules).
 
-CSS modules treat the classes defined in each file as unique. Each class name is renamed to include a unique hash, and a mapping is exported to JavaScript to allow referencing these renamed class names.
+CSS modules treat the classes defined in each file as unique. Each class name or identifier is renamed to include a unique hash, and a mapping is exported to JavaScript to allow referencing them.
 
 To use CSS modules, create a file with the `.module.css` extension, and import it from a JavaScript file with a [namespace import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents). Then, you can access each of the classes defined in the CSS file as an export from the module.
 
@@ -125,6 +125,8 @@ Using CSS modules also has the benefit of making dependencies on specific class 
 
 As you can see in the above example, only the `.button` class is used, so the unused `.cta` class is removed from the compiled CSS file.
 
+This also works with other unused CSS rules such as `@keyframes` and `@counter-style`, as well as CSS custom properties (when the [`dashedIdents`](#local-css-variables) option is enabled).
+
 {% warning %}
 
 **Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults).
@@ -141,9 +143,147 @@ import * as styles from './styles.module.css';
 
 {% endwarning %}
 
+### Local CSS variables
+
+By default, class names, id selectors, and the names of `@keyframes`, `@counter-style`, and CSS grid lines and areas are scoped to the module they are defined in. Scoping for CSS variables and other [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) names can also be enabled using the `dashedIdents` configuration option in your project root `package.json`.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json/3
+{
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "dashedIdents": true
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+When enabled, CSS variables will be renamed so they don't conflict with variable names defined in other files. Referencing a variable uses the standard `var()` syntax, which Parcel will update to match the locally scoped variable name.
+
+You can also reference variables defined in other files using the `from` keyword:
+
+{% sample %}
+{% samplefile "style.module.css" %}
+
+```css/1
+.button {
+  background: var(--accent-color from "./vars.module.css");
+}
+```
+
+{% endsamplefile %}
+
+{% samplefile "vars.module.css" %}
+
+```css
+:root {
+  --accent-color: hotpink;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Global variables may be referenced using the `from global` syntax, however, they currently must be defined in a non-CSS module file.
+
+{% sample %}
+{% samplefile "style.module.css" %}
+
+```css/1
+@import "vars.css";
+
+.button {
+  color: var(--color from global);
+}
+```
+
+{% endsamplefile %}
+{% samplefile "vars.css" %}
+
+```css
+:root {
+  --color: purple;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The same syntax also applies to other CSS values that use the [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) syntax. For example, the [@font-palette-values](https://drafts.csswg.org/css-fonts-4/#font-palette-values) rule and [font-palette](https://drafts.csswg.org/css-fonts-4/#propdef-font-palette) property use the `<dashed-ident>` syntax to define and refer to custom font color palettes, and will be scoped and referenced the same way as CSS variables.
+
+### Custom naming patterns
+
+By default, Parcel prepends the hash of the filename to each class name and identifier in a CSS file. You can configure this naming pattern using the `"pattern"` option in your project root `package.json`. This accepts a string with placeholders that will be filled in by Parcel, allowing you to add custom prefixes or adjust the naming convention for scoped classes.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json/3
+{
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "pattern": "my-company-[name]-[hash]-[local]"
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The following placeholders are currently supported:
+
+* `[name]` - The base name of the file, without the extension.
+* `[hash]` - A hash of the full file path.
+* `[local]` - The original class name or identifier.
+
+{% warning %}
+
+**Note**: CSS grid line names can be ambiguous due to automatic postfixing done by the browser, which generates line names ending with `-start` and `-end` for each grid template area. When using CSS grid, your `"pattern"` configuration must end with the `[local]` placeholder so that these references work correctly.
+
+{% sample %}
+{% samplefile "grid.module.css" %}
+
+```css/5
+.grid {
+  grid-template-areas: "nav main";
+}
+
+.nav {
+  grid-column-start: nav-start;
+}
+```
+
+{% endsamplefile %}
+{% samplefile "package.json" %}
+
+```json5/5
+{
+  "@parcel/transformer-css": {
+    "cssModules": {
+      // ❌ [local] must be at the end so that 
+      // auto-generated grid line names work
+      "pattern": "[local]-[hash]"
+      // ✅ do this instead
+      "pattern": "[hash]-[local]"
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+{% endwarning %}
+
 ### Enabling CSS modules globally
 
-By default, CSS modules are only enabled for files ending with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for all files by configuring `@parcel/transformer-css` in your project root `package.json`.
+By default, CSS modules are only enabled for files whose name ends with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for all source files (i.e. not in `node_modules`) by configuring `@parcel/transformer-css` in your project root `package.json`.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -158,6 +298,19 @@ By default, CSS modules are only enabled for files ending with `.module.css`. Al
 
 {% endsamplefile %}
 {% endsample %}
+
+When using a configuration object with other options, use the `"global"` option instead.
+
+```json5/3
+{
+  "@parcel/transformer-css": {
+    "cssModules": {
+      "global": true,
+      // ...
+    }
+  }
+}
+```
 
 {% warning %}
 
