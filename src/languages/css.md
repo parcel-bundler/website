@@ -189,13 +189,30 @@ You can also reference variables defined in other files using the `from` keyword
 {% endsamplefile %}
 {% endsample %}
 
-To reference a global variable, use the `from global` syntax:
+Global variables may be referenced using the `from global` syntax, however, they currently must be defined in a non-CSS module file.
+
+{% sample %}
+{% samplefile "style.module.css" %}
 
 ```css/1
+@import "vars.css";
+
 .button {
   color: var(--color from global);
 }
 ```
+
+{% endsamplefile %}
+{% samplefile "vars.css" %}
+
+```css
+:root {
+  --color: purple;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 The same syntax also applies to other CSS values that use the [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) syntax. For example, the [@font-palette-values](https://drafts.csswg.org/css-fonts-4/#font-palette-values) rule and [font-palette](https://drafts.csswg.org/css-fonts-4/#propdef-font-palette) property use the `<dashed-ident>` syntax to define and refer to custom font color palettes, and will be scoped and referenced the same way as CSS variables.
 
@@ -227,7 +244,7 @@ The following placeholders are currently supported:
 
 {% warning %}
 
-**Note**: CSS grid line names can be ambiguous due to automatic postfixing done by the browser, which generates line names ending with `-start` and `-end` for each grid template area. When using CSS grid, ensure that your `"pattern"` configuration ends with the `[local]` placeholder so that these references work correctly.
+**Note**: CSS grid line names can be ambiguous due to automatic postfixing done by the browser, which generates line names ending with `-start` and `-end` for each grid template area. When using CSS grid, your `"pattern"` configuration must end with the `[local]` placeholder so that these references work correctly.
 
 {% sample %}
 {% samplefile "grid.module.css" %}
@@ -266,7 +283,7 @@ The following placeholders are currently supported:
 
 ### Enabling CSS modules globally
 
-By default, CSS modules are only enabled for filenames ending with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for all source files (i.e. not in `node_modules`) by configuring `@parcel/transformer-css` in your project root `package.json`.
+By default, CSS modules are only enabled for files whose name ends with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for all source files (i.e. not in `node_modules`) by configuring `@parcel/transformer-css` in your project root `package.json`.
 
 {% sample %}
 {% samplefile "package.json" %}
