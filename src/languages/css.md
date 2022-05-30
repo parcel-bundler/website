@@ -561,7 +561,7 @@ The following pseudo classes may be configured as shown above:
 
 ## PostCSS
 
-[PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins. While Parcel supports equivalent functionality to many common PostCSS plugins such as [autoprefixer](https://github.com/postcss/autoprefixer) and [postcss-preset-env](https://github.com/csstools/postcss-preset-env) out of the box as described above, PostCSS is useful for more custom CSS transformations such as non-standard syntax additions. It is also used by popular CSS frameworks such as [Tailwind](https://tailwindcss.com).
+[PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins. While Parcel supports equivalent functionality to many common PostCSS plugins such as [autoprefixer](https://github.com/postcss/autoprefixer) ([available as an online tool](https://goonlinetools.com/autoprefixer/)) and [postcss-preset-env](https://github.com/csstools/postcss-preset-env) out of the box as described above, PostCSS is useful for more custom CSS transformations such as non-standard syntax additions. It is also used by popular CSS frameworks such as [Tailwind](https://tailwindcss.com).
 
 You can use PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, or `postcss.config.js`.
 
