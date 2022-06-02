@@ -60,7 +60,7 @@ export default new Packager({
       promises.push(Promise.all([
         asset.getCode(),
         asset.getMap()
-      ]);
+      ]));
     });
 
     let assets = await Promise.all(promises);
