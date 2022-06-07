@@ -221,6 +221,14 @@ async function doSomething() {
 }
 ```
 
+Globs may also be used to import files from npm packages:
+
+```js
+import * as locales from '@company/pkg/i18n/*.js';
+
+console.log(locales.en.message);
+```
+
 Glob imports also work with CSS:
 
 ```css

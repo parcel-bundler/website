@@ -29,7 +29,7 @@ See [Development](/features/development/) for more details.
 
 ## `parcel watch <entries>`
 
-The `watch` command is similar to `serve`, but does not start a dev server. However, it automatically rebuilds your app as you make changes, and supports [hot reloading](/features/development/#hot-reloading). Use `watch` if you're building a library, a backend, or have your own dev server. See [below](#entries) for how to specify entries.
+The `watch` command is similar to `serve`, but does not start a dev server (only a HMR server). However, it automatically rebuilds your app as you make changes, and supports [hot reloading](/features/development/#hot-reloading). Use `watch` if you're building a library, a backend, or have your own dev (HTTP) server. See [below](#entries) for how to specify entries.
 
 ```bash
 parcel watch src/index.html
@@ -98,12 +98,13 @@ These parameters are supported by all Parcel commands.
 | Format              | Description                                                                           |
 | ------------------- | ------------------------------------------------------------------------------------- |
 | `-p, --port <port>` | The port for the dev server and HMR (the default port is `process.env.PORT` or 1234). See [Dev server](/features/development/#dev-server).  |
-| `--no-hmr`          | Disables [hot reloading](/features/development/#hot-reloading).                       |
-| `--hmr-port <port>` | The port for the HMR server (defaults to the dev server's port). See [Hot reloading](/features/development/#hot-reloading).                       |
 | `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces                   |
 | `--https`           | Runs the dev server and HMR server over [HTTPS](/features/development/#https).        |
 | `--cert <path>`     | Path to a certificate to use. See [HTTPS](/features/development/#https).              |
 | `--key <path>`      | Path to a private key to use. See [HTTPS](/features/development/#https).              |
+| `--no-hmr`          | Disables [hot reloading](/features/development/#hot-reloading).                       |
+| `--hmr-port <port>` | The port for the HMR server (defaults to the dev server's port). See [Hot reloading](/features/development/#hot-reloading).     
+| `--hmr-host <host>` | The host for the HMR server (defaults to the dev server's host). See [Hot reloading](/features/development/#hot-reloading).                       |
 | `--no-autoinstall`  | Disables [auto install](/features/development/#auto-install).                         |
 | `--watch-for-stdin` | Stop Parcel once stdin is closed.                                                     |
 
