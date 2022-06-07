@@ -42,7 +42,7 @@
 <div class="type">
 <h4 class="title">
   <span id="ResolveResult">ResolveResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e51955f9d4fa4009a611ba7e88bd85d0fd4c53a2/packages/core/types/index.js#L1477"><i>parcel/packages/core/types/index.js:1477</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L1477"><i>parcel/packages/core/types/index.js:1477</i></a>
 </h4>
 
 <pre class="interface"><code>type ResolveResult = {|</code></pre>
@@ -70,6 +70,8 @@
 <div class="inline-method"><p>A list of file paths or patterns that should invalidate the resolution if created.</p>
 </div><pre class="interface"><code>  +invalidateOnFileChange?: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;,</code></pre>
 <div class="inline-method"><p>A list of files that should invalidate the resolution if modified or deleted.</p>
+</div><pre class="interface"><code>  +invalidateOnEnvChange?: Array&lt;string&gt;,</code></pre>
+<div class="inline-method"><p>Invalidates the resolution when the given environment variable changes.</p>
 </div><pre class="interface"><code>|}</code></pre>
 
 <h5>Referenced by:</h5>
@@ -77,7 +79,7 @@
 </div><div class="type">
 <h4 class="title">
   <span id="Resolver">Resolver</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/e51955f9d4fa4009a611ba7e88bd85d0fd4c53a2/packages/core/types/index.js#L1640"><i>parcel/packages/core/types/index.js:1640</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L1642"><i>parcel/packages/core/types/index.js:1642</i></a>
 </h4>
 
 <pre class="interface"><code>type Resolver = {|</code></pre>
