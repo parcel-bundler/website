@@ -82,7 +82,7 @@ These parameters are supported by all Parcel commands.
 | Format                                       | Description                                                                                                                                  |
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--target [name]`                            | Specifies the targets to build. May be specified multiple times. See [Targets](/features/targets/). |
-| `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`. |
+| `--out-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`. |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for the [`publicUrl`](/features/targets/#publicurl) option in package.json `targets`.                     |
 | `--no-source-maps`                           | Disables sourcemaps, <br> Overrides the [`sourceMap`](/features/targets/#sourcemap) option in package.json `targets`.                                          |
 | `--config <path>`                            | Specify which Parcel config to use. <br> Can be a file path or package name. Defaults to `@parcel/config-default`. See [Parcel configuration](/features/plugins/). |
