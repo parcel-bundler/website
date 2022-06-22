@@ -141,7 +141,7 @@ This happens automatically based on your browser targets, as declared in the `"b
 
 You may have multiple targets in order to build your source code for multiple different environments simultaneously. For example, you could have “modern” and “legacy” targets for an app, or ES module and CommonJS targets for a library ([see below](#library-targets)).
 
-Targets are configured using the `targets` field in package.json. Each target has a name, specified as a key under the `target` field, and an associated configuration object. For example, the `engines` field within each target can be used to customize the environment it is compiled for.
+Targets are configured using the `targets` field in package.json. Each target has a name, specified as a key under the `targets` field, and an associated configuration object. For example, the `engines` field within each target can be used to customize the environment it is compiled for.
 
 ```json
 {
