@@ -35,6 +35,7 @@
     "@parcel/transformer-sass": "^2.2.0",
     "@parcel/transformer-xml": "^2.2.0",
     "eleventy-plugin-toc": "^1.1.0",
+    "flow-bin": "^0.177.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "markdown-it": "^12.0.4",

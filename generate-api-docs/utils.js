@@ -15,13 +15,15 @@ export type JSDocMethod = {|
   name: string,
   description: string,
   params: Array<JSDocParam>,
-  returns: ?string
+  returns: ?string,
+  experimental: boolean,
 |};
 export type JSDocProperty = {|
   type: "property",
   name: string,
   description: string,
   default?: ?string,
+  experimental: boolean,
 |};
 
 export type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
@@ -155,6 +157,8 @@ module.exports.parseJsDoc = function parseJsDoc(
         result.excludedProperties.add(name);
       } else {
         let { description, properties } = parsed;
+        let experimental =
+          properties.find((v) => v.type === "experimental") != null;
         if (t.isFunctionTypeAnnotation(prop.value)) {
           result.properties.push({
             type: "method",
@@ -168,6 +172,7 @@ module.exports.parseJsDoc = function parseJsDoc(
               }),
             // $FlowFixMe
             returns: properties.find((v) => v.type === "returns"),
+            experimental,
           });
         } else {
           let defaultValue = properties.find((v) => v.type === "default")
@@ -177,6 +182,7 @@ module.exports.parseJsDoc = function parseJsDoc(
             name,
             description,
             default: defaultValue,
+            experimental,
           });
         }
       }
