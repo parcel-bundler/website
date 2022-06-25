@@ -50,7 +50,7 @@
     "posthtml-render": "^3.0.0",
     "prettier": "2.2.1",
     "sass": "^1.35.2",
-    "sharp": "^0.29.1",
+    "sharp": "^0.30.5",
     "tailwindcss": "^2.2.15",
     "tailwindcss-safe-area": "^0.2.1"
   },
