@@ -7,13 +7,13 @@ Parcel`[파설, /parsəl/]`은 개발 경험에서 차이를 느낄수 있는 �
 Yarn:
 
 ```bash
-yarn global add parcel-bundler
+yarn add --dev parcel
 ```
 
 npm:
 
 ```bash
-npm install -g parcel-bundler
+npm install --save-dev parcel
 ```
 
 그 다음, package.json 파일을 프로젝트 디렉토리에 만드세요.
