@@ -67,9 +67,9 @@ import foo from "/assets/*.png";
 
 ## 공통 이슈
 
-### Javascript Named Exports
+### JavaScript Named Exports
 
-별칭을 매핑하는 것은 많은 애셋 타입에서 사적용되며, Javascript named exports에서 특별히 적용되지는 않습니다. JS named exports를 사용하려면 다음을 수행하십시오.:
+별칭을 매핑하는 것은 많은 애셋 타입에서 적용되며, JavaScript named exports에서 특별히 적용되지는 않습니다. JS named exports를 사용하려면 다음을 수행하십시오.:
 
 ```json
 // package.json
