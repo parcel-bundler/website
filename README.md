@@ -8,7 +8,15 @@ Start a local server using:
 
 ```bash
 yarn
+yarn build
 yarn serve
+```
+
+Start in a development mode using:
+
+```bash
+yarn
+yarn start
 ```
 
 The website is automatically deployed using [Vercel](https://vercel.com).
