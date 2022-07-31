@@ -104,7 +104,7 @@ The `with` param can be used multiple times to include multiple extra Elm progra
 Beware of 2 things:
 
 1. **Path base:** The paths given in the `with` param values are relative to the directory of the first file in the `import` statement (in this case `Main.elm`), NOT relative to the JS file that contains the `import` statement.
-2. **Unintentional Duplication:** If you import an import line with `with` params in multiple JS files but the query string is not exactly the same, parcel will treat it as a different asset and duplicate the content.
+2. **Unintentional Duplication:** Multiple imports that effectively specify the same Elm files but in a different order (or differ regarding leading `./`, etc.) are treated as different assets (and will therefore be duplicated)
 
 To avoid those pitfalls when making heavy use of `with` params (i.e. importing some combination in more than one place), it's recommended to use something like [this third-party resolver package](https://www.npmjs.com/package/parcel-resolver-elm-bundle) which allows specifying some shorthands for commonly used Elm file combinations.
 
