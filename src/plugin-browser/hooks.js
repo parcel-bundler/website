@@ -23,7 +23,6 @@ export function useSearch({ type, page, filter, includeOfficial }) {
           {
             analyticsTags: ["parcel-plugin-browser"],
             attributesToHighlight: ["name", "description", "keywords"],
-            restrictSearchableAttributes: ["_searchInternal.alternativeNames"],
             attributesToRetrieve: [
               "isDeprecated",
               "description",
