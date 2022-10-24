@@ -157,7 +157,7 @@ To use CSS modules, create a file with the `.module.css` extension, and import i
 {% samplefile "Button.js" %}
 
 ```jsx/0,4
-import * as classes './Button.module.css';
+import * as classes from './Button.module.css';
 
 export function Button({ children }) {
   return (
