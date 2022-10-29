@@ -8,7 +8,7 @@ Além do algorimo padrão, todos os [tipos de recursos suportados pelo Parcel](h
 
 A resolução de módulo pode ser relativa a:
 
-- **raiz do projeto**: o diretório do *entrypoint* especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos _entrypoints_ são especificados.
+- **raiz do projeto**: o diretório do _entrypoint_ especificado para o Parcel, ou a raiz compartilhada (diretório pai em comum) quando múltiplos _entrypoints_ são especificados.
 - **raiz do pacote**: o diretório mais próximo da raiz do pacote em `node_modules`.
 
 ### Caminhos Absolutos
@@ -26,7 +26,7 @@ Globs são importações curingas que agrupam vários recursos de uma só vez. G
 Este exemplo empacota um diretório de arquivos png e retorna as URLs de produção.
 
 ```javascript
-import foo from "/assets/*.png";
+import foo from '/assets/*.png'
 // {
 //   'file-1': '/file-1.8e73c985.png',
 //   'file-2': '/file-1.8e73c985.png'
@@ -107,7 +107,7 @@ src/
     banana.js
 ```
 
-E `src/index.html` como um *entrypoint*, a **raíz do projeto** (*project root*) é o diretório `src/`.
+E `src/index.html` como um _entrypoint_, a **raíz do projeto** (_project root_) é o diretório `src/`.
 
 Portanto, para mapear essa importação corretamente:
 
@@ -135,9 +135,8 @@ TypeScript terá de saber sobre o seu uso da resolução de módulo com `~` ou m
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }

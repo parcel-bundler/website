@@ -26,7 +26,7 @@ Glob 파일 경로는 여러 애셋을 묶어 한꺼번에 가져올 수 있는 
 다음은 png 파일의 디렉토리를 묶어 dist URL을 반환하는 예제입니다.
 
 ```javascript
-import foo from "/assets/*.png";
+import foo from '/assets/*.png'
 // {
 //   'file-1': '/file-1.8e73c985.png',
 //   'file-2': '/file-1.8e73c985.png'
@@ -105,7 +105,7 @@ src/
     banana.js
 ```
 
-그리고 진입점은 `src/index.html` 이며, **entry root*는 `src/` 폴더입니다.
+그리고 진입점은 `src/index.html` 이며, \**entry root*는 `src/` 폴더입니다.
 
 그러므로, 임포트를 정확하게 매핑하기 위해서는 다음과 같이 사용합니다.:
 
@@ -135,9 +135,8 @@ Typescript에서는 `~` 모듈에 대한 내용이 명시되어야 합니다. �
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }

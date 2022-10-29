@@ -74,9 +74,8 @@ TypeScript повинен знати про те, що ви використов
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }

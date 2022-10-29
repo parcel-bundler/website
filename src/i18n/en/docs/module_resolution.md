@@ -26,7 +26,7 @@ Globs are wildcard imports that bundle multiple assets at once. Globs can match 
 This example bundles a directory of png files and returns the dist URLs.
 
 ```javascript
-import foo from "/assets/*.png";
+import foo from '/assets/*.png'
 // {
 //   'file-1': '/file-1.8e73c985.png',
 //   'file-2': '/file-1.8e73c985.png'
@@ -135,9 +135,8 @@ TypeScript will need to know about your use of the `~` module resolution or alia
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }

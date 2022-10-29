@@ -135,9 +135,8 @@ TypeScript devra connaître votre utilisation de la résolution de module `~` ou
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./*"]
     }
   }
 }
