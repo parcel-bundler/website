@@ -12,9 +12,9 @@
     "last 2 Firefox versions"
   ],
   "scripts": {
-    "build": "rm -rf _site dist; eleventy; parcel build src/home/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html' --public-url $(node public-url.js)",
+    "build": "rm -rf _site dist; eleventy; parcel build src/home/index.html '_site/*.html' '_site/*/index.html' '_site/*/*/*.html' --public-url $(node public-url.js)",
     "watch": "eleventy --watch",
-    "serve": "parcel src/home/index.html '_site/*.html' _site/*/index.html '_site/*/*/*.html'",
+    "serve": "parcel src/home/index.html '_site/*.html' '_site/*/index.html' '_site/*/*/*.html'",
     "start": "run-p watch serve",
     "debug": "DEBUG=* eleventy",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,scss}'",
