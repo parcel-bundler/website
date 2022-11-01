@@ -95,10 +95,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alpinejs/intersect@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "@alpinejs/intersect@npm:3.4.2"
-  checksum: 491d1cf695b2252189b2773918880707a54569105cfa082e3825433fa6041aa228b71b1f281bd6435327e6917b919e5a362305d4c60e6226ee9b1d7f08722817
+"@alpinejs/intersect@npm:^3.10.5":
+  version: 3.10.5
+  resolution: "@alpinejs/intersect@npm:3.10.5"
+  checksum: 357bab1f4f61789c1b51231b9940a9c948f341dd01c97d7e065c939734892c220c9258262164e9d0778f002432d31e20411a702ae6514d8b0f26c9b411786f50
   languageName: node
   linkType: hard
 
@@ -111,7 +111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.12.11, @babel/generator@npm:^7.20.1":
+"@babel/generator@npm:^7.20.1":
   version: 7.20.1
   resolution: "@babel/generator@npm:7.20.1"
   dependencies:
@@ -182,7 +182,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.12.11, @babel/parser@npm:^7.18.10, @babel/parser@npm:^7.20.1, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
+"@babel/parser@npm:^7.18.10, @babel/parser@npm:^7.20.1, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
   version: 7.20.1
   resolution: "@babel/parser@npm:7.20.1"
   bin:
@@ -211,7 +211,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.12.12":
+"@babel/traverse@npm:^7.20.1":
   version: 7.20.1
   resolution: "@babel/traverse@npm:7.20.1"
   dependencies:
@@ -1651,12 +1651,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"alpinejs@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "alpinejs@npm:3.4.2"
+"alpinejs@npm:^3.10.5":
+  version: 3.10.5
+  resolution: "alpinejs@npm:3.10.5"
   dependencies:
     "@vue/reactivity": ~3.1.1
-  checksum: 60ca27e19812d9a3124c8c472a5145d787a0b1d8a94a261dea39a9d9f302f096c2907cb8ef04c328304e26cd4a3484281e7f504fe11d7c81f1c47259b3bceec4
+  checksum: 7b2399486a4da44dacc4c82c9aa57fbba91b7d49553fa9691bf3b96c11c00f8cbd01dcb30318e06529e3eb4673a3b22305fbf880115d94d1227829fd19982330
   languageName: node
   linkType: hard
 
@@ -6529,16 +6529,16 @@ fsevents@~2.3.2:
     "@11ty/eleventy-navigation": ^0.3.5
     "@11ty/eleventy-plugin-rss": ^1.2.0
     "@11ty/eleventy-plugin-syntaxhighlight": ^4.1.0
-    "@alpinejs/intersect": ^3.4.2
-    "@babel/generator": ^7.12.11
-    "@babel/parser": ^7.12.11
-    "@babel/traverse": ^7.12.12
+    "@alpinejs/intersect": ^3.10.5
+    "@babel/generator": ^7.20.1
+    "@babel/parser": ^7.20.1
+    "@babel/traverse": ^7.20.1
     "@parcel/packager-xml": ^2.7.0
     "@parcel/transformer-js": ^2.7.0
     "@parcel/transformer-react-refresh-wrap": ^2.7.0
     "@parcel/transformer-sass": ^2.7.0
     "@parcel/transformer-xml": ^2.7.0
-    alpinejs: ^3.4.2
+    alpinejs: ^3.10.5
     eleventy-plugin-toc: ^1.1.0
     flow-bin: ^0.177.0
     focus-visible: ^5.2.0

@@ -26,9 +26,9 @@
     "@11ty/eleventy-navigation": "^0.3.5",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
-    "@babel/generator": "^7.12.11",
-    "@babel/parser": "^7.12.11",
-    "@babel/traverse": "^7.12.12",
+    "@babel/generator": "^7.20.1",
+    "@babel/parser": "^7.20.1",
+    "@babel/traverse": "^7.20.1",
     "@parcel/packager-xml": "^2.7.0",
     "@parcel/transformer-js": "^2.7.0",
     "@parcel/transformer-react-refresh-wrap": "^2.7.0",
@@ -55,8 +55,8 @@
     "tailwindcss-safe-area": "^0.2.2"
   },
   "dependencies": {
-    "@alpinejs/intersect": "^3.4.2",
-    "alpinejs": "^3.4.2",
+    "@alpinejs/intersect": "^3.10.5",
+    "alpinejs": "^3.10.5",
     "focus-visible": "^5.2.0",
     "marked": "^2.0.7",
     "react": "^17.0.2",
