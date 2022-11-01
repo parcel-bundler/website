@@ -22,10 +22,10 @@
     "generate-api-docs:watch": "nodemon -w ../parcel -w generate-api-docs -x yarn generate-api-docs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
-    "@11ty/eleventy-navigation": "^0.1.6",
-    "@11ty/eleventy-plugin-rss": "^1.1.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
     "@babel/generator": "^7.12.11",
     "@babel/parser": "^7.12.11",
     "@babel/traverse": "^7.12.12",
