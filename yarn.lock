@@ -6554,7 +6554,6 @@ fsevents@~2.3.2:
     postcss: ^8.3.6
     posthtml-include: ^1.7.0
     posthtml-prism: ^1.0.4
-    posthtml-render: ^3.0.0
     prettier: 2.2.1
     process: ^0.11.10
     react: ^17.0.2
