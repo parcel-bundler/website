@@ -228,7 +228,7 @@ function classToInterface(decl) {
                   type: "FunctionTypeAnnotation",
                   rest: null,
                   typeParams: true,
-                  params: p.params.map((param: any) => {
+                  params: p.params.map((param /*: any */) => {
                     if (param.type === "AssignmentPattern") {
                       param = param.left;
                     } else if (param.type === "ObjectPattern") {
