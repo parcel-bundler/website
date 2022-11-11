@@ -43,8 +43,9 @@ Most Parcel apps start with an HTML file. Parcel follows the dependencies (such 
 import ReactDOM from "react-dom";
 import { App } from "./App";
 
-const app = document.getElementById("app");
-ReactDOM.render(<App />, app);
+const container = document.getElementById("app");
+const root = ReactDOM.createRoot(container)
+root.render(<App />, app);
 ```
 
 {% endsamplefile %}
