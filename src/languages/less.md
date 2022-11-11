@@ -22,7 +22,7 @@ Referencing a Less file in an HTML file:
 Importing a Less file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes './style.module.less';
+import * as classes from './style.module.less';
 
 document.body.className = classes.body;
 ```
