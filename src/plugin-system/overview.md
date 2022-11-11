@@ -61,9 +61,9 @@ on one another is called the "Asset Graph".
 
 ### Bundle Graph
 
-Once Parcel has built the entire Asset Graph, it turns it into
+Once Parcel has built the entire Asset Graph, it converts it into
 the Bundle Graph, which contains the Asset Graph and additionally describes
-which asset should be grouped together into bundles (and what the relationship
+which assets should be grouped together into bundles (and what the relationship
 between these bundles is).
 
 Some assets are considered "entry" points into your app, and will stay as
