@@ -35,7 +35,7 @@ The `NODE_ENV` environment variable is automatically set by Parcel depending on 
 
 ### `.env` files
 
-Parcel supports loading environment variables defined in `.env` files in your project root. This supports `NAME=value` pairs separated by newlines. Lines starting with `#` are treated as comments. See [dotenv](https://github.com/motdotla/dotenv) for more details.
+Parcel supports loading environment variables defined in `.env` files in your project root. This supports `NAME=value` pairs separated by newlines. Lines starting with `#` are treated as comments. See [dotenv](https://github.com/motdotla/dotenv) for more details. 
 
 {% sample %}
 {% samplefile ".env" %}
@@ -51,6 +51,12 @@ API_KEY=12345
 In addition to `.env`, environment-specific overrides such as `.env.production` and `.env.development` can also be created. These are applied based on the `NODE_ENV` environment variable (including when automatically set by Parcel). Any variables that are not set in environment-specific overrides fall back to the values defined in the base `.env` file.
 
 The `.env.local` file is also supported for local overrides of environment variables, however, it is not used when `NODE_ENV=test` so that tests produce the same result for everyone. This is also supported for environment-specific overrides, such as `.env.production.local`.
+
+{% note %}
+
+Note: The package `dotenv` must be installed for Parcel to parse your `.env` files.
+
+{% endnote %}
 
 ## Polyfilling & Excluding Builtin Node Modules
 
