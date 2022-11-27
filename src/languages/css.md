@@ -667,13 +667,13 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [@parcel/css](https://github.com/parcel-bundler/parcel-css) to perform CSS minification.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [lightningcss](https://github.com/parcel-bundler/lightningcss) to perform CSS minification.
 
 {% warning %}
 
 **Note**: In prior versions, Parcel used [cssnano](http://cssnano.co/) for minification. If your project contains a cssnano config file such as `.cssnanorc` or `cssnano.config.json`, you may see a warning that it is no longer applied after upgrading Parcel.
 
-In most cases, you can simply remove the cssnano config file and allow Parcel to handle minification. However, if you do rely on certain settings in this configuration and want to continue using cssnano instead of `@parcel/css` for minification, you can configure Parcel to use `@parcel/optimizer-cssnano` instead.
+In most cases, you can simply remove the cssnano config file and allow Parcel to handle minification. However, if you do rely on certain settings in this configuration and want to continue using cssnano instead of `lightningcss` for minification, you can configure Parcel to use `@parcel/optimizer-cssnano` instead.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
