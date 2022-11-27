@@ -57,7 +57,7 @@ body {
 
   & > div {
     padding: 0.5rem;
-    @apply bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-70 rounded-r-md; 
+    @apply bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-70 rounded-r-md;
     @include transition-background-color;
   }
 
@@ -107,7 +107,7 @@ body {
     }
 
     em {
-      @apply text-sky-900 dark:text-sky-100 block whitespace-nowrap overflow-hidden overflow-ellipsis;
+      @apply text-sky-900 dark:text-sky-100 block whitespace-nowrap overflow-hidden text-ellipsis;
       @include transition-colors;
     }
 
@@ -290,7 +290,7 @@ body {
     .hamburger-button {
       @apply w-6 h-6 mr-4 flex-shrink-0 lg:hidden;
     }
-    
+
     .logo {
       @apply hidden xs:flex sm:mr-16;
       align-items: center;
@@ -539,7 +539,7 @@ body {
 
   h2,
   h2 + .header-anchor {
-    @apply text-2xl;  
+    @apply text-2xl;
   }
 
   h2 + .header-anchor {
@@ -739,6 +739,7 @@ body {
       page-break-inside: avoid;
     }
 
+    /*
     @page :left {
       margin: 15mm 20mm 15mm 10mm;
     }
@@ -746,6 +747,7 @@ body {
     @page :right {
       margin: 15mm 10mm 15mm 20mm;
     }
+    */
 
     p,
     h2,

@@ -6,6 +6,6 @@
     "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
-    "@parcel/plugin": "nightly"
+    "@parcel/plugin": "^2.8.0"
   }
 }

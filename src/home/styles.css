@@ -1,7 +1,7 @@
+@import "/assets/styles/search.scss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "/assets/styles/search.scss";
 
 pre {
   @apply rounded-md;

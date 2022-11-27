@@ -1,8 +1,8 @@
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './src/plugin-browser/*.js',
     './src/**/*.html',
     './src/**/*.njk',
@@ -19,8 +19,11 @@ module.exports = {
         orange: colors.orange,
         rose: colors.rose,
         fuchsia: colors.fuchsia,
-        blueGray: colors.blueGray,
-        violet: colors.violet
+        blueGray: colors.slate,
+        violet: colors.violet,
+        green: colors.emerald,
+        yellow: colors.amber,
+        purple: colors.violet,
       },
       maxWidth: {
         'full-screen': 'calc(100vw - 20px)'
@@ -31,10 +34,11 @@ module.exports = {
       height: {
         '128': '29rem'
       },
-      screens: {
-        'xs': '375px'
-      }
     },
+    screens: {
+      'xs': '375px',
+      ...defaultTheme.screens,
+    }
   },
   variants: {
     extend: {
