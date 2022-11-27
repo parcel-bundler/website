@@ -22,7 +22,7 @@ Referencing a Stylus file in an HTML file:
 Importing a Stylus file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes './style.module.styl';
+import * as classes from './style.module.styl';
 
 document.body.className = classes.body;
 ```

@@ -19,6 +19,12 @@ summary: A high-level overview over the plugin system
 Even if you aren't doing anything that complex, if you are going to use Parcel
 a lot it makes sense to take some time and understand how it works.
 
+### Entities
+
+- Asset: In the simplest case, an asset corresponds to a source file (e.g. a TypeScript file on disk). However, a transformer can not only modify (transform) an asset, but can also return more than one asset for a single input asset.
+- Dependency: A dependency models an asset requesting some other asset (e.g. a `import "foo";` declaration in JavaScript, or a `<link rel="stylesheet">` in HTML). They are explicitly added by a transformer (and sometimes called outgoing dependencies). Additionally Parcel also tracks which assets these dependencies point to and exposes this information as the incoming dependencies of an asset (thus listing the importers of some asset).
+- Bundle: A bundle is a grouping of assets that will be written into a single file for browsers to load. Async bundles are bundles created for lazy dependencies (e.g. for `import()` calls), and shared bundles contain assets used by multiple other bundles and were separated for improved load performance.
+
 ### Phases of Parcel
 
 At a high level Parcel runs through several phases:
@@ -34,7 +40,7 @@ At a high level Parcel runs through several phases:
 The **resolving** and **transforming** phases work together in parallel to
 build a graph of all your assets.
 
-The asset graph gets translated into bundles in the **bundling** phase. The output filename of each bundle is determined in the **naming** phase.
+The assets are grouped into bundles in the **bundling** phase. The output filename of each bundle is determined in the **naming** phase.
 
 Then, the **packaging**, **optimizing**, and **compressing** phases work together to generate the final contents of every bundle, in parallel.
 
@@ -55,9 +61,10 @@ on one another is called the "Asset Graph".
 
 ### Bundle Graph
 
-Once Parcel has built the entire Asset Graph, it begins turning it into
-"bundles". These bundles are groupings of assets that get placed together in a
-single file. Bundles will (generally) contain only assets in the same language.
+Once Parcel has built the entire Asset Graph, it converts it into
+the Bundle Graph, which contains the Asset Graph and additionally describes
+which assets should be grouped together into bundles (and what the relationship
+between these bundles is).
 
 Some assets are considered "entry" points into your app, and will stay as
 separate bundles. For example, if your `index.html` file links to an
