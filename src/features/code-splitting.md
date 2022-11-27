@@ -130,9 +130,9 @@ For example, if your application has multiple pages with `<script>` tags that de
 {% samplefile "home.js" %}
 
 ```jsx
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
-ReactDOM.render(<h1>Home</h1>, app);
+createRoot(app).render(<h1>Home</h1>, app);
 ```
 
 {% endsamplefile %}
@@ -148,9 +148,9 @@ ReactDOM.render(<h1>Home</h1>, app);
 {% samplefile "profile.js" %}
 
 ```jsx
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 
-ReactDOM.render(<h1>Profile</h1>, app);
+createRoot(app).render(<h1>Profile</h1>, app);
 ```
 
 {% endsamplefile %}
