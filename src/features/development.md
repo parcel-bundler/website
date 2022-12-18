@@ -59,7 +59,7 @@ if (module.hot) {
 
 When using the dev server, only a single target can be built at once. By default, Parcel uses a development target that supports modern browsers. This means that transpilation of modern JavaScript syntax for older browsers is disabled.
 
-If you need to test in a older browser, you can provide the `--target` CLI option to choose which of your targets to build. For example, to build the "legacy" target defined in your package.json, use `--target legacy`. If you don't have any explicit targets defined, and only have a `browserslist` in your package.json, you can use the implicit default target with `--target default`. This will result in your source code being transpiled just as it would be in production.
+If you need to test in a older browser, you can provide the `--target` CLI option to choose which of your targets to build. For example, to build the "legacy" target defined in your `package.json`, use `--target legacy`. If you don't have any explicit targets defined, and only have a `browserslist` in your `package.json`, you can use the implicit default target with `--target default`. This will result in your source code being transpiled just as it would be in production.
 
 See the [Targets](/features/targets/) documentation for more information.
 
@@ -70,7 +70,7 @@ In development, it can be frustrating to wait for your entire app to build befor
 You can use the `--lazy` CLI flag to tell Parcel to defer building files until they are requested in the browser, which can significantly reduce development build times. The server starts quickly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand. If you navigate back to a page that was previously built, it loads instantly.
 
 ```shell
-parcel 'pages/*.html' --lazy
+parcel --lazy 'pages/*.html'
 ```
 
 This also works with dynamic `import()`, not just separate entries. So if you have a page with a dynamically loaded feature, that feature will not be built until it is activated. When it is requested, Parcel eagerly builds all of the dependencies as well, without waiting for them to be requested.
@@ -90,13 +90,13 @@ Sometimes, you may need to use HTTPS during development. For example, you may ne
 To use an automatically generated self-signed certificate, use the `--https` CLI flag. The first time you load the page, you may need to manually trust this certificate in your browser.
 
 ```shell
-parcel src/index.html --https
+parcel --https src/index.html
 ```
 
 To use a custom certificate, you’ll need to use the `--cert` and `--key` CLI options to specify the certificate file and private key respectively.
 
 ```shell
-parcel src/index.html --cert certificate.cert --key private.key
+parcel --cert certificate.cert --key private.key src/index.html
 ```
 
 ## API proxy
@@ -190,7 +190,7 @@ It is best practice to not place a Parcel project in a folder that is synced to 
 
 ## Auto install
 
-When you use a language or plugin that isn’t included by default, Parcel will automatically install the necessary dependencies into your project for you. For example, if you include a `.sass` file, Parcel will install the `@parcel/transformer-sass` plugin. When this happens, you'll see a message in the terminal, and the new dependency will be added to the `devDependencies` in your package.json.
+When you use a language or plugin that isn’t included by default, Parcel will automatically install the necessary dependencies into your project for you. For example, if you include a `.sass` file, Parcel will install the `@parcel/transformer-sass` plugin. When this happens, you'll see a message in the terminal, and the new dependency will be added to the `devDependencies` in your `package.json`.
 
 Parcel automatically detects which package manager you use in your project based on the lock file. For example, if `yarn.lock` is found, then Yarn will be used to install packages. If no lock file is found, then the package manager is chosen based on what is installed on your system. The following package managers are currently supported, listed in priority order:
 
