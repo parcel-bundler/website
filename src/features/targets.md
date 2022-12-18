@@ -11,7 +11,7 @@ Parcel can compile your source code in multiple different ways simultaneously. T
 
 ## Entries
 
-“Entries” are the files that Parcel starts at when building your source code. They can be specified on the CLI, or using the `source` field in package.json.
+“Entries” are the files that Parcel starts at when building your source code. They can be specified on the CLI, or using the `source` field in `package.json`.
 
 ### `$ parcel <entries>`
 
@@ -31,7 +31,7 @@ Entries may also be directories, in which case a `package.json` file containing 
 
 ### `package.json#source`
 
-The `source` field in package.json can specify one or more entry files.
+The `source` field in `package.json` can specify one or more entry files.
 
 ```json
 {
@@ -47,7 +47,7 @@ The `source` field in package.json can specify one or more entry files.
 
 ### `package.json#targets.*.source`
 
-The `source` field within any target declared in package.json can specify one or more entry files that are specific to that target. For example, you could build your frontend and backend simultaneously, or your desktop and mobile apps. See below for details about configuring targets.
+The `source` field within any target declared in `package.json` can specify one or more entry files that are specific to that target. For example, you could build your frontend and backend simultaneously, or your desktop and mobile apps. See below for details about configuring targets.
 
 ```json
 {
@@ -72,7 +72,7 @@ By default, Parcel includes a single implicit target which outputs into the `dis
 $ parcel build src/index.html --dist-dir output
 ```
 
-The output directory can also be specified in package.json using the `targets` field. This will override the `--dist-dir` CLI option.
+The output directory can also be specified in `package.json` using the `targets` field. This will override the `--dist-dir` CLI option.
 
 ```json
 {
@@ -90,7 +90,7 @@ In addition to the output location, targets specify information about the “env
 
 #### `package.json#browserslist`
 
-For browser targets, the `browserslist` field in package.json can be used to specify which browsers you support. You can query by usage statistics or by version ranges of specific browsers. See the [browserslist docs](https://github.com/browserslist/browserslist#full-list) for more information.
+For browser targets, the `browserslist` field in `package.json` can be used to specify which browsers you support. You can query by usage statistics or by version ranges of specific browsers. See the [browserslist docs](https://github.com/browserslist/browserslist#full-list) for more information.
 
 ```json
 {
@@ -100,7 +100,7 @@ For browser targets, the `browserslist` field in package.json can be used to spe
 
 #### `package.json#engines`
 
-For Node.js and other targets, the `engines` field in package.json can be used to specify which versions you support. Engines are specified using a semver range.
+For Node.js and other targets, the `engines` field in `package.json` can be used to specify which versions you support. Engines are specified using a semver range.
 
 ```json
 {
@@ -135,13 +135,13 @@ is compiled to:
 
 This allows modern browsers that support ES modules to download a much smaller bundle, while legacy browsers are still supported using a fallback. This can significantly reduce bundle sizes and improve load times by avoiding transpilation of modern JavaScript syntax like classes, arrow functions, async/await, and more.
 
-This happens automatically based on your browser targets, as declared in the `"browserslist"` field in your package.json. If no `browserslist` is declared, or all browser targets support ES modules natively, then a `nomodule` fallback will not be generated.
+This happens automatically based on your browser targets, as declared in the `browserslist` field in your `package.json`. If no `browserslist` is declared, or all browser targets support ES modules natively, then a `nomodule` fallback will not be generated.
 
 ## Multiple targets
 
 You may have multiple targets in order to build your source code for multiple different environments simultaneously. For example, you could have “modern” and “legacy” targets for an app, or ES module and CommonJS targets for a library ([see below](#library-targets)).
 
-Targets are configured using the `targets` field in package.json. Each target has a name, specified as a key under the `targets` field, and an associated configuration object. For example, the `engines` field within each target can be used to customize the environment it is compiled for.
+Targets are configured using the `targets` field in `package.json`. Each target has a name, specified as a key under the `targets` field, and an associated configuration object. For example, the `engines` field within each target can be used to customize the environment it is compiled for.
 
 ```json
 {
@@ -160,7 +160,7 @@ Targets are configured using the `targets` field in package.json. Each target ha
 }
 ```
 
-When multiple targets are specified, the outputs will be written to `dist/${targetName}` by default (e.g. `dist/modern` and `dist/legacy` in the above example). This can be customized using the `distDir` field in each target. Alternatively, if the target has only a single entry, an exact file name can be specified for the output using a top-level package.json field corresponding to the target name.
+When multiple targets are specified, the outputs will be written to `dist/${targetName}` by default (e.g. `dist/modern` and `dist/legacy` in the above example). This can be customized using the `distDir` field in each target. Alternatively, if the target has only a single entry, an exact file name can be specified for the output using a top-level `package.json` field corresponding to the target name.
 
 ```json
 {
@@ -247,7 +247,7 @@ Defines what type of module to output.
 - `esmodule` – an ES module using `import` and `export` statements. Could be loaded in a `<script type="module">` tag in the browser, or loaded by Node.js or another bundler.
 - `commonjs` – a CommonJS module using `require` and `module.exports`. Could be loaded by Node.js or another bundler.
 
-For builtin library targets (e.g. `main` and `module`), the `outputFormat` is automatically inferred. The file extension defined in the target's top-level package.json field may also influence the output format. See [Library targets](#library-targets) above for more details.
+For builtin library targets (e.g. `main` and `module`), the `outputFormat` is automatically inferred. The file extension defined in the target's top-level `package.json` field may also influence the output format. See [Library targets](#library-targets) above for more details.
 
 ### `scopeHoist`
 
@@ -306,7 +306,7 @@ The `sourceMap` option also accepts an object with the following options.
 
 ### `source`
 
-Overrides the top-level `source` field in package.json for a target. This allows for each target to have different entries. See [package.json#targets.*.source](#package.json%23targets.*.source) for more details.
+Overrides the top-level `source` field in `package.json` for a target. This allows for each target to have different entries. See [package.json#targets.*.source](#package.json%23targets.*.source) for more details.
 
 ### `distDir`
 
