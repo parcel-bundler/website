@@ -6,11 +6,11 @@ eleventyNavigation:
   order: 16
 ---
 
-Parcel utilizes the `@parcel/source-maps` package for processing source maps to ensure performance and reliability when manipulating source maps across plugins and Parcel's core. This library has been written from the ground up in Rust, and gave us a 20x performance improvement over the previous JavaScript-based implementation. This improvement in performance is mainly due to optimizations in the data structures and the way in which we cache source maps.
+Parcel utilizes the `@parcel/source-map` package for processing source maps to ensure performance and reliability when manipulating source maps across plugins and Parcel's core. This library has been written from the ground up in Rust, and gave us a 20x performance improvement over the previous JavaScript-based implementation. This improvement in performance is mainly due to optimizations in the data structures and the way in which we cache source maps.
 
 ## How to use the library
 
-To use `@parcel/source-maps`, create an instance of the exported `SourceMap` class, on which you can call various functions to add and edit source mappings. A `projectRoot` directory path should be passed as an argument. All paths within the source map are converted to be relative to this.
+To use `@parcel/source-map`, create an instance of the exported `SourceMap` class, on which you can call various functions to add and edit source mappings. A `projectRoot` directory path should be passed as an argument. All paths within the source map are converted to be relative to this.
 
 Below is an example covering all ways of adding mappings to a `SourceMap` instance:
 
