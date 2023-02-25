@@ -67,7 +67,7 @@ Because Parcel processes each file individually, it implicitly enables the [`iso
 {% endsamplefile %}
 {% endsample %}
 
-Even when using TSC, Parcel still processes each TypeScript file individually, so the note about about `isolatedModules` still applies. In addition, some resolution features such as `paths` are not currently supported by Parcel. The TSC transformer also does not perform any type checking ([see below](#type-checking)).
+Even when using TSC, Parcel still processes each TypeScript file individually, so the note about `isolatedModules` still applies. In addition, some resolution features such as `paths` are not currently supported by Parcel. The TSC transformer also does not perform any type checking ([see below](#type-checking)).
 
 ### Babel
 
