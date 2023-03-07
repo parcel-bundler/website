@@ -79,47 +79,48 @@ parcel
 
 These parameters are supported by all Parcel commands.
 
-| Format                                       | Description                                                                                                                                  |
-| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--target [name]`                            | Specifies the targets to build. May be specified multiple times. See [Targets](/features/targets/). |
-| `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`. |
-| `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for the [`publicUrl`](/features/targets/#publicurl) option in package.json `targets`.                     |
-| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides the [`sourceMap`](/features/targets/#sourcemap) option in package.json `targets`.                                          |
+| Format                                       | Description                                                                                                                                                        |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| `--target [name]`                            | Specifies the targets to build. May be specified multiple times. See [Targets](/features/targets/).                                                                |
+| `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`.     |
+| `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for the [`publicUrl`](/features/targets/#publicurl) option in package.json `targets`.                        |
+| `--no-source-maps`                           | Disables sourcemaps, <br> Overrides the [`sourceMap`](/features/targets/#sourcemap) option in package.json `targets`.                                              |
 | `--config <path>`                            | Specify which Parcel config to use. <br> Can be a file path or package name. Defaults to `@parcel/config-default`. See [Parcel configuration](/features/plugins/). |
-| `--reporter <package name>`                  | Run the specified reporter plugin in addition to the ones specified in the `.parcelrc`. Can be specified multiple times.                                |
-| `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                           |
-| `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).
-| `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                                                   |                                                                                        |
-| `--profile`                                  | Profiles the build (a flamechart can be generated).                                                                                           |
-| `-V, --version`                              | Outputs the version number.                                                                                                                   |
+| `--reporter <package name>`                  | Run the specified reporter plugin in addition to the ones specified in the `.parcelrc`. Can be specified multiple times.                                           |
+| `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                |
+| `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).                                                              |
+| `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                         |     |
+| `--profile`                                  | Runs a CPU Sampling profile during the build (a flamechart can be generated).                                                                                      |
+| `--profile-application`                      | Runs an [Application Profile](/features/profiling) during the build.                                                                                               |
+| `-V, --version`                              | Outputs the version number.                                                                                                                                        |
 
 ### Parameters specific to `serve` and `watch`
 
-| Format              | Description                                                                           |
-| ------------------- | ------------------------------------------------------------------------------------- |
-| `-p, --port <port>` | The port for the dev server and HMR (the default port is `process.env.PORT` or 1234). See [Dev server](/features/development/#dev-server).  |
-| `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces                   |
-| `--https`           | Runs the dev server and HMR server over [HTTPS](/features/development/#https).        |
-| `--cert <path>`     | Path to a certificate to use. See [HTTPS](/features/development/#https).              |
-| `--key <path>`      | Path to a private key to use. See [HTTPS](/features/development/#https).              |
-| `--no-hmr`          | Disables [hot reloading](/features/development/#hot-reloading).                       |
-| `--hmr-port <port>` | The port for the HMR server (defaults to the dev server's port). See [Hot reloading](/features/development/#hot-reloading).     
-| `--hmr-host <host>` | The host for the HMR server (defaults to the dev server's host). See [Hot reloading](/features/development/#hot-reloading).                       |
-| `--no-autoinstall`  | Disables [auto install](/features/development/#auto-install).                         |
-| `--watch-for-stdin` | Stop Parcel once stdin is closed.                                                     |
+| Format              | Description                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-p, --port <port>` | The port for the dev server and HMR (the default port is `process.env.PORT` or 1234). See [Dev server](/features/development/#dev-server). |
+| `--host <host>`     | Sets the host to listen on, defaults to listening on all interfaces                                                                        |
+| `--https`           | Runs the dev server and HMR server over [HTTPS](/features/development/#https).                                                             |
+| `--cert <path>`     | Path to a certificate to use. See [HTTPS](/features/development/#https).                                                                   |
+| `--key <path>`      | Path to a private key to use. See [HTTPS](/features/development/#https).                                                                   |
+| `--no-hmr`          | Disables [hot reloading](/features/development/#hot-reloading).                                                                            |
+| `--hmr-port <port>` | The port for the HMR server (defaults to the dev server's port). See [Hot reloading](/features/development/#hot-reloading).                |
+| `--hmr-host <host>` | The host for the HMR server (defaults to the dev server's host). See [Hot reloading](/features/development/#hot-reloading).                |
+| `--no-autoinstall`  | Disables [auto install](/features/development/#auto-install).                                                                              |
+| `--watch-for-stdin` | Stop Parcel once stdin is closed.                                                                                                          |
 
 ### Parameters specific to `serve`
 
-| Format             | Description                                                                    |
-| ------------------ | ------------------------------------------------------------------------------ |
+| Format             | Description                                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `--open [browser]` | Automatically opens the entry in your browser. Defaults to the default browser. See [Dev server](/features/development/#dev-server). |
-| `--lazy`           | Only builds bundles requested by the dev server. See [Lazy mode](/features/development/#lazy-mode). |
+| `--lazy`           | Only builds bundles requested by the dev server. See [Lazy mode](/features/development/#lazy-mode).                                  |
 
 ### Parameters specific to `build`
 
-| Format                      | Description                                                                                                                                                  |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--no-optimize`             | Disables optimizations such as minification. <br> Overrides the [`optimize`](/features/targets/#optimize) option of package.json `targets`. See [Production](/features/production/).                 |
-| `--no-scope-hoist`          | Disables scope hoisting. <br> Overrides the [`scopeHoist`](/features/targets/#scopehoist) option of package.json `targets`. See [Scope hoisting](/features/scope-hoisting/).      
-| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](/features/production/#content-hashing). |                                                  |
-| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report. See [Detailed report](/features/production/#detailed-report).                                                              |
+| Format                      | Description                                                                                                                                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| `--no-optimize`             | Disables optimizations such as minification. <br> Overrides the [`optimize`](/features/targets/#optimize) option of package.json `targets`. See [Production](/features/production/).             |
+| `--no-scope-hoist`          | Disables scope hoisting. <br> Overrides the [`scopeHoist`](/features/targets/#scopehoist) option of package.json `targets`. See [Scope hoisting](/features/scope-hoisting/).                     |
+| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](/features/production/#content-hashing). |     |
+| `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report. See [Detailed report](/features/production/#detailed-report).                                    |

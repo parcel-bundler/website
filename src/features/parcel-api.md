@@ -4,7 +4,7 @@ title: Parcel API
 eleventyNavigation:
   key: features-parcel-api
   title: 📚 Parcel API
-  order: 10
+  order: 11
 ---
 
 The Parcel API can be used to programmatically run builds or watch a project for changes. It is the same API as is used by the Parcel CLI. Use the API when you need more flexibility, or need to integrate Parcel into another build system.
@@ -28,11 +28,11 @@ There are two required parameters:
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default'
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
 });
 ```
 
@@ -49,17 +49,17 @@ You can also use the `defaultTargetOptions` to set values for [Targets](/feature
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
-  mode: 'production',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
+  mode: "production",
   defaultTargetOptions: {
     engines: {
-      browsers: ['last 1 Chrome version']
-    }
-  }
+      browsers: ["last 1 Chrome version"],
+    },
+  },
 });
 ```
 
@@ -72,12 +72,12 @@ When set to an array, the `targets` option can be used to specify which of the p
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
-  targets: ['modern']
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
+  targets: ["modern"],
 });
 ```
 
@@ -90,24 +90,24 @@ Alternatively, `targets` may be set to an object, which will override any target
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
-  mode: 'production',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
+  mode: "production",
   targets: {
     modern: {
       engines: {
-        browsers: ['last 1 Chrome version']
-      }
+        browsers: ["last 1 Chrome version"],
+      },
     },
     legacy: {
       engines: {
-        browsers: ['IE 11']
-      }
-    }
-  }
+        browsers: ["IE 11"],
+      },
+    },
+  },
 });
 ```
 
@@ -122,15 +122,15 @@ Environment variables such as `NODE_ENV` may be set using the `env` option. This
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
-  mode: 'production',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
+  mode: "production",
   env: {
-    NODE_ENV: 'production'
-  }
+    NODE_ENV: "production",
+  },
 });
 ```
 
@@ -145,18 +145,18 @@ By default, Parcel does not write any output to the CLI when you use the API. Th
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
-import {fileURLToPath} from 'url';
+import { Parcel } from "@parcel/core";
+import { fileURLToPath } from "url";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
   additionalReporters: [
     {
-      packageName: '@parcel/reporter-cli',
-      resolveFrom: fileURLToPath(import.meta.url)
-    }
-  ]
+      packageName: "@parcel/reporter-cli",
+      resolveFrom: fileURLToPath(import.meta.url),
+    },
+  ],
 });
 ```
 
@@ -171,15 +171,15 @@ Once you’ve constructed a `Parcel` instance, you can use it to build a project
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default'
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
 });
 
 try {
-  let {bundleGraph, buildTime} = await bundler.run();
+  let { bundleGraph, buildTime } = await bundler.run();
   let bundles = bundleGraph.getBundles();
   console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
 } catch (err) {
@@ -200,11 +200,11 @@ To watch a project for changes and be notified of each rebuild, use the `watch` 
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default'
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
 });
 
 let subscription = await bundler.watch((err, event) => {
@@ -213,10 +213,10 @@ let subscription = await bundler.watch((err, event) => {
     throw err;
   }
 
-  if (event.type === 'buildSuccess') {
+  if (event.type === "buildSuccess") {
     let bundles = event.bundleGraph.getBundles();
     console.log(`✨ Built ${bundles.length} bundles in ${event.buildTime}ms!`);
-  } else if (event.type === 'buildFailure') {
+  } else if (event.type === "buildFailure") {
     console.log(event.diagnostics);
   }
 });
@@ -236,17 +236,17 @@ The development server is included in the default Parcel config. It can be enabl
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel} from '@parcel/core';
+import { Parcel } from "@parcel/core";
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
   serveOptions: {
-    port: 3000
+    port: 3000,
   },
   hmrOptions: {
-    port: 3000
-  }
+    port: 3000,
+  },
 });
 
 await bundler.watch();
@@ -267,25 +267,25 @@ This example writes its output into an in-memory file system, and logs the conte
 {% samplefile "build.mjs" %}
 
 ```javascript
-import {Parcel, createWorkerFarm} from '@parcel/core';
-import {MemoryFS} from '@parcel/fs';
+import { Parcel, createWorkerFarm } from "@parcel/core";
+import { MemoryFS } from "@parcel/fs";
 
 let workerFarm = createWorkerFarm();
 let outputFS = new MemoryFS(workerFarm);
 
 let bundler = new Parcel({
-  entries: 'a.js',
-  defaultConfig: '@parcel/config-default',
+  entries: "a.js",
+  defaultConfig: "@parcel/config-default",
   workerFarm,
-  outputFS
+  outputFS,
 });
 
 try {
-  let {bundleGraph} = await bundler.run();
+  let { bundleGraph } = await bundler.run();
 
   for (let bundle of bundleGraph.getBundles()) {
     console.log(bundle.filePath);
-    console.log(await outputFS.readFile(bundle.filePath, 'utf8'));
+    console.log(await outputFS.readFile(bundle.filePath, "utf8"));
   }
 } finally {
   await workerFarm.end();
