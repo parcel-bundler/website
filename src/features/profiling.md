@@ -15,9 +15,28 @@ A Parcel application profile can help you to optimize your build by answering qu
 
 The overhead of running an application profile is relatively minimal, but is non-zero - it's certainly less expensive than running a sampling profile during the build. In particular, the JSON file produced can be quite large depending on the numbers of plugins you are using and the size of your build. Consider these factors when deciding when to enable application profiling.
 
-### Format
+### Usage
 
-When executed with the `--profile-application` CLI argument, or when `shouldProfileApplication` is set to `true` in the options passed to Parcel when it is called via the API, then Parcel will generate an application profile JSON file in the root of your project. Parcel will log the filename it is writing the profile to when the build starts.
+#### CLI
+
+To generate an application profile with the CLI, start Parcel with the `--profile-application` CLI argument. Parcel will generate an [application profile JSON](#format) file in the root of your project. Parcel will log the filename it is writing the profile to when the build starts.
+
+#### API
+
+To generate an application profile when using the API, you must pass `shouldProfileApplication: true` with the Parcel options in order to enable the applicaiton profiling events. In addition, you will need to add the application profile reporter via `additionalReporters` to have Parcel create the profile JSON file. For example:
+
+```js
+{
+    // options
+    additionalReporters: [{
+        packageName: '@parcel/reporter-application-profiler',
+        resolveFrom: __dirname,
+      },
+    ],
+}
+```
+
+### Format
 
 This file uses the [Chrome Tracing Format](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview), similar to CPU profiles, but analysing it is a little bit different.
 
