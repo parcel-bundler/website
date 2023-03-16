@@ -11,7 +11,7 @@ eleventyNavigation:
 
 CPU profiling or sampling profiling generates a profile which tracks execution of JavaScript during the build, and can be used to identify parts of the codebase and where time was spent in it during the build. Application profiling is a higher level profile, that tracks specific phases of Parcel's execution, and which plugins were called into, and how long is spent in each.
 
-A Parcel application profile can help you to optimize your build by answering questions such as, "Which plugin is taking the most time during my build?" or "Which file in my project takes the longest to transform?". These questions are not as easy to answer with the data provided by a CPU sampling profile, but can be answered with a Parcel applicaiton profile.
+A Parcel application profile can help you to optimize your build by answering questions such as, "Which plugin is taking the most time during my build?" or "Which file in my project takes the longest to transform?". These questions are not as easy to answer with the data provided by a CPU sampling profile, but can be answered with a Parcel application profile.
 
 The overhead of running an application profile is relatively minimal, but is non-zero - it's certainly less expensive than running a sampling profile during the build. In particular, the JSON file produced can be quite large depending on the numbers of plugins you are using and the size of your build. Consider these factors when deciding when to enable application profiling.
 
@@ -23,16 +23,15 @@ To generate an application profile with the CLI, start Parcel with the `--profil
 
 #### API
 
-To generate an application profile when using the API, you must pass `shouldProfileApplication: true` with the Parcel options in order to enable the applicaiton profiling events. In addition, you will need to add the application profile reporter via `additionalReporters` to have Parcel create the profile JSON file. For example:
+To generate an application profile when using the API, you must pass `shouldProfileApplication: true` with the Parcel options in order to enable the application profiling events. In addition, you will need to add the application profile reporter via `additionalReporters` to have Parcel create the profile JSON file. For example:
 
 ```js
 {
     // options
     additionalReporters: [{
-        packageName: '@parcel/reporter-application-profiler',
-        resolveFrom: __dirname,
-      },
-    ],
+      packageName: '@parcel/reporter-application-profiler',
+      resolveFrom: __dirname,
+    }],
 }
 ```
 
@@ -50,7 +49,7 @@ The Parcel application profile consists only of type `X` Complete Events. The ra
 
 While you can load a Parcel application profile into Chrome Dev Tools, the analysis options for this kind of profile in that tool is fairly limited. This is because the data is not typical data that Dev Tools is designed for. The application profile events, for example, contain metadata that can be useful for deeper analysis and this metadata is not accessible through Dev Tools. In addition, a medium to large sized build may produce a volume of data that is not feasible to load into Chrome Dev Tools due to it's size.
 
-The recommended tool for analysing Parcel application profiles is [Perfetto](https://ui.perfetto.dev/), which is also built by Google, but specifically designed for dealing with large traces, and non-Browser traces. In particlar, the most useful part of Perfetto for analysing these traces is that it loads the data into an [SQLite](https://www.sqlite.org/index.html) database that can be queried via the UI - this allows us to answer the kinds of questions that were mentioned earlier.
+The recommended tool for analysing Parcel application profiles is [Perfetto](https://ui.perfetto.dev/), which is also built by Google, but specifically designed for dealing with large traces, and non-browser traces. In particular, the most useful part of Perfetto for analysing these traces is that it loads the data into an [SQLite](https://www.sqlite.org/index.html) database that can be queried via the UI - this allows us to answer the kinds of questions that were mentioned earlier.
 
 #### Example queries
 
@@ -90,7 +89,7 @@ order by dur_ms desc
 
 ##### Which Babel plugins are ones are taking the most time in my build?
 
-This can be useful to identify which Babel plugins that are still needed in your build, and exectued by `@parcel/transform-babel`, take the most time and so can be prioritised to be removed or replaced with Parcel transforms.
+This can be useful to identify which Babel plugins that are still needed in your build, and executed by `@parcel/transform-babel`, take the most time and so can be prioritised to be removed or replaced with Parcel transforms.
 
 ```sql
 select
