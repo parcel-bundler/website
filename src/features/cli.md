@@ -80,7 +80,7 @@ parcel
 These parameters are supported by all Parcel commands.
 
 | Format                                       | Description                                                                                                                                                        |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `--target [name]`                            | Specifies the targets to build. May be specified multiple times. See [Targets](/features/targets/).                                                                |
 | `--dist-dir <dir>`                           | Output directory to write to when unspecified by targets. <br> Default value for the [`distDir`](/features/targets/#distdir) option in package.json `targets`.     |
 | `--public-url <url>`                         | The path prefix for absolute urls. <br> Default value for the [`publicUrl`](/features/targets/#publicurl) option in package.json `targets`.                        |
@@ -89,7 +89,7 @@ These parameters are supported by all Parcel commands.
 | `--reporter <package name>`                  | Run the specified reporter plugin in addition to the ones specified in the `.parcelrc`. Can be specified multiple times.                                           |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                |
 | `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).                                                              |
-| `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                         |     |
+| `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                         |
 | `--profile`                                  | Runs a CPU Sampling profile during the build (a flamechart can be generated).                                                                                      |
 | `--profile-application`                      | Runs an [Application Profile](/features/profiling) during the build.                                                                                               |
 | `-V, --version`                              | Outputs the version number.                                                                                                                                        |
@@ -119,8 +119,8 @@ These parameters are supported by all Parcel commands.
 ### Parameters specific to `build`
 
 | Format                      | Description                                                                                                                                                                                      |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `--no-optimize`             | Disables optimizations such as minification. <br> Overrides the [`optimize`](/features/targets/#optimize) option of package.json `targets`. See [Production](/features/production/).             |
 | `--no-scope-hoist`          | Disables scope hoisting. <br> Overrides the [`scopeHoist`](/features/targets/#scopehoist) option of package.json `targets`. See [Scope hoisting](/features/scope-hoisting/).                     |
-| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](/features/production/#content-hashing). |     |
+| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](/features/production/#content-hashing). |
 | `--detailed-report [depth]` | Displays the largest 10 (number configurable with `depth`) assets per bundle in the CLI report. See [Detailed report](/features/production/#detailed-report).                                    |
