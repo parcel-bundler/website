@@ -47,7 +47,7 @@ sources, especially from the file system.
 
 {% warning %}
 
-Parcel [does not support ES Modules](https://github.com/parcel-bundler/parcel/issues/7639). The code examples in the "Plugin System" section assume that your code gets finally transpiled to use the [syntax of CommonJS modules](https://github.com/parcel-bundler/parcel/issues/7639#issuecomment-1356480914). If you write your plugins in vanilla javascript, use CommonJS directly.
+Parcel [does not support ES Modules](https://github.com/parcel-bundler/parcel/issues/7639) in plugins yet. The examples in the "Plugin System" section assume that your code is transpiled to CommonJS. You can also author plugins in vanilla JavaScript using CommonJS directly.
 
 {% endwarning %}
 
