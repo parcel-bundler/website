@@ -45,6 +45,13 @@ If something you need is not being passed through `opts`, please come talk to
 the Parcel team about it. Avoid trying to get information yourself from other
 sources, especially from the file system.
 
+{% warning %}
+
+Parcel [does not support ES Modules](https://github.com/parcel-bundler/parcel/issues/7639) in plugins yet. The examples in the "Plugin System" section assume that your code is transpiled to CommonJS. You can also author plugins in vanilla JavaScript using CommonJS directly.
+
+{% endwarning %}
+
+
 ## Loading configuration
 
 Many plugins will need to load configuration of some kind from the user’s project. In some cases, the compiler or tool the plugin is wrapping will have a config loading mechanism built in. In other cases, you’ll need to create a config file format for your plugin.
