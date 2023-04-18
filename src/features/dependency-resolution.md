@@ -176,7 +176,7 @@ Parcel supports importing multiple files at once via globs, however, since glob 
 ```json
 {
   "extends": "@parcel/config-default",
-  "resolvers": ["@parcel/resolver-glob", "..."]
+  "resolvers": ["@parcel/resolver-glob", "@parcel/resolver-default", "..."]
 }
 ```
 
