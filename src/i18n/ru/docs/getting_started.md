@@ -13,7 +13,7 @@ yarn global add parcel-bundler
 npm:
 
 ```bash
-npm install -g parcel-bundler
+npm install -g parcel
 ```
 
 Создайте файл package.json в папке вашего проекта, используя:
