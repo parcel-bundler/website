@@ -91,7 +91,7 @@ These parameters are supported by all Parcel commands.
 | `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).                                                              |
 | `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                         |
 | `--profile`                                  | Runs a CPU Sampling profile during the build (a flamechart can be generated).                                                                                      |
-| `--profile-application`                      | Runs an [Application Profile](/features/profiling) during the build.                                                                                               |
+| `--trace`                                    | Runs a [trace](/features/profiling) during the build.                                                                                                              |
 | `-V, --version`                              | Outputs the version number.                                                                                                                                        |
 
 ### Parameters specific to `serve` and `watch`
