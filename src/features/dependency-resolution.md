@@ -36,7 +36,7 @@ In the above example, the first import would resolve to `/path/to/project/src/ut
 
 It is recommended to include the full file extension in all import specifiers. This both improves dependency resolution performance and reduces ambiguity.
 
-That said, for compatibility with CommonJS in Node, and with TypeScript, Parcel allows the file extension to be omitted for certain file types. The file extensions that may be omitted include `.ts`, `.tsx`, `.js`, `.jsx`, and `.json`. A file extension is required to import all other file types.
+That said, for compatibility with CommonJS in Node, and with TypeScript, Parcel allows the file extension to be omitted for certain file types. The file extensions that may be omitted include `.ts`, `.tsx`, `.mjs`, `.js`, `.jsx`, `.cjs`, and `.json`. A file extension is required to import all other file types.
 
 The following example resolves to the same files as above.
 
@@ -52,6 +52,8 @@ import '../constants';
 {% endsample %}
 
 Note that these may only be omitted when importing from a JavaScript or TypeScript file. File extensions are always required for dependencies defined in other file types like HTML and CSS.
+
+In TypeScript files, Parcel will also try replacing JavaScript extensions including `.js`, `.jsx`, `.mjs`, and `.cjs` with their TypeScript equivalents (`.ts`, `.tsx`, `.mts`, and `.cts`). For example, a dependency on `./foo.js` will resolve to `./foo.ts`. This matches TSC's behavior. However, unlike TSC, if the original `./foo.js` exists, it will be used instead of the TS version, matching the behavior of Node and other bundlers.
 
 #### Directory index files
 
