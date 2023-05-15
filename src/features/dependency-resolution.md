@@ -610,6 +610,97 @@ This can be done by creating an alias to an object with a `global` property. The
 {% endsamplefile %}
 {% endsample %}
 
+## TSConfig
+
+Parcel supports some settings defined in TypeScript's `tsconfig.json` config file, including `baseUrl`, `paths`, and `moduleSuffixes`. Parcel searches upward from the file containing the dependency to find the nearest `tsconfig.json` file. It also supports using the [`extends`](https://www.typescriptlang.org/tsconfig#extends) option to merge the settings from multiple tsconfigs together. See the [TypeScript docs](https://www.typescriptlang.org/tsconfig) for more details.
+
+### `baseUrl`
+
+The `baseUrl` field defines the base directory from which to resolve [bare specifiers](#bare-specifiers).
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src"
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import 'Home';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, `Home` will resolve to `src/Home.js` if it exists. Otherwise, it will fall back to `node_modules/Home`, for example.
+
+### `paths`
+
+The `paths` field can be used to define mappings from [bare specifiers](#bare-specifiers) to file paths. You can also define wildcard patterns using the `*` character.
+
+ File paths referenced in the `paths` field are relative to the `baseUrl` if defined, otherwise to the directory containing the `tsconfig.json` file.
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "jquery": ["./vendor/jquery/dist/jquery"],
+      "app/*": ["./src/app/*"]
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import 'jquery';
+import 'app/foo';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, `jquery` resolves to `./vendor/jquery/dist/jquery.js`, and `app/foo` resolves to `./src/app/foo.js`.
+
+### `moduleSuffixes`
+
+The `moduleSuffixes` field allows you to specify the file name suffixes to search for when resolving a module.
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "moduleSuffixes": [".ios", ".native", ""]
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import './foo';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, Parcel will look for `./foo.ios.ts`, `./foo.native.ts`, and `./foo.ts` (in addition to other extensions like `.tsx`, `.js`, etc.).
+
 ## Configuring other tools
 
 This section covers how to configure other tools to work with Parcel’s extensions to the Node resolution algorithm.
