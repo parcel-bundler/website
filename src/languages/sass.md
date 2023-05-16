@@ -39,6 +39,6 @@ To configure Sass, create a `.sassrc` or `.sassrc.json` file. For a list of all 
 
 {% warning %}
 
-**Note**: `.sassrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.sassrc.json`) instead.
+**Note**: `.sassrc.js`, `.sassrc.mjs`, and `.sassrc.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.sassrc.json`) instead.
 
 {% endwarning %}
