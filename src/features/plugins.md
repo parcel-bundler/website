@@ -4,7 +4,7 @@ title: Plugins
 eleventyNavigation:
   key: features-plugins
   title: 🔌 Plugins
-  order: 11
+  order: 12
 ---
 
 Parcel works out of the box for many projects with zero configuration. But if you want more control, or need to extend or override Parcel’s defaults, you can do so by creating a `.parcelrc` file in your project.
@@ -375,7 +375,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
   "compressors": {
     "*.{js,html,css}": [
       "...",
-      "@parcel/compressor-gzip", 
+      "@parcel/compressor-gzip",
       "@parcel/compressor-brotli"
     ]
   }
@@ -408,15 +408,34 @@ Reporters that you use infrequently may also be specified on the [CLI](/features
 
 ### Local plugins
 
-Parcel plugins are NPM packages. This means they have a `package.json` which declares the version of Parcel they are compatible with, along with any dependencies they may have. They must also follow a naming system to ensure clarity.
+Most parcel plugins are NPM packages. This means they have a `package.json` which declares the version of Parcel they are compatible with, along with any dependencies they may have. They must also follow a naming system to ensure clarity.
 
 Usually, Parcel plugins are published to the NPM registry, or to an internal company registry (e.g. Artifactory). This encourages plugins to be shared with the community or across projects within your company to avoid duplication.
 
 However, when developing a plugin, it can be useful to run it directly in your project without publishing it first. There are a few ways of doing this.
 
+#### Relative file paths
+
+Plugins may be referenced as relative paths from the `.parcelrc` config file they are used in. These may be CommonJS or ESM modules, as determined using the `.mjs` or `.cjs` extension, or the `"type": "module"` field in the nearest package.json (the same way Node loads modules).
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.js": ["./my-local-plugin.mjs", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 #### Yarn and NPM workspaces
 
-One way is to use a monorepo setup via [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) or [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces). This allows you to depend on other packages within your repo the same way you depend on published packages. To do this, set up a project structure like this:
+Another way to use local plugins is to use a monorepo setup via [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) or [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces). This allows you to depend on other packages within your repo the same way you depend on published packages. To do this, set up a project structure like this:
 
 ```
 project
@@ -486,4 +505,3 @@ In your root package.json, you can define a dependency on the `parcel-transforme
 {% endsample %}
 
 Then, in your `.parcelrc` you can reference `parcel-transformer-foo` as you would a published package. Whenever you update the code for your plugin, Parcel will rebuild your project.
-

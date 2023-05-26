@@ -130,7 +130,7 @@ Parcel supports external references via the `href` and `xlink:href` attributes o
 External resources referenced via the `url()` function in presentation attributes such as `fill`, `stroke`, `clip-path`, and many others are also supported.
 
 ```xml
-<circle 
+<circle
   cx="50" cy="40" r="35"
   fill="url(external.svg#gradient)" />
 ```
@@ -188,8 +188,8 @@ CSS files referenced via `@import`, and JavaScript referenced via `import` will 
 The [`style`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/style) attribute can be used on any SVG element to define CSS styles. Parcel will process the inline CSS, and insert the result back into the `style` attribute. This includes following referenced URLs, as well as transforming modern CSS for your target browsers.
 
 ```xml
-<circle 
-  cx="50" cy="40" r="35" 
+<circle
+  cx="50" cy="40" r="35"
   style="fill: url(external.svg#gradient)" />
 ```
 
@@ -367,7 +367,6 @@ To configure SVGO, you can create a `svgo.config.json` file in your project root
 
 {% warning %}
 
-**Note**: `svgo.config.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
+**Note**: `svgo.config.js`, `svgo.config.mjs`, and `svgo.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
 
 {% endwarning %}
-

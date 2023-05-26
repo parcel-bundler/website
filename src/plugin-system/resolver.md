@@ -24,12 +24,22 @@ export default new Resolver({
       };
     }
 
-    // Let the next resolver in the pipeline handle 
+    // Let the next resolver in the pipeline handle
     // this dependency.
     return null;
   }
 });
 ```
+
+## Loading configuration
+
+Loading configuration from the user’s project should be done in the `loadConfig` method of a Resolver plugin. See [Loading configuration](/plugin-system/authoring-plugins/#loading-configuration) for details on how to do this.
+
+{% warning %}
+
+**Note**: It's important to use Parcel's config loading mechanism so that the cache can be properly invalidated. Avoid loading files directly from the file system.
+
+{% endwarning %}
 
 ## Virtual modules
 

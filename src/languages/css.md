@@ -266,7 +266,7 @@ The following placeholders are currently supported:
 {
   "@parcel/transformer-css": {
     "cssModules": {
-      // ❌ [local] must be at the end so that 
+      // ❌ [local] must be at the end so that
       // auto-generated grid line names work
       "pattern": "[local]-[hash]"
       // ✅ do this instead
@@ -563,7 +563,7 @@ The following pseudo classes may be configured as shown above:
 
 [PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins. While Parcel supports equivalent functionality to many common PostCSS plugins such as [autoprefixer](https://github.com/postcss/autoprefixer) and [postcss-preset-env](https://github.com/csstools/postcss-preset-env) out of the box as described above, PostCSS is useful for more custom CSS transformations such as non-standard syntax additions. It is also used by popular CSS frameworks such as [Tailwind](https://tailwindcss.com).
 
-You can use PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, or `postcss.config.js`.
+You can use PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, `.postcssrc.mjs`, `.postcssrc.cjs`, `postcss.config.js`, `postcss.config.mjs`, or `postcss.config.cjs`.
 
 First, install the postcss plugins you wish to use into your app:
 
