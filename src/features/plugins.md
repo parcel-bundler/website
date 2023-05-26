@@ -4,7 +4,7 @@ title: Plugins
 eleventyNavigation:
   key: features-plugins
   title: 🔌 Plugins
-  order: 11
+  order: 12
 ---
 
 Parcel works out of the box for many projects with zero configuration. But if you want more control, or need to extend or override Parcel’s defaults, you can do so by creating a `.parcelrc` file in your project.
@@ -375,7 +375,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
   "compressors": {
     "*.{js,html,css}": [
       "...",
-      "@parcel/compressor-gzip", 
+      "@parcel/compressor-gzip",
       "@parcel/compressor-brotli"
     ]
   }
@@ -486,4 +486,3 @@ In your root package.json, you can define a dependency on the `parcel-transforme
 {% endsample %}
 
 Then, in your `.parcelrc` you can reference `parcel-transformer-foo` as you would a published package. Whenever you update the code for your plugin, Parcel will rebuild your project.
-
