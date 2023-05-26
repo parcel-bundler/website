@@ -9,7 +9,7 @@ eleventyNavigation:
 
 ## Tracing
 
-CPU profiling or sampling profiling generates a profile which tracks execution of JavaScript during the build, and can be used to identify parts of the codebase and where time was spent in it during the build. Tracing is a higher level profile, that tracks specific phases of Parcel's execution, and which plugins were called into, and how long is spent in each.
+CPU profiling or sampling profiling generates a profile which tracks execution of JavaScript during the build, and can be used to identify parts of the codebase and where time was spent in it during the build. Tracing is a higher level profile, that tracks specific phases of Parcel's execution, which plugins were called into, and how long is spent in each.
 
 A Parcel trace can help you to optimize your build by answering questions such as, "Which plugin is taking the most time during my build?" or "Which file in my project takes the longest to transform?". These questions are not as easy to answer with the data provided by a CPU sampling profile, but can be answered with a Parcel trace.
 
@@ -19,20 +19,23 @@ The overhead of running a trace is relatively minimal, but is non-zero - it's ce
 
 #### CLI
 
-To generate a trace with the CLI, start Parcel with the `--trace` CLI argument. Parcel will generate an [trace JSON](#format) file in the root of your project. Parcel will log the filename it is writing the trace to when the build starts.
+To generate a trace with the CLI, start Parcel with the `--trace` CLI argument. Parcel will generate a [trace JSON](#format) file in the root of your project. Parcel will log the filename it is writing the trace to when the build starts.
 
 #### API
 
 To generate a trace when using the API, you must pass `shouldTrace: true` with the Parcel options in order to enable the tracing events. In addition, you will need to add the tracer reporter via `additionalReporters` to have Parcel create the trace JSON file. For example:
 
 ```js
-{
-    // options
-    additionalReporters: [{
-      packageName: '@parcel/reporter-tracer',
-      resolveFrom: __dirname,
-    }],
-}
+import {Parcel} from '@parcel/core';
+
+let bundler = new Parcel({
+  // ...
+  shouldTrace: true,
+  additionalReporters: [{
+    packageName: '@parcel/reporter-tracer',
+    resolveFrom: __dirname,
+  }],
+});
 ```
 
 ### Format

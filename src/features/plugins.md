@@ -109,7 +109,7 @@ If you’d like to define a higher priority pipeline that extends a lower priori
 
 In the above example, when processing `icons/home.svg`, we first run `@company/parcel-transformer-svg-icons` and then `@parcel/transformer-svg`.
 
-This also applies to configs that have been extended. If a `"..."` is used and there are no lower priority pipelines defined in the current config, Parcel falls back to pipelines defined in the extended configs.
+This also applies to configs that have been extended. If a  `"..."` is used and there are no lower priority pipelines defined in the current config, Parcel falls back to pipelines defined in the extended configs.
 
 Since `@parcel/transformer-svg` is included in the default config, the above example could be rewritten like this:
 
@@ -164,7 +164,7 @@ You can also define your own named pipelines. For example, you could define an `
 {% samplefile "src/example.js" %}
 
 ```javascript
-import buffer from "arraybuffer:./file.png";
+import buffer from 'arraybuffer:./file.png';
 ```
 
 {% endsamplefile %}
