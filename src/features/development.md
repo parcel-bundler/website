@@ -152,6 +152,8 @@ module.exports = function (app) {
 {% endsamplefile %}
 {% endsample %}
 
+If you would like to write this as an ES module instead, you can do so using a `.proxyrc.mjs` file, or by using the `"type": "module"` option in your `package.json`.
+
 ### File watcher
 
 To support an optimal caching and development experience Parcel utilizes a very fast watcher written in C++ that integrates with low-level file watching functionality of each operating system. Using this watcher Parcel watches every file in your project root (including all `node_modules`). Based on events and metadata from these files, Parcel determines which files need to be rebuilt.

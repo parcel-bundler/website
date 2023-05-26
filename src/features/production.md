@@ -23,7 +23,7 @@ Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box. Min
 
 By default, minification is enabled when using the `parcel build` command. You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
 
-Parcel uses [terser](https://github.com/fabiosantoscode/terser) to minify JavaScript, [lightningcss](https://github.com/parcel-bundler/lightningcss) for CSS, [htmlnano](https://github.com/posthtml/htmlnano) for HTML, and [svgo](https://github.com/svg/svgo) for SVG. If needed, you can configure these tools using a `.terserrc`, `.htmlnanorc`, or `svgo.config.json` config file. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
+Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, [htmlnano](https://github.com/posthtml/htmlnano) for HTML, and [svgo](https://github.com/svg/svgo) for SVG. If needed, you can configure these tools using a `.terserrc`, `.htmlnanorc`, or `svgo.config.json` config file. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
 
 ### Tree shaking
 
@@ -129,6 +129,22 @@ You can also disable content hashing using the `--no-content-hash` CLI flag. Not
 ### Cascading invalidation
 
 Parcel uses a manifest in each entry bundle to avoid the [cascading invalidation](https://philipwalton.com/articles/cascading-cache-invalidation/) problem in many cases. This manifest includes a mapping of stable bundle ids to final content hashed filenames. When one bundle needs to reference another, it uses the bundle id rather than the content hashed name. This means that when a bundle updates, only that bundle and the entry will need to be invalidated in the browser cache and intermediary bundles will not change. This improves the cache hit rate across deployments.
+
+When the size of an entry bundle is over a threshold (100 KB by default), the manifest is automatically split into a separate bundle. Since the manifest changes on every build, this avoids invalidating the entire entry bundle even when no other code in the entry changed. This can help decrease the number of bytes a user needs to download to receive an update. The size threshold at which to split the manifest into its own bundle can be configured in the `package.json` file in your project root. It is defined in bytes prior to minification.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "@parcel/runtime-js": {
+    "splitManifestThreshold": 10000
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Shared bundles
 
