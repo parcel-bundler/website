@@ -42,7 +42,7 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L469"><i>parcel/packages/core/types/index.js:469</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L476"><i>parcel/packages/core/types/index.js:476</i></a>
 </h4>
 <p>Usen when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.</p>
 
@@ -87,6 +87,11 @@ over time.</p>
 <div class="inline-method"><p>The location within the source file where the dependency was found.</p>
 </div><pre class="interface"><code>  +env?: <a href="/plugin-system/api/#EnvironmentOptions">EnvironmentOptions</a>,</code></pre>
 <div class="inline-method"><p>The environment of the dependency.</p>
+</div><pre class="interface"><code>  +packageConditions?: Array&lt;string&gt;,</code></pre>
+<div class="inline-method"><p>A list of custom conditions to use when resolving package.json &quot;exports&quot; and &quot;imports&quot;.
+This is combined with the conditions from the environment. However, it overrides the
+default &quot;import&quot; and &quot;require&quot; conditions inferred from the specifierType. To include those
+in addition to custom conditions, explicitly add them to this list.</p>
 </div><pre class="interface"><code>  +meta?: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <div class="inline-method"><p>Plugin-specific metadata for the dependency.</p>
 </div><pre class="interface"><code>  +pipeline?: string,</code></pre>
@@ -94,6 +99,8 @@ over time.</p>
 </div><pre class="interface"><code>  +resolveFrom?: <a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <div class="inline-method"><p>The file path where the dependency should be resolved from.
 By default, this is the path of the source file where the dependency was specified.</p>
+</div><pre class="interface"><code>  +range?: <a href="/plugin-system/api/#SemverRange">SemverRange</a>,</code></pre>
+<div class="inline-method"><p>The semver version range expected for the dependency.</p>
 </div><pre class="interface"><code>  +symbols?: $ReadOnlyMap&lt;<a href="/plugin-system/api/#Symbol">Symbol</a>, {|
     local: <a href="/plugin-system/api/#Symbol">Symbol</a>,
     loc: ?<a href="/plugin-system/api/#SourceLocation">SourceLocation</a>,
@@ -108,7 +115,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L535"><i>parcel/packages/core/types/index.js:535</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L551"><i>parcel/packages/core/types/index.js:551</i></a>
 </h4>
 <p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).
 <br></p>
@@ -158,6 +165,11 @@ over time.</p>
 <div class="inline-method"><p>The location within the source file where the dependency was found.</p>
 </div><pre class="interface"><code>  +env: <a href="/plugin-system/api/#Environment">Environment</a>,</code></pre>
 <div class="inline-method"><p>The environment of the dependency.</p>
+</div><pre class="interface"><code>  +packageConditions: ?Array&lt;string&gt;,</code></pre>
+<div class="inline-method"><p>A list of custom conditions to use when resolving package.json &quot;exports&quot; and &quot;imports&quot;.
+This is combined with the conditions from the environment. However, it overrides the
+default &quot;import&quot; and &quot;require&quot; conditions inferred from the specifierType. To include those
+in addition to custom conditions, explicitly add them to this list.</p>
 </div><pre class="interface"><code>  +meta: <a href="/plugin-system/api/#Meta">Meta</a>,</code></pre>
 <div class="inline-method"><p>Plugin-specific metadata for the dependency.</p>
 </div><pre class="interface"><code>  +target: ?<a href="/plugin-system/api/#Target">Target</a>,</code></pre>
@@ -171,6 +183,8 @@ over time.</p>
 </div><pre class="interface"><code>  +resolveFrom: ?<a href="/plugin-system/api/#FilePath">FilePath</a>,</code></pre>
 <div class="inline-method"><p>The file path where the dependency should be resolved from.
 By default, this is the path of the source file where the dependency was specified.</p>
+</div><pre class="interface"><code>  +range: ?<a href="/plugin-system/api/#SemverRange">SemverRange</a>,</code></pre>
+<div class="inline-method"><p>The semver version range expected for the dependency.</p>
 </div><pre class="interface"><code>  +pipeline: ?string,</code></pre>
 <div class="inline-method"><p>The pipeline defined in .parcelrc that the dependency should be processed with.</p>
 </div><pre class="interface"><code>  +symbols: <a href="/plugin-system/api/#MutableDependencySymbols">MutableDependencySymbols</a>,</code></pre>
@@ -181,7 +195,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="ASTGenerator">ASTGenerator</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L614"><i>parcel/packages/core/types/index.js:614</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L639"><i>parcel/packages/core/types/index.js:639</i></a>
 </h4>
 
 <pre class="interface"><code>type ASTGenerator = {|</code></pre>
@@ -194,7 +208,7 @@ By default, this is the path of the source file where the dependency was specifi
 </div><div class="type">
 <h4 class="title">
   <span id="BaseAsset">BaseAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L627"><i>parcel/packages/core/types/index.js:627</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L652"><i>parcel/packages/core/types/index.js:652</i></a>
 </h4>
 <p>An asset represents a file or part of a file. It may represent any data type, including source code,
 binary data, etc. Assets may exist in the file system or may be virtual.
@@ -264,7 +278,7 @@ assets returned by a transformer by using the unique key as the dependency speci
 </div><div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L700"><i>parcel/packages/core/types/index.js:700</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L725"><i>parcel/packages/core/types/index.js:725</i></a>
 </h4>
 <p>A mutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available during transformation.</p>
 
@@ -319,7 +333,7 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L760"><i>parcel/packages/core/types/index.js:760</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L785"><i>parcel/packages/core/types/index.js:785</i></a>
 </h4>
 <p>An immutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available after transformation.</p>
 
@@ -329,11 +343,11 @@ This is a shortcut for addDependency that sets the specifierType to &#39;url&#39
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
+<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/bundler/#Bundle">Bundle</a>, <a href="/plugin-system/bundler/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/bundler/#BundleGraphTraversable">BundleGraphTraversable</a>, <a href="/plugin-system/bundler/#BundleTraversable">BundleTraversable</a>, <a href="/plugin-system/api/#BundledProgressEvent">BundledProgressEvent</a>, <a href="/plugin-system/bundler/#CreateBundleOpts">CreateBundleOpts</a>, <a href="/plugin-system/validator/#DedicatedThreadValidator">DedicatedThreadValidator</a>, <a href="/plugin-system/validator/#MultiThreadValidator">MultiThreadValidator</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/bundler/#MutableBundleGraph">MutableBundleGraph</a>, <a href="/plugin-system/packager/#SymbolResolution">SymbolResolution</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>, <a href="/plugin-system/reporter/#TransformingProgressEvent">TransformingProgressEvent</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Config">Config</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L784"><i>parcel/packages/core/types/index.js:784</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L809"><i>parcel/packages/core/types/index.js:809</i></a>
 </h4>
 
 <pre class="interface"><code>interface <a href="/plugin-system/transformer/#Config">Config</a> {</code></pre>
@@ -351,7 +365,9 @@ This indicates that transformation using the project&#39;s configuration should 
 </div><pre class="interface"><code>  invalidateOnEnvChange(string): void,</code></pre>
 <div class="inline-method"><p>Invalidates the config when the given environment variable changes.</p>
 </div><pre class="interface"><code>  invalidateOnStartup(): void,</code></pre>
-<div class="inline-method"><p>Invalidates the config when Parcel restarts.</p>
+<div class="inline-method"><p>Invalidates the config only when Parcel restarts.</p>
+</div><pre class="interface"><code>  invalidateOnBuild(): void,</code></pre>
+<div class="inline-method"><p>Invalidates the config on every build.</p>
 </div><pre class="interface"><code>  addDevDependency(<a href="/plugin-system/api/#DevDepOptions">DevDepOptions</a>): void,</code></pre>
 <div class="inline-method"><p>Adds a dev dependency to the config. If the dev dependency or any of its
 dependencies change, the config will be invalidated.</p>
@@ -362,14 +378,14 @@ hash of the result returned from loadConfig is used. This method can be used to
 override this behavior and explicitly control the cache key. This can be useful
 in cases where only part of a file is used to avoid unnecessary invalidations,
 or when the result is not hashable (i.e. contains non-serializable properties like functions).</p>
-</div><pre class="interface"><code>  getConfig&lt;T&gt;(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
+</div><pre class="interface"><code>  getConfig&lt;T&gt;(filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options?: {|
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
   |}): Promise&lt;?<a href="/plugin-system/api/#ConfigResultWithFilePath">ConfigResultWithFilePath</a>&lt;T&gt;&gt;,</code></pre>
 <div class="inline-method"><p>Searches for config files with the given names in all parent directories
 of the config&#39;s searchPath.</p>
-</div><pre class="interface"><code>  getConfigFrom&lt;T&gt;(searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>, filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options: ?{|
+</div><pre class="interface"><code>  getConfigFrom&lt;T&gt;(searchPath: <a href="/plugin-system/api/#FilePath">FilePath</a>, filePaths: Array&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;, options?: {|
     packageKey?: string,
     parse?: boolean,
     exclude?: boolean,
@@ -381,11 +397,11 @@ of the passed searchPath.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="/plugin-system/bundler/#Bundler">Bundler</a>, <a href="/plugin-system/namer/#Namer">Namer</a>, <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>, <a href="/plugin-system/packager/#Packager">Packager</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>, <a href="/plugin-system/runtime/#Runtime">Runtime</a>, <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
   <span id="GenerateOutput">GenerateOutput</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L855"><i>parcel/packages/core/types/index.js:855</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L882"><i>parcel/packages/core/types/index.js:882</i></a>
 </h4>
 
 <pre class="interface"><code>type GenerateOutput = {|</code></pre>
@@ -398,7 +414,7 @@ of the passed searchPath.</p>
 </div><div class="type">
 <h4 class="title">
   <span id="TransformerResult">TransformerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L869"><i>parcel/packages/core/types/index.js:869</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L896"><i>parcel/packages/core/types/index.js:896</i></a>
 </h4>
 <p>Transformers can return multiple result objects to create new assets.
 For example, a file may contain multiple parts of different types,
@@ -451,8 +467,29 @@ assets returned by a transformer by using the unique key as the dependency speci
 <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
+  <span id="ResolveOptions">ResolveOptions</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L976"><i>parcel/packages/core/types/index.js:976</i></a>
+</h4>
+
+<pre class="interface"><code>type ResolveOptions = {|</code></pre>
+<pre class="interface"><code>  +specifierType?: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a>,</code></pre>
+<div class="inline-method"><p>How the specifier should be interpreted.</p>
+<ul>
+<li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
+<li>commonjs: A CommonJS specifier. It is not parsed as a URL.</li>
+<li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
+<li>custom: A custom specifier. Must be handled by a custom resolver plugin.</li>
+</ul>
+</div><pre class="interface"><code>  +packageConditions?: Array&lt;string&gt;,</code></pre>
+<div class="inline-method"><p>A list of custom conditions to use when resolving package.json &quot;exports&quot; and &quot;imports&quot;.</p>
+</div><pre class="interface"><code>|}</code></pre>
+
+<h5>Referenced by:</h5>
+<a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>
+</div><div class="type">
+<h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L949"><i>parcel/packages/core/types/index.js:949</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L992"><i>parcel/packages/core/types/index.js:992</i></a>
 </h4>
 
 
@@ -460,13 +497,13 @@ assets returned by a transformer by using the unique key as the dependency speci
 
 
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a> = (from: <a href="/plugin-system/api/#FilePath">FilePath</a>, to: string) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;;</code></pre>
+<pre><code>type <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a> = (from: <a href="/plugin-system/api/#FilePath">FilePath</a>, to: string, options?: <a href="/plugin-system/transformer/#ResolveOptions">ResolveOptions</a>) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;;</code></pre>
 <h5>Referenced by:</h5>
 <a href="/plugin-system/transformer/#Transformer">Transformer</a>
 </div><div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/f9ac61299f703d03adae8471290511d4eef075f5/packages/core/types/index.js#L1016"><i>parcel/packages/core/types/index.js:1016</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/0b7187b63729ff1020d0e620967a811c8272ad45/packages/core/types/index.js#L1063"><i>parcel/packages/core/types/index.js:1063</i></a>
 </h4>
 <p>The methods for a transformer plugin.</p>
 
