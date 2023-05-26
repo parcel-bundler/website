@@ -4,7 +4,7 @@ title: Parcel API
 eleventyNavigation:
   key: features-parcel-api
   title: 📚 Parcel API
-  order: 11
+  order: 10
 ---
 
 The Parcel API can be used to programmatically run builds or watch a project for changes. It is the same API as is used by the Parcel CLI. Use the API when you need more flexibility, or need to integrate Parcel into another build system.

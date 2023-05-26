@@ -4,7 +4,7 @@ title: Profiling and tracing
 eleventyNavigation:
   key: features-profiling
   title: 📈 Profiling and tracing
-  order: 10
+  order: 11
 ---
 
 ## Tracing
