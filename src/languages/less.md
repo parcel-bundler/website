@@ -39,6 +39,6 @@ To configure Less, create a `.lessrc` file. To see the available options to conf
 
 {% warning %}
 
-**Note**: `.lessrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.lessrc`) instead.
+**Note**: `.lessrc.js`, `.lessrc.mjs`, and `.lessrc.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.lessrc`) instead.
 
 {% endwarning %}

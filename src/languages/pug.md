@@ -42,11 +42,11 @@ document.body.innerHTML = html;
 
 ## Configuration
 
-Pug can be configured using a `.pugrc`, `.pugrc.js`, or `pug.config.js` file. See the [Pug API Reference](https://pugjs.org/api/reference.html) for details on the available options.
+Pug can be configured using a `.pugrc`, `.pugrc.js`, `.pugrc.mjs`, `.pugrc.cjs`, `pug.config.js`, `pug.config.mjs`, or `pug.config.cjs` file. See the [Pug API Reference](https://pugjs.org/api/reference.html) for details on the available options.
 
 {% warning %}
 
-**Note:** `.pugrc.js` and `pug.config.js` are supported for JavaScript-based configuration, but should be avoided when possible because they reduce the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.pugrc`) instead.
+**Note:** JavaScript-based configuration should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.pugrc`) instead.
 
 {% endwarning %}
 

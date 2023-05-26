@@ -291,7 +291,7 @@ This may also occur with scripts. For example, if two pages depend on the same J
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML by creating a configuration file using one of these names: `.posthtmlrc` (JSON, **strongly** recommended), `.posthtmlrc.js`, or `posthtml.config.js`.
+[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML by creating a configuration file using one of these names: `.posthtmlrc` (JSON, **strongly** recommended), `.posthtmlrc.js`, `.posthtmlrc.mjs`, `.posthtmlrc.cjs`, `posthtml.config.js`, `posthtml.config.mjs`, or `posthtml.config.cjs`.
 
 Install plugins in your app:
 
@@ -447,6 +447,6 @@ or to not minify SVG elements.
 
 {% warning %}
 
-**Note**: `.htmlnanorc.js` and `htmlnano.config.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
+**Note**: `.htmlnanorc.js`, `.htmlnanorc.mjs`, `.htmlnanorc.cjs`, `htmlnano.config.js`, `htmlnano.config.mjs`, and `htmlnano.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
 
 {% endwarning %}

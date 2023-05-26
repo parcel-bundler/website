@@ -424,7 +424,13 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [Terser](https://github.com/terser/terser) to perform minification. To configure Terser, you can create a `.terserrc` file in your project root directory. See the [Terser docs](https://github.com/terser/terser#minify-options) for information about the available options.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [SWC](https://swc.rs) to perform minification. For backward compatibility, this supports [Terser](https://github.com/terser/terser) config files. To configure the minifier, you can create a `.terserrc` file in your project root directory. See the [SWC docs](https://swc.rs/docs/configuration/minification) for information about the available options.
+
+{% note %}
+
+Previous versions of Parcel used Terser as the default JavaScript minifier. To continue using Terser instead of SWC, you can configure Parcel to use the `@parcel/optimizer-terser` plugin in your `.parcelrc`. See [Plugins](/features/plugins/) for more information.
+
+{% endnote %}
 
 ### Tree shaking
 

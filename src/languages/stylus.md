@@ -39,6 +39,6 @@ To configure Stylus, create a `.stylusrc` file. To see the available options to 
 
 {% warning %}
 
-**Note**: `.stylusrc.js` is also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.stylusrc`) instead.
+**Note**: `.stylusrc.js`, `.stylusrc.mjs`, and `.stylusrc.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.stylusrc`) instead.
 
 {% endwarning %}
