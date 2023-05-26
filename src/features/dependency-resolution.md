@@ -36,7 +36,7 @@ In the above example, the first import would resolve to `/path/to/project/src/ut
 
 It is recommended to include the full file extension in all import specifiers. This both improves dependency resolution performance and reduces ambiguity.
 
-That said, for compatibility with CommonJS in Node, and with TypeScript, Parcel allows the file extension to be omitted for certain file types. The file extensions that may be omitted include `.ts`, `.tsx`, `.js`, `.jsx`, and `.json`. A file extension is required to import all other file types.
+That said, for compatibility with CommonJS in Node, and with TypeScript, Parcel allows the file extension to be omitted for certain file types. The file extensions that may be omitted include `.ts`, `.tsx`, `.mjs`, `.js`, `.jsx`, `.cjs`, and `.json`. A file extension is required to import all other file types.
 
 The following example resolves to the same files as above.
 
@@ -52,6 +52,8 @@ import '../constants';
 {% endsample %}
 
 Note that these may only be omitted when importing from a JavaScript or TypeScript file. File extensions are always required for dependencies defined in other file types like HTML and CSS.
+
+In TypeScript files, Parcel will also try replacing JavaScript extensions including `.js`, `.jsx`, `.mjs`, and `.cjs` with their TypeScript equivalents (`.ts`, `.tsx`, `.mts`, and `.cts`). For example, a dependency on `./foo.js` will resolve to `./foo.ts`. This matches TSC's behavior. However, unlike TSC, if the original `./foo.js` exists, it will be used instead of the TS version, matching the behavior of Node and other bundlers.
 
 #### Directory index files
 
@@ -71,7 +73,7 @@ For example, if `/path/to/project/src/client` were a directory, the above specif
 
 ### Bare specifiers
 
-Bare specifiers start with any character except `.`, `/`, or `~`. In JavaScript, TypeScript, and other JS-based languages, they resolve to a package in `node_modules`. For other types of files, such as HTML and CSS, bare specifiers are treated the same way as [relative specifiers](#relative-specifiers).
+Bare specifiers start with any character except `.`, `/`, `~`, or `#`. In JavaScript, TypeScript, and other JS-based languages, they resolve to a package in `node_modules`. For other types of files, such as HTML and CSS, bare specifiers are treated the same way as [relative specifiers](#relative-specifiers).
 
 {% sample %}
 {% samplefile "/path/to/project/src/client/index.js" %}
@@ -134,6 +136,36 @@ import '~/src/utils.js';
 {% endsample %}
 
 The above example would resolve to `/path/to/project/packages/frontend/src/utils.js`.
+
+### Hash specifiers
+
+Hash specifiers start with the `#` character, and the behavior depends on the file type they are contained within. In JavaScript and TypeScript files, hash specifiers are treated as internal package imports, described below. In other files, these are treated as relative URL hashes.
+
+The `"imports"` field in `package.json` can be used to define private mappings that apply to import specifiers in JavaScript or TypeScript files within the package. This allows a package to define conditional imports depending on the environment, as documented [below](#package-exports) and in the [Node.js docs](https://nodejs.org/dist/latest/docs/api/packages.html#subpath-imports).
+
+{% sample %}
+{% samplefile "/path/to/project/package.json" %}
+
+```json
+{
+  "imports": {
+    "#dep": {
+      "node": "dep-node",
+      "browser": "dep-browser"
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "/path/to/project/src/index.js" %}
+
+```javascript
+import '#dep';
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Query parameters
 
@@ -247,11 +279,195 @@ is equivalent to:
 When resolving a package directory, the `package.json` file is consulted to determine the package entry. Parcel checks the following fields (in order):
 
 - `source` – If the module is behind a symlink (e.g. in a monorepo, or via `npm link`), then Parcel uses the `source` field to compile the module from source. The `source` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
+- `exports` – [Package exports](#package-exports), see below for details.
 - `browser` – A browser-specific version of a package. If building for a [browser environment](/features/targets/#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `module` – An ES module version of the package.
 - `main` – A CommonJS version of the package.
 
 If none of these fields are set, or the files they point to do not exist, then resolution falls back to an index file. See [Directory index files](#directory-index-files) for more details.
+
+## Package exports
+
+The `"exports"` field in `package.json` can be used to define the publically accessible entrypoints for a package. These can also define conditional behavior based on the environment, allowing resolution to change depending on where a module is imported from (e.g. node or browser).
+
+### Enabling package exports
+
+Package exports are disabled by default because they may break existing projects that weren't designed with them in mind. You can enable support by adding the following to the `package.json` file in your project root directory.
+
+{% sample %}
+{% samplefile "/path/to/project/package.json" %}
+
+```json
+{
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### Single export
+
+If a package has only a single exported module, the `"exports"` field may be defined as a string:
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": "./dist/index.js"
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+When a user imports the `"foo"` package in the above example, the `node_modules/foo/dist/index.js` module will be resolved.
+
+### Multiple exports
+
+If a package exports multiple modules, the `"exports"` field can provide mappings defining where to find each of these exports. The `"."` export defines the main entry point, and other entries are defined as subpaths.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": {
+    ".": "./dist/index.js",
+    "./bar": "./dist/bar.js"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+With the above package, a user may import `"foo"`, which resolves to `node_modules/foo/dist/index.js`, or `"foo/bar"`, which resolves to `node_modules/foo/dist/bar.js`.
+
+{% warning %}
+
+Any subpath that is not explicitly exported by a package containing the `"exports"` field will not be accessible by a consumer. For example, attempting to import `"foo/abc"` in the above package would result in a build time error.
+
+{% endwarning %}
+
+The `*` character may be used within an exports mapping as a wildcard. Only one `*` may appear in the lefthand side of the mapping, and the matched string is replaced into each instance in the righthand side. This allows you to avoid manually listing every file you want to export.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": {
+    "./*": "./dist/*.js"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, all `.js` files in the `dist` directory are exported from the package, without their extension. For example, importing `"foo/bar"` would resolve to `node_modules/foo/dist/bar.js`.
+
+### Conditional exports
+
+The `"exports"` field may also define different mappings for the same specifier in different [environments](/features/targets/#environments) or other conditions. For example, a package may provide different entrypoints for ES modules and CommonJS, or for Node and browsers.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": {
+    "node": "./dist/node.js",
+    "default": "./dist/default.js"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, if a consumer imports the `"foo"` module from a Node environment, it will resolve to `node_modules/foo/dist/node.js`, otherwise it will resolve to `node_modules/foo/default.js`.
+
+Conditional exports may also be nested within subpath mappings.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": {
+    "./bar": {
+      "node": "./dist/bar-node.js",
+      "default": "./dist/bar-default.js"
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+This allows importing `"foo/bar"` to resolve to a different file for Node and other environments.
+
+Conditional exports may also be nested within each other to create more complex logic.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "name": "foo",
+  "exports": {
+    "node": {
+      "import": "./dist/node.mjs",
+      "require": "./dist/node.cjs"
+    },
+    "default": "./dist/default.js"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The above example defines different versions of the module depending on whether the package is loaded via ESM `import` or CommonJS `require` within a Node environment.
+
+Parcel supports the following exports conditions:
+
+* `"import"` – Package was referenced using the ESM `import` syntax.
+* `"require"` – Package was referenced using the CommonJS `require` function.
+* `"module"` – Package was referenced from either the ESM `import` syntax or the CommonJS `require` function.
+* `"sass"` – Package was referenced from a Sass stylesheet.
+* `"less"` – Package was referenced from a Less stylesheet.
+* `"stylus"` – Package was referenced from a Stylus stylesheet.
+* `"style"` – Package was referenced from a stylesheet (e.g. CSS, Sass, Stylus, etc.).
+* `"node"` – Output will run in a Node environment.
+* `"browser"` – Output will run in a browser environment.
+* `"worker"` – Output will run in a web worker or service worker environment.
+* `"worklet"` – Output will run in a worklet environment.
+* `"electron"` – Output will run in an Electron environment.
+* `"development"` – Package was loaded in a development build.
+* `"production"` – Package was loaded in a production build.
+* `"default"` – The default condition in case no other conditions matched.
+
+{% note %}
+
+The order that exports conditions are resolved follows the order they are defined in the package.json, not the order they are listed above.
+
+{% endnote %}
+
+### More examples
+
+For more details about package.json exports, see the [Node.js documentation](https://nodejs.org/dist/latest/docs/api/packages.html#package-entry-points).
 
 ## Aliases
 
@@ -395,6 +611,97 @@ This can be done by creating an alias to an object with a `global` property. The
 
 {% endsamplefile %}
 {% endsample %}
+
+## TSConfig
+
+Parcel supports some settings defined in TypeScript's `tsconfig.json` config file, including `baseUrl`, `paths`, and `moduleSuffixes`. Parcel searches upward from the file containing the dependency to find the nearest `tsconfig.json` file. It also supports using the [`extends`](https://www.typescriptlang.org/tsconfig#extends) option to merge the settings from multiple tsconfigs together. See the [TypeScript docs](https://www.typescriptlang.org/tsconfig) for more details.
+
+### `baseUrl`
+
+The `baseUrl` field defines the base directory from which to resolve [bare specifiers](#bare-specifiers).
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src"
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import 'Home';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, `Home` will resolve to `src/Home.js` if it exists. Otherwise, it will fall back to `node_modules/Home`, for example.
+
+### `paths`
+
+The `paths` field can be used to define mappings from [bare specifiers](#bare-specifiers) to file paths. You can also define wildcard patterns using the `*` character.
+
+ File paths referenced in the `paths` field are relative to the `baseUrl` if defined, otherwise to the directory containing the `tsconfig.json` file.
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "jquery": ["./vendor/jquery/dist/jquery"],
+      "app/*": ["./src/app/*"]
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import 'jquery';
+import 'app/foo';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, `jquery` resolves to `./vendor/jquery/dist/jquery.js`, and `app/foo` resolves to `./src/app/foo.js`.
+
+### `moduleSuffixes`
+
+The `moduleSuffixes` field allows you to specify the file name suffixes to search for when resolving a module.
+
+{% sample %}
+{% samplefile "tsconfig.json" %}
+
+```json
+{
+  "compilerOptions": {
+    "moduleSuffixes": [".ios", ".native", ""]
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/App.js" %}
+
+```js
+import './foo';
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In the above example, Parcel will look for `./foo.ios.ts`, `./foo.native.ts`, and `./foo.ts` (in addition to other extensions like `.tsx`, `.js`, etc.).
 
 ## Configuring other tools
 
