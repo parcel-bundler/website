@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 10
 ---
 
-Compressors receive a stream containing the final contents of bundles and source maps as they is being written. They return a new stream, which may transform the data in some way, and a `type` containing a file extension to append. If no `type` is returned, then the returned stream replaces the original file.
+Compressors receive a stream containing the final contents of bundles and source maps as they are being written. They return a new stream, which may transform the data in some way, and a `type` containing a file extension to append. If no `type` is returned, then the returned stream replaces the original file.
 
 ```js
 import {Compressor} from '@parcel/plugin';
