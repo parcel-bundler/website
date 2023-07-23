@@ -208,7 +208,7 @@ export default function (component, blockContent, blockAttrs) {
       child: Child,
     },
     data() {
-      let docs = { standard: Child.__docs, brief: Child.__docsBrief };
+      let docs = { standard: Child.__docs, brief: Child.__briefDocs };
       return { docs };
     },
   };
