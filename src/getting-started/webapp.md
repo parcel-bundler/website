@@ -34,6 +34,7 @@ Now that Parcel is installed, let’s create some source files for our app. Parc
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My First Parcel App</title>
   </head>
   <body>
