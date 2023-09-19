@@ -9,6 +9,9 @@ Start a local server using:
 ```bash
 yarn
 yarn serve
+yarn run build
+yarn cli
+yarn.dev
 ```
 
 The website is automatically deployed using [Vercel](https://vercel.com).
