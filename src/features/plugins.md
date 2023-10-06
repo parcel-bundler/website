@@ -65,7 +65,7 @@ Extended configs may also extend other configs, which forms a config chain.
 
 Many fields in `.parcelrc` like `transformers` or `packagers` use objects as maps of globs to plugin names. This lets you configure Parcel’s behavior by file extension, file path, or even a specific file name. Globs are matched relative to the directory containing the `.parcelrc`.
 
-The order of fields in glob maps maps defines their priority when a file name is being tested against them. This lets you configure different behavior for certain files within your project, such as files in a specific directory.
+The order of fields in glob maps defines their priority when a file name is being tested against them. This lets you configure different behavior for certain files within your project, such as files in a specific directory.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
