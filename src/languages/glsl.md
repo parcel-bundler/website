@@ -59,7 +59,7 @@ void main() {
 #pragma glslify: noise = require('glsl-noise/simplex/3d')
 
 vec4 calc_frag_color(vec3 pos) {
-  return vec4(noise(pos * 25.0), 1);
+  return vec4(vec3(noise(pos * 25.0)), 1.0);
 }
 
 // export a function
