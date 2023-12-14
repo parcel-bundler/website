@@ -232,3 +232,50 @@ For this reason, dynamic import is merely a *hint* that a dependency is not need
 ## Deduplication
 
 If a dynamically imported module has a dependency that is already available in all of its possible ancestries, it will be deduplicated. For example, if a page imports a library which is also used by a dynamically imported module, the library will only be included in the parent since it will already be on the page at runtime.
+
+## Manual Shared Bundles (UNSTABLE)
+
+Parcel automatically splits out commonly used modules into "shared bundles" and creates bundles in the scenarios listed above. However, in certain cases, you may want to specify exactly what goes into a bundle and who can request that bundle.
+
+These scenarios include but are not limited to...
+
+- Porting over your config from another build tool or bundler to parcel
+- Reducing your HTTP requests without duplicating assets, in favor of over-fetching
+  - We've found over-fetching and loading fewer bundles overall can greatly benefit measurements like TTI, especially for very large projects
+- Creating an optimized shared bundle for a specific route or set of modules
+
+As of this writing, MSBs, or Manual Shared Bundles can be specified via `package.json` using globs which Parcel will match on.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json5
+{
+  "@parcel/bundler-default": {
+   "unstable_manualSharedBundles": [
+      {
+        "name": "vendor",
+        "root": "manual.js",
+        "assets": ["**/*"],
+        "loadedBy": ["async1.js", "async2.js"],
+        "types": ["js"],
+      },
+    ],
+  },
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+`unstable_manualSharedBundles` takes an array of objects, that require an `assets` field as an array of globs.
+
+The optional parameters are as follows:
+
+- **name** (optional) - Sets field `manualSharedBundle` on bundle to \<name\>, this can be read in a custom reporter or namer for development purposes
+- **root** (optional) - Narrows the scope of the glob to the file specified. In the example above, the glob, `**/*` will match all imports within `manual.js`
+- **assets** (required) - glob for Parcel to match on. Files that match the glob will be placed into a singular bundle, and deduplicated across the project unless otherwise specified. If no `root` is specified, Parcel attempts to match the glob **globally**.
+- **types** (optional) - Limits globs to only match on a certain type. This field must be set if your `root` file contains multiple types or if the glob can match different types, as a bundle can only contain assets of the same type.
+  - A **root** file can contain imports of multiple types, just make sure to add an object in the `unstable_manualSharedBundle` array per type.
+- **loadedBy** (optional) - Narrows the scope of what bundles can reference your MSB (Manual Shared Bundle).
+  - This is useful in the case where your MSB is used by asynchronous modules. Specifying the `loadedBy` field with those asynchronous modules ensures that the MSB's load and execution time will in fact be deferred. Parcel will instead duplicate the asset(s) required by any bundles not included in `loadedBy`.
