@@ -15,6 +15,7 @@ The Parcel API can be used through the `@parcel/core` package. You'll also need 
 
 ```shell
 yarn add @parcel/core @parcel/config-default
+npm install @parcel/core@next @parcel/config-default@next
 ```
 
 Next, import this package into your program and call the `Parcel` constructor. It accepts an [`InitialParcelOptions`](/plugin-system/api/#InitialParcelOptions) object, which contains all of the options used by the Parcel CLI and a few more.
@@ -38,6 +39,8 @@ let bundler = new Parcel({
 
 {% endsamplefile %}
 {% endsample %}
+
+Note: If your package.json contains a "main" field, such as `"main": "index.js"` that is going to be used as the output destination by default. If no main is specified, then Parcel will default to creating a `dist/` folder.
 
 ### Targets
 
