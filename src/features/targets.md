@@ -115,7 +115,7 @@ For Node.js and other targets, the `engines` field in package.json can be used t
 When one file depends on another, the environment is inherited from its parent. But how you depend on the asset can change some properties of the environment. For example, when depending on a service worker, the environment is automatically changed into a service worker context so that the code is compiled appropriately.
 
 ```javascript
-navigator.serviceWorker.register(new URL('service-worker.js', import.meta.url));
+navigator.serviceWorker.register(new URL("service-worker.js", import.meta.url));
 ```
 
 ### Differential bundling
@@ -224,7 +224,13 @@ See [Building a library with Parcel](/getting-started/library/) for an intro to 
 ### `context`
 
 ```javascript
-'node' | 'browser' | 'web-worker' | 'service-worker' | 'worklet' | 'electron-main' | 'electron-renderer'
+"node" |
+  "browser" |
+  "web-worker" |
+  "service-worker" |
+  "worklet" |
+  "electron-main" |
+  "electron-renderer";
 ```
 
 The `context` property defines what type of environment to build for. This tells Parcel what environment-specific APIs are available, e.g. the DOM, Node filesystem APIs, etc.
@@ -238,7 +244,7 @@ Overrides the engines defined in the top-level `package.json#engines` and `brows
 ### `outputFormat`
 
 ```javascript
-'global' | 'esmodule' | 'commonjs'
+"global" | "esmodule" | "commonjs" | "amd";
 ```
 
 Defines what type of module to output.
@@ -246,6 +252,7 @@ Defines what type of module to output.
 - `global` – a classic script that could be loaded in a `<script>` tag in the browser. Not supported for library targets.
 - `esmodule` – an ES module using `import` and `export` statements. Could be loaded in a `<script type="module">` tag in the browser, or loaded by Node.js or another bundler.
 - `commonjs` – a CommonJS module using `require` and `module.exports`. Could be loaded by Node.js or another bundler.
+- `amd` – an AMD module that could be loaded by [RequireJS](https://requirejs.org) or another AMD loader.
 
 For builtin library targets (e.g. `main` and `module`), the `outputFormat` is automatically inferred. The file extension defined in the target's top-level package.json field may also influence the output format. See [Library targets](#library-targets) above for more details.
 
@@ -268,7 +275,7 @@ Enables or disables optimization (e.g. minification). Exact behavior is determin
 Determines whether to bundle `node_modules` or treat them as external. The default is `true` for browser targets, and `false` for library targets. Possible values are:
 
 - **`false`** – does not include any files in `node_modules`.
-- **an array** – a list of packages names to include. In the following example, *only* `react` is bundled. All other files in `node_modules` are excluded.
+- **an array** – a list of packages names to include. In the following example, _only_ `react` is bundled. All other files in `node_modules` are excluded.
 
   ```json
   {
@@ -280,7 +287,7 @@ Determines whether to bundle `node_modules` or treat them as external. The defau
   }
   ```
 
-- **an object** – a mapping of package names to booleans. If a package is not listed, it is included. In the following example, all `node_modules` *except* react are bundled.
+- **an object** – a mapping of package names to booleans. If a package is not listed, it is included. In the following example, all `node_modules` _except_ react are bundled.
 
   ```json
   {
@@ -306,7 +313,7 @@ The `sourceMap` option also accepts an object with the following options.
 
 ### `source`
 
-Overrides the top-level `source` field in package.json for a target. This allows for each target to have different entries. See [package.json#targets.*.source](#package.json%23targets.*.source) for more details.
+Overrides the top-level `source` field in package.json for a target. This allows for each target to have different entries. See [package.json#targets.\*.source](#package.json%23targets.*.source) for more details.
 
 ### `distDir`
 
@@ -319,4 +326,3 @@ Sets the base URL at which this bundle will be loaded at runtime. The bundle's r
 By default the `publicUrl` is `/`. This is a good default if your HTML files and other assets are deployed to the same location. If you deploy assets to a different location, you'll likely need to set `publicUrl`. The public URL can also be set using the `--public-url` CLI option.
 
 In most cases, bundles are loaded using a relative path from the parent bundle to the child bundle. This allows the deployment to be moved to a new location without re-building (e.g. promoting a staging build to production). The `publicUrl` is used when relative paths are not possible (e.g. in HTML).
-
