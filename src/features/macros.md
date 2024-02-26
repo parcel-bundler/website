@@ -3,7 +3,7 @@ layout: layout.njk
 title: Macros
 eleventyNavigation:
   key: features-macros
-  title: 🪗 Macros
+  title: 🌷 Macros
   order: 4
 ---
 
@@ -36,13 +36,23 @@ As you can see, the `regexgen` library has been completely compiled away, and we
 
 ## Arguments
 
-Macro arguments are evaluated statically, which means their value must be known at build time. You can pass any JavaScript literal value, including strings, numbers, booleans, objects, etc. Simple expressions such as string concatenation, arithmetic, and comparison operators are supported as well. However, values referencing non-constant variables, calling functions other than macros, etc. are not supported.
+Macro arguments are evaluated statically, which means their value must be known at build time. You can pass any JavaScript literal value, including strings, numbers, booleans, objects, etc. Simple expressions such as string concatenation, arithmetic, and comparison operators are supported as well.
 
 ```js
 import {myMacro} from './macro.ts' with {type: 'macro'};
 
 const result = myMacro({
   name: 'Devon'
+});
+```
+
+However, values referencing non-constant variables, calling functions other than macros, etc. are not supported.
+
+```js/3
+import {myMacro} from './macro.ts' with {type: 'macro'};
+
+const result = myMacro({
+  name: getName() // Error: Cannot statically evaluate macro argument
 });
 ```
 
@@ -196,7 +206,7 @@ import {css} from './css.ts' with {type: 'macro'};
 {% samplefile "css.ts" %}
 
 ```ts/6-10
-import type {MacroContext} from '???';
+import type {MacroContext} from '@parcel/macros';
 
 export async function css(this: MacroContext | void, code: string) {
   let className = hash(code);
@@ -292,7 +302,7 @@ console.log(readFile('message.txt'))
 {% samplefile "macro.ts" %}
 
 ```ts
-import type {MacroContext} from '???';
+import type {MacroContext} from '@parcel/macros';
 import fs from 'fs';
 
 export async function readFile(this: MacroContext | void, filePath: string) {
@@ -313,7 +323,50 @@ hello world!
 
 ## Usage with other tools
 
-Macros are just normal JavaScript functions, so they integrate with other tools easily. TypeScript supports import attributes out of the box as of version 5.3, and autocomplete and types for macros work just like regular functions. Other tools like Babel and ESLint may require a configuration option to enable import attributes for now.
+Macros are just normal JavaScript functions, so they integrate with other tools easily.
+
+### TypeScript
+
+TypeScript supports import attributes out of the box as of version 5.3, and autocomplete and types for macros work just like regular functions.
+
+### Babel
+
+The [`@babel/plugin-syntax-import-attributes`](https://babeljs.io/docs/babel-plugin-syntax-import-attributes) plugin enables Babel to parse import attributes. If you're using `@babel/preset-env`, enabling the [`shippedProposals`](https://babeljs.io/docs/babel-preset-env#shippedproposals) option also enables import attributes to be parsed.
+
+{% sample %}
+{% samplefile "babel.config.json" %}
+
+```json/5
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "shippedProposals": true
+      }
+    ]
+  ]
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### ESLint
+
+ESLint supports import attributes when using a parser such as Babel or TypeScript that supports them.
+
+{% sample %}
+{% samplefile ".eslintrc.js" %}
+
+```js/1
+module.exports = {
+  parser: '@typescript-eslint/parser'
+};
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Unit testing
 
