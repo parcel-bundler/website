@@ -347,6 +347,15 @@ body {
       width: 1.5rem;
       height: 1.5rem;
     }
+
+    @media (width < 430px) {
+      a {
+        display: none;
+      }
+      #color-scheme-toggle {
+        margin-left: 0;
+      }
+    }
   }
 
   &.search {
