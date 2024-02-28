@@ -232,3 +232,65 @@ For this reason, dynamic import is merely a *hint* that a dependency is not need
 ## Deduplication
 
 If a dynamically imported module has a dependency that is already available in all of its possible ancestries, it will be deduplicated. For example, if a page imports a library which is also used by a dynamically imported module, the library will only be included in the parent since it will already be on the page at runtime.
+
+## Manual shared bundles
+
+{% warning %}
+
+**Note**: Manual shared bundles are currently experimental and subject to change.
+
+{% endwarning %}
+
+By default, Parcel automatically splits commonly used modules into "shared bundles" and creates bundles in the scenarios listed above. However, in certain cases, you may want to specify exactly what goes into a bundle and who can request that bundle.
+
+These scenarios include but are not limited to...
+
+- Porting over your config from another build tool or bundler to Parcel
+- Reducing your HTTP requests without duplicating assets, in favor of over-fetching
+  - Over-fetching and loading fewer bundles overall can benefit measurements like [time-to-interactive](https://web.dev/articles/tti), especially for very large projects.
+- Creating an optimized shared bundle for a specific route or set of modules
+
+Manual Shared Bundles can be specified in your project root `package.json`. The `assets` property must be set to a list of globs. Any asset file paths matching these globs will be included in the manual shared bundle.
+
+This example creates a vendor bundle which includes all JS assets in the graph starting from `manual.js`, split into 3 parallel HTTP requests.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json5
+{
+  "@parcel/bundler-default": {
+   "manualSharedBundles": [
+      {
+        "name": "vendor",
+        "root": "manual.js",
+        "assets": ["**/*"],
+        "types": ["js"],
+        "split": 3
+      },
+    ],
+  },
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The full list of options are as follows:
+
+- **name** (optional) - Sets field `manualSharedBundle` on bundle to \<name\>, this can be read in a custom reporter or namer for development purposes
+- **root** (optional) - Narrows the scope of the glob to the file specified. In the example above, the glob, `**/*` will match all imports within `manual.js`
+- **assets** (required) - glob for Parcel to match on. Files that match the glob will be placed into a singular bundle, and deduplicated across the project unless otherwise specified. If no `root` is specified, Parcel attempts to match the glob **globally**.
+- **types** (optional) - Limits globs to only match on a certain type. This field must be set if your `root` file imports multiple types (e.g. JS and CSS) or if the `assets` glob can match different types. A bundle can only contain assets of the same type.
+  - A **root** file can contain imports of multiple types. Make sure to add an object in the `manualSharedBundle` array per type.
+- **split** (optional) - splits the manual bundle into x bundles. 
+  - For very large bundles, splitting into multiple parallel HTTP requests can improve measurements like CHR (cache hit ratio), as a smaller bundle is invalidated for a given change. 
+
+
+{% warning %}
+
+**Be careful!**
+
+Configuring manual shared bundles overrides all automatic code splitting normally done by Parcel, and can cause unintended load-order issues as it maps on your **entire** code base, **including** `node_modules`. Be mindful of the globs you use, only specify 1 bundle per file type, and we recommend you specify a **root** file. 
+
+{% endwarning %}
