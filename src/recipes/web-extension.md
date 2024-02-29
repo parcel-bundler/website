@@ -17,8 +17,7 @@ First, install `@parcel/config-webextension` into your project:
 yarn add @parcel/config-webextension --dev
 ```
 
-Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up. Both Manifest V2 and V3 are supported. You can use [TypeScript](</languages/typescript>), [Vue](</languages/vue>), and any other languages supported by Parcel within your web extension code.
-
+Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json) file, which will be the entry point of your extension. See [this guide](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for details on how to set it up. Both Manifest V2 and V3 are supported. You can use [TypeScript](/languages/typescript), [Vue](/languages/vue), and any other languages supported by Parcel within your web extension code.
 
 {% sample %}
 {% samplefile "manifest.json" %}
@@ -32,10 +31,12 @@ Next, you'll need a [manifest.json](https://developer.mozilla.org/en-US/docs/Moz
     "service_worker": "background.ts",
     "type": "module"
   },
-  "content_scripts": [{
-    "matches": ["*://github.com/parcel-bundler/*"],
-    "js": ["parcel-content-script.ts"]
-  }]
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/parcel-bundler/*"],
+      "js": ["parcel-content-script.ts"]
+    }
+  ]
 }
 ```
 
@@ -48,6 +49,12 @@ To build your extension, run Parcel using your `manifest.json` as an entry, and 
 parcel build manifest.json --config @parcel/config-webextension
 ```
 
+{% warning %}
+
+With the default Web Extension config, the manifest has to be called `manifest.json` (and cannot be just any file with a `json` extension).
+
+{% endwarning %}
+
 You can also create a `.parcelrc` file in your project extending `@parcel/config-webextension`. This way you don't need to pass the `--config` option to the Parcel CLI every time.
 
 {% sample %}
@@ -56,6 +63,26 @@ You can also create a `.parcelrc` file in your project extending `@parcel/config
 ```json
 {
   "extends": "@parcel/config-webextension"
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+To make Parcel treat some other file as a manifest apart from `manifest.json`, add a few more lines to the `.parcelrc`:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-webextension",
+  "transformers": {
+    "some-other-manifest.json": ["@parcel/transformer-webextension"]
+  },
+  "packagers": {
+    "some-other-manifest.json": "@parcel/packager-webextension"
+  }
 }
 ```
 
@@ -97,7 +124,7 @@ In development mode, your background scripts will receive a message event with t
 
 ### Styling
 
-Any styles imported in a content script will be injected into the `css` property of that content script and will thus apply to the entire page. Usually this is what you want, but if not you can always use [CSS modules](</languages/css#css-modules>) to prevent the styles from applying to the original site.
+Any styles imported in a content script will be injected into the `css` property of that content script and will thus apply to the entire page. Usually this is what you want, but if not you can always use [CSS modules](/languages/css#css-modules) to prevent the styles from applying to the original site.
 
 Additionally, content script CSS resolves links to the site they are injected into, so you won't be able to reference local assets. You should [inline your bundles](</languages/css#url()>) to resolve this issue.
 
@@ -123,16 +150,16 @@ Additionally, content script CSS resolves links to the site they are injected in
 Lastly, hot reload may not work when adding or removing CSS linked from inside an `import()` in content scripts, while synchronous `import` has no such issues. This is a known limitation and will be fixed in a future version.
 
 ### `web_accessible_resources`
-Any resources you use in a content script will automatically be added into `web_accessible_resources`, so you don't usually need to specify anything in `web_accessible_resources` at all. For example, the following content script will work without issues:
 
+Any resources you use in a content script will automatically be added into `web_accessible_resources`, so you don't usually need to specify anything in `web_accessible_resources` at all. For example, the following content script will work without issues:
 
 {% sample %}
 {% samplefile "content-script.js" %}
 
 ```js
-import myImage from 'url:./image.png';
+import myImage from "url:./image.png";
 
-const injectedImage = document.createElement('img');
+const injectedImage = document.createElement("img");
 injectedImage.src = myImage;
 document.body.appendChild(injectedImage);
 ```
