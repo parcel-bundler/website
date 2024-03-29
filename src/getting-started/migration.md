@@ -405,6 +405,14 @@ parcel build index.js --target node --bundle-node-modules
 ```
 
 {% endsamplefile %}
+
+{% samplefile %}
+```bash
+parcel build index.js --target default
+```
+
+{% endsamplefile %}
+
 {% samplefile "package.json" %}
 
 ```json5/3,7
