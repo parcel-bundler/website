@@ -40,7 +40,7 @@ See the [Scope hoisting](/features/scope-hoisting/) docs for tips to make tree s
 You can take advantage of this feature in your own code as well. For example, you could use an if statement to check the `NODE_ENV` environment variable.
 
 ```javascript
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   // Only runs in development and will be stripped in production builds.
 }
 ```
@@ -53,9 +53,15 @@ Parcel supports resizing, converting, and optimizing images. You can use query p
 
 ```html
 <picture>
-  <source type="image/webp" srcset="image.jpg?as=webp&width=400, image.jpg?as=webp&width=800 2x">
-  <source type="image/jpeg" srcset="image.jpg?width=400, image.jpg?width=800 2x">
-  <img src="image.jpg?width=400" width="400">
+  <source
+    type="image/webp"
+    srcset="image.jpg?as=webp&width=400, image.jpg?as=webp&width=800 2x"
+  />
+  <source
+    type="image/jpeg"
+    srcset="image.jpg?width=400, image.jpg?width=800 2x"
+  />
+  <img src="image.jpg?width=400" width="400" />
 </picture>
 ```
 
@@ -68,7 +74,6 @@ Parcel also includes lossless image optimization for JPEGs and PNGs by default i
 Parcel automatically produces a `<script type="module">` with modern JavaScript syntax, as well as a fallback `<script nomodule>` for older browsers when necessary. This reduces bundle sizes for a majority of users by avoiding transpilation of features like classes, async/await, and more. See [Differential bundling](/features/targets/#differential-bundling) in the Targets documentation for more details.
 
 ### Compression
-
 
 Parcel supports compressing bundles using [Gzip](https://en.wikipedia.org/wiki/Gzip) and [Brotli](https://en.wikipedia.org/wiki/Brotli). While many servers compress data on the fly, others require you to upload pre-compressed payloads ahead of time. This may also allow for better compression, which would be too slow to do on every network request.
 
@@ -98,7 +103,7 @@ yarn add @parcel/compressor-gzip @parcel/compressor-brotli --dev
 
 Now you’ll get a `.gz` and a `.br` file along side the original uncompressed bundle. If you have more text-based file types than listed in the above example, you'll need to extend the glob accordingly.
 
-If you don’t need the uncompressed bundle, you can also remove the `"..."` from the above example to *only* output compressed files. For example, to only output a `.gz` file, you could use the following config:
+If you don’t need the uncompressed bundle, you can also remove the `"..."` from the above example to _only_ output compressed files. For example, to only output a `.gz` file, you could use the following config:
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -129,22 +134,6 @@ You can also disable content hashing using the `--no-content-hash` CLI flag. Not
 ### Cascading invalidation
 
 Parcel uses a manifest in each entry bundle to avoid the [cascading invalidation](https://philipwalton.com/articles/cascading-cache-invalidation/) problem in many cases. This manifest includes a mapping of stable bundle ids to final content hashed filenames. When one bundle needs to reference another, it uses the bundle id rather than the content hashed name. This means that when a bundle updates, only that bundle and the entry will need to be invalidated in the browser cache and intermediary bundles will not change. This improves the cache hit rate across deployments.
-
-When the size of an entry bundle is over a threshold (100 KB by default), the manifest is automatically split into a separate bundle. Since the manifest changes on every build, this avoids invalidating the entire entry bundle even when no other code in the entry changed. This can help decrease the number of bytes a user needs to download to receive an update. The size threshold at which to split the manifest into its own bundle can be configured in the `package.json` file in your project root. It is defined in bytes prior to minification.
-
-{% sample %}
-{% samplefile "package.json" %}
-
-```json
-{
-  "@parcel/runtime-js": {
-    "splitManifestThreshold": 10000
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
 
 ### Shared bundles
 

@@ -143,6 +143,23 @@ Parcel also supports building libraries written in TypeScript. The `source` fiel
 
 Now Parcel will output a `dist/types.d.ts` file containing type definitions for our library in addition to the compiled code.
 
+## Improving Tree Shaking
+
+By default, Parcel bundles your whole library into a single file for each target (e.g. `main`, and `module`). If you have many exports that may be used independently, distributing separate files can improve tree shaking in end applications. This can be done using the `@parcel/bundler-library` plugin.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/2
+{
+  "extends": "@parcel/config-default",
+  "bundler": "@parcel/bundler-library"
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
 ## Next steps
 
 Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [Targets](/features/targets/), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.
