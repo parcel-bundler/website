@@ -313,11 +313,12 @@ You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a n
 {% sample %}
 {% samplefile ".parcelrc" %}
 
-```json/3
+```json/3-4
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "jsx:*.svg": ["...", "@parcel/transformer-svg-react"]
+    "jsx:*.svg": ["...", "@parcel/transformer-svg-react"],
+    "jsx:*": ["..."]
   }
 }
 ```

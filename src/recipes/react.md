@@ -256,7 +256,7 @@ export function Button({ children }) {
 To use it, first, install the necessary dependencies:
 
 ```shell
-yarn add tailwindcss postcss autoprefixer --dev
+yarn add tailwindcss postcss --dev
 ```
 
 Next, create the config files needed for PostCSS and Tailwind. This example will use Tailwind’s [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) to speed up builds by only compiling the classes you use. Make sure you modify the glob passed to the `content` option so it matches all of the source files where you'll use Tailwind classes.
