@@ -364,3 +364,142 @@ app.post('/', async (req, res) => {
 {% endsample %}
 
 This setup can also be customized to change how you call the server, for example, adding authentication headers, or even using a different transport mechanism entirely. Once the setup is complete, you can add additional server actions by exporting async functions from a file with `"use server"`, and they will all go through `handleServerAction`.
+
+## Static rendering
+
+`@parcel/config-react-static` enables Parcel to pre-render React Server Components to static HTML at build time.
+
+### Quick start
+
+To set up a new project with static rendering, run the following commands:
+
+```bash
+npm create parcel react-static my-static-site
+cd my-static-site
+npm start
+```
+
+Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See below for a deep dive.
+
+### Setup
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-react-static"
+}
+```
+
+{% endsamplefile %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "source": "pages/**/*.tsx"
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+With this configuration, components in the `pages` directory will be rendered to HTML files in the `dist` directory. Entry components receive a list of pages as a prop, which allows you to render a navigation list.
+
+{% sample %}
+{% samplefile "pages/index.tsx" %}
+
+```tsx
+import type {PageProps} from '@parcel/rsc';
+
+export default function Index({pages, currentPage}: PageProps) {
+  return (
+    <html>
+      <body>
+        <nav>
+          <ul>
+            {pages.map(page => (
+              <li key={page.url}>
+                <a 
+                  href={page.url}
+                  aria-current={page.url === currentPage.url ? 'page' : undefined}>
+                  {page.name.replace('.html', '')}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </body>
+    </html>
+  );
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### MDX
+
+[MDX](https://mdxjs.com/) is a variant of Markdown that compiles to JSX. Parcel supports MDX out of the box, and when used with `@parcel/config-react-static`, it will be rendered to static HTML at build time.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "source": "pages/**/*.mdx"
+}
+```
+
+{% endsamplefile %}
+{% samplefile "pages/index.mdx" %}
+
+```md
+import Layout from '../src/MDXLayout';
+export default Layout;
+
+# Hello, MDX!
+
+This is a static MDX file.
+```
+
+{% endsamplefile %}
+{% samplefile "src/MDXLayout.tsx" %}
+
+```tsx
+import type {PageProps} from '@parcel/rsc';
+import './client';
+
+interface LayoutProps extends PageProps {
+  children: ReactNode
+}
+
+export default function Layout({children, pages, currentPage}: LayoutProps) {
+  return (
+    <html lang="en">
+      <head>
+        <title>{currentPage.meta.tableOfContents?.[0].title}</title>
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+{% endsamplefile %}
+{% samplefile "src/client.tsx" %}
+
+```tsx
+"use client-entry";
+
+import {hydrate} from '@parcel/rsc/client';
+
+hydrate();
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### Mixing static and dynamic
+
+## Client integration
