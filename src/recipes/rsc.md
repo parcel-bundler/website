@@ -7,11 +7,25 @@ eleventyNavigation:
   order: 4
 ---
 
-React Server Components are a new type of React component that renders ahead of time, before bundling, in an environment separate from your client app or SSR server. Parcel v2.14.0 and newer supports React Server Components out of the box.
+React Server Components are a new type of component that renders ahead of time, on the server or at build time. Parcel v2.14.0 and newer supports React Server Components out of the box.
 
-## Quick start
+{% warning %}
 
-To quickly scaffold a new React Server Components app with Parcel, run the following commands:
+**React Server Components support is currently in beta.** If you experience bugs, please report them [on GitHub](https://github.com/parcel-bundler/parcel/issues).
+
+{% endwarning %}
+
+## Examples
+
+The [rsc-examples](https://github.com/parcel-bundler/rsc-examples) repo includes complete example apps built with React Server Components and Parcel.
+
+## Server rendering
+
+In a client-only React app, the entry point for your Parcel build is typically an HTML file. The output of the build might be uploaded to a static file server or CDN. However, if you want to respond to each request with dynamic content, there is an additional step where a server generates the HTML to send to the browser. In this case, the entry point for your Parcel build is the source code for your server instead of a static HTML file.
+
+### Quick start
+
+To scaffold a new server-rendered app with React Server Components and Parcel, run the following commands:
 
 ```bash
 npm create parcel react-server my-rsc-app
@@ -21,35 +35,52 @@ npm start
 
 Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See below for a deep dive.
 
-### Examples
-
-The [rsc-examples](https://github.com/parcel-bundler/rsc-examples) repo includes complete example apps built with React Server Components and Parcel.
-
-## Getting started
-
-In a client-only React app, the entry point for your Parcel build is typically an HTML file. The output of the build might be uploaded to a static file server or CDN. However, if you want to respond to each request with dynamic content, there is an additional step where a server generates the HTML to send to the browser. In this case, the entry point for your Parcel build is the source code for your server instead of a static HTML file.
-
 ### Create a server
 
 First, install the necessary dependencies:
 
 ```bash
-npm install react react-dom @parcel/rsc
+npm install react@canary react-dom@canary @parcel/rsc
 ```
+
+{% note %}
+
+**Note**: Server Components currently require the canary version of `react` and `react-dom`.
+
+{% endnote %}
 
 Next, create a server. You can use any Node.js libraries or frameworks to do this. In this example we'll use [Express](https://expressjs.com).
 
 {% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "server": "dist/server.js",
+  "targets": {
+    "server": {
+      "source": "src/server.js",
+      "context": "react-server"
+    }
+  },
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  }
+}
+```
+
+{% endsamplefile %}
 {% samplefile "src/server.js" %}
 
-```js
+```jsx
 import express from 'express';
 import {renderRequest} from '@parcel/rsc/node';
 import {Page} from './Page';
 
 // Create an Express app and serve the dist folder.
 const app = express();
-app.use(express.static('dist'));
+app.use('/client', express.static('dist/client'));
 
 // Create a route for the home page.
 app.get('/', async (req, res) => {
@@ -62,13 +93,13 @@ app.listen(3000);
 {% endsamplefile %}
 {% endsample %}
 
-The `@parcel/rsc` library used above is a small wrapper around some lower level React APIs that render your app to HTML.
+The `@parcel/rsc` library used above is a small wrapper around lower-level React APIs that render your app to HTML.
 
 ### Server entries
 
 Now we need to implement the `Page` component rendered above. This is a React [server component](https://react.dev/reference/rsc/server-components). It _only_ runs on the server (not in the browser), and has full access to server resources like the file system or a database.
 
-`"use server-entry"` is a Parcel-specific directive that marks a server component as an entry point of a page, creating a code splitting boundary. Any dependencies referenced by this page will be optimially bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](/features/code-splitting/#shared-bundles).
+`"use server-entry"` is a Parcel-specific directive that marks a server component as the entry point of a page, creating a code splitting boundary. Any dependencies referenced by this page will be optimially bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](/features/code-splitting/#shared-bundles).
 
 {% sample %}
 {% samplefile "src/Page.js" %}
@@ -93,7 +124,7 @@ export function Page() {
 {% endsamplefile %}
 {% endsample %}
 
-At this point, the application should start when running `parcel src/server.js`, and render the above page when loading <a href="http://localhost:3000">http://localhost:3000</a>.
+Open [http://localhost:3000](http://localhost:3000) to see the rendered page.
 
 ### Client entry
 
@@ -137,12 +168,12 @@ Loading the page again should look the same as before, but now there should be a
 
 ### Client components
 
-With the above setup done, you can now import and use Client Components to add interactivity to the page. Client components are marked using the standard React [`"use client"`](https://react.dev/reference/rsc/use-client) directive.
+With the above setup done, you can now import Client Components to add interactivity to the page. Client components are rendered to HTML on the server, and support React Hooks such as `useState` to update the UI on the client. Client components are marked using the standard React [`"use client"`](https://react.dev/reference/rsc/use-client) directive.
 
 {% sample %}
 {% samplefile "src/Counter.js" %}
 
-```js/0
+```jsx/0
 "use client";
 
 import {useState} from "react";
@@ -186,7 +217,7 @@ So far, we only have one page. To add another, create a new route in the server 
 {% sample %}
 {% samplefile "src/server.js" %}
 
-```js/4-6
+```jsx/4-6
 import {About} from './About';
 
 // ...
@@ -199,7 +230,7 @@ app.get('/about', async (req, res) => {
 {% endsamplefile %}
 {% samplefile "src/About.js" %}
 
-```js
+```jsx
 "use server-entry";
 
 import './client';
@@ -291,7 +322,7 @@ export function createAccount(formData) {
 {% endsamplefile %}
 {% samplefile "src/CreateAccountForm.js" %}
 
-```js
+```jsx
 import {createAccount} from './actions';
 
 export function CreateAccountForm() {
@@ -307,7 +338,7 @@ export function CreateAccountForm() {
 {% endsamplefile %}
 {% endsample %}
 
-The last step is "connecting" the client and server by making an HTTP request when an action is called. The `hydrate` function in `@parcel/rsc/client` accepts a `handleServerAction` function as an option. When a server action is called on the client, it will go through `handleServerAction`, which is responsible for making a request to the server.
+The last step is "connecting" the client and server by making an HTTP request when an action is called. The `hydrate` function in `@parcel/rsc/client` accepts a `callServer` function as an option. When a server action is called on the client, it will go through `callServer`, which is responsible for making a request to the server.
 
 {% sample %}
 {% samplefile "src/client.js" %}
@@ -320,7 +351,7 @@ import {hydrate, fetchRSC} from '@parcel/rsc/client';
 let updateRoot = hydrate({
   // Setup a callback to perform server actions.
   // This sends a POST request to the server and updates the page.
-  async handleServerAction(id, args) {
+  async callServer(id, args) {
     let {result, root} = await fetchRSC('/', {
       method: 'POST',
       headers: {
@@ -344,7 +375,7 @@ On the server, we'll need to handle POST requests and call the original server f
 {% sample %}
 {% samplefile "src/server.js" %}
 
-```js
+```jsx
 import {renderRequest, callAction} from '@parcel/rsc/node';
 
 // ...
@@ -363,15 +394,15 @@ app.post('/', async (req, res) => {
 {% endsamplefile %}
 {% endsample %}
 
-This setup can also be customized to change how you call the server, for example, adding authentication headers, or even using a different transport mechanism entirely. Once the setup is complete, you can add additional server actions by exporting async functions from a file with `"use server"`, and they will all go through `handleServerAction`.
+This setup can also be customized to change how you call the server, for example, adding authentication headers, or even using a different transport mechanism. You can add additional server actions by exporting async functions from a file with `"use server"`, and they will all go through `callServer`.
 
 ## Static rendering
 
-`@parcel/config-react-static` enables Parcel to pre-render React Server Components to static HTML at build time.
+Parcel supports pre-rendering React Server Components to fully static HTML at build time. For example, a marketing page or blog post is often static, and does not contain dynamic data personalized for the user. Pre-rendering allows these pages to be served directly from a CDN rather than requiring a server.
 
 ### Quick start
 
-To set up a new project with static rendering, run the following commands:
+To set up a new project with fully static rendering, run the following commands:
 
 ```bash
 npm create parcel react-static my-static-site
@@ -383,34 +414,33 @@ Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See b
 
 ### Setup
 
+Use the `"react-static"` target name to pre-render entries to static HTML.
+
 {% sample %}
-{% samplefile ".parcelrc" %}
-
-```json
-{
-  "extends": "@parcel/config-react-static"
-}
-```
-
-{% endsamplefile %}
 {% samplefile "package.json" %}
 
 ```json
 {
-  "source": "pages/**/*.tsx"
+  "targets": {
+    "react-static": {
+      "source": "pages/**/*.{js,tsx,mdx}",
+      "context": "react-server"
+    }
+  }
 }
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-With this configuration, components in the `pages` directory will be rendered to HTML files in the `dist` directory. Entry components receive a list of pages as a prop, which allows you to render a navigation list.
+With this configuration, components in the `pages` directory will be rendered to HTML files in the `dist` directory. Statically rendered components receive a list of pages as a prop, which allows you to render a navigation list.
 
 {% sample %}
 {% samplefile "pages/index.tsx" %}
 
 ```tsx
 import type {PageProps} from '@parcel/rsc';
+import '../src/client';
 
 export default function Index({pages, currentPage}: PageProps) {
   return (
@@ -420,7 +450,7 @@ export default function Index({pages, currentPage}: PageProps) {
           <ul>
             {pages.map(page => (
               <li key={page.url}>
-                <a 
+                <a
                   href={page.url}
                   aria-current={page.url === currentPage.url ? 'page' : undefined}>
                   {page.name.replace('.html', '')}
@@ -438,25 +468,66 @@ export default function Index({pages, currentPage}: PageProps) {
 {% endsamplefile %}
 {% endsample %}
 
-### MDX
+For each page, Parcel outputs two files:
 
-[MDX](https://mdxjs.com/) is a variant of Markdown that compiles to JSX. Parcel supports MDX out of the box, and when used with `@parcel/config-react-static`, it will be rendered to static HTML at build time.
+1. A `.html` file, which is used when loading the page from scratch.
+2. A `.rsc` file, which can be used to perform client side navigations. This speeds up subsequent navigations similar to a single page app.
+
+To enable client side navigations, implement a `client.js` file similar to the [example above](#routing). In this case, replace `.html` with `.rsc` when fetching.
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile "src/client.js" %}
 
-```json
-{
-  "source": "pages/**/*.mdx"
+```js/7
+"use client-entry";
+
+import {hydrate, fetchRSC} from '@parcel/rsc/client';
+
+let updateRoot = hydrate();
+
+async function navigate(pathname, push = false) {
+  let root = await fetchRSC(pathname.replace('.html', '.rsc');
+  updateRoot(root, () => {
+    if (push) {
+      history.pushState(null, '', pathname);
+    }
+  });
 }
+
+// Intercept link clicks to perform RSC navigation.
+document.addEventListener('click', e => {
+  let link = e.target.closest('a');
+  if (link) {
+    e.preventDefault();
+    navigate(link.pathname, true);
+  }
+});
+
+// When the user clicks the back button, navigate with RSC.
+window.addEventListener('popstate', e => {
+  navigate(location.pathname);
+});
 ```
 
 {% endsamplefile %}
+{% endsample %}
+
+### MDX
+
+[MDX](https://mdxjs.com/) is a variant of Markdown that compiles to JSX. Parcel supports MDX out of the box.
+
+Static exports are available from MDX layouts via the `exports` property of each page in the `pages` and `currentPage` props. For example, you could export a `title` property for use in the `<title>` element, or when rendering a navigation list of all pages.
+
+In addition, a `tableOfContents` property is also generated. This is a tree of all of the headings in the MDX file, which you can use to render a table of contents in an MDX layout.
+
+{% sample %}
 {% samplefile "pages/index.mdx" %}
 
 ```md
 import Layout from '../src/MDXLayout';
 export default Layout;
+
+export const title = 'Static MDX';
 
 # Hello, MDX!
 
@@ -467,7 +538,8 @@ This is a static MDX file.
 {% samplefile "src/MDXLayout.tsx" %}
 
 ```tsx
-import type {PageProps} from '@parcel/rsc';
+import type {ReactNode} from 'react';
+import type {PageProps, TocNode} from '@parcel/rsc';
 import './client';
 
 interface LayoutProps extends PageProps {
@@ -478,28 +550,208 @@ export default function Layout({children, pages, currentPage}: LayoutProps) {
   return (
     <html lang="en">
       <head>
-        <title>{currentPage.meta.tableOfContents?.[0].title}</title>
+        <title>{currentPage.exports!.title}</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <main>{children}</main>
+        <aside><Toc toc={currentPage.tableOfContents!} /></aside>
+      </body>
     </html>
   );
 }
-```
 
-{% endsamplefile %}
-{% samplefile "src/client.tsx" %}
-
-```tsx
-"use client-entry";
-
-import {hydrate} from '@parcel/rsc/client';
-
-hydrate();
+function Toc({toc}: {toc: TocNode[]}) {
+  return toc.length > 0 ? (
+    <ul>
+      {toc.map((page, i) => (
+        <li key={i}>
+          {page.title}
+          <Toc toc={t.children} />
+        </li>
+      ))}
+    </ul>
+  ) : null;
+}
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
+See Parcel's [MDX documentation](/languages/mdx/) for more details.
+
 ### Mixing static and dynamic
 
-## Client integration
+You can mix statically rendered pages with server rendered dynamic pages within the same app. This can be done by creating multiple targets.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "server": "dist/server.js",
+  "targets": {
+    "server": {
+      "source": "src/server.js",
+      "context": "react-server"
+    },
+    "react-static": {
+      "source": "pages/**/*.js",
+      "distDir": "dist/static",
+      "context": "react-server"
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+With this configuration, Parcel will statically render components in the `pages` directory and output HTML files into `dist/static`.
+
+Next, update your server to respond to requests for statically rendered pages. This example responds with a `.html` file when `text/html` is requested, and a `.rsc` file when `text/x-component` is requested (during client navigations).
+
+{% sample %}
+{% samplefile "src/server.js" %}
+
+```js
+import express from 'express';
+
+const app = express();
+app.use('/client', express.static('dist/client'));
+
+// Respond to requests for statically rendered pages.
+app.get('/*', (req, res, next) => {
+  res.format({
+    'text/html': () => sendFile(req.url + '.html', res, next),
+    'text/x-component': () => sendFile(req.url + '.rsc', res, next),
+    default: next
+  });
+});
+
+function sendFile(path, res, next) {
+  res.sendFile(path, {root: 'dist/static'}, err => {
+    if (err) next();
+  });
+}
+
+app.listen(3000);
+```
+
+{% endsamplefile %}
+{% samplefile "pages/static.js" %}
+
+```jsx
+export default function StaticPage() {
+  return (
+    <html>
+      <body>
+        <p>This page is statically rendered at build time!</p>
+      </body>
+    </html>
+  )
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Now [http://localhost:3000/static](http://localhost:3000/static) will display a statically rendered page.
+
+## Client rendering
+
+If you have an existing client-rendered React app, you can integrate React Server Components without rewriting the entire app. For example, a new feature could use React Server Components to dynamically render components based on data from a database while keeping client bundle sizes minimal.
+
+### Setup targets
+
+First, create two [targets](/features/targets/) in your `package.json`. The `client` target will point at your existing `index.html`. The `server` target will point at your new server.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "client": "dist/index.html",
+  "server": "dist/server.js",
+  "targets": {
+    "client": {
+      "source": "src/index.html",
+      "context": "react-client"
+    },
+    "server": {
+      "source": "server/server.js",
+      "context": "react-server"
+    }
+  },
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Parcel will build both the client and server together.
+
+### Create a server
+
+Next, create the server following the [steps above](#server-rendering). Since the initial app is client rendered, you only need to render an RSC payload not HTML, which can be done with the `renderRSC` function.
+
+{% sample %}
+{% samplefile "server/server.js" %}
+
+```jsx
+import express from 'express';
+import {renderRSC} from '@parcel/rsc/node';
+
+import {RSC} from './RSC';
+
+const app = express();
+app.get('/rsc', (req, res) => {
+  // Render the server component to an RSC payload.
+  // Since this app is initially client rendered, we don't need to SSR it to HTML.
+  let stream = renderRSC(<RSC />);
+  res.set('Content-Type', 'text/x-component');
+  stream.pipe(res);
+});
+
+app.listen(3000);
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### Fetch RSC from client
+
+On the client, fetch the RSC payload from the server and render it in a [Suspense](https://react.dev/reference/react/Suspense) boundary.
+
+{% sample %}
+{% samplefile "src/App.js" %}
+
+```jsx
+import {Suspense} from 'react';
+import {fetchRSC} from '@parcel/rsc/client';
+
+export function App() {
+  return (
+    <>
+      <h1>Client rendered</h1>
+      <Suspense fallback={<>Loading RSC</>}>
+        <RSC />
+      </Suspense>
+    </>
+  );
+}
+
+let request = null;
+
+function RSC() {
+  // Simple cache to make sure we only fetch once.
+  request ??= fetchRSC('http://localhost:3000/rsc');
+  return request;
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
