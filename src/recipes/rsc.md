@@ -235,7 +235,7 @@ app.get('/about', async (req, res) => {
 
 import './client';
 
-export function Page() {
+export function About() {
   return (
     <html>
       <head>
@@ -394,7 +394,7 @@ app.post('/', async (req, res) => {
 {% endsamplefile %}
 {% endsample %}
 
-This setup can also be customized to change how you call the server, for example, adding authentication headers, or even using a different transport mechanism. You can add additional server actions by exporting async functions from a file with `"use server"`, and they will all go through `callServer`.
+This setup can also be customized to change how you call the server, for example, adding authentication headers, or even using a different transport mechanism. You can add additional server actions by exporting async functions from a file with `"use server"`, and they will all go through `callServer` and the same server POST request handler.
 
 ## Static rendering
 
