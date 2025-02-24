@@ -8,6 +8,27 @@ eleventyNavigation:
   order: 1
 ---
 
+## Quick start
+
+To quickly scaffold a new web app with Parcel, run the following commands. This
+will create a new Git repository, install dependencies, and setup a few source
+files you can modify.
+
+```bash
+npm create parcel vanilla my-parcel-app
+cd my-parcel-app
+npm start
+```
+
+Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. The following templates are supported:
+
+* `vanilla` – a Vanilla JS + HTML app (shown above)
+* `react-client` – a TypeScript + React client only app. See [Parcel's React docs](/recipes/react/).
+* `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](/recipes/rsc/).
+* `react-static` – a TypeScript + React static site generator. See [Parcel's React Server Components docs](/recipes/rsc/).
+
+See below for a deep dive.
+
 ## Installation
 
 Before we get started, you'll need to install Node and Yarn or npm, and create a directory for your project. Then, install Parcel into your app using Yarn:
@@ -159,4 +180,3 @@ You can learn more about targets, as well as Parcel’s automatic support for di
 ## Next steps
 
 Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [development](/features/development/) and [production](/features/production/), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.
-

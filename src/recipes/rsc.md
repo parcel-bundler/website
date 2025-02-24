@@ -486,7 +486,7 @@ import {hydrate, fetchRSC} from '@parcel/rsc/client';
 let updateRoot = hydrate();
 
 async function navigate(pathname, push = false) {
-  let root = await fetchRSC(pathname.replace('.html', '.rsc');
+  let root = await fetchRSC(pathname.replace('.html', '.rsc'));
   updateRoot(root, () => {
     if (push) {
       history.pushState(null, '', pathname);
@@ -704,7 +704,6 @@ Next, create the server following the [steps above](#server-rendering). Since th
 ```jsx
 import express from 'express';
 import {renderRSC} from '@parcel/rsc/node';
-
 import {RSC} from './RSC';
 
 const app = express();
