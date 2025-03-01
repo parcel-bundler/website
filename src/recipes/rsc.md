@@ -79,10 +79,13 @@ When the `/comments` route is requested, we'll render a Server Component to an R
 
 ```jsx
 import express from 'express';
+import cors from 'cors';
 import {renderRSC} from '@parcel/rsc/node';
 import {Comments} from './Comments';
 
 const app = express();
+app.use(cors());
+
 app.get('/comments', (req, res) => {
   // Render the server component to an RSC payload.
   let stream = renderRSC(<Comments />);
