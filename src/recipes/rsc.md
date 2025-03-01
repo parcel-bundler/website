@@ -349,7 +349,7 @@ This setup can also be customized to change how you call the server, for example
 
 ## Server rendering
 
-In a client-rendered React app, the entry point for your Parcel build is typically an HTML file. The output of the build might be uploaded to a static file server or CDN. After the HTML and JavasScript loads, you might load data from an API server and render it with components on the client. In the process of rendering the data, you might dynamically load additional components. This is a performance problem called a _network waterfall_.
+In a client-rendered React app, the entry point for your Parcel build is typically an HTML file. The output of the build might be uploaded to a static file server or CDN. After the HTML and JavaScript loads, you might request data from an API server and render it with components on the client. In the process of rendering the data, you might dynamically load additional components or data. This is a performance problem called a _network waterfall_.
 
 React Server Components can optimize network waterfalls by rendering to HTML as part of the initial request. This avoids additional API requests to load data, and allows components needed to render the data to be loaded in parallel instead of in series.
 
