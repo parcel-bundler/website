@@ -38,7 +38,7 @@ This is an MDX file.
 
 ## Dependencies
 
-Parcel detects dependency references in MDX files and processes them as well. These references are re-written so that they link to the correct output files. Supported depencies include:
+Parcel detects dependency references in MDX files and processes them as well. These references are re-written so that they link to the correct output files. Supported dependencies include:
 
 ### Links
 

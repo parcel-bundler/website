@@ -214,7 +214,7 @@ export async function Comments() {
 
 Server Components allow the server to tell the client what resources will be needed to render the RSC Payload. This includes both Client Components and resources like CSS. Instead of loading all possible Client Components to render any kind of data up front, or loading additional components on demand after fetching the data, Server Components enable resources to load _in parallel_ with the data.
 
-Code splitting works the same way in Server Components as in Client Components. Use [React.lazy](https://react.dev/reference/react/lazy) with dynamic `import()` to load components on demand. Since this happens on the server, the client will start loading the necessary resources in paralell with the data.
+Code splitting works the same way in Server Components as in Client Components. Use [React.lazy](https://react.dev/reference/react/lazy) with dynamic `import()` to load components on demand. Since this happens on the server, the client will start loading the necessary resources in parallel with the data.
 
 This example renders different components depending whether it is a text, image, or video comment. Only the resources needed to render the comment types in the response will be loaded.
 
@@ -545,11 +545,11 @@ export function About() {
 
 Now you should be able to load <a href="http://localhost:3000/about">http://localhost:3000/about</a>.
 
-However, you may notice that when clicking the "Home" link, the browser does a full page refresh. To improve the responsiveness of navigations, you can fetch a new RSC payload from the server and update the component tree in place instead.
+However, you may notice that when clicking the "Home" link, the browser does a full page refresh. To improve the responsiveness of navigation, you can fetch a new RSC payload from the server and update the component tree in place instead.
 
 `@parcel/rsc/client` includes a `fetchRSC` function, which is a small wrapper around the `fetch` API that returns a new React tree. Passing this to the `updateRoot` function returned by `hydrate` will update the page with the new content.
 
-As a simple example, we can intercept the `click` event on links to trigger navigations. The browser `history.pushState` API can be used to update the browser's URL bar once the page is finished loading.
+As a simple example, we can intercept the `click` event on links to trigger client side navigation. The browser `history.pushState` API can be used to update the browser's URL bar once the page is finished loading.
 
 {% sample %}
 {% samplefile "src/client.js" %}
@@ -590,7 +590,7 @@ window.addEventListener('popstate', e => {
 
 {% note %}
 
-This example re-renders the entire page during client navigations. In a real app, it might be beneficial to load only the part of the page that changed (e.g. excluding common parts such as a sidebar). Router libraries with support for nested routes make this easier.
+This example re-renders the entire page during client navigation. In a real app, it might be beneficial to load only the part of the page that changed (e.g. excluding common parts such as a sidebar). Router libraries with support for nested routes make this easier.
 
 {% endnote %}
 
@@ -724,7 +724,7 @@ export default function Index({pages, currentPage}: PageProps) {
 For each page, Parcel outputs two files:
 
 1. A `.html` file, which is used when loading the page from scratch.
-2. A `.rsc` file, which can be used to perform client side navigations. This speeds up subsequent navigations similar to a single page app.
+2. A `.rsc` file, which can be used to perform client side navigation. This speeds up subsequent navigation similar to a single page app.
 
 To enable client side navigations, implement a `client.js` file similar to the [example above](#routing). In this case, replace `.html` with `.rsc` when fetching.
 
