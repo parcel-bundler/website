@@ -351,7 +351,33 @@ This setup can also be customized to change how you call the server, for example
 
 In a client-rendered React app, the entry point for your Parcel build is typically an HTML file. The output of the build might be uploaded to a static file server or CDN. After the HTML and JavaScript loads, you might request data from an API server and render it with components on the client. In the process of rendering the data, you might dynamically load additional components or data. This is a performance problem called a _network waterfall_.
 
+<svg viewBox="0 0 570 145" style="width: 100%; max-width: 570px" fill="currentColor">
+  <rect x="0" y="0" width="100" height="20" fill="#3498db" />
+  <text x="105" y="15" font-size="14">HTML</text>
+  <rect x="30" y="25" width="180" height="20" fill="#2ecc71" />
+  <text x="215" y="40" font-size="14">JavaScript</text>
+  <rect x="30" y="50" width="120" height="20" fill="#CB297B" />
+  <text x="155" y="65" font-size="14">CSS</text>
+  <rect x="210" y="75" width="100" height="20" fill="#F8BA00" />
+  <text x="315" y="90" font-size="14">Data</text>
+  <rect x="210" y="100" width="150" height="20" fill="#F8BA00" />
+  <text x="365" y="115" font-size="14">Data</text>
+  <rect x="360" y="125" width="130" height="20" fill="#2ecc71" />
+  <text x="495" y="140" font-size="14">JavaScript</text>
+</svg>
+
 React Server Components can optimize network waterfalls by rendering to HTML as part of the initial request. This avoids additional API requests to load data, and allows components needed to render the data to be loaded in parallel instead of in series.
+
+<svg viewBox="0 0 290 95" style="width: 100%; max-width: 290px" fill="currentColor">
+  <rect x="0" y="0" width="100" height="20" fill="#3498db" />
+  <text x="105" y="15" font-size="14">HTML + Data</text>
+  <rect x="30" y="25" width="180" height="20" fill="#2ecc71" />
+  <text x="215" y="40" font-size="14">JavaScript</text>
+  <rect x="30" y="50" width="120" height="20" fill="#CB297B" />
+  <text x="155" y="65" font-size="14">CSS</text>
+  <rect x="30" y="75" width="130" height="20" fill="#2ecc71" />
+  <text x="165" y="90" font-size="14">JavaScript</text>
+</svg>
 
 When using server rendering, the entry point for your Parcel build is the source code for your server instead of a static HTML file.
 
