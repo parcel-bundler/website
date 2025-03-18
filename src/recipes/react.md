@@ -9,6 +9,18 @@ eleventyNavigation:
 
 Parcel works great for building single or multi-page React applications. It includes a first-class development experience with Fast Refresh, and supports JSX, TypeScript, Flow, and many styling methodologies out of the box.
 
+## Quick start
+
+To quickly scaffold a new client-only React app with Parcel, run the following commands:
+
+```bash
+npm create parcel react-client my-react-app
+cd my-react-app
+npm start
+```
+
+Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See below for a deep dive.
+
 ## Getting started
 
 First, install `react` and `react-dom` into your project:
