@@ -263,15 +263,15 @@ export function Button({ children }) {
 
 ### Tailwind CSS
 
-[Tailwind CSS](https://tailwindcss.com) is a popular utility-first CSS framework. It uses [PostCSS](/languages/css/#postcss) to build a CSS file containing only the classes you use in your code.
+[Tailwind CSS](https://tailwindcss.com) is a popular utility-first CSS framework. It uses [PostCSS](/languages/css/#postcss) to build a CSS file containing only the classes you use in your code. The following works with Tailwind CSS v4.
 
 To use it, first, install the necessary dependencies:
 
 ```shell
-yarn add tailwindcss postcss --dev
+yarn add tailwindcss @tailwindcss/postcss postcss --dev
 ```
 
-Next, create the config files needed for PostCSS and Tailwind. This example will use Tailwind’s [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) to speed up builds by only compiling the classes you use. Make sure you modify the glob passed to the `content` option so it matches all of the source files where you'll use Tailwind classes.
+Next, create the config files needed for PostCSS and Tailwind.
 
 {% sample %}
 {% samplefile ".postcssrc" %}
@@ -285,23 +285,16 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 ```
 
 {% endsamplefile %}
-{% samplefile "tailwind.config.js" %}
+{% samplefile "styles.css" %}
 
-```javascript
-module.exports = {
-  content: ["./src/*.{html,js}"],
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-};
+```css
+@import "tailwindcss";
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-Finally, you can reference Tailwind classes from any files that match the `content` glob listed in `tailwind.config.js`.
+Finally, you can reference Tailwind classes from any files [scanned by Tailwind](https://tailwindcss.com/docs/detecting-classes-in-source-files#which-files-are-scanned):
 
 {% sample %}
 {% samplefile "Button.js" %}
