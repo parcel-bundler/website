@@ -271,7 +271,7 @@ To use it, first, install the necessary dependencies:
 yarn add tailwindcss @tailwindcss/postcss postcss --dev
 ```
 
-Next, create the config files needed for PostCSS and Tailwind. This example will use Tailwind’s [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) to speed up builds by only compiling the classes you use.
+Next, create the config files needed for PostCSS and Tailwind.
 
 {% sample %}
 {% samplefile ".postcssrc" %}
@@ -287,7 +287,7 @@ Next, create the config files needed for PostCSS and Tailwind. This example will
 {% endsamplefile %}
 {% samplefile "styles.css" %}
 
-```javascript
+```css
 @import "tailwindcss";
 ```
 
