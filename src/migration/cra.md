@@ -66,7 +66,7 @@ Next, in your `package.json`, replace `react-scripts` with `parcel`. You can rem
 
 ### 2. Update public/index.html
 
-Replace the template variable `%PUBLIC_URL%` with `.` in `public/index.html` to point to the files directly. 
+Replace the template variable `%PUBLIC_URL%` with `.` in `public/index.html` to point to the files directly.
 
 {% migration %}
 {% samplefile "public/index.html" %}
@@ -102,7 +102,7 @@ Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It
 
 ### 3. Migrate SVG imports
 
-If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-react` to your `.parcelrc` following [these instructions](http://localhost:1234/languages/svg/#importing-as-a-react-component).
+If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](http://localhost:1234/languages/svg/#importing-as-a-react-component).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -111,7 +111,7 @@ If you use Create React App's [svg component import](https://create-react-app.de
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "jsx:*.svg": ["...", "@parcel/transformer-svg-react"],
+    "jsx:*.svg": ["...", "@parcel/transformer-svg-jsx"],
     "jsx:*": ["..."]
   }
 }

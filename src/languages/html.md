@@ -415,7 +415,7 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [htmlnano](https://github.com/posthtml/htmlnano) to perform HTML minification. To configure htmlnano, you can create a `.htmlnanorc` or `.htmlnanorc.json` file in your project root directory.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses its builtin HTML minifier, which is compatible [htmlnano](https://github.com/posthtml/htmlnano). To configure it, you can create a `.htmlnanorc` or `.htmlnanorc.json` file in your project root directory.
 
 For example to retain HTML comments
 
@@ -450,3 +450,9 @@ or to not minify SVG elements.
 **Note**: `.htmlnanorc.js`, `.htmlnanorc.mjs`, `.htmlnanorc.cjs`, `htmlnano.config.js`, `htmlnano.config.mjs`, and `htmlnano.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
 
 {% endwarning %}
+
+{% note %}
+
+Previous versions of Parcel used htmlnano as the default HTML minifier. To continue using htmlnano instead of Parcel's builtin HTML minifier, you can use the `@parcel/optimizer-htmlnano` plugin in your `.parcelrc`. See [Plugins](/features/plugins/) for more information.
+
+{% endnote %}

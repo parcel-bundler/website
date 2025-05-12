@@ -300,12 +300,12 @@ See [Bundle inlining](/features/bundle-inlining/) for more details.
 
 ### Importing as a React component
 
-The `@parcel/transformer-svg-react` plugin can be used to import an SVG file as a React component. This uses [SVGR](https://react-svgr.com) to transform the SVG file into JSX. It also uses [SVGO](https://github.com/svg/svgo) to optimize the SVG to reduce file size.
+The `@parcel/transformer-svg-jsx` plugin can be used to import an SVG file as a React component. This transforms SVG into JSX, and optimizes it for file size. It's compatible with [SVGR](https://react-svgr.com/docs/configuration-files/).
 
 This plugin is not included in the default Parcel config, so you'll need to install it and add it to your `.parcelrc`.
 
 ```shell
-yarn add @parcel/transformer-svg-react --dev
+yarn add @parcel/transformer-svg-jsx --dev
 ```
 
 You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a named pipeline to create a URL scheme that you can reference from a JavaScript import statement. This approach allows SVG files referenced from JavaScript to be converted to JSX, but SVGs referenced elsewhere to be kept as SVG files. Use the `"..."` syntax to run the default SVG transformer first before converting the SVG to JSX.
@@ -317,7 +317,7 @@ You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a n
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "jsx:*.svg": ["...", "@parcel/transformer-svg-react"],
+    "jsx:*.svg": ["...", "@parcel/transformer-svg-jsx"],
     "jsx:*": ["..."]
   }
 }
@@ -335,15 +335,21 @@ export const App = () => <Icon />;
 {% endsamplefile %}
 {% endsample %}
 
+SVG to JSX can be configured in a `.svgrrc` file, following the options documented by [SVGR](https://react-svgr.com/docs/configuration-files/).
+
+{% note %}
+
+**Note**: Some options such as custom templates are not supported by `@parcel/transformer-svg-jsx`. If these are needed, use `@parcel/transformer-svg-react` instead, which uses SVGR instead of Parcel's Rust-based replacement.
+
+{% endnote %}
+
 ## Production
 
 In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [SVGO](https://github.com/svg/svgo) to perform SVG minification.
-
-To configure SVGO, you can create a `svgo.config.json` file in your project root directory. To see all the available configuration options for SVGO, see the [official documentation](https://github.com/svg/svgo#configuration).
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, create a `svgo.config.json` file in your project root directory. To see all the available configuration options for SVGO, see the [official documentation](https://github.com/svg/svgo#configuration).
 
 {% sample %}
 {% samplefile "svgo.config.json" %}
@@ -371,3 +377,9 @@ To configure SVGO, you can create a `svgo.config.json` file in your project root
 **Note**: `svgo.config.js`, `svgo.config.mjs`, and `svgo.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
 
 {% endwarning %}
+
+{% note %}
+
+Previous versions of Parcel used SVGO as the default SVG minifier. To continue using SVGO instead of Parcel's builtin SVG minifier, you can use the `@parcel/optimizer-svgo` plugin in your `.parcelrc`. See [Plugins](/features/plugins/) for more information.
+
+{% endnote %}

@@ -189,7 +189,7 @@ Parcel supports many different kinds of plugins which perform a specific task as
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["...", "@parcel/transformer-svg-react"]
+    "*.svg": ["...", "@parcel/transformer-svg-jsx"]
   }
 }
 ```

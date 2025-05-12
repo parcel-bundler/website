@@ -343,10 +343,10 @@ See [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScrip
 
 External SVG files can be referenced as described above. You can also import SVGs as React components which can be rendered directly in JSX.
 
-First, install the `@parcel/transformer-svg-react` plugin and add it to your `.parcelrc`:
+First, install the `@parcel/transformer-svg-jsx` plugin and add it to your `.parcelrc`:
 
 ```shell
-yarn add @parcel/transformer-svg-react --dev
+yarn add @parcel/transformer-svg-jsx --dev
 ```
 
 {% sample %}
@@ -356,7 +356,7 @@ yarn add @parcel/transformer-svg-react --dev
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["...", "@parcel/transformer-svg-react"]
+    "*.svg": ["...", "@parcel/transformer-svg-jsx"]
   }
 }
 ```
