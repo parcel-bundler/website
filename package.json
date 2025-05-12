@@ -29,11 +29,11 @@
     "@babel/generator": "^7.20.1",
     "@babel/parser": "^7.20.1",
     "@babel/traverse": "^7.20.1",
-    "@parcel/packager-xml": "^2.8.0",
-    "@parcel/transformer-js": "^2.8.0",
-    "@parcel/transformer-react-refresh-wrap": "^2.8.0",
-    "@parcel/transformer-sass": "^2.8.0",
-    "@parcel/transformer-xml": "^2.8.0",
+    "@parcel/packager-xml": "^2.15.0",
+    "@parcel/transformer-js": "^2.15.0",
+    "@parcel/transformer-react-refresh-wrap": "^2.15.0",
+    "@parcel/transformer-sass": "^2.15.0",
+    "@parcel/transformer-xml": "^2.15.0",
     "eleventy-plugin-toc": "^1.1.0",
     "flow-bin": "^0.177.0",
     "husky": "^4.3.6",
@@ -43,14 +43,14 @@
     "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
     "nullthrows": "^1.1.1",
-    "parcel": "^2.8.0",
+    "parcel": "^2.15.0",
     "postcss": "^8.3.6",
     "posthtml-include": "^1.7.0",
     "posthtml-prism": "^1.0.4",
     "prettier": "2.7.1",
     "process": "^0.11.10",
     "sass": "^1.55.0",
-    "sharp": "^0.31.1",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.2.1",
     "tailwindcss-safe-area": "^0.2.2"
   },
@@ -64,7 +64,8 @@
     "react-use": "^17.3.1"
   },
   "resolutions": {
-    "gulp-sass": "5.0.0"
+    "gulp-sass": "5.0.0",
+    "sass": "1.55.0"
   },
   "lint-staged": {
     "*.{md,scss,js,json}": "prettier --write"
