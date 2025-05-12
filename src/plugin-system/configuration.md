@@ -33,13 +33,13 @@ This example shows how a company might distribute a shared Parcel configuration 
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["...", "@parcel/transformer-svg-react"]
+    "*.svg": ["...", "@parcel/transformer-svg-jsx"]
   },
   "namers": ["@company/parcel-namer", "..."],
   "compressors": {
     "*.{js,html,css}": [
       "...",
-      "@parcel/compressor-gzip", 
+      "@parcel/compressor-gzip",
       "@parcel/compressor-brotli"
     ]
   }

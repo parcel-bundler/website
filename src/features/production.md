@@ -23,7 +23,7 @@ Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box. Min
 
 By default, minification is enabled when using the `parcel build` command. You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
 
-Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, [htmlnano](https://github.com/posthtml/htmlnano) for HTML, and [svgo](https://github.com/svg/svgo) for SVG. If needed, you can configure these tools using a `.terserrc`, `.htmlnanorc`, or `svgo.config.json` config file. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
+Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure these tools using a `.terserrc`, `svgo.config.json`, or `.htmlnanorc` config file. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
 
 ### Tree shaking
 
