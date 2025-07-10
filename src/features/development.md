@@ -172,7 +172,7 @@ To disable safe write, use the options provided below:
 - Vim: add `:set backupcopy=yes` to your settings.
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 - vis: add `:set savemethod inplace` to your settings.
-- Helix: add `atomic_save = false` to your `[editor]` settings
+- Helix: add `atomic-save = false` to your `[editor]` settings
 
 ##### Linux: No space left on device
 
