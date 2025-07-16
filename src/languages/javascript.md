@@ -83,7 +83,7 @@ To learn more about CommonJS, see the [Node.js docs](https://nodejs.org/dist/lat
 
 Both the ES module `import` statement and CommonJS `require` function load dependencies *synchronously*: that is, the module can be referenced immediately without waiting for a network request. Typically, modules that are imported synchronously are bundled together into the same file as their parent, or referenced in another bundle that is already loaded.
 
-The dynamic [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) function can be used to load dependencies *asynchronously*. This allows loading code lazily, on demand, and is a good technique for reducing the file size of the initial page load of your app. `import()` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which notifies you when the dependency has been loaded.
+The dynamic [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) function can be used to load dependencies *asynchronously*. This allows loading code lazily, on demand, and is a good technique for reducing the file size of the initial page load of your app. `import()` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which notifies you when the dependency has been loaded.
 
 ```javascript
 import('./pages/about').then(function(page) {
