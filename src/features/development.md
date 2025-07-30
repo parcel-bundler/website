@@ -155,13 +155,13 @@ module.exports = function (app) {
 
 If you would like to write this as an ES module instead, you can do so using a `.proxyrc.mjs` file, or by using the `"type": "module"` option in your `package.json`.
 
-### File watcher
+## File watcher
 
 To support an optimal caching and development experience Parcel utilizes a very fast watcher written in C++ that integrates with low-level file watching functionality of each operating system. Using this watcher Parcel watches every file in your project root (including all `node_modules`). Based on events and metadata from these files, Parcel determines which files need to be rebuilt.
 
-#### Known issues with file watching
+### Known issues with file watching
 
-##### Safe Write
+#### Safe Write
 
 Some text editors and IDE's have a feature called "safe write" that prevents data loss by taking a copy of the file and renaming it when saved. However, this feature can prevent automatic detection of file updates.
 
@@ -173,7 +173,7 @@ To disable safe write, use the options provided below:
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 - vis: add `:set savemethod inplace` to your settings.
 
-##### Linux: No space left on device
+#### Linux: No space left on device
 
 Depending on the size of your project, and your operating system's watcher limit, this error might pop up when you're running Parcel on Linux. To resolve this issue, change the `sysctl`configuration for `fs.inotify` to have a higher value for `max_user_watches`.
 
@@ -187,7 +187,7 @@ fs.inotify.max_user_watches = 16384
 
 If this error persists you can try increasing the values even more.
 
-##### Using Dropbox, Google Drive or other cloud storage solutions
+#### Using Dropbox, Google Drive or other cloud storage solutions
 
 It is best practice to not place a Parcel project in a folder that is synced to the cloud using something like Dropbox or Google Drive. These solutions create a lot of file system events that can mess with our watcher and cause unnecessary rebuilds.
 
