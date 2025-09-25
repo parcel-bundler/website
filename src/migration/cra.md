@@ -63,7 +63,6 @@ Next, in your `package.json`, replace `react-scripts` with `parcel`. You can rem
 {% endsamplefile %}
 {% endmigration %}
 
-
 ### 2. Update public/index.html
 
 Replace the template variable `%PUBLIC_URL%` with `.` in `public/index.html` to point to the files directly.
@@ -102,7 +101,7 @@ Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It
 
 ### 3. Migrate SVG imports
 
-If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](http://localhost:1234/languages/svg/#importing-as-a-react-component).
+If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](/languages/svg/#importing-as-a-react-component).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -157,7 +156,7 @@ If you use Create React App's [GraphQL import](https://create-react-app.dev/docs
 {% endsamplefile %}
 {% endsample %}
 
-Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](http://localhost:1234/languages/javascript/#transpilation) for more information.
+Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](/languages/javascript/#transpilation) for more information.
 
 ### 5. Migrate CSS
 
@@ -175,7 +174,7 @@ Parcel includes support for CSS, CSS modules, SASS, and autoprefixing out of the
 {% endsamplefile %}
 {% endsample %}
 
-Additionally, if you use Tailwind CSS, you'll need to add the `tailwindcss` plugin to `.postcssrc` as well. See [the documentation](https://parceljs.org/recipes/react/#tailwind-css) for more details.
+Additionally, if you use Tailwind CSS, you'll need to add the `tailwindcss` plugin to `.postcssrc` as well. [See the documentation](/recipes/react/#tailwind-css) for more details.
 
 ### 6. Migrate tests
 
@@ -241,7 +240,18 @@ Now create the following files:
     "^.+\\.(css|sass|scss)$": "identity-obj-proxy",
     "^jsx:.+\\.svg": "<rootDir>/config/jest/SvgComponent.js"
   },
-  "moduleFileExtensions": ["web.js", "js", "web.ts", "ts", "web.tsx", "tsx", "json", "web.jsx", "jsx", "node"],
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
   "watchPlugins": [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
@@ -254,14 +264,14 @@ Now create the following files:
 {% samplefile "config/babelTransform.js" %}
 
 ```js
-const babelJest = require('babel-jest').default;
+const babelJest = require("babel-jest").default;
 
 module.exports = babelJest.createTransformer({
   presets: [
     [
-      require.resolve('babel-preset-react-app'),
+      require.resolve("babel-preset-react-app"),
       {
-        runtime: 'automatic'
+        runtime: "automatic",
       },
     ],
   ],
@@ -274,7 +284,7 @@ module.exports = babelJest.createTransformer({
 {% samplefile "config/fileTransform.js" %}
 
 ```js
-const path = require('path').default;
+const path = require("path").default;
 
 module.exports = {
   process(src, filename) {
