@@ -18,6 +18,7 @@ The dev server supports several options, which you can specify via CLI options:
 - `-p`, `--port` – Overrides the default port. The `PORT` environment variable can also be used to set the port.
 - `--host` – By default, the dev server accepts connections on all interfaces. You can override this to specify that only connections from certain hosts should be accepted.
 - `--open` – Automatically opens the entry in your default browser after Parcel starts. You can also pass a browser name to open a different browser, e.g. `--open safari`.
+- `--no-cors` – By default, the dev server allows cross origin requests. Use this option to prevent access from external websites.
 
 ## Hot reloading
 
