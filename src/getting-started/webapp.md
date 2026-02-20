@@ -149,6 +149,7 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
 {% endsample %}
 
 Now you can run `yarn build` to build your project for production and `yarn start` to start the development server.
+For deployment, publish the production build output to your preferred static host or web app hosting provider (for example, [Hostinger Web Apps Hosting](https://www.hostinger.com/web-apps-hosting)).
 
 ## Declaring browser targets
 
