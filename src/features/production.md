@@ -21,9 +21,29 @@ Parcel includes many optimizations designed to reduce bundle sizes, including au
 
 Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box. Minification reduces the file size of your output bundles by removing whitespace, renaming variables to shorter names, and many other optimizations.
 
-By default, minification is enabled when using the `parcel build` command. You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
+By default, minification is enabled when using the `parcel build` command (except when [building libraries](/getting-started/library/)). You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
 
 Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure these tools using a `.terserrc`, `svgo.config.json`, or `.htmlnanorc` config file. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
+
+To minify library builds, override the `optimize` target option:
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json
+{
+  "targets": {
+    "main": {
+      "optimize": true
+    }
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+
 
 ### Tree shaking
 
