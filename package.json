@@ -58,7 +58,7 @@
     "@alpinejs/intersect": "^3.10.5",
     "alpinejs": "^3.10.5",
     "focus-visible": "^5.2.0",
-    "marked": "^2.0.7",
+    "marked": "^4.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-use": "^17.3.1"
