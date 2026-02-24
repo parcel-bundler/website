@@ -29,7 +29,8 @@ The following image formats are supported, both as input and as output via the `
 - `jpeg` / `jpg` - [JPEG](https://en.wikipedia.org/wiki/JPEG) is a very widely supported lossy image format. It's often used for photos, and offers reasonably good compression, but does not support transparency or lossless compression.
 - `png` - [Portable Network Graphics](https://en.wikipedia.org/wiki/Portable_Network_Graphics) (PNG) is a lossless image format. PNGs are typically much larger than JPEGs or other lossy image formats, but support transparency and offer much higher quality for fine details.
 - `webp` – [WebP](https://en.wikipedia.org/wiki/WebP) supports both lossy and lossless compression as well as animation and transparency. It's [supported](https://caniuse.com/webp) in all modern browsers, and offers better compression for the same quality as JPEGs and PNGs.
-- `avif` – [AVIF](https://jakearchibald.com/2020/avif-has-landed/) is a new lossy image format based on the AV1 video codec which offers significant compression and quality improvements over JPEG and WebP. It's currently [supported](https://caniuse.com/avif) in the latest versions of Chrome and Firefox.
+- `avif` – [AVIF](https://jakearchibald.com/2020/avif-has-landed/) is a new lossy image format based on the AV1 video codec which offers significant compression and quality improvements over JPEG and WebP. AVIF competes with JPEG XL, which has roughly similar quality and compression, however JPEG XL offers more features. It's currently [supported](https://caniuse.com/avif) in recent versions of Chrome, Firefox, and Safari. As of January 2024, it is considered part of the [Baseline](https://web-platform-dx.github.io/web-features/) and is supported by ~95% of users.
+- `jxl` / `jpegxl` – [JPEG XL](https://jpegxl.info/) is a modern lossy image format optimized for the web which generally offers better compression over WebP, JPEG, and PNG. JPEG XL competes with AVIF, which has roughly similar quality and compression, however AVIF has fewer features. It's currently _only_ [supported](https://caniuse.com/jpegxl) in recent versions of Safari, and no other browsers.
 
 The following formats are also supported as inputs, but are not generally supported by browsers: `tiff`, `heic` / `heif`, and `raw`.
 
@@ -72,6 +73,7 @@ To reference an image from HTML, use the `<img>` or `<picture>` element. The sam
     <picture>
       <source srcset="image.jpeg?as=avif&width=800" type="image/avif" />
       <source srcset="image.jpeg?as=webp&width=800" type="image/webp" />
+      <source srcset="image.jpeg?as=jxl&width=800" type="image/jxl" />
       <source srcset="image.jpeg?width=800" type="image/jpeg" />
       <img src="image.jpeg?width=200" alt="test image" />
     </picture>
@@ -107,15 +109,22 @@ You can also define more advanced options per format. All images in formats with
 
 ```json
 {
+  "png": {
+    "palette": true
+  },
   "jpeg": {
     "quality": 75,
     "chromaSubsampling": "4:4:4"
   },
+  "jxl": {
+    "lossless": true
+  },
   "webp": {
     "nearLossless": true
   },
-  "png": {
-    "palette": true
+  "avif": {
+    "quality": 50,
+    "lossless": true
   }
 }
 ```
