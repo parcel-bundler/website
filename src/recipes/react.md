@@ -279,7 +279,7 @@ Next, create the config files needed for PostCSS and Tailwind.
 ```json
 {
   "plugins": {
-    "tailwindcss": {}
+    "@tailwindcss/postcss": {}
   }
 }
 ```
