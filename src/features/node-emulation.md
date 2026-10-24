@@ -16,15 +16,15 @@ Parcel supports inlining environment variables in JavaScript. This can be used t
 To access an environment variable, read the corresponding property from the `process.env` object.
 
 ```js
-if (process.env.NODE_ENV === 'development') {
-  console.log('Happy developing!');
+if (process.env.NODE_ENV === "development") {
+  console.log("Happy developing!");
 }
 ```
 
 You can also use destructuring syntax to access multiple properties at once.
 
 ```js
-let {NODE_ENV, API_TOKEN} = process.env;
+let { NODE_ENV, API_TOKEN } = process.env;
 ```
 
 Accessing `process.env` in any non-static ways (e.g. dynamic property lookups) is not supported.
@@ -50,26 +50,30 @@ API_KEY=12345
 
 In addition to `.env`, environment-specific overrides such as `.env.production` and `.env.development` can also be created. These are applied based on the `NODE_ENV` environment variable (including when automatically set by Parcel). Any variables that are not set in environment-specific overrides fall back to the values defined in the base `.env` file.
 
-The `.env.local` file is also supported for local overrides of environment variables, however, it is not used when `NODE_ENV=test` so that tests produce the same result for everyone. This is also supported for environment-specific overrides, such as `.env.production.local`.
+The `.env.local` file is also supported for local overrides of environment variables. This is also supported for environment-specific overrides, such as `.env.production.local`.
+
+<!-- TODO(v3): v2 skipped `.env.local` when `NODE_ENV=test`. v3's load_dotenv (crates/core/src/lib.rs) always loads `.env.local` (verified with NODE_ENV=test and the release binary), so that sentence was removed. Restore if this should be preserved. -->
 
 ## Polyfilling & Excluding Builtin Node Modules
 
 When targetting the browser and your code, or more likely a dependency, imports builtin Node modules such as `crypto`, `fs` or `process`, Parcel will automatically use one of the following polyfills. If no polyfill is available, then an empty module will be used instead. You can also use [aliases](/features/dependency-resolution/#aliases) to override these.
 
-| native module | npm replacement            | native module  | npm replacement      |
-| ------------- | -------------------------- | -------------- | -------------------- |
-| assert        | `assert`                   | process        | `process/browser.js` |
-| buffer        | `buffer`                   | punycode       | `punycode`           |
-| console       | `console-browserify`       | querystring    | `querystring-es3`    |
-| constants     | `constants-browserify`     | stream         | `stream-browserify`    |
-| crypto        | `crypto-browserify`        | string_decoder | `string_decoder`     |
-| domain        | `domain-browser`           | sys            | `util/util.js`       |
-| events        | `events`                   | timers         | `timers-browserify`  |
-| http          | `stream-http`              | tty            | `tty-browserify`     |
-| https         | `https-browserify`         | url            | `url`                |
-| os            | `os-browserify/browser.js` | util           | `util/util.js`       |
-| path          | `path-browserify`          | vm             | `vm-browserify`      |
-| zlib          | `browserify-zlib`          |
+Polyfills are not installed automatically. If your code or a dependency uses a builtin Node module, install the corresponding npm package listed below as a dependency of your project.
+
+| native module | npm replacement        | native module  | npm replacement     |
+| ------------- | ---------------------- | -------------- | ------------------- |
+| assert        | `assert`               | process        | `process`           |
+| buffer        | `buffer`               | punycode       | `punycode`          |
+| console       | `console-browserify`   | querystring    | `querystring-es3`   |
+| constants     | `constants-browserify` | stream         | `stream-browserify` |
+| crypto        | `crypto-browserify`    | string_decoder | `string_decoder`    |
+| domain        | `domain-browser`       | sys            | `util`              |
+| events        | `events`               | timers         | `timers-browserify` |
+| http          | `stream-http`          | tty            | `tty-browserify`    |
+| https         | `https-browserify`     | url            | `url`               |
+| os            | `os-browserify`        | util           | `util`              |
+| path          | `path-browserify`      | vm             | `vm-browserify`     |
+| zlib          | `browserify-zlib`      |
 
 ## Shimming Builtin Node Globals
 
@@ -79,10 +83,11 @@ When targetting the browser, usages of global variables that are available in No
 
 - `Buffer` is imported automatically from the `buffer` module.
 
-- `__filename` and `dirname` are replaced by string literals of the asset's filepath (or the parent folder) relative to the project root.
+- `__filename` and `__dirname` are replaced by string literals of the asset's filepath (or the parent folder) relative to the project root.
 
 - `global` is replaced with a reference to the global variable (behaving like the newer `globalThis`).
 
+Like the builtin module polyfills above, the `process` and `buffer` packages must be installed in your project when these globals are used.
 
 ## Inlining fs.readFileSync
 
@@ -118,20 +123,24 @@ console.log(data);
 
 ## Disabling These Features
 
-Inlining of [environment variables](#environment-variables) and [`readFileSync` calls](#inlining-fs.readfilesync) can be disabled by creating a `@parcel/transformer-js` key in `package.json`.
+Inlining of [environment variables](#environment-variables) and [`readFileSync` calls](#inlining-fs.readfilesync) can be disabled by configuring `@parcel/transformer-js` in your `.parcelrc`.
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
-```json5
+```json
 {
-  "name": "my-project",
-  "dependencies": {
-    ...
-  },
-  "@parcel/transformer-js": {
-    "inlineFS": false,
-    "inlineEnvironment": false
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,mjs,jsm,jsx,es6,ts,tsx,mdx}": [
+      {
+        "plugin": "@parcel/transformer-js",
+        "config": {
+          "inlineFS": false,
+          "inlineEnvironment": false
+        }
+      }
+    ]
   }
 }
 ```
@@ -141,14 +150,20 @@ Inlining of [environment variables](#environment-variables) and [`readFileSync` 
 
 `inlineEnvironment` can also be an array of glob strings, which allows you to filter the allowed environment variables. This is a good idea to ensure security, since third party code in node_modules can also read environment variables.
 
-```json5
+<!-- TODO(v3): v2 defaulted inlineEnvironment to `asset.isSource`, so files in node_modules only got NODE_ENV inlined. v3 (crates/js/src/transformer/plugin.rs) defaults to inlining every variable except npm_* for all files, including node_modules. Confirm this is intentional. -->
+
+```json
 {
-  "name": "my-project",
-  "dependencies": {
-    ...
-  },
-  "@parcel/transformer-js": {
-    "inlineEnvironment": ["SENTRY_*"]
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,mjs,jsm,jsx,es6,ts,tsx,mdx}": [
+      {
+        "plugin": "@parcel/transformer-js",
+        "config": {
+          "inlineEnvironment": ["SENTRY_*"]
+        }
+      }
+    ]
   }
 }
 ```

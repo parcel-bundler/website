@@ -23,8 +23,8 @@ Relative specifiers start with `.` or `..`, and resolve a file relative to the i
 {% samplefile "/path/to/project/src/client.js" %}
 
 ```javascript
-import './utils.js';
-import '../constants.js';
+import "./utils.js";
+import "../constants.js";
 ```
 
 {% endsamplefile %}
@@ -44,8 +44,8 @@ The following example resolves to the same files as above.
 {% samplefile "/path/to/project/src/client.js" %}
 
 ```javascript
-import './utils';
-import '../constants';
+import "./utils";
+import "../constants";
 ```
 
 {% endsamplefile %}
@@ -63,7 +63,7 @@ In JavaScript, Typescript, and other JS-based languages, dependency specifiers m
 {% samplefile "/path/to/project/src/app.js" %}
 
 ```javascript
-import './client';
+import "./client";
 ```
 
 {% endsamplefile %}
@@ -79,7 +79,7 @@ Bare specifiers start with any character except `.`, `/`, `~`, or `#`. In JavaSc
 {% samplefile "/path/to/project/src/client/index.js" %}
 
 ```javascript
-import 'react';
+import "react";
 ```
 
 {% endsamplefile %}
@@ -100,23 +100,25 @@ Once a module directory is found, the package entry is resolved. See [Package en
 Bare specifiers may also specify a sub-path within a package. For example, a package may publish multiple entry points rather than only a single one.
 
 ```javascript
-import 'lodash/clone';
+import "lodash/clone";
 ```
 
 The above example resolves `lodash` within a `node_modules` directory as described above, and then resolves the `clone` module within the package rather than its main entrypoint. This could be a `node_modules/lodash/clone.js` file, for example.
 
 #### Builtin modules
 
-Parcel includes shims for many builtin Node.js modules, e.g. `path` and `url`. When a dependency specifier references one of these module names, the builtin module is preferred over any module installed in `node_modules` with the same name. When building for a node environment, builtin modules are excluded from the bundle, otherwise a shim is included. See the [Node docs](https://nodejs.org/dist/latest-v16.x/docs/api/) for a full list of builtin modules.
+When a dependency specifier references a builtin Node.js module, e.g. `path` or `node:path`, the builtin module is preferred over any module installed in `node_modules` with the same name. When building for a node environment or a library, builtin modules are excluded from the bundle. See the [Node docs](https://nodejs.org/api/) for a full list of builtin modules.
 
-When building for an Electron environment, the `electron` module is also considered a builtin and excluded from the bundle.
+When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](/features/node-emulation/#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
+
+<!-- TODO(v3): v2 treated `electron` as a builtin (excluded from the bundle) in Electron environments. The v3 resolver has no such special case: `require("electron")` with engines.electron fails with "Cannot find module 'electron'" unless it is installed, and gets bundled if it is. The sentence documenting this was removed. -->
 
 ### Absolute specifiers
 
 Absolute specifiers start with `/`, and resolve a file relative to the project root. The **project root** is the base directory of your project, which would typically contain a package manager lock file (e.g. `yarn.lock` or `package-lock.json`), or a source control directory (e.g. `.git`). Absolute specifiers could be useful to avoid very long relative paths in deeply nested hierarchies.
 
 ```javascript
-import '/src/client.js';
+import "/src/client.js";
 ```
 
 The above example could be placed in any file, at any point in your project’s directory structure, and will always resolve to `/path/to/project/src/client.js`.
@@ -129,7 +131,7 @@ Tilde specifiers start with `~`, and resolve relative to the nearest package roo
 {% samplefile "/path/to/project/packages/frontend/src/client/index.js" %}
 
 ```javascript
-import '~/src/utils.js';
+import "~/src/utils.js";
 ```
 
 {% endsamplefile %}
@@ -161,7 +163,7 @@ The `"imports"` field in `package.json` can be used to define private mappings t
 {% samplefile "/path/to/project/src/index.js" %}
 
 ```javascript
-import '#dep';
+import "#dep";
 ```
 
 {% endsamplefile %}
@@ -196,6 +198,8 @@ There are a few reserved URL schemes that may not be used for named pipelines, a
 - `http:` and `https:` – a fully qualified URL dependency. These are resolved at runtime, and left untouched by Parcel.
 - `data:` – A [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) including the dependency source code inline. Currently not implemented by Parcel, but reserved for future use.
 - `file:` – A [file URL](https://datatracker.ietf.org/doc/html/rfc8089). Reserved for future use.
+  <!-- TODO(v3): the v3 resolver parses file: URLs (specifier.rs) into an absolute path, but then resolves it like an absolute specifier, i.e. relative to the project root, so `file:///abs/path/x.gif` fails with "Cannot load file 'abs/path/x.gif'". Either finish support (and document it) or keep it reserved. -->
+- `jsr:`, `cloudflare:`, and `workerd:` – Runtime-specific builtin modules (e.g. in Deno or Cloudflare Workers). These are treated like [builtin Node modules](#builtin-modules).
 - `mailto:` and `tel:` - Commonly used URL schemes. These are left untouched by Parcel.
 
 ### Glob specifiers
@@ -218,48 +222,50 @@ Parcel supports importing multiple files at once via globs, however, since glob 
 Once enabled, you can import multiple files using a specifier like `./files/*.js`. This returns an object with keys corresponding to the files names.
 
 ```javascript
-import * as files from './files/*.js';
+import files from "./files/*.js";
 ```
 
 is equivalent to:
 
 ```javascript
-import * as foo from './files/foo.js';
-import * as bar from './files/bar.js';
+import foo from "./files/foo.js";
+import bar from "./files/bar.js";
 
 let files = {
   foo,
-  bar
+  bar,
 };
 ```
 
 Specifically, the dynamic parts of the glob pattern become keys of the object. If there are multiple dynamic parts, a nested object will be returned. For example, if a `pages/profile/index.js` file existed, the following would match it.
 
 ```javascript
-import * as pages from './pages/*/*.js';
+import pages from "./pages/*/*.js";
 
 console.log(pages.profile.index);
 ```
 
-This also works with URL schemes like `bundle-text:`, as well as with dynamic import. When using dynamic import, the resulting object will include a mapping of filenames to functions. Each function can be called to load the resolved module. This means that each file is loaded on demand rather than all up-front.
+To use the relative path of each file as the key instead, add the `flat=true` query parameter. This returns a flat object rather than a nested one.
 
 ```javascript
-let files = import('./files/*.js');
+import pages from "./pages/**/*.js?flat=true";
+
+console.log(pages["./pages/profile/index.js"]);
+```
+
+Globs can also be used with URL schemes like `bundle-text:`. To load each file on demand rather than all up-front, add the `async=true` query parameter. The resulting object will include a mapping of filenames to functions. Each function can be called to load the resolved module via dynamic import.
+
+```javascript
+import files from "./files/*.js?async=true";
 
 async function doSomething() {
   let foo = await files.foo();
   let bar = await files.bar();
-  return foo + bar;
+  return foo.default + bar.default;
 }
 ```
 
-Globs may also be used to import files from npm packages:
-
-```js
-import * as locales from '@company/pkg/i18n/*.js';
-
-console.log(locales.en.message);
-```
+<!-- TODO(v3): v2 documented glob imports from npm packages (e.g. `@company/pkg/i18n/*.js`). The v3 glob resolver only globs relative to the importing file, so such an import silently produces an empty object `{}`. Section removed. Also, v2 created lazy per-file functions for `import('./files/*.js')`; in v3 that just lazy-loads the whole glob module, and `?async=true` is used instead. -->
 
 Glob imports also work with CSS:
 
@@ -274,6 +280,8 @@ is equivalent to:
 @import "./components/dropdown.css";
 ```
 
+Globs are not supported in other URL dependencies, such as `url()` in CSS or `<script src>` in HTML.
+
 ## Package entries
 
 When resolving a package directory, the `package.json` file is consulted to determine the package entry. Parcel checks the following fields (in order):
@@ -281,6 +289,7 @@ When resolving a package directory, the `package.json` file is consulted to dete
 - `source` – If the module is behind a symlink (e.g. in a monorepo, or via `npm link`), then Parcel uses the `source` field to compile the module from source. The `source` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `exports` – [Package exports](#package-exports), see below for details.
 - `browser` – A browser-specific version of a package. If building for a [browser environment](/features/targets/#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
+  <!-- TODO(v3): v2 only used the browser field (entry and alias maps) for browser environments. The v3 resolver (crates/parcel/src/resolver.rs uses Resolver::parcel, whose entries always include Fields::BROWSER) applies it in every environment: a package with "main" and "browser" resolves to the browser file even with engines.node. Likely a bug. -->
 - `module` – An ES module version of the package.
 - `main` – A CommonJS version of the package.
 
@@ -289,24 +298,6 @@ If none of these fields are set, or the files they point to do not exist, then r
 ## Package exports
 
 The `"exports"` field in `package.json` can be used to define the publically accessible entrypoints for a package. These can also define conditional behavior based on the environment, allowing resolution to change depending on where a module is imported from (e.g. node or browser).
-
-### Enabling package exports
-
-Package exports are disabled by default because they may break existing projects that weren't designed with them in mind. You can enable support by adding the following to the `package.json` file in your project root directory.
-
-{% sample %}
-{% samplefile "/path/to/project/package.json" %}
-
-```json
-{
-  "@parcel/resolver-default": {
-    "packageExports": true
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
 
 ### Single export
 
@@ -443,21 +434,23 @@ The above example defines different versions of the module depending on whether 
 
 Parcel supports the following exports conditions:
 
-* `"import"` – Package was referenced using the ESM `import` syntax.
-* `"require"` – Package was referenced using the CommonJS `require` function.
-* `"module"` – Package was referenced from either the ESM `import` syntax or the CommonJS `require` function.
-* `"sass"` – Package was referenced from a Sass stylesheet.
-* `"less"` – Package was referenced from a Less stylesheet.
-* `"stylus"` – Package was referenced from a Stylus stylesheet.
-* `"style"` – Package was referenced from a stylesheet (e.g. CSS, Sass, Stylus, etc.).
-* `"node"` – Output will run in a Node environment.
-* `"browser"` – Output will run in a browser environment.
-* `"worker"` – Output will run in a web worker or service worker environment.
-* `"worklet"` – Output will run in a worklet environment.
-* `"electron"` – Output will run in an Electron environment.
-* `"development"` – Package was loaded in a development build.
-* `"production"` – Package was loaded in a production build.
-* `"default"` – The default condition in case no other conditions matched.
+- `"import"` – Package was referenced using the ESM `import` syntax.
+- `"require"` – Package was referenced using the CommonJS `require` function.
+- `"module"` – Package was referenced from either the ESM `import` syntax or the CommonJS `require` function.
+- `"sass"` – Package was referenced from a Sass stylesheet.
+- `"less"` – Package was referenced from a Less stylesheet.
+- `"stylus"` – Package was referenced from a Stylus stylesheet.
+- `"style"` – Package was referenced from a stylesheet (e.g. CSS, Sass, Stylus, etc.).
+- `"node"` – Output will run in a Node environment.
+- `"browser"` – Output will run in a browser environment.
+- `"worker"` – Output will run in a web worker or service worker environment.
+- `"worklet"` – Output will run in a worklet environment.
+- `"electron"` – Output will run in an Electron environment.
+- `"react-server"` – Output will run in a React Server Components environment.
+- `"source"` – Package's real path is not inside `node_modules`, e.g. it is symlinked within a monorepo or via `npm link`. This allows Parcel to compile the package from source rather than use pre-compiled code, similar to the `source` field described in [Package entries](#package-entries).
+- `"development"` – Package was loaded in a development build.
+- `"production"` – Package was loaded in a production build.
+- `"default"` – The default condition in case no other conditions matched.
 
 {% note %}
 
@@ -552,7 +545,7 @@ Now, if `my-module/fs.js` is imported in a browser environment, they'll actually
 
 ### Glob aliases
 
-File aliases can also be defined using globs, which allows replacing many files using a single pattern.  The replacement can include patterns such as `$1` to access the captured glob matches. This can be done using the `alias` field to replace files unconditionally, or with the `source` or `browser` fields to do conditionally. See [Package entries](#package-entries) above for details about these fields.
+File aliases can also be defined using globs, which allows replacing many files using a single pattern. The replacement can include patterns such as `$1` to access the captured glob matches. This can be done using the `alias` field to replace files unconditionally, or with the `source` or `browser` fields to do conditionally. See [Package entries](#package-entries) above for details about these fields.
 
 For example, you could use the `source` field to provide a mapping between compiled code in a package and the original source code. When the module is symlinked, or within a monorepo, this will allow Parcel to compile the module from source rather than use the pre-compiled version.
 
@@ -635,7 +628,7 @@ The `baseUrl` field defines the base directory from which to resolve [bare speci
 {% samplefile "src/App.js" %}
 
 ```js
-import 'Home';
+import "Home";
 ```
 
 {% endsamplefile %}
@@ -647,7 +640,7 @@ In the above example, `Home` will resolve to `src/Home.js` if it exists. Otherwi
 
 The `paths` field can be used to define mappings from [bare specifiers](#bare-specifiers) to file paths. You can also define wildcard patterns using the `*` character.
 
- File paths referenced in the `paths` field are relative to the `baseUrl` if defined, otherwise to the directory containing the `tsconfig.json` file.
+File paths referenced in the `paths` field are relative to the `baseUrl` if defined, otherwise to the directory containing the `tsconfig.json` file.
 
 {% sample %}
 {% samplefile "tsconfig.json" %}
@@ -667,8 +660,8 @@ The `paths` field can be used to define mappings from [bare specifiers](#bare-sp
 {% samplefile "src/App.js" %}
 
 ```js
-import 'jquery';
-import 'app/foo';
+import "jquery";
+import "app/foo";
 ```
 
 {% endsamplefile %}
@@ -695,7 +688,7 @@ The `moduleSuffixes` field allows you to specify the file name suffixes to searc
 {% samplefile "src/App.js" %}
 
 ```js
-import './foo';
+import "./foo";
 ```
 
 {% endsamplefile %}
@@ -736,7 +729,7 @@ Support for [URL schemes](#url-schemes) can also be enabled by creating an [ambi
 {% samplefile "parcel.d.ts" %}
 
 ```typescript
-declare module 'bundle-text:*' {
+declare module "bundle-text:*" {
   const value: string;
   export default value;
 }

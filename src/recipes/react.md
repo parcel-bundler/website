@@ -7,11 +7,13 @@ eleventyNavigation:
   order: 3
 ---
 
-Parcel works great for building single or multi-page React applications. It includes a first-class development experience with Fast Refresh, and supports JSX, TypeScript, Flow, and many styling methodologies out of the box.
+Parcel works great for building single or multi-page React applications. It includes a first-class development experience with Fast Refresh, and supports JSX, TypeScript, and many styling methodologies out of the box.
 
 ## Quick start
 
 To quickly scaffold a new client-only React app with Parcel, run the following commands:
+
+<!-- TODO(v3): the create-parcel templates (packages/utils/create-parcel in the v2 repo) still scaffold a Parcel 2 project (`"start": "parcel"`, v2 package versions). They need updating for v3 before this quick start works. -->
 
 ```bash
 npm create parcel react-client my-react-app
@@ -56,7 +58,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
 const container = document.getElementById("app");
-const root = createRoot(container)
+const root = createRoot(container);
 root.render(<App />);
 ```
 
@@ -95,6 +97,42 @@ Parcel has first-class support for [React Fast Refresh](https://reactnative.dev/
 
 For more tips, see the official [React Fast Refresh docs](https://reactnative.dev/docs/fast-refresh).
 
+## React Compiler
+
+[React Compiler](https://react.dev/learn/react-compiler) automatically memoizes your components and hooks, so you don't need to manually use `useMemo`, `useCallback`, or `React.memo` to avoid unnecessary re-renders. Parcel includes React Compiler out of the box. To enable it, set the `reactCompiler` option for `@parcel/transformer-js` in your `.parcelrc`:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,jsx,ts,tsx}": [
+      {
+        "plugin": "@parcel/transformer-js",
+        "config": {
+          "reactCompiler": true
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+React Compiler runs on your source code, but not on code in `node_modules`. It works with Fast Refresh, and resets memoized values when a component is hot reloaded.
+
+By default, React Compiler targets React 19. If the `react` dependency in your `package.json` is version 17 or 18, Parcel compiles for that version instead, and you'll also need to install the `react-compiler-runtime` package:
+
+```shell
+yarn add react-compiler-runtime
+```
+
+See [React Compiler](/languages/javascript/#react-compiler) in the JavaScript docs for the other options you can set. To see why React Compiler skipped a function, run Parcel with `--log-level verbose`.
+
 ## TypeScript
 
 [TypeScript](https://www.typescriptlang.org/) is supported out of the box. You can reference a `.ts` or `.tsx` file from your HTML page, and Parcel will compile it as you'd expect.
@@ -109,13 +147,9 @@ See the [TypeScript](/languages/typescript/) docs for more details on using Type
 
 ## Flow
 
-[Flow](https://flow.org/) is supported automatically when it is installed. To add it to an existing project, first install `flow-bin` as a dependency:
+<!-- TODO(v3): v3's @parcel/transformer-js does not strip Flow types (a `// @flow` file fails to parse even with flow-bin installed), and there's no automatic @babel/preset-flow fallback like v2 had. Is that intentional? -->
 
-```shell
-yarn add flow-bin --dev
-```
-
-Then, use the `// @flow` directive at the top of the files you'd like to type check. This also signals to Parcel which files can have Flow types that should be stripped when compiling for the browser.
+[Flow](https://flow.org/) types are not stripped by Parcel's builtin transpiler. To use Flow, install `@parcel/transformer-babel` and `@babel/preset-flow`, add `@parcel/transformer-babel` to your `.parcelrc`, and add `@babel/preset-flow` to your Babel config. Since Babel runs before Parcel's builtin transpiler, you'll also need to add `@babel/plugin-syntax-jsx` to your Babel config so that it can parse JSX.
 
 See the [Flow](/languages/javascript/#flow) docs for more details on using Flow with Parcel.
 
@@ -197,16 +231,28 @@ See [CSS modules](/languages/css/#css-modules) to learn more about how Parcel ha
 
 ### CSS-in-JS
 
-CSS-in-JS libraries like [Styled Components](https://styled-components.com), [Emotion](https://emotion.sh/docs/introduction), and many others work well with Parcel. Some may require build configuration, such as a [Babel](/languages/javascript/#babel) plugin. To enable it, create a Babel configuration in your project and Parcel will pick it up automatically.
+CSS-in-JS libraries like [Styled Components](https://styled-components.com), [Emotion](https://emotion.sh/docs/introduction), and many others work well with Parcel. Some may require build configuration, such as a [Babel](/languages/javascript/#babel) plugin. To enable it, install `@parcel/transformer-babel`, add it to your `.parcelrc`, and create a Babel configuration in your project.
 
-For example, to use Emotion, install the Babel plugin and create a `.babelrc` in your project:
+For example, to use Emotion, install the Babel plugin, add `@parcel/transformer-babel` to your `.parcelrc`, and create a `.babelrc` in your project:
 
 ```shell
-yarn add @emotion/babel-plugin --dev
+yarn add @parcel/transformer-babel @emotion/babel-plugin --dev
 yarn add @emotion/react
 ```
 
 {% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,mjs,jsx,ts,tsx}": ["@parcel/transformer-babel", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
 {% samplefile ".babelrc" %}
 
 ```json
@@ -263,23 +309,24 @@ export function Button({ children }) {
 
 ### Tailwind CSS
 
-[Tailwind CSS](https://tailwindcss.com) is a popular utility-first CSS framework. It uses [PostCSS](/languages/css/#postcss) to build a CSS file containing only the classes you use in your code. The following works with Tailwind CSS v4.
+[Tailwind CSS](https://tailwindcss.com) is a popular utility-first CSS framework. Parcel includes a built-in Tailwind plugin, `@parcel/transformer-tailwind`, which builds a CSS file containing only the classes you use in your code. The following works with Tailwind CSS v4.
 
-To use it, first, install the necessary dependencies:
+To use it, first, install Tailwind:
 
 ```shell
-yarn add tailwindcss @tailwindcss/postcss postcss --dev
+yarn add tailwindcss --dev
 ```
 
-Next, create the config files needed for PostCSS and Tailwind.
+Next, add the Tailwind plugin to your `.parcelrc`, and import Tailwind from your CSS file.
 
 {% sample %}
-{% samplefile ".postcssrc" %}
+{% samplefile ".parcelrc" %}
 
 ```json
 {
-  "plugins": {
-    "tailwindcss": {}
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": ["@parcel/transformer-tailwind", "..."]
   }
 }
 ```
@@ -336,11 +383,7 @@ See [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScrip
 
 External SVG files can be referenced as described above. You can also import SVGs as React components which can be rendered directly in JSX.
 
-First, install the `@parcel/transformer-svg-jsx` plugin and add it to your `.parcelrc`:
-
-```shell
-yarn add @parcel/transformer-svg-jsx --dev
-```
+First, add the `@parcel/transformer-svg-jsx` plugin to your `.parcelrc`. This plugin is included with Parcel, so it does not need to be installed.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -349,7 +392,7 @@ yarn add @parcel/transformer-svg-jsx --dev
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.svg": ["...", "@parcel/transformer-svg-jsx"]
+    "*.svg": ["@parcel/transformer-svg-jsx"]
   }
 }
 ```
@@ -391,9 +434,9 @@ This example lazily loads a `Profile` component when a user clicks a button. Whe
 {% samplefile "Home.js" %}
 
 ```jsx
-import React, {Suspense} from 'react';
+import React, { Suspense } from "react";
 
-const Profile = React.lazy(() => import('./Profile'));
+const Profile = React.lazy(() => import("./Profile"));
 
 export function Home() {
   let [showProfile, setShowProfile] = React.useState(false);
@@ -401,14 +444,12 @@ export function Home() {
   return (
     <main>
       <h1>Home</h1>
-      <button onClick={() => setShowProfile(true)}>
-        Show Profile
-      </button>
-      {showProfile &&
+      <button onClick={() => setShowProfile(true)}>Show Profile</button>
+      {showProfile && (
         <Suspense fallback={<div>Loading...</div>}>
           <Profile />
         </Suspense>
-      }
+      )}
     </main>
   );
 }

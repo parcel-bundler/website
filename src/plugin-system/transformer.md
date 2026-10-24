@@ -3,7 +3,7 @@ layout: layout.njk
 eleventyNavigation:
   key: plugin-system-transformer
   title: Transformer
-  order: 3
+  order: 4
 ---
 
 Transformer plugins transform a single asset to compile it, discover dependencies, or convert it to a different format. Many transformers are wrappers around other tools such as compilers and preprocessors, and are responsible for integrating them with Parcel.
@@ -13,101 +13,92 @@ Transformer plugins transform a single asset to compile it, discover dependencie
 There is one required function that must be passed to the [`Transformer`](#Transformer) constructor: `transform`. This function receives a [`MutableAsset`](#MutableAsset) object, which represents a file. The source code or content of the asset can be retrieved, along with any associated source map ([see below](#source-maps)). The transformer can then transform this content in some way, and set the compiled result back on the asset.
 
 ```javascript
-import {Transformer} from '@parcel/plugin';
+import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
-  async transform({asset}) {
+  async transform({ asset }) {
     // Retrieve the asset's source code and source map.
-    let source = await asset.getCode();
-    let sourceMap = await asset.getMap();
+    let source = asset.getCode();
+    let sourceMap = asset.getMap();
 
-    // Run it through some compiler, and set the results 
+    // Run it through some compiler, and set the results
     // on the asset.
-    let {code, map} = compile(source, sourceMap);
-    asset.setCode(code);
-    asset.setMap(map);
-
-    // Return the asset
-    return [asset];
-  }
+    let { code, map } = compile(source, sourceMap);
+    asset.setCode(code, map);
+  },
 });
 ```
 
 ## Loading configuration
 
-Loading configuration from the user’s project should be done in the `loadConfig` method of a Transformer plugin. See [Loading configuration](/plugin-system/authoring-plugins#loading-configuration) for details on how to do this.
+Configuration for a Transformer plugin is specified in the user's `.parcelrc`, and passed to the `transform` method as the `config` option. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details.
 
-{% warning %}
+{% note %}
 
-**Note**: It's important to use Parcel's config loading mechanism so that the cache can be properly invalidated. Avoid loading files directly from the file system.
+**Note**: Files that a Transformer reads with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically, so Parcel rebuilds when they change. Use the `resolve` function passed to `transform` to resolve other files the same way Parcel resolves dependencies. See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
 
-{% endwarning %}
+{% endnote %}
 
 ## Changing the asset type
 
 Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's `type` property to the new file type (e.g. `js`). The asset will then be processed by the pipeline matching the new type. See [Transformers](/features/plugins/#transformers) in the Parcel configuration docs for details.
 
-```javascript/7
+```javascript/8
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let code = await asset.getCode();
+    let code = asset.getCode();
 
     let result = compile(code);
     asset.type = 'js';
     asset.setCode(result);
-
-    return [asset];
   }
 });
 ```
 
 ## The environment
 
-Assets are associated with an [`Environment`](/plugin-system/api/#Environment), which describes the how the asset should be compiled. The same asset may be processed multiple times with different environments, for example, when building for modern and legacy targets. If possible, Transformer plugins should take the environment into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](/features/targets/) for details.
+Assets are associated with a [`Target`](/plugin-system/api/#Target), which describes the environment the asset should be compiled for. The same asset may be processed multiple times with different targets, for example, when building for both browsers and Node. If possible, Transformer plugins should take the target into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](/features/targets/) for details.
 
 ```javascript/6-8
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let code = await asset.getCode();
+    let code = asset.getCode();
 
-    let result = asset.env.isBrowser()
-      ? compileForBrowser(code, asset.engines.browser)
-      : compileForNode(code, asset.engines.node);
+    let result = asset.target.isBrowser()
+      ? compileForBrowser(code, asset.target.engines.browsers)
+      : compileForNode(code, asset.target.engines.node);
 
     asset.setCode(result);
-    return [asset];
   }
 });
 ```
 
-See the [`Environment`](/plugin-system/api/#Environment) API docs for details on the available properties.
+See the [`Target`](/plugin-system/api/#Target) API docs for details on the available properties.
 
 ## Adding dependencies
 
 In addition to transforming the contents of an asset, Transformer plugins are also responsible for discovering dependencies in the code so that they may also be processed by Parcel. Some transformers don’t need to worry about this, because another transformer will run afterward and do it (e.g. the default JavaScript transformer). If you’re adding support for a new language that doesn’t compile to one of the existing languages supported by Parcel, or otherwise introduces dependencies outside the compiled code, you’ll need to add them to the asset.
 
-Dependencies can be added to an asset using the `addDependency` method, passing a [`DependencyOptions`](#DependencyOptions) object. There are two required parameters: `specifier`, which is a string describing the location of the dependency, and `specifierType`, which describes how the specifier should be interpreted. See [Dependency resolution](/features/dependency-resolution/) for details.
+Dependencies can be added to an asset using the `addDependency` method, passing a [`DependencyOptions`](#DependencyOptions) object. The only required parameter is `specifier`, which is a string describing the location of the dependency. The `specifierType` describes how the specifier should be interpreted, and defaults to `esm`. See [Dependency resolution](/features/dependency-resolution/) for details.
 
 ```javascript/8-11
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let code = await asset.getCode();
+    let code = asset.getCode();
     let deps = code.matchAll(/import "(.*?)"/g);
-    
-    for (let dep of deps) {
+
+    for (let [, specifier] of deps) {
       asset.addDependency({
-        specifier: dep,
+        specifier,
         specifierType: 'esm'
       });
     }
-
-    return [asset];
   }
 });
 ```
@@ -124,184 +115,132 @@ See [`DependencyOptions`](#DependencyOptions) for more details on each of the av
 
 In some languages, dependencies reference other files by URL. In the compiled code, these URL references will need to be updated to point to the final bundle names. However, when an asset is being transformed, bundle names will not yet be known.
 
-`addDependency` returns a unique dependency ID. This can be placed in the transformed asset content as a placeholder for the final bundle URL, and it will be replaced later by a Packager once the URL is known.
+`addDependency` returns a unique placeholder string for the dependency. This can be placed in the transformed asset content as a placeholder for the final bundle URL, and it will be replaced later during packaging once the URL is known.
 
-As a shortcut, the `addURLDependency` method creates a dependency with `specifierType` set to `url`, and `priority` set to `lazy` (to create a separate bundle).
+As a shortcut, the `addURLDependency` method creates a dependency with `specifierType` and `importType` set to `url`, and `priority` set to `lazy` (to create a separate bundle).
 
-```javascript/9-10
+<!-- TODO(v3): placeholders are not replaced when the asset is later processed by another transformer that re-parses the code. E.g. a transformer that sets `asset.type = 'js'` and emits `import "<placeholder>"` fails with "Failed to resolve '<placeholder>'": the JS transformer collects the placeholder as a new dependency rather than matching it to the one added with addURLDependency. Tested with target/release/parcel. Only content packaged without re-parsing (or native custom content) can use placeholders today. -->
+
+```javascript/10-11
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let code = await asset.getCode();
+    let code = asset.getCode();
     let result = code.replace(/import "(.*?)"/g, (m, dep) => {
-      // Replace the original specifier with a dependency id 
-      // as a placeholder. This will be replaced later with 
-      // the final bundle URL.
-      let depId = asset.addURLDependency(dep);
-      return `import "${depId}"`;
+      // Replace the original specifier with a placeholder.
+      // This will be replaced later with the final
+      // bundle URL.
+      let placeholder = asset.addURLDependency(dep);
+      return `import "${placeholder}"`;
     });
 
     asset.setCode(result);
-    return [asset];
-  }
-});
-```
-
-## Reusing ASTs
-
-If multiple Transformer plugins run in series over an asset, it would be wasteful to parse, transform, and code generate for each one if they could reuse the same parsed AST. Parcel facilitates AST sharing by splitting the `transform` function into several parts:
-
-- `canReuseAST` – If an AST is available from a previous Transformer plugin, it will be passed to this method on the next Transformer if available. It should inspect the `type` and `version` of the AST to determine if it can reuse it. If it returns `true`, then the `parse` method is not called and the AST is reused. If it returns `false`, then the previous Transformer's `generate` function is called, and the next Transformer's `parse` function is called with the results.
-- `parse` – If an AST is not available, or `canReuseAST` returned false, then the Transformer's `parse` function is called. It should return an [`AST`](/plugin-system/api/#AST) object describing the type, version, and contents of the AST.
-- `generate` – If the next Transformer cannot reuse the AST, or this is the last Transformer in a pipeline, `generate` will be called with the AST object. A result object containing generated content and a source map should be returned.
-
-```javascript
-import {Transformer} from '@parcel/plugin';
-import semver from 'semver';
-
-export default new Transformer({
-  async canReuseAST({ast}) {
-    return ast.type === 'my-compiler' 
-      && semver.satisfies(ast.version, '^1.0.0');
-  },
-  async parse({asset}) {
-    return {
-      type: 'my-compiler',
-      version: '1.0.0',
-      program: parse(await asset.getCode())
-    };
-  },
-  async transform({asset}) {
-    let ast = await asset.getAST();
-
-    let compiledAST = compile(ast.program);
-    asset.setAST({
-      type: 'my-compiler',
-      version: '1.0.0',
-      program: compiledAST
-    });
-
-    return [asset];
-  },
-  async generate({ast}) {
-    let {content, map} = generate(ast.program);
-    return {
-      content,
-      map
-    };
   }
 });
 ```
 
 ## Source maps
 
-
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Transformer plugins should add a source map to assets when transforming their content if possible. Since assets may be processed by multiple Transformers, you should also transform the existing source map included with the asset in addition to its content.
 
-Parcel uses the `@parcel/source-map` library for source map manipulation. See [Source Maps](/plugin-system/source-maps/) for more details on how to use it. You may need to convert the source map you pass to and from other tools.
+Source maps are passed to and from plugins as plain JSON objects in the standard [source map format](https://tc39.es/ecma426/) (version 3), so they can usually be passed to and from other tools directly. The `getMap` method returns the asset's current source map, or `null` if it doesn't have one. The `setCode` and `setBuffer` methods accept a source map as their second argument. See [Source Maps](/plugin-system/source-maps/) for more details.
 
 ```javascript
-import {Transformer} from '@parcel/plugin';
-import SourceMap from '@parcel/source-map';
+import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
-  async transform({asset, options}) {
-    let source = await asset.getCode();
-    let sourceMap = await asset.getMap();
+  async transform({ asset }) {
+    let source = asset.getCode();
+    let sourceMap = asset.getMap();
 
-    // Convert the input source map to JSON.
-    let result = compile(source, sourceMap.toVLQ());
-    asset.setCode(result.code);
-
-    // Convert returned JSON source map to a Parcel SourceMap.
-    let map = new SourceMap(options.projectRoot);
-    map.addVLQMap(result.map);
-    asset.setMap(map);
-
-    return [asset];
-  }
+    // Pass the input source map to the compiler, and set
+    // the returned source map on the asset.
+    let result = compile(source, sourceMap);
+    asset.setCode(result.code, result.map);
+  },
 });
 ```
 
 ## Binary data
 
-In addition to textual source code, Transformers can handle binary content. This can be done either by using a [Buffer](https://nodejs.org/api/buffer.html), or using [streams](https://nodejs.org/api/stream.html).
+In addition to textual source code, Transformers can handle binary content. The `getBuffer` method returns the contents of the asset as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array), and `setBuffer` accepts a `Uint8Array` (or a [Buffer](https://nodejs.org/api/buffer.html)).
 
 ```javascript/4,7
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let buffer = await asset.getBuffer();
+    let buffer = asset.getBuffer();
 
     let result = transform(buffer);
     asset.setBuffer(result);
-
-    return [asset];
   }
 });
 ```
 
 ## Query parameters
 
-An asset may be referenced by a dependency with [query parameters](/features/dependency-resolution/#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](/recipes/image/) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters.
+An asset may be referenced by a dependency with [query parameters](/features/dependency-resolution/#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](/recipes/image/) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters. The query is included in the asset's `url` property.
 
-```javascript/8-9
+```javascript/5,11-12
 import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
   async transform({asset}) {
-    let buffer = await asset.getBuffer();
+    let query = new URL(asset.url).searchParams;
+    let buffer = asset.getBuffer();
 
     let result = resize(
       buffer,
-      asset.query.width,
-      asset.query.height
+      query.get('width'),
+      query.get('height')
     );
 
     asset.setBuffer(result);
-    return [asset];
   }
 });
 ```
 
-## Returning multiple assets
+<!-- TODO(v3): v2's "Returning multiple assets" section was removed. JS `transform` returns void (crates/plugin-js/src/plugin.rs ignores the return value) and the native SDK has no way to create additional assets either, yet MutableAsset still documents `uniqueKey` "when a transformer returns multiple assets" (packages-v3/plugin/src/types.ts). Confirm whether this is planned. -->
 
-All of the examples so far have shown how to transform a single asset. However, sometimes a file may contain multiple different assets. For example, in HTML there are inline `<script>` and `<style>` elements that should be processed through their own separate Parcel pipelines. For this, Parcel allows returning multiple assets from a transformer.
+## Native transformers
 
-To create new assets, return an array of [`TransformerResult`](#TransformerResult) objects. These must have a `type` and `content`, but may also have dependencies of their own, as well as many of the same options that `Asset` objects have.
+Transformers can also be written as [native plugins](/plugin-system/native-plugins/). With the Rust SDK, implement the `transform` method of the `Plugin` trait. This example converts a text file into a JavaScript module, using a `prefix` option from the plugin's `.parcelrc` config.
 
-Usually, the original asset should be returned in addition to any child assets it may have. The parent can create dependencies on the children by assigning them a `uniqueKey` property and referencing that as the `specifier` of a dependency. This allows creating "virtual" assets that don't really exist on the file system, but may be referenced like they are.
+```rust
+use parcel_plugin::{register_plugin, Asset, Diagnostic, Options, Plugin};
 
-```javascript
-import {Transformer} from '@parcel/plugin';
+struct TxtTransformer {
+  prefix: String,
+}
 
-export default new Transformer({
-  async transform({asset}) {
-    let code = await asset.getCode();
-
-    // Extract inline assets to return in addition to this asset.
-    let assets = [asset];
-
-    let uniqueKey = `${asset.id}-style`;
-    assets.push({
-      type: 'css',
-      content: '...',
-      uniqueKey,
-      bundleBehavior: 'inline'
-    });
-
-    // Add a dependency, using the uniqueKey as a specifier.
-    asset.addDependency({
-      specifier: uniqueKey,
-      specifierType: 'esm'
-    });
-
-    return assets;
+impl Plugin for TxtTransformer {
+  fn new(config: &[u8]) -> Result<Self, Diagnostic> {
+    // `config` is the plugin's config from .parcelrc as JSON,
+    // or empty if none was provided.
+    let prefix = if config.is_empty() {
+      String::new()
+    } else {
+      let config: serde_json::Value = serde_json::from_slice(config)
+        .map_err(|e| Diagnostic::new(e.to_string()))?;
+      config["prefix"].as_str().unwrap_or_default().to_owned()
+    };
+    Ok(TxtTransformer { prefix })
   }
-});
+
+  fn transform(&self, asset: &mut Asset, _options: &Options) -> Result<(), Diagnostic> {
+    let text = format!("{}{}", self.prefix, asset.content());
+    asset.set_content(format!("export default {:?};\n", text));
+    asset.set_type("js");
+    Ok(())
+  }
+}
+
+register_plugin!(TxtTransformer);
 ```
+
+Native transformers can also attach custom content to an asset, which controls how it is packaged into a bundle. See [Native plugins](/plugin-system/native-plugins/) for details.
 
 ## Relevant API
 

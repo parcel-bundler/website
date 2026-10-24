@@ -69,9 +69,9 @@ The `type="module"` attribute should be used to indicate that a file is an [ES m
 {% samplefile "interactions.js" %}
 
 ```javascript
-let circle = document.querySelector('circle');
-circle.addEventListener('click', () => {
-  circle.setAttribute('fill', 'blue');
+let circle = document.querySelector("circle");
+circle.addEventListener("click", () => {
+  circle.setAttribute("fill", "blue");
 });
 ```
 
@@ -117,6 +117,8 @@ While other assets referenced from an SVG file will include a [content hash](/fe
 ### External references
 
 Parcel supports external references via the `href` and `xlink:href` attributes on many other elements. See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href) for more details.
+
+<!-- TODO(v3): URL fragments are currently dropped when references are rewritten, which breaks the examples below: `<use href="fox.svg#path">` becomes `<use href="fox-2w6tsaix.svg">` and `fill="url(external.svg#gradient)"` becomes `fill="url(external-otuntiel.svg)"`. Same for HTML (`<a href="other.html#sec">` -> `/other.html`, `<img src="icon.svg#a">`). v2 kept the hash (replaceBundleReferences.js: `hash: orig.hash`). Looks like a bug. -->
 
 ```xml/0,2
 <use href="fox.svg#path" stroke="red" />
@@ -172,8 +174,8 @@ circle {
 
 ```typescript
 export function setup(element: SVGElement) {
-  element.addEventListener('click', () => {
-    element.setAttribute('fill', 'red');
+  element.addEventListener("click", () => {
+    element.setAttribute("fill", "red");
   });
 }
 ```
@@ -216,10 +218,10 @@ The [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/objec
 This also allows you to get access to the SVG DOM via the `getSVGDocument()` method on the `<object>` element.
 
 ```javascript
-let object = document.querySelector('object');
+let object = document.querySelector("object");
 let svg = object.getSVGDocument();
-let circle = svg.querySelector('circle');
-circle.setAttribute('fill', 'red');
+let circle = svg.querySelector("circle");
+circle.setAttribute("fill", "red");
 ```
 
 However, SVGs embedded using the `<object>` element cannot be styled by CSS on the HTML page.
@@ -254,7 +256,7 @@ SVG can be referenced from CSS files using the `url()` function. As with the `<i
 
 ```css
 .logo {
-  background: url('logo.svg');
+  background: url("logo.svg");
 }
 ```
 
@@ -262,7 +264,7 @@ You can also embed small SVGs in a CSS file using data URLs. Use the `data-url:`
 
 ```css
 .logo {
-  background: url('data-url:logo.svg');
+  background: url("data-url:logo.svg");
 }
 ```
 
@@ -300,25 +302,20 @@ See [Bundle inlining](/features/bundle-inlining/) for more details.
 
 ### Importing as a React component
 
-The `@parcel/transformer-svg-jsx` plugin can be used to import an SVG file as a React component. This transforms SVG into JSX, and optimizes it for file size. It's compatible with [SVGR](https://react-svgr.com/docs/configuration-files/).
+The `@parcel/transformer-svg-jsx` plugin can be used to import an SVG file as a React component. This transforms SVG into JSX, and optimizes it for file size. It's compatible with [SVGR](https://react-svgr.com/docs/options/).
 
-This plugin is not included in the default Parcel config, so you'll need to install it and add it to your `.parcelrc`.
+This plugin is built into Parcel, but it is not used by the default config, so you'll need to add it to your `.parcelrc`.
 
-```shell
-yarn add @parcel/transformer-svg-jsx --dev
-```
-
-You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a named pipeline to create a URL scheme that you can reference from a JavaScript import statement. This approach allows SVG files referenced from JavaScript to be converted to JSX, but SVGs referenced elsewhere to be kept as SVG files. Use the `"..."` syntax to run the default SVG transformer first before converting the SVG to JSX.
+You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a named pipeline to create a URL scheme that you can reference from a JavaScript import statement. This approach allows SVG files referenced from JavaScript to be converted to JSX, but SVGs referenced elsewhere to be kept as SVG files.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
 
-```json/3-4
+```json/3
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "jsx:*.svg": ["...", "@parcel/transformer-svg-jsx"],
-    "jsx:*": ["..."]
+    "jsx:*.svg": ["@parcel/transformer-svg-jsx"]
   }
 }
 ```
@@ -335,13 +332,34 @@ export const App = () => <Icon />;
 {% endsamplefile %}
 {% endsample %}
 
-SVG to JSX can be configured in a `.svgrrc` file, following the options documented by [SVGR](https://react-svgr.com/docs/configuration-files/).
+SVG to JSX can be configured in your `.parcelrc`, following the options documented by [SVGR](https://react-svgr.com/docs/options/). The supported options are `icon`, `dimensions`, `expandProps`, `ref`, `memo`, `svgProps`, `replaceAttrValues`, `titleProp`, `descProp`, `svgo`, and `svgoConfig`. The `svgoConfig` option accepts the same options as the [SVG minifier](#minification).
 
-{% note %}
+{% sample %}
+{% samplefile ".parcelrc" %}
 
-**Note**: Some options such as custom templates are not supported by `@parcel/transformer-svg-jsx`. If these are needed, use `@parcel/transformer-svg-react` instead, which uses SVGR instead of Parcel's Rust-based replacement.
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "jsx:*.svg": [
+      {
+        "plugin": "@parcel/transformer-svg-jsx",
+        "config": {
+          "icon": true,
+          "svgProps": {
+            "role": "img"
+          }
+        }
+      }
+    ]
+  }
+}
+```
 
-{% endnote %}
+{% endsamplefile %}
+{% endsample %}
+
+<!-- TODO(v3): JsxOptions (crates/html/src/jsx.rs) also has a `template` option, but it takes a JS module string with an `$ICON` placeholder rather than SVGR's template function, so it's left undocumented here. `.svgrrc` and `svgo.config.*` files are not read (the svg-jsx fixtures still contain them from v2). -->
 
 ## Production
 
@@ -349,37 +367,31 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, create a `svgo.config.json` file in your project root directory. To see all the available configuration options for SVGO, see the [official documentation](https://github.com/svg/svgo#configuration).
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, pass options to `@parcel/transformer-svg` in your `.parcelrc`.
+
+Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and the value is either `true` or `false` to enable or disable it, or an object of options for the plugin. Plugins from SVGO's `preset-default` are enabled by default (except `cleanupIds`). Set `"default": false` to disable them, and only run the plugins you list.
 
 {% sample %}
-{% samplefile "svgo.config.json" %}
+{% samplefile ".parcelrc" %}
 
 ```json
 {
-  "plugins": [
-    {
-      "name": "preset-default",
-      "params": {
-        "overrides": {
-          "inlineStyles": false
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.svg": [
+      {
+        "plugin": "@parcel/transformer-svg",
+        "config": {
+          "inlineStyles": false,
+          "removeTitle": true
         }
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-{% warning %}
-
-**Note**: `svgo.config.js`, `svgo.config.mjs`, and `svgo.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
-
-{% endwarning %}
-
-{% note %}
-
-Previous versions of Parcel used SVGO as the default SVG minifier. To continue using SVGO instead of Parcel's builtin SVG minifier, you can use the `@parcel/optimizer-svgo` plugin in your `.parcelrc`. See [Plugins](/features/plugins/) for more information.
-
-{% endnote %}
+<!-- TODO(v3): bug: OxvgConfig.default in crates/html/src/oxvg.rs has `deserialize_with` but no `#[serde(default)]`, so any config without an explicit `"default": true` fails to deserialize, and the build exits with code 1 without printing any error (verified with the example above, and with `svgoConfig` in transformer-svg-jsx). The example works once `"default"` is optional. -->

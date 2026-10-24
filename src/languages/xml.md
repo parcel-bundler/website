@@ -7,24 +7,26 @@ eleventyNavigation:
   order: 17
 ---
 
-Parcel supports transforming [RSS](https://en.wikipedia.org/wiki/RSS) and [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) feeds defined in XML files using the `@parcel/transformer-xml` plugin. When a `.xml`, `.rss`, or `.atom` file is detected, it will be installed into your project automatically.
+Parcel supports transforming [RSS](https://en.wikipedia.org/wiki/RSS) and [Atom](<https://en.wikipedia.org/wiki/Atom_(Web_standard)>) feeds defined in XML files using the builtin `@parcel/transformer-xml` plugin. This applies to `.xml`, `.rss`, and `.atom` files.
 
 ## Dependencies
 
-Parcel transforms URL references within RSS and Atom feeds to match the final name and [public URL](/features/targets/#publicurl), including [content hashes](/features/production/#content-hashing) where appropriate.
+Parcel transforms URL references within RSS and Atom feeds to match the final name and [public URL](/features/targets/#targets), including [content hashes](/features/production/#content-hashing) where appropriate.
 
 In RSS this includes:
 
-* `<link>`
-* `<url>`
-* `<comments>`
-* `<enclosure>`
+- `<link>`
+- `<url>`
+- `<comments>`
+- `<enclosure>`
 
 In Atom this includes:
 
-* `<link>`
-* `<icon>`
-* `<logo>`
+- `<link>`
+- `<icon>`
+- `<logo>`
+
+In any XML file, stylesheets referenced via the `xml-stylesheet` processing instruction are also processed.
 
 ## Embedded HTML
 
@@ -39,10 +41,13 @@ RSS and Atom feeds can be referenced from an HTML file using the `<link>` elemen
   href="feed.xml"
   rel="alternate"
   type="application/rss+xml"
-  title="Blog RSS feed" />
+  title="Blog RSS feed"
+/>
 ```
 
 ## Example
+
+<!-- TODO(v3): the v2 version of this example used `<link href="/" />`. In v3 that fails to build ("Cannot load file '' in '.../index'"): feed links go through handle_feed_attr in crates/html/src/dependencies.rs, which doesn't skip extensionless/virtual paths the way HTML `<a>` does. Changed the example to index.html; decide whether "/" should work. -->
 
 This example shows an Atom feed containing a single entry. The URL references in the two `<link>` elements will be rewritten to include the public URL, and the image referenced in the content of the post will be processed and content hashed.
 
@@ -51,7 +56,7 @@ This example shows an Atom feed containing a single entry. The URL references in
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Example Feed</title>
   <subtitle>A subtitle.</subtitle>
-  <link href="/" />
+  <link href="index.html" />
   <id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>
   <updated>2021-12-13T18:30:02Z</updated>
   <entry>

@@ -21,8 +21,7 @@ There are some rules that should be followed across every type of plugin:
   will not work as expected.
 - **Pure** — Given the same input, a plugin must produce the same output, and
   you must not have any observable side effects, or implicit dependencies.
-  Otherwise Parcel's caching will break and your users will be sad. You should
-  never have to tell users to delete their caches.
+  Otherwise Parcel's incremental rebuilds will break and your users will be sad.
 
 The plugin APIs all follow a common shape:
 
@@ -41,136 +40,100 @@ Each method of a plugin is an async function that:
 - Accept a strictly validated `opts` object.
 - Return a strictly validated `result` object.
 
+Methods may also return their result directly rather than a promise.
+
 If something you need is not being passed through `opts`, please come talk to
 the Parcel team about it. Avoid trying to get information yourself from other
 sources, especially from the file system.
 
+Plugins can also be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. See [Native plugins](/plugin-system/native-plugins/) for details.
+
+## JavaScript runtime
+
+JavaScript plugins do not run in Node.js. Parcel includes an embedded JavaScript engine ([QuickJS](https://bellard.org/quickjs/)), and runs plugins inside it on each of its worker threads. This means you don't need Node installed to use JavaScript plugins, but there are some differences to be aware of.
+
+Parcel emulates the subset of Node's built-in modules that plugins and the compilers they wrap commonly need: `assert`, `buffer`, `console`, `constants`, `crypto`, `events`, `fs`, `fs/promises`, `module`, `os`, `path`, `process`, `punycode`, `querystring`, `stream`, `string_decoder`, `tty`, `url`, `util`, `vm`, and `zlib`. Each may also be imported with the `node:` prefix. Globals such as `process`, `Buffer`, `URL`, `URLSearchParams`, `TextEncoder`, `TextDecoder`, `atob`, `btoa`, `structuredClone`, and `crypto` are available as well.
+
+Some things are not supported:
+
+- The `fs` module is read-only: it supports reading files, `stat`, `readdir`, `realpath`, `readlink`, and `glob`, but not writing files.
+- There is no network access, no child processes or worker threads, and no timers such as `setTimeout`.
+- Native Node addons (`.node` files) cannot be loaded.
+
+npm dependencies of your plugin are loaded from `node_modules` as usual, as long as they only use the supported APIs.
+
+<!-- TODO(v3): the list of builtins/limitations was taken from crates/plugin-js/src/cjs.rs (BUILTIN_MODULES), fs.rs (FS_EXPORTS) and lib.rs (globals). Confirm which limitations are permanent vs. not implemented yet (e.g. timers, fs writes for reporters). -->
+
 ## Module formats
 
-Parcel supports plugins written as either CommonJS or ES modules. The module format of a plugin is determined from either the file extension of the resolver module, or from its `package.json`. Use the `.mjs` extension for ES module plugins, and either `.cjs` or `.js` for CommonJS. If `"type": "module"` is declared in the plugin's `package.json`, the `.js` extension is treated as ESM instead of CommonJS. This behavior matches how Node.js loads modules.
+Parcel supports plugins written as either CommonJS or ES modules. The module format of a plugin is determined from either the file extension of the resolved module, or from its `package.json`. Use the `.mjs` extension for ES module plugins, and either `.cjs` or `.js` for CommonJS. If `"type": "module"` is declared in the plugin's `package.json`, the `.js` extension is treated as ESM instead of CommonJS. This behavior matches how Node.js loads modules.
 
-{% note %}
+Plugins can also be written in TypeScript. Files with a `.ts` or `.tsx` extension are loaded directly, with their types stripped, so a local plugin does not need to be compiled first. The `@parcel/plugin` package includes TypeScript types for all of the plugin APIs.
 
-ES module plugins are currently experimental. Please report any issues you experience [on Github](https://github.com/parcel-bundler/parcel/issues).
+<!-- TODO(v3): published plugins in packages-v3 are compiled from src/*.ts to lib/*.js. Decide whether to recommend shipping compiled JS (faster startup, no transpile per thread) over shipping .ts. -->
 
-{% endnote %}
+## Configuration
 
-## Loading configuration
+Plugins can accept configuration from the user's project. This is specified in the `.parcelrc` file, by using an object with `plugin` and `config` properties in place of the plugin name:
 
-Many plugins will need to load configuration of some kind from the user’s project. In some cases, the compiler or tool the plugin is wrapping will have a config loading mechanism built in. In other cases, you’ll need to create a config file format for your plugin.
+{% sample %}
+{% samplefile ".parcelrc" %}
 
-{% warning %}
-
-**Note**: it’s important to use Parcel’s config loading mechanism rather than reading from the file system directly. The results of all plugins are cached by Parcel, and if you don’t use Parcel’s config loading system it will not be aware of files you read yourself and will not be able to properly invalidate the cache.
-
-{% endwarning %}
-
-Config loading is done in the `loadConfig` method, which is supported by most plugin types. It receives a [`Config`](/plugin-system/transformer/#Config) object, which includes utility methods for loading config files, as well as methods for telling Parcel about files and dependencies the config file relies on that should invalidate the result. The result returned from the `loadConfig` function is passed into the other plugin functions.
-
-```javascript
-import {Transformer} from '@parcel/plugin';
-
-export default new Transformer({
-  async loadConfig({config}) {
-    let {contents, filePath} = await config.getConfig([
-      'tool.config.json'
-    ]);
-
-    return contents;
-  },
-  async transform({asset, config}) {
-    // ...
-    return [asset];
-  }
-});
-```
-
-The above example uses the `getConfig` method of the `Config` object to load a config file. This searches up the directory tree from the asset's file path for config files matching the file names given. It can load files using JSON5 (default), JavaScript, or TOML, and the file path is automatically added as an invalidation to the config.
-
-### Adding invalidations
-
-If you’re using a config loading mechanism that’s built into a compiler or tool you’re wrapping, you’ll need to tell Parcel about any files that were loaded in the process by calling `invalidateOnFileChange`. This way, Parcel can invalidate files that are compiled using this config whenever it changes. A list of loaded files is often returned along with the loaded config by various tools.
-
-If no config is loaded, or a new config file closer to the asset would change result, you should use the `invalidateOnFileCreate` method to watch for the config file to be created. This way, when Parcel detects a new config file, the plugin will be re-run and the new config will be loaded.
-
-```javascript
-import {Transformer} from '@parcel/plugin';
-
-export default new Transformer({
-  async loadConfig({config}) {
-    let {result, files} = await loadToolConfigSomehow(config.searchPath);
-
-    if (result) {
-      // Invalidate whenever one of the loaded files changes.
-      for (let file of files) {
-        config.invalidateOnFileChange(file);
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.svg": [
+      {
+        "plugin": "parcel-transformer-foo",
+        "config": {
+          "bar": true
+        }
       }
-    } else {
-      // Invalidate when a new config is created.
-      config.invalidateOnFileCreate({
-        fileName: 'tool.config.json',
-        aboveFilePath: config.searchPath
-      });
-    }
-
-    return result;
+    ]
   }
-});
+}
 ```
 
-### Dev dependencies
+{% endsamplefile %}
+{% endsample %}
 
-Parcel automatically tracks the source files of Parcel plugins themselves and all of their dependencies for changes. If the code for a plugin changes, the cache must be invalidated and any assets that were produced by the plugin must be rebuilt.
-
-Some plugins may load other dependencies dynamically. For example, a transformer might have plugins of its own that are configured in the user’s project (e.g. Babel). These cannot be automatically tracked, and must be added as dev dependencies to the Config object. This is done using the `addDevDependency` method.
+The config is passed to every plugin method as the `config` option. It is `undefined` if no config was provided.
 
 ```javascript
-import {Transformer} from '@parcel/plugin';
+import { Transformer } from "@parcel/plugin";
 
 export default new Transformer({
-  async loadConfig({config}) {
-    let {result, filePath} = await loadToolConfigSomehow(config.searchPath);
-
-    for (let plugin of result.plugins) {
-      config.addDevDependency({
-        specifier: plugin,
-        resolveFrom: filePath
-      });
+  async transform({ asset, config }) {
+    if (config?.bar) {
+      // ...
     }
-
-    return result;
-  }
+  },
 });
 ```
 
-### JavaScript configs
+Because the same plugin may appear multiple times in a `.parcelrc` with different configuration, avoid storing config in module-level state.
 
-Some tools use config files written in JavaScript, rather than a static config language like JSON, YAML, or TOML. Unfortunately, these programatic config files can cause issues for caching in Parcel because they may return non-deterministic results.
+### Invalidation
 
-A convention for dealing with this in Parcel is to always invalidate the config when the Parcel process restarts. This way, JavaScript configs aren’t invalidated on every build (which would be too slow), but in the case where the config is non-deterministic, restarting Parcel ensures it is up to date.
+Some plugins wrap a compiler or tool which has its own config loading mechanism built in (e.g. Babel's `babel.config.json`), or read other files from the file system. Parcel automatically tracks all of the files that JavaScript plugins read with the `fs` module, along with the source files of the plugins themselves and all of their dependencies. When one of these files changes, Parcel rebuilds the whole project, since the plugin's results may depend on it.
 
-This can be done by using the `invalidateOnStartup` method of the `Config` object.
+When a transformer needs to resolve a dependency itself (e.g. to inline an imported file), use the `resolve` function passed to `transform`. This resolves a specifier using the resolvers configured in `.parcelrc`, exactly as a dependency of the asset would be, and only invalidates the asset being transformed when the result would change.
 
 ```javascript
-import {Transformer} from '@parcel/plugin';
+import { Transformer } from "@parcel/plugin";
+import fs from "fs";
 
 export default new Transformer({
-  async loadConfig({config}) {
-    let {contents, filePath} = await config.getConfig([
-      'tool.config.json',
-      'tool.config.js'
-    ]);
-
-    if (filePath.endsWith('.js')) {
-      config.invalidateOnStartup();
-    }
-
-    return contents;
-  }
+  async transform({ asset, resolve }) {
+    let filePath = await resolve(asset.filePath, "./included.txt");
+    let contents = fs.readFileSync(filePath, "utf8");
+    // ...
+  },
 });
 ```
 
-See the [`Config`](/plugin-system/transformer/#Config) object API docs for more details on all of the available methods and properties.
+<!-- TODO(v3): v2's loadConfig/Config API (getConfig, invalidateOnFileChange, invalidateOnFileCreate, addDevDependency, invalidateOnStartup) has no v3 equivalent; plugin fs reads are tracked automatically and trigger a full rebuild (ParcelOptions::plugin_tracker, crates/core/src/lib.rs invalidate()). Confirm this is the intended long-term model. -->
 
 ## Naming
 
@@ -183,13 +146,9 @@ All plugins must follow a naming system:
 | Configs      | `@parcel/config-{name}`      | `parcel-config-{name}`      | `@scope/parcel-config[-{name}]`      |
 | Resolvers    | `@parcel/resolver-{name}`    | `parcel-resolver-{name}`    | `@scope/parcel-resolver[-{name}]`    |
 | Transformers | `@parcel/transformer-{name}` | `parcel-transformer-{name}` | `@scope/parcel-transformer[-{name}]` |
-| Bundlers     | `@parcel/bundler-{name}`     | `parcel-bundler-{name}`     | `@scope/parcel-bundler[-{name}]`     |
 | Namers       | `@parcel/namer-{name}`       | `parcel-namer-{name}`       | `@scope/parcel-namer[-{name}]`       |
-| Runtimes     | `@parcel/runtime-{name}`     | `parcel-runtime-{name}`     | `@scope/parcel-runtime[-{name}]`     |
-| Packagers    | `@parcel/packager-{name}`    | `parcel-packager-{name}`    | `@scope/parcel-packager[-{name}]`    |
 | Optimizers   | `@parcel/optimizer-{name}`   | `parcel-optimizer-{name}`   | `@scope/parcel-optimizer[-{name}]`   |
 | Reporters    | `@parcel/reporter-{name}`    | `parcel-reporter-{name}`    | `@scope/parcel-reporter[-{name}]`    |
-| Validators   | `@parcel/validator-{name}`   | `parcel-validator-{name}`   | `@scope/parcel-validator[-{name}]`   |
 
 </div>
 
@@ -199,7 +158,7 @@ by reading the name in a `.parcelrc` or `package.json#devDependencies`.
 
 ```
 parcel-transformer-posthtml
-parcel-packager-wasm
+parcel-optimizer-svgo
 parcel-reporter-graph-visualizer
 ```
 
@@ -245,24 +204,9 @@ of Parcel that your plugin supports:
 {
   "name": "parcel-transformer-imagemin",
   "engines": {
-    "parcel": "2.x"
+    "parcel": "^3.0.0-0"
   }
 }
 ```
 
-If you do not specify this field, Parcel will output a warning:
-
-```
-Warning: The plugin "parcel-transformer-typescript" needs to specify a
-`package.json#engines.parcel` field with the supported Parcel version range.
-```
-
-If you do specify the parcel engine field and the user is using an incompatible
-version of Parcel, they will see an error:
-
-```
-Error: The plugin "parcel-transformer-typescript" is not compatible with the
-current version of Parcel. Requires "2.x" but the current version is "3.1.4"
-```
-
-Parcel uses `node-semver` to match version ranges.
+<!-- TODO(v3): v3 does not read engines.parcel at all (no warning when missing, no error when incompatible; verified by loading a plugin with "engines": {"parcel": "2.x"}). The v2 warning/error text was removed. Decide whether v3 should validate it. Native plugins are instead checked via package.json "parcel.abi". -->

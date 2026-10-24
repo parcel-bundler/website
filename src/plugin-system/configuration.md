@@ -10,6 +10,8 @@ Parcel configuration can be shared between projects by publishing a [`.parcelrc`
 
 ## Shared configuration
 
+<!-- TODO(v3): the "engines.parcel" field in these examples was bumped from 2.x to 3.x, but v3 does not read or check engines for config/plugin packages (crates/parcel/src/plugin_factory.rs). Decide on the version range to show (packages-v3 use "^3.0.0-0") or drop the field. -->
+
 This example shows how a company might distribute a shared Parcel configuration to be used between projects. It extends `@parcel/config-default` and adds several additional plugins.
 
 {% sample %}
@@ -21,7 +23,7 @@ This example shows how a company might distribute a shared Parcel configuration 
   "main": "index.json",
   "version": "1.0.0",
   "engines": {
-    "parcel": "2.x"
+    "parcel": "3.x"
   }
 }
 ```
@@ -36,13 +38,7 @@ This example shows how a company might distribute a shared Parcel configuration 
     "*.svg": ["...", "@parcel/transformer-svg-jsx"]
   },
   "namers": ["@company/parcel-namer", "..."],
-  "compressors": {
-    "*.{js,html,css}": [
-      "...",
-      "@parcel/compressor-gzip",
-      "@parcel/compressor-brotli"
-    ]
-  }
+  "reporters": ["...", "@company/parcel-reporter"]
 }
 ```
 
@@ -51,7 +47,7 @@ This example shows how a company might distribute a shared Parcel configuration 
 
 ## Multi-plugin packages
 
-In addition to sharing configuration between projects, Parcel config packages are also useful to distribute multiple plugins that are required to work together. For example, a transformer and packager combination may be needed for a new file format.
+In addition to sharing configuration between projects, Parcel config packages are also useful to distribute multiple plugins that are required to work together. For example, a transformer and optimizer combination may be needed for a new file format.
 
 {% note %}
 
@@ -64,11 +60,11 @@ In addition to sharing configuration between projects, Parcel config packages ar
 
 ```json
 {
-  "name": "parcel-config-xml",
+  "name": "parcel-config-xyz",
   "main": "index.json",
   "version": "1.0.0",
   "engines": {
-    "parcel": "2.x"
+    "parcel": "3.x"
   }
 }
 ```
@@ -79,10 +75,10 @@ In addition to sharing configuration between projects, Parcel config packages ar
 ```json
 {
   "transformers": {
-    "*.xml": ["parcel-transformer-xml"]
+    "*.xyz": ["parcel-transformer-xyz"]
   },
-  "packagers": {
-    "*.xml": "parcel-packager-xml"
+  "optimizers": {
+    "*.xyz": ["parcel-optimizer-xyz"]
   }
 }
 ```
@@ -90,14 +86,14 @@ In addition to sharing configuration between projects, Parcel config packages ar
 {% endsamplefile %}
 {% endsample %}
 
-Once published, users can now consume `parcel-config-xml` in their projects by extending it in addition to the default config of their choice.
+Once published, users can now consume `parcel-config-xyz` in their projects by extending it in addition to the default config of their choice.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
 
 ```json
 {
-  "extends": ["@parcel/config-default", "parcel-config-xml"]
+  "extends": ["@parcel/config-default", "parcel-config-xyz"]
 }
 ```
 

@@ -17,6 +17,8 @@ This page covers how to migrate from [Create React App](https://create-react-app
 npx cra-to-parcel
 ```
 
+<!-- TODO(v3): cra-to-parcel produces a Parcel 2 setup (`"source"` field, `"start": "parcel"`, `.parcel-cache` in .gitignore, Babel/PostCSS configs without the plugins in .parcelrc). It needs updating to match the manual steps below. -->
+
 This migrates your dependencies, configuration, and source code to use Parcel. See the section below for more details about what it does, or if you prefer to apply the steps manually.
 
 If you run into any issues during this process, please [file an issue on Github](https://github.com/parcel-bundler/cra-to-parcel/issues).
@@ -32,7 +34,7 @@ npm rm react-scripts
 npm install parcel --save-dev
 ```
 
-Next, in your `package.json`, replace `react-scripts` with `parcel`. You can remove the `"eject"` script entirely. In addition, add a `"source"` field pointing at `public/index.html` which will be the entrypoint of your application.
+Next, in your `package.json`, replace `react-scripts start` with `parcel serve` and `react-scripts build` with `parcel build`, passing `public/index.html` as the entrypoint of your application. You can remove the `"eject"` script entirely.
 
 {% migration %}
 {% samplefile "package.json" %}
@@ -50,19 +52,17 @@ Next, in your `package.json`, replace `react-scripts` with `parcel`. You can rem
 {% endsamplefile %}
 {% samplefile "package.json" %}
 
-```json/1,3-4
+```json/2-3
 {
-  "source": "public/index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel serve public/index.html",
+    "build": "parcel build public/index.html"
   }
 }
 ```
 
 {% endsamplefile %}
 {% endmigration %}
-
 
 ### 2. Update public/index.html
 
@@ -102,7 +102,7 @@ Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It
 
 ### 3. Migrate SVG imports
 
-If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](http://localhost:1234/languages/svg/#importing-as-a-react-component).
+If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](/languages/svg/#importing-as-a-react-component).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -111,7 +111,7 @@ If you use Create React App's [svg component import](https://create-react-app.de
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "jsx:*.svg": ["...", "@parcel/transformer-svg-jsx"],
+    "jsx:*.svg": ["@parcel/transformer-svg-jsx"],
     "jsx:*": ["..."]
   }
 }
@@ -143,27 +143,78 @@ Importing SVGs without the `jsx:` prefix will return a URL instead of a componen
 
 ### 4. Migrate GraphQL imports
 
-If you use Create React App's [GraphQL import](https://create-react-app.dev/docs/loading-graphql-files) feature, or other [Babel Macros](https://github.com/kentcdodds/babel-plugin-macros), you'll need to add `babel-plugin-macros` to a `babel.config.json` config file.
+If you use Create React App's [GraphQL import](https://create-react-app.dev/docs/loading-graphql-files) feature, or other [Babel Macros](https://github.com/kentcdodds/babel-plugin-macros), you'll need to install `@parcel/transformer-babel` and add it to your `.parcelrc`, and add `babel-plugin-macros` to a `babel.config.json` config file. Since Babel runs before Parcel's builtin transpiler, you'll also need `@babel/plugin-syntax-jsx` so that Babel can parse JSX.
+
+```bash
+npm install @parcel/transformer-babel babel-plugin-macros @babel/plugin-syntax-jsx --save-dev
+```
 
 {% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js,mjs,jsx,ts,tsx}": ["@parcel/transformer-babel", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
 {% samplefile "babel.config.json" %}
 
-```json/3-4
+```json/1
 {
-  "plugins": ["babel-plugin-macros"]
+  "plugins": ["@babel/plugin-syntax-jsx", "babel-plugin-macros"]
 }
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](http://localhost:1234/languages/javascript/#transpilation) for more information.
+<!-- TODO(v3): @parcel/transformer-babel (packages-v3/babel) passes the user's Babel config through as-is, so JSX/TypeScript files fail to parse without syntax plugins (verified: "Support for the experimental syntax 'jsx' isn't currently enabled"). v2 added these syntax plugins automatically. TypeScript projects would also need @babel/plugin-syntax-typescript (with isTSX for .tsx) in an override. If this is fixed in the transformer, drop the syntax plugin here. -->
+
+Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](/languages/javascript/#transpilation) for more information.
 
 ### 5. Migrate CSS
 
-Parcel includes support for CSS, CSS modules, SASS, and autoprefixing out of the box. If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-reset) feature of Create React App, you'll need to add `postcss-normalize` to your `.postcssrc` configuration.
+Parcel includes support for CSS, CSS modules, and autoprefixing out of the box.
+
+<!-- TODO(v3): autoprefixing and JS transpilation depend on browser targets, but CRA's default package.json uses the environment-keyed object form of browserslist (`{"production": [...], "development": [...]}`). v3 only reads a string or array `browserslist` (package_engines in crates/core/src/entry.rs), so the object form is silently ignored (verified: `chrome 70` as a string transpiles `?.`, but the same query in the object form doesn't). .browserslistrc files don't seem to be read either. Either support these or add a migration step to flatten browserslist into an array. -->
+
+If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelrc`. See [SASS](/languages/sass/) for details.
 
 {% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{sass,scss}": ["@parcel/transformer-sass"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-reset) feature of Create React App, you'll need to install `@parcel/transformer-postcss`, add it to your `.parcelrc`, and add `postcss-normalize` to your `.postcssrc` configuration.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": ["@parcel/transformer-postcss", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
 {% samplefile ".postcssrc" %}
 
 ```json/3-4
@@ -175,7 +226,7 @@ Parcel includes support for CSS, CSS modules, SASS, and autoprefixing out of the
 {% endsamplefile %}
 {% endsample %}
 
-Additionally, if you use Tailwind CSS, you'll need to add the `tailwindcss` plugin to `.postcssrc` as well. See [the documentation](https://parceljs.org/recipes/react/#tailwind-css) for more details.
+Additionally, if you use Tailwind CSS, you'll need to add the built-in `@parcel/transformer-tailwind` plugin to your `.parcelrc`. See [the documentation](/recipes/react/#tailwind-css) for more details.
 
 ### 6. Migrate tests
 
@@ -241,7 +292,18 @@ Now create the following files:
     "^.+\\.(css|sass|scss)$": "identity-obj-proxy",
     "^jsx:.+\\.svg": "<rootDir>/config/jest/SvgComponent.js"
   },
-  "moduleFileExtensions": ["web.js", "js", "web.ts", "ts", "web.tsx", "tsx", "json", "web.jsx", "jsx", "node"],
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
   "watchPlugins": [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
@@ -254,14 +316,14 @@ Now create the following files:
 {% samplefile "config/babelTransform.js" %}
 
 ```js
-const babelJest = require('babel-jest').default;
+const babelJest = require("babel-jest").default;
 
 module.exports = babelJest.createTransformer({
   presets: [
     [
-      require.resolve('babel-preset-react-app'),
+      require.resolve("babel-preset-react-app"),
       {
-        runtime: 'automatic'
+        runtime: "automatic",
       },
     ],
   ],
@@ -274,7 +336,7 @@ module.exports = babelJest.createTransformer({
 {% samplefile "config/fileTransform.js" %}
 
 ```js
-const path = require('path').default;
+const path = require("path").default;
 
 module.exports = {
   process(src, filename) {
@@ -326,15 +388,14 @@ To run the linter, run `npm run lint`.
 
 ### 8. Update .gitignore
 
-Add the following files to your `.gitignore` file:
+Add the following directory to your `.gitignore` file:
 
 ```
-.parcel-cache
 dist
 ```
 
 ### 9. Start the dev server
 
-That's it! Now you can start the dev server with `npm start`. As it builds your app for the first time, Parcel may install additional plugins and dependencies it needs.
+That's it! Now you can start the dev server with `npm start`.
 
 If you run into any issues during this process, please [file an issue on Github](https://github.com/parcel-bundler/cra-to-parcel/issues).

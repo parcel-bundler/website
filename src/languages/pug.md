@@ -7,7 +7,26 @@ eleventyNavigation:
   order: 15
 ---
 
-[Pug](https://pugjs.org) is a templating language that compiles to HTML. Parcel supports Pug automatically using the `@parcel/transformer-pug` plugin. When a `.pug` file is detected, it will be installed into your project automatically.
+[Pug](https://pugjs.org) is a templating language that compiles to HTML. Parcel supports Pug using the `@parcel/transformer-pug` plugin. To use it, install it into your app and add it to your `.parcelrc`.
+
+```shell
+yarn add @parcel/transformer-pug --dev
+```
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.pug": ["@parcel/transformer-pug"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 Pug is compiled to HTML and processed as described in the [HTML docs](/languages/html/).
 
@@ -29,26 +48,20 @@ html(lang="en")
 Pug may be used as an entry to Parcel just like HTML:
 
 ```shell
-parcel index.pug
+parcel serve index.pug
 ```
 
 Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](/features/bundle-inlining/) for details.
 
 ```js
-import html from 'bundle-text:./index.pug';
+import html from "bundle-text:./index.pug";
 
 document.body.innerHTML = html;
 ```
 
 ## Configuration
 
-Pug can be configured using a `.pugrc`, `.pugrc.js`, `.pugrc.mjs`, `.pugrc.cjs`, `pug.config.js`, `pug.config.mjs`, or `pug.config.cjs` file. See the [Pug API Reference](https://pugjs.org/api/reference.html) for details on the available options.
-
-{% warning %}
-
-**Note:** JavaScript-based configuration should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.pugrc`) instead.
-
-{% endwarning %}
+Pug can be configured for `@parcel/transformer-pug` in your `.parcelrc`. See the [Pug API Reference](https://pugjs.org/api/reference.html) for details on the available options.
 
 ### Locals
 
@@ -62,12 +75,20 @@ h1 Hello, #{name}!
 ```
 
 {% endsamplefile %}
-{% samplefile ".pugrc" %}
+{% samplefile ".parcelrc" %}
 
-```json
+```json/6-8
 {
-  "locals": {
-    "name": "Puggy"
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.pug": [{
+      "plugin": "@parcel/transformer-pug",
+      "config": {
+        "locals": {
+          "name": "Puggy"
+        }
+      }
+    }]
   }
 }
 ```

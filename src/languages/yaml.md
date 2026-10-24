@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 13
 ---
 
-Parcel supports importing YAML files from JavaScript using the `@parcel/transformer-yaml` plugin. When a `.yaml` file is detected, it will be installed into your project automatically.
+Parcel supports importing YAML files (`.yaml` or `.yml`) from JavaScript out of the box.
 
 ## Example usage
 
@@ -15,7 +15,7 @@ Parcel supports importing YAML files from JavaScript using the `@parcel/transfor
 {% samplefile "app.js" %}
 
 ```js
-import data from './data.yaml';
+import data from "./data.yaml";
 console.log(data.hello[0]);
 // => "world"
 ```
@@ -31,3 +31,5 @@ hello:
 
 {% endsamplefile %}
 {% endsample %}
+
+YAML files are only converted to JavaScript when imported from JavaScript. When referenced from anywhere else, such as from an HTML file or as a [URL dependency](/languages/javascript/#url-dependencies) in JavaScript, they are copied to the output directory as is.

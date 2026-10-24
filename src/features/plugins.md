@@ -13,11 +13,13 @@ Parcel is designed to be very modular. Parcel core itself is almost not specific
 
 ## `.parcelrc`
 
-Parcel configuration is specified in a `.parcelrc` file. It is written in [JSON5](https://json5.org), which is similar to JSON but supports comments, unquoted keys, trailing commas, and other features.
+Parcel configuration is specified in a `.parcelrc` file, written in JSON. Parcel looks for it in your project root (the nearest directory containing a lockfile or a `.git` directory). You can also use the `--config` CLI option to specify a different config file. If there is no `.parcelrc`, the default config is used.
+
+<!-- TODO(v3): v2 parsed .parcelrc as JSON5 (comments, trailing commas, unquoted keys). v3 uses strict serde_json (crates/core/src/config.rs ParcelConfig::from_json), so comments/trailing commas are a parse error. Confirm this is intentional. -->
 
 ### Extending configs
 
-Parcel’s default config is specified in `@parcel/config-default`. Most of the time, you'll want to extend it in your own Parcel config. To do this, use the `extends` field in your `.parcelrc`.
+Parcel’s default config is built into Parcel, and can be referenced as `@parcel/config-default`. Most of the time, you'll want to extend it in your own Parcel config. To do this, use the `extends` field in your `.parcelrc`.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -45,7 +47,7 @@ You may also extend multiple configs by passing an array. Configs are merged in 
 {% endsamplefile %}
 {% endsample %}
 
-You can also reference another config in your project using a relative path.
+Other configs are resolved like dependencies, relative to the config file that extends them. This means you can extend configs published as npm packages (see [Configuration](/plugin-system/configuration/)), or reference another config in your project using a relative path.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -63,7 +65,7 @@ Extended configs may also extend other configs, which forms a config chain.
 
 ### Glob maps
 
-Many fields in `.parcelrc` like `transformers` or `packagers` use objects as maps of globs to plugin names. This lets you configure Parcel’s behavior by file extension, file path, or even a specific file name. Globs are matched relative to the directory containing the `.parcelrc`.
+Many fields in `.parcelrc` like `transformers` or `optimizers` use objects as maps of globs to plugin names. This lets you configure Parcel’s behavior by file extension, file path, or even a specific file name. Globs are matched against the file name, and against the file path relative to the project root.
 
 The order of fields in glob maps defines their priority when a file name is being tested against them. This lets you configure different behavior for certain files within your project, such as files in a specific directory.
 
@@ -109,7 +111,7 @@ If you’d like to define a higher priority pipeline that extends a lower priori
 
 In the above example, when processing `icons/home.svg`, we first run `@company/parcel-transformer-svg-icons` and then `@parcel/transformer-svg`.
 
-This also applies to configs that have been extended. If a  `"..."` is used and there are no lower priority pipelines defined in the current config, Parcel falls back to pipelines defined in the extended configs.
+This also applies to configs that have been extended. If a `"..."` is used and there are no lower priority pipelines defined in the current config, Parcel falls back to pipelines defined in the extended configs.
 
 Since `@parcel/transformer-svg` is included in the default config, the above example could be rewritten like this:
 
@@ -164,7 +166,7 @@ You can also define your own named pipelines. For example, you could define an `
 {% samplefile "src/example.js" %}
 
 ```javascript
-import buffer from 'arraybuffer:./file.png';
+import buffer from "arraybuffer:./file.png";
 ```
 
 {% endsamplefile %}
@@ -172,9 +174,56 @@ import buffer from 'arraybuffer:./file.png';
 
 Named pipelines are supported for transformer and optimizer pipelines. For transformers, the pipeline is specified in the dependency that referenced the asset. For optimizers, it is inherited from the entry asset of the bundle.
 
+The `js:` named pipeline is special: it is used automatically when a file is imported as a JavaScript module, and there is a matching `js:` pipeline for it. The default config uses this to convert JSON, TOML, and YAML files to JavaScript only when they are imported from JavaScript. When imported in other ways, such as with a `type` import attribute or via a `url:` dependency, the original file is used instead.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "js:*.csv": ["parcel-transformer-csv-to-js"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+### Plugin configuration
+
+Some plugins accept configuration options. To pass options to a plugin, use an object with `plugin` and `config` properties in place of the plugin name. This works anywhere a plugin name is accepted in `.parcelrc`.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.svg": [
+      {
+        "plugin": "@parcel/transformer-svg",
+        "config": {
+          "removeComments": false
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+To configure a plugin that is included in the default config, define a pipeline for the same files that includes the plugin along with its config, as in the above example. Don't add `"..."` in this case, otherwise the default pipeline will also run the plugin with its default options.
+
+The available options are documented for each plugin. For example, see [JavaScript](/languages/javascript/), [CSS](/languages/css/), [SVG](/languages/svg/), and [Code splitting](/features/code-splitting/) for options supported by the built-in transformers and bundler.
+
 ## Plugins
 
-Parcel supports many different kinds of plugins which perform a specific task as part of your build. Plugins are referenced in your `.parcelrc` using their NPM package names.
+Parcel supports many different kinds of plugins which perform a specific task as part of your build. Plugins are referenced in your `.parcelrc` using their NPM package names. Plugins may be written in JavaScript, or as native plugins written in languages like Rust, Go, or Swift. Both kinds of plugins are installed and referenced in the same way. See [Authoring plugins](/plugin-system/authoring-plugins/) for details.
 
 ### Transformers
 
@@ -206,7 +255,7 @@ When compiling an asset, its file type may change. For example, when compiling T
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
+    "*.{ts,tsx}": ["@company/parcel-transformer-typescript"]
   }
 }
 ```
@@ -243,11 +292,9 @@ The `"..."` syntax can be used to extend the default resolvers. This allows you 
 
 If `"..."` is omitted, your resolver must be able to handle all dependencies or resolution will fail.
 
-### Bundler (experimental)
+### Bundler
 
-<a href="/plugin-browser/?type=%22bundler%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Bundler plugins</a>
-
-A [Bundler](/plugin-system/bundler/) plugin is responsible for grouping assets together into bundles. The bundler can be configured by specifying a plugin name in `.parcelrc`.
+The bundler is responsible for grouping assets together into bundles. Parcel includes two bundlers: `@parcel/bundler-default`, which is used by default, and `@parcel/bundler-library`, which is designed for building libraries (see [Building a library with Parcel](/getting-started/library/)). The bundler can be configured by specifying a plugin name in `.parcelrc`.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -255,45 +302,14 @@ A [Bundler](/plugin-system/bundler/) plugin is responsible for grouping assets t
 ```json
 {
   "extends": "@parcel/config-default",
-  "bundler": "@company/parcel-bundler"
+  "bundler": "@parcel/bundler-library"
 }
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-{% warning %}
-
-**Note**: Bundler plugins are experimental, and subject to change, even between minor updates.
-
-{% endwarning %}
-
-### Runtimes (experimental)
-
-<a href="/plugin-browser/?type=%22runtime%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Runtime plugins</a>
-
-[Runtime](/plugin-system/runtime/) plugins allow you to inject assets into bundles. They can be configured using an array of plugin names in `.parcelrc`. All runtime plugins in this list are run over each bundle. The `"..."` syntax can be used to extend the default runtimes.
-
-{% sample %}
-{% samplefile ".parcelrc" %}
-
-```json
-{
-  "extends": "@parcel/config-default",
-  "runtimes": ["@company/parcel-runtime", "..."]
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-If `"..."` is omitted, the default runtimes will not be run. This will probably break things, as many Parcel features rely on the default runtimes.
-
-{% warning %}
-
-**Note**: Runtime plugins are experimental, and subject to change, even between minor updates.
-
-{% endwarning %}
+See [Code splitting](/features/code-splitting/) for the options supported by `@parcel/bundler-default`.
 
 ### Namers
 
@@ -318,27 +334,6 @@ The `"..."` syntax can be used to extend the default namers. This allows you to 
 
 If `"..."` is omitted, your namer must be able to handle naming all bundles or the build will fail.
 
-### Packagers
-
-<a href="/plugin-browser/?type=%22packager%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Packager plugins</a>
-
-[Packager](/plugin-system/packager/) plugins are responsible for combining all of the assets in a bundle together into an output file. They are configured using a [glob map](#glob-maps) in `.parcelrc`. Globs are matched against the output filename of a bundle. A single packager plugin may be configured to run per bundle.
-
-{% sample %}
-{% samplefile ".parcelrc" %}
-
-```json
-{
-  "extends": "@parcel/config-default",
-  "packagers": {
-    "*.{jpg,png}": "@company/parcel-packager-image-sprite"
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
 ### Optimizers
 
 <a href="/plugin-browser/?type=%22optimizer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Optimizer plugins</a>
@@ -352,32 +347,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 {
   "extends": "@parcel/config-default",
   "optimizers": {
-    "*.js": ["@parcel/optimizer-esbuild"]
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-### Compressors
-
-<a href="/plugin-browser/?type=%22compressor%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Compressor plugins</a>
-
-[Compressor](/plugin-system/compressor/) plugins are used when writing a final bundle to disk and may compress or encode it in some way (e.g. Gzip). They are configured using a [glob map](#glob-maps) in `.parcelrc`. Multiple compressors may run over the same bundle using [pipelines](#pipelines). Each compressor plugin produces an additional file to be written in parallel, for example `bundle.js`, `bundle.js.gz` and `bundle.js.br`. The `"..."` syntax can be used to extend the default compressors for a bundle.
-
-{% sample %}
-{% samplefile ".parcelrc" %}
-
-```json
-{
-  "extends": "@parcel/config-default",
-  "compressors": {
-    "*.{js,html,css}": [
-      "...",
-      "@parcel/compressor-gzip",
-      "@parcel/compressor-brotli"
-    ]
+    "*.js": ["@company/parcel-optimizer"]
   }
 }
 ```
@@ -389,7 +359,7 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 
 <a href="/plugin-browser/?type=%22reporter%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Reporter plugins</a>
 
-[Reporter](/plugin-system/reporter/) plugins receive events from Parcel as they happen throughout the build process. For example, reporters may write status information to stdout, run a dev server, or generate a bundle analysis report at the end of a build. Reporters are configured using an array of package names in `.parcelrc`. All reporters in this list are run for each build event. The `"..."` syntax can be used to extend the default reporters.
+[Reporter](/plugin-system/reporter/) plugins receive events from Parcel as they happen throughout the build process. For example, reporters may write status information to stdout, or generate a bundle analysis report at the end of a build. Reporters are configured using an array of package names in `.parcelrc`. All reporters in this list are run for each build event. The `"..."` syntax can be used to extend the default reporters.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -397,18 +367,16 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 ```json
 {
   "extends": "@parcel/config-default",
-  "reporters": ["...", "@parcel/reporter-bundle-analyzer"]
+  "reporters": ["...", "@company/parcel-reporter"]
 }
 ```
 
 {% endsamplefile %}
 {% endsample %}
 
-Reporters that you use infrequently may also be specified on the [CLI](/features/cli/) using the `--reporter` option, or via the [API](/features/parcel-api/) using the `additionalReporters` option. Reporters specified in `.parcelrc` always run.
-
 ### Local plugins
 
-Most parcel plugins are NPM packages. This means they have a `package.json` which declares the version of Parcel they are compatible with, along with any dependencies they may have. They must also follow a naming system to ensure clarity.
+Most parcel plugins are NPM packages. This means they have a `package.json` which declares any dependencies they may have.
 
 Usually, Parcel plugins are published to the NPM registry, or to an internal company registry (e.g. Artifactory). This encourages plugins to be shared with the community or across projects within your company to avoid duplication.
 
@@ -416,7 +384,7 @@ However, when developing a plugin, it can be useful to run it directly in your p
 
 #### Relative file paths
 
-Plugins may be referenced as relative paths from the `.parcelrc` config file they are used in. These may be CommonJS or ESM modules, as determined using the `.mjs` or `.cjs` extension, or the `"type": "module"` field in the nearest package.json (the same way Node loads modules).
+Plugins may be referenced as relative paths from the `.parcelrc` config file they are used in. These may be CommonJS or ESM modules, as determined using the `.mjs` or `.cjs` extension, or the `"type": "module"` field in the nearest package.json (the same way Node loads modules). TypeScript files are also supported. A relative path may also point to a native plugin's shared library (a `.so`, `.dylib`, or `.dll` file).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -495,7 +463,7 @@ In your root package.json, you can define a dependency on the `parcel-transforme
 {
   "name": "my-project",
   "dependencies": {
-    "parcel": "^2.0.0",
+    "parcel": "^3.0.0",
     "parcel-transformer-foo": "link:./parcel-transformer-foo"
   }
 }
@@ -505,3 +473,28 @@ In your root package.json, you can define a dependency on the `parcel-transforme
 {% endsample %}
 
 Then, in your `.parcelrc` you can reference `parcel-transformer-foo` as you would a published package. Whenever you update the code for your plugin, Parcel will rebuild your project.
+
+#### Native plugins
+
+Native plugin packages normally load a prebuilt shared library from a separate package for each platform. While developing a native plugin, you can point the `parcel.devLibrary` field in its `package.json` at your local build instead. Parcel loads this file in place of the published library, so your `.parcelrc` can reference the plugin by its package name, e.g. using workspaces or the `link:` protocol as described above. If the extension is omitted, the shared library extension for the current platform is added automatically.
+
+{% sample %}
+{% samplefile "parcel-transformer-foo/package.json" %}
+
+```json
+{
+  "name": "parcel-transformer-foo",
+  "parcel": {
+    "abi": 1,
+    "artifacts": {
+      "aarch64-apple-darwin": "parcel-transformer-foo-darwin-arm64"
+    },
+    "devLibrary": "./target/debug/libparcel_transformer_foo"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The `devLibrary` field must not be included in published packages. Parcel’s native plugin publishing workflow removes it automatically. See [Authoring plugins](/plugin-system/authoring-plugins/) for details on building and publishing native plugins.

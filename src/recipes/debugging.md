@@ -41,7 +41,7 @@ document.getElementById("greeting").innerHTML = variable;
 {% endsamplefile %}
 {% endsample %}
 
-With this setup, you can run `parcel src/index.html` and set breakpoints in the source code, as seen below:
+With this setup, you can run `parcel serve src/index.html` and set breakpoints in the source code, as seen below:
 
 ![Example Chrome Breakpoints](../debugging1.png)
 
@@ -65,10 +65,7 @@ Assuming a folder/file structure similar to the one shown above for Chrome devel
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:1234",
       "webRoot": "${workspaceFolder}",
-      "breakOnLoad": true,
-      "sourceMapPathOverrides": {
-        "/__parcel_source_root/*": "${webRoot}/*"
-      }
+      "breakOnLoad": true
     }
   ]
 }
@@ -80,7 +77,7 @@ Assuming a folder/file structure similar to the one shown above for Chrome devel
 Next, you will need to start the parcel dev server with your entry point, which here is `index.html`:
 
 ```
-$ parcel src/index.html
+$ parcel serve src/index.html
 ```
 
 The last step here is to actually start the debugging process by clicking Green arrow in the debug panel. You should now be able to set breakpoints in your code. The final result will look similar to the following:

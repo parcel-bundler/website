@@ -16,7 +16,7 @@ Parcel includes support for CSS out of the box. To add a CSS file, either refere
 or import it from a JavaScript file:
 
 ```javascript
-import './index.css';
+import "./index.css";
 ```
 
 ## Dependencies
@@ -28,13 +28,13 @@ CSS assets can contain dependencies referenced by `@import` syntax, as well as r
 The [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) at-rule can be used to inline another CSS file into the same CSS bundle as the containing file. This means that at runtime a separate network request will not be needed to load the dependency.
 
 ```css
-@import 'other.css';
+@import "other.css";
 ```
 
 Referenced files should be [relative](/features/dependency-resolution/#relative-specifiers) to the containing CSS file. You can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](/features/dependency-resolution/#url-schemes).
 
 ```css
-@import 'npm:bootstrap/bootstrap.css';
+@import "npm:bootstrap/bootstrap.css";
 ```
 
 When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for more details.
@@ -43,9 +43,19 @@ When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to im
 @import "./components/*.css";
 ```
 
+`@import` rules may also include [cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), `supports()`, and media query conditions. Parcel wraps the inlined rules in the corresponding `@layer`, `@supports`, and `@media` blocks.
+
+```css
+@import "theme.css" layer(base) supports(display: grid) (min-width: 500px);
+```
+
+### Cascade order
+
+Since the order in which stylesheets are applied affects the CSS cascade, Parcel preserves the order of your `@import` rules and CSS imports from JavaScript, even when CSS is split across multiple bundles (e.g. via [code splitting](/features/code-splitting/)). If different entries or bundles import the same stylesheets in conflicting orders, Parcel duplicates those stylesheets so that each one is applied in the correct order, and emits a warning. Import stylesheets in a consistent order to allow them to be shared.
+
 ### `url()`
 
-The [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url()) function can be used to reference a file, for example a background image or font. The referenced file will be processed by Parcel, and the URL reference will be rewritten to point to the output filename.
+The [`url()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/url()>) function can be used to reference a file, for example a background image or font. The referenced file will be processed by Parcel, and the URL reference will be rewritten to point to the output filename.
 
 ```css
 body {
@@ -57,7 +67,7 @@ Referenced files should be [relative](/features/dependency-resolution/#relative-
 
 ```css
 .logo {
-  background: url('data-url:./logo.png');
+  background: url("data-url:./logo.png");
 }
 ```
 
@@ -102,7 +112,7 @@ CSS modules treat the classes defined in each file as unique. Each class name or
 To use CSS modules, create a file with the `.module.css` extension, and import it from a JavaScript file with a [namespace import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents). Then, you can access each of the classes defined in the CSS file as an export from the module.
 
 ```javascript
-import * as classes from './styles.module.css';
+import * as classes from "./styles.module.css";
 
 document.body.className = classes.body;
 ```
@@ -123,6 +133,8 @@ Using CSS modules also has the benefit of making dependencies on specific class 
 
 ![Example of tree shaking CSS modules](/blog/beta3/tree-shaking-css-modules.jpg)
 
+<!-- TODO(v3): CSS modules tree shaking does not appear to work. crates/css/src/packager.rs computes unused_symbols from `export.requested` and calls minify(), but the test snapshots (crates/parcel/tests/fixtures/css-modules/import-namespace and keyframes, whose descriptions say "should tree shake"/"should optimize away unused @keyframes") still contain the unused `.unused` class and `@keyframes unused`. Confirmed with target/release/parcel: unused classes/keyframes kept in production. -->
+
 As you can see in the above example, only the `.button` class is used, so the unused `.cta` class is removed from the compiled CSS file.
 
 This also works with other unused CSS rules such as `@keyframes` and `@counter-style`, as well as CSS custom properties (when the [`dashedIdents`](#local-css-variables) option is enabled).
@@ -132,30 +144,38 @@ This also works with other unused CSS rules such as `@keyframes` and `@counter-s
 **Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults).
 
 ```javascript
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 ```
 
 should be replaced with:
 
 ```javascript
-import * as styles from './styles.module.css';
+import * as styles from "./styles.module.css";
 ```
 
 {% endwarning %}
 
 ### Local CSS variables
 
-By default, class names, id selectors, and the names of `@keyframes`, `@counter-style`, and CSS grid lines and areas are scoped to the module they are defined in. Scoping for CSS variables and other [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) names can also be enabled using the `dashedIdents` configuration option in your project root `package.json`.
+By default, class names, id selectors, and the names of `@keyframes`, `@counter-style`, and CSS grid lines and areas are scoped to the module they are defined in. Scoping for CSS variables and other [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) names can also be enabled using the `dashedIdents` option. This is configured for `@parcel/transformer-css` in your `.parcelrc`.
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
-```json/3
+```json/8
 {
-  "@parcel/transformer-css": {
-    "cssModules": {
-      "dashedIdents": true
-    }
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.module.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": {
+            "dashedIdents": true
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -218,17 +238,25 @@ The same syntax also applies to other CSS values that use the [`<dashed-ident>`]
 
 ### Custom naming patterns
 
-By default, Parcel prepends the hash of the filename to each class name and identifier in a CSS file. You can configure this naming pattern using the `"pattern"` option in your project root `package.json`. This accepts a string with placeholders that will be filled in by Parcel, allowing you to add custom prefixes or adjust the naming convention for scoped classes.
+By default, Parcel prepends the hash of the filename to each class name and identifier in a CSS file. You can configure this naming pattern using the `"pattern"` option in your `.parcelrc`. This accepts a string with placeholders that will be filled in by Parcel, allowing you to add custom prefixes or adjust the naming convention for scoped classes.
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
-```json/3
+```json/8
 {
-  "@parcel/transformer-css": {
-    "cssModules": {
-      "pattern": "my-company-[name]-[hash]-[local]"
-    }
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.module.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": {
+            "pattern": "my-company-[name]-[hash]-[local]"
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -238,9 +266,10 @@ By default, Parcel prepends the hash of the filename to each class name and iden
 
 The following placeholders are currently supported:
 
-* `[name]` - The base name of the file, without the extension.
-* `[hash]` - A hash of the full file path.
-* `[local]` - The original class name or identifier.
+- `[name]` - The base name of the file, without the extension.
+- `[hash]` - A hash of the full file path.
+- `[content-hash]` - A hash of the file contents.
+- `[local]` - The original class name or identifier.
 
 {% warning %}
 
@@ -260,18 +289,26 @@ The following placeholders are currently supported:
 ```
 
 {% endsamplefile %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
-```json5/5
+```json5/10
 {
-  "@parcel/transformer-css": {
-    "cssModules": {
-      // ❌ [local] must be at the end so that
-      // auto-generated grid line names work
-      "pattern": "[local]-[hash]"
-      // ✅ do this instead
-      "pattern": "[hash]-[local]"
-    }
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.module.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": {
+            // ❌ [local] must be at the end so that
+            // auto-generated grid line names work
+            "pattern": "[local]-[hash]"
+            // ✅ do this instead
+            "pattern": "[hash]-[local]"
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -283,15 +320,23 @@ The following placeholders are currently supported:
 
 ### Enabling CSS modules globally
 
-By default, CSS modules are only enabled for files whose name ends with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for all source files (i.e. not in `node_modules`) by configuring `@parcel/transformer-css` in your project root `package.json`.
+By default, CSS modules are only enabled for files whose name ends with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for other files by configuring `@parcel/transformer-css` in your `.parcelrc`. For example, this enables CSS modules for all CSS files in your `src` directory (but not in `node_modules`):
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
-```json/2
+```json/3-10
 {
-  "@parcel/transformer-css": {
-    "cssModules": true
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "src/**/*.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": true
+        }
+      }
+    ]
   }
 }
 ```
@@ -299,26 +344,7 @@ By default, CSS modules are only enabled for files whose name ends with `.module
 {% endsamplefile %}
 {% endsample %}
 
-When using a configuration object with other options, use the `"global"` option instead.
-
-```json5/3
-{
-  "@parcel/transformer-css": {
-    "cssModules": {
-      "global": true,
-      // ...
-    }
-  }
-}
-```
-
-{% warning %}
-
-**Note**: In prior versions of Parcel, `postcss-modules` was used to implement CSS module support. Enabling CSS modules globally occurred in your project's PostCSS config file. This plugin can now be removed from your PostCSS config if you enable CSS modules as described above.
-
-If this was the only PostCSS plugin you used, you can remove your PostCSS config entirely. This can improve build performance significantly. You may see a warning about this if you are not using any `postcss-modules` config options.
-
-{% endwarning %}
+When using a configuration object with other options such as `"pattern"` or `"dashedIdents"`, CSS modules are also enabled for the matching files.
 
 ## Transpilation
 
@@ -344,7 +370,7 @@ See the [Targets](/features/targets/) docs for more details on how to configure 
 
 ### Vendor prefixing
 
-Based on your configured browser targets, Parcel automatically adds vendor prefixed fallbacks for many CSS features. For example, when using the [`image-set()`](https://developer.mozilla.org/en-US/docs/Web/CSS/image/image-set()) function, Parcel will output a fallback `-webkit-image-set()` value as well, since Chrome does not yet support the unprefixed value.
+Based on your configured browser targets, Parcel automatically adds vendor prefixed fallbacks for many CSS features. For example, when using the [`image-set()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/image/image-set()>) function, Parcel will output a fallback `-webkit-image-set()` value as well, since Chrome does not yet support the unprefixed value.
 
 ```css
 .logo {
@@ -375,7 +401,7 @@ becomes:
 
 ```css
 .button {
-  transition: background .2s;
+  transition: background 0.2s;
 }
 ```
 
@@ -385,73 +411,39 @@ Parcel automatically compiles many modern CSS syntax features to more compatible
 
 The following features are supported:
 
-* [Color Level 5](https://drafts.csswg.org/css-color-5/)
+- [Color Level 5](https://drafts.csswg.org/css-color-5/)
   - [`color-mix()`](https://drafts.csswg.org/css-color-5/#color-mix) function
-* [Color Level 4](https://drafts.csswg.org/css-color-4/)
-  - [`lab()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()), [`lch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch()), `oklab()`, and `oklch()` colors
-  - [`color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color()) function supporting predefined color spaces such as `display-p3` and `xyz`
-  - [`hwb()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb()) function
+- [Color Level 4](https://drafts.csswg.org/css-color-4/)
+  - [`lab()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab()>), [`lch()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch()>), `oklab()`, and `oklch()` colors
+  - [`color()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color()>) function supporting predefined color spaces such as `display-p3` and `xyz`
+  - [`hwb()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb()>) function
   - Space separated components in `rgb()` and `hsl()` functions
   - Hex colors with alpha, e.g. `#rgba` and `#rrggbbaa`
-* [Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties), e.g. `margin-inline-start`
-* [Media query range syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax_improvements_in_level_4), e.g. `@media (width <= 100px)` or `@media (100px < width < 500px)`
-* Alignment shorthands, e.g. [`place-items`](https://developer.mozilla.org/en-US/docs/Web/CSS/place-items) and [`place-content`](https://developer.mozilla.org/en-US/docs/Web/CSS/place-content)
-* [`clamp()`](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp()) function
-* [Double position gradient stops](https://css-tricks.com/while-you-werent-looking-css-gradients-got-better/) (e.g. `red 40% 80%`)
-* Two-value [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) shorthand
-* Multi-value [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property (e.g. `inline flex`)
+- [Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties), e.g. `margin-inline-start`
+- [Media query range syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax_improvements_in_level_4), e.g. `@media (width <= 100px)` or `@media (100px < width < 500px)`
+- Alignment shorthands, e.g. [`place-items`](https://developer.mozilla.org/en-US/docs/Web/CSS/place-items) and [`place-content`](https://developer.mozilla.org/en-US/docs/Web/CSS/place-content)
+- [`clamp()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/clamp()>) function
+- [Double position gradient stops](https://css-tricks.com/while-you-werent-looking-css-gradients-got-better/) (e.g. `red 40% 80%`)
+- Two-value [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) shorthand
+- Multi-value [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property (e.g. `inline flex`)
 
-### Draft syntax
+### Nesting
 
-Parcel can also be configured to compile several draft specs that are not yet available natively in any browser. Because these are drafts and the syntax can still change, they must be enabled manually in your project.
+The [CSS Nesting](https://drafts.csswg.org/css-nesting/) spec enables style rules to be nested, with the selectors of the child rules extending the parent selector in some way. This is very commonly supported by CSS pre-processors like SASS, and is now supported natively in modern browsers. When your [browser targets](#browser-targets) do not support nesting, Parcel compiles this syntax to un-nested style rules that are supported in all browsers.
 
-#### Nesting
-
-The [CSS Nesting](https://drafts.csswg.org/css-nesting/) draft spec enables style rules to be nested, with the selectors of the child rules extending the parent selector in some way. This is very commonly supported by CSS pre-processors like SASS, but with this spec, it will eventually be supported natively in browsers. Parcel compiles this syntax to un-nested style rules that are supported in all browsers today.
-
-Because nesting is a draft, it is not enabled by default. To use it, enable it by configuring `@parcel/transformer-css` in your project root `package.json` file.
-
-{% sample %}
-{% samplefile "package.json" %}
-
-```json
-{
-  "@parcel/transformer-css": {
-    "drafts": {
-      "nesting": true
-    }
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-Once enabled, any CSS file in your project can use directly nested style rules or the `@nest` at rule.
-
-[Directly nested style rules](https://drafts.csswg.org/css-nesting/#direct) must be prefixed with the `&` nesting selector. This indicates where the parent selector will be substituted. For example:
+The `&` nesting selector indicates where the parent selector will be substituted. If it is omitted, the nested selector is treated as a descendant of the parent. For example:
 
 ```css
 .foo {
   color: blue;
-  & > .bar { color: red; }
-}
-```
-
-is equivalent to:
-
-```css
-.foo { color: blue; }
-.foo > .bar { color: red; }
-```
-
-The [@nest rule](https://drafts.csswg.org/css-nesting/#at-nest) allows nesting where the parent selector is substituted somewhere other than at the start.
-
-```css
-.foo {
-  color: red;
-  @nest .parent & {
-    color: blue;
+  & > .bar {
+    color: red;
+  }
+  .parent & {
+    color: green;
+  }
+  .baz {
+    color: purple;
   }
 }
 ```
@@ -459,8 +451,18 @@ The [@nest rule](https://drafts.csswg.org/css-nesting/#at-nest) allows nesting w
 is equivalent to:
 
 ```css
-.foo { color: red; }
-.parent .foo { color: blue; }
+.foo {
+  color: blue;
+}
+.foo > .bar {
+  color: red;
+}
+.parent .foo {
+  color: green;
+}
+.foo .baz {
+  color: purple;
+}
 ```
 
 [Conditional rules](https://drafts.csswg.org/css-nesting/#conditionals) such as `@media` may also be nested within a style rule, without repeating the selector. For example:
@@ -478,7 +480,9 @@ is equivalent to:
 is equivalent to:
 
 ```css
-.foo { display: grid; }
+.foo {
+  display: grid;
+}
 
 @media (orientation: landscape) {
   .foo {
@@ -487,61 +491,42 @@ is equivalent to:
 }
 ```
 
-#### Custom media queries
-
-Support for [custom media queries](https://drafts.csswg.org/mediaqueries-5/#custom-mq) is included in the Media Queries Level 5 draft spec. This allows you to define media queries that are reused in multiple places within a CSS file. Parcel CSS will perform this substitution ahead of time when this feature is enabled.
-
-For example:
-
-```css
-@custom-media --modern (color), (hover);
-
-@media (--modern) and (width > 1024px) {
-  .a { color: green; }
-}
-```
-
-is equivalent to:
-
-```css
-@media ((color) or (hover)) and (width > 1024px) {
-  .a { color: green; }
-}
-```
-
-Because custom media queries are a draft, they are not enabled by default. To use them, enable the `customMedia` feature by configuring `@parcel/transformer-css` in your project root `package.json` file.
-
-{% sample %}
-{% samplefile "package.json" %}
-
-```json
-{
-  "@parcel/transformer-css": {
-    "drafts": {
-      "customMedia": true
-    }
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
+<!-- TODO(v3): Custom media queries (@custom-media) docs removed. v2 enabled them via the "drafts": {"customMedia": true} option; the v3 CSS transformer config (crates/css/src/transformer.rs Config) only accepts cssModules and pseudoClasses, never sets lightningcss ParserFlags::CUSTOM_MEDIA, and unknown keys like "drafts" are silently ignored. Confirmed @custom-media passes through unchanged. Restore the section if this should be supported. -->
 
 ### Pseudo class replacement
 
 Parcel supports replacing CSS pseudo classes such as `:focus-visible` with normal CSS classes that can be applied using JavaScript. This makes it possible to polyfill these pseudo classes for older browsers.
 
-Pseudo class mappings can be configured in your project root `package.json` file:
+Pseudo class mappings can be configured for `@parcel/transformer-css` in your `.parcelrc`. Since this overrides the default pipelines, make sure to also enable `cssModules` for `.module.css` files if you use CSS modules.
 
 {% sample %}
-{% samplefile "package.json" %}
+{% samplefile ".parcelrc" %}
 
 ```json
 {
-  "@parcel/transformer-css": {
-    "pseudoClasses": {
-      "focusVisible": "focus-visible"
-    }
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.module.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": true,
+          "pseudoClasses": {
+            "focusVisible": "focus-visible"
+          }
+        }
+      }
+    ],
+    "*.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "pseudoClasses": {
+            "focusVisible": "focus-visible"
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -553,27 +538,76 @@ The above configuration will result in the `:focus-visible` pseudo class in all 
 
 The following pseudo classes may be configured as shown above:
 
-* `hover` – corresponds to the `:hover` pseudo class
-* `active` – corresponds to the `:active` pseudo class
-* `focus` – corresponds to the `:focus` pseudo class
-* `focusVisible` – corresponds to the `:focus-visible` pseudo class
-* `focusWithin` – corresponds to the `:focus-within` pseudo class
+- `hover` – corresponds to the `:hover` pseudo class
+- `active` – corresponds to the `:active` pseudo class
+- `focus` – corresponds to the `:focus` pseudo class
+- `focusVisible` – corresponds to the `:focus-visible` pseudo class
+- `focusWithin` – corresponds to the `:focus-within` pseudo class
 
-## PostCSS
+## Tailwind CSS
 
-[PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins. While Parcel supports equivalent functionality to many common PostCSS plugins such as [autoprefixer](https://github.com/postcss/autoprefixer) and [postcss-preset-env](https://github.com/csstools/postcss-preset-env) out of the box as described above, PostCSS is useful for more custom CSS transformations such as non-standard syntax additions. It is also used by popular CSS frameworks such as [Tailwind](https://tailwindcss.com).
+[Tailwind CSS](https://tailwindcss.com) is a popular utility-first CSS framework. Parcel includes builtin support for Tailwind CSS v4 via the `@parcel/transformer-tailwind` plugin, which compiles Tailwind directly without needing PostCSS.
 
-You can use PostCSS with Parcel by creating a configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, `.postcssrc.mjs`, `.postcssrc.cjs`, `postcss.config.js`, `postcss.config.mjs`, or `postcss.config.cjs`.
-
-First, install the postcss plugins you wish to use into your app:
+First, install Tailwind into your app:
 
 ```shell
 yarn add tailwindcss --dev
 ```
 
-Then, create a `.postcssrc`. Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
+Then, enable the Tailwind transformer for CSS files in your `.parcelrc`, and import Tailwind in your CSS. The `"..."` syntax runs Parcel's default CSS transformer after Tailwind.
 
-If your plugins require additional configuration, create those files as well. For example, with Tailwind, you need a `tailwind.config.js`.
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": ["@parcel/transformer-tailwind", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
+{% samplefile "styles.css" %}
+
+```css
+@import "tailwindcss";
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Tailwind generates CSS for the class names used in your source files. By default, the files in the directory containing your CSS file are scanned. You can use the `source()` function and `@source` directive to [customize which files are scanned](https://tailwindcss.com/docs/detecting-classes-in-source-files).
+
+## PostCSS
+
+[PostCSS](http://postcss.org/) is a tool for transforming CSS with plugins. While Parcel supports equivalent functionality to many common PostCSS plugins such as [autoprefixer](https://github.com/postcss/autoprefixer) and [postcss-preset-env](https://github.com/csstools/postcss-preset-env) out of the box as described above, PostCSS is useful for more custom CSS transformations such as non-standard syntax additions.
+
+PostCSS is supported via the `@parcel/transformer-postcss` plugin. First, install it along with the PostCSS plugins you wish to use into your app:
+
+```shell
+yarn add @parcel/transformer-postcss postcss-pxtorem --dev
+```
+
+Then, add `@parcel/transformer-postcss` to your `.parcelrc`. The `"..."` syntax runs Parcel's default CSS transformer after PostCSS.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": ["@parcel/transformer-postcss", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Finally, create a PostCSS configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, `.postcssrc.mjs`, `.postcssrc.cjs`, `postcss.config.js`, `postcss.config.mjs`, or `postcss.config.cjs`. A `"postcss"` key in `package.json` is also supported. Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
 {% sample %}
 {% samplefile ".postcssrc" %}
@@ -581,32 +615,48 @@ If your plugins require additional configuration, create those files as well. Fo
 ```json
 {
   "plugins": {
-    "tailwindcss": true
+    "postcss-pxtorem": {
+      "propList": ["*"]
+    }
   }
 }
 ```
 
 {% endsamplefile %}
+{% endsample %}
 
-{% samplefile "tailwind.config.js" %}
+PostCSS config files only apply to your own source files, not to files in `node_modules`. Alternatively, the PostCSS config can be specified directly in your `.parcelrc`, in which case it applies to all files matched by the pipeline.
 
-```js
-module.exports = {
-  content: ["./src/*.{html,js}"],
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-};
-````
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/5-12
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.css": [
+      {
+        "plugin": "@parcel/transformer-postcss",
+        "config": {
+          "plugins": {
+            "postcss-pxtorem": {
+              "propList": ["*"]
+            }
+          }
+        }
+      },
+      "..."
+    ]
+  }
+}
+```
 
 {% endsamplefile %}
 {% endsample %}
 
 ### Default plugins
 
-Parcel includes equivalents of `autoprefixer` and `postcss-preset-env` automatically when a `browserslist` is specified in your `package.json`. These are [implemented in Rust](https://github.com/parcel-bundler/parcel-css) and are significantly faster than PostCSS. If these are the only transforms you need in your project, then you may not need PostCSS at all.
+Parcel includes equivalents of `autoprefixer` and `postcss-preset-env` automatically when a `browserslist` is specified in your `package.json`. These are [implemented in Rust](https://lightningcss.dev) and are significantly faster than PostCSS. If these are the only transforms you need in your project, then you may not need PostCSS at all.
 
 If you have an existing project with a PostCSS config containing only the above plugins, you may be able to remove it entirely. If you are using additional plugins, you can remove `autoprefixer` and `postcss-preset-env` while keeping only the custom plugins. This can significantly improve build performance since Parcel’s builtin transpiler is much faster than PostCSS.
 
@@ -668,26 +718,3 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 ### Minification
 
 In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [lightningcss](https://github.com/parcel-bundler/lightningcss) to perform CSS minification.
-
-{% warning %}
-
-**Note**: In prior versions, Parcel used [cssnano](http://cssnano.co/) for minification. If your project contains a cssnano config file such as `.cssnanorc` or `cssnano.config.json`, you may see a warning that it is no longer applied after upgrading Parcel.
-
-In most cases, you can simply remove the cssnano config file and allow Parcel to handle minification. However, if you do rely on certain settings in this configuration and want to continue using cssnano instead of `lightningcss` for minification, you can configure Parcel to use `@parcel/optimizer-cssnano` instead.
-
-{% sample %}
-{% samplefile ".parcelrc" %}
-
-```json
-{
-  "extends": "@parcel/config-default",
-  "optimizers": {
-    "*.css": ["@parcel/optimizer-cssnano"]
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-{% endwarning %}

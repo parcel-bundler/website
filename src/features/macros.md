@@ -9,7 +9,9 @@ eleventyNavigation:
 
 Macros are JavaScript functions that run at build time. The value returned by a macro is inlined into the bundle in place of the original function call. This allows you to generate constants, code, and even additional assets without any custom plugins.
 
-Macros are imported using an [import attribute](https://github.com/tc39/proposal-import-attributes) to indicate that they should run at build time rather than being bundled into the output. You can import any JavaScript or TypeScript module as a macro, including built-in Node modules and packages from npm.
+Macros are imported using an [import attribute](https://github.com/tc39/proposal-import-attributes) to indicate that they should run at build time rather than being bundled into the output. You can import any JavaScript or TypeScript module as a macro, including packages from npm.
+
+<!-- TODO(v3): v2 also allowed importing built-in Node modules directly as macros (e.g. `import {readFileSync} from 'fs' with {type: 'macro'}`). In v3 this fails with "Could not resolve macro 'fs'" because the macro resolver in crates/js/src/transformer/plugin.rs only accepts Resolution::Path. Wrapping the builtin in a local macro module works. -->
 
 {% warning %}
 
@@ -121,24 +123,25 @@ console.log(0.006024956627355804);
 
 ### Async macros
 
-Macros can also return promises that resolve to any supported value. For example, you could make an HTTP request to fetch the contents of a URL at build time, and inline the result into the bundle as a string.
+Macros can also return promises that resolve to any supported value. For example, you could read a file asynchronously at build time, and inline the result into the bundle as a string.
 
 {% sample %}
 {% samplefile "index.ts" %}
 
 ```ts
-import {fetchText} from './macro.ts' with {type: 'macro'};
+import {readText} from './macro.ts' with {type: 'macro'};
 
-console.log(fetchText('http://example.com'));
+console.log(readText('message.txt'));
 ```
 
 {% endsamplefile %}
 {% samplefile "macro.ts" %}
 
 ```ts
-export async function fetchText(url: string) {
-  let res = await fetch(url);
-  return res.text();
+import fs from "fs/promises";
+
+export async function readText(filePath: string) {
+  return fs.readFile(filePath, "utf8");
 }
 ```
 
@@ -164,11 +167,11 @@ const isMatch = compileGlob('foo/**/bar.js');
 {% samplefile "glob.ts" %}
 
 ```ts
-import micromatch from 'micromatch';
+import micromatch from "micromatch";
 
 export function compileGlob(glob) {
   let regex = micromatch.makeRe(glob);
-  return new Function('string', `return ${regex}.test(string)`);
+  return new Function("string", `return ${regex}.test(string)`);
 }
 ```
 
@@ -178,8 +181,10 @@ export function compileGlob(glob) {
 The bundled output of this example looks like this:
 
 ```js
-const isMatch = function(string) {
-  return /^(?:foo(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)bar\.js)$/.test(string);
+const isMatch = function (string) {
+  return /^(?:foo(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)bar\.js)$/.test(
+    string
+  );
 };
 ```
 
@@ -230,9 +235,7 @@ The bundled output of the above example would look like this:
 {% samplefile "index.js" %}
 
 ```tsx
-<div className="ax63jk4">
-  Hello!
-</div>
+<div className="ax63jk4">Hello!</div>
 ```
 
 {% endsamplefile %}
@@ -252,42 +255,9 @@ The bundled output of the above example would look like this:
 
 ## Caching
 
-By default, Parcel caches the result of a macro until the file that calls it changes. However, sometimes, a macro may have other inputs which should invalidate the cache. For example, it might read a file, access an environment variable, etc. The `this` context within a macro function includes methods to control the caching behavior.
+By default, Parcel caches the result of a macro until the file that calls it changes. However, sometimes, a macro may have other inputs which should invalidate the cache. Parcel automatically tracks the files a macro reads using the `fs` module, along with the source code of the macro itself and any modules it imports. When one of these files changes, Parcel rebuilds your project and calls the macro again. Since macros may keep state between calls, a change to any of these files causes a full rebuild rather than only recompiling the files that call the macro.
 
-```ts
-interface MacroContext {
-  /** Invalidate the macro call whenever the given file changes. */
-  invalidateOnFileChange(filePath: string): void,
-  /** Invalidate the macro call when a file matching the given pattern is created. */
-  invalidateOnFileCreate(options: FileCreateInvalidation): void,
-  /** Invalidate the macro whenever the given environment variable changes. */
-  invalidateOnEnvChange(env: string): void,
-  /** Invalidate the macro whenever Parcel restarts. */
-  invalidateOnStartup(): void,
-  /** Invalidate the macro on every build. */
-  invalidateOnBuild(): void,
-}
-
-type FileCreateInvalidation = FileInvalidation | GlobInvalidation | FileAboveInvalidation;
-
-/** Invalidate when a file matching a glob is created. */
-interface GlobInvalidation {
-  glob: string
-}
-
-/** Invalidate when a specific file is created. */
-interface FileInvalidation {
-  filePath: string
-}
-
-/** Invalidate when a file of a specific name is created above a certain directory in the hierarchy. */
-interface FileAboveInvalidation {
-  fileName: string,
-  aboveFilePath: string
-}
-```
-
-For example, when reading a file in a macro, add the file path as an invalidation so that the calling code is recompiled whenever that file changes. In this example, whenever `message.txt` is edited, `index.ts` will be recompiled and the `readFile` macro will be called again.
+For example, whenever `message.txt` is edited, `index.ts` will be recompiled and the `readFile` macro will be called again.
 
 {% sample %}
 {% samplefile "index.ts" %}
@@ -302,12 +272,10 @@ console.log(readFile('message.txt'))
 {% samplefile "macro.ts" %}
 
 ```ts
-import type {MacroContext} from '@parcel/macros';
-import fs from 'fs';
+import fs from "fs";
 
-export async function readFile(this: MacroContext | void, filePath: string) {
-  this?.invalidateOnFileChange(filePath);
-  return fs.readFileSync(filePath, 'utf8');
+export function readFile(filePath: string) {
+  return fs.readFileSync(filePath, "utf8");
 }
 ```
 
@@ -320,6 +288,17 @@ hello world!
 
 {% endsamplefile %}
 {% endsample %}
+
+<!-- TODO(v3): v2 documented MacroContext methods invalidateOnFileChange, invalidateOnFileCreate, invalidateOnEnvChange, invalidateOnStartup, and invalidateOnBuild. They are still declared in packages-v3/macros/macros.d.ts, but crates/plugin-js/src/macros.rs only implements `addAsset` and `loc` ("// TODO: invalidations"), so calling them throws "not a function". Removed from the docs; reads through the fs builtin are tracked automatically instead. Also note `this.loc` is `{filePath, line, col}` in v3, which doesn't match the `{filePath, start, end}` shape in macros.d.ts. -->
+
+## Runtime environment
+
+Macros run in a JavaScript runtime embedded in Parcel, rather than in Node.js. In addition to standard JavaScript, it supports a subset of Node and web APIs:
+
+- Globals: `require`, `process`, `Buffer`, `__dirname`, `__filename`, `console`, `URL`, `URLSearchParams`, `TextEncoder`, `TextDecoder`, `atob`, `btoa`, `structuredClone`, and `crypto`.
+- Builtin modules: `assert`, `buffer`, `console`, `constants`, `crypto`, `domain`, `events`, `fs`, `fs/promises`, `module`, `os`, `path`, `process`, `punycode`, `querystring`, `stream`, `string_decoder`, `sys`, `tty`, `url`, `util`, `vm`, and `zlib`.
+
+Other APIs, such as `fetch`, timers like `setTimeout`, and builtin modules like `child_process` and `http`, are not available within macros.
 
 ## Usage with other tools
 
@@ -376,20 +355,23 @@ Unit testing macros is just like testing any other JavaScript function. One cave
 {% samplefile "css.test.ts" %}
 
 ```ts
-import {css} from '../src/css.ts';
+import { css } from "../src/css.ts";
 
-it('should generate css', () => {
+it("should generate css", () => {
   let addAsset = jest.fn();
-  let className = css.call({
-    addAsset,
-    // ...
-  }, 'color: red');
+  let className = css.call(
+    {
+      addAsset,
+      // ...
+    },
+    "color: red"
+  );
 
   expect(addAsset).toHaveBeenCalledWith({
-    type: 'css',
-    content: '.ax63jk4 { color: red }'
+    type: "css",
+    content: ".ax63jk4 { color: red }",
   });
-  expect(className).toBe('ax63jk4');
+  expect(className).toBe("ax63jk4");
 });
 ```
 
@@ -402,7 +384,7 @@ When testing code that indirectly uses a macro, the macro function will be calle
 
 Macros via import attributes were originally implemented in [Bun](https://bun.sh/docs/bundler/macros). Parcel's implementation is compatible with Bun's macro API for the most part, but there are a few differences:
 
-* Parcel supports returning functions from macros.
-* Parcel supports a `this` context in macros to enable generating assets and controlling caching behavior.
-* Parcel does not currently support Bun's special-case return values for typed arrays, fetch `Response` objects, or `Blob` objects. You'll need to convert these to a string yourself before returning them from a macro.
-* Parcel does not currently support the `"macro"` package.json `exports` condition.
+- Parcel supports returning functions from macros.
+- Parcel supports a `this` context in macros to enable generating assets.
+- Parcel does not currently support Bun's special-case return values for typed arrays, fetch `Response` objects, or `Blob` objects. You'll need to convert these to a string yourself before returning them from a macro.
+- Parcel does not currently support the `"macro"` package.json `exports` condition.

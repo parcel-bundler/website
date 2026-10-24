@@ -17,7 +17,7 @@ You can import a `.mdx` file into your JavaScript and render it using React:
 {% samplefile "app.js" %}
 
 ```jsx
-import Hello from './hello.mdx';
+import Hello from "./hello.mdx";
 
 export function App() {
   return <Hello />;
@@ -52,7 +52,7 @@ This is <a href="somewhere.html">another link</a>
 
 ### Images
 
-Images can be referenced using the Markdown image syntax, HTML [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, or [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)` element. See the [HTML docs](/languages/html/) for more details.
+Images can be referenced using the Markdown image syntax, or the HTML [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element.
 
 ```md
 ![alt](some-image.jpg)
@@ -62,25 +62,27 @@ Images can be referenced using the Markdown image syntax, HTML [`<img>`](https:/
 
 ### Video, audio, and other assets
 
-The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
+The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
 
 ## Code blocks
 
 Parcel supports customizing how code blocks are rendered by specifying your own `CodeBlock` component. This allows you to implement syntax highlighting and other features.
 
+<!-- TODO(v3): Bug (also in v2): the default CodeBlock from @parcel/parcel3/src/mdx-components is only provided when the file has at least one `render` code block (mdx.rs sets provider_import_source only if assets is non-empty). An MDX file with a plain ```js fence and no `components={{CodeBlock}}` throws "Expected component `CodeBlock` to be defined" at runtime. -->
+
 {% sample %}
 {% samplefile "app.js" %}
 
 ```jsx
-import Hello from './hello.mdx';
+import Hello from "./hello.mdx";
 
-const components = {CodeBlock};
+const components = { CodeBlock };
 
 export function App() {
   return <Hello components={components} />;
 }
 
-function CodeBlock({lang, children}) {
+function CodeBlock({ lang, children }) {
   return (
     <pre>
       <code className={lang ? `language-${lang}` : null}>
@@ -102,29 +104,29 @@ function syntaxHighlight() {
 
 Markdown code fences accept arbitrary props, which are parsed as JSX and passed into the `CodeBlock` component.
 
-~~~md
+````md
 ```tsx boolean string="hi" number={2}
 console.log("hi");
 ```
-~~~
+````
 
 The above example compiles to:
 
 ```jsx
 <CodeBlock lang="tsx" boolean string="hi" number={2}>
-console.log("hi");
+  console.log("hi");
 </CodeBlock>
 ```
 
 ### Rendering live code examples
 
-Markdown code fences in JavaScript, TypeScript, and CSS support running the code live and rendering the result inline. Set the `render` prop on the code fence to pass the result of the code block to the `<CodeBlock>` component. For example:
+Markdown code fences in JavaScript, TypeScript, and CSS support running the code live and rendering the result inline. Set the `render` prop on the code fence to pass the result of the code block to the `<CodeBlock>` component. For JavaScript and TypeScript, the result is the code block's default export. If there is no default export, the last expression in the code block is used, or the last function or class declaration, which is rendered as a component. For example:
 
-~~~md
+````md
 ```tsx render
 <div>Hello world!</div>
 ```
-~~~
+````
 
 would render
 
@@ -138,9 +140,47 @@ The provided `CodeBlock` component can choose where to display the rendered valu
 
 ```html
 <pre>
-  <code class="lang-tsx">
+  <code class="language-tsx">
     &lt;div&gt;Hello world!&lt;/div&gt;
   </code>
 </pre>
 <div>Hello world!</div>
 ```
+
+Rendered JSX expressions and components are updated in place with React Fast Refresh (see [Hot reloading](/features/development/#hot-reloading)) when you edit the MDX file during development.
+
+## Table of contents
+
+MDX files also export a `tableOfContents` array, which contains the headings in the document. Each entry has a `title`, the heading `level` (1–6), and an array of `children` containing nested headings. This can be used to render a navigation sidebar, for example.
+
+{% sample %}
+{% samplefile "app.js" %}
+
+```jsx
+import Hello, { tableOfContents } from "./hello.mdx";
+
+export function App() {
+  return (
+    <>
+      <Toc items={tableOfContents} />
+      <Hello />
+    </>
+  );
+}
+
+function Toc({ items }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.title}>
+          {item.title}
+          {item.children.length > 0 && <Toc items={item.children} />}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+{% endsamplefile %}
+{% endsample %}

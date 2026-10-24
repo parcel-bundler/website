@@ -4,7 +4,7 @@ title: Parcel Documentation
 ---
 
 <h2>Getting started</h2>
-<p>Learn how to start a new project, or migrate an existing project to Parcel 2.</p>
+<p>Learn how to start a new project, or migrate an existing project to Parcel 3.</p>
 
 <div class="grid sm:grid-cols-3 gap-3 max-w-5xl">
   <a href="/getting-started/webapp/" class="card bg-gradient-to-r from-blue-200 to-purple-200 dark:from-blue-800 dark:to-purple-800 dark:text-white p-5 rounded-xl transform hover:scale-105 transition">
@@ -21,13 +21,13 @@ title: Parcel Documentation
     <div class="font-bold text-lg mt-4 mb-2">Building a library with Parcel</div>
     <div>Learn how to set up a Parcel to build a JavaScript library.</div>
   </a>
-  <a href="/getting-started/migration/" class="card bg-gradient-to-r from-pink-200 to-orange-200 dark:from-pink-800 dark:to-orange-800 dark:text-white p-5 rounded-xl transform hover:scale-105 transition">
+  <a href="/migration/parcel-2/" class="card bg-gradient-to-r from-pink-200 to-orange-200 dark:from-pink-800 dark:to-orange-800 dark:text-white p-5 rounded-xl transform hover:scale-105 transition">
     <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
     </svg>
     <div class="font-bold text-lg mt-4 mb-2">Migration</div>
-    <div>Migrate an existing project from Parcel 1 to Parcel 2.</div>
+    <div>Migrate an existing project from Parcel 2 to Parcel 3.</div>
   </a>
 </div>
 
@@ -42,7 +42,7 @@ title: Parcel Documentation
       </svg>
       <div class="font-bold text-lg">Development</div>
     </div>
-    <div>Learn about Parcel's dev server, hot reloading, lazy mode, caching, and more.</div>
+    <div>Learn about Parcel's dev server, hot reloading, HTTPS, and more.</div>
   </a>
   <a href="/features/code-splitting/" class="card bg-gradient-to-r from-purple-200 to-violet-200 dark:from-purple-800 dark:to-violet-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
@@ -87,16 +87,16 @@ title: Parcel Documentation
       </svg>
       <div class="font-bold text-lg">Production</div>
     </div>
-    <div>Minification, tree shaking, compression, content hashing, and more.</div>
+    <div>Minification, tree shaking, content hashing, bundle analysis, and more.</div>
   </a>
-  <a href="/features/scope-hoisting/" class="card bg-gradient-to-r from-fuchsia-200 to-purple-200 dark:from-fuchsia-800 dark:to-purple-800 md:from-violet-200 md:to-indigo-200 md:dark:from-violet-800 md:dark:to-indigo-800 p-5 rounded-xl dark:text-white">
+  <a href="/features/tree-shaking/" class="card bg-gradient-to-r from-fuchsia-200 to-purple-200 dark:from-fuchsia-800 dark:to-purple-800 md:from-violet-200 md:to-indigo-200 md:dark:from-violet-800 md:dark:to-indigo-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
       <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
-      <div class="font-bold text-lg">Scope hoisting</div>
+      <div class="font-bold text-lg">Tree shaking</div>
     </div>
-    <div>Dig into the details of how Parcel's tree shaking implementation works.</div>
+    <div>Dig into the details of how Parcel's tree shaking works.</div>
   </a>
   <a href="/features/node-emulation/" class="card bg-gradient-to-r from-purple-200 to-violet-200 dark:from-purple-800 dark:to-violet-800 md:from-indigo-200 md:to-blue-200 md:dark:from-indigo-800 md:dark:to-blue-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
@@ -116,14 +116,14 @@ title: Parcel Documentation
     </div>
     <div>A reference for all of the options available in the Parcel CLI.</div>
   </a>
-  <a href="/features/parcel-api/" class="card bg-gradient-to-r from-purple-200 to-violet-200 dark:from-purple-800 dark:to-violet-800 p-5 rounded-xl dark:text-white">
+  <a href="/features/macros/" class="card bg-gradient-to-r from-purple-200 to-violet-200 dark:from-purple-800 dark:to-violet-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
       <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
-      <div class="font-bold text-lg">Parcel API</div>
+      <div class="font-bold text-lg">Macros</div>
     </div>
-    <div>Run Parcel builds programmatically to integrate into any build.</div>
+    <div>Run JavaScript functions at build time and inline the results into your bundle.</div>
   </a>
   <a href="/features/plugins/" class="card bg-gradient-to-r from-fuchsia-200 to-purple-200 dark:from-fuchsia-800 dark:to-purple-800 md:from-violet-200 md:to-indigo-200 md:dark:from-violet-800 md:dark:to-indigo-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
@@ -172,7 +172,7 @@ title: Parcel Documentation
       <img src="/assets/lang-icons/typescript.svg" alt="" class="w-6" />
       <div class="font-bold text-lg">TypeScript</div>
     </div>
-    <div>Using TypeScript with Parcel, including transpilation and generating typings.</div>
+    <div>Using TypeScript with Parcel, including transpilation, tsconfig.json, and more.</div>
   </a>
   <a href="/recipes/image/" class="card bg-gradient-to-br from-purple-200 to-indigo-200 dark:from-purple-800 dark:to-indigo-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
@@ -190,12 +190,12 @@ title: Parcel Documentation
     </div>
     <div>Using React with Parcel, including Fast Refresh, styling, images, code splitting, and more.</div>
   </a>
-  <a href="/languages/vue/" class="card bg-gradient-to-br from-purple-200 to-indigo-200 dark:from-purple-800 dark:to-indigo-800 p-5 rounded-xl dark:text-white">
+  <a href="/languages/mdx/" class="card bg-gradient-to-br from-purple-200 to-indigo-200 dark:from-purple-800 dark:to-indigo-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
-      <img src="/assets/lang-icons/vue.svg" alt="" class="w-6" />
-      <div class="font-bold text-lg">Vue</div>
+      <img src="/assets/lang-icons/mdx.svg" alt="" class="w-6" />
+      <div class="font-bold text-lg">MDX</div>
     </div>
-    <div>Using Vue 3 SFCs with Parcel.</div>
+    <div>Writing documentation with Markdown and JSX, including code blocks and Fast Refresh.</div>
   </a>
 </div>
 
@@ -218,6 +218,13 @@ title: Parcel Documentation
     <div class="font-bold text-lg mt-4 mb-2">Authoring Plugins</div>
     <div>An introduction to Parcel's Plugin APIs, and a guide to publishing a plugin package.</div>
   </a>
+  <a href="/plugin-system/native-plugins/" class="card bg-gradient-to-br sm:bg-gradient-to-r from-pink-200 to-rose-200 dark:from-pink-800 dark:to-rose-800 p-5 rounded-xl dark:text-white">
+    <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+    <div class="font-bold text-lg mt-4 mb-2">Native Plugins</div>
+    <div>Write high performance plugins in Rust, Go, Swift, or C.</div>
+  </a>
   <a href="/plugin-system/logging/" class="card bg-gradient-to-br sm:bg-gradient-to-r from-pink-200 to-rose-200 dark:from-pink-800 dark:to-rose-800 sm:from-indigo-200 sm:to-purple-200 sm:dark:from-indigo-800 sm:dark:to-purple-800 md:from-pink-200 md:to-rose-200 md:dark:from-pink-800 md:dark:to-rose-800 p-5 rounded-xl dark:text-white">
     <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -230,7 +237,7 @@ title: Parcel Documentation
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
     </svg>
     <div class="font-bold text-lg mt-4 mb-2">Source Maps</div>
-    <div>How to work with Parcel's source maps library in your plugin.</div>
+    <div>How to work with source maps in your plugin.</div>
   </a>
 </div>
 
@@ -263,15 +270,6 @@ title: Parcel Documentation
     </div>
     <div>Determine the name of an output file.</div>
   </a>
-  <a href="/plugin-system/packager/" class="card bg-gradient-to-r from-indigo-200 to-blue-200 dark:from-indigo-800 dark:to-blue-800 md:from-sky-200 md:to-sky-200 md:dark:from-sky-800 md:dark:to-sky-800 p-5 rounded-xl dark:text-white">
-    <div class="flex items-start gap-2 mb-2">
-      <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-      <div class="font-bold text-lg">Packager</div>
-    </div>
-    <div>Combine multiple assets together into a single output file.</div>
-  </a>
   <a href="/plugin-system/optimizer/" class="card bg-gradient-to-r from-purple-200 to-indigo-200 dark:from-purple-800 dark:to-indigo-800  p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">
       <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -280,15 +278,6 @@ title: Parcel Documentation
       <div class="font-bold text-lg">Optimizer</div>
     </div>
     <div>Minify, optimize, and transform output files.</div>
-  </a>
-  <a href="/plugin-system/compressor/" class="card bg-gradient-to-r from-indigo-200 to-blue-200 dark:from-indigo-800 dark:to-blue-800 p-5 rounded-xl dark:text-white">
-    <div class="flex items-start gap-2 mb-2">
-      <svg aria-hidden="true" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-      </svg>
-      <div class="font-bold text-lg">Compressor</div>
-    </div>
-    <div>Compress and encode output files in multiple formats.</div>
   </a>
   <a href="/plugin-system/reporter/" class="card bg-gradient-to-r from-purple-200 to-indigo-200 dark:from-purple-800 dark:to-indigo-800 md:from-blue-200 md:to-sky-200 md:dark:from-blue-800 md:dark:to-sky-800 p-5 rounded-xl dark:text-white">
     <div class="flex items-start gap-2 mb-2">

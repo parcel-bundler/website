@@ -71,7 +71,7 @@ The `<script>` element can be used to reference a script file from HTML. You can
 {% samplefile "app.ts" %}
 
 ```js
-console.log('Hello world!')
+console.log("Hello world!");
 ```
 
 {% endsamplefile %}
@@ -79,7 +79,9 @@ console.log('Hello world!')
 
 The `type="module"` attribute should be used to indicate that a file is an [ES module](/languages/javascript/#es-modules) or [CommonJS](/languages/javascript/#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](/languages/javascript/#classic-scripts) for more information about this.
 
-When a `<script type="module">` is used, Parcel will automatically generate a `<script nomodule>` version as well if some of your browser targets do not support ES modules. See [Differential bundling](/features/targets/#differential-bundling) for more details.
+When a `<script type="module">` is used and some of your browser targets do not support ES modules, Parcel compiles it to a classic script with the `defer` attribute instead.
+
+<!-- TODO(v3): v2 generated a `<script nomodule>` copy here (differential bundling). crates/html/src/dependencies.rs still has that code path, but it only runs when the output format is ESM and targets lack ESM support, which requires EnvironmentFlags::SHOULD_SCOPE_HOIST, which is never set in v3. Verified: with browserslist "ie 11, chrome 100" the output is a single `<script src defer>` with no nomodule copy. Intentional? -->
 
 Parcel also supports the `async` and `defer` attributes of the `<script>` element. When a script is `async`, it may load in an arbitrary order at runtime. Therefore, Parcel treats async scripts as "isolated”. This means that async scripts cannot share any dependencies with other scripts on the page, which may result in duplication of modules. For this reason, it's better to avoid `async` scripts except in specific circumstances.
 
@@ -92,13 +94,13 @@ See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/scr
 Parcel supports images referenced via the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element. The `src` attribute can be used to reference an image file.
 
 ```html
-<img src="image.jpg" alt="An image">
+<img src="image.jpg" alt="An image" />
 ```
 
 Parcel also supports the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#using_the_srcset_attribute) attribute, which allows referencing multiple versions of an image for different sizes or resolutions.
 
 ```html
-<img src="logo@1x.png" srcset="logo@2x.png 2x" alt="logo">
+<img src="logo@1x.png" srcset="logo@2x.png 2x" alt="logo" />
 ```
 
 In addition, Parcel supports the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element, which allows even more flexibility for providing multiple alternative images via the [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) element.
@@ -107,9 +109,15 @@ Parcel’s [image transformer](/recipes/image/) can also be used to generate mul
 
 ```html
 <picture>
-  <source type="image/webp" srcset="image.jpg?as=webp&width=400, image.jpg?as=webp&width=800 2x">
-  <source type="image/jpeg" srcset="image.jpg?width=400, image.jpg?width=800 2x">
-  <img src="image.jpg?width=400" width="400">
+  <source
+    type="image/webp"
+    srcset="image.jpg?as=webp&width=400, image.jpg?as=webp&width=800 2x"
+  />
+  <source
+    type="image/jpeg"
+    srcset="image.jpg?width=400, image.jpg?width=800 2x"
+  />
+  <img src="image.jpg?width=400" width="400" />
 </picture>
 ```
 
@@ -135,7 +143,7 @@ The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 ### Open Graph and Schema.org metadata
 
-Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup), [VK](https://vk.com/dev/publications), [Schema.org](https://schema.org), and [Microsoft pinned site](https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/dn255024(v=vs.85)?redirectedfrom=MSDN) metadata defined using the [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) tag. Images and other URLs referenced in these elements are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
+Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup), [VK](https://vk.com/dev/publications), [Schema.org](https://schema.org), and [Microsoft pinned site](<https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/dn255024(v=vs.85)?redirectedfrom=MSDN>) metadata defined using the [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) tag. Images and other URLs referenced in these elements are processed by Parcel and rewritten to link to the correct output files. Since these URLs are often cached by external services, most of them do not include a [content hash](/features/production/#content-hashing).
 
 ```html
 <meta property="og:image" content="100x100.png" />
@@ -143,40 +151,42 @@ Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.
 
 ### JSON-LD
 
-Parcel supports [JSON-LD](https://json-ld.org) metadata embedded in HTML via `<script>` tags. Images and other URLs referenced in JSON-LD are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing). This is handled by the `@parcel/transformer-jsonld` plugin, which will automatically be installed into your project when needed.
+Parcel supports [JSON-LD](https://json-ld.org) metadata embedded in HTML via `<script>` tags. Images and other URLs referenced in JSON-LD are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing). This is handled by the `@parcel/transformer-jsonld` plugin, which is included in Parcel's default config.
 
 In this example, the image referenced from the `logo` object will be processed by Parcel.
 
 ```html
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Joe's Pizza",
-  "description": "Delicious pizza for over 30 years.",
-  "telephone": "555-111-2345",
-  "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "images/logo.png",
-    "width": 180,
-    "height": 120
+  {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Joe's Pizza",
+    "description": "Delicious pizza for over 30 years.",
+    "telephone": "555-111-2345",
+    "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "images/logo.png",
+      "width": 180,
+      "height": 120
+    }
   }
-}
 </script>
 ```
 
 ### Web manifests
 
-The `<link rel="manifest">` element is supported to reference a [Web manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest). This is a JSON file that includes various metadata about the app, and allows it to be installed to the user's home screen or desktop. Parcel processes the URLs referenced in the `icons` and `screenshots` keys in this file. Web manifests may be written in either a `.json` or `.webmanifest` file.
+The `<link rel="manifest">` element is supported to reference a [Web manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest). This is a JSON file that includes various metadata about the app, and allows it to be installed to the user's home screen or desktop. Parcel processes the URLs referenced in the `icons` and `screenshots` keys in this file, as well as the `icons` of each item in `shortcuts` and `file_handlers`. Web manifests may be written in either a `.json` or `.webmanifest` file.
 
 ```html
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json" />
 ```
 
 ## Inline scripts and styles
 
-`<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, if some of your browser targets don't support ES modules natively, Parcel will only compile inline scripts to a non-module script and will not output a `<script type="module">` in order to keep the generated HTML small.
+`<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, Parcel compiles inline scripts to a non-module script and will not output a `<script type="module">`.
+
+<!-- TODO(v3): in v2, inline module scripts stayed `type="module"` when scope hoisting was enabled and all targets supported ESM. In v3 (dependencies.rs) that still requires target.should_scope_hoist(), which is never true, so inline module scripts are always compiled to a classic script containing the full parcelRequire runtime (~2KB minified even for a one-line import), which is the opposite of "keep the generated HTML small". Intentional? -->
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -223,7 +233,7 @@ Parcel supports [inline SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Tu
   <body>
     <svg xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect x="10" y="10" width="50" height="50" fill="red" />
-      <use xlink:href="icon.svg"/>
+      <use xlink:href="icon.svg" />
     </svg>
   </body>
 </html>
@@ -231,7 +241,7 @@ Parcel supports [inline SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Tu
 
 ## Parallel scripts and styles
 
-When referencing a script or style, sometimes Parcel will need to insert another dependent file into the compiled HTML file. For example, when referencing a JavaScript file which imports a CSS file, Parcel will insert a `<link>` element into the `<head>` to load this stylesheet in parallel with the JavaScript.
+When referencing a script or style, sometimes Parcel will need to insert another dependent file into the compiled HTML file. For example, when referencing a JavaScript file which imports a CSS file, Parcel will insert a `<link>` element before the `<script>` to load this stylesheet in parallel with the JavaScript.
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -252,11 +262,11 @@ When referencing a script or style, sometimes Parcel will need to insert another
 {% samplefile "app.js" %}
 
 ```javascript
-import './app.css';
+import "./app.css";
 
-let app = document.createElement('div');
-app.className = 'app';
-app.textContent = 'My Parcel app!';
+let app = document.createElement("div");
+app.className = "app";
+app.textContent = "My Parcel app!";
 root.appendChild(app);
 ```
 
@@ -278,8 +288,8 @@ Compiled HTML:
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" src="app.f8e9c6.css">
-    <script type="module" src="app.26fce9.js"></script>
+    <link rel="stylesheet" href="/ejev5k34.css" />
+    <script type="module" src="/app-7yoxqbr3.js"></script>
   </head>
   <body>
     <div id="root"></div>
@@ -291,15 +301,32 @@ This may also occur with scripts. For example, if two pages depend on the same J
 
 ## PostHTML
 
-[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. You can configure PostHTML by creating a configuration file using one of these names: `.posthtmlrc` (JSON, **strongly** recommended), `.posthtmlrc.js`, `.posthtmlrc.mjs`, `.posthtmlrc.cjs`, `posthtml.config.js`, `posthtml.config.mjs`, or `posthtml.config.cjs`.
-
-Install plugins in your app:
+[PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. PostHTML support is provided by the `@parcel/transformer-posthtml` plugin, which is not included in the default Parcel config. Install it along with any PostHTML plugins you need:
 
 ```bash
-yarn add posthtml-doctype --dev
+yarn add @parcel/transformer-posthtml posthtml-doctype --dev
 ```
 
-Then, create a config file:
+Then, add it to your `.parcelrc` so that it runs before Parcel's builtin HTML transformer:
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": ["@parcel/transformer-posthtml", "..."]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+You can configure PostHTML by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `.posthtmlrc.json`, `.posthtmlrc.js`, `.posthtmlrc.mjs`, `.posthtmlrc.cjs`, `posthtml.config.js`, `posthtml.config.mjs`, or `posthtml.config.cjs`. A `posthtml` key in `package.json` is also supported.
+
+For example, create a config file:
 
 {% sample %}
 {% samplefile ".posthtmlrc" %}
@@ -316,6 +343,33 @@ Then, create a config file:
 {% endsample %}
 
 Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to an empty object instead.
+
+Alternatively, PostHTML options can be specified inline in your `.parcelrc`. When present, this takes precedence over any PostHTML config file.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-posthtml",
+        "config": {
+          "plugins": {
+            "posthtml-doctype": { "doctype": "HTML 5" }
+          }
+        }
+      },
+      "..."
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 This example uses [posthtml-include](https://github.com/posthtml/posthtml-include) to inline another HTML file.
 
@@ -358,12 +412,6 @@ This example uses [posthtml-include](https://github.com/posthtml/posthtml-includ
 ### posthtml.config.js
 
 For some plugins that require passing a function as a configuration option, or to set up plugins based on `process.env.NODE_ENV`, you need to use a `posthtml.config.js` file for configuration instead of `.posthtmlrc`.
-
-{% warning %}
-
-**Note**: Using a JavaScript config file should be avoided if possible. These cause Parcel’s caching to be less effective, which means all of your HTML files will be recompiled each time you restart Parcel. To avoid this, use a JSON-based config format instead (e.g. `.posthtmlrc`).
-
-{% endwarning %}
 
 This example uses [posthtml-shorten](https://github.com/Rebelmail/posthtml-shorten) to shorten URLs using a custom shortening function.
 
@@ -415,44 +463,6 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses its builtin HTML minifier, which is compatible [htmlnano](https://github.com/posthtml/htmlnano). To configure it, you can create a `.htmlnanorc` or `.htmlnanorc.json` file in your project root directory.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. Parcel uses its builtin HTML minifier, which also minifies inline SVG and JSON.
 
-For example to retain HTML comments
-
-{% sample %}
-{% samplefile ".htmlnanorc" %}
-
-```json
-{
-  "removeComments": false
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-or to not minify SVG elements.
-
-{% sample %}
-{% samplefile ".htmlnanorc" %}
-
-```json
-{
-  "minifySvg": false
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-{% warning %}
-
-**Note**: `.htmlnanorc.js`, `.htmlnanorc.mjs`, `.htmlnanorc.cjs`, `htmlnano.config.js`, `htmlnano.config.mjs`, and `htmlnano.config.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format instead.
-
-{% endwarning %}
-
-{% note %}
-
-Previous versions of Parcel used htmlnano as the default HTML minifier. To continue using htmlnano instead of Parcel's builtin HTML minifier, you can use the `@parcel/optimizer-htmlnano` plugin in your `.parcelrc`. See [Plugins](/features/plugins/) for more information.
-
-{% endnote %}
+<!-- TODO(v3): the v2 docs described configuring the minifier via .htmlnanorc / htmlnano.config.js and switching back to @parcel/optimizer-htmlnano. v3 reads no config: HtmlContent::package in crates/html/src/lib.rs passes `config: Default::default(), // TODO` to optimize_html, although optimize::OptimizeOptions has htmlnano-style options (collapseWhitespace, removeComments, minifySvg, minifyJson, ...). Document the config source once it is wired up. -->

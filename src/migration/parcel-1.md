@@ -7,15 +7,17 @@ eleventyNavigation:
   order: 2
 ---
 
-For the most part, Parcel 2 works quite similarly to Parcel 1, but there are a few things you’ll need to change when upgrading.
+<!-- TODO(v3): does this page still make sense for v3? Parcel 1 users are now two major versions behind, and the v2 → v3 migration guide covers most of the same ground. I updated it to describe migrating from Parcel 1 straight to v3 (and used "Parcel 3" in the prose, pending the naming decision). Keep it, fold it into the v2 → v3 guide, or delete it? -->
+
+For the most part, Parcel 3 works quite similarly to Parcel 1, but there are a few things you’ll need to change when upgrading.
 
 ## Getting started
 
-Let's walk through a couple basic steps to upgrade from Parcel 1 to Parcel 2.
+Let's walk through a couple basic steps to upgrade from Parcel 1 to Parcel 3.
 
 ### Package name
 
-The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm package name has changed from `parcel-bundler` to `parcel`. You'll need to update the dependencies in your `package.json` accordingly.
+The first thing to note when upgrading from Parcel 1 to Parcel 3 is that the npm package name has changed from `parcel-bundler` to `parcel`. You'll need to update the dependencies in your `package.json` accordingly.
 
 {% migration %}
 {% samplefile "package.json" %}
@@ -34,7 +36,7 @@ The first thing to note when upgrading from Parcel 1 to Parcel 2 is that the npm
 ```json/2
 {
   "devDependencies": {
-    "parcel": "^2.0.0"
+    "parcel": "^3.0.0"
   }
 }
 ```
@@ -49,26 +51,9 @@ yarn remove parcel-bundler
 yarn add parcel --dev
 ```
 
-### Cache location
+### Cache
 
-The default location of the Parcel cache has also changed from `.cache` to `.parcel-cache`. You'll need to modify your `.gitignore` or similar to account for this:
-
-{% migration %}
-{% samplefile ".gitignore" %}
-
-```text/0
-.cache
-```
-
-{% endsamplefile %}
-{% samplefile ".gitignore" %}
-
-```text/0
-.parcel-cache
-```
-
-{% endsamplefile %}
-{% endmigration %}
+Parcel 1 stored its cache in a `.cache` directory. Parcel 3 does not write a cache to disk, so you can delete this directory, and remove it from your `.gitignore` or similar.
 
 ## Code Changes
 
@@ -76,7 +61,7 @@ The default location of the Parcel cache has also changed from `.cache` to `.par
 
 In Parcel 1, JavaScript files referenced from a `<script>` tag in an HTML file were treated as modules, supporting both ES module and CommonJS syntax for importing and exporting values. However, this did not match how browsers actually work, where "classic scripts" do not support imports and exports and top-level variables are treated as globals.
 
-Parcel 2 matches browser behavior: classic `<script>` tags do not support imports or exports. Use a `<script type="module">` element to reference a module. This will also automatically generate a `nomodule` version as well for older browsers, depending on your `browserslist`. See [Differential bundling](/features/targets/#differential-bundling) for details.
+Parcel 3 matches browser behavior: classic `<script>` tags do not support imports or exports. Use a `<script type="module">` element to reference a module.
 
 {% migration %}
 {% samplefile "index.html" %}
@@ -108,14 +93,14 @@ Parcel 2 matches browser behavior: classic `<script>` tags do not support import
 
 {% error %}
 
-**Note**: Adding the `type="module"` attribute also affects the loading behavior of scripts. Classic scripts are "render blocking", meaning the rest of the HTML document is not parsed until script execution is complete. Module scripts are not render blocking, and execution is deferred until the HTML is fully parsed. Parcel inserts the `defer` attribute automatically to match this behavior in older browsers and in development mode. This means features like `document.write` do not work in module scripts. If you are relying on these features, either migrate to modern APIs or continue using a classic script for that part of your app. See the docs on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts) to learn more about the differences between modules and classic scripts.
+**Note**: Adding the `type="module"` attribute also affects the loading behavior of scripts. Classic scripts are "render blocking", meaning the rest of the HTML document is not parsed until script execution is complete. Module scripts are not render blocking, and execution is deferred until the HTML is fully parsed. Parcel inserts the `defer` attribute automatically to match this behavior in older browsers. This means features like `document.write` do not work in module scripts. If you are relying on these features, either migrate to modern APIs or continue using a classic script for that part of your app. See the docs on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#other_differences_between_modules_and_standard_scripts) to learn more about the differences between modules and classic scripts.
 {% enderror %}
 
 See [Classic scripts](/languages/javascript/#classic-scripts) for more details about classic scripts vs module scripts.
 
 ### Importing non-code assets from JavaScript
 
-In Parcel 1, importing any non-JavaScript file such as an image or video resulted in a URL. In Parcel 2, this still works for known file types such as images, but other file types without default support will require code changes.
+In Parcel 1, importing any non-JavaScript file such as an image or video resulted in a URL. In Parcel 3, this still works for known file types such as images, but other file types without default support will require code changes.
 
 The preferred approach for referencing URLs in JavaScript is to use the [URL constructor](/languages/javascript/#url-dependencies). However, you may also choose to prefix the dependency specifier in an `import` statement with `url:`.
 
@@ -140,16 +125,9 @@ document.body.innerHTML = `<a href="${downloadUrl}">Download</a>`;
 {% endsamplefile %}
 {% endmigration %}
 
-Alternatively, you can use a custom `.parcelrc` to opt into the old behavior. Use the `@parcel/transformer-raw` plugin with a glob for the extensions you need.
+Alternatively, you can use a custom `.parcelrc` to opt into the old behavior. Use the `@parcel/transformer-raw` plugin, which is included with Parcel, with a glob for the extensions you need.
 
 {% sample %}
-{% samplefile %}
-
-```shell
-yarn add @parcel/config-default @parcel/transformer-raw --dev
-```
-
-{% endsamplefile %}
 {% samplefile ".parcelrc" %}
 
 ```json/3
@@ -166,7 +144,7 @@ yarn add @parcel/config-default @parcel/transformer-raw --dev
 
 ### Transpilation
 
-Parcel 1 automatically transpiled your JavaScript to support a default set of browsers. Parcel 2 no longer does any transpilation by default. This means if you use modern JavaScript syntax in your source code, that's what Parcel will output. To enable transpilation, set the `browserslist` field in your package.json to define your supported browser targets.
+Parcel 1 automatically transpiled your JavaScript to support a default set of browsers. Parcel 3 does not do any transpilation by default. This means if you use modern JavaScript syntax in your source code, that's what Parcel will output. To enable transpilation, set the `browserslist` field in your package.json to define your supported browser targets.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -176,7 +154,7 @@ Parcel 1 automatically transpiled your JavaScript to support a default set of br
   "name": "my-project",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel serve index.html",
     "build": "parcel build index.html"
   },
   "devDependencies": {
@@ -190,11 +168,11 @@ Parcel 1 automatically transpiled your JavaScript to support a default set of br
 
 ### Babel
 
-Like Parcel 1, Parcel 2 automatically detects `.babelrc` and other Babel config files. However, if you're only using `@babel/preset-env`, `@babel/preset-typescript`, and `@babel/preset-react`, Babel may no longer be necessary. Parcel supports all of these features automatically without a Babel config, and Parcel's default transpiler is much faster than Babel.
+Unlike Parcel 1, Parcel 3 does not use Babel automatically. Babel is supported via the `@parcel/transformer-babel` plugin, which you'll need to install and add to your `.parcelrc`. It detects `.babelrc` and other Babel config files. However, if you're only using `@babel/preset-env`, `@babel/preset-typescript`, and `@babel/preset-react`, Babel may no longer be necessary. Parcel supports all of these features automatically without a Babel config, and Parcel's default transpiler is much faster than Babel.
 
 If you only use the above presets, you can delete your Babel config entirely. This will use Parcel's default transpiler instead, which should improve your build performance significantly. Make sure to configure `browserslist` in your `package.json` to match the targets previously used by `@babel/preset-env`.
 
-If you do have custom presets or plugins in your Babel config, you can keep those but remove the presets listed above. This should also improve performance (albeit a bit less). See [Babel](/languages/javascript/#babel) in the JavaScript docs for more details.
+If you do have custom presets or plugins in your Babel config, you can keep those but remove the presets listed above. This should also improve performance (albeit a bit less). Since Babel runs before Parcel's default transpiler, you may need to add syntax plugins such as `@babel/plugin-syntax-jsx` so that Babel can parse your code. See [Babel](/languages/javascript/#babel) in the JavaScript docs for more details.
 
 In this example, `.babelrc` contains only `@babel/preset-env` and `@babel/preset-react`, so it can be deleted, and replaced with a `browserslist` key in `package.json`.
 
@@ -226,126 +204,46 @@ In this example, `.babelrc` contains only `@babel/preset-env` and `@babel/preset
 
 ### Typescript
 
-Parcel 1 transpiled TypeScript using `tsc` (the official TypeScript compiler). Parcel 2 now uses [SWC](https://swc.rs) instead, which improves transpilation performance significantly.
+Parcel 1 transpiled TypeScript using `tsc` (the official TypeScript compiler). Parcel 3 now uses [SWC](https://swc.rs) instead, which improves transpilation performance significantly.
 
-However, the default transpiler has limited support for `tsconfig.json`. If you use custom compiler options beyond the JSX-related options and `experimentalDecorators`, you can replace Parcel's default TypeScript transformer with TSC using `@parcel/transformer-typescript-tsc`. To do this, install the default config and the TSC plugin and create a `.parcelrc` file in the root of your project.
+However, the default transpiler has limited support for `tsconfig.json`. Only the JSX-related options, `experimentalDecorators`, and `useDefineForClassFields` affect compilation.
 
-{% sample %}
-{% samplefile %}
-
-```shell
-yarn add @parcel/config-default @parcel/transformer-typescript-tsc --dev
-```
-
-{% endsamplefile %}
-{% samplefile ".parcelrc" %}
-
-```json/3
-{
-  "extends": "@parcel/config-default",
-  "transformers": {
-    "*.{ts,tsx}": ["@parcel/transformer-typescript-tsc"]
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
+<!-- TODO(v3): removed the instructions for replacing the TypeScript transformer with @parcel/transformer-typescript-tsc. There's no tsc transformer in packages-v3, and the v2 plugin isn't compatible with the v3 plugin API. -->
 
 See the [TypeScript docs](/languages/typescript) for more information on using TypeScript with Parcel.
 
 ### Flow
 
-Just like Parcel 1, Parcel 2 supports Flow automatically when `flow-bin` is installed. This is currently implemented using `@babel/preset-flow`. If you have a Babel config with only that preset, it can be removed as described [above](#babel).
+Parcel 1 supported Flow automatically when `flow-bin` was installed. Parcel 3 does not strip Flow types by default. To use Flow, install `@parcel/transformer-babel` and add it to your `.parcelrc` as described [above](#babel), and keep `@babel/preset-flow` in your Babel config. See [Flow](/languages/javascript/#flow) in the JavaScript docs for more details.
 
-Unlike Parcel 1, your Babel config overrides the default in Parcel 2 rather than being merged into it. If you have custom Babel plugins other than Flow, you'll need to add `@babel/preset-flow` as well.
-
-### Importing GraphQL
-
-When importing GraphQL files (`.gql`), imports are still resolved/inlined (using `graphql-import-macro`), but you now get the processed GraphQL query as a string instead of an Apollo AST.
-
-{% migration %}
-{% samplefile "DataComponent.js" %}
-
-```js
-import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is the parsed AST
-
-const DataComponent = () => {
-  const { data } = useQuery(fetchDataQuery, {
-    fetchPolicy: "cache-and-network",
-  });
-
-  // ...
-};
-```
-
-{% endsamplefile %}
-{% samplefile "DataComponent.js" %}
-
-```js/0,4
-import gql from "graphql-tag";
-import fetchDataQuery from "./fetchData.gql"; // fetchDataQuery is a string
-
-// Convert to the Apollo Specific Query AST
-const parsedFetchDataQuery = gql(fetchDataQuery);
-
-const DataComponent = () => {
-  const { data } = useQuery(parsedFetchDataQuery, {
-    fetchPolicy: "cache-and-network",
-  });
-
-  // ...
-};
-```
-
-{% endsamplefile %}
-{% endmigration %}
-
-{% note %}
-
-With Parcel 2's new plugin architecture, creating a plugin that parses the string into an AST at build time (as Parcel 1 did) is very easy. See the [Transformer](/plugin-system/transformer/) docs for details.
-
-{% endnote %}
-
-### `package.json#main`
-
-Many `package.json` files (e.g. the one generated by `npm init`) contain a `main` field, which is ignored by most tools (for non-library projects). However, when a `main` field is seen, Parcel infers that your project is a library and uses it as the output path. For most web apps, this line should be removed.
-
-{% migration %}
-{% samplefile "package.json" %}
-
-```json/1
-{
-  "main": "index.js",
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
-  }
-}
-```
-
-{% endsamplefile %}
-{% samplefile "package.json" %}
-
-```json
-{
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
-  }
-}
-```
-
-{% endsamplefile %}
-{% endmigration %}
-
-If you do need to keep the `main` field, and want Parcel to ignore it, you can add `"targets": { "main": false }` to your `package.json`. See [Library targets](/features/targets/#library-targets) for details.
+<!-- TODO(v3): v2 stripped Flow types automatically (via @babel/preset-flow) when flow-bin was installed; v3's transformer-js fails to parse Flow annotations. Confirm this is intentional. -->
 
 ## CLI
 
+### Commands
+
+In Parcel 1, running `parcel` with an entry and no command started the development server. In Parcel 3, use the `serve` command to start the development server. See [CLI](/features/cli/) for details about all of the available commands.
+
+{% migration %}
+{% samplefile %}
+
+```bash
+parcel index.html
+```
+
+{% endsamplefile %}
+{% samplefile %}
+
+```bash
+parcel serve index.html
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
 ### `--target`
 
-In Parcel 1, the `--target` CLI option controlled which environment your code was compiled for. In Parcel 2, this is configured in `package.json` instead. For example, setting the `engines` field to include a `node` or `electron` key will change the target accordingly.
+In Parcel 1, the `--target` CLI option controlled which environment your code was compiled for. In Parcel 3, this is configured in `package.json` instead. For example, setting the `engines` field to include a `node` or `electron` key will change the target accordingly.
 
 {% migration %}
 {% samplefile %}
@@ -368,18 +266,17 @@ parcel build index.js --target node
 {% endsamplefile %}
 {% endmigration %}
 
-You can also build for multiple targets simultaneously in Parcel 2. See [Targets](/features/targets/) for details.
+You can also build for multiple targets simultaneously in Parcel 3. See [Targets](/features/targets/) for details.
 
 ### `--experimental-scope-hoisting`
 
-Parcel 2 has scope hoisting enabled by default. To disable it, add `--no-scope-hoist`.
+This option has been removed. Parcel 3 automatically performs [tree shaking](/features/production/#tree-shaking) in production builds.
 
 {% migration %}
 {% samplefile %}
 
 ```bash
 parcel build index.js --experimental-scope-hoisting
-parcel build index.js
 ```
 
 {% endsamplefile %}
@@ -387,7 +284,6 @@ parcel build index.js
 
 ```bash
 parcel build index.js
-parcel build index.js --no-scope-hoist
 ```
 
 {% endsamplefile %}
@@ -395,7 +291,7 @@ parcel build index.js --no-scope-hoist
 
 ### `--bundle-node-modules`
 
-To bundle packages from `node_modules` when targetting Node.js, you now should specify that in the target configuration:
+Parcel 3 bundles packages from `node_modules` by default, including when targetting Node.js, so this option is no longer needed.
 
 {% migration %}
 {% samplefile %}
@@ -407,13 +303,8 @@ parcel build index.js --target node --bundle-node-modules
 {% endsamplefile %}
 {% samplefile "package.json" %}
 
-```json5/3,7
+```json5/2
 {
-  "targets": {
-    "default": {
-      "includeNodeModules": true
-    }
-  },
   "engines": {
     "node": "10"
   }
@@ -425,13 +316,15 @@ parcel build index.js --target node --bundle-node-modules
 
 {% note %}
 
-This option is more versatile than the CLI parameter. For example, you can also selectively include packages. see [includeNodeModules](/features/targets/#includenodemodules) in the Targets docs for details.
+To exclude some or all packages from the bundle, use the `includeNodeModules` option in the target configuration. See [includeNodeModules](/features/targets/#includenodemodules) in the Targets docs for details.
 
 {% endnote %}
 
+<!-- TODO(v3): v3 bundles node_modules for Node app targets by default (IncludeNodeModules::default() is Bool(true) in crates/core/src/target.rs, verified with a build); v2 defaulted to false for Node. Confirm this is intentional. -->
+
 ### `--out-dir`
 
-The `--out-dir` CLI option was renamed to `--dist-dir` to match the `distDir` option in `package.json`. See [Targets](/features/targets/#targets) for details.
+The `--out-dir` CLI option was renamed to `--dist-dir`.
 
 {% migration %}
 {% samplefile %}
@@ -452,7 +345,7 @@ parcel build index.html --dist-dir www
 
 ### `--out-file`
 
-The `--out-file` CLI option was removed, and the path should instead be specified in `package.json`. See [Multiple targets](/features/targets/#multiple-targets) and [Library targets](/features/targets/#library-targets) for details.
+The `--out-file` CLI option was removed. For libraries, the output path should instead be specified in `package.json`, along with a `source` field pointing at the entry, and Parcel should be run without an entry. See [Library targets](/features/targets/#library-targets) for details.
 
 {% migration %}
 {% samplefile %}
@@ -464,10 +357,11 @@ parcel build index.js --out-file lib.js
 {% endsamplefile %}
 {% samplefile "package.json" %}
 
-```json5/3
+```json5/3-4
 {
   "name": "my-library",
   "version": "1.0.0",
+  "source": "index.js",
   "main": "lib.js"
 }
 ```
@@ -533,48 +427,10 @@ parcel build index.js --no-optimize
 {% endsamplefile %}
 {% endmigration %}
 
-## API
-
-Using Parcel 2 programmatically is possible through the `@parcel/core` package, rather than `parcel-bundler`. The API has changed significantly. See [Parcel API](/features/parcel-api/) for details.
-
-### Hooking into Bundle Events
-
-Parcel 1 let you hook in and listen to events like `buildEnd` or `buildError` using the API. The API has changed but you can still listen for events like so:
-
-{% migration %}
-{% samplefile "index.js" %}
-
-```js/0
-import Bundler from "parcel-bundler"
-
-const bundler = new Bundler({ /* ... */ })
-bundler.bundle()
-
-bundler.on("buildEnd", () => { /* ... */ })
-bundler.on("buildError", (error) => { /* ... */ })
-```
-
-{% endsamplefile %}
-{% samplefile %}
-
-```js/0
-import Parcel from "@parcel/core"
-
-const bundler = new Parcel({ /* ... */ })
-
-bundler.watch((err, buildEvent) => {
-  if (buildEvent.type === "buildSuccess") { /* ... */ }
-  if (buildEvent.type === "buildFailure") { /* ... */ }
-})
-```
-
-{% endsamplefile %}
-{% endmigration %}
-
 ## Plugins
 
-The plugin system has been completely changed in Parcel 2. Parcel 1 plugins are not compatible with Parcel 2. See [Plugin System](/plugin-system/overview/) for details about the Parcel 2 plugin APIs.
+The plugin system has been completely changed since Parcel 1. Parcel 1 plugins are not compatible with Parcel 3. See [Plugin System](/plugin-system/overview/) for details about the Parcel 3 plugin APIs.
 
 ### Using plugins
 
-In Parcel 1, installing plugins into your project and listing them in `package.json` dependencies enabled them automatically. In Parcel 2, plugins are configured in `.parcelrc`. See [Parcel configuration](/features/plugins/) for details.
+In Parcel 1, installing plugins into your project and listing them in `package.json` dependencies enabled them automatically. In Parcel 3, plugins are configured in `.parcelrc`. See [Parcel configuration](/features/plugins/) for details.

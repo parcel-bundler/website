@@ -22,12 +22,14 @@ npm start
 
 Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. The following templates are supported:
 
-* `vanilla` – a Vanilla JS + HTML app (shown above)
-* `react-client` – a TypeScript + React client only app. See [Parcel's React docs](/recipes/react/).
-* `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](/recipes/rsc/).
-* `react-static` – a TypeScript + React static site generator. See [Parcel's React Server Components docs](/recipes/rsc/).
+- `vanilla` – a Vanilla JS + HTML app (shown above)
+- `react-client` – a TypeScript + React client only app. See [Parcel's React docs](/recipes/react/).
+- `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](/recipes/rsc/).
+- `react-static` – a TypeScript + React static site generator. See [Parcel's React Server Components docs](/recipes/rsc/).
 
 See below for a deep dive.
+
+<!-- TODO(v3): create-parcel only exists as the v2 package (packages/utils/create-parcel); its templates depend on `parcel@^2` and use `"source"` + `"start": "parcel"`, which fails in v3 (a command is required). Update the templates or remove this section. -->
 
 ## Installation
 
@@ -51,10 +53,10 @@ Now that Parcel is installed, let’s create some source files for our app. Parc
 {% samplefile "src/index.html" %}
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>My First Parcel App</title>
   </head>
   <body>
@@ -66,16 +68,16 @@ Now that Parcel is installed, let’s create some source files for our app. Parc
 {% endsamplefile %}
 {% endsample %}
 
-Parcel has a development server built in, which will automatically rebuild your app as you make changes. To start it, run the `parcel` CLI pointing to your entry file:
+Parcel has a development server built in, which will automatically rebuild your app as you make changes. To start it, run the `parcel serve` command pointing to your entry file:
 
 ```shell
-yarn parcel src/index.html
+yarn parcel serve src/index.html
 ```
 
 Or when using npm run:
 
 ```shell
-npx parcel src/index.html
+npx parcel serve src/index.html
 ```
 
 Now open [http://localhost:1234/](http://localhost:1234/) in your browser to see the HTML file you created above.
@@ -96,7 +98,7 @@ h1 {
 {% samplefile "src/app.js" %}
 
 ```javascript
-console.log('Hello world!');
+console.log("Hello world!");
 ```
 
 {% endsamplefile %}
@@ -126,7 +128,9 @@ In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but
 
 ## Package scripts
 
-So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command. Finally, you can also declare your [entries](/features/targets/#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
+So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command.
+
+<!-- TODO(v3): Removed the suggestion to declare entries via package.json `source` with `"start": "parcel"`. `parcel` with no command is an error in v3, and `source` without library fields writes bundles into the package root and ignores browserslist (see TODO in features/targets.md). -->
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -134,10 +138,9 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
 ```json
 {
   "name": "my-project",
-  "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel serve src/index.html",
+    "build": "parcel build src/index.html"
   },
   "devDependencies": {
     "parcel": "latest"
@@ -157,14 +160,13 @@ By default Parcel does not perform any code transpilation. This means that if yo
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/3
+```json/2
 {
   "name": "my-project",
-  "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel serve src/index.html",
+    "build": "parcel build src/index.html"
   },
   "devDependencies": {
     "parcel": "latest"
@@ -175,7 +177,7 @@ By default Parcel does not perform any code transpilation. This means that if yo
 {% endsamplefile %}
 {% endsample %}
 
-You can learn more about targets, as well as Parcel’s automatic support for differential bundling on the [Targets](/features/targets/) page.
+You can learn more about targets on the [Targets](/features/targets/) page.
 
 ## Next steps
 

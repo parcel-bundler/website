@@ -7,7 +7,26 @@ eleventyNavigation:
   order: 6
 ---
 
-Parcel supports [Sass](https://sass-lang.com/) files automatically using the `@parcel/transformer-sass` plugin. When a `.sass` or `.scss` file is detected, it will be installed into your project automatically.
+Parcel supports [Sass](https://sass-lang.com/) files using the `@parcel/transformer-sass` plugin. Sass is compiled natively in Rust, so the `sass` npm package is not needed. To use it, install the plugin into your app and add it to your `.parcelrc`.
+
+```shell
+yarn add @parcel/transformer-sass --dev
+```
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json/3
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{sass,scss}": ["@parcel/transformer-sass"]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 Compiled Sass files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.scss` extension.
 
@@ -22,7 +41,7 @@ Referencing an SCSS file in an HTML file:
 Importing a Sass/SCSS file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes from './style.module.scss';
+import * as classes from "./style.module.scss";
 
 document.body.className = classes.body;
 ```
@@ -35,10 +54,28 @@ parcel build style.scss
 
 ## Configuration
 
-To configure Sass, create a `.sassrc` or `.sassrc.json` file. For a list of all options that you can define in these configuration files you can have a look at the official [Sass documentation](https://sass-lang.com/documentation/js-api#options)
+Sass can be configured for `@parcel/transformer-sass` in your `.parcelrc`. The `loadPaths` option specifies additional directories to search when resolving `@use`, `@forward`, and `@import` rules, relative to your project root. See the official [Sass documentation](https://sass-lang.com/documentation/js-api/interfaces/options/#loadPaths) for more details.
 
-{% warning %}
+<!-- TODO(v3): v2 read any Sass option from .sassrc/.sassrc.json/.sassrc.js and passed it to the sass npm package. The v3 native plugin (crates/sass/src/lib.rs, compiled with the `sasso` Rust crate) only accepts `loadPaths` from its .parcelrc config; no .sassrc support and no other options (e.g. style, quietDeps, silenceDeprecations, includePaths alias). Intentional? -->
 
-**Note**: `.sassrc.js`, `.sassrc.mjs`, and `.sassrc.cjs` are also supported for JavaScript-based configuration, but should be avoided when possible because it reduces the effectiveness of Parcel's caching. Use a JSON based configuration format (e.g. `.sassrc.json`) instead.
+{% sample %}
+{% samplefile ".parcelrc" %}
 
-{% endwarning %}
+```json/6
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{sass,scss}": [{
+      "plugin": "@parcel/transformer-sass",
+      "config": {
+        "loadPaths": ["src/styles"]
+      }
+    }]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Imports that cannot be found relative to the containing file or in `loadPaths` are resolved using Parcel's [dependency resolution](/features/dependency-resolution/), so stylesheets can be imported from npm packages (including via the `sass` and `style` [package exports](/features/dependency-resolution/#conditional-exports) conditions).

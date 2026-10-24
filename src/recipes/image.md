@@ -11,29 +11,35 @@ Parcel has built in support for resizing, converting, and optimizing images. Ima
 
 ## Resizing and converting images
 
-Parcel includes an image transformer out of the box, which allows you to resize images, convert them to a different format, or adjust the quality to reduce file size. This can be done using query parameters when referencing the image, or using a [configuration](#configuration) file.
+Parcel includes an image transformer out of the box, which allows you to resize images, convert them to a different format, or adjust the quality to reduce file size. This can be done using query parameters when referencing the image.
 
-The image transformer relies on the [Sharp](https://sharp.pixelplumbing.com/) image transformation library, which will be automatically installed as a dev dependency into your project when needed.
+<!-- TODO(v3): removed the sharp.config.json "Configuration" section. The v3 image transformer (crates/image) takes no config, so there's no way to set a project-wide quality or per-format encoder options. -->
+
+Images are resized and converted in production builds, or when the `--optimize` flag is used. In development, the original image is used as is, which keeps builds fast.
 
 The query parameters you can use are:
 
 - `width` – The width to resize the image to
 - `height` – The height to resize the image to
-- `quality` – The image quality percentage you want, for example `?quality=75`
+- `quality` – The image quality percentage you want, for example `?quality=75`. This applies to JPEG, WebP, and AVIF images, and defaults to `80`.
 - `as` – File format to convert the image to, for example: `?as=webp`
 
 ### Image formats
 
-The following image formats are supported, both as input and as output via the `as` query parameter: 
+The following image formats are supported, both as input and as output via the `as` query parameter:
 
 - `jpeg` / `jpg` - [JPEG](https://en.wikipedia.org/wiki/JPEG) is a very widely supported lossy image format. It's often used for photos, and offers reasonably good compression, but does not support transparency or lossless compression.
 - `png` - [Portable Network Graphics](https://en.wikipedia.org/wiki/Portable_Network_Graphics) (PNG) is a lossless image format. PNGs are typically much larger than JPEGs or other lossy image formats, but support transparency and offer much higher quality for fine details.
 - `webp` – [WebP](https://en.wikipedia.org/wiki/WebP) supports both lossy and lossless compression as well as animation and transparency. It's [supported](https://caniuse.com/webp) in all modern browsers, and offers better compression for the same quality as JPEGs and PNGs.
+- `gif` – GIFs are supported, however, using GIFs is discouraged due to their large file sizes. [Use a video format instead](https://web.dev/replace-gifs-with-videos/).
+
+AVIF is also supported as an output format, but not as an input:
+
 - `avif` – [AVIF](https://jakearchibald.com/2020/avif-has-landed/) is a new lossy image format based on the AV1 video codec which offers significant compression and quality improvements over JPEG and WebP. It's currently [supported](https://caniuse.com/avif) in the latest versions of Chrome and Firefox.
 
-The following formats are also supported as inputs, but are not generally supported by browsers: `tiff`, `heic` / `heif`, and `raw`.
+The following formats are also supported as inputs, but are not generally supported by browsers: `tiff`, `bmp`, and `ico`.
 
-GIFs are also supported if you [setup a custom libvips build](https://github.com/lovell/sharp/issues/2437), however, using GIFs is discouraged due to their large file sizes. [Use a video format instead](https://web.dev/replace-gifs-with-videos/).
+<!-- TODO(v3): `?as=ico` is still accepted by crates/image/src/lib.rs but its encoder was removed in 1cd78f47d, so it fails with "unsupported image format ico". Also AVIF inputs fail to decode ("The image format Avif is not supported"), since the image crate's `avif` feature only encodes. Documented AVIF as output-only and left ico out. -->
 
 For more guidance on choosing the right image formats, see the guide on [web.dev](https://web.dev/choose-the-right-image-format/).
 
@@ -45,10 +51,7 @@ To reference an image from JavaScript, use the `URL` constructor. For more detai
 {% samplefile "main.js" %}
 
 ```js
-const imageUrl = new URL(
-  'image.jpeg?as=webp&width=250',
-  import.meta.url
-);
+const imageUrl = new URL("image.jpeg?as=webp&width=250", import.meta.url);
 ```
 
 {% endsamplefile %}
@@ -82,54 +85,13 @@ To reference an image from HTML, use the `<img>` or `<picture>` element. The sam
 {% endsamplefile %}
 {% endsample %}
 
-## Configuration
-
-In addition to query parameters, Parcel also supports using a configuration file to define options that apply to all of the images in your project. For example, you could re-encode all images at a certain quality setting to reduce file size, or define more advanced options for each output format.
-
-To set the quality across all images in your project, create a `sharp.config.json` file in your project and define the `quality` field. This will re-encode every image, not just ones referenced with query params.
-
-{% sample %}
-{% samplefile "sharp.config.json" %}
-
-```json
-{
-  "quality": 80
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-You can also define more advanced options per format. All images in formats with options defined in `sharp.config.json` will be re-encoded. See the full list of supported options [here](https://sharp.pixelplumbing.com/api-output#jpeg).
-
-{% sample %}
-{% samplefile "sharp.config.json" %}
-
-```json
-{
-  "jpeg": {
-    "quality": 75,
-    "chromaSubsampling": "4:4:4"
-  },
-  "webp": {
-    "nearLossless": true
-  },
-  "png": {
-    "palette": true
-  }
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
-
 ## Image optimization
 
 Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
 
 ## Disabling image optimization
 
-To disable the default image optimization for JPEGs and PNGs in production mode, add the following to your .parcelrc configuration file:
+To disable the default image optimization for JPEGs and PNGs in production mode, replace the image transformer for these files with `@parcel/transformer-raw` in your .parcelrc configuration file. Note that this also disables resizing and converting these images with query parameters.
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -137,8 +99,8 @@ To disable the default image optimization for JPEGs and PNGs in production mode,
 ```json
 {
   "extends": "@parcel/config-default",
-  "optimizers": {
-    "*.{jpg,jpeg,png}": []
+  "transformers": {
+    "*.{jpg,jpeg,png}": ["@parcel/transformer-raw"]
   }
 }
 ```

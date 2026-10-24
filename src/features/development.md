@@ -7,24 +7,31 @@ eleventyNavigation:
   order: 1
 ---
 
-Parcel includes a development server out of the box supporting hot reloading, HTTPS, an API proxy, and more.
+Parcel includes a development server out of the box supporting hot reloading, HTTPS, single page app routing, and more.
 
 ## Dev server
 
-Parcel’s builtin dev server is automatically started when you run the default `parcel` command, which is a shortcut for `parcel serve`. By default, it starts a server at [http://localhost:1234](http://localhost:1234). If port `1234` is already in use, then a fallback port will be used. After Parcel starts, the location where the dev server is listening will be printed to the terminal.
+Parcel’s builtin dev server is automatically started when you run the `parcel serve` command. By default, it starts a server at [http://localhost:1234](http://localhost:1234). If port `1234` is already in use, then a fallback port will be used, unless you specified the port explicitly. After Parcel starts, the location where the dev server is listening will be printed to the terminal.
 
 The dev server supports several options, which you can specify via CLI options:
 
 - `-p`, `--port` – Overrides the default port. The `PORT` environment variable can also be used to set the port.
 - `--host` – By default, the dev server accepts connections on all interfaces. You can override this to specify that only connections from certain hosts should be accepted.
-- `--open` – Automatically opens the entry in your default browser after Parcel starts. You can also pass a browser name to open a different browser, e.g. `--open safari`.
-- `--no-cors` – By default, the dev server allows cross origin requests. Use this option to prevent access from external websites.
+- `--open` – Automatically opens the entry in your default browser after Parcel starts. You can also pass a browser name to open a different browser, e.g. `--open safari`, or `--open=<app>` for other apps.
+
+Like many static hosts, the dev server serves HTML pages with or without the `.html` extension, and serves the `index.html` file when a directory is requested. When the browser navigates to a URL that doesn't match a file, the dev server responds with the nearest `404.html` page if there is one, and otherwise the nearest `index.html`. This means client side routes in single page apps work without any configuration. If you set the `--public-url` option to a path, the build is served under that path.
+
+### Build errors
+
+When a build fails, Parcel shows the errors in an overlay in the browser, and loading a page shows the errors instead. Once you fix the errors, the overlay disappears and the page is updated.
+
+Clicking on a file location in the error overlay opens the file in your editor. Parcel detects which editor is running automatically. You can also set the `LAUNCH_EDITOR` environment variable to the editor to use, e.g. `LAUNCH_EDITOR=code`. Otherwise, the `VISUAL` or `EDITOR` environment variables are used.
 
 ## Hot reloading
 
 As you make changes to your code, Parcel automatically rebuilds the changed files and updates your app in the browser. By default, Parcel fully reloads the page, but in some cases it may perform Hot Module Replacement (HMR). HMR improves the development experience by updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things in your code.
 
-CSS changes are automatically applied via HMR with no page reload necessary. This is also true when using a framework with HMR support built in, like React (via Fast Refresh), and Vue.
+CSS changes are automatically applied via HMR with no page reload necessary. This is also true when using a framework with HMR support built in, like React (via Fast Refresh).
 
 If you’re not using a framework, you can opt into HMR using the `module.hot` API. This will prevent the page from being reloaded, and instead apply the update in-place. `module.hot` is only available in development, so you'll need to check that it exists before using it.
 
@@ -56,113 +63,58 @@ if (module.hot) {
 }
 ```
 
+`module.hot.accept` can also accept updates to specific dependencies instead of the module itself. Pass a dependency specifier, or an array of specifiers, as the first argument. When one of these dependencies is updated, it is re-evaluated, but the accepting module is not. Instead, the callback is called with the ids of the updated dependencies, and you can use the new versions through your imports.
+
+```javascript
+import { render } from "./render";
+
+render();
+
+if (module.hot) {
+  module.hot.accept("./render", function () {
+    // ./render.js was just updated. `render` now refers to the new version.
+    render();
+  });
+}
+```
+
+Hot reloading also works in Node.js when using the `parcel run` command, which applies updates inside the running process, and restarts it when an update is not accepted. See the [CLI](/features/cli/) docs for more details.
+
 ## Development target
 
-When using the dev server, only a single target can be built at once. By default, Parcel uses a development target that supports modern browsers. This means that transpilation of modern JavaScript syntax for older browsers is disabled.
+In development, Parcel builds the same [targets](/features/targets/) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
 
-If you need to test in a older browser, you can provide the `--target` CLI option to choose which of your targets to build. For example, to build the "legacy" target defined in your package.json, use `--target legacy`. If you don't have any explicit targets defined, and only have a `browserslist` in your package.json, you can use the implicit default target with `--target default`. This will result in your source code being transpiled just as it would be in production.
+<!-- TODO(v3): v2 used a modern-browsers-only development target with the dev server and had `--target` to pick one target. v3 has no --target flag, builds every target in development (crates/core/src/entry.rs: "TODO: support --target CLI option"), applies browserslist in dev, and the dev server only serves the first entry's target dist dir (crates/parcel/src/lib.rs serve). Confirm the intended behavior. -->
 
 See the [Targets](/features/targets/) documentation for more information.
 
-## Lazy mode
-
-In development, it can be frustrating to wait for your entire app to build before the dev server starts up. This is especially true when working on large apps with many pages. If you’re only working on one feature, you shouldn’t need to wait for all of the others to build unless you navigate to them.
-
-You can use the `--lazy` CLI flag to tell Parcel to defer building files until they are requested in the browser, which can significantly reduce development build times. The server starts quickly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand. If you navigate back to a page that was previously built, it loads instantly.
-
-```shell
-parcel 'pages/*.html' --lazy
-```
-
-This also works with dynamic `import()`, not just separate entries. So if you have a page with a dynamically loaded feature, that feature will not be built until it is activated. When it is requested, Parcel eagerly builds all of the dependencies as well, without waiting for them to be requested.
-
-## Caching
-
-Parcel caches everything it builds to disk. If you restart the dev server, Parcel will only rebuild files that have changed since the last time it ran. Parcel automatically tracks all of the files, configuration, plugins, and dev dependencies that are involved in your build, and granularly invalidates the cache when something changes. For example, if you change a configuration file, all of the source files that rely on that configuration will be rebuilt.
-
-By default, the cache is stored in the `.parcel-cache` folder inside your project. You should add this folder to your `.gitignore` (or equivalent) so that it is not committed in your repo. You can also override the location of the cache using the `--cache-dir` CLI option.
-
-Caching can also be disabled using the `--no-cache` flag. Note that this only disables _reading_ from the cache – a `.parcel-cache` folder will still be created.
-
 ## HTTPS
 
-Sometimes, you may need to use HTTPS during development. For example, you may need to use a certain hostname for authentication cookies, or debug mixed content issues. Parcel’s dev server supports HTTPS out of the box. You can either use an automatically generated certificate, or provide your own.
+Sometimes, you may need to use HTTPS during development. For example, you may need to use a certain hostname for authentication cookies, or debug mixed content issues. Parcel’s dev server supports HTTPS out of the box. You can either use an automatically generated certificate, or provide your own. When HTTPS is enabled, the dev server accepts both HTTPS and HTTP connections on the same port.
 
-To use an automatically generated self-signed certificate, use the `--https` CLI flag. The first time you load the page, you may need to manually trust this certificate in your browser.
-
-```shell
-parcel src/index.html --https
-```
-
-To use a custom certificate, you’ll need to use the `--cert` and `--key` CLI options to specify the certificate file and private key respectively.
+To use an automatically generated certificate, use the `--https` CLI flag.
 
 ```shell
-parcel src/index.html --cert certificate.cert --key private.key
+parcel serve src/index.html --https
 ```
 
-## API proxy
+Parcel creates a local certificate authority the first time you use `--https`, and uses it to sign a certificate for whichever hostname you load the page from, including `localhost` and your local network IP address. Parcel offers to add this certificate authority to your system's trust stores so that browsers trust these certificates. You can also do this at any time using the `parcel trust` command, and remove it again using `parcel trust --remove`.
 
-To better emulate the actual production environment when developing web apps, you can specify paths that should be proxied to another server (e.g. your real API server or a local testing server) in a `.proxyrc`, `.proxyrc.json`, `.proxyrc.js` or `.proxyrc.ts` file.
+The certificate authority is shared by all of your projects, so you only need to trust it once. It is stored in a `parcel` folder in your user data directory (e.g. `~/Library/Application Support/parcel` on macOS, `%LOCALAPPDATA%\parcel` on Windows, and `~/.local/share/parcel` on Linux). You can change this location by setting the `PARCEL_CAROOT` environment variable.
 
-### `.proxyrc` / `.proxyrc.json`
+To use a custom certificate, you’ll need to use the `--cert` and `--key` CLI options to specify the certificate file and private key respectively, in PEM format.
 
-In this JSON file, you specify an object where every key is a pattern against which the URL is matched and the value is a [`http-proxy-middleware` options](https://github.com/chimurai/http-proxy-middleware#options) object:
-
-{% sample %}
-{% samplefile ".proxyrc" %}
-
-```js
-{
-  "/api": {
-    "target": "http://localhost:8000/",
-    "pathRewrite": {
-      "^/api": ""
-    }
-  }
-}
-
+```shell
+parcel serve src/index.html --cert certificate.cert --key private.key
 ```
 
-{% endsamplefile %}
-{% endsample %}
+## File watcher
 
-This example would cause `http://localhost:1234/api/endpoint` to be proxied to `http://localhost:8000/endpoint`.
+To support an optimal development experience Parcel utilizes a very fast watcher written in C++ that integrates with low-level file watching functionality of each operating system. Using this watcher Parcel watches every file in your project root (including all `node_modules`). Based on events and metadata from these files, Parcel determines which files need to be rebuilt.
 
-### `.proxyrc.js`/`.proxyrc.ts`
+### Known issues with file watching
 
-For more complex configurations, a `.proxyrc.js` or `.proxyrc.ts` file allows you to attach any [connect](https://github.com/senchalabs/connect)-compatible middleware. First, make sure you install `http-proxy-middleware` into your project. This example has the same behaviour as the `.proxyrc` version above.
-
-{% sample %}
-{% samplefile ".proxyrc.js" %}
-
-```js
-const { createProxyMiddleware } = require("http-proxy-middleware");
-
-module.exports = function (app) {
-  app.use(
-    "/api",
-    createProxyMiddleware({
-      target: "http://localhost:8000/",
-      pathRewrite: {
-        "^/api": "",
-      },
-    })
-  );
-};
-```
-
-{% endsamplefile %}
-{% endsample %}
-
-If you would like to write this as an ES module instead, you can do so using a `.proxyrc.mjs` file, or by using the `"type": "module"` option in your `package.json`.
-
-### File watcher
-
-To support an optimal caching and development experience Parcel utilizes a very fast watcher written in C++ that integrates with low-level file watching functionality of each operating system. Using this watcher Parcel watches every file in your project root (including all `node_modules`). Based on events and metadata from these files, Parcel determines which files need to be rebuilt.
-
-#### Known issues with file watching
-
-##### Safe Write
+#### Safe Write
 
 Some text editors and IDE's have a feature called "safe write" that prevents data loss by taking a copy of the file and renaming it when saved. However, this feature can prevent automatic detection of file updates.
 
@@ -174,7 +126,7 @@ To disable safe write, use the options provided below:
 - WebStorm: uncheck `Use "safe write"` in Preferences > Appearance & Behavior > System Settings.
 - vis: add `:set savemethod inplace` to your settings.
 
-##### Linux: No space left on device
+#### Linux: No space left on device
 
 Depending on the size of your project, and your operating system's watcher limit, this error might pop up when you're running Parcel on Linux. To resolve this issue, change the `sysctl`configuration for `fs.inotify` to have a higher value for `max_user_watches`.
 
@@ -188,18 +140,6 @@ fs.inotify.max_user_watches = 16384
 
 If this error persists you can try increasing the values even more.
 
-##### Using Dropbox, Google Drive or other cloud storage solutions
+#### Using Dropbox, Google Drive or other cloud storage solutions
 
 It is best practice to not place a Parcel project in a folder that is synced to the cloud using something like Dropbox or Google Drive. These solutions create a lot of file system events that can mess with our watcher and cause unnecessary rebuilds.
-
-## Auto install
-
-When you use a language or plugin that isn’t included by default, Parcel will automatically install the necessary dependencies into your project for you. For example, if you include a `.sass` file, Parcel will install the `@parcel/transformer-sass` plugin. When this happens, you'll see a message in the terminal, and the new dependency will be added to the `devDependencies` in your package.json.
-
-Parcel automatically detects which package manager you use in your project based on the lock file. For example, if `yarn.lock` is found, then Yarn will be used to install packages. If no lock file is found, then the package manager is chosen based on what is installed on your system. The following package managers are currently supported, listed in priority order:
-
-- [Yarn](https://yarnpkg.com)
-- [Pnpm](https://pnpm.io)
-- [Npm](https://www.npmjs.com)
-
-Auto install only occurs during development by default. During production builds, if a dependency is missing, the build will fail. You can also disable auto install during development using the `--no-autoinstall` CLI flag.

@@ -1,7 +1,7 @@
 ---
 layout: layout.njk
 title: Building a library with Parcel
-description: A getting started guide walking through how to setup a library with Parcel, including output of an ES module, CommonJS, and TypeScript definitions.
+description: A getting started guide walking through how to setup a library with Parcel, including output of an ES module and CommonJS.
 eleventyNavigation:
   key: getting-started-library
   title: 📔 Library
@@ -24,17 +24,19 @@ npm install --save-dev parcel
 
 ## Project setup
 
-Now that Parcel is installed, let’s setup a `package.json` file for our library. We'll use the `source` field to reference our source files, and create a `main` [target](/features/targets/) as the output file of our build. This will be consumed by other tools that use our library (e.g. bundlers or Node.js).
+Now that Parcel is installed, let’s setup a `package.json` file for our library. We'll use the `exports` field to declare the output file of our build, and a `source` field within it to reference our source files. This will be consumed by other tools that use our library (e.g. bundlers or Node.js). See [Library targets](/features/targets/#library-targets) for more details.
 
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/3-4
+```json/3-6
 {
   "name": "my-library",
   "version": "1.0.0",
-  "source": "src/index.js",
-  "main": "dist/main.js",
+  "exports": {
+    "source": "./src/index.js",
+    "default": "./dist/main.js"
+  },
   "devDependencies": {
     "parcel": "latest"
   }
@@ -58,9 +60,9 @@ export function add(a, b) {
 {% endsamplefile %}
 {% endsample %}
 
-Now, our library exports a single function called `add`, which adds its two parameters together and returns the result. Since this is written in ES module syntax using the `export` keyword, Parcel will compile our code to a CommonJS module as expected by default in the `main` field.
+Now, our library exports a single function called `add`, which adds its two parameters together and returns the result. Since this is written in ES module syntax using the `export` keyword, Parcel will compile our code to a CommonJS module as expected by default for `.js` files in packages without `"type": "module"`.
 
-To build our library, run `npx parcel build` within the project directory. Parcel will build your source code and output a JavaScript file in `dist/main.js` as referenced by the `main` field.
+To build our library, run `npx parcel build` within the project directory. Parcel will build your source code and output a JavaScript file in `dist/main.js` as referenced by the `exports` field.
 
 ## Package scripts
 
@@ -69,12 +71,14 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/5-8
+```json/7-10
 {
   "name": "my-library",
   "version": "1.0.0",
-  "source": "src/index.js",
-  "main": "dist/main.js",
+  "exports": {
+    "source": "./src/index.js",
+    "default": "./dist/main.js"
+  },
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build"
@@ -92,18 +96,20 @@ Now you can run `yarn build` to build your project for release and `yarn watch` 
 
 ## CommonJS and ES modules
 
-Parcel accepts both CommonJS and ES modules as input, and can output one or more of these formats depending on what's declared in your `package.json`. To add an ES module target, add the `module` field to your `package.json`.
+Parcel accepts both CommonJS and ES modules as input, and can output one or more of these formats depending on what's declared in your `package.json`. To output both an ES module and a CommonJS module, use the `import` and `require` [conditions](https://nodejs.org/api/packages.html#conditional-exports) in the `exports` field.
 
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/5
+```json/5-6
 {
   "name": "my-library",
   "version": "1.0.0",
-  "source": "src/index.js",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
+  "exports": {
+    "source": "./src/index.js",
+    "import": "./dist/module.mjs",
+    "require": "./dist/main.cjs"
+  },
   "devDependencies": {
     "parcel": "latest"
   }
@@ -113,25 +119,58 @@ Parcel accepts both CommonJS and ES modules as input, and can output one or more
 {% endsamplefile %}
 {% endsample %}
 
-Now Parcel will output `dist/main.js` as a CommonJS module, and `dist/module.js` as an ES module. Tools that consume your library will choose whichever of these they support.
+Now Parcel will output `dist/main.cjs` as a CommonJS module, and `dist/module.mjs` as an ES module. Tools that consume your library will choose whichever of these they support.
 
-You can also use the file extension to indicate what type of module to output. The `.mjs` extension will produce an ES module, and the `.cjs` extension will produce a CommonJS module. This overrides the default behavior of the `main` field. The `"type": "module"` field can also be set in package.json to treat the `main` field as an ES module as well. See the [Node.js docs](https://nodejs.org/dist/latest-v16.x/docs/api/packages.html#packages_determining_module_system) for more details.
+The file extension indicates what type of module to output. The `.mjs` extension will produce an ES module, and the `.cjs` extension will produce a CommonJS module. Files with a `.js` extension produce a CommonJS module by default, or an ES module if the `"type": "module"` field is set in package.json. See the [Node.js docs](https://nodejs.org/api/packages.html#determining-module-system) for more details.
+
+<!-- TODO(v3): The `import` condition does not by itself produce ES module output, which is why this example relies on the .mjs extension. See TODO in features/targets.md. -->
+
+## Multiple entries
+
+If your library has multiple entry points, each [subpath export](https://nodejs.org/api/packages.html#subpath-exports) can have its own `source` field.
+
+{% sample %}
+{% samplefile "package.json" %}
+
+```json/4-11
+{
+  "name": "my-library",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "source": "./src/index.js",
+      "default": "./dist/index.mjs"
+    },
+    "./utils": {
+      "source": "./src/utils.js",
+      "default": "./dist/utils.mjs"
+    }
+  },
+  "devDependencies": {
+    "parcel": "latest"
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## TypeScript
 
-Parcel also supports building libraries written in TypeScript. The `source` field can point to your entry `.ts` or `.tsx` file, and Parcel will output JavaScript into your targets automatically. You can also use the `types` field in package.json to point to a `.d.ts` file, and Parcel will generate a typings file alongside the compiled JavaScript. This lets editors like VSCode provide autocomplete for users of your library.
+Parcel also supports building libraries written in TypeScript. The `source` field can point to your entry `.ts` or `.tsx` file, and Parcel will output JavaScript into your targets automatically.
 
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/6
+```json/4
 {
   "name": "my-library",
   "version": "1.0.0",
-  "source": "src/index.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
-  "types": "dist/types.d.ts",
+  "exports": {
+    "source": "./src/index.ts",
+    "import": "./dist/module.mjs",
+    "require": "./dist/main.cjs"
+  },
   "devDependencies": {
     "parcel": "latest"
   }
@@ -141,24 +180,13 @@ Parcel also supports building libraries written in TypeScript. The `source` fiel
 {% endsamplefile %}
 {% endsample %}
 
-Now Parcel will output a `dist/types.d.ts` file containing type definitions for our library in addition to the compiled code.
+<!-- TODO(v3): .d.ts generation removed from this page (not implemented yet). Note that a `types` condition in `exports` (or a top-level `types` field) is currently compiled as a normal JS target, writing JavaScript into the .d.ts file, unless `"targets": {"types": false}` is set. -->
 
-## Improving Tree Shaking
+## Dependencies and tree shaking
 
-By default, Parcel bundles your whole library into a single file for each target (e.g. `main`, and `module`). If you have many exports that may be used independently, distributing separate files can improve tree shaking in end applications. This can be done using the `@parcel/bundler-library` plugin.
+Parcel does not bundle packages listed in the `dependencies` or `peerDependencies` fields of your `package.json` into your library. These will be installed alongside your library by its consumers. Packages listed in `devDependencies` are bundled. This can be customized using the [`includeNodeModules`](/features/targets/#includenodemodules) option.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
-
-```json/2
-{
-  "extends": "@parcel/config-default",
-  "bundler": "@parcel/bundler-library"
-}
-```
-
-{% endsamplefile %}
-{% endsample %}
+Rather than combining your whole library into a single file, Parcel outputs a separate file for each module in your library, preserving the structure of your source code. This improves tree shaking in end applications when you have many exports that may be used independently.
 
 ## Next steps
 
