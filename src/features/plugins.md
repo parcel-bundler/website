@@ -13,9 +13,7 @@ Parcel is designed to be very modular. Parcel core itself is almost not specific
 
 ## `.parcelrc`
 
-Parcel configuration is specified in a `.parcelrc` file, written in JSON. Parcel looks for it in your project root (the nearest directory containing a lockfile or a `.git` directory). You can also use the `--config` CLI option to specify a different config file. If there is no `.parcelrc`, the default config is used.
-
-<!-- TODO(v3): v2 parsed .parcelrc as JSON5 (comments, trailing commas, unquoted keys). v3 uses strict serde_json (crates/core/src/config.rs ParcelConfig::from_json), so comments/trailing commas are a parse error. Confirm this is intentional. -->
+Parcel configuration is specified in a `.parcelrc` file. It is written in [JSON5](https://json5.org), which is similar to JSON but supports comments, unquoted keys, trailing commas, and other features. Parcel looks for it in your project root (the nearest directory containing a lockfile or a `.git` directory). You can also use the `--config` CLI option to specify a different config file. If there is no `.parcelrc`, the default config is used.
 
 ### Extending configs
 

@@ -10,8 +10,6 @@ Parcel configuration can be shared between projects by publishing a [`.parcelrc`
 
 ## Shared configuration
 
-<!-- TODO(v3): the "engines.parcel" field in these examples was bumped from 2.x to 3.x, but v3 does not read or check engines for config/plugin packages (crates/parcel/src/plugin_factory.rs). Decide on the version range to show (packages-v3 use "^3.0.0-0") or drop the field. -->
-
 This example shows how a company might distribute a shared Parcel configuration to be used between projects. It extends `@parcel/config-default` and adds several additional plugins.
 
 {% sample %}
@@ -23,7 +21,7 @@ This example shows how a company might distribute a shared Parcel configuration 
   "main": "index.json",
   "version": "1.0.0",
   "engines": {
-    "parcel": "3.x"
+    "parcel": "^3.0.0-0"
   }
 }
 ```
@@ -64,7 +62,7 @@ In addition to sharing configuration between projects, Parcel config packages ar
   "main": "index.json",
   "version": "1.0.0",
   "engines": {
-    "parcel": "3.x"
+    "parcel": "^3.0.0-0"
   }
 }
 ```

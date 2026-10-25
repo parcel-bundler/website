@@ -65,9 +65,7 @@ export function render() {
 
 ### Tree shaking
 
-When Parcel can determine which exports of a dynamically imported module you use, it will tree shake the unused exports from that module. This works with destructuring, with either `await` or Promise `.then` syntax.
-
-<!-- TODO(v3): v2 also tree shook static property accesses (`ns.x` after `await import()` or in `.then(ns => ns.x)`). v3 keeps all exports in that case (fixture tree-shaking/dynamic-import-namespace asserts "keeps unused async export conservatively"), so those examples were removed. Restore them if this is a gap rather than intentional. -->
+When Parcel can determine which exports of a dynamically imported module you use, it will tree shake the unused exports from that module. This works with static property accesses or destructuring, with either `await` or Promise `.then` syntax.
 
 {% note %}
 
@@ -81,6 +79,23 @@ When Parcel can determine which exports of a dynamically imported module you use
 
 ```js
 let { x: y } = await import("./b.js");
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+let ns = await import("./b.js");
+console.log(ns.x);
+```
+
+{% endsamplefile %}
+
+{% samplefile %}
+
+```js
+import("./b.js").then((ns) => console.log(ns.x));
 ```
 
 {% endsamplefile %}

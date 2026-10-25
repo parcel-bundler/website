@@ -23,7 +23,7 @@ Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box. Min
 
 By default, minification is enabled when using the `parcel build` command. You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
 
-Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure the SVG minifier using the options of `@parcel/transformer-svg` in your `.parcelrc`. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
+Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure the HTML and SVG minifiers using the `optimize` option of `@parcel/transformer-html` and `@parcel/transformer-svg` in your `.parcelrc`. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
 
 ### Tree shaking
 
@@ -64,8 +64,6 @@ Parcel supports resizing, converting, and optimizing images. You can use query p
 Resizing and converting images occurs both in development and production mode, so you can test with the correct image dimensions and formats as well. See the [Image transformer](/recipes/image/) docs for more details.
 
 Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
-
-<!-- TODO(v3): removed the "Differential bundling" section. v3 never emits a `<script nomodule>` fallback (the nomodule path is dead code because SHOULD_SCOPE_HOIST is never set); module scripts are compiled to classic `<script defer>` when browserslist includes browsers without ESM support. Restore this section if differential bundling comes back. -->
 
 ## Cache optimization
 

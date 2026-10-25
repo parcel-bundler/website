@@ -117,7 +117,7 @@ The [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-rs/
 The `Asset` passed to `transform` provides access to the asset's content and metadata. It is only valid for the duration of the call.
 
 - `content()` and `content_bytes()` return the asset's content as a string or bytes. `set_content(...)` and `set_content_bytes(...)` replace it.
-- `set_content_with_map(...)` and `set_content_bytes_with_map(...)` replace the content along with a [source map](/plugin-system/source-maps/) as JSON.
+- `set_content_with_map(...)` and `set_content_bytes_with_map(...)` replace the content along with a [source map](/plugin-system/source-maps/) as JSON. `source_map()` returns the source map set by an earlier transformer, if any. A transformer that changes the content should update this map and pass it back, otherwise it is lost. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-rs/examples/prepend-transformer).
 - `asset_type()` and `set_type(...)` get and set the asset's type, e.g. `"js"`. Changing the type causes the asset to be processed by the pipeline that matches the new type.
 - `file_path()`, `query()`, and `target()` describe the asset and the environment it is built for.
 - `pipeline()`, `bundle_behavior()`, `unique_key()`, and `flags()` have corresponding setters.
@@ -233,7 +233,7 @@ Build it as a C shared library. This requires cgo, and therefore a C compiler.
 go build -buildmode=c-shared -o plugin.dylib .
 ```
 
-The Go API mirrors the Rust SDK: `Transform`, `Resolve`, `Name`, `Optimize`, and `Report` methods, `Asset` methods such as `Content`, `SetContent`, `SetContentWithMap`, `AddDependency`, and `Resolve`, and `Options` methods such as `Log`, `LogDiagnostic`, and `ReadFile`. Returning an error fails the call. Custom content is supported via `SetCustomContent`. See the [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-go/examples).
+The Go API mirrors the Rust SDK: `Transform`, `Resolve`, `Name`, `Optimize`, and `Report` methods, `Asset` methods such as `Content`, `SetContent`, `SourceMap`, `SetContentWithMap`, `AddDependency`, and `Resolve`, and `Options` methods such as `Log`, `LogDiagnostic`, and `ReadFile`. Returning an error fails the call. Custom content is supported via `SetCustomContent`. See the [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-go/examples).
 
 <!-- TODO(v3): confirm how Go users should depend on the SDK (e.g. `go get github.com/parcel-bundler/parcel/plugin-go@<branch or tag>`); there are no tags for the module yet. -->
 
@@ -293,6 +293,8 @@ struct TxtTransformer: Transformer {
 {% endsample %}
 
 Build it with `swift build -c release`, which produces `.build/release/libTxtTransformer.dylib`.
+
+An `Asset` provides properties such as `content`, `type`, and `filePath`. To replace the content along with a [source map](/plugin-system/source-maps/), call `asset.setContent(_:sourceMap:)`. `asset.sourceMap` returns the source map set by an earlier transformer, if any. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift/Examples/Sources/PrependTransformer).
 
 Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. Throw a `Diagnostic` to fail a call with a code frame and a hint, and use `options.log(.warning("..."))` to warn without failing. Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. See the [README](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift/Examples/Sources).
 

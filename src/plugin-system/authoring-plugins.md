@@ -133,8 +133,6 @@ export default new Transformer({
 });
 ```
 
-<!-- TODO(v3): v2's loadConfig/Config API (getConfig, invalidateOnFileChange, invalidateOnFileCreate, addDevDependency, invalidateOnStartup) has no v3 equivalent; plugin fs reads are tracked automatically and trigger a full rebuild (ParcelOptions::plugin_tracker, crates/core/src/lib.rs invalidate()). Confirm this is the intended long-term model. -->
-
 ## Naming
 
 All plugins must follow a naming system:
@@ -209,4 +207,25 @@ of Parcel that your plugin supports:
 }
 ```
 
-<!-- TODO(v3): v3 does not read engines.parcel at all (no warning when missing, no error when incompatible; verified by loading a plugin with "engines": {"parcel": "2.x"}). The v2 warning/error text was removed. Decide whether v3 should validate it. Native plugins are instead checked via package.json "parcel.abi". -->
+If you do not specify this field, Parcel will output a warning:
+
+```
+Warning: The plugin "parcel-transformer-typescript" needs to specify a
+`package.json#engines.parcel` field with the supported Parcel version range.
+```
+
+If you do specify the parcel engine field and the user is using an incompatible
+version of Parcel, they will see an error:
+
+```
+Error: The plugin "parcel-transformer-typescript" is not compatible with the
+current version of Parcel. Requires "2.x" but the current version is "3.0.0".
+```
+
+Parcel uses npm's semver rules to match version ranges. Prerelease versions of
+Parcel (e.g. `3.0.0-alpha.1`) only match ranges that include a prerelease, so use
+`^3.0.0-0` rather than `^3.0.0` or `3.x` to support them.
+
+Native plugins are also checked against the ABI version declared in their
+`parcel.abi` field. See [Native plugins](/plugin-system/native-plugins/#publishing)
+for details.

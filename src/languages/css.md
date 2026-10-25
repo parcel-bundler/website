@@ -133,15 +133,13 @@ Using CSS modules also has the benefit of making dependencies on specific class 
 
 ![Example of tree shaking CSS modules](/blog/beta3/tree-shaking-css-modules.jpg)
 
-<!-- TODO(v3): CSS modules tree shaking does not appear to work. crates/css/src/packager.rs computes unused_symbols from `export.requested` and calls minify(), but the test snapshots (crates/parcel/tests/fixtures/css-modules/import-namespace and keyframes, whose descriptions say "should tree shake"/"should optimize away unused @keyframes") still contain the unused `.unused` class and `@keyframes unused`. Confirmed with target/release/parcel: unused classes/keyframes kept in production. -->
-
 As you can see in the above example, only the `.button` class is used, so the unused `.cta` class is removed from the compiled CSS file.
 
 This also works with other unused CSS rules such as `@keyframes` and `@counter-style`, as well as CSS custom properties (when the [`dashedIdents`](#local-css-variables) option is enabled).
 
 {% warning %}
 
-**Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults).
+**Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
 
 ```javascript
 import styles from "./styles.module.css";
@@ -491,7 +489,68 @@ is equivalent to:
 }
 ```
 
-<!-- TODO(v3): Custom media queries (@custom-media) docs removed. v2 enabled them via the "drafts": {"customMedia": true} option; the v3 CSS transformer config (crates/css/src/transformer.rs Config) only accepts cssModules and pseudoClasses, never sets lightningcss ParserFlags::CUSTOM_MEDIA, and unknown keys like "drafts" are silently ignored. Confirmed @custom-media passes through unchanged. Restore the section if this should be supported. -->
+### Custom media queries
+
+Support for [custom media queries](https://drafts.csswg.org/mediaqueries-5/#custom-mq) is included in the Media Queries Level 5 draft spec. This allows you to define media queries that are reused in multiple places within a CSS file. Parcel will perform this substitution ahead of time when this feature is enabled.
+
+For example:
+
+```css
+@custom-media --modern (color), (hover);
+
+@media (--modern) and (width > 1024px) {
+  .a {
+    color: green;
+  }
+}
+```
+
+is equivalent to:
+
+```css
+@media ((color) or (hover)) and (width > 1024px) {
+  .a {
+    color: green;
+  }
+}
+```
+
+Because custom media queries are a draft, they are not enabled by default. To use them, enable the `customMedia` feature by configuring `@parcel/transformer-css` in your `.parcelrc`. Since this overrides the default pipelines, make sure to also enable `cssModules` for `.module.css` files if you use CSS modules.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.module.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "cssModules": true,
+          "drafts": {
+            "customMedia": true
+          }
+        }
+      }
+    ],
+    "*.css": [
+      {
+        "plugin": "@parcel/transformer-css",
+        "config": {
+          "drafts": {
+            "customMedia": true
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ### Pseudo class replacement
 

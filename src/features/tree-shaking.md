@@ -43,7 +43,7 @@ In this example, only the `add` function is used, so the `square` function is re
 
 ## Avoiding bail outs
 
-Parcel can statically analyze many patterns including ES module `import` and `export` statements, CommonJS `require()` and `exports` assignments, dynamic `import()` destructuring, and more. However, when it comes across code that cannot be statically analyzed ahead of time, Parcel may have to "bail out" and include all exports of a module in order to preserve side effects or allow exports to be resolved at runtime.
+Parcel can statically analyze many patterns including ES module `import` and `export` statements, CommonJS `require()` and `exports` assignments, dynamic `import()` destructuring and property accesses, and more. However, when it comes across code that cannot be statically analyzed ahead of time, Parcel may have to "bail out" and include all exports of a module in order to preserve side effects or allow exports to be resolved at runtime.
 
 To determine why tree shaking is not occurring as expected, run Parcel with the `--log-level verbose` CLI option. This will print diagnostics for each bailout that occurs, including a code frame showing what caused it.
 
@@ -51,25 +51,36 @@ To determine why tree shaking is not occurring as expected, run Parcel with the 
 parcel build src/app.html --log-level verbose
 ```
 
-### Namespace imports
+### Dynamic member accesses
 
-Parcel tracks which exports are used through named imports, but when a namespace import is used, all exports of the module must be included in the build. Use named imports instead to allow unused exports to be removed.
+Parcel can statically resolve member accesses that are known at build time, but when a dynamic property access is used, all exports of the module must be included in the build.
 
 ```javascript
-// ✅ Named import
-import { add } from "./math";
-console.log(add(2, 3));
-
-// 🚫 Namespace import
 import * as math from "./math";
+
+// ✅ Static property access
 console.log(math.add(2, 3));
+
+// 🚫 Dynamic property access
+console.log(math[op](2, 3));
 ```
 
-<!-- TODO(v3): v2 tree shook static property accesses of namespace imports (`math.add`) and only bailed out on dynamic accesses (`math[op]`), re-assignment, or unknown usage of the namespace. v3 keeps all exports for any namespace import (fixture tree-shaking/esm-namespace asserts "namespace import keeps unused namespace export conservatively"; confirmed with the release binary). The BailoutReason::NonStaticAccess diagnostic still only reports dynamic accesses. Restore the v2 "Dynamic member accesses" section if static member tracking comes back. -->
+In addition, Parcel does not track re-assignments of a namespace object to another variable. Any usage of an import namespace other than a static property access will cause all exports to be included.
+
+```javascript
+import * as math from "./math";
+
+// 🚫 Reassignment of import namespace
+let utils = math;
+console.log(utils.add(2, 3));
+
+// 🚫 Unknown usage of import namespace
+doSomething(math);
+```
 
 ### Dynamic imports
 
-Parcel supports tree shaking dynamic imports with destructuring. This is supported with both `await` and Promise `then` syntax. However, if the Promise returned from `import()` is accessed in any other way, Parcel must preserve all exports of the resolved module.
+Parcel supports tree shaking dynamic imports with static property accesses or destructuring. This is supported with both `await` and Promise `then` syntax. However, if the Promise returned from `import()` is accessed in any other way, Parcel must preserve all exports of the resolved module.
 
 {% note %}
 
@@ -81,15 +92,22 @@ Parcel supports tree shaking dynamic imports with destructuring. This is support
 // ✅ Destructuring await
 let {add} = await import('./math');
 
-// ✅ Destructuring Promise#then
-import('./math').then(({add}) => console.log(add(2, 3)));
-
-// 🚫 Member access of await
+// ✅ Static member access of await
 let math = await import('./math');
 console.log(math.add(2, 3));
 
-// 🚫 Member access of Promise#then
+// ✅ Destructuring Promise#then
+import('./math').then(({add}) => console.log(add(2, 3)));
+
+// ✅ Static member access of Promise#then
 import('./math').then(math => console.log(math.add(2, 3)));
+
+// 🚫 Dynamic property access of await
+let math = await import('./math');
+console.log(math[op](2, 3));
+
+// 🚫 Dynamic property access of Promise#then
+import('./math').then(math => console.log(math[op](2, 3)));
 
 // 🚫 Unknown use of returned Promise
 doSomething(import('./math'));
@@ -101,8 +119,6 @@ import('./math').then(doSomething);
 ### CommonJS
 
 In addition to ES modules, Parcel can also analyze many CommonJS modules. Parcel supports static assignments to `exports`, `module.exports`, and `this` within a CommonJS module. This means the property name must be known statically at build time (i.e. not a variable).
-
-<!-- TODO(v3): `this.foo = 2` is collected as a static export, but the packager's tree_shake (crates/js/src/packager/tree_shake.rs) only removes unused `exports.foo =` / `module.exports.foo =` assignments, so unused `this.foo` exports are kept in production output (verified with the release binary). Either fix or drop `this` from this list. -->
 
 When a non-static pattern is seen, the exports of the module can only be resolved at runtime. All exports must be included in the final build and no tree shaking can be performed.
 

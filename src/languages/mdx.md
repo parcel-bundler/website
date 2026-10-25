@@ -68,8 +68,6 @@ The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 Parcel supports customizing how code blocks are rendered by specifying your own `CodeBlock` component. This allows you to implement syntax highlighting and other features.
 
-<!-- TODO(v3): Bug (also in v2): the default CodeBlock from @parcel/parcel3/src/mdx-components is only provided when the file has at least one `render` code block (mdx.rs sets provider_import_source only if assets is non-empty). An MDX file with a plain ```js fence and no `components={{CodeBlock}}` throws "Expected component `CodeBlock` to be defined" at runtime. -->
-
 {% sample %}
 {% samplefile "app.js" %}
 

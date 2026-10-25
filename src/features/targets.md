@@ -31,7 +31,7 @@ Entries may also be directories, in which case a `package.json` file containing 
 
 ### `package.json#source`
 
-The `source` field in package.json can specify an entry file or glob.
+The `source` field in package.json can specify one or more entry files or globs.
 
 ```json
 {
@@ -39,7 +39,11 @@ The `source` field in package.json can specify an entry file or glob.
 }
 ```
 
-<!-- TODO(v3): Only a string `source` is read (arrays are ignored, see resolve_package_entries in crates/core/src/entry.rs). When `source` is used without `main`/`module`/`browser`/`exports`, the target's dist dir is the package directory itself (bundles are written next to package.json, `--dist-dir` is ignored) and `browserslist`/`engines` are not applied. Looks like a gap; webapp.md no longer recommends this setup. -->
+```json
+{
+  "source": ["src/a.html", "src/b.html"]
+}
+```
 
 The `source` field within `exports` can also be used to specify entries for library targets. See [Library targets](#library-targets) below for details.
 
@@ -51,6 +55,18 @@ By default, Parcel includes a single implicit target which outputs into the `dis
 
 ```shell
 $ parcel build src/index.html --dist-dir output
+```
+
+The output directory can also be specified in package.json using the `targets` field. This will override the `--dist-dir` CLI option.
+
+```json
+{
+  "targets": {
+    "default": {
+      "distDir": "./output"
+    }
+  }
+}
 ```
 
 The `--public-url` CLI option sets the base URL at which bundles will be loaded at runtime. The bundle's relative path from the dist directory will be automatically appended. The public URL can be either a fully qualified URL (e.g. `https://some-cdn.com/`), an absolute path (e.g. `/public`) if bundles are loaded from the same domain as your website, or a relative path (e.g. `./`).
@@ -103,27 +119,51 @@ When one file depends on another, the environment is inherited from its parent. 
 navigator.serviceWorker.register(new URL("service-worker.js", import.meta.url));
 ```
 
-<!-- TODO(v3): Removed the "Differential bundling" section. v3 never generates a `<script nomodule>` fallback: in crates/html/src/dependencies.rs a `<script type="module">` keeps ESM output only if `target.should_scope_hoist()` (SHOULD_SCOPE_HOIST is never set anywhere) or all browsers support ESM, so the nomodule branch is dead code. When browserslist includes non-ESM browsers the script is instead rewritten to a classic `<script defer>` (verified with the release binary and `safari 9`). Restore the section if differential bundling is meant to work. Inbound links to #differential-bundling exist in other pages. -->
-
 ## Multiple targets
 
-You may have multiple targets in order to build your source code for multiple different environments simultaneously. For example, you could have ES module and CommonJS targets for a library ([see below](#library-targets)).
+You may have multiple targets in order to build your source code for multiple different environments simultaneously. For example, you could have “modern” and “legacy” targets for an app, or ES module and CommonJS targets for a library ([see below](#library-targets)).
 
-Targets are configured using the `targets` field in package.json. Each target has a name, specified as a key under the `targets` field, and an associated configuration object. For example, the `context` field within a target can be used to customize the environment it is compiled for.
+Targets are configured using the `targets` field in package.json. Each target has a name, specified as a key under the `targets` field, and an associated configuration object. For example, the `engines` field within each target can be used to customize the environment it is compiled for.
 
 ```json
 {
   "targets": {
-    "default": {
-      "context": "react-server"
+    "modern": {
+      "engines": {
+        "browsers": "Chrome 80"
+      }
+    },
+    "legacy": {
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      }
+    }
+  }
+}
+```
+
+When multiple targets are specified, the outputs will be written to `dist/${targetName}` by default (e.g. `dist/modern` and `dist/legacy` in the above example). This can be customized using the [`distDir`](#distdir) field in each target.
+
+```json
+{
+  "targets": {
+    "modern": {
+      "engines": {
+        "browsers": "Chrome 80"
+      },
+      "distDir": "./build/modern"
+    },
+    "legacy": {
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      },
+      "distDir": "./build/legacy"
     }
   }
 }
 ```
 
 For [library targets](#library-targets), the keys in the `targets` field correspond to the conditions in the `exports` field, and each target can be configured independently.
-
-<!-- TODO(v3): For CLI/file entries every key in `targets` creates a target, but only `context`, `outputFormat` and `includeNodeModules` are read; per-target `engines`, `distDir` and `source` are ignored (see "TODO: support target.distDir?" / "TODO: support --target CLI option" in crates/core/src/entry.rs), so multiple app targets (e.g. modern/legacy) all write to the same dist dir or get deduplicated. Top-level package.json fields named after a target (e.g. `"modern": "dist/modern.js"`) are not supported. Removed the modern/legacy examples; restore if multiple app targets are meant to work. -->
 
 ## Library targets
 
@@ -160,7 +200,7 @@ Library targets automatically output either native ES modules or CommonJS depend
 - **`.cjs`** – outputs CommonJS.
 - **`.js`** – outputs CommonJS by default. If the `"type": "module"` field is specified in package.json, then an ES module is output instead.
 
-<!-- TODO(v3): The `import`/`module` conditions inside `exports` do not imply ES module output; e.g. `"import": "./dist/index.js"` without `"type": "module"` produces CommonJS (ExportsContext::to_env in crates/core/src/entry.rs, verified with the release binary). Only the legacy top-level `module` field forces ESM. Possibly a bug. -->
+The `import` condition in `exports` does not change the output format. Just like in Node.js, it only means that the file is loaded via `import`, which can also import CommonJS. Use the `.mjs` extension or `"type": "module"` to output an ES module.
 
 Packages with multiple entry points can specify a `source` for each subpath export. Subpath patterns containing `*` are also supported, in which case a target is created for each matching source file.
 
@@ -179,28 +219,26 @@ Packages with multiple entry points can specify a `source` for each subpath expo
 }
 ```
 
-The `source` field may also be used together with the `main`, `module`, and `browser` fields in package.json. In this case, the `module` field always outputs an ES module.
+The `source` field may also be used together with the `main`, `module`, and `browser` fields in package.json. In this case, `source` must be a single file, and the `module` field always outputs an ES module.
 
-Rather than combining all of your code into a single file, library targets output a separate file for each module, preserving the structure of your source code. This lets tools that consume your library tree shake unused modules. Library targets do not bundle packages listed in `dependencies` or `peerDependencies`. Packages listed in `devDependencies` are bundled into your library. This can be overridden using the [`includeNodeModules`](#includenodemodules) option in the `targets` field. In addition, minification is disabled for libraries.
-
-<!-- TODO(v3): Minification for library targets is only enabled when the exports path is nested under a `production` condition AND optimization is on (`// ??` comment in ExportsContext::to_env, crates/core/src/entry.rs); in a quick test with the release binary even that output was not minified. There is no per-target `optimize` option. -->
+Rather than combining all of your code into a single file, library targets output a separate file for each module, preserving the structure of your source code. This lets tools that consume your library tree shake unused modules. Library targets do not bundle packages listed in `dependencies` or `peerDependencies`. Packages listed in `devDependencies` are bundled into your library. This can be overridden using the [`includeNodeModules`](#includenodemodules) option in the `targets` field. In addition, library outputs are not minified by default, except for outputs nested in a `production` condition. This can be overridden using the [`optimize`](#optimize) option.
 
 To make Parcel ignore one of the conditions in `exports`, e.g. one that points to files generated by another tool, specify `false` in the `targets` field.
 
 ```json
 {
   "exports": {
-    "source": "./src/index.ts",
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    "source": "./src/index.js",
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
   },
   "targets": {
-    "types": false
+    "require": false
   }
 }
 ```
 
-<!-- TODO(v3): Without `"targets": {"types": false}`, a `types` condition (or top-level `types` field) is built like any other target, so compiled JavaScript is written to the `.d.ts` file (verified with the release binary). Should probably be skipped until .d.ts generation exists. -->
+The `types` condition and the top-level `types` field are always ignored, since they point to type declarations generated by another tool (e.g. `tsc`).
 
 See [Building a library with Parcel](/getting-started/library/) for an intro to building libraries with Parcel.
 
@@ -222,7 +260,7 @@ See [Building a library with Parcel](/getting-started/library/) for an intro to 
 
 The `context` property defines what type of environment to build for. This tells Parcel what environment-specific APIs are available, e.g. the DOM, Node filesystem APIs, etc. The `react-server` and `react-client` contexts are used to build apps with [React Server Components](/recipes/rsc/).
 
-By default, JavaScript entries are compiled for a Node environment if `engines.node` is specified in package.json, or for Electron's main process if `engines.electron` is specified. Otherwise, they are compiled for a browser environment.
+By default, JavaScript entries are compiled for a Node environment if `engines.node` is specified in package.json or in the target's [`engines`](#engines), or for Electron's main process if `engines.electron` is specified. Otherwise, they are compiled for a browser environment.
 
 For library targets, the `context` is automatically inferred from the conditions in `exports`. See [Library targets](#library-targets) above for more details.
 
@@ -247,8 +285,6 @@ Overrides the engines defined in the top-level `package.json#engines` and `brows
 }
 ```
 
-<!-- TODO(v3): Per-target `engines` is only read for library targets (exports/main/module/browser). For CLI entries, package_engines() is passed the top-level `engines` only (crates/core/src/entry.rs), so `targets.<name>.engines` is ignored. -->
-
 ### `outputFormat`
 
 ```javascript
@@ -264,6 +300,25 @@ Defines what type of module to output.
 By default, entries with the `.mjs` extension output an ES module, and entries with the `.cjs` extension output CommonJS. JavaScript entries compiled for Node output CommonJS, or an ES module if the `"type": "module"` field is specified in package.json.
 
 For library targets, the `outputFormat` is automatically inferred from the file extension of each output file in `exports`. See [Library targets](#library-targets) above for more details.
+
+### `optimize`
+
+Enables or disables optimization (e.g. minification). By default, optimization is enabled during production builds (`parcel build`), except for library targets, where only outputs nested in a `production` condition in `exports` are optimized. Set `optimize` to `false` to disable optimization for a target, or to `true` to enable it for a library target. The `optimize` option cannot enable optimization for a build that isn't otherwise optimized, e.g. in development or when using the `--no-optimize` CLI flag.
+
+```json
+{
+  "exports": {
+    "source": "./src/index.js",
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "targets": {
+    "import": {
+      "optimize": true
+    }
+  }
+}
+```
 
 ### `includeNodeModules`
 
@@ -295,3 +350,9 @@ Determines whether to bundle `node_modules` or treat them as external. The defau
     }
   }
   ```
+
+### `distDir`
+
+Sets the location where compiled bundles in this target will be written, relative to package.json. By default, this is `dist` if only a single target is given, or `dist/${targetName}` for multiple targets. When specified, `distDir` overrides the `--dist-dir` CLI option. See [Targets](#targets) and [Multiple targets](#multiple-targets) for more details.
+
+For library targets, the output location is determined by the file paths in `exports` instead.

@@ -50,9 +50,7 @@ API_KEY=12345
 
 In addition to `.env`, environment-specific overrides such as `.env.production` and `.env.development` can also be created. These are applied based on the `NODE_ENV` environment variable (including when automatically set by Parcel). Any variables that are not set in environment-specific overrides fall back to the values defined in the base `.env` file.
 
-The `.env.local` file is also supported for local overrides of environment variables. This is also supported for environment-specific overrides, such as `.env.production.local`.
-
-<!-- TODO(v3): v2 skipped `.env.local` when `NODE_ENV=test`. v3's load_dotenv (crates/core/src/lib.rs) always loads `.env.local` (verified with NODE_ENV=test and the release binary), so that sentence was removed. Restore if this should be preserved. -->
+The `.env.local` file is also supported for local overrides of environment variables, however, it is not used when `NODE_ENV=test` so that tests produce the same result for everyone. This is also supported for environment-specific overrides, such as `.env.production.local`.
 
 ## Polyfilling & Excluding Builtin Node Modules
 
@@ -150,8 +148,6 @@ Inlining of [environment variables](#environment-variables) and [`readFileSync` 
 
 `inlineEnvironment` can also be an array of glob strings, which allows you to filter the allowed environment variables. This is a good idea to ensure security, since third party code in node_modules can also read environment variables.
 
-<!-- TODO(v3): v2 defaulted inlineEnvironment to `asset.isSource`, so files in node_modules only got NODE_ENV inlined. v3 (crates/js/src/transformer/plugin.rs) defaults to inlining every variable except npm_* for all files, including node_modules. Confirm this is intentional. -->
-
 ```json
 {
   "extends": "@parcel/config-default",
@@ -167,3 +163,5 @@ Inlining of [environment variables](#environment-variables) and [`readFileSync` 
   }
 }
 ```
+
+By default, all environment variables except those starting with `npm_` are inlined into your source code, but only `NODE_ENV` is inlined into files in `node_modules`. When `inlineEnvironment` is configured, it applies to all files, including those in `node_modules`.

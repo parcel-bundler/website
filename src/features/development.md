@@ -84,8 +84,6 @@ Hot reloading also works in Node.js when using the `parcel run` command, which a
 
 In development, Parcel builds the same [targets](/features/targets/) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
 
-<!-- TODO(v3): v2 used a modern-browsers-only development target with the dev server and had `--target` to pick one target. v3 has no --target flag, builds every target in development (crates/core/src/entry.rs: "TODO: support --target CLI option"), applies browserslist in dev, and the dev server only serves the first entry's target dist dir (crates/parcel/src/lib.rs serve). Confirm the intended behavior. -->
-
 See the [Targets](/features/targets/) documentation for more information.
 
 ## HTTPS

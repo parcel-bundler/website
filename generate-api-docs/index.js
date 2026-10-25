@@ -1,478 +1,642 @@
-// @flow
+// Generates the plugin API reference (api/*.html) from the TypeScript
+// definitions of the Parcel v3 plugin API (packages-v3/plugin/src/types.ts).
+//
+// Usage: node generate-api-docs/ /path/to/parcel-repo ./api
+//
+// Every type exported from types.ts (and from relative modules it imports or
+// re-exports) is documented. The JSDoc `@section` tag selects the page a type
+// is documented on (see SECTION_TO_URL); types without one go on the API page.
+// `@private` (or `@internal`) hides a type or member.
 const fs = require("fs");
 const path = require("path");
-const nullthrows = require("nullthrows");
-const invariant = require("assert");
 const { execSync } = require("child_process");
 
 const { parse } = require("@babel/parser");
-const generate = require("@babel/generator").default;
-const traverse = require("@babel/traverse").default;
 
 const {
   MapMap,
   SetMap,
-  parseJsDoc,
+  parseJsDocComment,
+  emptyJsDoc,
   escapeHtml,
   indent,
   extractJSDocComment,
 } = require("./utils.js");
 
-/*::
-import type { JSDoc, JSDocType, JSDocParam } from "./utils.js";
-
-export type CollectedType = {|
-  declaration: any,
-  loc: {|
-    filename: string,
-    start: {| column: string, line: string |},
-  |},
-  defaultSection: ?string
-|};
-declare type ProcessedType =
-  | {|
-      type: "type",
-      definition: string,
-      loc: {
-        filename: string,
-        start: {| column: string, line: string |},
-        ...
-      },
-      jsDoc: JSDocType,
-    |}
-  | {|
-      type: "interface",
-      definition: Array<{| key: ?string, value: string |}>,
-      loc: {
-        filename: string,
-        start: {| column: string, line: string |},
-        ...
-      },
-      jsDoc: JSDocType,
-    |};
-*/
-
 let [PARCEL_ROOT, OUTPUT_DIR] = process.argv.slice(2);
 if (!PARCEL_ROOT || !OUTPUT_DIR) {
   console.error(
-    "\tUsage: node generate-api-docs/index.js /path/to/folder-containing-parcel-and-parcel-sourcemap-repo"
+    "\tUsage: node generate-api-docs/ /path/to/parcel-repo /path/to/output-dir"
   );
   process.exit(1);
 }
 PARCEL_ROOT = fs.realpathSync(PARCEL_ROOT);
 
-const PARCEL_TYPES = path.join(
+const ENTRY = path.join(PARCEL_ROOT, "packages-v3/plugin/src/types.ts");
+// The package entry, which defines the classes plugins construct. The plugin
+// classes (Transformer, etc.) share their names with the types in types.ts,
+// which document them, so only the other classes (e.g. Diagnostic) are added.
+const PLUGIN_API = path.join(
   PARCEL_ROOT,
-  "parcel/packages/core/types/index.js"
+  "packages-v3/plugin/src/PluginAPI.ts"
 );
-const PARCEL_REV = execSync("git rev-parse HEAD", {
-  cwd: path.dirname(PARCEL_TYPES),
-  encoding: "utf8",
-}).trim();
-const PARCEL_DIAGNOSTIC = path.join(
-  PARCEL_ROOT,
-  "parcel/packages/core/diagnostic/src/diagnostic.js"
-);
-const PARCEL_LOGGER = path.join(
-  PARCEL_ROOT,
-  "parcel/packages/core/logger/src/Logger.js"
-);
+if (!fs.existsSync(ENTRY)) {
+  console.error(`Could not find ${ENTRY}. Is ${PARCEL_ROOT} the parcel repo?`);
+  process.exit(1);
+}
 
-const PARCEL_SOURCE_MAP = [
-  path.join(PARCEL_ROOT, "source-map/src/SourceMap.js"),
-  path.join(PARCEL_ROOT, "source-map/src/types.js"),
-];
-const PARCEL_SOURCE_MAP_REV = execSync("git rev-parse HEAD", {
-  cwd: path.dirname(PARCEL_SOURCE_MAP[0]),
-  encoding: "utf8",
-}).trim();
-
-fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
+function git(cmd) {
+  return execSync(`git ${cmd}`, { cwd: PARCEL_ROOT, encoding: "utf8" }).trim();
+}
+const PARCEL_REV = git("rev-parse HEAD");
 const PARCEL_URL = `https://github.com/parcel-bundler/parcel/blob/${PARCEL_REV}`;
-const SOURCE_MAP_URL = `https://github.com/parcel-bundler/source-map/blob/${PARCEL_SOURCE_MAP_REV}`;
 
+// Each section's types are written to `<file>.html` (default: the section
+// name), and linked to at `<link>#<TypeName>`. The file must be included by
+// the page at `link`, e.g. `{% include "../../api/transformer.html" %}`.
 const SECTION_TO_URL = {
-  index: {
-    link: "/plugin-system/api/",
-  },
-  bundler: {
-    link: "/plugin-system/bundler/",
-  },
-  namer: {
-    link: "/plugin-system/namer/",
-  },
-  optimizer: {
-    link: "/plugin-system/optimizer/",
-  },
-  compressor: {
-    link: "/plugin-system/compressor/",
-  },
-  packager: {
-    link: "/plugin-system/packager/",
-  },
-  reporter: {
-    link: "/plugin-system/reporter/",
-  },
-  reporter: {
-    link: "/plugin-system/reporter/",
-  },
-  resolver: {
-    link: "/plugin-system/resolver/",
-  },
-  runtime: {
-    link: "/plugin-system/runtime/",
-  },
-  transformer: {
-    link: "/plugin-system/transformer/",
-  },
-  validator: {
-    link: "/plugin-system/validator/",
-  },
-  logger: {
-    link: "/plugin-system/logging/",
-  },
-  diagnostic: {
-    link: "/plugin-system/logging/",
-  },
-  "source-map": {
-    link: "/plugin-system/source-maps/",
-    repo: SOURCE_MAP_URL,
-  },
+  index: { link: "/plugin-system/api/" },
+  // There is no bundler plugin page; Bundle and BundleGraph go on the API page.
+  bundler: { link: "/plugin-system/api/", file: "index" },
+  transformer: { link: "/plugin-system/transformer/" },
+  resolver: { link: "/plugin-system/resolver/" },
+  namer: { link: "/plugin-system/namer/" },
+  optimizer: { link: "/plugin-system/optimizer/" },
+  reporter: { link: "/plugin-system/reporter/" },
 };
 
-// ---------------------------
-// CROSS REFERENCING
-// ---------------------------
-
-let jsDocs /*: Map<string, JSDocType>*/ = new Map();
-let typeToSection = new Map();
-
-function urlToType(name) {
-  let section = nullthrows(typeToSection.get(name));
-  return `${nullthrows(SECTION_TO_URL[section], section).link}#${name}`;
-}
-
-let typeReferenced = new SetMap();
-function replaceReferencesDescription(
-  name /*: string*/,
-  contents /*: string*/
-) {
-  for (let [n] of jsDocs) {
-    contents = contents.replace(
-      new RegExp(`(^|\\W)(${n})($|\\W)`, "g"),
-      (_, l, type, r) => {
-        if (n !== name) {
-          let refs = typeReferenced.get(n);
-          if (!refs) {
-            refs = new Set();
-            typeReferenced.set(n, refs);
-          }
-          refs.add(name);
-        }
-        return l + `<a href="${urlToType(type)}">` + type + "</a>" + r;
-      }
-    );
-  }
-  return contents;
-}
-
-function replaceReferences /*::<T: { description: string, params?: ?$ReadOnlyArray<JSDocParam> }> */(
-  name,
-  v /*: T */
-) /*: T */ {
-  if (v.params)
-    return {
-      ...v,
-      // $FlowFixMe
-      params: v.params.map((p) => replaceReferences(name, p)),
-      description: replaceReferencesDescription(name, v.description),
-    };
-  else
-    return {
-      ...v,
-      description: replaceReferencesDescription(name, v.description),
-    };
-}
+const GENERATED_MARKER =
+  "<!-- Generated by generate-api-docs. Do not edit. -->";
 
 // ---------------------------
 // COLLECT
 // ---------------------------
 
-let collected /*: Map<string, CollectedType>*/ = new Map();
-function classToInterface(decl) {
-  return {
-    type: "InterfaceDeclaration",
-    id: decl.id,
-    extends: decl.superClass
-      ? [{ type: "InterfaceExtends", id: decl.superClass }]
-      : [],
-    implements: [],
-    mixins: [],
-    leadingComments: decl.leadingComments,
-    body: {
-      type: "ObjectTypeAnnotation",
-      properties: decl.body.body
-        .map((p) => {
-          switch (p.type) {
-            case "ClassMethod":
-              return {
-                type: "ObjectTypeProperty",
-                static: p.static,
-                kind: "init",
-                key: p.key,
-                proto: false,
-                method: true,
-                leadingComments: p.leadingComments,
-                value: {
-                  type: "FunctionTypeAnnotation",
-                  rest: null,
-                  typeParams: true,
-                  params: p.params.map((param /*: any */) => {
-                    if (param.type === "AssignmentPattern") {
-                      param = param.left;
-                    } else if (param.type === "ObjectPattern") {
-                      param = {
-                        name: "v",
-                        optional: param.optional,
-                        typeAnnotation: param.typeAnnotation,
-                      };
-                    }
-                    return {
-                      type: "FunctionTypeParam",
-                      name: { type: "Identifier", name: param.name },
-                      optional: param.optional,
-                      typeAnnotation: param.typeAnnotation.typeAnnotation,
-                    };
-                  }),
-                  returnType: p.returnType
-                    ? p.returnType.typeAnnotation
-                    : { type: "VoidTypeAnnotation" },
-                },
-              };
-            case "ClassPrivateProperty":
-              return;
-            case "ClassProperty":
-              if (extractJSDocComment(p)?.includes("@private")) {
-                return;
-              }
+// name -> {declaration, commentNode, loc, file}
+let collected = new Map();
+let visited = new Set();
 
-              invariant(p.typeAnnotation);
-              return {
-                type: "ObjectTypeProperty",
-                static: p.static,
-                kind: "init",
-                key: p.key,
-                proto: false,
-                method: false,
-                leadingComments: p.leadingComments,
-                value: p.typeAnnotation.typeAnnotation,
-              };
-            default:
-              invariant(false, p.type);
-          }
-        })
-        .filter(Boolean),
-    },
-  };
+function resolveModule(from, specifier) {
+  let base = path.resolve(path.dirname(from), specifier);
+  for (let candidate of [
+    base,
+    base + ".ts",
+    base + ".d.ts",
+    base + ".tsx",
+    base.replace(/\.js$/, ".ts"),
+    base.replace(/\.js$/, ".d.ts"),
+    path.join(base, "index.ts"),
+    path.join(base, "index.d.ts"),
+  ]) {
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      return candidate;
+    }
+  }
+  console.warn(`warning: could not resolve ${specifier} from ${from}`);
+  return null;
 }
 
-function collectExportDeclaration(node, defaultSection) {
-  let { declaration } = node;
-  if (declaration.type === "Identifier") return;
+function collect(filePath, isEntry, skipExisting = false) {
+  if (visited.has(filePath)) return;
+  visited.add(filePath);
 
-  declaration.leadingComments = node.leadingComments;
-  let jsdoc = node.leadingComments && node.leadingComments[0];
+  let source = fs.readFileSync(filePath, "utf8");
+  let ast = parse(source, {
+    sourceType: "module",
+    plugins: ["typescript", "classProperties", "classPrivateProperties"],
+  });
+  let file = {
+    source,
+    comments: ast.comments,
+    filename: path.relative(PARCEL_ROOT, filePath),
+  };
 
-  invariant(
-    declaration.type === "ClassDeclaration" ||
-      declaration.type === "TypeAlias" ||
-      declaration.type === "VariableDeclaration" ||
-      declaration.type === "FunctionDeclaration" ||
-      declaration.type === "InterfaceDeclaration",
-    declaration.type
-  );
-
-  if (declaration.type === "FunctionDeclaration") {
-    declaration.body = { type: "BlockStatement", body: [] };
-  }
-
-  if (declaration.type === "VariableDeclaration") {
-    for (let decl of declaration.declarations) {
-      collected.set(decl.id.name, {
-        declaration: declaration,
-        loc: decl.loc,
-        defaultSection,
+  let follow = [];
+  let add = (declaration, commentNode) => {
+    let names = [];
+    switch (declaration.type) {
+      case "TSTypeAliasDeclaration":
+      case "TSInterfaceDeclaration":
+      case "TSEnumDeclaration":
+      case "ClassDeclaration":
+      case "TSDeclareFunction":
+      case "FunctionDeclaration":
+        if (declaration.id) names.push(declaration.id.name);
+        break;
+      case "VariableDeclaration":
+        for (let d of declaration.declarations) {
+          if (d.id.type === "Identifier") names.push(d.id.name);
+        }
+        break;
+      default:
+        // e.g. `declare global`, namespaces.
+        return;
+    }
+    for (let name of names) {
+      if (collected.has(name)) {
+        if (skipExisting) continue;
+        // TS overloads/declaration merging, or a name defined in multiple files.
+        console.warn(
+          `warning: ${name} is declared more than once, ignoring ${file.filename}:${commentNode.loc.start.line}`
+        );
+        continue;
+      }
+      collected.set(name, {
+        declaration,
+        commentNode,
+        loc: commentNode.loc,
+        file,
       });
     }
-  } else {
-    if (declaration.type === "ClassDeclaration") {
-      declaration = classToInterface(declaration);
-    }
+  };
 
-    collected.set(declaration.id.name, {
-      declaration: declaration,
-      loc: node.loc,
-      defaultSection,
-    });
+  for (let node of ast.program.body) {
+    switch (node.type) {
+      case "ExportNamedDeclaration":
+        if (node.declaration) {
+          add(node.declaration, node);
+        } else if (node.source) {
+          follow.push(node.source.value);
+        }
+        break;
+      case "ExportAllDeclaration":
+        follow.push(node.source.value);
+        break;
+      case "ExportDefaultDeclaration":
+        if (node.declaration.id) add(node.declaration, node);
+        break;
+      case "ImportDeclaration":
+        follow.push(node.source.value);
+        break;
+      case "TSTypeAliasDeclaration":
+      case "TSInterfaceDeclaration":
+      case "TSEnumDeclaration":
+        // Non-exported types in the entry file are documented too, since
+        // exported types may refer to them.
+        if (isEntry) add(node, node);
+        break;
+    }
+  }
+
+  for (let specifier of follow) {
+    if (!specifier.startsWith(".")) continue;
+    let resolved = resolveModule(filePath, specifier);
+    if (resolved) collect(resolved, false);
   }
 }
 
-function collect(file, defaultSection) {
-  traverse(
-    parse(fs.readFileSync(file, "utf8"), {
-      sourceType: "module",
-      plugins: ["flow", "classPrivateProperties"],
-      sourceFilename: path.relative(PARCEL_ROOT, file),
-    }),
-    {
-      ExportDefaultDeclaration(path) {
-        collectExportDeclaration(path.node, defaultSection);
-        path.skip();
-      },
-      ExportNamedDeclaration(path) {
-        collectExportDeclaration(path.node, defaultSection);
-        path.skip();
-      },
-      TypeAlias({ node }) {
-        collected.set(node.id.name, {
-          declaration: node,
-          loc: node.loc,
-          defaultSection,
-        });
-      },
-    }
+collect(ENTRY, true);
+if (fs.existsSync(PLUGIN_API)) collect(PLUGIN_API, false, true);
+
+{
+  let status = git(
+    `status --porcelain -- ${[...visited]
+      .map((f) => JSON.stringify(f))
+      .join(" ")}`
   );
+  if (status) {
+    console.warn(
+      `warning: source files have uncommitted changes, so source links (to ${PARCEL_REV.slice(
+        0,
+        10
+      )}) may point at the wrong lines:\n${status}`
+    );
+  }
 }
 
-collect(PARCEL_TYPES);
-collect(PARCEL_LOGGER, "logger");
-collect(PARCEL_DIAGNOSTIC, "diagnostic");
-PARCEL_SOURCE_MAP.forEach((p) => collect(p, "source-map"));
-
 // ---------------------------
-// PARSE JSDOC
+// SOURCE TEXT
 // ---------------------------
 
-for (let [name, { declaration, loc, defaultSection }] of collected) {
-  let parsedJsDoc = parseJsDoc(declaration);
-  if (!parsedJsDoc) continue;
+// The source text of `node`, with comments removed and continuation lines
+// dedented to the indentation of the line the node starts on. Using the
+// original (prettier-formatted) source keeps line breaks in long types.
+function sourceText(file, start, end) {
+  let { source, comments } = file;
+  let text = "";
+  let pos = start;
+  for (let c of comments) {
+    if (c.start >= start && c.end <= end) {
+      text += source.slice(pos, c.start);
+      pos = c.end;
+    }
+  }
+  text += source.slice(pos, end);
 
-  let section = parsedJsDoc.section || defaultSection || "index";
+  let lineStart = source.lastIndexOf("\n", start - 1) + 1;
+  let baseIndent = source.slice(lineStart).match(/^[ \t]*/)[0].length;
+  return text
+    .split("\n")
+    .map((l, i) => {
+      l = l.trimEnd();
+      if (i === 0) return l;
+      let ws = l.match(/^[ \t]*/)[0].length;
+      return l.slice(Math.min(ws, baseIndent));
+    })
+    .filter((l) => l.trim() !== "")
+    .join("\n")
+    .trim();
+}
+
+function memberText(file, node) {
+  return sourceText(file, node.start, node.end).replace(/[;,]$/, "") + ";";
+}
+
+function keyName(file, key, computed) {
+  if (!key) return null;
+  if (computed) return null;
+  if (key.type === "Identifier") return key.name;
+  if (key.type === "StringLiteral" || key.type === "NumericLiteral") {
+    return String(key.value);
+  }
+  return sourceText(file, key.start, key.end);
+}
+
+function unwrapTypeAnnotation(node) {
+  return node && node.type === "TSTypeAnnotation" ? node.typeAnnotation : node;
+}
+
+// ---------------------------
+// MEMBERS
+// ---------------------------
+
+// Normalized members of an interface, object type, or class:
+// {name: ?string, kind: "property" | "method", text: string, params: Array<Node>, node}
+function getMembers(declaration, file) {
+  let nodes,
+    isClass = false;
+  if (declaration.type === "TSInterfaceDeclaration") {
+    nodes = declaration.body.body;
+  } else if (
+    declaration.type === "TSTypeAliasDeclaration" &&
+    declaration.typeAnnotation.type === "TSTypeLiteral"
+  ) {
+    nodes = declaration.typeAnnotation.members;
+  } else if (declaration.type === "ClassDeclaration") {
+    nodes = declaration.body.body;
+    isClass = true;
+  } else {
+    return null;
+  }
+
+  let members = [];
+  for (let node of nodes) {
+    let member = isClass ? classMember(node, file) : typeMember(node, file);
+    if (!member) continue;
+    member.node = node;
+    members.push(member);
+  }
+  return members;
+}
+
+function typeMember(node, file) {
+  switch (node.type) {
+    case "TSPropertySignature": {
+      let type = unwrapTypeAnnotation(node.typeAnnotation);
+      let isFunction = type && type.type === "TSFunctionType";
+      return {
+        name: keyName(file, node.key, node.computed),
+        kind: isFunction ? "method" : "property",
+        params: isFunction ? type.parameters || type.params || [] : [],
+        text: memberText(file, node),
+      };
+    }
+    case "TSMethodSignature":
+      return {
+        name: keyName(file, node.key, node.computed),
+        kind: node.kind === "method" ? "method" : "property",
+        params:
+          node.kind === "method" ? node.parameters || node.params || [] : [],
+        text: memberText(file, node),
+      };
+    default:
+      // Index, call and construct signatures.
+      return {
+        name: null,
+        kind: "property",
+        params: [],
+        text: memberText(file, node),
+      };
+  }
+}
+
+function classMember(node, file) {
+  if (
+    node.type === "ClassPrivateProperty" ||
+    node.type === "ClassPrivateMethod" ||
+    node.type === "StaticBlock" ||
+    node.accessibility === "private" ||
+    node.accessibility === "protected" ||
+    (node.key && node.key.type === "PrivateName")
+  ) {
+    return null;
+  }
+  switch (node.type) {
+    case "ClassMethod":
+    case "TSDeclareMethod": {
+      let end = node.body ? node.body.start : node.end;
+      let isMethod = node.kind === "method" || node.kind === "constructor";
+      return {
+        name: keyName(file, node.key, node.computed),
+        kind: isMethod ? "method" : "property",
+        params: isMethod ? node.params : [],
+        text: sourceText(file, node.start, end).replace(/[;,]$/, "") + ";",
+      };
+    }
+    case "ClassProperty":
+    case "ClassAccessorProperty": {
+      let end =
+        node.value && node.typeAnnotation ? node.typeAnnotation.end : node.end;
+      let type = unwrapTypeAnnotation(node.typeAnnotation);
+      let isFunction = type && type.type === "TSFunctionType";
+      return {
+        name: keyName(file, node.key, node.computed),
+        kind: isFunction ? "method" : "property",
+        params: isFunction ? type.parameters || type.params || [] : [],
+        text: sourceText(file, node.start, end).replace(/[;,]$/, "") + ";",
+      };
+    }
+    default:
+      return {
+        name: null,
+        kind: "property",
+        params: [],
+        text: memberText(file, node),
+      };
+  }
+}
+
+// Doc comments on the members of object types nested in a type, e.g.
+// `type A = B & {/** doc */ x: number}`.
+function getNestedTypeLiteralMembers(type, file, out = []) {
+  if (!type) return out;
+  switch (type.type) {
+    case "TSTypeLiteral":
+      for (let node of type.members) {
+        let member = typeMember(node, file);
+        member.node = node;
+        out.push(member);
+      }
+      break;
+    case "TSIntersectionType":
+    case "TSUnionType":
+      for (let t of type.types) getNestedTypeLiteralMembers(t, file, out);
+      break;
+    case "TSParenthesizedType":
+      getNestedTypeLiteralMembers(type.typeAnnotation, file, out);
+      break;
+  }
+  return out;
+}
+
+// Documented fields of object-typed parameters, e.g. `transform(args: {asset: MutableAsset})`.
+function nestedParamDocs(params) {
+  let docs = [];
+  for (let param of params) {
+    let name = param.type === "Identifier" ? param.name : "args";
+    let type = unwrapTypeAnnotation(param.typeAnnotation);
+    if (!type || type.type !== "TSTypeLiteral") continue;
+    for (let m of type.members) {
+      let comment = extractJSDocComment(m);
+      if (!comment || !m.key || m.key.type !== "Identifier") continue;
+      let parsed = parseJsDocComment(comment);
+      if (!parsed) continue;
+      docs.push({
+        type: "param",
+        name: `${name}.${m.key.name}`,
+        description: parsed.description,
+      });
+    }
+  }
+  return docs;
+}
+
+// Parses the JSDoc of each member. Returns the members that aren't hidden
+// (with get/set pairs and overloads merged), and their documentation.
+function documentMembers(members) {
+  let result = [];
+  let docs = [];
+  let byName = new Map();
+  for (let member of members) {
+    let comment = extractJSDocComment(member.node);
+    let parsed = comment ? parseJsDocComment(comment) : emptyJsDoc();
+    if (!parsed) continue;
+    let nestedParams =
+      member.kind === "method" ? nestedParamDocs(member.params) : [];
+    // A member is documented if it has a doc comment, or documented fields in
+    // an object-typed parameter.
+    let hasDoc = comment != null || nestedParams.length > 0;
+
+    // Merge getters and setters, and method overloads.
+    let existing = member.name != null ? byName.get(member.name) : null;
+    if (existing) {
+      existing.text += "\n" + member.text;
+      if (!hasDoc || existing.hasDoc) continue;
+    } else {
+      result.push(member);
+      if (member.name != null) byName.set(member.name, member);
+    }
+    if (member.name == null || !hasDoc) continue;
+    (existing || member).hasDoc = true;
+
+    let tag = (type) => parsed.tags.find((t) => t.type === type);
+    if (member.kind === "method") {
+      docs.push({
+        type: "method",
+        name: member.name,
+        description: parsed.description,
+        params: [
+          ...parsed.tags.filter((t) => t.type === "param"),
+          ...nestedParams,
+        ],
+        returns: tag("returns") ? tag("returns").description : null,
+        experimental: parsed.experimental,
+        deprecated: parsed.deprecated,
+      });
+    } else {
+      docs.push({
+        type: "property",
+        name: member.name,
+        description: parsed.description,
+        default: tag("default") ? tag("default").description : null,
+        experimental: parsed.experimental,
+        deprecated: parsed.deprecated,
+      });
+    }
+  }
+  return { members: result, docs };
+}
+
+// ---------------------------
+// CROSS REFERENCING
+// ---------------------------
+
+let typeToSection = new Map();
+
+function sectionInfo(section) {
+  let info = SECTION_TO_URL[section];
+  if (!info) {
+    throw new Error(
+      `Unknown @section "${section}". Add it to SECTION_TO_URL in generate-api-docs/index.js.`
+    );
+  }
+  return info;
+}
+
+function urlToType(name) {
+  return `${sectionInfo(typeToSection.get(name)).link}#${name}`;
+}
+
+let typeReferenced = new SetMap();
+let referenceRegexes = null;
+function replaceReferences(name, contents) {
+  if (!contents) return contents;
+  if (!referenceRegexes) {
+    referenceRegexes = [...typeToSection.keys()].map((n) => [
+      n,
+      new RegExp(`(^|[^\\w$#])(${n})(?=$|[^\\w$])`, "g"),
+    ]);
+  }
+  for (let [n, re] of referenceRegexes) {
+    contents = contents.replace(re, (_, l, type) => {
+      if (n !== name) typeReferenced.add(n, name);
+      return l + `<a href="${urlToType(type)}">` + type + "</a>";
+    });
+  }
+  return contents;
+}
+
+// ---------------------------
+// PROCESS
+// ---------------------------
+
+let docs = new Map();
+for (let [name, entry] of collected) {
+  let comment =
+    extractJSDocComment(entry.commentNode) ||
+    extractJSDocComment(entry.declaration);
+  let jsDoc = comment ? parseJsDocComment(comment) : emptyJsDoc();
+  if (!jsDoc) continue;
+  let section = jsDoc.section || "index";
+  sectionInfo(section);
   typeToSection.set(name, section);
-  jsDocs.set(name, parsedJsDoc);
+  docs.set(name, jsDoc);
 }
 
-// ---------------------------
-// GENERATE
-// ---------------------------
+let generated = new MapMap();
+for (let [name, { declaration, loc, file }] of collected) {
+  let jsDoc = docs.get(name);
+  if (!jsDoc) continue;
+  let section = typeToSection.get(name);
+  let link = (s) => replaceReferences(name, s);
+  let code = (s) => link(escapeHtml(s));
 
-let generated /*: MapMap<ProcessedType> */ = new MapMap();
-for (let [name, { declaration, loc }] of collected) {
-  let parsedJsDoc = jsDocs.get(name);
-  if (!parsedJsDoc) continue;
-  let section = nullthrows(typeToSection.get(name));
-
-  let jsDoc /*: JSDocType*/ = {
-    description: replaceReferencesDescription(name, parsedJsDoc.description),
-    properties: parsedJsDoc.properties
-      .filter((p) => !parsedJsDoc.excludedProperties.has(p.name))
-      // $FlowFixMe
-      .map((p) => replaceReferences(name, p)),
-    section: parsedJsDoc.section,
-    excludedProperties: parsedJsDoc.excludedProperties,
+  let tags = jsDoc.tags
+    .filter((t) => t.type === "param" || t.type === "property")
+    .map((t) => ({ ...t, description: link(t.description) }));
+  let base = {
+    name,
+    loc,
+    file,
+    description: link(jsDoc.description),
+    experimental: jsDoc.experimental,
+    deprecated: link(jsDoc.deprecated),
   };
 
-  if (declaration.type === "InterfaceDeclaration") {
-    generated.append(section, name, {
+  let members = getMembers(declaration, file);
+  if (members) {
+    let { members: visible, docs: memberDocs } = documentMembers(members);
+    let header;
+    if (declaration.type === "TSTypeAliasDeclaration") {
+      header =
+        sourceText(file, declaration.start, declaration.typeAnnotation.start) +
+        " {";
+    } else {
+      header =
+        sourceText(file, declaration.start, declaration.body.start) + " {";
+    }
+    generated.append(sectionInfo(section).file || section, name, {
+      ...base,
       type: "interface",
-      jsDoc,
-      loc,
+      tags,
+      members: memberDocs.map((d) => ({
+        ...d,
+        description: link(d.description),
+        deprecated: link(d.deprecated),
+        params: d.params
+          ? d.params.map((p) => ({ ...p, description: link(p.description) }))
+          : undefined,
+        returns: link(d.returns),
+      })),
       definition: [
-        {
-          value:
-            replaceReferencesDescription(
-              name,
-              escapeHtml(
-                generate(
-                  { ...declaration, body: null },
-                  { comments: false }
-                ).code.trim()
-              )
-            ) + " {",
-        },
-        ...declaration.body.properties
-          .filter((p) => !parsedJsDoc.excludedProperties.has(p.key.name))
-          .map((p) => ({
-            key: p.key.name,
-            value:
-              indent(
-                replaceReferencesDescription(
-                  name,
-                  escapeHtml(generate(p, { comments: false }).code)
-                )
-              ) + ",",
-          })),
+        { value: code(header) },
+        ...visible.map((m) => ({
+          key: m.name,
+          value: indent(code(m.text)),
+        })),
         { value: "}" },
       ],
     });
-  } else if (
-    declaration.type === "TypeAlias" &&
-    declaration.right.type === "ObjectTypeAnnotation"
-  ) {
-    let { exact } = declaration.right;
-    generated.append(section, name, {
-      type: "interface",
-      jsDoc,
-      loc,
-      definition: [
-        {
-          value: escapeHtml(
-            `type ${declaration.id.name}${
-              declaration.typeParameters
-                ? generate(declaration.typeParameters).code
-                : ""
-            } = {` + (exact ? "|" : "")
-          ),
-        },
-        ...declaration.right.properties
-          .filter(
-            (p) => !p.key || !parsedJsDoc.excludedProperties.has(p.key.name)
-          )
-          .map((p) => ({
-            key: p.key?.name,
-            value:
-              indent(
-                replaceReferencesDescription(
-                  name,
-                  escapeHtml(generate(p, { comments: false }).code)
-                )
-              ) + ",",
-          })),
-        { value: (exact ? "|" : "") + "}" },
-      ],
-    });
   } else {
-    generated.append(section, name, {
+    let typeAnnotation =
+      declaration.type === "TSTypeAliasDeclaration"
+        ? declaration.typeAnnotation
+        : null;
+    let nested = documentMembers(
+      getNestedTypeLiteralMembers(typeAnnotation, file)
+    ).docs;
+    let end = declaration.end;
+    if (declaration.type === "FunctionDeclaration" && declaration.body) {
+      end = declaration.body.start;
+    }
+    generated.append(sectionInfo(section).file || section, name, {
+      ...base,
       type: "type",
-      definition: replaceReferencesDescription(
-        name,
-        escapeHtml(generate(declaration, { comments: false }).code.trim())
-      ),
-      jsDoc,
-      loc,
+      tags: [
+        ...tags,
+        ...nested.map((d) => ({
+          type: d.type === "method" ? "method" : "property",
+          name: d.name,
+          description: link(d.description),
+        })),
+      ],
+      definition: code(sourceText(file, declaration.start, end)),
     });
   }
 }
 
 // ---------------------------
-// GENERATE
+// WRITE
 // ---------------------------
 
 const EXPERIMENTAL = `<figure class="well warning"><div>Marked as experimental</div></figure>`;
+function deprecated(text) {
+  return `<figure class="well warning"><div>Deprecated${
+    text ? `: ${text}` : ""
+  }</div></figure>`;
+}
 
-function write(section, file, data) {
-  let output = `<html>
+function flags(item) {
+  let out = "";
+  if (item.experimental) out += EXPERIMENTAL;
+  if (item.deprecated != null) out += deprecated(item.deprecated);
+  return out;
+}
+
+function list(title, items) {
+  if (items.length === 0) return "";
+  return (
+    `<h5>${title}</h5>\n<ul>` +
+    items
+      .map((p) => `<li><b><code>${p.name}</code></b>: ${p.description}</li>`)
+      .join("\n") +
+    `</ul>\n`
+  );
+}
+
+function write(file, data) {
+  let output = `${GENERATED_MARKER}
+<html>
 <head>
 <style>
   div.api .type {
@@ -517,101 +681,67 @@ function write(section, file, data) {
 
   for (let [name, type] of data) {
     let { loc } = type;
-    let { description, properties } = type.jsDoc;
-    let props = properties
-      .filter(({ type }) => type === "property")
-      .map((p) => {
-        invariant(p.type === "property");
-        return p;
-      });
-    let methods = properties
-      .filter(({ type }) => type === "method")
-      .map((p) => {
-        invariant(p.type === "method");
-        return p;
-      });
-    let params = properties
-      .filter(({ type }) => type === "param")
-      .map((p) => {
-        invariant(p.type === "param");
-        return p;
-      });
-    let experimental =
-      properties.find(({ type }) => type === "experimental") != null;
     let refs = typeReferenced.get(name);
 
     output += `<div class="type">
 <h4 class="title">
   <span id="${name}">${name}</span>
-  <a href="${SECTION_TO_URL[section].repo || PARCEL_URL}/${loc.filename.slice(
-      loc.filename.indexOf("/") + 1
-    )}#L${loc.start.line}"><i>${loc.filename}:${loc.start.line}</i></a>
+  <a href="${PARCEL_URL}/${type.file.filename}#L${loc.start.line}"><i>${
+      type.file.filename
+    }:${loc.start.line}</i></a>
 </h4>
-${description ? `${description}` : ""}
-`;
-
-    if (experimental) {
-      output += EXPERIMENTAL;
-    }
+${type.description || ""}
+${flags(type)}`;
 
     if (type.type === "interface") {
+      output += list(
+        "Property Descriptions",
+        type.tags.filter((t) => t.type === "property")
+      );
+      output += list(
+        "Parameter Descriptions",
+        type.tags.filter((t) => t.type === "param")
+      );
       for (let t of type.definition) {
         output += `<pre class="interface"><code>${t.value}</code></pre>\n`;
-        let method = methods.find((m) => m.name === t.key);
-        if (method) {
-          output += `<div class="inline-method">`;
-          if (method.experimental) {
-            output += EXPERIMENTAL;
-          }
-          output += method.description;
-          if (method.params.length) {
+        if (t.key == null) continue;
+        let member = type.members.find((m) => m.name === t.key);
+        if (!member) continue;
+        output += `<div class="inline-method">`;
+        output += flags(member);
+        output += member.description;
+        if (member.type === "method") {
+          if (member.params.length) {
             output += `<b>Params:</b>\n<ul>`;
-            for (let param of method.params) {
+            for (let param of member.params) {
               output += `<li><b><code>${param.name}</code></b>: ${param.description}</li>`;
             }
             output += `</ul>`;
           }
-          output += `</div>`;
-        }
-        let prop = props.find((m) => m.name === t.key);
-        if (prop) {
-          output += `<div class="inline-method">`;
-          if (prop.experimental) {
-            output += EXPERIMENTAL;
+          if (member.returns) {
+            output += `<p><b>Returns:</b> ${member.returns}</p>`;
           }
-          output += prop.description;
-          if (prop.default != null)
-            output += `<p>Default value: <code>${prop.default}</code></p>`;
-          output += `</div>`;
+        } else if (member.default != null) {
+          output += `<p>Default value: <code>${escapeHtml(
+            member.default
+          )}</code></p>`;
         }
+        output += `</div>`;
       }
     } else {
-      output += `
-${
-  props.length > 0
-    ? `<h5>Property Descriptions</h5>` +
-      `<ul>${props
-        .map((p) => `<li><b><code>${p.name}</code></b>: ${p.description}</p>`)
-        .join("\n")}</ul>`
-    : ""
-}
-${
-  methods.length > 0
-    ? `<h5>Method Descriptions</h5>` +
-      `<ul>${methods
-        .map((m) => `<li><b><code>${m.name}</code></b>: ${m.description}</p>`)
-        .join("\n")}</ul>`
-    : ""
-}
-${
-  params.length > 0
-    ? `<h5>Parameter Descriptions</h5>` +
-      `<ul>${params
-        .map((m) => `<li><b><code>${m.name}</code></b>: ${m.description}</p>`)
-        .join("\n")}</ul>`
-    : ""
-}
-<h5>Type</h5>
+      output += list(
+        "Property Descriptions",
+        type.tags.filter((t) => t.type === "property")
+      );
+      output += list(
+        "Method Descriptions",
+        type.tags.filter((t) => t.type === "method")
+      );
+      output += list(
+        "Parameter Descriptions",
+        type.tags.filter((t) => t.type === "param")
+      );
+      output += `<h5>Type</h5>
 <pre><code>${type.definition}</code></pre>`;
     }
     output += `
@@ -624,15 +754,29 @@ ${[...refs]
   .join(", ")}`
     : ""
 }
-</div>`;
+</div>
+`;
   }
 
-  output += `</div></body></html>`;
+  output += `</div></body></html>\n`;
   fs.writeFileSync(file, output);
 }
 
+fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+let written = new Set();
 for (let [section, data] of generated) {
   let file = path.join(OUTPUT_DIR, section + ".html");
-  write(section, file, data);
+  write(file, data);
+  written.add(path.resolve(file));
   console.log("wrote", file);
+}
+
+// Remove previously generated files for sections that no longer exist.
+for (let f of fs.readdirSync(OUTPUT_DIR)) {
+  let file = path.resolve(OUTPUT_DIR, f);
+  if (!f.endsWith(".html") || written.has(file)) continue;
+  if (fs.readFileSync(file, "utf8").startsWith(GENERATED_MARKER)) {
+    fs.unlinkSync(file);
+    console.log("removed", file);
+  }
 }

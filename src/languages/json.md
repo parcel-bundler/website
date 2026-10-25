@@ -9,8 +9,6 @@ eleventyNavigation:
 
 Parcel supports importing JSON and [JSON5](https://json5.org) files into JavaScript out of the box.
 
-<!-- TODO(v3): JSON5 syntax doesn't actually parse. The default config maps `js:*.{json,json5}` to @parcel/transformer-json, but crates/parcel/src/json.rs uses serde_json, so `{hello: ["world",]}` in a .json5 file fails with "key must be a string at line 1 column 2". Plain JSON in a .json5 file works. -->
-
 ## Example usage
 
 {% sample %}

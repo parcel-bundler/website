@@ -49,7 +49,7 @@ export default new Reporter({
 
 ## Build success
 
-The `buildSuccess` event is emitted when a build completes successfully. It includes the full `bundleGraph` that was built, the `buildTime` in milliseconds, and a list of `changedAssets`.
+The `buildSuccess` event is emitted when a build completes successfully. It includes the full `bundleGraph` that was built, the `buildTime` in milliseconds, and a list of `changedAssets`. On a full build, `changedAssets` includes every asset, and on rebuilds it includes the assets that were transformed again. The `filePath` of each bundle in the `bundleGraph` is the absolute path it was written to, or `null` for inline bundles.
 
 ```javascript
 import { Reporter } from "@parcel/plugin";
@@ -60,8 +60,6 @@ export default new Reporter({
   },
 });
 ```
-
-<!-- TODO(v3): Bundle.filePath is null in buildSuccess for bundles that are not content hashed, e.g. entries (tested with target/release/parcel build; JsBundle::file_path checks bundle.has_final_path()), even though types.ts says it is "the absolute path the bundle is written to, once it is known". `name` works. Also, changedAssets contained every asset on a full build, while crates/core/src/reporter.rs documents it as empty on a full build. -->
 
 ## Build failure
 
@@ -95,8 +93,6 @@ export default new Reporter({
   },
 });
 ```
-
-<!-- TODO(v3): a JS reporter that implements `log` failed with "unknown: ArrayBuffer object expected" (printed twice, build still succeeded) when a JS optimizer logged via console.log after reading `contents.length`. Repro in the group-j scratchpad (p1). -->
 
 ## Native reporters
 

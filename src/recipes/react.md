@@ -147,8 +147,6 @@ See the [TypeScript](/languages/typescript/) docs for more details on using Type
 
 ## Flow
 
-<!-- TODO(v3): v3's @parcel/transformer-js does not strip Flow types (a `// @flow` file fails to parse even with flow-bin installed), and there's no automatic @babel/preset-flow fallback like v2 had. Is that intentional? -->
-
 [Flow](https://flow.org/) types are not stripped by Parcel's builtin transpiler. To use Flow, install `@parcel/transformer-babel` and `@babel/preset-flow`, add `@parcel/transformer-babel` to your `.parcelrc`, and add `@babel/preset-flow` to your Babel config. Since Babel runs before Parcel's builtin transpiler, you'll also need to add `@babel/plugin-syntax-jsx` to your Babel config so that it can parse JSX.
 
 See the [Flow](/languages/javascript/#flow) docs for more details on using Flow with Parcel.

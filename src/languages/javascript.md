@@ -262,9 +262,7 @@ Parcel supports JSX out of the box. JSX is automatically enabled in a `.jsx` or 
 
 The correct JSX pragma is also automatically inferred based on the library you use. Parcel also automatically detects the version of React or Preact that is installed, and enables the [modern JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) if supported.
 
-JSX compilation can also be configured using a `tsconfig.json` file. This allows overriding the runtime, pragma, and other options. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for more information.
-
-<!-- TODO(v3): v2 also read `jsconfig.json` for JSX and decorator options. v3 only looks for `tsconfig.json` (SubPath::tsconfig_json in crates/core/src/path.rs, used by parcel-resolver find_tsconfig); a jsconfig.json with experimentalDecorators fails to parse decorators. Removed the jsconfig.json mentions; restore if this is a gap. -->
+JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json` file. This allows overriding the runtime, pragma, and other options. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for more information.
 
 {% sample %}
 {% samplefile "tsconfig.json" %}
@@ -342,15 +340,13 @@ By default Parcel does not perform any transpilation of JavaScript syntax for ol
 
 See the [Targets](/features/targets/) docs for more details on how to configure this.
 
-<!-- TODO(v3): Removed the mention of automatic differential bundling. v3 never emits `nomodule` scripts (crates/html/src/lib.rs bundle_reference always sets nomodule: false); a `<script type="module">` with `browserslist: "ie 11, chrome 100"` produced a single classic script. Restore if differential bundling is planned. -->
-
 When transpiling, Parcel may insert imports of helper functions from the [`@swc/helpers`](https://www.npmjs.com/package/@swc/helpers) package (e.g. for classes or async functions when targeting older browsers, or for decorators). If your code needs these helpers, you'll need to install `@swc/helpers` as a dependency of your project.
 
 ```shell
 yarn add @swc/helpers
 ```
 
-By default, Parcel supports all standard JavaScript features, as well as proposals that have shipped in one or more browsers. You can also enable support for future proposals using a `tsconfig.json` file. Currently, the only supported proposal is [decorators](https://github.com/tc39/proposal-decorators), which you may be using through TypeScript.
+By default, Parcel supports all standard JavaScript features, as well as proposals that have shipped in one or more browsers. You can also enable support for future proposals using a `tsconfig.json` or `jsconfig.json` file. Currently, the only supported proposal is [decorators](https://github.com/tc39/proposal-decorators), which you may be using through TypeScript.
 
 {% sample %}
 {% samplefile "tsconfig.json" %}

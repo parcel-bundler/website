@@ -9,9 +9,7 @@ eleventyNavigation:
 
 Macros are JavaScript functions that run at build time. The value returned by a macro is inlined into the bundle in place of the original function call. This allows you to generate constants, code, and even additional assets without any custom plugins.
 
-Macros are imported using an [import attribute](https://github.com/tc39/proposal-import-attributes) to indicate that they should run at build time rather than being bundled into the output. You can import any JavaScript or TypeScript module as a macro, including packages from npm.
-
-<!-- TODO(v3): v2 also allowed importing built-in Node modules directly as macros (e.g. `import {readFileSync} from 'fs' with {type: 'macro'}`). In v3 this fails with "Could not resolve macro 'fs'" because the macro resolver in crates/js/src/transformer/plugin.rs only accepts Resolution::Path. Wrapping the builtin in a local macro module works. -->
+Macros are imported using an [import attribute](https://github.com/tc39/proposal-import-attributes) to indicate that they should run at build time rather than being bundled into the output. You can import any JavaScript or TypeScript module as a macro, including built-in Node modules and packages from npm.
 
 {% warning %}
 
@@ -288,8 +286,6 @@ hello world!
 
 {% endsamplefile %}
 {% endsample %}
-
-<!-- TODO(v3): v2 documented MacroContext methods invalidateOnFileChange, invalidateOnFileCreate, invalidateOnEnvChange, invalidateOnStartup, and invalidateOnBuild. They are still declared in packages-v3/macros/macros.d.ts, but crates/plugin-js/src/macros.rs only implements `addAsset` and `loc` ("// TODO: invalidations"), so calling them throws "not a function". Removed from the docs; reads through the fs builtin are tracked automatically instead. Also note `this.loc` is `{filePath, line, col}` in v3, which doesn't match the `{filePath, start, end}` shape in macros.d.ts. -->
 
 ## Runtime environment
 

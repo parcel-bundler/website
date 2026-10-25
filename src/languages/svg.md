@@ -118,8 +118,6 @@ While other assets referenced from an SVG file will include a [content hash](/fe
 
 Parcel supports external references via the `href` and `xlink:href` attributes on many other elements. See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href) for more details.
 
-<!-- TODO(v3): URL fragments are currently dropped when references are rewritten, which breaks the examples below: `<use href="fox.svg#path">` becomes `<use href="fox-2w6tsaix.svg">` and `fill="url(external.svg#gradient)"` becomes `fill="url(external-otuntiel.svg)"`. Same for HTML (`<a href="other.html#sec">` -> `/other.html`, `<img src="icon.svg#a">`). v2 kept the hash (replaceBundleReferences.js: `hash: orig.hash`). Looks like a bug. -->
-
 ```xml/0,2
 <use href="fox.svg#path" stroke="red" />
 <text>
@@ -332,7 +330,7 @@ export const App = () => <Icon />;
 {% endsamplefile %}
 {% endsample %}
 
-SVG to JSX can be configured in your `.parcelrc`, following the options documented by [SVGR](https://react-svgr.com/docs/options/). The supported options are `icon`, `dimensions`, `expandProps`, `ref`, `memo`, `svgProps`, `replaceAttrValues`, `titleProp`, `descProp`, `svgo`, and `svgoConfig`. The `svgoConfig` option accepts the same options as the [SVG minifier](#minification).
+SVG to JSX can be configured in your `.parcelrc`, following the options documented by [SVGR](https://react-svgr.com/docs/options/). The supported options are `icon`, `dimensions`, `expandProps`, `ref`, `memo`, `svgProps`, `replaceAttrValues`, `titleProp`, `descProp`, `svgo`, and `svgoConfig`. The `svgoConfig` option accepts the same options as the `optimize` object of the [SVG minifier](#minification).
 
 {% sample %}
 {% samplefile ".parcelrc" %}
@@ -359,7 +357,29 @@ SVG to JSX can be configured in your `.parcelrc`, following the options document
 {% endsamplefile %}
 {% endsample %}
 
-<!-- TODO(v3): JsxOptions (crates/html/src/jsx.rs) also has a `template` option, but it takes a JS module string with an `$ICON` placeholder rather than SVGR's template function, so it's left undocumented here. `.svgrrc` and `svgo.config.*` files are not read (the svg-jsx fixtures still contain them from v2). -->
+The `template` option customizes the JavaScript module that is generated for the component. Unlike SVGR's template function, it is a string containing an ES module written in plain JavaScript. The first `$ICON` identifier used as an expression in the template is replaced with the component, which is wrapped in `forwardRef` or `memo` if the `ref` or `memo` options are enabled. The template must export the component itself, and imports within it are resolved relative to the SVG file.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "jsx:*.svg": [
+      {
+        "plugin": "@parcel/transformer-svg-jsx",
+        "config": {
+          "template": "import {wrap} from './wrap.js';\nexport default wrap($ICON);"
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
 
 ## Production
 
@@ -367,7 +387,7 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 ### Minification
 
-In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, pass options to `@parcel/transformer-svg` in your `.parcelrc`.
+In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, set the `optimize` option of `@parcel/transformer-svg` in your `.parcelrc`. Set it to `false` to disable SVG minification, or to an object of options.
 
 Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and the value is either `true` or `false` to enable or disable it, or an object of options for the plugin. Plugins from SVGO's `preset-default` are enabled by default (except `cleanupIds`). Set `"default": false` to disable them, and only run the plugins you list.
 
@@ -382,8 +402,10 @@ Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and th
       {
         "plugin": "@parcel/transformer-svg",
         "config": {
-          "inlineStyles": false,
-          "removeTitle": true
+          "optimize": {
+            "inlineStyles": false,
+            "removeTitle": true
+          }
         }
       }
     ]
@@ -393,5 +415,3 @@ Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and th
 
 {% endsamplefile %}
 {% endsample %}
-
-<!-- TODO(v3): bug: OxvgConfig.default in crates/html/src/oxvg.rs has `deserialize_with` but no `#[serde(default)]`, so any config without an explicit `"default": true` fails to deserialize, and the build exits with code 1 without printing any error (verified with the example above, and with `svgoConfig` in transformer-svg-jsx). The example works once `"default"` is optional. -->

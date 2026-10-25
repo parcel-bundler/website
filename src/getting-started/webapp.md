@@ -128,9 +128,7 @@ In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but
 
 ## Package scripts
 
-So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command.
-
-<!-- TODO(v3): Removed the suggestion to declare entries via package.json `source` with `"start": "parcel"`. `parcel` with no command is an error in v3, and `source` without library fields writes bundles into the package root and ignores browserslist (see TODO in features/targets.md). -->
+So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command. Finally, you can also declare your [entries](/features/targets/#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
 
 {% sample %}
 {% samplefile "package.json" %}
@@ -138,9 +136,10 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
 ```json
 {
   "name": "my-project",
+  "source": "src/index.html",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "parcel serve",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "latest"
@@ -160,13 +159,14 @@ By default Parcel does not perform any code transpilation. This means that if yo
 {% sample %}
 {% samplefile "package.json" %}
 
-```json/2
+```json/3
 {
   "name": "my-project",
+  "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "parcel serve",
+    "build": "parcel build"
   },
   "devDependencies": {
     "parcel": "latest"

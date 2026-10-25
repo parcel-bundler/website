@@ -159,18 +159,17 @@ The following table lists where configuration that was previously read from `pac
 | `package.json#@parcel/transformer-css`      | `@parcel/transformer-css` config in `.parcelrc` (`cssModules`, `pseudoClasses`). See [CSS](/languages/css/).                                |
 | `package.json#@parcel/bundler-default`      | `@parcel/bundler-default` config in `.parcelrc`. See [Code splitting](/features/code-splitting/#configuration).                             |
 | `package.json#@parcel/resolver-default`     | No longer needed. Package `exports` are always enabled.                                                                                     |
-| `svgo.config.json`                          | `@parcel/transformer-svg` config in `.parcelrc`. See [SVG](/languages/svg/#minification).                                                   |
+| `svgo.config.json`                          | `@parcel/transformer-svg` config in `.parcelrc` (`optimize`). See [SVG](/languages/svg/#minification).                                      |
 | `.svgrrc`                                   | `@parcel/transformer-svg-jsx` config in `.parcelrc`. See [SVG](/languages/svg/).                                                            |
 | `.lessrc`, `.sassrc`, `.stylusrc`, `.pugrc` | Plugin config in `.parcelrc`. See [Less](/languages/less/), [Sass](/languages/sass/), [Stylus](/languages/stylus/), [Pug](/languages/pug/). |
 | `sharp.config.json`                         | No longer supported.                                                                                                                        |
-| `.terserrc`, `.htmlnanorc`                  | No longer supported. Minifier options are not configurable.                                                                                 |
+| `.htmlnanorc`                               | `@parcel/transformer-html` config in `.parcelrc` (`optimize`). See [HTML](/languages/html/#minification).                                   |
+| `.terserrc`                                 | No longer supported. JavaScript minifier options are not configurable.                                                                      |
 
 The following package.json options have also changed:
 
 - The `minBundles` and `http` options of `@parcel/bundler-default` have been removed. The default `minBundleSize` is now `30000`, and it only applies to JavaScript bundles. The new `firstPageLoadPriority`, `dependencyChangeRate`, and `compression` options let you tune how Parcel optimizes shared bundles. See [Code splitting](/features/code-splitting/#configuration) for details.
 - `manualSharedBundles` no longer supports the `name`, `root`, and `split` options. <!-- TODO(v3): these options are silently ignored rather than rejected. Confirm this is intentional. -->
-
-`.parcelrc` files are now parsed as JSON rather than JSON5, so comments and trailing commas are no longer allowed. <!-- TODO(v3): confirm dropping JSON5 for .parcelrc is intentional (v3 uses serde_json). -->
 
 ### Plugins
 
@@ -280,15 +279,15 @@ The following target options have been removed:
 
 - `scopeHoist` – scope hoisting has been removed. See [Scope hoisting](#scope-hoisting) below.
 - `isLibrary` – library targets are now determined by the `exports` field.
-- `optimize` and `sourceMap` – use the `--no-optimize` and `--no-source-maps` CLI flags instead.
-- `distDir` and `publicUrl` – use the `--dist-dir` and `--public-url` CLI flags instead.
-- `source` – pass entries to the CLI instead. <!-- TODO(v3): confirm `targets.*.source` and `targets.*.distDir` are removed on purpose (there are TODOs in crates/core/src/entry.rs). Without them, an app can't build entries with different contexts (e.g. a client and a server) in one build. -->
+- `sourceMap` – use the `--no-source-maps` CLI flag instead.
+- `publicUrl` – use the `--public-url` CLI flag instead.
+- `source` – pass entries to the CLI, or use the top-level `source` field in `package.json` instead.
 
 Top-level `package.json` fields named after custom targets (e.g. `"modern": "dist/modern.js"`) are also no longer supported.
 
 In development, Parcel now builds for your configured browserslist rather than for the latest browsers.
 
-<!-- TODO(v3): differential bundling (`<script nomodule>` fallbacks) is not generated in v3; module scripts are compiled to classic `<script defer>` scripts when browserslist includes browsers without ES module support. If this is intentional, document it here. -->
+Differential bundling has been removed: Parcel no longer generates `<script nomodule>` fallbacks. When a `<script type="module">` is used and some of your browser targets don't support ES modules, Parcel compiles it to a classic `<script defer>` instead, which loads in both modern and older browsers. All modern browsers have supported ESM for many years, so this should be rare.
 
 ## Code changes
 
@@ -320,8 +319,6 @@ Macros now run inside Parcel's embedded JavaScript runtime rather than in Node.j
 ### Scope hoisting
 
 Parcel 3 no longer concatenates modules into a single scope ("scope hoisting"). Tree shaking is still supported, and unused exports are removed from your production builds. The `--no-scope-hoist` CLI flag has been removed. See [Tree shaking](/features/tree-shaking/) for details on how to make sure your code can be tree shaken.
-
-<!-- TODO(v3): tree shaking of namespace imports (`import * as ns` + `ns.foo`) and static member access on dynamic imports no longer removes unused exports. Confirm whether this is a gap to fix or intentional, and mention it here if it will remain. -->
 
 ## CLI
 
@@ -374,12 +371,12 @@ Parcel 3 supports plugins written in JavaScript or TypeScript, as well as [nativ
 - **Plugin types** – Only transformer, resolver, namer, optimizer, and reporter plugins are supported. Packager and runtime plugins are no longer separate plugin types; packaging is now handled by Parcel itself. Custom bundler, validator, and compressor plugins are not yet supported.
 - **Runtime** – JavaScript plugins run in an embedded JavaScript runtime rather than in Node.js. Most commonly used Node builtin modules are emulated, but some APIs such as timers, networking, and child processes are not available. See [JavaScript runtime](/plugin-system/authoring-plugins/#javascript-runtime) for details. TypeScript plugins can be loaded directly without compiling them first.
 - **Configuration** – The `loadConfig` method and `Config` object have been removed. Plugins receive their configuration from the `.parcelrc` via the `config` option. Files read with the `fs` module are tracked automatically, and Parcel rebuilds when they change. See [Configuration](/plugin-system/authoring-plugins/#configuration).
-- **Logging and diagnostics** – The `logger` option has been replaced by `console` methods, and `ThrowableDiagnostic` has been replaced by throwing an `Error`. See [Diagnostics](/plugin-system/logging/).
+- **Logging and diagnostics** – The `logger` option has been replaced by `console` methods, and `ThrowableDiagnostic` from `@parcel/diagnostic` has been replaced by the `Diagnostic` class exported by `@parcel/plugin`, which can be thrown or passed to `console` methods. See [Diagnostics](/plugin-system/logging/).
 - **Source maps** – The `@parcel/source-map` library has been replaced by plain source map JSON objects. See [Source Maps](/plugin-system/source-maps/).
 - **Transformers** – Asset methods like `getCode()` and `getMap()` are now synchronous, and source maps are set with `setCode(code, map)`. The `canReuseAST`, `parse`, `generate`, and `postProcess` methods have been removed, and transformers can no longer return multiple assets.
 - **Resolvers** – `resolveFrom` is now a `file:` URL, and resolvers receive the named `pipeline` of the dependency.
 - **Optimizers** – `contents` and `map` are now `Uint8Array` objects.
 - **Reporters** – The `report` method has been replaced by separate `buildStart`, `buildSuccess`, `buildFailure`, and `log` methods.
-- **Engines** – Update the `engines.parcel` field in your plugin's `package.json` to `^3.0.0`.
+- **Engines** – Update the `engines.parcel` field in your plugin's `package.json` to `^3.0.0-0`, so that prerelease versions of Parcel 3 match.
 
 See the [Plugin System](/plugin-system/overview/) docs for full details.

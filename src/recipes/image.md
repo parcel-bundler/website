@@ -37,9 +37,7 @@ AVIF is also supported as an output format, but not as an input:
 
 - `avif` – [AVIF](https://jakearchibald.com/2020/avif-has-landed/) is a new lossy image format based on the AV1 video codec which offers significant compression and quality improvements over JPEG and WebP. It's currently [supported](https://caniuse.com/avif) in the latest versions of Chrome and Firefox.
 
-The following formats are also supported as inputs, but are not generally supported by browsers: `tiff`, `bmp`, and `ico`.
-
-<!-- TODO(v3): `?as=ico` is still accepted by crates/image/src/lib.rs but its encoder was removed in 1cd78f47d, so it fails with "unsupported image format ico". Also AVIF inputs fail to decode ("The image format Avif is not supported"), since the image crate's `avif` feature only encodes. Documented AVIF as output-only and left ico out. -->
+The following formats are also supported as inputs, but are not generally supported by browsers: `tiff` and `bmp`. These must be converted to another format using the `as` query parameter.
 
 For more guidance on choosing the right image formats, see the guide on [web.dev](https://web.dev/choose-the-right-image-format/).
 

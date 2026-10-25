@@ -111,7 +111,7 @@ When a dependency specifier references a builtin Node.js module, e.g. `path` or 
 
 When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](/features/node-emulation/#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
 
-<!-- TODO(v3): v2 treated `electron` as a builtin (excluded from the bundle) in Electron environments. The v3 resolver has no such special case: `require("electron")` with engines.electron fails with "Cannot find module 'electron'" unless it is installed, and gets bundled if it is. The sentence documenting this was removed. -->
+When building for an Electron environment, the `electron` module is also considered a builtin and excluded from the bundle.
 
 ### Absolute specifiers
 
@@ -289,7 +289,6 @@ When resolving a package directory, the `package.json` file is consulted to dete
 - `source` – If the module is behind a symlink (e.g. in a monorepo, or via `npm link`), then Parcel uses the `source` field to compile the module from source. The `source` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `exports` – [Package exports](#package-exports), see below for details.
 - `browser` – A browser-specific version of a package. If building for a [browser environment](/features/targets/#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
-  <!-- TODO(v3): v2 only used the browser field (entry and alias maps) for browser environments. The v3 resolver (crates/parcel/src/resolver.rs uses Resolver::parcel, whose entries always include Fields::BROWSER) applies it in every environment: a package with "main" and "browser" resolves to the browser file even with engines.node. Likely a bug. -->
 - `module` – An ES module version of the package.
 - `main` – A CommonJS version of the package.
 

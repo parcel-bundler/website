@@ -123,8 +123,6 @@ Now Parcel will output `dist/main.cjs` as a CommonJS module, and `dist/module.mj
 
 The file extension indicates what type of module to output. The `.mjs` extension will produce an ES module, and the `.cjs` extension will produce a CommonJS module. Files with a `.js` extension produce a CommonJS module by default, or an ES module if the `"type": "module"` field is set in package.json. See the [Node.js docs](https://nodejs.org/api/packages.html#determining-module-system) for more details.
 
-<!-- TODO(v3): The `import` condition does not by itself produce ES module output, which is why this example relies on the .mjs extension. See TODO in features/targets.md. -->
-
 ## Multiple entries
 
 If your library has multiple entry points, each [subpath export](https://nodejs.org/api/packages.html#subpath-exports) can have its own `source` field.
@@ -179,8 +177,6 @@ Parcel also supports building libraries written in TypeScript. The `source` fiel
 
 {% endsamplefile %}
 {% endsample %}
-
-<!-- TODO(v3): .d.ts generation removed from this page (not implemented yet). Note that a `types` condition in `exports` (or a top-level `types` field) is currently compiled as a normal JS target, writing JavaScript into the .d.ts file, unless `"targets": {"types": false}` is set. -->
 
 ## Dependencies and tree shaking
 

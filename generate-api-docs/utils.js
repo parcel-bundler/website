@@ -1,44 +1,7 @@
-// @flow strict-local
-const invariant = require("assert");
-const t = require("@babel/types");
-const nullthrows = require("nullthrows");
 const marked = require("marked");
 
-/*::
-export type JSDocParam = {|
-  type: "param",
-  name: string,
-  description: string,
-|};
-export type JSDocMethod = {|
-  type: "method",
-  name: string,
-  description: string,
-  params: Array<JSDocParam>,
-  returns: ?string,
-  experimental: boolean,
-|};
-export type JSDocProperty = {|
-  type: "property",
-  name: string,
-  description: string,
-  default?: ?string,
-  experimental: boolean,
-|};
-
-export type JSDoc = JSDocMethod | JSDocParam | JSDocProperty;
-
-export type JSDocType = {|
-  description: string,
-  properties: Array<JSDoc>,
-  excludedProperties: Set<string>,
-  section: ?string,
-|};
-*/
-
-module.exports.MapMap = class MapMap /*::<T> */
-  extends Map /*:: <string, Map<string, T>> */ {
-  append(key1 /*: string */, key2 /*: string */, value /*: T*/) {
+module.exports.MapMap = class MapMap extends Map {
+  append(key1, key2, value) {
     let otherMap = this.get(key1);
     if (!otherMap) {
       otherMap = new Map();
@@ -48,153 +11,123 @@ module.exports.MapMap = class MapMap /*::<T> */
   }
 };
 
-module.exports.SetMap = class SetMap /*::<T> */
-  extends Map /*:: <string, Set<T>> */ {
-  add(key1 /*: string */, value /*: T*/) {
-    let set /*: ?Set<T>*/ = this.get(key1);
+module.exports.SetMap = class SetMap extends Map {
+  add(key1, value) {
+    let set = this.get(key1);
     if (!set) {
-      set = (new Set() /*: Set<T>*/);
+      set = new Set();
       super.set(key1, set);
     }
     set.add(value);
   }
 };
 
-function extractJSDocComment(node /*: any */) /*: ?string*/ {
-  return (
-    node.leadingComments &&
-    node.leadingComments[0] &&
-    node.leadingComments[0].value.startsWith("*") &&
-    node.leadingComments[0].value.replace(/(?:\\\n)?^\s*\* ?/gm, "").trim()
-  );
+// Returns the text of the JSDoc comment (`/** ... */`) directly preceding a
+// node, without the leading `*`s. Line comments and non-JSDoc block comments
+// (e.g. a file header) are ignored.
+function extractJSDocComment(node) {
+  let comments = node && node.leadingComments;
+  if (!comments || comments.length === 0) return null;
+  let comment = comments[comments.length - 1];
+  if (comment.type !== "CommentBlock" || !comment.value.startsWith("*")) {
+    return null;
+  }
+  return comment.value
+    .replace(/^\*/, "")
+    .replace(/(?:\\\n)?^\s*\* ?/gm, "")
+    .trim();
 }
 module.exports.extractJSDocComment = extractJSDocComment;
 
-function parseJsDocComment(contents) /*: ?JSDocType */ {
-  let result = {
-    description: "",
-    properties: [],
-    section: "",
-    excludedProperties: new Set(),
-  };
-  let lines = contents.split("\n");
-  for (let line of lines) {
-    if (line.startsWith("@")) {
-      if (line.startsWith("@section ")) {
-        result.section = line.slice(9).trim();
-        continue;
-      }
+// Tags whose presence hides the documented item.
+const HIDDEN_TAGS = new Set(["private", "internal", "hidden", "ignore"]);
+// Tags that are accepted but not rendered.
+const IGNORED_TAGS = new Set(["see", "example", "template", "type", "typedef"]);
 
-      let m = nullthrows(line.match(/@(\w+)\s*(\w*)\s*(.*)/));
-      let [, type, name, description] = m;
-      switch (type) {
-        // case "method":
-        //   result.properties.push({
-        //     type: "method",
-        //     name,
-        //     description,
-        //     params: [],
-        //     returns: null,
-        //   });
-        //   break;
-        case "returns":
-        case "property":
-        case "param":
-        case "default":
-        case "experimental":
-          result.properties.push(
-            // $FlowFixMe
-            {
-              type,
-              name,
-              description,
-            }
-          );
-          break;
-        case "private":
-          return null;
-        default:
-          invariant(false, "Unknown JSDoc directive: " + line);
-      }
+function emptyJsDoc() {
+  return {
+    description: "",
+    // Array<{type: "param" | "property" | "default" | "returns", name, description}>
+    tags: [],
+    section: null,
+    experimental: false,
+    deprecated: null,
+  };
+}
+module.exports.emptyJsDoc = emptyJsDoc;
+
+// Parses the text of a JSDoc comment. Returns null if the item is hidden
+// (`@private` and friends).
+function parseJsDocComment(contents) {
+  let description = "";
+  let rawTags = [];
+  let current = null;
+  for (let line of contents.split("\n")) {
+    let m = line.match(/^@(\w+)\b\s*(.*)$/);
+    if (m) {
+      current = { tag: m[1], text: m[2] };
+      rawTags.push(current);
+    } else if (current) {
+      // Continuation of a multi-line tag.
+      current.text += "\n" + line;
     } else {
-      if (line) {
-        result.description += line + "\n";
-      } else {
-        result.description += `<br>`;
-      }
+      description += line + "\n";
     }
   }
-  result.description = marked(result.description);
+
+  let result = emptyJsDoc();
+  result.description = marked(description.trim());
+
+  for (let { tag, text } of rawTags) {
+    text = text.trim();
+    if (HIDDEN_TAGS.has(tag)) return null;
+    switch (tag) {
+      case "section":
+        result.section = text;
+        break;
+      case "experimental":
+        result.experimental = true;
+        break;
+      case "deprecated":
+        result.deprecated = text ? marked.parseInline(text) : "";
+        break;
+      case "default":
+        result.tags.push({ type: "default", name: "", description: text });
+        break;
+      case "returns":
+      case "return":
+        result.tags.push({
+          type: "returns",
+          name: "",
+          description: marked.parseInline(text),
+        });
+        break;
+      case "param":
+      case "property":
+      case "prop": {
+        // `@param name desc`, `@param {Type} name desc`, `@param [name] desc`.
+        let pm = text.match(
+          /^(?:\{[^}]*\}\s*)?\[?([\w.$]+)[^\s\]]*\]?\s*(?:-\s*)?([\s\S]*)$/
+        );
+        result.tags.push({
+          type: tag === "param" ? "param" : "property",
+          name: pm ? pm[1] : text,
+          description: marked.parseInline(pm ? pm[2] : ""),
+        });
+        break;
+      }
+      default:
+        if (!IGNORED_TAGS.has(tag)) {
+          console.warn(`warning: ignoring unknown JSDoc tag @${tag}`);
+        }
+    }
+  }
+
   return result;
 }
+module.exports.parseJsDocComment = parseJsDocComment;
 
-module.exports.parseJsDoc = function parseJsDoc(
-  declaration /*: any*/
-) /*: ?JSDocType */ {
-  let contents = extractJSDocComment(declaration);
-
-  let result /*: ?JSDocType */ = contents
-    ? parseJsDocComment(contents)
-    : {
-        description: "",
-        properties: [],
-        section: "",
-        excludedProperties: new Set(),
-      };
-
-  if (!result) return;
-
-  let body = declaration.body || declaration.right;
-  if (t.isObjectTypeAnnotation(body)) {
-    for (let prop of body.properties) {
-      let nodeComment = extractJSDocComment(prop);
-      if (!nodeComment) continue;
-
-      t.assertIdentifier(prop.key);
-      let name = prop.key.name;
-      let parsed = parseJsDocComment(nodeComment);
-      if (!parsed) {
-        result.excludedProperties.add(name);
-      } else {
-        let { description, properties } = parsed;
-        let experimental =
-          properties.find((v) => v.type === "experimental") != null;
-        if (t.isFunctionTypeAnnotation(prop.value)) {
-          result.properties.push({
-            type: "method",
-            name,
-            description,
-            params: properties
-              .filter((v) => v.type === "param")
-              .map((v) => {
-                invariant(v.type === "param", v.type);
-                return v;
-              }),
-            // $FlowFixMe
-            returns: properties.find((v) => v.type === "returns"),
-            experimental,
-          });
-        } else {
-          let defaultValue = properties.find((v) => v.type === "default")
-            ?.description;
-          result.properties.push({
-            type: "property",
-            name,
-            description,
-            default: defaultValue,
-            experimental,
-          });
-        }
-      }
-    }
-  }
-
-  return result;
-};
-
-module.exports.escapeHtml = function escapeHtml(
-  str /*: string */
-) /*: string*/ {
+module.exports.escapeHtml = function escapeHtml(str) {
   const tagsToReplace = {
     "&": "&amp;",
     "<": "&lt;",
@@ -205,10 +138,7 @@ module.exports.escapeHtml = function escapeHtml(
   });
 };
 
-module.exports.indent = function indent(
-  str /*: string*/,
-  spaces /*: number*/ = 2
-) /*: string*/ {
+module.exports.indent = function indent(str, spaces = 2) {
   let indentation = " ".repeat(spaces);
   return str
     .trim()

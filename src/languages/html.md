@@ -81,8 +81,6 @@ The `type="module"` attribute should be used to indicate that a file is an [ES m
 
 When a `<script type="module">` is used and some of your browser targets do not support ES modules, Parcel compiles it to a classic script with the `defer` attribute instead.
 
-<!-- TODO(v3): v2 generated a `<script nomodule>` copy here (differential bundling). crates/html/src/dependencies.rs still has that code path, but it only runs when the output format is ESM and targets lack ESM support, which requires EnvironmentFlags::SHOULD_SCOPE_HOIST, which is never set in v3. Verified: with browserslist "ie 11, chrome 100" the output is a single `<script src defer>` with no nomodule copy. Intentional? -->
-
 Parcel also supports the `async` and `defer` attributes of the `<script>` element. When a script is `async`, it may load in an arbitrary order at runtime. Therefore, Parcel treats async scripts as "isolated”. This means that async scripts cannot share any dependencies with other scripts on the page, which may result in duplication of modules. For this reason, it's better to avoid `async` scripts except in specific circumstances.
 
 The `defer` attribute has a similar effect as `async` (non render-blocking), but guarentees that scripts are executed in the order they are defined in the HTML file. When using `<script type="module">`, `defer` is automatically enabled and does not need to be declared.
@@ -184,9 +182,7 @@ The `<link rel="manifest">` element is supported to reference a [Web manifest](h
 
 ## Inline scripts and styles
 
-`<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, Parcel compiles inline scripts to a non-module script and will not output a `<script type="module">`.
-
-<!-- TODO(v3): in v2, inline module scripts stayed `type="module"` when scope hoisting was enabled and all targets supported ESM. In v3 (dependencies.rs) that still requires target.should_scope_hoist(), which is never true, so inline module scripts are always compiled to a classic script containing the full parcelRequire runtime (~2KB minified even for a one-line import), which is the opposite of "keep the generated HTML small". Intentional? -->
+`<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, if some of your browser targets don't support ES modules natively, Parcel will compile inline scripts to a non-module script and will not output a `<script type="module">`.
 
 {% sample %}
 {% samplefile "index.html" %}
@@ -465,4 +461,58 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. Parcel uses its builtin HTML minifier, which also minifies inline SVG and JSON.
 
-<!-- TODO(v3): the v2 docs described configuring the minifier via .htmlnanorc / htmlnano.config.js and switching back to @parcel/optimizer-htmlnano. v3 reads no config: HtmlContent::package in crates/html/src/lib.rs passes `config: Default::default(), // TODO` to optimize_html, although optimize::OptimizeOptions has htmlnano-style options (collapseWhitespace, removeComments, minifySvg, minifyJson, ...). Document the config source once it is wired up. -->
+To configure it, set the `optimize` option of `@parcel/transformer-html` in your `.parcelrc`. Set it to `false` to disable HTML minification, or to an object of options.
+
+For example to retain HTML comments
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "optimize": {
+            "removeComments": false
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+or to not minify SVG elements.
+
+{% sample %}
+{% samplefile ".parcelrc" %}
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "optimize": {
+            "minifySvg": false
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+The following options are supported, and are all enabled by default: `collapseAttributeWhitespace`, `collapseWhitespace`, `deduplicateAttributeValues`, `removeComments`, `removeEmptyAttributes`, `minifyJson`, `removeRedundantAttributes`, `collapseBooleanAttributes`, `normalizeAttributeValues`, and `sortAttributesWithLists`. The `minifySvg` option can also be set to an object of options for the [SVG minifier](/languages/svg/#minification).
