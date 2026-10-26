@@ -182,7 +182,15 @@ Libraries are built using the `exports` field in package.json. Add a `source` fi
 }
 ```
 
-Each output file in `exports` becomes a separate target. The environment for each target is inferred from the [conditions](https://nodejs.org/api/packages.html#conditional-exports) it is nested in. For example, outputs within a `node` condition are compiled for Node.js, and outputs within a `browser` condition are compiled for browsers. The `worker`, `worklet`, `electron`, and `react-server` conditions are also supported. If no environment condition is present, outputs are compiled for Node.js if `engines.node` is specified in package.json, and for browsers otherwise. This can be overridden using the `context` option in the target config (see below).
+Rather than combining all of your code into a single file, library targets output a separate file for each module, preserving the structure of your source code. This lets tools that consume your library tree shake unused modules.
+
+Library targets do not bundle packages listed in `dependencies` or `peerDependencies`. Packages listed in `devDependencies` are bundled into your library. This can be overridden using the [`includeNodeModules`](#includenodemodules) option in the `targets` field.
+
+In addition, library outputs are not minified by default, except for outputs nested in a `production` condition. This can be overridden using the [`optimize`](#optimize) option.
+
+### Exports conditions
+
+Each output file in `exports` becomes a separate target. The environment for each target is inferred from the [conditions](https://nodejs.org/api/packages.html#conditional-exports) it is nested in. For example, outputs within a `node` condition are compiled for Node.js, and outputs within a `browser` condition are compiled for browsers. The `worker`, `worklet`, `electron`, and `react-server` conditions are also supported. If no environment condition is present, outputs are compiled for Node.js if `engines.node` is specified in package.json, and for browsers otherwise. This can be overridden using the `context` option in the target config ([see below](#target-options)).
 
 ```json
 {
@@ -202,6 +210,48 @@ Library targets automatically output either native ES modules or CommonJS depend
 
 The `import` condition in `exports` does not change the output format. Just like in Node.js, it only means that the file is loaded via `import`, which can also import CommonJS. Use the `.mjs` extension or `"type": "module"` to output an ES module.
 
+### Nested conditions
+
+Conditions can also be nested. Each output is built for all of the conditions it is nested within. In the example below, `./dist/node.mjs` is compiled for Node.js and output as an ES module, and `./dist/browser.min.mjs` is compiled for browsers and minified because it is nested in the `production` condition.
+
+The `source` field applies to all of the outputs nested alongside it. Place it at the top level of `exports` to share a single source file between all conditions, or within a condition to use a different source file for the outputs inside it. A nested `source` overrides one further out. Here, the `node` outputs are built from `src/index.js`, and the `browser` outputs are built from `src/browser.js`.
+
+```json
+{
+  "exports": {
+    "source": "./src/index.js",
+    "node": {
+      "import": "./dist/node.mjs",
+      "require": "./dist/node.cjs"
+    },
+    "browser": {
+      "source": "./src/browser.js",
+      "production": "./dist/browser.min.mjs",
+      "default": "./dist/browser.mjs"
+    }
+  }
+}
+```
+
+Options in the `targets` field are merged the same way. The options for a condition apply to every output nested within it, and the options for a more deeply nested condition override those of the conditions around it. In this example, both browser outputs are compiled for the browsers listed in the `browser` condition, and only the `production` output bundles its dependencies.
+
+```json
+{
+  "targets": {
+    "browser": {
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      }
+    },
+    "production": {
+      "includeNodeModules": true
+    }
+  }
+}
+```
+
+### Sub-path exports
+
 Packages with multiple entry points can specify a `source` for each subpath export. Subpath patterns containing `*` are also supported, in which case a target is created for each matching source file.
 
 ```json
@@ -219,9 +269,19 @@ Packages with multiple entry points can specify a `source` for each subpath expo
 }
 ```
 
-The `source` field may also be used together with the `main`, `module`, and `browser` fields in package.json. In this case, `source` must be a single file, and the `module` field always outputs an ES module.
+### Legacy modules
 
-Rather than combining all of your code into a single file, library targets output a separate file for each module, preserving the structure of your source code. This lets tools that consume your library tree shake unused modules. Library targets do not bundle packages listed in `dependencies` or `peerDependencies`. Packages listed in `devDependencies` are bundled into your library. This can be overridden using the [`includeNodeModules`](#includenodemodules) option in the `targets` field. In addition, library outputs are not minified by default, except for outputs nested in a `production` condition. This can be overridden using the [`optimize`](#optimize) option.
+The `source` field may also be used together with the `main`, `module`, and `browser` fields at the top-level of your package.json. In this case, `source` must be a single file, and the `module` field always outputs an ES module.
+
+```json
+{
+  "source": "./src/index.js",
+  "main": "./dist/main.js",
+  "module": "./dist/module.js"
+}
+```
+
+### Ignoring targets
 
 To make Parcel ignore one of the conditions in `exports`, e.g. one that points to files generated by another tool, specify `false` in the `targets` field.
 
