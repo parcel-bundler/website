@@ -25,11 +25,8 @@ Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. The f
 - `vanilla` – a Vanilla JS + HTML app (shown above)
 - `react-client` – a TypeScript + React client only app. See [Parcel's React docs](/recipes/react/).
 - `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](/recipes/rsc/).
-- `react-static` – a TypeScript + React static site generator. See [Parcel's React Server Components docs](/recipes/rsc/).
 
 See below for a deep dive.
-
-<!-- TODO(v3): create-parcel only exists as the v2 package (packages/utils/create-parcel); its templates depend on `parcel@^2` and use `"source"` + `"start": "parcel"`, which fails in v3 (a command is required). Update the templates or remove this section. -->
 
 ## Installation
 

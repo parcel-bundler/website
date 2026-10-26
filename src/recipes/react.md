@@ -13,8 +13,6 @@ Parcel works great for building single or multi-page React applications. It incl
 
 To quickly scaffold a new client-only React app with Parcel, run the following commands:
 
-<!-- TODO(v3): the create-parcel templates (packages/utils/create-parcel in the v2 repo) still scaffold a Parcel 2 project (`"start": "parcel"`, v2 package versions). They need updating for v3 before this quick start works. -->
-
 ```bash
 npm create parcel react-client my-react-app
 cd my-react-app

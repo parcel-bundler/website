@@ -461,7 +461,7 @@ In your root package.json, you can define a dependency on the `parcel-transforme
 {
   "name": "my-project",
   "dependencies": {
-    "parcel": "^3.0.0",
+    "parcel": "^3.0.0-0",
     "parcel-transformer-foo": "link:./parcel-transformer-foo"
   }
 }

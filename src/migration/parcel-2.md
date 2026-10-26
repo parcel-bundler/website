@@ -34,7 +34,7 @@ Update the `parcel` dependency in your `package.json` to the latest version.
 ```json/2
 {
   "devDependencies": {
-    "parcel": "^3.0.0"
+    "parcel": "^3.0.0-0"
   }
 }
 ```
@@ -46,6 +46,7 @@ You should also remove any `@parcel/*` plugin packages from Parcel 2 that are no
 
 If you'd like to try Parcel 3 before switching over entirely, it is also published as `@parcel/parcel3`. This package installs a `parcel3` command instead of `parcel`, so it can be installed alongside Parcel 2 in the same project. Use `parcel3` in place of `parcel` when running the commands on this page, and pass a different `--dist-dir` so the two versions don't overwrite each other's output.
 
+{% sample %}
 {% samplefile "package.json" %}
 
 ```json/3,7
@@ -56,12 +57,13 @@ If you'd like to try Parcel 3 before switching over entirely, it is also publish
   },
   "devDependencies": {
     "parcel": "^2.0.0",
-    "@parcel/parcel3": "^3.0.0"
+    "@parcel/parcel3": "^3.0.0-0"
   }
 }
 ```
 
 {% endsamplefile %}
+{% endsample %}
 
 ### Commands
 
@@ -375,11 +377,10 @@ The following CLI options have been removed:
 | `--watch-dir`, `--watch-for-stdin` | None.                                                       |
 | `--hmr-host`                       | Use `--host`.                                               |
 | `--no-cors`                        | The dev server no longer adds CORS headers to served files. |
-| `-V`, `--version`                  | None.                                                       |
 
 In addition, `--hmr-port` is now only supported by `parcel run`, and `--config` must be a path to a file rather than a package name. See the [CLI](/features/cli/) docs for a full list of options, including new ones such as `--open`, `--analyze`, and `--detailed-report`.
 
-<!-- TODO(v3): confirm the following are intentional: `parcel watch` no longer starts an HMR server; the dev server no longer sends CORS headers; there is no version flag. -->
+<!-- TODO(v3): confirm the following are intentional: `parcel watch` no longer starts an HMR server; the dev server no longer sends CORS headers. -->
 
 ## Development
 

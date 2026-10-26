@@ -389,8 +389,6 @@ When using server rendering, the entry point for your Parcel build is the source
 
 To scaffold a new server-rendered app with React Server Components and Parcel, run the following commands:
 
-<!-- TODO(v3): the create-parcel react-server template still scaffolds a Parcel 2 project (`targets` with `source`, `"start": "parcel"`). It needs updating for v3. -->
-
 ```bash
 npm create parcel react-server my-rsc-app
 cd my-rsc-app

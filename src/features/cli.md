@@ -125,6 +125,7 @@ These parameters are supported by all Parcel commands.
 | `--config <path>`                            | Specify which Parcel config file to use. <br> Defaults to the `.parcelrc` in the project root, or `@parcel/config-default`. See [Parcel configuration](/features/plugins/). |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                         |
 | `-h, --help`                                 | Outputs help for the command.                                                                                                                                               |
+| `-V, --version`                              | Outputs the version number.                                                                                                                                                 |
 
 ### Parameters specific to `serve` and `run`
 
