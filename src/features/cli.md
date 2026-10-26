@@ -47,6 +47,8 @@ The entry must be built for a Node.js environment, e.g. by specifying `engines.n
 parcel run src/server.js
 ```
 
+The process inherits the environment variables from your shell, and `NODE_ENV` is set to the same value used for the build (`development` unless you set it yourself). Variables loaded from `.env` files are inlined into the build, but are not passed to the process.
+
 The HMR server used by `run` listens on a free port by default, so that it does not conflict with your own server. Use `--hmr-port` to choose a specific port.
 
 ## `parcel build <entries>`

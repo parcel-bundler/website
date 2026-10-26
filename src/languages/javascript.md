@@ -241,7 +241,13 @@ Paint worklets are detected automatically using the following syntax:
 CSS.paintWorklet.addModule(new URL("worklet.js", import.meta.url));
 ```
 
-<!-- TODO(v3): Removed the `worklet:` scheme for web audio worklets (`import workletUrl from 'worklet:./worklet.js'`). v3 has no `worklet:` pipeline in default-config.json and fails with "Unknown url scheme or pipeline 'worklet:'". Only `CSS.paintWorklet.addModule(new URL(...))` is detected (dependency_collector.rs). -->
+Web audio worklets are not statically analyzable, so for these you can import a URL to the worklet file using the `url` [import attribute](#import-attributes). The `env: 'worklet'` attribute compiles it for the correct environment.
+
+```javascript
+import workletUrl from './worklet.js' with {type: 'url', env: 'worklet'};
+
+context.audioWorklet.addModule(workletUrl);
+```
 
 Worklets are always modules – there are no classic script worklets. This means the `type: 'module'` option is not required for worklets, and `importScripts` is not supported.
 

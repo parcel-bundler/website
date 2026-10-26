@@ -198,7 +198,6 @@ There are a few reserved URL schemes that may not be used for named pipelines, a
 - `http:` and `https:` – a fully qualified URL dependency. These are resolved at runtime, and left untouched by Parcel.
 - `data:` – A [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) including the dependency source code inline. Currently not implemented by Parcel, but reserved for future use.
 - `file:` – A [file URL](https://datatracker.ietf.org/doc/html/rfc8089). Reserved for future use.
-  <!-- TODO(v3): the v3 resolver parses file: URLs (specifier.rs) into an absolute path, but then resolves it like an absolute specifier, i.e. relative to the project root, so `file:///abs/path/x.gif` fails with "Cannot load file 'abs/path/x.gif'". Either finish support (and document it) or keep it reserved. -->
 - `jsr:`, `cloudflare:`, and `workerd:` – Runtime-specific builtin modules (e.g. in Deno or Cloudflare Workers). These are treated like [builtin Node modules](#builtin-modules).
 - `mailto:` and `tel:` - Commonly used URL schemes. These are left untouched by Parcel.
 
@@ -219,7 +218,7 @@ Parcel supports importing multiple files at once via globs, however, since glob 
 {% endsamplefile %}
 {% endsample %}
 
-Once enabled, you can import multiple files using a specifier like `./files/*.js`. This returns an object with keys corresponding to the files names.
+Once enabled, you can import multiple files using a specifier like `./files/*.js`. This returns an object with keys corresponding to the files names. Glob specifiers can be relative, [absolute](#absolute-specifiers), or [tilde](#tilde-specifiers) paths, which are resolved in the same way as other specifiers.
 
 ```javascript
 import files from "./files/*.js";
@@ -264,8 +263,6 @@ async function doSomething() {
   return foo.default + bar.default;
 }
 ```
-
-<!-- TODO(v3): v2 documented glob imports from npm packages (e.g. `@company/pkg/i18n/*.js`). The v3 glob resolver only globs relative to the importing file, so such an import silently produces an empty object `{}`. Section removed. Also, v2 created lazy per-file functions for `import('./files/*.js')`; in v3 that just lazy-loads the whole glob module, and `?async=true` is used instead. -->
 
 Glob imports also work with CSS:
 

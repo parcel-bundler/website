@@ -130,7 +130,7 @@ Inlining of [environment variables](#environment-variables) and [`readFileSync` 
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.{js,mjs,jsm,jsx,es6,ts,tsx,mdx}": [
+    "*.{js,mjs,cjs,jsm,jsx,es6,ts,mts,cts,tsx,mdx}": [
       {
         "plugin": "@parcel/transformer-js",
         "config": {
@@ -152,7 +152,7 @@ Inlining of [environment variables](#environment-variables) and [`readFileSync` 
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "*.{js,mjs,jsm,jsx,es6,ts,tsx,mdx}": [
+    "*.{js,mjs,cjs,jsm,jsx,es6,ts,mts,cts,tsx,mdx}": [
       {
         "plugin": "@parcel/transformer-js",
         "config": {

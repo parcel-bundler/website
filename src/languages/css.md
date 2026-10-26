@@ -139,7 +139,7 @@ This also works with other unused CSS rules such as `@keyframes` and `@counter-s
 
 {% warning %}
 
-**Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
+**Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import, or a `require` call. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import or `require`, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
 
 ```javascript
 import styles from "./styles.module.css";

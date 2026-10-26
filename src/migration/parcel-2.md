@@ -15,8 +15,6 @@ Let's walk through a couple basic steps to upgrade from Parcel 2 to Parcel 3.
 
 ### Package name
 
-<!-- TODO(v3): the v3 CLI is currently published to npm as `@parcel/parcel3` with a `parcel3` binary (.github/scripts/parcel3/pack-main.mjs). Update this section (and the `parcel` package/command used throughout the docs) once the published name for the alpha is final. -->
-
 Update the `parcel` dependency in your `package.json` to the latest version.
 
 {% migration %}
@@ -46,14 +44,33 @@ Update the `parcel` dependency in your `package.json` to the latest version.
 
 You should also remove any `@parcel/*` plugin packages from Parcel 2 that are now built into Parcel, or that are no longer supported. See [Plugins](#plugins) below for details.
 
+If you'd like to try Parcel 3 before switching over entirely, it is also published as `@parcel/parcel3`. This package installs a `parcel3` command instead of `parcel`, so it can be installed alongside Parcel 2 in the same project. Use `parcel3` in place of `parcel` when running the commands on this page, and pass a different `--dist-dir` so the two versions don't overwrite each other's output.
+
+{% samplefile "package.json" %}
+
+```json/3,7
+{
+  "scripts": {
+    "build": "parcel build src/index.html",
+    "build:v3": "parcel3 build src/index.html --dist-dir dist-v3"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0",
+    "@parcel/parcel3": "^3.0.0"
+  }
+}
+```
+
+{% endsamplefile %}
+
 ### Commands
 
-In Parcel 2, running `parcel` with a list of entries and no command started the development server. Parcel 3 always requires a command, so you'll need to update your package scripts to use `parcel serve`. Parcel 3 also no longer reads entries from the `source` field for apps, so pass them to the CLI instead.
+In Parcel 2, running `parcel` with a list of entries and no command started the development server. Parcel 3 always requires a command, so you'll need to update your package scripts to use `parcel serve`.
 
 {% migration %}
 {% samplefile "package.json" %}
 
-```json/1,3-4
+```json/3
 {
   "source": "src/index.html",
   "scripts": {
@@ -66,11 +83,12 @@ In Parcel 2, running `parcel` with a list of entries and no command started the 
 {% endsamplefile %}
 {% samplefile "package.json" %}
 
-```json/2-3
+```json/3
 {
+  "source": "src/index.html",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "parcel serve",
+    "build": "parcel build"
   }
 }
 ```
@@ -293,7 +311,7 @@ Differential bundling has been removed: Parcel no longer generates `<script nomo
 
 ### Glob imports
 
-Glob specifiers still require adding `@parcel/resolver-glob` to your `.parcelrc`, but the plugin is now built into Parcel. Globs now resolve to a default export, and the values are the default export of each file rather than a namespace object. To load each file lazily, use the `?async=true` query parameter instead of a dynamic `import()`. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for details.
+Glob specifiers still require adding `@parcel/resolver-glob` to your `.parcelrc`, but the plugin is now built into Parcel. Globs now resolve to a default export, and the values are the default export of each file rather than a namespace object. To load each file lazily, use the `?async=true` query parameter instead of a dynamic `import()`. Glob imports of files in npm packages (e.g. `@company/pkg/i18n/*.js`) are not supported yet. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for details.
 
 {% migration %}
 {% samplefile "app.js" %}
@@ -307,6 +325,27 @@ import * as files from './files/*.js';
 
 ```js/0
 import files from './files/*.js';
+```
+
+{% endsamplefile %}
+{% endmigration %}
+
+### Worklets
+
+The `worklet:` URL scheme has been replaced by [import attributes](/languages/javascript/#import-attributes). To import a URL to a web audio worklet, use the `url` type along with `env: 'worklet'`. See [Worklets](/languages/javascript/#worklets) for details.
+
+{% migration %}
+{% samplefile "app.js" %}
+
+```js/0
+import workletUrl from 'worklet:./worklet.js';
+```
+
+{% endsamplefile %}
+{% samplefile "app.js" %}
+
+```js/0
+import workletUrl from './worklet.js' with {type: 'url', env: 'worklet'};
 ```
 
 {% endsamplefile %}
@@ -362,7 +401,7 @@ The following features from Parcel 2 are not currently supported in Parcel 3. So
 - Web extensions.
 - The Parcel JavaScript API (`@parcel/core`). Parcel can currently only be run from the CLI.
 - TypeScript type checking via `@parcel/validator-typescript`. Run `tsc --noEmit` separately instead.
-- The `worklet:` URL scheme and the `@parcel/service-worker` package. <!-- TODO(v3): confirm these are intentionally removed. -->
+- The `@parcel/service-worker` package. <!-- TODO(v3): confirm this is intentionally removed. -->
 
 ## Plugins
 

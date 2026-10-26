@@ -414,7 +414,7 @@ jobs:
     permissions:
       contents: read
       id-token: write # required for npm trusted publishing
-    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@v2
+    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@core-rs3
     with:
       paths: .
       publish: true
@@ -424,5 +424,3 @@ jobs:
 {% endsample %}
 
 When called with `publish: false` (the default), it builds the plugin and uploads the packages as workflow artifacts without publishing, which is useful as a check on pull requests. See the [workflow documentation](https://github.com/parcel-bundler/parcel/blob/core-rs3/.github/scripts/native-plugin/README.md) for all of the options and supported platforms.
-
-<!-- TODO(v3): `native-plugin.yml@v2` is copied from .github/scripts/native-plugin/README.md, but the workflow does not exist on the v2 branch (only core-rs3), so this ref currently fails. Update the ref once it is merged/tagged. Swift plugins are currently only supported on macOS (arm64/x64) and Linux glibc (x64/arm64). -->

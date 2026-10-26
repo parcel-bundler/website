@@ -152,7 +152,7 @@ doSomething(this);
 doSomething(module);
 ```
 
-On the importing side, Parcel supports destructuring and static property accesses directly on `require` calls. When a non-static access is seen, all exports of the resolved module must be included and no tree shaking can be performed.
+On the importing side, Parcel supports destructuring and static property accesses on `require` calls, as well as static property accesses on a top-level variable assigned to the result of `require`. When a non-static access is seen, all exports of the resolved module must be included and no tree shaking can be performed.
 
 ```javascript
 // ✅ Static destructuring
@@ -161,13 +161,17 @@ const { add } = require("./math");
 // ✅ Static property assignment
 const add = require("./math").add;
 
-// 🚫 Property access of require result
+// ✅ Static property access of require result
 const math = require("./math");
 console.log(math.add(2, 3));
-
-// 🚫 Inline require
-doSomething(require("./math"));
 console.log(require("./math").add(2, 3));
+
+// 🚫 Dynamic property access of require result
+console.log(math[name](2, 3));
+
+// 🚫 Unknown require result usage
+doSomething(require("./math"));
+doSomething(math);
 ```
 
 ### Avoid `eval`
