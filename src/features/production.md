@@ -27,7 +27,7 @@ Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://l
 
 ### Tree shaking
 
-In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called "tree shaking" or "dead code elimination". Tree shaking is supported for both static and dynamic `import()`, CommonJS and ES modules, and even across languages with CSS modules.
+In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called "tree shaking" or "dead code elimination". Tree shaking is supported for both static and dynamic `import()`, CommonJS and ES modules, and even across languages with CSS modules and SVG.
 
 ### Development branch removal
 

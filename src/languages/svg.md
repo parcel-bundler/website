@@ -385,6 +385,47 @@ The `template` option customizes the JavaScript module that is generated for the
 
 In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
 
+### Tree shaking
+
+SVG files are often used as sprite sheets containing many icons, which are referenced by fragment from other files. In production builds, Parcel tracks these references and removes the elements that aren't used. Only the referenced elements are kept, along with anything they reference in turn, such as gradients, masks, and other `<use>` elements.
+
+{% sample %}
+{% samplefile "index.html" %}
+
+```html
+<svg width="24" height="24"><use href="icons.svg#home" /></svg>
+```
+
+{% endsamplefile %}
+{% samplefile "icons.svg" %}
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg">
+  <linearGradient id="fade">...</linearGradient>
+  <symbol id="home" viewBox="0 0 24 24">
+    <path d="..." fill="url(#fade)" />
+  </symbol>
+  <symbol id="search" viewBox="0 0 24 24">
+    <path d="..." />
+  </symbol>
+</svg>
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+In this example, only the `home` symbol is used, so the `search` symbol is removed from the output. The `fade` gradient is kept because the `home` symbol references it.
+
+Fragment references are tracked from HTML, other SVG files, and CSS `url()` functions. If an SVG file is also displayed as a whole, e.g. using `<img src="icons.svg">`, its visible content is kept as well. Parcel also warns when a fragment references an id that doesn't exist in the SVG file.
+
+All elements are kept when Parcel cannot determine which ones are used. This includes when the SVG file:
+
+- is referenced from JavaScript, e.g. using `new URL('icons.svg', import.meta.url)`, because the fragment may be added dynamically.
+- is an entry, because files outside the build may reference it.
+- contains a `<style>` or `<script>` element.
+
+Tree shaking runs as part of SVG [minification](#minification), so disabling the `optimize` option also disables it.
+
 ### Minification
 
 In production mode, Parcel automatically minifies your code to reduce the file sizes of your bundles. By default, Parcel uses [oxvg](https://github.com/noahbald/oxvg) to perform SVG minification, which is compatible with [SVGO](https://github.com/svg/svgo). To configure it, set the `optimize` option of `@parcel/transformer-svg` in your `.parcelrc`. Set it to `false` to disable SVG minification, or to an object of options.
