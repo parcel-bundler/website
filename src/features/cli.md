@@ -89,10 +89,17 @@ These parameters are supported by all Parcel commands.
 | `--reporter <package name>`                  | Run the specified reporter plugin in addition to the ones specified in the `.parcelrc`. Can be specified multiple times.                                           |
 | `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                |
 | `--cache-dir <path>`                         | Sets the cache directory. Defaults to `.parcel-cache`. See [Caching](/features/development/#caching).                                                              |
+| `--watch-ignore [path]`                      | Directories to exclude from file watching, as a comma-separated list. See [Ignoring directories](#ignoring-directories).                                             |
 | `--no-cache`                                 | Disables reading from the filesystem cache. See [Caching](/features/development/#caching).                                                                         |
 | `--profile`                                  | Runs a CPU Sampling profile during the build (a flamechart can be generated).                                                                                      |
 | `--trace`                                    | Runs a [trace](/features/profiling) during the build.                                                                                                              |
 | `-V, --version`                              | Outputs the version number.                                                                                                                                        |
+
+### Ignoring directories
+
+Use `--watch-ignore generated,coverage` to ignore multiple directories. Paths are relative to the root watch directory (set with `--watch-dir`). Do not add spaces around the commas or wrap the list in square brackets.
+
+The `.git`, `.hg`, and cache directories are always ignored, including when `--watch-ignore` is specified.
 
 ### Parameters specific to `serve` and `watch`
 
