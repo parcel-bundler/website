@@ -1,0 +1,44 @@
+<div class="flex flex-col mt-4 md:mt-8" x-data="{'tab': 'native-rust'}">
+  <div class="mb-4 md:mb-8 text-lg md:text-xl font-medium text-gray-600 dark:text-blue-300">
+    <p class="mb-4"><strong class="font-medium text-gray-800 dark:text-blue-100">Write plugins in Rust, Go, Swift, or any language with a C ABI.</strong> Native plugins are a great fit for performance critical transformers, and run in parallel across all of your cores.</p>
+    <p class="text-base md:text-lg">And of course, JavaScript and TypeScript plugins work too, running in a custom multi-core runtime built on QuickJS.</p>
+    <a class="mt-8 block text-lg font-medium text-orange-600 dark:text-yellow-500 hover:underline" href="/plugin-system/native-plugins/">Learn more →</a>
+  </div>
+  <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl flex flex-col overflow-hidden w-full transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">
+    <div class="flex flex-row justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
+      <div class="flex flex-row absolute left-2 top-2">
+        <div class="bg-red-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
+        <div class="bg-green-500 rounded-full w-3 h-3"></div>
+      </div>
+      <div class="text-xs text-gray-500 select-none cursor-default" x-text="document.querySelector(`#${tab}-tab`).textContent" aria-hidden="true">lib.rs</div>
+    </div>
+    <div role="tablist" class="flex flex-row border-b border-gray-300 dark:border-gray-800 bg-gray-400 dark:bg-gray-900 overflow-auto">
+      <div role="tab" aria-controls="native-rust-tabpanel" id="native-rust-tab" :aria-selected="tab === 'native-rust'" @click="tab = 'native-rust'">lib.rs</div>
+      <div role="tab" aria-controls="native-go-tabpanel" id="native-go-tab" :aria-selected="tab === 'native-go'" @click="tab = 'native-go'">plugin.go</div>
+      <div role="tab" aria-controls="native-swift-tabpanel" id="native-swift-tab" :aria-selected="tab === 'native-swift'" @click="tab = 'native-swift'">Transformer.swift</div>
+    </div>
+    <pre role="tabpanel" id="native-rust-tabpanel" aria-labelledby="native-rust-tab" x-show="tab === 'native-rust'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1"><code class="language-rust text-xs">struct MyTransformer;
+impl Plugin for MyTransformer {
+  fn transform(&self, asset: &mut Asset, _: &Options) -> Result<(), Diagnostic> {
+    let code = compile(&asset.content()?);
+    asset.set_content(code);
+    Ok(())
+  }
+}</code></pre>
+    <pre role="tabpanel" id="native-go-tabpanel" aria-labelledby="native-go-tab" x-show="tab === 'native-go'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none; tab-size: 2"><code class="language-go text-xs">type MyTransformer struct{}
+func (t *MyTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error {
+	source, err := asset.Content()
+	if err != nil {
+		return err
+	}
+	asset.SetContent(compile(source))
+	return nil
+}</code></pre>
+    <pre role="tabpanel" id="native-swift-tabpanel" aria-labelledby="native-swift-tab" x-show="tab === 'native-swift'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1" style="display: none"><code class="language-swift text-xs">struct MyTransformer: Transformer {
+  func transform(_ asset: Asset, options: Options) async throws {
+    asset.setContent(compile(try asset.content()))
+  }
+}</code></pre>
+  </div>
+</div>

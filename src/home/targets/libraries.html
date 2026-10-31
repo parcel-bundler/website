@@ -1,6 +1,6 @@
-<div class="grid lg:grid-cols-3 gap-x-4 gap-y-8 lg:gap-12">
+<div class="flex flex-col gap-y-8">
   <div class="flex flex-col lg:col-span-2 text-lg lg:text-xl font-medium text-gray-600 dark:text-pink-300">
-    <p class="mb-4"><strong class="font-semibold text-gray-800 dark:text-pink-100">Parcel can build libraries for multiple targets at once!</strong> For example, your source code can be compiled to a modern ES module, a legacy CommonJS module, and a TypeScript definition file all automatically. Just add the relevant fields to your <code class="text-gray-800 dark:text-pink-100">package.json</code> and Parcel takes care of the rest.</p>
+    <p class="mb-4"><strong class="font-semibold text-gray-800 dark:text-pink-100">Parcel can build libraries for multiple targets at once!</strong> For example, your source code can be compiled to a modern ES module, and a legacy CommonJS module automatically. Just add the relevant fields to your <code class="text-gray-800 dark:text-pink-100">package.json</code> and Parcel takes care of the rest.</p>
     <p class="flex-grow">You can even build a whole monorepo of packages in a single command! 🤯 <code class="font-semibold text-gray-800 dark:text-pink-100">parcel build packages/*</code></p>
     <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-300 hover:underline" href="/getting-started/library/">Learn more →</a>
   </div>
@@ -16,10 +16,11 @@
     <pre class="pt-0 bg-transparent"><code class="language-json text-sm lg:text-base">{
   "name": "my-great-library",
   "version": "1.0.0",
-  "source": "src/index.js",
-  "module": "dist/module.js",
-  "main": "dist/main.js",
-  "types": "dist/types.d.ts"
+  "exports": {
+    "source": "./src/index.js",
+    "import": "./dist/module.mjs",
+    "require": "./dist/main.cjs"
+  }
 }</code></pre>
 </div>
 </div>

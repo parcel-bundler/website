@@ -20,17 +20,9 @@
       <p class="font-semibold">Namers</p>
       <p class="text-base">Determine the name of an output file.</p>
     </div>
-    <div role="radio" :aria-checked="tab === 'packagers'" @click="tab = 'packagers'" @mouseover="tab = 'packagers'">
-      <p class="font-semibold">Packagers</p>
-      <p class="text-base">Combine multiple assets together into a single output file.</p>
-    </div>
     <div role="radio" :aria-checked="tab === 'optimizers'" @click="tab = 'optimizers'" @mouseover="tab = 'optimizers'">
       <p class="font-semibold">Optimizers</p>
       <p class="text-base">Minify, optimize, and transform output files.</p>
-    </div>
-    <div role="radio" :aria-checked="tab === 'compressors'" @click="tab = 'compressors'" @mouseover="tab = 'compressors'">
-      <p class="font-semibold">Compressors</p>
-      <p class="text-base">Compress and encode output files in multiple formats.</p>
     </div>
     <div role="radio" :aria-checked="tab === 'reporters'" @click="tab = 'reporters'" @mouseover="tab = 'reporters'">
       <p class="font-semibold">Reporters</p>
@@ -53,14 +45,8 @@
   },</code>
 <code class="language-json code-plugin" id="plugin-resolvers" :class="{'inactive': tab && tab !== 'resolvers'}">  "resolvers": ["@parcel/resolver-glob", "..."],</code>
 <code class="language-json code-plugin" id="plugin-namers" :class="{'inactive': tab && tab !== 'namers'}">  "namers": ["@company/parcel-namer", "..."],</code>
-<code class="language-json code-plugin" id="plugin-packagers" :class="{'inactive': tab && tab !== 'packagers'}">  "packagers": {
-    "*.{jpg,png}": "parcel-packager-image-sprite"
-  },</code>
 <code class="language-json code-plugin" id="plugin-optimizers" :class="{'inactive': tab && tab !== 'optimizers'}">  "optimizers": {
     "*.js": ["parcel-optimizer-license-headers"]
-  },</code>
-<code class="language-json code-plugin" id="plugin-compressors" :class="{'inactive': tab && tab !== 'compressors'}">  "compressors": {
-    "*.js": ["...", "@parcel/compressor-gzip"]
   },</code>
 <code class="language-json code-plugin" id="plugin-reporters" :class="{'inactive': tab && tab !== 'reporters'}">  "reporters": ["...", "parcel-reporter-manifest"]</code>
 }</code></pre>

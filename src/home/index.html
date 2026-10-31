@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Parcel</title>
-    <meta name="description" content="The zero configuration build tool for the web.">
+    <meta name="description" content="The batteries-included build tool for the web.">
     <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
@@ -18,7 +18,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://parceljs.org" />
-    <meta property="og:title" content="Parcel – The zero configuration build tool for the web." />
+    <meta property="og:title" content="Parcel – The batteries-included build tool for the web." />
     <meta property="og:description" content="Parcel combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production application." />
     <meta property="og:image" content="/assets/home-og.png?as=jpeg" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
@@ -63,7 +63,7 @@
           <div class="lg:mr-12">
             <div class="flex flex-row items-center">
               <h2 class="text-4xl md:text-5xl xl:text-6xl font-extrabold text-white my-5 lg:my-10 leading-tight">
-                The zero configuration build tool for
+                The batteries-included build tool for
                 <ul id="languageMarquee" class="inline-block align-top relative z-0 whitespace-nowrap">
                   <li><span class="text-green-400">the web</span>.</li>
                   <li><span class="text-cyan-400">JavaScript</span>.</li>
@@ -74,7 +74,7 @@
                   <li><span class="text-cyan-400">images</span>.</li>
                   <li><span class="text-orange-400 dark:text-orange-500">SASS</span>.</li>
                   <li><span class="text-sky-400">SVG</span>.</li>
-                  <li><span class="text-green-400">Vue</span>.</li>
+                  <li><span class="text-green-400">Tailwind</span>.</li>
                   <li><span class="text-fuchsia-400 dark:text-fuchsia-500">libraries</span>.</li>
                   <li><span class="text-pink-400 dark:text-pink-500">Less</span>.</li>
                   <li><span class="text-yellow-400">CoffeeScript</span>.</li>
@@ -82,11 +82,11 @@
                   <li><span class="text-red-400 dark:text-red-500">Stylus</span>.</li>
                   <li><span class="text-lime-400">Pug</span>.</li>
                   <li><span class="text-sky-400">Electron</span>.</li>
-                  <li><span class="text-red-400 dark:text-red-500">Elm</span>.</li>
-                  <li><span class="text-yellow-400">WebGL</span>.</li>
-                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">extensions</span>.</li>
-                  <li><span class="text-lime-400">GraphQL</span>.</li>
+                  <li><span class="text-red-400 dark:text-red-500">RSS</span>.</li>
+                  <li><span class="text-yellow-400">RSC</span>.</li>
+                  <li><span class="text-fuchsia-400 dark:text-fuchsia-500">TOML</span>.</li>
                   <li><span class="text-cyan-400">MDX</span>.</li>
+                  <li><span class="text-lime-400">JSON</span>.</li>
                   <li><span class="text-rose-400 dark:text-rose-500">XML</span>.</li>
                 </ul>
               </h2>
@@ -171,7 +171,7 @@
             async function run() {
               await sleep(500);
 
-              let text = 'parcel index.html';
+              let text = 'parcel serve index.html';
               let c = '$ ';
               for (let ch of text) {
                 await sleep(Math.floor(Math.random() * 80) + 40);
@@ -248,7 +248,7 @@
           <a href="/docs/" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">Get started</a>
           <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener" class="bg-purple-200 dark:bg-purple-300 text-purple-700 hover:bg-purple-100 dark:hover:bg-purple-200 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100 border-opacity-10">GitHub</a>
           <button type="button" class="col-span-2 justify-self-center md:justify-self-end text-purple-200 hover:text-purple-50 transition-colors cursor-pointer border-white border-opacity-20 border py-2 px-6 rounded-xl text-left flex" style="-webkit-tap-highlight-color: transparent" onclick="navigator.clipboard.writeText(this.firstElementChild.textContent.slice(2))" x-data="{copied: false}" @click="copied = true" x-effect="copied ? setTimeout(() => copied = false, 3000) : null">
-            <code>$ yarn add parcel</code>
+            <code>$ yarn add parcel@^3.0.0-0</code>
             <span class="sr-only">(click to copy to clipboard)</span>
             <svg class="h-6 w-6 ml-4" style="padding-left: 1px" x-show="copied == false" x-transition:enter.scale.80 fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
@@ -270,14 +270,6 @@
         <a href="/blog/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Blog</a>
       </nav>
     </header>
-    <section class="pt-20 lg:pt-32 -mb-10 flex flex-row flex-wrap gap-x-10 gap-y-6 items-center justify-center max-w-xl lg:max-w-full mx-auto px-8 text-gray-700 dark:text-gray-300">
-      <div class="font-semibold uppercase w-full lg:w-auto text-center text-gray-500 dark:text-gray-400">Trusted by:</div>
-      <include src="logos/atlassian.svg"></include>
-      <!-- <include src="logos/adobe.svg"></include> -->
-      <include src="logos/microsoft.svg"></include>
-      <include src="logos/sourcegraph.svg"></include>
-      <include src="logos/xchart.svg"></include>
-    </section>
     <main class="px-safe">
       <include src="dev-server.html"></include>
       <include src="perf.html"></include>
