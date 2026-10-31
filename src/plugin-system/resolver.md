@@ -59,7 +59,7 @@ export default new Resolver({
 
 ## Dependency metadata
 
-In addition to the `specifier`, Resolver plugins also receive a full [`Dependency`](/plugin-system/transformer/#Dependency) object, which includes additional metadata about the dependency. The `specifierType` property indicates how the `specifier` should be interpreted (e.g. ESM, CommonJS, URL, etc.). The `resolveFrom` property specifies the URL of the file where the dependency should be resolved from (e.g. if the specifier is a relative path). Files on disk use `file:` URLs.
+In addition to the `specifier`, Resolver plugins also receive a full [`Dependency`](/plugin-system/transformer/#Dependency) object, which includes additional metadata about the dependency. The `specifierType` property indicates how the `specifier` should be interpreted (e.g. ESM, CommonJS, URL, etc.). The `resolveFrom` property is the path of the file the dependency should be resolved from (e.g. if the specifier is a relative path).
 
 If the specifier starts with a [named pipeline](/features/plugins/#named-pipelines) defined in `.parcelrc` (e.g. `url:./image.png`), the pipeline name is passed as the `pipeline` option, and removed from the `specifier`.
 
@@ -68,18 +68,15 @@ This example resolves relative URLs and paths depending on the `specifierType`.
 ```javascript
 import { Resolver } from "@parcel/plugin";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 
 export default new Resolver({
   async resolve({ specifier, dependency }) {
     return {
       filePath:
         dependency.specifierType === "url"
-          ? fileURLToPath(new URL(specifier, dependency.resolveFrom))
-          : path.resolve(
-              path.dirname(fileURLToPath(dependency.resolveFrom)),
-              specifier
-            ),
+          ? fileURLToPath(new URL(specifier, pathToFileURL(dependency.resolveFrom)))
+          : path.resolve(path.dirname(dependency.resolveFrom), specifier),
     };
   },
 });
@@ -87,7 +84,7 @@ export default new Resolver({
 
 ## Excluding modules
 
-The `isExcluded` property can be returned to indicate that a module should be excluded from the build. This example excludes `aws-sdk` which is included in the AWS hosting environment automatically and does not need to be bundled.
+The `isExcluded` property can be returned to indicate that a module should be excluded from the build, and `isExternal` to leave it out of the bundle and load it at runtime instead. This example excludes `aws-sdk` which is included in the AWS hosting environment automatically and does not need to be bundled.
 
 ```javascript/5
 import {Resolver} from '@parcel/plugin';

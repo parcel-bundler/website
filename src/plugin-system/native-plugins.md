@@ -121,8 +121,8 @@ The `Asset` passed to `transform` provides access to the asset's content and met
 - `asset_type()` and `set_type(...)` get and set the asset's type, e.g. `"js"`. Changing the type causes the asset to be processed by the pipeline that matches the new type.
 - `file_path()`, `query()`, and `target()` describe the asset and the environment it is built for.
 - `pipeline()`, `bundle_behavior()`, `unique_key()`, and `flags()` have corresponding setters.
-- `add_dependency(DependencyOptions)` adds a dependency to the asset. `DependencyOptions` includes the specifier, specifier type, priority, bundle behavior, flags, and package `exports` conditions.
-- `resolve(&dependency, from, options)` resolves a dependency with the resolvers configured in `.parcelrc`, exactly as if it had been added with `add_dependency`, without adding it. Parcel tracks the files the resolvers read, so the asset is rebuilt when the result would change.
+- `add_dependency(DependencyOptions)` adds a dependency to the asset. `DependencyOptions` includes the specifier, specifier type, priority, bundle behavior, flags, package `exports` conditions, and import type.
+- `resolve(&dependency, from, options)` resolves a dependency with the resolvers configured in `.parcelrc`, exactly as if it had been added with `add_dependency`, without adding it. Parcel tracks the files the resolvers read, so the asset is rebuilt when the result would change. A dependency imported as JavaScript (the default `import_type`) must have a transformer that turns it into JavaScript, so set `import_type` to `ImportType::Url` to resolve a file you will read yourself.
 
 ### Diagnostics
 

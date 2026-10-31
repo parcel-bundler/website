@@ -10,7 +10,7 @@ Optimizer plugins are similar to transformers but they accept a bundle instead o
 
 ## Example
 
-The `optimize` method receives the contents of a bundle and its source map, and should return transformed versions of these. Both are passed as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array), and must be returned as a `Uint8Array` as well. Multiple Optimizer plugins may run in series, and the result of each Optimizer is passed to the next. See [below](#source-maps) for more info about source maps.
+The `optimize` method receives the contents of a bundle and its source map, and should return transformed versions of these. The contents are passed as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array), and may be returned as a `Uint8Array` or a string. Multiple Optimizer plugins may run in series, and the result of each Optimizer is passed to the next. See [below](#source-maps) for more info about source maps.
 
 ```javascript
 import { Optimizer } from "@parcel/plugin";
@@ -55,7 +55,7 @@ export default new Optimizer({
 
 ## Binary content
 
-The contents passed to an Optimizer are always a `Uint8Array`, for both source code and binary content. Use [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) and [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) to convert source code to and from a string.
+The contents passed to an Optimizer are always a `Uint8Array`, for both source code and binary content. Use [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) to convert source code to a string. The result can be returned as a string or `Uint8Array`.
 
 ```javascript/5,7
 import {Optimizer} from '@parcel/plugin';
@@ -64,7 +64,7 @@ export default new Optimizer({
   async optimize({contents, map}) {
     let code = new TextDecoder().decode(contents);
     let optimized = optimize(code);
-    return {contents: new TextEncoder().encode(optimized), map};
+    return {contents: optimized, map};
   }
 });
 ```
@@ -73,7 +73,7 @@ export default new Optimizer({
 
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Optimizer plugins should transform the provided source map in addition to the contents of the bundle.
 
-The `map` passed to an Optimizer is a `Uint8Array` containing the bundle's source map as UTF-8 encoded JSON in the standard [source map format](https://tc39.es/ecma426/), or `null` if the bundle doesn't have a source map. Optimizers should return the transformed source map in the same format. If an Optimizer doesn't return a `map`, the bundle's source map is removed. See [Source Maps](/plugin-system/source-maps/) for more details.
+The `map` passed to an Optimizer is the bundle's source map as a JSON object in the standard [source map format](https://tc39.es/ecma426/), or `null` if the bundle doesn't have a source map. Optimizers should return the transformed source map as a JSON object, a JSON string, or a `Uint8Array` of UTF-8 encoded JSON. If an Optimizer doesn't return a `map`, the bundle's source map is removed. See [Source Maps](/plugin-system/source-maps/) for more details.
 
 Parcel takes care of inserting a reference to the source map into the bundle contents after all Optimizers have run, so Optimizers should not add a `sourceMappingURL` comment themselves.
 
@@ -82,15 +82,10 @@ import { Optimizer } from "@parcel/plugin";
 
 export default new Optimizer({
   async optimize({ contents, map }) {
-    // Convert the input source map to JSON.
-    let inputMap = map ? JSON.parse(new TextDecoder().decode(map)) : null;
-
-    let result = optimize(new TextDecoder().decode(contents), inputMap);
-
-    // Convert the returned source map back to a Uint8Array.
+    let result = optimize(new TextDecoder().decode(contents), map);
     return {
-      contents: new TextEncoder().encode(result.code),
-      map: new TextEncoder().encode(JSON.stringify(result.map)),
+      contents: result.code,
+      map: result.map,
     };
   },
 });

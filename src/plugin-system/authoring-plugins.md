@@ -118,7 +118,7 @@ Because the same plugin may appear multiple times in a `.parcelrc` with differen
 
 Some plugins wrap a compiler or tool which has its own config loading mechanism built in (e.g. Babel's `babel.config.json`), or read other files from the file system. Parcel automatically tracks all of the files that JavaScript plugins read with the `fs` module, along with the source files of the plugins themselves and all of their dependencies. When one of these files changes, Parcel rebuilds the whole project, since the plugin's results may depend on it.
 
-When a transformer needs to resolve a dependency itself (e.g. to inline an imported file), use the `resolve` function passed to `transform`. This resolves a specifier using the resolvers configured in `.parcelrc`, exactly as a dependency of the asset would be, and only invalidates the asset being transformed when the result would change.
+When a transformer needs to resolve a dependency itself (e.g. to inline an imported file), use the `resolve` function passed to `transform`. This resolves a specifier using the resolvers configured in `.parcelrc`, exactly as a dependency of the asset would be, and only invalidates the asset being transformed when the result would change. Like a dependency, it accepts an `importType` option describing how the file will be used. A file resolved as `javascript` (the default) must have a transformer that turns it into JavaScript, so pass `importType: 'url'` to resolve any file, e.g. one you will read yourself. It returns `{filePath, pipeline, query, sideEffects}`, `{isExternal: true}` or `{isExcluded: true}`, or `null` when no resolver resolves the specifier, and rejects with the resolvers' diagnostics when one fails.
 
 ```javascript
 import { Transformer } from "@parcel/plugin";
@@ -126,7 +126,9 @@ import fs from "fs";
 
 export default new Transformer({
   async transform({ asset, resolve }) {
-    let filePath = await resolve(asset.filePath, "./included.txt");
+    let { filePath } = await resolve(asset.filePath, "./included.txt", {
+      importType: "url",
+    });
     let contents = fs.readFileSync(filePath, "utf8");
     // ...
   },

@@ -50,7 +50,7 @@ If a compiler doesn't have a way to pass in an input source map and the asset al
 
 Using source maps in optimizers is similar to how you use it in transformers. You get one file as input and are expected to return that same file as output, but optimized.
 
-The difference with optimizers is that the map is not provided as part of an asset but rather as a separate parameter/option, as you can see in the code snippet below. Both the contents and the map are passed as a `Uint8Array`, with the map containing UTF-8 encoded source map JSON (or `null` if there is no source map). If an optimizer returns no `map`, the bundle's source map is removed.
+The difference with optimizers is that the map is not provided as part of an asset but rather as a separate parameter/option, as you can see in the code snippet below. The contents are passed as a `Uint8Array`, and the map as a source map JSON object (or `null` if there is no source map). An optimizer may return the contents as a string or a `Uint8Array`, and the map as a JSON object, a JSON string or a `Uint8Array`. If an optimizer returns no `map`, the bundle's source map is removed.
 
 ```js
 import { Optimizer } from "@parcel/plugin";
@@ -58,14 +58,11 @@ import { Optimizer } from "@parcel/plugin";
 export default new Optimizer({
   // The contents and map are passed separately
   async optimize({ bundle, contents, map }) {
-    let inputMap = map ? JSON.parse(new TextDecoder().decode(map)) : null;
-    let result = someMinifier(new TextDecoder().decode(contents), { inputMap });
+    let result = someMinifier(new TextDecoder().decode(contents), { inputMap: map });
 
     return {
-      contents: new TextEncoder().encode(result.code),
-      map: result.map
-        ? new TextEncoder().encode(JSON.stringify(result.map))
-        : null,
+      contents: result.code,
+      map: result.map ?? null,
     };
   },
 });
