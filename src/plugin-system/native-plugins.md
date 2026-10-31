@@ -41,12 +41,14 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-parcel-plugin = { git = "https://github.com/parcel-bundler/parcel", branch = "core-rs3" }
+parcel-plugin = { git = "https://github.com/parcel-bundler/parcel", tag = "v{{ parcel.version }}" }
 serde_json = "1"
 ```
 
 {% endsamplefile %}
 {% endsample %}
+
+The SDKs for every language are released together with Parcel, and tagged with its version in the Parcel repo. Depend on the tag matching the version of Parcel your plugin targets.
 
 <!-- TODO(v3): parcel-plugin is not published to crates.io yet (the examples in plugin-rs/examples use a path dependency). Confirm the recommended dependency spec (crates.io version, or git + branch). -->
 
@@ -108,16 +110,14 @@ The `Plugin` trait has one method for each plugin type. Implement the ones your 
 
 Every method also receives an `Options` object, which provides access to the project root (`project_root()`), environment variables (`env(key)`), [logging](#logging), and the [file system](#file-system).
 
-The [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-rs/examples) include a plugin of each type.
-
-<!-- TODO(v3): GitHub links in this page point at the core-rs3 branch of parcel-bundler/parcel. Update once the v3 branch/tag name is settled. -->
+The [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples) include a plugin of each type.
 
 ### Assets
 
 The `Asset` passed to `transform` provides access to the asset's content and metadata. It is only valid for the duration of the call.
 
 - `content()` and `content_bytes()` return the asset's content as a string or bytes. `set_content(...)` and `set_content_bytes(...)` replace it.
-- `set_content_with_map(...)` and `set_content_bytes_with_map(...)` replace the content along with a [source map](/plugin-system/source-maps/) as JSON. `source_map()` returns the source map set by an earlier transformer, if any. A transformer that changes the content should update this map and pass it back, otherwise it is lost. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-rs/examples/prepend-transformer).
+- `set_content_with_map(...)` and `set_content_bytes_with_map(...)` replace the content along with a [source map](/plugin-system/source-maps/) as JSON. `source_map()` returns the source map set by an earlier transformer, if any. A transformer that changes the content should update this map and pass it back, otherwise it is lost. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples/prepend-transformer).
 - `asset_type()` and `set_type(...)` get and set the asset's type, e.g. `"js"`. Changing the type causes the asset to be processed by the pipeline that matches the new type.
 - `file_path()`, `query()`, and `target()` describe the asset and the environment it is built for.
 - `pipeline()`, `bundle_behavior()`, `unique_key()`, and `flags()` have corresponding setters.
@@ -191,13 +191,19 @@ impl AssetContent for MyContent {
 }
 ```
 
-See the [custom content example](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-rs/examples/custom-content-transformer) for more details.
+See the [custom content example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples/custom-content-transformer) for more details.
 
 <!-- TODO(v3): confirm how bundles containing custom content are packaged when the bundle contains multiple assets (packaging uses the content of the bundle's first asset, crates/core/src/packaging.rs packaging_plan). -->
 
 ## Go
 
-The Go SDK lives in the [`plugin-go`](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-go) directory of the Parcel repo, as the `github.com/parcel-bundler/parcel/plugin-go` module. A plugin is a `main` package that registers a plugin in an `init` function. Embed `parcel.DefaultPlugin` to get default implementations of the methods you don't need.
+The Go SDK lives in the [`plugin-go`](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go) directory of the Parcel repo, as the `github.com/parcel-bundler/parcel/plugin-go/v3` module:
+
+```shell
+go get github.com/parcel-bundler/parcel/plugin-go/v3@v{{ parcel.version }}
+```
+
+A plugin is a `main` package that registers a plugin in an `init` function. Embed `parcel.DefaultPlugin` to get default implementations of the methods you don't need.
 
 ```go
 package main
@@ -205,7 +211,7 @@ package main
 import (
 	"fmt"
 
-	parcel "github.com/parcel-bundler/parcel/plugin-go"
+	parcel "github.com/parcel-bundler/parcel/plugin-go/v3"
 )
 
 type TxtTransformer struct {
@@ -233,13 +239,11 @@ Build it as a C shared library. This requires cgo, and therefore a C compiler.
 go build -buildmode=c-shared -o plugin.dylib .
 ```
 
-The Go API mirrors the Rust SDK: `Transform`, `Resolve`, `Name`, `Optimize`, and `Report` methods, `Asset` methods such as `Content`, `SetContent`, `SourceMap`, `SetContentWithMap`, `AddDependency`, and `Resolve`, and `Options` methods such as `Log`, `LogDiagnostic`, and `ReadFile`. Returning an error fails the call. Custom content is supported via `SetCustomContent`. See the [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-go/examples).
-
-<!-- TODO(v3): confirm how Go users should depend on the SDK (e.g. `go get github.com/parcel-bundler/parcel/plugin-go@<branch or tag>`); there are no tags for the module yet. -->
+The Go API mirrors the Rust SDK: `Transform`, `Resolve`, `Name`, `Optimize`, and `Report` methods, `Asset` methods such as `Content`, `SetContent`, `SourceMap`, `SetContentWithMap`, `AddDependency`, and `Resolve`, and `Options` methods such as `Log`, `LogDiagnostic`, and `ReadFile`. Returning an error fails the call. Custom content is supported via `SetCustomContent`. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples).
 
 ## Swift
 
-The Swift SDK lives in the [`plugin-swift`](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift) directory of the Parcel repo, and provides the `ParcelPlugin` library. It requires Swift 6.2 or later, and macOS 15 or later at runtime. Declare a dynamic library product in your `Package.swift`:
+The Swift SDK lives in the [`plugin-swift`](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift) directory of the Parcel repo, and provides the `ParcelPlugin` library. It requires Swift 6.2 or later, and macOS 15 or later at runtime. Declare a dynamic library product in your `Package.swift`:
 
 {% sample %}
 {% samplefile "Package.swift" %}
@@ -249,7 +253,7 @@ let package = Package(
   name: "TxtTransformer",
   platforms: [.macOS(.v15)],
   products: [.library(name: "TxtTransformer", type: .dynamic, targets: ["TxtTransformer"])],
-  dependencies: [.package(url: "https://github.com/parcel-bundler/parcel", branch: "core-rs3")],
+  dependencies: [.package(url: "https://github.com/parcel-bundler/parcel", exact: "{{ parcel.version }}")],
   targets: [
     .target(
       name: "TxtTransformer",
@@ -294,15 +298,13 @@ struct TxtTransformer: Transformer {
 
 Build it with `swift build -c release`, which produces `.build/release/libTxtTransformer.dylib`.
 
-An `Asset` provides properties such as `content`, `type`, and `filePath`. To replace the content along with a [source map](/plugin-system/source-maps/), call `asset.setContent(_:sourceMap:)`. `asset.sourceMap` returns the source map set by an earlier transformer, if any. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift/Examples/Sources/PrependTransformer).
+An `Asset` provides properties such as `content`, `type`, and `filePath`. To replace the content along with a [source map](/plugin-system/source-maps/), call `asset.setContent(_:sourceMap:)`. `asset.sourceMap` returns the source map set by an earlier transformer, if any. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources/PrependTransformer).
 
-Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. Throw a `Diagnostic` to fail a call with a code frame and a hint, and use `options.log(.warning("..."))` to warn without failing. Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. See the [README](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/core-rs3/plugin-swift/Examples/Sources).
-
-<!-- TODO(v3): the Package.swift dependency above uses branch "core-rs3" (copied from plugin-swift/README.md); update to a released tag/branch. -->
+Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. Throw a `Diagnostic` to fail a call with a code frame and a hint, and use `options.log(.warning("..."))` to warn without failing. Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources).
 
 ## C ABI
 
-All of the SDKs are built on a C ABI, which is defined in [`plugin.h`](https://github.com/parcel-bundler/parcel/blob/core-rs3/crates/parcel-plugin-abi/plugin.h). Plugins in other languages can implement it directly. A plugin library exports the following functions:
+All of the SDKs are built on a C ABI, which is defined in [`plugin.h`](https://github.com/parcel-bundler/parcel/blob/v3/crates/parcel-plugin-abi/plugin.h). Plugins in other languages can implement it directly. A plugin library exports the following functions:
 
 - `parcel_plugin_init` (required) – called once per `.parcelrc` entry with a table of host functions, the plugin's config as JSON, and an out parameter for the plugin's state. The plugin must store the table in its `parcel_api` global, and check it with `parcel_api_compatible` before calling anything else.
 - `parcel_plugin_deinit` (optional) – called to free the plugin's state.
@@ -414,7 +416,7 @@ jobs:
     permissions:
       contents: read
       id-token: write # required for npm trusted publishing
-    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@core-rs3
+    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@v{{ parcel.version }}
     with:
       paths: .
       publish: true
@@ -423,4 +425,4 @@ jobs:
 {% endsamplefile %}
 {% endsample %}
 
-When called with `publish: false` (the default), it builds the plugin and uploads the packages as workflow artifacts without publishing, which is useful as a check on pull requests. See the [workflow documentation](https://github.com/parcel-bundler/parcel/blob/core-rs3/.github/scripts/native-plugin/README.md) for all of the options and supported platforms.
+When called with `publish: false` (the default), it builds the plugin and uploads the packages as workflow artifacts without publishing, which is useful as a check on pull requests. See the [workflow documentation](https://github.com/parcel-bundler/parcel/blob/v3/.github/scripts/native-plugin/README.md) for all of the options and supported platforms.
