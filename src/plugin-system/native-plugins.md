@@ -20,9 +20,9 @@ Native plugins are a good fit when:
 - Performance matters, e.g. for a transformer that runs on many files.
 - You want to wrap a compiler or library that is written in Rust, Go, Swift, C, or C++.
 - You need access to the system that is not available to JavaScript plugins.
-- You want to store a custom representation of an asset's content (e.g. an AST) and control how it is packaged. See [Custom content](#custom-content) below.
+- You want to store a custom representation of an asset's content (e.g. an AST) and control how it is packaged. See [Custom content](/plugin-system/transformer/#custom-content).
 
-Native plugins are called from multiple threads at once, so they must be thread safe. Errors returned by a plugin are reported as [diagnostics](/plugin-system/logging/), and Rust panics and Go panics are caught and reported as errors rather than crashing Parcel.
+Native plugins are called from multiple threads at once, so they must be thread safe. Errors returned by a plugin are reported as [diagnostics](/plugin-system/logging/#diagnostics).
 
 ## Rust
 
@@ -52,7 +52,7 @@ The SDKs for every language are released together with Parcel, and tagged with i
 
 <!-- TODO(v3): parcel-plugin is not published to crates.io yet (the examples in plugin-rs/examples use a path dependency). Confirm the recommended dependency spec (crates.io version, or git + branch). -->
 
-A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
+A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The trait has one method for each plugin type (`transform`, `resolve`, `name`, and `optimize`), and one for each type of event a reporter receives (`build_start`, `build_success`, `build_failure`, and `log`). Implement the ones your plugin supports. The default implementations return an error, except for the reporter methods, which do nothing. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
 
 {% sample %}
 {% samplefile "src/lib.rs" %}
@@ -79,10 +79,9 @@ impl Plugin for TxtTransformer {
 
   fn transform(&self, asset: &mut Asset, _options: &Options) -> Result<(), Diagnostic> {
     // Emit an ES module that default-exports the text content.
-    asset.set_content(format!(
-      "export default {:?};\n",
-      format!("{}{}", self.prefix, asset.content())
-    ));
+    let text = format!("{}{}", self.prefix, asset.content()?);
+    let literal = serde_json::to_string(&text).map_err(|e| Diagnostic::new(e.to_string()))?;
+    asset.set_content(format!("export default {literal};\n"));
     asset.set_type("js");
     Ok(())
   }
@@ -94,106 +93,9 @@ register_plugin!(TxtTransformer);
 {% endsamplefile %}
 {% endsample %}
 
-Then build it with `cargo build`, and reference the library from your `.parcelrc` (see [Using native plugins](#using-native-plugins) below).
+Build it with `cargo build`, which produces `target/debug/libparcel_transformer_txt.dylib` (or `.so` or `.dll`).
 
-### Plugin methods
-
-The `Plugin` trait has one method for each plugin type. Implement the ones your plugin supports. The default implementations return an error.
-
-| Method      | Plugin type                                | Returns                                                                                                                    |
-| ----------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `transform` | [Transformer](/plugin-system/transformer/) | Modifies the `Asset` in place.                                                                                             |
-| `resolve`   | [Resolver](/plugin-system/resolver/)       | A `ResolveResult`: `Resolved { file_path, pipeline }`, `External`, `Excluded`, or `None` to continue to the next resolver. |
-| `name`      | [Namer](/plugin-system/namer/)             | A path relative to the bundle's dist directory, or `None` to continue to the next namer.                                   |
-| `optimize`  | [Optimizer](/plugin-system/optimizer/)     | An `OptimizeResult` containing the new contents, and optionally a source map.                                              |
-| `report`    | [Reporter](/plugin-system/reporter/)       | Receives a `ReportEvent`: `BuildStart`, `BuildSuccess`, `BuildFailure`, or `Log`.                                          |
-
-Every method also receives an `Options` object, which provides access to the project root (`project_root()`), environment variables (`env(key)`), [logging](#logging), and the [file system](#file-system).
-
-The [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples) include a plugin of each type.
-
-### Assets
-
-The `Asset` passed to `transform` provides access to the asset's content and metadata. It is only valid for the duration of the call.
-
-- `content()` and `content_bytes()` return the asset's content as a string or bytes. `set_content(...)` and `set_content_bytes(...)` replace it.
-- `set_content_with_map(...)` and `set_content_bytes_with_map(...)` replace the content along with a [source map](/plugin-system/source-maps/) as JSON. `source_map()` returns the source map set by an earlier transformer, if any. A transformer that changes the content should update this map and pass it back, otherwise it is lost. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples/prepend-transformer).
-- `asset_type()` and `set_type(...)` get and set the asset's type, e.g. `"js"`. Changing the type causes the asset to be processed by the pipeline that matches the new type.
-- `file_path()`, `query()`, and `target()` describe the asset and the environment it is built for.
-- `pipeline()`, `bundle_behavior()`, `unique_key()`, and `flags()` have corresponding setters.
-- `add_dependency(DependencyOptions)` adds a dependency to the asset. `DependencyOptions` includes the specifier, specifier type, priority, bundle behavior, flags, package `exports` conditions, and import type.
-- `resolve(&dependency, from, options)` resolves a dependency with the resolvers configured in `.parcelrc`, exactly as if it had been added with `add_dependency`, without adding it. Parcel tracks the files the resolvers read, so the asset is rebuilt when the result would change. A dependency imported as JavaScript (the default `import_type`) must have a transformer that turns it into JavaScript, so set `import_type` to `ImportType::Url` to resolve a file you will read yourself.
-
-### Diagnostics
-
-Return a `Diagnostic` to fail a plugin call. Diagnostics may include a file path and location to display a code frame, along with a hint about how to resolve the problem. Line and column numbers are 1-based.
-
-```rust
-return Err(
-  Diagnostic::new("Unexpected token")
-    .with_file(asset.file_path())
-    .at(10, 5)
-    .with_hint("Check the syntax of the file."),
-);
-```
-
-Returning an error from a reporter does not fail the build. The error is reported, and the build continues.
-
-### Logging
-
-The `Options` object passed to every method can be used to log messages. `log` logs a plain message at a given `LogLevel` (`Error`, `Warn`, `Info`, or `Verbose`). `log_diagnostic` logs a diagnostic without failing the build, which is useful to emit a warning with a code frame.
-
-```rust
-options.log(LogLevel::Verbose, "Transforming file");
-
-options.log_diagnostic(
-  &Diagnostic::warning("This feature is deprecated.")
-    .with_file(asset.file_path())
-    .at(1, 5)
-    .with_hint("Please use this other feature instead."),
-);
-```
-
-### File system
-
-Plugins should read files through `Options` rather than directly with `std::fs`. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. `read_file` and `read_to_string` read a file, `file_kind` returns whether a path is a file, directory, or does not exist, and `canonicalize` resolves symlinks. These are available while transforming or resolving.
-
-```rust
-let config = options.read_to_string("/path/to/tool.config.json")?;
-```
-
-### Custom content
-
-Normally, an asset's content is a string or bytes. Transformers can also store a custom Rust value as the content of an asset, e.g. an AST, using `set_custom_content`. The value must implement the `AssetContent` trait, which has a stable `TYPE_ID`, a `read` method that returns the content as a string or bytes when another plugin needs it, and a `package` method which is called to produce the final contents of a bundle that contains the asset. `package` receives the `BundleGraph` and `Bundle`, so it can find the other assets in the bundle and the bundles they reference.
-
-```rust
-use parcel_plugin::{AssetContent, Bundle, BundleGraph, ContentBuffer, Diagnostic, Options};
-
-struct MyContent {
-  // ...
-}
-
-impl AssetContent for MyContent {
-  const TYPE_ID: [u8; 16] = parcel_plugin::type_id!("MyContent");
-
-  fn read(&self) -> Result<ContentBuffer, Diagnostic> {
-    Ok(ContentBuffer::String(self.to_code()))
-  }
-
-  fn package(
-    &self,
-    bundle_graph: &BundleGraph,
-    bundle: &Bundle,
-    options: &Options,
-  ) -> Result<ContentBuffer, Diagnostic> {
-    Ok(ContentBuffer::String(self.to_code()))
-  }
-}
-```
-
-See the [custom content example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples/custom-content-transformer) for more details.
-
-<!-- TODO(v3): confirm how bundles containing custom content are packaged when the bundle contains multiple assets (packaging uses the content of the bundle's first asset, crates/core/src/packaging.rs packaging_plan). -->
+Return a `Diagnostic` to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Panics are caught and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples) for a plugin of each type.
 
 ## Go
 
@@ -203,35 +105,59 @@ The Go SDK lives in the [`plugin-go`](https://github.com/parcel-bundler/parcel/t
 go get github.com/parcel-bundler/parcel/plugin-go/v3@v{{ parcel.version }}
 ```
 
-A plugin is a `main` package that registers a plugin in an `init` function. Embed `parcel.DefaultPlugin` to get default implementations of the methods you don't need.
+A plugin is a `main` package that registers a plugin in an `init` function. The plugin implements one or more of the `Transformer`, `Resolver`, `Namer`, and `Optimizer` interfaces, each of which has one method: `Transform`, `Resolve`, `Name`, or `Optimize`. A reporter implements an interface for each type of event it receives: `BuildStartReporter`, `BuildSuccessReporter`, `BuildFailureReporter`, or `LogReporter`. The function passed to `RegisterPlugin` is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
+
+{% sample %}
+{% samplefile "main.go" %}
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	parcel "github.com/parcel-bundler/parcel/plugin-go/v3"
 )
 
 type TxtTransformer struct {
-	parcel.DefaultPlugin
+	Prefix string `json:"prefix"`
 }
 
 func (t *TxtTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error {
-	asset.SetContent(fmt.Sprintf("export default %q;\n", asset.Content()))
+	content, err := asset.Content()
+	if err != nil {
+		return err
+	}
+
+	// Emit an ES module that default-exports the text content.
+	// A JSON string is a valid JavaScript string literal.
+	literal, err := json.Marshal(t.Prefix + content)
+	if err != nil {
+		return err
+	}
+	asset.SetContent(fmt.Sprintf("export default %s;\n", literal))
 	asset.SetType("js")
 	return nil
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (parcel.Plugin, error) {
-		return &TxtTransformer{}, nil
+	parcel.RegisterPlugin(func(config []byte) (any, error) {
+		t := &TxtTransformer{}
+		if len(config) > 0 {
+			if err := json.Unmarshal(config, t); err != nil {
+				return nil, err
+			}
+		}
+		return t, nil
 	})
 }
 
 func main() {}
 ```
+
+{% endsamplefile %}
+{% endsample %}
 
 Build it as a C shared library. This requires cgo, and therefore a C compiler.
 
@@ -239,7 +165,7 @@ Build it as a C shared library. This requires cgo, and therefore a C compiler.
 go build -buildmode=c-shared -o plugin.dylib .
 ```
 
-The Go API mirrors the Rust SDK: `Transform`, `Resolve`, `Name`, `Optimize`, and `Report` methods, `Asset` methods such as `Content`, `SetContent`, `SourceMap`, `SetContentWithMap`, `AddDependency`, and `Resolve`, and `Options` methods such as `Log`, `LogDiagnostic`, and `ReadFile`. Returning an error fails the call. Custom content is supported via `SetCustomContent`. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples).
+Return an error, e.g. a `*parcel.Diagnostic`, to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Panics are recovered and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples) for a plugin of each type.
 
 ## Swift
 
@@ -249,6 +175,9 @@ The Swift SDK lives in the [`plugin-swift`](https://github.com/parcel-bundler/pa
 {% samplefile "Package.swift" %}
 
 ```swift
+// swift-tools-version: 6.2
+import PackageDescription
+
 let package = Package(
   name: "TxtTransformer",
   platforms: [.macOS(.v15)],
@@ -265,12 +194,13 @@ let package = Package(
 {% endsamplefile %}
 {% endsample %}
 
-A plugin conforms to one or more of the `Transformer`, `Resolver`, `Namer`, `Optimizer`, and `Reporter` protocols, and is exported with the `#parcelPlugin` macro. Its `Config` is decoded from the plugin's config in `.parcelrc` using `JSONDecoder`. Plugins without config declare `init(config: NoConfig)`.
+A plugin conforms to one or more of the `Transformer`, `Resolver`, `Namer`, `Optimizer`, and `Reporter` protocols, and is exported with the `#parcelPlugin` macro. The plugin is created once for each entry in the `.parcelrc` that refers to it, and its `Config` is decoded from that entry's `config` using `JSONDecoder`. This allows the same plugin to be used multiple times with different configuration. Plugins without config declare `init(config: NoConfig)`.
 
 {% sample %}
 {% samplefile "Sources/TxtTransformer/TxtTransformer.swift" %}
 
 ```swift
+import Foundation
 import ParcelPlugin
 
 struct TxtTransformer: Transformer {
@@ -285,7 +215,10 @@ struct TxtTransformer: Transformer {
   }
 
   func transform(_ asset: Asset, options: Options) async throws {
-    asset.content = "export default \(javaScriptString(prefix + asset.content));"
+    // Emit an ES module that default-exports the text content.
+    // A JSON string is a valid JavaScript string literal.
+    let literal = try JSONEncoder().encode(prefix + asset.content())
+    asset.setContent("export default \(String(decoding: literal, as: UTF8.self));\n")
     asset.type = "js"
   }
 }
@@ -298,9 +231,34 @@ struct TxtTransformer: Transformer {
 
 Build it with `swift build -c release`, which produces `.build/release/libTxtTransformer.dylib`.
 
-An `Asset` provides properties such as `content`, `type`, and `filePath`. To replace the content along with a [source map](/plugin-system/source-maps/), call `asset.setContent(_:sourceMap:)`. `asset.sourceMap` returns the source map set by an earlier transformer, if any. See the [prepend transformer example](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources/PrependTransformer).
+Throw an error, e.g. a `Diagnostic`, to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources) for a plugin of each type.
 
-Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. Throw a `Diagnostic` to fail a call with a code frame and a hint, and use `options.log(.warning("..."))` to warn without failing. Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources).
+## File system
+
+Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](/plugin-system/logging/#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while transforming or resolving.
+
+{% api rust="read_file()", go="ReadFile()", swift="fileSystem.read(_:)" %} reads a file, {% api rust="file_kind()", go="FileKind()", swift="fileSystem.kind(of:)" %} returns whether a path is a file, directory, or does not exist, and {% api rust="canonicalize()", go="Canonicalize()", swift="fileSystem.canonicalize(_:)" %} resolves symlinks.
+
+{% codetabs %}
+
+```rust
+let config = options
+  .read_to_string("/path/to/tool.config.json")
+  .map_err(|e| Diagnostic::new(e.to_string()))?;
+```
+
+```go
+config, err := options.ReadFile("/path/to/tool.config.json")
+if err != nil {
+	return err
+}
+```
+
+```swift
+let config = try options.fileSystem.readString("/path/to/tool.config.json")
+```
+
+{% endcodetabs %}
 
 ## C ABI
 
@@ -311,6 +269,66 @@ All of the SDKs are built on a C ABI, which is defined in [`plugin.h`](https://g
 - `parcel_plugin_transform`, `parcel_plugin_resolve`, `parcel_plugin_name`, `parcel_plugin_optimize`, and `parcel_plugin_report` – the entry points for each plugin type. Only the ones for the plugin types you use are required.
 
 Plugins don't link against any Parcel symbols. Instead, all calls into Parcel go through the table of host functions passed to `parcel_plugin_init`, which `plugin.h` wraps in inline functions such as `parcel_asset_get_content` and `parcel_asset_set_content`.
+
+For example, this transformer converts a file into a JavaScript module that exports its number of lines. Copy `plugin.h` into your project, and include it:
+
+{% sample %}
+{% samplefile "plugin.c" %}
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include "plugin.h"
+
+// The host functions passed to parcel_plugin_init. The inline
+// functions in plugin.h call through this.
+const struct ParcelApi *parcel_api;
+
+InitStatus parcel_plugin_init(const struct ParcelApi *api, const uint8_t *config,
+                              uintptr_t config_len, void **state,
+                              struct DiagnosticOptions *diagnostic) {
+  if (!parcel_api_compatible(&api->header)) {
+    return PARCEL_INIT_INCOMPATIBLE;
+  }
+  parcel_api = api;
+  return PARCEL_INIT_OK;
+}
+
+// Converts a file into a JavaScript module that exports its number of lines.
+void parcel_plugin_transform(Asset asset, Options options, void *state,
+                             struct DiagnosticOptions *diagnostic) {
+  struct Buffer content = {0};
+  Diagnostics diagnostics = 0;
+  if (!parcel_asset_get_content(&content, asset, options, &diagnostics)) {
+    // Fail with the diagnostics Parcel reported for the read.
+    const char *message = "Could not read the asset.";
+    diagnostic->message = parcel_buffer_alloc((const uint8_t *)message, strlen(message));
+    diagnostic->diagnostics = diagnostics;
+    return;
+  }
+
+  size_t lines = 0;
+  for (uintptr_t i = 0; i < content.len; i++) {
+    if (content.data[i] == '\n') {
+      lines++;
+    }
+  }
+  if (content.len > 0 && content.data[content.len - 1] != '\n') {
+    lines++;
+  }
+  parcel_buffer_free(&content);
+
+  char code[64];
+  int len = snprintf(code, sizeof(code), "export default %zu;\n", lines);
+  parcel_asset_set_content_utf8(asset, (const uint8_t *)code, len, NULL, 0);
+  parcel_asset_set_type(asset, (const uint8_t *)"js", 2);
+}
+```
+
+{% endsamplefile %}
+{% endsample %}
+
+Then build it as a shared library with your C compiler, e.g. `cc -shared -fPIC -o plugin.dylib plugin.c`.
 
 The ABI is versioned with `PARCEL_ABI_VERSION`. A plugin built against a different ABI version than the one Parcel implements is rejected with an error, so it needs to be rebuilt.
 

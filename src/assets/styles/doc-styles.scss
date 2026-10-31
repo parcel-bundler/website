@@ -645,6 +645,7 @@ body {
   }
 
   p > code,
+  p > .api-name > code,
   a code,
   li > code,
   td code {
@@ -812,5 +813,91 @@ body {
   display: block;
   &::before {
     content: "📆\00a0";
+  }
+}
+
+.code-tabs {
+  --tab-color: #{theme("colors.gray.500")};
+  --tab-hover-color: #{theme("colors.gray.900")};
+  --tab-selected-color: #{theme("colors.blue.700")};
+  --tab-selected-border-color: #{theme("colors.blue.600")};
+  @apply my-4;
+
+  .dark & {
+    --tab-color: #{theme("colors.gray.400")};
+    --tab-hover-color: #{theme("colors.gray.100")};
+    --tab-selected-color: #{theme("colors.blue.300")};
+    --tab-selected-border-color: #{theme("colors.blue.400")};
+  }
+
+  [role="tablist"] {
+    @apply flex gap-1 overflow-x-auto overflow-y-hidden border-b border-gray-200 dark:border-gray-700;
+  }
+
+  @mixin unselected-tab {
+    color: var(--tab-color);
+    border-color: transparent;
+
+    &:hover {
+      color: var(--tab-hover-color);
+    }
+  }
+
+  @mixin selected-tab {
+    color: var(--tab-selected-color);
+    border-color: var(--tab-selected-border-color);
+  }
+
+  [role="tab"] {
+    @apply -mb-px px-3 py-1.5 text-sm font-medium whitespace-nowrap border-b-2 cursor-default focus:outline-none;
+    @include transition-colors;
+    @include unselected-tab;
+
+    &[aria-selected="true"] {
+      @include selected-tab;
+    }
+
+    &.focus-visible,
+    &:focus-visible {
+      @apply rounded-t-md ring-2 ring-inset ring-blue-500;
+    }
+  }
+
+  pre {
+    @apply mt-3 mb-0;
+  }
+
+  // Apply the stored language before code-tabs.js has run (see code-tabs-init.js).
+  @each $lang in js, rust, go, swift {
+    html[data-code-language="#{$lang}"] &[data-langs~="#{$lang}"] {
+      [role="tab"] {
+        @include unselected-tab;
+      }
+
+      [role="tab"][data-lang="#{$lang}"] {
+        @include selected-tab;
+      }
+
+      [role="tabpanel"] {
+        display: none;
+      }
+
+      [role="tabpanel"][data-lang="#{$lang}"] {
+        display: block;
+      }
+    }
+  }
+}
+
+// Apply the stored language before code-tabs.js has run (see code-tabs-init.js).
+@each $lang in js, rust, go, swift {
+  html[data-code-language="#{$lang}"] .api-name[data-langs~="#{$lang}"] {
+    > code {
+      display: none;
+    }
+
+    > code[data-lang="#{$lang}"] {
+      display: inline;
+    }
   }
 }

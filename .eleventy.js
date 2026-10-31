@@ -99,6 +99,69 @@ module.exports = function (eleventyConfig) {
     return JSON.stringify({ name, content });
   });
 
+  // Renders consecutive code blocks as tabs, one per language. The selected
+  // language is shared by every set of tabs, and persisted (see code-tabs.js).
+  const codeTabLanguages = {
+    javascript: { key: "js", label: "JavaScript" },
+    js: { key: "js", label: "JavaScript" },
+    rust: { key: "rust", label: "Rust" },
+    go: { key: "go", label: "Go" },
+    swift: { key: "swift", label: "Swift" },
+  };
+  let codeTabsId = 0;
+  eleventyConfig.addPairedShortcode("codetabs", function (content) {
+    let id = `code-tabs-${++codeTabsId}`;
+    let blocks = [...content.matchAll(/^```(\w+)\S*\n[\s\S]*?^```$/gm)].map(
+      ([code, language]) => {
+        let lang = codeTabLanguages[language];
+        if (!lang) {
+          throw new Error(`Unknown language in codetabs: ${language}`);
+        }
+        return { ...lang, code };
+      }
+    );
+
+    let tabs = blocks.map(
+      ({ key, label }, i) =>
+        `<button type="button" role="tab" id="${id}-${key}" aria-controls="${id}-${key}-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-lang="${key}">${label}</button>`
+    );
+    let panels = blocks.map(
+      ({ key, code }, i) =>
+        `<div role="tabpanel" id="${id}-${key}-panel" aria-labelledby="${id}-${key}" data-lang="${key}"${i === 0 ? "" : " hidden"}>\n\n${code}\n\n</div>`
+    );
+
+    return (
+      `<div class="code-tabs" data-langs="${blocks.map((b) => b.key).join(" ")}">\n` +
+      `<div role="tablist" aria-label="Language">${tabs.join("")}</div>\n` +
+      panels.join("\n") +
+      `\n</div>`
+    );
+  });
+
+  // Renders an API name in prose that switches along with the code tabs, e.g.
+  // {% api js="asset.getCode()", rust="asset.content()" %}.
+  eleventyConfig.addShortcode("api", function (names) {
+    let entries = Object.entries(names).filter(([lang]) => lang !== "__keywords");
+    for (let [lang] of entries) {
+      if (!Object.values(codeTabLanguages).some((l) => l.key === lang)) {
+        throw new Error(`Unknown language in api shortcode: ${lang}`);
+      }
+    }
+
+    let escape = (s) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return (
+      `<span class="api-name" data-langs="${entries.map(([lang]) => lang).join(" ")}">` +
+      entries
+        .map(
+          ([lang, name], i) =>
+            `<code data-lang="${lang}"${i === 0 ? "" : " hidden"}>${escape(name)}</code>`
+        )
+        .join("") +
+      `</span>`
+    );
+  });
+
   eleventyConfig.addPairedShortcode("migration", function (content) {
     let assets = content
       .split("\n")

@@ -2,6 +2,7 @@
 
 pre {
   @apply rounded-md p-4;
+  tab-size: 4;
   @apply text-gray-700 dark:text-gray-100;
   @apply bg-blueGray-50 border-gray-200;
   @apply dark:bg-gray-900 border dark:border-gray-700;
@@ -24,6 +25,12 @@ pre {
 
 .namespace {
 	@apply dark:opacity-80;
+}
+
+// Prism marks TOML table headers (e.g. [package]) with a `table` class,
+// which would otherwise get Tailwind's `display: table` utility.
+.token.table {
+  display: inline;
 }
 
 .token.property,
