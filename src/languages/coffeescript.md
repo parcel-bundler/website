@@ -12,7 +12,7 @@ eleventyNavigation:
 Parcel supports CoffeeScript using the `@parcel/transformer-coffeescript` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
 ```shell
-yarn add @parcel/transformer-coffeescript --dev
+yarn add @parcel/transformer-coffeescript@next --dev
 ```
 
 {% sample %}

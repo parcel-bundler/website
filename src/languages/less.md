@@ -10,7 +10,7 @@ eleventyNavigation:
 Parcel supports [Less](https://lesscss.org/) files using the `@parcel/transformer-less` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
 ```shell
-yarn add @parcel/transformer-less --dev
+yarn add @parcel/transformer-less@next --dev
 ```
 
 {% sample %}

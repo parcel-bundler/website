@@ -10,7 +10,7 @@ eleventyNavigation:
 [Pug](https://pugjs.org) is a templating language that compiles to HTML. Parcel supports Pug using the `@parcel/transformer-pug` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
 ```shell
-yarn add @parcel/transformer-pug --dev
+yarn add @parcel/transformer-pug@next --dev
 ```
 
 {% sample %}

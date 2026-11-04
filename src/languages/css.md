@@ -646,7 +646,7 @@ Tailwind generates CSS for the class names used in your source files. By default
 PostCSS is supported via the `@parcel/transformer-postcss` plugin. First, install it along with the PostCSS plugins you wish to use into your app:
 
 ```shell
-yarn add @parcel/transformer-postcss postcss-pxtorem --dev
+yarn add @parcel/transformer-postcss@next postcss-pxtorem --dev
 ```
 
 Then, add `@parcel/transformer-postcss` to your `.parcelrc`. The `"..."` syntax runs Parcel's default CSS transformer after PostCSS.

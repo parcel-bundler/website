@@ -24,7 +24,7 @@ The [rsc-examples](https://github.com/parcel-bundler/rsc-examples) repo includes
 ## Install dependencies
 
 ```bash
-npm install react react-dom @parcel/rsc
+npm install react react-dom @parcel/rsc@next
 ```
 
 {% note %}
@@ -390,7 +390,7 @@ When using server rendering, the entry point for your Parcel build is the source
 To scaffold a new server-rendered app with React Server Components and Parcel, run the following commands:
 
 ```bash
-npm create parcel react-server my-rsc-app
+npm create parcel@next react-server my-rsc-app
 cd my-rsc-app
 npm start
 ```

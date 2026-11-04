@@ -15,7 +15,7 @@ will create a new Git repository, install dependencies, and setup a few source
 files you can modify.
 
 ```bash
-npm create parcel vanilla my-parcel-app
+npm create parcel@next vanilla my-parcel-app
 cd my-parcel-app
 npm start
 ```
@@ -33,13 +33,13 @@ See below for a deep dive.
 Before we get started, you'll need to install Node and Yarn or npm, and create a directory for your project. Then, install Parcel into your app using Yarn:
 
 ```shell
-yarn add --dev parcel
+yarn add --dev parcel@next
 ```
 
 Or when using npm run:
 
 ```shell
-npm install --save-dev parcel
+npm install --save-dev parcel@next
 ```
 
 ## Project setup

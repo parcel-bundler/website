@@ -210,7 +210,7 @@ Some plugins that were included in Parcel 2's default config are not included in
 For example, to use Sass:
 
 ```shell
-yarn add @parcel/transformer-sass --dev
+yarn add @parcel/transformer-sass@next --dev
 ```
 
 {% sample %}

@@ -375,7 +375,7 @@ More experimental features can be enabled using [Babel](#babel).
 [Babel](https://babeljs.io/) is a popular transpiler for JavaScript, with a large plugin ecosystem. Babel is supported in Parcel via the `@parcel/transformer-babel` plugin. It is not included in the default config, so you'll need to install it and add it to your `.parcelrc` before Parcel's builtin JavaScript transformer.
 
 ```shell
-yarn add @parcel/transformer-babel --dev
+yarn add @parcel/transformer-babel@next --dev
 ```
 
 {% sample %}

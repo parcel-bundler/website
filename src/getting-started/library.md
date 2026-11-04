@@ -13,13 +13,13 @@ eleventyNavigation:
 Before we get started, you'll need to install Node and Yarn or npm, and create a directory for your project. Then, install Parcel using Yarn:
 
 ```shell
-yarn add --dev parcel
+yarn add --dev parcel@next
 ```
 
 Or when using npm run:
 
 ```shell
-npm install --save-dev parcel
+npm install --save-dev parcel@next
 ```
 
 ## Project setup

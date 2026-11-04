@@ -146,7 +146,7 @@ Importing SVGs without the `jsx:` prefix will return a URL instead of a componen
 If you use Create React App's [GraphQL import](https://create-react-app.dev/docs/loading-graphql-files) feature, or other [Babel Macros](https://github.com/kentcdodds/babel-plugin-macros), you'll need to install `@parcel/transformer-babel` and add it to your `.parcelrc`, and add `babel-plugin-macros` to a `babel.config.json` config file. Since Babel runs before Parcel's builtin transpiler, you'll also need `@babel/plugin-syntax-jsx` so that Babel can parse JSX.
 
 ```bash
-npm install @parcel/transformer-babel babel-plugin-macros @babel/plugin-syntax-jsx --save-dev
+npm install @parcel/transformer-babel@next babel-plugin-macros @babel/plugin-syntax-jsx --save-dev
 ```
 
 {% sample %}

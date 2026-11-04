@@ -10,7 +10,7 @@ eleventyNavigation:
 Parcel supports [Sass](https://sass-lang.com/) files using the `@parcel/transformer-sass` plugin. Sass is compiled natively in Rust, so the `sass` npm package is not needed. To use it, install the plugin into your app and add it to your `.parcelrc`.
 
 ```shell
-yarn add @parcel/transformer-sass --dev
+yarn add @parcel/transformer-sass@next --dev
 ```
 
 {% sample %}

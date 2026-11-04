@@ -14,7 +14,7 @@ Parcel works great for building single or multi-page React applications. It incl
 To quickly scaffold a new client-only React app with Parcel, run the following commands:
 
 ```bash
-npm create parcel react-client my-react-app
+npm create parcel@next react-client my-react-app
 cd my-react-app
 npm start
 ```
@@ -232,7 +232,7 @@ CSS-in-JS libraries like [Styled Components](https://styled-components.com), [Em
 For example, to use Emotion, install the Babel plugin, add `@parcel/transformer-babel` to your `.parcelrc`, and create a `.babelrc` in your project:
 
 ```shell
-yarn add @parcel/transformer-babel @emotion/babel-plugin --dev
+yarn add @parcel/transformer-babel@next @emotion/babel-plugin --dev
 yarn add @emotion/react
 ```
 

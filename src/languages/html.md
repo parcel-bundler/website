@@ -300,7 +300,7 @@ This may also occur with scripts. For example, if two pages depend on the same J
 [PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. PostHTML support is provided by the `@parcel/transformer-posthtml` plugin, which is not included in the default Parcel config. Install it along with any PostHTML plugins you need:
 
 ```bash
-yarn add @parcel/transformer-posthtml posthtml-doctype --dev
+yarn add @parcel/transformer-posthtml@next posthtml-doctype --dev
 ```
 
 Then, add it to your `.parcelrc` so that it runs before Parcel's builtin HTML transformer:
