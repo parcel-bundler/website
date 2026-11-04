@@ -8,11 +8,8 @@ eleventyNavigation:
 summary: A high-level overview over the plugin system
 ---
 
-<!-- TODO(v3): the diagram image (src/assets/diagram-plugin-system.png) shows the v2 pipeline, which may include phases/plugin types that no longer exist in v3 (validators, runtimes, packagers, compressors, pluggable bundlers). It needs to be redrawn with: resolving, transforming, bundling, naming, packaging (built-in), optimizing. -->
-<figure>
-  <a href="/assets/diagram-plugin-system.opt.png" target="_blank">
-    <img class="img-plugin-diagram" alt="A diagram of the Parcel plugin system" src="/assets/diagram-plugin-system.opt.png"/>
-  </a>
+<figure class="plugin-diagram">
+{% include "plugin-system-diagram.svg" %}
 </figure>
 
 ## Parcel Architecture

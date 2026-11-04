@@ -1,0 +1,72 @@
+<svg viewBox="0 0 960 448" role="img" aria-labelledby="psd-title psd-desc">
+  <title id="psd-title">A diagram of the Parcel plugin system</title>
+  <desc id="psd-desc">Entries are resolved by resolvers and transformed by transformers, which return dependencies that are resolved in turn. Resolving and transforming run in parallel to build the asset graph. The asset graph is grouped into bundles by the built-in bundler. Namers name each bundle, then the built-in packager combines its assets and optimizers transform the result, in parallel for each bundle. Finally, output files are hashed and written to disk. Reporters receive events from every phase of the build.</desc>
+  <defs>
+    <marker id="psd-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path class="arrowhead" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+  <!-- Assets -->
+  <g class="assets">
+    <rect class="frame" x="8" y="8" width="690" height="190" rx="12"/>
+    <text class="header" x="28" y="36">Assets</text>
+    <rect class="node" x="28" y="88" width="92" height="44" rx="22"/>
+    <text class="title" x="74" y="110">Entries</text>
+    <rect class="node" x="186" y="80" width="150" height="60" rx="8"/>
+    <text class="title" x="261" y="101">Resolvers</text>
+    <text class="sub" x="261" y="122">Specifier → file path</text>
+    <rect class="node" x="470" y="70" width="200" height="80" rx="8"/>
+    <text class="title" x="570" y="92">Transformers</text>
+    <text class="sub" x="570" y="113">File → assets + dependencies</text>
+    <text class="sub" x="570" y="132">JS · CSS · HTML · …</text>
+    <path class="edge" d="M120,110 H186" marker-end="url(#psd-arrow)"/>
+    <path class="edge" d="M336,98 H470" marker-end="url(#psd-arrow)"/>
+    <text class="edge-label" x="403" y="88">file path</text>
+    <path class="edge" d="M470,122 H336" marker-end="url(#psd-arrow)"/>
+    <text class="edge-label" x="403" y="134">dependencies</text>
+    <text class="note" x="428" y="178">Resolving and transforming run in parallel to build the asset graph</text>
+  </g>
+  <!-- Reporters -->
+  <g class="reporters">
+    <rect class="frame" x="730" y="8" width="222" height="190" rx="12"/>
+    <text class="header" x="750" y="36">Reporters</text>
+    <text class="body" x="750" y="92">Receive events from</text>
+    <text class="body" x="750" y="112">every phase: progress,</text>
+    <text class="body" x="750" y="132">logs, and build results</text>
+    <path class="edge event" d="M698,60 H730" marker-end="url(#psd-arrow)"/>
+    <path class="edge event" d="M841,250 V198" marker-end="url(#psd-arrow)"/>
+  </g>
+  <!-- Asset graph → bundling -->
+  <path class="edge" d="M670,110 H702 Q714,110 714,122 V212 Q714,224 702,224 H122 Q110,224 110,236 V326" marker-end="url(#psd-arrow)"/>
+  <text class="edge-label halo" x="412" y="224">asset graph</text>
+  <!-- Bundles -->
+  <g class="bundles">
+    <rect class="frame" x="8" y="250" width="944" height="190" rx="12"/>
+    <text class="header" x="28" y="278">Bundles</text>
+    <rect class="node" x="766" y="268" width="22" height="14" rx="3"/>
+    <text class="legend" x="796" y="275">Plugin</text>
+    <rect class="node builtin" x="852" y="268" width="22" height="14" rx="3"/>
+    <text class="legend" x="882" y="275">Built-in</text>
+    <rect class="node builtin" x="40" y="326" width="140" height="60" rx="8"/>
+    <text class="title" x="110" y="347">Bundling</text>
+    <text class="sub" x="110" y="368">Assets → bundles</text>
+    <rect class="node" x="233" y="326" width="140" height="60" rx="8"/>
+    <text class="title" x="303" y="347">Namers</text>
+    <text class="sub" x="303" y="368">Bundle → file name</text>
+    <rect class="node builtin" x="426" y="326" width="140" height="60" rx="8"/>
+    <text class="title" x="496" y="347">Packaging</text>
+    <text class="sub" x="496" y="368">Combines assets</text>
+    <rect class="node" x="619" y="326" width="140" height="60" rx="8"/>
+    <text class="title" x="689" y="347">Optimizers</text>
+    <text class="sub" x="689" y="368">Transform contents</text>
+    <rect class="node" x="812" y="326" width="120" height="60" rx="30"/>
+    <text class="title" x="872" y="347">Output</text>
+    <text class="sub" x="872" y="368">Hashed + written</text>
+    <path class="edge" d="M180,356 H233" marker-end="url(#psd-arrow)"/>
+    <path class="edge" d="M373,356 H426" marker-end="url(#psd-arrow)"/>
+    <path class="edge" d="M566,356 H619" marker-end="url(#psd-arrow)"/>
+    <path class="edge" d="M759,356 H812" marker-end="url(#psd-arrow)"/>
+    <path class="bracket" d="M426,398 V405 H759 V398"/>
+    <text class="note" x="592.5" y="422">Run in parallel for each bundle</text>
+  </g>
+</svg>

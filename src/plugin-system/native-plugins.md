@@ -48,8 +48,6 @@ serde_json = "1"
 {% endsamplefile %}
 {% endsample %}
 
-The SDKs for every language are released together with Parcel, and tagged with its version in the Parcel repo. Depend on the tag matching the version of Parcel your plugin targets.
-
 <!-- TODO(v3): parcel-plugin is not published to crates.io yet (the examples in plugin-rs/examples use a path dependency). Confirm the recommended dependency spec (crates.io version, or git + branch). -->
 
 A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The trait has one method for each plugin type (`transform`, `resolve`, `name`, and `optimize`), and one for each type of event a reporter receives (`build_start`, `build_success`, `build_failure`, and `log`). Implement the ones your plugin supports. The default implementations return an error, except for the reporter methods, which do nothing. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
