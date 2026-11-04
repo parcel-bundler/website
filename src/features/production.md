@@ -107,10 +107,4 @@ parcel build src/index.html --analyze
 
 This generates a `parcel-bundle-reports/index.html` file in your project root, and opens it in your browser:
 
-<!-- TODO(v3): this screenshot shows the v2 @parcel/reporter-bundle-analyzer UI; replace it with a screenshot of the v3 --analyze report (crates/parcel/src/analyzer). -->
-
-<div style="border: 1px solid black">
-
 ![A screenshot of the bundle analyzer output](/assets/bundle-analyzer.png)
-
-</div>

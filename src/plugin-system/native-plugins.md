@@ -41,7 +41,7 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-parcel-plugin = { git = "https://github.com/parcel-bundler/parcel", tag = "v{{ parcel.version }}" }
+parcel-plugin = "0.1.0"
 serde_json = "1"
 ```
 

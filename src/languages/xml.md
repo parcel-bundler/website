@@ -47,8 +47,6 @@ RSS and Atom feeds can be referenced from an HTML file using the `<link>` elemen
 
 ## Example
 
-<!-- TODO(v3): the v2 version of this example used `<link href="/" />`. In v3 that fails to build ("Cannot load file '' in '.../index'"): feed links go through handle_feed_attr in crates/html/src/dependencies.rs, which doesn't skip extensionless/virtual paths the way HTML `<a>` does. Changed the example to index.html; decide whether "/" should work. -->
-
 This example shows an Atom feed containing a single entry. The URL references in the two `<link>` elements will be rewritten to include the public URL, and the image referenced in the content of the post will be processed and content hashed.
 
 ```xml
