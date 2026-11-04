@@ -1,9 +1,9 @@
 ---
 layout: layout.njk
-title: Announcing Parcel 3 alpha 1
+title: Announcing Parcel 3 alpha
 eleventyNavigation:
-  key: blog-parcel-3-alpha-1
-  title: Announcing Parcel 3 alpha 1
+  key: blog-parcel-3-alpha
+  title: Announcing Parcel 3 alpha
 date: 2026-11-04
 ---
 
