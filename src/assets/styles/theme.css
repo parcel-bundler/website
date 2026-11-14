@@ -1,0 +1,114 @@
+/* Shared Tailwind configuration for the docs and home page stylesheets. */
+@import "tailwindcss-safe-area";
+
+@theme {
+  --breakpoint-xs: 375px;
+
+  /*
+    Tailwind v3 used fixed rem line heights, which are inherited as-is by children with a different
+    font size. v4 uses unitless ratios, which scale with each child's font size instead.
+  */
+  --text-xs--line-height: 1rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+
+  --color-green-50: var(--color-emerald-50);
+  --color-green-100: var(--color-emerald-100);
+  --color-green-200: var(--color-emerald-200);
+  --color-green-300: var(--color-emerald-300);
+  --color-green-400: var(--color-emerald-400);
+  --color-green-500: var(--color-emerald-500);
+  --color-green-600: var(--color-emerald-600);
+  --color-green-700: var(--color-emerald-700);
+  --color-green-800: var(--color-emerald-800);
+  --color-green-900: var(--color-emerald-900);
+  --color-green-950: var(--color-emerald-950);
+
+  --color-yellow-50: var(--color-amber-50);
+  --color-yellow-100: var(--color-amber-100);
+  --color-yellow-200: var(--color-amber-200);
+  --color-yellow-300: var(--color-amber-300);
+  --color-yellow-400: var(--color-amber-400);
+  --color-yellow-500: var(--color-amber-500);
+  --color-yellow-600: var(--color-amber-600);
+  --color-yellow-700: var(--color-amber-700);
+  --color-yellow-800: var(--color-amber-800);
+  --color-yellow-900: var(--color-amber-900);
+  --color-yellow-950: var(--color-amber-950);
+
+  --color-purple-50: var(--color-violet-50);
+  --color-purple-100: var(--color-violet-100);
+  --color-purple-200: var(--color-violet-200);
+  --color-purple-300: var(--color-violet-300);
+  --color-purple-400: var(--color-violet-400);
+  --color-purple-500: var(--color-violet-500);
+  --color-purple-600: var(--color-violet-600);
+  --color-purple-700: var(--color-violet-700);
+  --color-purple-800: var(--color-violet-800);
+  --color-purple-900: var(--color-violet-900);
+  --color-purple-950: var(--color-violet-950);
+
+  --color-blueGray-50: var(--color-slate-50);
+  --color-blueGray-100: var(--color-slate-100);
+  --color-blueGray-200: var(--color-slate-200);
+  --color-blueGray-300: var(--color-slate-300);
+  --color-blueGray-400: var(--color-slate-400);
+  --color-blueGray-500: var(--color-slate-500);
+  --color-blueGray-600: var(--color-slate-600);
+  --color-blueGray-700: var(--color-slate-700);
+  --color-blueGray-800: var(--color-slate-800);
+  --color-blueGray-900: var(--color-slate-900);
+  --color-blueGray-950: var(--color-slate-950);
+}
+
+@utility w-full-screen {
+  width: calc(100vw - 20px);
+}
+
+@utility max-w-full-screen {
+  max-width: calc(100vw - 20px);
+}
+
+/* Transitions are only enabled once the page has loaded (see the `loaded` class), to avoid animating the initial color scheme. */
+@utility loaded-transition-colors {
+  .loaded & {
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+  }
+}
+
+@utility loaded-transition-color {
+  .loaded & {
+    transition: color 0.2s ease-in-out;
+  }
+}
+
+@utility loaded-transition-background {
+  .loaded & {
+    transition: background 0.2s ease-in-out;
+  }
+}
+
+/*
+  Tailwind v4 changed the default border color to `currentcolor` and button cursor to `default`.
+  These keep the v3 behavior.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

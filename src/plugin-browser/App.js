@@ -23,7 +23,7 @@ function formatAgo(date) {
   return dateFormatter.format(Math.round(diff), unit);
 }
 
-const FOCUS_STYLES = 'focus:outline-none focus:ring focus:ring-offset-0 focus:ring-sky-300 focus:border-sky-500 dark:focus:ring-sky-700 dark:focus:border-sky-600';
+const FOCUS_STYLES = 'focus:outline-hidden focus:ring-3 focus:ring-offset-0 focus:ring-sky-300 focus:border-sky-500 dark:focus:ring-sky-700 dark:focus:border-sky-600';
 
 export default function App() {
   const [{ type, page, filter, includeOfficial }, setState] = useHashState({
@@ -110,7 +110,7 @@ export default function App() {
           Include official Plugins
         </label>
       </div>
-      <div className="w-full md:w-3xl mt-3 flex flex-col flex-1 gap-3">
+      <div className="w-full mt-3 flex flex-col flex-1 gap-3">
         {results?.nbPages === 0 && <span>No results</span>}
         {results?.hits.map((r, i) => (
           <Result

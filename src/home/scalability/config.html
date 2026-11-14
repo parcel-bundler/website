@@ -38,7 +38,7 @@
       </div>
       <div class="ml-0 md:ml-5 lg:ml-0 text-xs text-gray-500">.parcelrc</div>
     </div>
-    <pre class="pt-0 bg-transparent flex-grow overflow-auto text-xs md:text-sm lg:text-base">{
+    <pre class="pt-0 bg-transparent grow overflow-auto text-xs md:text-sm lg:text-base">{
 <code class="language-json code-plugin" id="plugin-extends" :class="{'inactive': tab && tab !== 'extends'}">  "extends": ["@parcel/config-default"],</code>
 <code class="language-json code-plugin" id="plugin-transformers" :class="{'inactive': tab && tab !== 'transformers'}">  "transformers": {
     "*.svg": ["@parcel/transformer-svg-jsx"]
@@ -50,14 +50,5 @@
   },</code>
 <code class="language-json code-plugin" id="plugin-reporters" :class="{'inactive': tab && tab !== 'reporters'}">  "reporters": ["...", "parcel-reporter-manifest"]</code>
 }</code></pre>
-    <style>
-      code.code-plugin * {
-        @apply transition-colors !important;
-      }
-
-      code.inactive * {
-        @apply lg:text-gray-600 !important;
-      }
-    </style>
   </div>
 </div>
