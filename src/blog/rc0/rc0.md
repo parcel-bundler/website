@@ -1,6 +1,5 @@
 <title>Parcel 2 RC</title>
 <meta property="article:published_time" content="2021-08-03">
-<body class="blog">
 
 <header>
   <h1>Parcel 2 RC</h1>

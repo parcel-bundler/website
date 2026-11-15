@@ -6,6 +6,16 @@
       "@parcel/transformer-posthtml",
       "@parcel/transformer-html"
     ],
+    "src/blog/**/*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "layout": "src/_includes/blog-layout.html",
+          "gfm": true,
+          "anchors": true
+        }
+      }
+    ],
     "*.md": [
       {
         "plugin": "@parcel/transformer-markdown",

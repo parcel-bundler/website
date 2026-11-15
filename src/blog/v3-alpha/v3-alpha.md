@@ -1,6 +1,5 @@
 <title>Announcing Parcel 3 alpha</title>
 <meta property="article:published_time" content="2026-11-04">
-<body class="blog">
 
 <header>
   <h1>Announcing Parcel 3 alpha</h1>

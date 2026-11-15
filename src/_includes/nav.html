@@ -198,17 +198,3 @@
     </ul>
   </li>
 </ul>
-
-<script>
-  // Mark the link to the current page. This nav is shared by every page, so it can't be done at build time.
-  {
-    let normalize = (path) => path.replace(/(index)?\.html$/, "").replace(/\/$/, "");
-    let current = normalize(location.pathname);
-    for (let link of document.currentScript.closest("nav").querySelectorAll("a[href]")) {
-      if (link.origin === location.origin && normalize(link.pathname) === current) {
-        link.setAttribute("aria-current", "page");
-        break;
-      }
-    }
-  }
-</script>

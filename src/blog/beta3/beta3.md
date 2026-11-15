@@ -1,6 +1,5 @@
 <title>Parcel 2 beta 3</title>
 <meta property="article:published_time" content="2021-05-18">
-<body class="blog">
 
 <header>
   <h1>Parcel 2 beta 3</h1>

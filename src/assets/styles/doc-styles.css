@@ -937,9 +937,8 @@ html.dark {
 
     @apply hidden xl:block;
 
-    /* Pages without headings, and blog posts, have no table of contents. */
-    &:not(:has(> ol)),
-    .blog & {
+    /* Pages without headings have no table of contents. */
+    &:not(:has(> ol)) {
       @apply hidden;
     }
 

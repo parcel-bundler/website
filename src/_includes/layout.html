@@ -85,19 +85,23 @@
       </div>
     </header>
     <nav class="docs-navigation">
-    <!--{% if tags and tags.includes("Blog") %}
-      <ul>
-        {% set navPages = collections.Blog | sortDate | eleventyNavigation %}
-        {%- for entry in navPages %}
-          <li{% if entry.url == page.url %} class="current"{% endif %}>
-            <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title | safe }}</a>
-          </li>
-        {%- endfor %}
-      </ul>
-    {% else %}-->
-      <parcel:include src="nav.html"></parcel:include>
-    <!--{% endif %}-->
+      <parcel:slot name="nav">
+        <parcel:include src="nav.html"></parcel:include>
+      </parcel:slot>
     </nav>
+    <script>
+      // Mark the link to the current page. The nav is shared by many pages, so it can't be done at build time.
+      {
+        let normalize = (path) => path.replace(/(index)?\.html$/, "").replace(/\/$/, "");
+        let current = normalize(location.pathname);
+        for (let link of document.currentScript.previousElementSibling.querySelectorAll("a[href]")) {
+          if (link.origin === location.origin && normalize(link.pathname) === current) {
+            link.setAttribute("aria-current", "page");
+            break;
+          }
+        }
+      }
+    </script>
     <script type="module">
       import "./remember-nav-scroll.js";
     </script>

@@ -1,6 +1,5 @@
-<title>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</title>
+<title>Announcing Parcel CSS</title>
 <meta property="article:published_time" content="2022-01-12">
-<body class="blog">
 
 <header>
   <h1>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</h1>

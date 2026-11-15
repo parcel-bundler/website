@@ -1,6 +1,5 @@
 <title>Parcel 2 alpha 1 is here!</title>
 <meta property="article:published_time" content="2019-09-13">
-<body class="blog">
 
 <header>
   <h1>Parcel 2 alpha 1 is here!</h1>
