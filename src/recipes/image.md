@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Image
-eleventyNavigation:
-  key: recipes-image
-  title: <img src="/assets/lang-icons/image.svg" alt=""/> Image
-  order: 2
----
+<title>Image</title>
+
+# Image
 
 Parcel has built in support for resizing, converting, and optimizing images. Images can be referenced from HTML, CSS, JavaScript, or any other file type.
 

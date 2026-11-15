@@ -1,10 +1,6 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-reporter
-  title: Reporter
-  order: 11
----
+<title>Reporter</title>
+
+# Reporter
 
 Reporter plugins receive events from Parcel as they happen throughout the build process. For example, reporters may log status information, or statistics about the bundles at the end of a build.
 

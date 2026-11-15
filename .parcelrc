@@ -6,7 +6,17 @@
       "@parcel/transformer-posthtml",
       "@parcel/transformer-html"
     ],
-    "*.html": ["@parcel/transformer-html"],
+    "*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "layout": "src/_includes/layout.html",
+          "gfm": true,
+          "toc": true,
+          "anchors": true
+        }
+      }
+    ],
     "*.css": [
       "@parcel/transformer-tailwind",
       {

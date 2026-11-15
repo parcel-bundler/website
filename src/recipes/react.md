@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: React
-eleventyNavigation:
-  key: recipes-react
-  title: <img src="/assets/lang-icons/react.svg" alt=""/> React
-  order: 3
----
+<title>React</title>
+
+# React
 
 Parcel works great for building single or multi-page React applications. It includes a first-class development experience with Fast Refresh, and supports JSX, TypeScript, and many styling methodologies out of the box.
 

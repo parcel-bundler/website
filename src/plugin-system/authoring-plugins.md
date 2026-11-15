@@ -1,11 +1,11 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-authoring-plugins
-  title: Authoring Plugins
-  order: 2
-summary: "What to keep in mind when authoring a plugin"
----
+<title>Authoring Plugins</title>
+
+<header>
+  <h1>Authoring Plugins</h1>
+  <p class="summary">
+    <span>What to keep in mind when authoring a plugin</span>
+  </p>
+</header>
 
 ## Plugin APIs
 

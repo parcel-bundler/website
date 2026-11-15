@@ -1,10 +1,6 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-namer
-  title: Namer
-  order: 6
----
+<title>Namer</title>
+
+# Namer
 
 Namer plugins determine the output filename for a bundle. Namers run in a pipeline until one of them returns a result. Returned file paths should be relative to the target's dist directory. See [Targets](/features/targets/) for details about this.
 

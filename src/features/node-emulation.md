@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Node Emulation
-eleventyNavigation:
-  key: features-node-emulation
-  title: 🐢 Node Emulation
-  order: 8
----
+<title>Node Emulation</title>
+
+# Node Emulation
 
 Parcel includes several features that emulate the Node.js API. This allows many modules on npm that were originally written for Node to also work in the browser. In addition, many browser modules have also adopted Node.js-based APIs for things like environment variables.
 

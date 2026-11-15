@@ -17,5 +17,6 @@ if (query)
 
 let isDarkMode = JSON.parse(sessionStorage.getItem('isDarkMode'));
 if (isDarkMode == null) isDarkMode = isSystemDarkMode;
+globalThis.isDarkMode = isDarkMode;
 
 updateMode(isDarkMode);

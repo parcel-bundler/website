@@ -1,12 +1,7 @@
----
-layout: layout.njk
-title: Tree shaking
-description: In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called "tree shaking".
-eleventyNavigation:
-  key: features-tree-shaking
-  title: 🌳 Tree shaking
-  order: 7
----
+<title>Tree shaking</title>
+<meta name="description" content="In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called &quot;tree shaking&quot;.">
+
+# Tree shaking
 
 In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called **"tree shaking"** or **"dead code elimination".** Tree shaking is supported for both static and [dynamic import](/features/code-splitting/#tree-shaking), [CommonJS](/languages/javascript/#commonjs) and [ES modules](/languages/javascript/#es-modules), and even across languages with [CSS modules](/languages/css/#tree-shaking) and [SVG](/languages/svg/#tree-shaking).
 

@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Plugins
-eleventyNavigation:
-  key: features-plugins
-  title: 🔌 Plugins
-  order: 12
----
+<title>Plugins</title>
+
+# Plugins
 
 Parcel works out of the box for many projects with zero configuration. But if you want more control, or need to extend or override Parcel’s defaults, you can do so by creating a `.parcelrc` file in your project.
 

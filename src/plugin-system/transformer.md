@@ -1,10 +1,6 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-transformer
-  title: Transformer
-  order: 4
----
+<title>Transformer</title>
+
+# Transformer
 
 Transformer plugins transform a single asset to compile it, discover dependencies, or convert it to a different format. Many transformers are wrappers around other tools such as compilers and preprocessors, and are responsible for integrating them with Parcel.
 

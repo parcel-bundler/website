@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Debugging
-eleventyNavigation:
-  key: recipes-debugging
-  title: 🛠️ Debugging
-  order: 1
----
+<title>Debugging</title>
+
+# Debugging
 
 As Parcel automatically generates sourcemaps by default, setting up debugging with Parcel involves minimal effort for the most part.
 
@@ -43,7 +38,7 @@ document.getElementById("greeting").innerHTML = variable;
 
 With this setup, you can run `parcel serve src/index.html` and set breakpoints in the source code, as seen below:
 
-![Example Chrome Breakpoints](../debugging1.png)
+![Example Chrome Breakpoints](./debugging1.png)
 
 ## Visual Studio Code
 
@@ -82,4 +77,4 @@ $ parcel serve src/index.html
 
 The last step here is to actually start the debugging process by clicking Green arrow in the debug panel. You should now be able to set breakpoints in your code. The final result will look similar to the following:
 
-![Example Chrome Breakpoints](../debugging2.png)
+![Example Chrome Breakpoints](./debugging2.png)

@@ -1,12 +1,11 @@
----
-layout: layout.njk
-title: Plugin System Overview
-eleventyNavigation:
-  key: plugin-system-overview
-  title: Overview
-  order: 1
-summary: A high-level overview over the plugin system
----
+<title>Plugin System Overview</title>
+
+<header>
+  <h1>Plugin System Overview</h1>
+  <p class="summary">
+    <span>A high-level overview over the plugin system</span>
+  </p>
+</header>
 
 <figure class="plugin-diagram">
 {% include "plugin-system-diagram.svg" %}

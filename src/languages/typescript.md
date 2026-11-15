@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: TypeScript
-eleventyNavigation:
-  key: languages-typescript
-  title: <img src="/assets/lang-icons/typescript.svg" alt=""/> TypeScript
-  order: 4
----
+<title>TypeScript</title>
+
+# TypeScript
 
 [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles to JavaScript. Parcel supports TypeScript out of the box without any additional configuration.
 

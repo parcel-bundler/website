@@ -397,18 +397,6 @@ html.dark {
   width: 1px;
 }
 
-.header-anchor {
-  position: absolute;
-  transform: translate(-99%, -100%);
-  box-sizing: border-box;
-  @apply pr-2 opacity-0 transition;
-}
-
-.header-anchor:hover,
-:hover + .header-anchor {
-  @apply opacity-100;
-}
-
 .parcel-docs-header {
   position: fixed;
   top: 0;
@@ -560,7 +548,7 @@ html.dark {
     display: none;
   }
 
-  .current > a {
+  a[aria-current="page"] {
     @apply bg-sky-500/20 hover:bg-sky-500/30 dark:bg-sky-900/75 dark:hover:bg-sky-900/70 text-gray-900 dark:text-gray-50;
   }
 
@@ -601,8 +589,8 @@ html.dark {
   @apply py-8 xl:pr-60 lg:pl-64;
 
   .blog &,
-  &.docs-home,
-  &.plugin-search {
+  .docs-home &,
+  .plugin-search & {
     @apply pr-0;
   }
 
@@ -625,7 +613,7 @@ html.dark {
     pointer-events: none;
   }
 
-  &:not(.docs-home, .plugin-search) > article a:not(.npm) {
+  body:not(.docs-home, .plugin-search) & > article a:not(.npm, :is(h2, h3, h4, h5, h6) > a) {
     @apply text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 focus:outline-hidden focus:underline focus:text-blue-500 dark:focus:text-blue-300;
     @apply loaded-transition-color;
   }
@@ -636,11 +624,11 @@ html.dark {
     padding: 1.5rem;
     padding-top: 0;
 
-    & > header {
-      h1 {
-        margin-top: 0;
-      }
+    h1 {
+      margin-top: 0;
+    }
 
+    & > header {
       .summary {
         margin-top: 0.5rem;
         margin-bottom: 1rem;
@@ -652,13 +640,17 @@ html.dark {
       text-align: right;
       font-style: italic;
     }
+
+    body.blog & > footer {
+      display: none;
+    }
   }
 
-  &.docs-home > article {
+  .docs-home & > article {
     @apply max-w-5xl;
   }
 
-  &.plugin-search > article {
+  .plugin-search & > article {
     @apply max-w-4xl;
   }
 
@@ -675,8 +667,7 @@ html.dark {
     }
   }
 
-  h1,
-  h1 + .header-anchor {
+  h1 {
     @apply text-4xl;
   }
 
@@ -684,30 +675,23 @@ html.dark {
     @apply mt-10 mb-6;
   }
 
-  &.docs-home h1 {
+  .docs-home & h1 {
     @apply sm:text-5xl lg:text-6xl;
   }
 
-  &.plugin-search h1 {
+  .plugin-search & h1 {
     @apply sm:text-4xl lg:text-5xl;
   }
 
-  h2,
-  h2 + .header-anchor {
+  h2 {
     @apply text-2xl;
   }
 
-  h2 + .header-anchor {
-    @apply pb-6;
-  }
-
-  h3,
-  h3 + .header-anchor {
+  h3 {
     @apply text-xl;
   }
 
-  h4,
-  h4 + .header-anchor {
+  h4 {
     @apply text-lg;
   }
 
@@ -715,13 +699,31 @@ html.dark {
   h3,
   h4 {
     @apply mt-8 mb-4;
+  }
 
-    & + .header-anchor {
-      @apply pb-4;
+  /* Heading anchors: the markdown transformer wraps each heading's contents in a link to itself.
+     A # appears beside the heading on hover. */
+  :is(h2, h3, h4, h5, h6)[id] > a[href^="#"]:only-child {
+    color: inherit;
+
+    &::before {
+      content: "#";
+      position: absolute;
+      transform: translateX(-100%);
+      @apply pr-2 text-gray-400 dark:text-gray-500 opacity-0 transition;
+    }
+
+    :hover > &::before,
+    &:focus-visible::before {
+      @apply opacity-100;
+    }
+
+    &:focus-visible {
+      @apply outline-hidden underline;
     }
   }
 
-  &.docs-home h2 {
+  .docs-home & h2 {
     @apply mt-20 text-3xl;
     &:first-of-type {
       @apply mt-14;
@@ -732,13 +734,11 @@ html.dark {
     @apply mt-10;
   }
 
-  h5,
-  h5 + .header-anchor {
+  h5 {
     @apply text-base;
   }
 
-  h6,
-  h6 + .header-anchor {
+  h6 {
     @apply text-sm;
   }
 
@@ -936,6 +936,12 @@ html.dark {
     @apply w-56;
 
     @apply hidden xl:block;
+
+    /* Pages without headings, and blog posts, have no table of contents. */
+    &:not(:has(> ol)),
+    .blog & {
+      @apply hidden;
+    }
 
     > h3 {
       @apply text-sm uppercase;

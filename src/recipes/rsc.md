@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: React Server Components
-eleventyNavigation:
-  key: recipes-rsc
-  title: <img src="/assets/lang-icons/react.svg" alt=""/> React Server Components
-  order: 4
----
+<title>React Server Components</title>
+
+# React Server Components
 
 React Server Components are a new type of component that renders ahead of time, on the server or at build time. Parcel supports React Server Components out of the box.
 

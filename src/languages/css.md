@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: CSS
-eleventyNavigation:
-  key: languages-css
-  title: <img src="/assets/lang-icons/postcss.svg" alt=""/> CSS
-  order: 2
----
+<title>CSS</title>
+
+# CSS
 
 Parcel includes support for CSS out of the box. To add a CSS file, either reference it with a `<link>` tag in an HTML file:
 

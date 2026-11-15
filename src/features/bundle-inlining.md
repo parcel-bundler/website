@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Bundle inlining
-eleventyNavigation:
-  key: features-bundle-inlining
-  title: 🪆 Bundle inlining
-  order: 4
----
+<title>Bundle inlining</title>
+
+# Bundle inlining
 
 Parcel includes several ways to inline the compiled contents of one bundle inside another bundle.
 

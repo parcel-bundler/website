@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: JavaScript
-eleventyNavigation:
-  key: languages-js
-  title: <img src="/assets/lang-icons/javascript.svg" alt=""/> JavaScript
-  order: 0
----
+<title>JavaScript</title>
+
+# JavaScript
 
 Parcel includes first-class support for JavaScript, including ES modules and CommonJS, many types of dependencies, automatic transpilation for browser targets, JSX and TypeScript support, and much more.
 

@@ -1,11 +1,11 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-native-plugins
-  title: Native Plugins
-  order: 3
-summary: "How to write Parcel plugins in Rust, Go, Swift, or C"
----
+<title>Native Plugins</title>
+
+<header>
+  <h1>Native Plugins</h1>
+  <p class="summary">
+    <span>How to write Parcel plugins in Rust, Go, Swift, or C</span>
+  </p>
+</header>
 
 In addition to JavaScript, Parcel plugins can be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. Native plugins are compiled to a dynamic library (`.dylib` on macOS, `.so` on Linux, or `.dll` on Windows), which Parcel loads directly into its process.
 

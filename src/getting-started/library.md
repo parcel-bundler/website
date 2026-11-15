@@ -1,12 +1,7 @@
----
-layout: layout.njk
-title: Building a library with Parcel
-description: A getting started guide walking through how to setup a library with Parcel, including output of an ES module and CommonJS.
-eleventyNavigation:
-  key: getting-started-library
-  title: 📔 Library
-  order: 2
----
+<title>Building a library with Parcel</title>
+<meta name="description" content="A getting started guide walking through how to setup a library with Parcel, including output of an ES module and CommonJS.">
+
+# Building a library with Parcel
 
 ## Installation
 

@@ -1,12 +1,7 @@
----
-layout: layout.njk
-title: Building a web app with Parcel
-description: A getting started guide walking through how to setup a project with Parcel.
-eleventyNavigation:
-  key: getting-started-webapp
-  title: 🌐 Web app
-  order: 1
----
+<title>Building a web app with Parcel</title>
+<meta name="description" content="A getting started guide walking through how to setup a project with Parcel.">
+
+# Building a web app with Parcel
 
 ## Quick start
 

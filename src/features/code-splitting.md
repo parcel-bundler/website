@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Code Splitting
-eleventyNavigation:
-  key: features-code-splitting
-  title: ✂️ Code Splitting
-  order: 2
----
+<title>Code Splitting</title>
+
+# Code Splitting
 
 Parcel supports zero configuration code splitting out of the box. This allows you to split your application code into separate bundles which can be loaded on demand, resulting in smaller initial bundle sizes and faster load times.
 

@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Migration from Create React App
-eleventyNavigation:
-  key: migration-cra
-  title: <img src="/assets/lang-icons/react.svg" alt=""/> Create React App
-  order: 1
----
+<title>Migration from Create React App</title>
+
+# Migration from Create React App
 
 This page covers how to migrate from [Create React App](https://create-react-app.dev) to Parcel.
 

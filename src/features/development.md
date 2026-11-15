@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Development
-eleventyNavigation:
-  key: features-development
-  title: 🧑‍💻 Development
-  order: 1
----
+<title>Development</title>
+
+# Development
 
 Parcel includes a development server out of the box supporting hot reloading, HTTPS, single page app routing, and more.
 

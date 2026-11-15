@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Sass
-eleventyNavigation:
-  key: languages-sass
-  title: <img src="/assets/lang-icons/sass.svg" alt=""/> Sass
-  order: 6
----
+<title>Sass</title>
+
+# Sass
 
 Parcel supports [Sass](https://sass-lang.com/) files using the `@parcel/transformer-sass` plugin. Sass is compiled natively in Rust, so the `sass` npm package is not needed. To use it, install the plugin into your app and add it to your `.parcelrc`.
 

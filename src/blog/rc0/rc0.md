@@ -1,10 +1,13 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: blog-rc-0
-  title: Parcel 2 RC
-date: 2021-08-03
----
+<title>Parcel 2 RC</title>
+<meta property="article:published_time" content="2021-08-03">
+<body class="blog">
+
+<header>
+  <h1>Parcel 2 RC</h1>
+  <p class="summary">
+    <time datetime="2021-08-03" class="entry-date js-replace-date">2021-08-03</time>
+  </p>
+</header>
 
 The Parcel team is very excited to announce the first Parcel 2 release candidate! This release includes many improvements, including new features, better performance, API consistency, and lots of bug fixes and stability improvements.
 

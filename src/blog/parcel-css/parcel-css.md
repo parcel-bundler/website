@@ -1,11 +1,13 @@
----
-layout: layout.njk
-title: 'Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!'
-eleventyNavigation:
-  key: blog-parcel-css
-  title: Announcing Parcel CSS
-date: 2022-01-12
----
+<title>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</title>
+<meta property="article:published_time" content="2022-01-12">
+<body class="blog">
+
+<header>
+  <h1>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</h1>
+  <p class="summary">
+    <time datetime="2022-01-12" class="entry-date js-replace-date">2022-01-12</time>
+  </p>
+</header>
 
 I'm very excited to announce <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">@parcel/css</a>, a new CSS parser, compiler, and minifier written in Rust! Check it out <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">on GitHub</a>, or try a <a href="https://parcel-css.vercel.app" target="_blank">live demo</a> right in your browser.
 

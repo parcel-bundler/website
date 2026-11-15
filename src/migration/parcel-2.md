@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: Migration from Parcel 2
-eleventyNavigation:
-  key: migration-parcel-2
-  title: 📦 Parcel 2
-  order: 0
----
+<title>Migration from Parcel 2</title>
+
+# Migration from Parcel 2
 
 Parcel 3 is a ground up rewrite of Parcel in Rust. For the most part, it works quite similarly to Parcel 2, and most apps will only need a few small changes. However, some features have changed or been removed, and plugins written for Parcel 2 will need to be updated. This page covers the things you'll need to change when upgrading.
 

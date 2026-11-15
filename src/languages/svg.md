@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: SVG
-eleventyNavigation:
-  key: languages-svg
-  title: <img src="/assets/lang-icons/svg.svg" alt=""/> SVG
-  order: 3
----
+<title>SVG</title>
+
+# SVG
 
 SVG is a vector-based 2D graphics format based on XML, with support for interactivity and animation. Parcel includes support for SVG as a separate file, embedded in HTML, or imported as JSX in a JavaScript file.
 

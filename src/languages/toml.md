@@ -1,11 +1,6 @@
----
-layout: layout.njk
-title: TOML
-eleventyNavigation:
-  key: languages-toml
-  title: <img src="/assets/lang-icons/toml.svg" alt=""/> TOML
-  order: 12
----
+<title>TOML</title>
+
+# TOML
 
 Parcel supports importing TOML files from JavaScript out of the box.
 
