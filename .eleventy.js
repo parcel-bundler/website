@@ -7,7 +7,14 @@ const markdownItAnchor = require("markdown-it-anchor");
 const pluginTOC = require('eleventy-plugin-toc');
 const posthtml = require('posthtml');
 const urls = require('posthtml-urls');
-const {urlJoin} = require('@parcel/utils');
+const path = require('path');
+
+// Joins a base URL (absolute or path-only) with a relative asset path, preserving the asset's query and hash.
+function urlJoin(base, assetPath) {
+  let [, pathname, suffix] = assetPath.match(/^([^?#]*)(.*)$/);
+  let origin = base.match(/^[a-z][a-z0-9+.-]*:\/\/[^/]*/i)?.[0] ?? '';
+  return origin + path.posix.join(base.slice(origin.length) || '/', pathname) + suffix;
+}
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
