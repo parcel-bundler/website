@@ -1,7 +1,7 @@
 <title>Announcing Parcel CSS</title>
 <meta property="article:published_time" content="2022-01-12">
 
-<header>
+<header parcel:slot="header">
   <h1>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</h1>
   <p class="summary">
     <time datetime="2022-01-12" class="entry-date js-replace-date">2022-01-12</time>

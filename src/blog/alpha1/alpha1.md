@@ -1,7 +1,7 @@
 <title>Parcel 2 alpha 1 is here!</title>
 <meta property="article:published_time" content="2019-09-13">
 
-<header>
+<header parcel:slot="header">
   <h1>Parcel 2 alpha 1 is here!</h1>
   <p class="summary">
     <span>Parcel 2.0.0-alpha.1 is here!</span>

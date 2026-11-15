@@ -1,7 +1,7 @@
 <title>Parcel 2 beta 1</title>
 <meta property="article:published_time" content="2020-06-19">
 
-<header>
+<header parcel:slot="header">
   <h1>Parcel 2 beta 1</h1>
   <p class="summary">
     <span>📦 Parcel 2 beta 1 - improved stability, tree shaking, source map performance, and more! 🚀</span>

@@ -1,7 +1,7 @@
 <title>Parcel 2 beta 3</title>
 <meta property="article:published_time" content="2021-05-18">
 
-<header>
+<header parcel:slot="header">
   <h1>Parcel 2 beta 3</h1>
   <p class="summary">
     <time datetime="2021-05-18" class="entry-date js-replace-date">2021-05-18</time>

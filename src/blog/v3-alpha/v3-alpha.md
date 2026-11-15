@@ -1,7 +1,7 @@
 <title>Announcing Parcel 3 alpha</title>
 <meta property="article:published_time" content="2026-11-04">
 
-<header>
+<header parcel:slot="header">
   <h1>Announcing Parcel 3 alpha</h1>
   <p class="summary">
     <time datetime="2026-11-04" class="entry-date js-replace-date">2026-11-04</time>
