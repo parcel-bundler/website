@@ -30,3 +30,35 @@ export function nav() {
     .map((post) => `<li><a href="../blog/${escape(post.path)}">${escape(post.title)}</a></li>`)
     .join('\n');
 }
+
+const SITE_URL = 'https://parceljs.org';
+
+/**
+ * Atom <updated> and <entry> elements for every post, for feed.xml. Paths are relative to src,
+ * where the macro is called. Each entry's content is the post without the site layout, via the
+ * `fragment:` pipeline in .parcelrc.
+ */
+export function feed() {
+  let posts = getPosts();
+  let toRfc3339 = (date) => `${date}T00:00:00Z`;
+  let entries = posts.map((post) => {
+    let dir = path.dirname(post.path);
+    let content = `<parcel:include src="fragment:blog/${escape(post.path)}"></parcel:include>`;
+    return `<entry>
+    <title>${escape(post.title)}</title>
+    <link href="blog/${escape(post.path)}"/>
+    <updated>${toRfc3339(post.date)}</updated>
+    <id>${SITE_URL}/blog/${escape(dir)}/</id>
+    <content type="html">${escape(content)}</content>
+  </entry>`;
+  });
+  return `<updated>${toRfc3339(posts[0].date)}</updated>\n  ${entries.join('\n  ')}`;
+}
+
+/** Redirects /blog/ to the newest post. Paths are relative to src/blog, where the macro is called. */
+export function redirect() {
+  let [post] = getPosts();
+  let href = escape(post.path);
+  return `<meta http-equiv="refresh" content="0; url=${href}">
+<p>Redirecting to <a href="${href}">${escape(post.title)}</a>…</p>`;
+}

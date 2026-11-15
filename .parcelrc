@@ -16,6 +16,14 @@
         }
       }
     ],
+    "fragment:*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "gfm": true
+        }
+      }
+    ],
     "*.md": [
       {
         "plugin": "@parcel/transformer-markdown",
