@@ -1,4 +1,3 @@
-<title>Tree shaking</title>
 <meta name="description" content="In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called &quot;tree shaking&quot;.">
 
 # Tree shaking

@@ -1,5 +1,3 @@
-<title>Macros</title>
-
 # Macros
 
 Macros are JavaScript functions that run at build time. The value returned by a macro is inlined into the bundle in place of the original function call. This allows you to generate constants, code, and even additional assets without any custom plugins.

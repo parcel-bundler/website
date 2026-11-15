@@ -1,5 +1,3 @@
-<title>Diagnostics and Logging</title>
-
 # Diagnostics and Logging
 
 Parcel includes support for rich diagnostics that are used to describe errors and warnings in a format-agnostic way. It also includes a built in logging system that allows Reporter plugins to handle all logs and errors and present them to the user.

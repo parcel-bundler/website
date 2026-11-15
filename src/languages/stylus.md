@@ -1,5 +1,3 @@
-<title>Stylus</title>
-
 # Stylus
 
 Parcel supports [Stylus](https://stylus-lang.com/) files using the `@parcel/transformer-stylus` plugin. To use it, install it into your app and add it to your `.parcelrc`.

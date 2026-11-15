@@ -1,4 +1,3 @@
-<title>Building a web app with Parcel</title>
 <meta name="description" content="A getting started guide walking through how to setup a project with Parcel.">
 
 # Building a web app with Parcel

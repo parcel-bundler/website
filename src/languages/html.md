@@ -1,5 +1,3 @@
-<title>HTML</title>
-
 # HTML
 
 Parcel includes first-class support for HTML out of the box. HTML files are often the entry file that you provide to Parcel, and all dependencies including JavaScript, CSS, images, and links to other pages are followed from there to build your entire app.

@@ -1,5 +1,3 @@
-<title>CSS</title>
-
 # CSS
 
 Parcel includes support for CSS out of the box. To add a CSS file, either reference it with a `<link>` tag in an HTML file:

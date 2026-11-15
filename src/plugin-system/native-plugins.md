@@ -1,5 +1,3 @@
-<title>Native Plugins</title>
-
 <header>
   <h1>Native Plugins</h1>
   <p class="summary">

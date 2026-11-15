@@ -1,5 +1,3 @@
-<title>Plugin System Overview</title>
-
 <header>
   <h1>Plugin System Overview</h1>
   <p class="summary">

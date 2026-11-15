@@ -1,5 +1,3 @@
-<title>SugarSS</title>
-
 # SugarSS
 
 [SugarSS](https://github.com/postcss/sugarss) is an indent-based CSS syntax for [PostCSS](https://github.com/postcss/postcss). Parcel supports SugarSS using the `@parcel/transformer-sugarss` plugin. To use it, install it into your app and add it to your `.parcelrc`.

@@ -1,5 +1,3 @@
-<title>MDX</title>
-
 # MDX
 
 [MDX](https://mdxjs.com) is a variant of [Markdown](https://daringfireball.net/projects/markdown/) that compiles to JSX, and supports embedding interactive components inside Markdown documents. Parcel supports MDX out of the box.

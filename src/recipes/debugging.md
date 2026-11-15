@@ -1,5 +1,3 @@
-<title>Debugging</title>
-
 # Debugging
 
 As Parcel automatically generates sourcemaps by default, setting up debugging with Parcel involves minimal effort for the most part.

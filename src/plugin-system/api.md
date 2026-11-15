@@ -1,5 +1,3 @@
-<title>API</title>
-
 <header>
   <h1>API</h1>
   <p class="summary">

@@ -1,5 +1,3 @@
-<title>TOML</title>
-
 # TOML
 
 Parcel supports importing TOML files from JavaScript out of the box.

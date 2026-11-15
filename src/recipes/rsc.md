@@ -1,5 +1,3 @@
-<title>React Server Components</title>
-
 # React Server Components
 
 React Server Components are a new type of component that renders ahead of time, on the server or at build time. Parcel supports React Server Components out of the box.

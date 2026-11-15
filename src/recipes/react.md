@@ -1,5 +1,3 @@
-<title>React</title>
-
 # React
 
 Parcel works great for building single or multi-page React applications. It includes a first-class development experience with Fast Refresh, and supports JSX, TypeScript, and many styling methodologies out of the box.

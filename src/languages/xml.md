@@ -1,5 +1,3 @@
-<title>XML</title>
-
 # XML
 
 Parcel supports transforming [RSS](https://en.wikipedia.org/wiki/RSS) and [Atom](<https://en.wikipedia.org/wiki/Atom_(Web_standard)>) feeds defined in XML files using the builtin `@parcel/transformer-xml` plugin. This applies to `.xml`, `.rss`, and `.atom` files.

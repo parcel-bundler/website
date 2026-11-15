@@ -1,5 +1,3 @@
-<title>Development</title>
-
 # Development
 
 Parcel includes a development server out of the box supporting hot reloading, HTTPS, single page app routing, and more.

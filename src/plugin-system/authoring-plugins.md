@@ -1,5 +1,3 @@
-<title>Authoring Plugins</title>
-
 <header>
   <h1>Authoring Plugins</h1>
   <p class="summary">

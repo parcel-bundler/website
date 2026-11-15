@@ -1,5 +1,3 @@
-<title>Image</title>
-
 # Image
 
 Parcel has built in support for resizing, converting, and optimizing images. Images can be referenced from HTML, CSS, JavaScript, or any other file type.

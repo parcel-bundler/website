@@ -1,5 +1,3 @@
-<title>Migration from Create React App</title>
-
 # Migration from Create React App
 
 This page covers how to migrate from [Create React App](https://create-react-app.dev) to Parcel.

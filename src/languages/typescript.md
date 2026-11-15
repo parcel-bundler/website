@@ -1,5 +1,3 @@
-<title>TypeScript</title>
-
 # TypeScript
 
 [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that compiles to JavaScript. Parcel supports TypeScript out of the box without any additional configuration.

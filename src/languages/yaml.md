@@ -1,5 +1,3 @@
-<title>YAML</title>
-
 # YAML
 
 Parcel supports importing YAML files (`.yaml` or `.yml`) from JavaScript out of the box.

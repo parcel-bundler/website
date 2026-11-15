@@ -1,5 +1,3 @@
-<title>JavaScript</title>
-
 # JavaScript
 
 Parcel includes first-class support for JavaScript, including ES modules and CommonJS, many types of dependencies, automatic transpilation for browser targets, JSX and TypeScript support, and much more.

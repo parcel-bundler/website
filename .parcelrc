@@ -12,6 +12,8 @@
         "config": {
           "layout": "src/_includes/blog-layout.html",
           "gfm": true,
+          "title": true,
+          "description": true,
           "anchors": true
         }
       }
@@ -30,6 +32,8 @@
         "config": {
           "layout": "src/_includes/layout.html",
           "gfm": true,
+          "title": true,
+          "description": true,
           "toc": true,
           "anchors": true
         }

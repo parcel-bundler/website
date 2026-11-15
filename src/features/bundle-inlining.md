@@ -1,5 +1,3 @@
-<title>Bundle inlining</title>
-
 # Bundle inlining
 
 Parcel includes several ways to inline the compiled contents of one bundle inside another bundle.

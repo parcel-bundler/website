@@ -1,4 +1,3 @@
-<title>Parcel 2 alpha 1 is here!</title>
 <meta property="article:published_time" content="2019-09-13">
 
 <header parcel:slot="header">

@@ -1,4 +1,3 @@
-<title>Announcing Parcel 3 alpha</title>
 <meta property="article:published_time" content="2026-11-04">
 
 <header parcel:slot="header">
@@ -20,9 +19,9 @@ Parcel v3 is an entirely self-contained Rust binary, with no dependency on Node 
 
 Let's cut to the benchmarks. Here's a comparison of cold development builds between v2 and v3 for [React Spectrum](https://github.com/adobe/react-spectrum), a large TypeScript monorepo. For reference:
 
-* **Storybook**: ~100 entries, JS [macros](/features/macros/), custom plugins [ported](https://github.com/parcel-bundler/storybook/tree/parcel3/crates) to Rust for Parcel 3.
-* **Docs website**: ~340 pages, React Server Components, MDX, Tailwind, custom plugins.
-* **Library build**: ~160 packages, TSX, macros, CSS modules, SVG icons. Outputs over 14,000 files.
+- **Storybook**: ~100 entries, JS [macros](/features/macros/), custom plugins [ported](https://github.com/parcel-bundler/storybook/tree/parcel3/crates) to Rust for Parcel 3.
+- **Docs website**: ~340 pages, React Server Components, MDX, Tailwind, custom plugins.
+- **Library build**: ~160 packages, TSX, macros, CSS modules, SVG icons. Outputs over 14,000 files.
 
 ### Development build time
 
@@ -116,7 +115,7 @@ Parcel 3 uses a significantly simpler architecture, optimizing for the fastest p
 
 In Parcel 2, we split each piece into plugins as individual npm packages. This was a very modular architecture, but resulted in hundreds of dependencies that you needed to upgrade and maintain.
 
-In Parcel 3, support for most common web languages are included out of the box in a single binary, including HTML, CSS, JavaScript, TypeScript, SVG, image conversion and optimization, RSS and Atom feeds, web manifests, and more. Newly added is native support for Tailwind (without PostCSS), React Compiler, MDX, SVG  → JSX, and glob imports.
+In Parcel 3, support for most common web languages are included out of the box in a single binary, including HTML, CSS, JavaScript, TypeScript, SVG, image conversion and optimization, RSS and Atom feeds, web manifests, and more. Newly added is native support for Tailwind (without PostCSS), React Compiler, MDX, SVG → JSX, and glob imports.
 
 The Parcel development experience has major improvements too. It includes support for trusted HTTPS via a local certificate authority that integrates with your operating system, an improved `--open` option that reuses your existing browser tab on macOS via Apple Events, and a built-in bundle analyzer that shows why each module is included, which bundles load others, and much more.
 
@@ -241,8 +240,8 @@ In Parcel 3, we're centralizing plugin configuration in `.parcelrc` as well. Thi
 
 In Parcel 3, we've also significantly improved our bundling algorithm, which is responsible for creating optimal code split chunks. Compared with v2 on a site with 450 pages:
 
-* 64% fewer HTTP requests per page
-* 10% less transferred bytes per page
+- 64% fewer HTTP requests per page
+- 10% less transferred bytes per page
 
 This is achieved through an improved bundle merging cost model, which balances parallel request count, Brotli compressed size, and cache reuse within a user session and between builds. These parameters are also [tunable](/features/code-splitting/#configuration) for your specific application's needs. We'll write more about how this works in a future post.
 

@@ -1,5 +1,3 @@
-<title>Less</title>
-
 # Less
 
 Parcel supports [Less](https://lesscss.org/) files using the `@parcel/transformer-less` plugin. To use it, install it into your app and add it to your `.parcelrc`.

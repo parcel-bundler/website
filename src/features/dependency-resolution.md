@@ -1,5 +1,3 @@
-<title>Dependency resolution</title>
-
 # Dependency resolution
 
 As Parcel builds your source code, it discovers **dependencies**, which allow code to be broken into separate files and reused in multiple places. Dependencies describe where to find the file containing the code you rely on, as well as metadata about how to build it.

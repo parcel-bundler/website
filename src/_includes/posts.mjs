@@ -1,4 +1,6 @@
-// Blog post metadata, read from the <title> and article:published_time at the top of each post.
+// Blog post metadata, read from each post's source. The title is its <title> if it has one (e.g. a
+// shorter one than its heading), or otherwise its first <h1>, like the markdown transformer's `title`
+// option. The date is its article:published_time.
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,6 +11,16 @@ const escape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/
 const unescape = (s) =>
   s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 
+function getTitle(source) {
+  // Only a <title> in the metadata at the top of the post counts, not e.g. one in an inline SVG.
+  let title = source.match(/^(?:\s*<(?:meta|link|base)\b[^>]*>)*\s*<title>(.*?)<\/title>/s)?.[1];
+  let html = title ?? source.match(/<h1[^>]*>(.*?)<\/h1>/s)?.[1];
+  if (html != null) {
+    return unescape(html.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();
+  }
+  return source.match(/^# (.+)$/m)?.[1].trim();
+}
+
 /** All blog posts, newest first. `path` is relative to the blog directory. */
 export function getPosts() {
   return fs
@@ -17,7 +29,7 @@ export function getPosts() {
       let source = fs.readFileSync(path.join(blogDir, file), 'utf8');
       return {
         path: file,
-        title: unescape(source.match(/<title>(.*?)<\/title>/s)?.[1] ?? file),
+        title: getTitle(source) ?? file,
         date: source.match(/<meta property="article:published_time" content="([^"]+)"/)?.[1] ?? '',
       };
     })

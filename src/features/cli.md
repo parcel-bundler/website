@@ -1,5 +1,3 @@
-<title>CLI</title>
-
 # CLI
 
 The `parcel` CLI is the most common way to use Parcel. It supports several different commands: `serve`, `watch`, `run`, and `build`, as well as `targets`, `trust`, and `help`.

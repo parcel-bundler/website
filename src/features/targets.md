@@ -1,5 +1,3 @@
-<title>Targets</title>
-
 # Targets
 
 Parcel can compile your source code in multiple different ways simultaneously. These are called **targets**. For example, you could build a library for both Node.js and browsers, or as both an ES module and CommonJS.

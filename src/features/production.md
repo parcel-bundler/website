@@ -1,5 +1,3 @@
-<title>Production</title>
-
 # Production
 
 Parcel’s production mode automatically bundles and optimizes your application for production. It can be run using the `parcel build` command:

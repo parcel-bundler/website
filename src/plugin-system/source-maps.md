@@ -1,5 +1,3 @@
-<title>Source Maps</title>
-
 # Source Maps
 
 Parcel generates source maps for every bundle by default, mapping the final output back to your original source code. Source maps are processed in Rust within Parcel's core and built-in plugins, and plugins exchange them with Parcel as standard [source map](https://tc39.es/ecma426/) JSON (version 3). This means you can use the source maps produced by most compilers directly, without converting them first.

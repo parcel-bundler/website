@@ -1,4 +1,3 @@
-<title>Parcel 2 beta 3</title>
 <meta property="article:published_time" content="2021-05-18">
 
 <header parcel:slot="header">
@@ -68,7 +67,7 @@ We also now have support for tree shaking CSS modules. When you import a CSS mod
 
 In development, it can be frustrating to wait for your entire app to build before the dev server starts up. This is especially true when working on large apps with many pages. If you’re only working on one feature, why do you need to wait for all of the others to build unless you actually navigate to them?
 
-Parcel now supports a `--lazy` CLI flag when using the dev server. When enabled, Parcel only builds files that are requested on demand, which can significantly reduce development build times. The server starts instantly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand.  If you navigate back to a page that was previously built, it loads instantly.
+Parcel now supports a `--lazy` CLI flag when using the dev server. When enabled, Parcel only builds files that are requested on demand, which can significantly reduce development build times. The server starts instantly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand. If you navigate back to a page that was previously built, it loads instantly.
 
 <video src="lazy.mp4" playsinline loop autoplay muted></video>
 

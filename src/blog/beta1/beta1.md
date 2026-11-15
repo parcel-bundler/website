@@ -1,4 +1,3 @@
-<title>Parcel 2 beta 1</title>
 <meta property="article:published_time" content="2020-06-19">
 
 <header parcel:slot="header">

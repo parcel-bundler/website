@@ -1,5 +1,3 @@
-<title>Resolver</title>
-
 # Resolver
 
 Resolver plugins are responsible for turning a dependency specifier into a full file path that will be processed by transformers. Resolvers run in a pipeline until one of them returns a result. See [Dependency resolution](/features/dependency-resolution/) for details on how the default resolver works.
