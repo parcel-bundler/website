@@ -2,10 +2,6 @@
   "extends": "@parcel/config-default",
   "resolvers": ["parcel-resolver-website", "..."],
   "transformers": {
-    "src/home/**/*.html": [
-      "@parcel/transformer-posthtml",
-      "@parcel/transformer-html"
-    ],
     "src/blog/**/*.md": [
       {
         "plugin": "@parcel/transformer-markdown",

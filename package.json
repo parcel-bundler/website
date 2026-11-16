@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md' --public-url $(node public-url.js)",
-    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/debug/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
+    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/release/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel ./api",
     "generate-api-docs:watch": "nodemon -w ../parcel/packages-v3/plugin/src -w generate-api-docs -e js,ts -x yarn generate-api-docs"
@@ -22,16 +22,12 @@
     "@babel/generator": "^7.20.1",
     "@babel/parser": "^7.20.1",
     "@babel/traverse": "^7.20.1",
-    "@parcel/transformer-posthtml": "next",
     "flow-bin": "^0.177.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
     "nullthrows": "^1.1.1",
     "parcel": "^3.0.0-alpha.2",
-    "posthtml": "^0.16.6",
-    "posthtml-include": "^1.7.0",
-    "posthtml-prism": "^1.0.4",
     "prettier": "2.7.1",
     "prismjs": "^1.26.0",
     "process": "^0.11.10",
@@ -49,8 +45,7 @@
     "react-use": "^17.3.1"
   },
   "resolutions": {
-    "gulp-sass": "5.0.0",
-    "posthtml-prism@^1.0.4": "patch:posthtml-prism@npm%3A1.0.4#./.yarn/patches/posthtml-prism-npm-1.0.4-1df296f883.patch"
+    "gulp-sass": "5.0.0"
   },
   "lint-staged": {
     "*.{md,css,js,json}": "prettier --write"

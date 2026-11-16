@@ -79,37 +79,51 @@ function wrapLines(html, spec) {
     .join('<br>');
 }
 
+/** Highlights `text`, or returns null if the language isn't supported. */
+function highlight(text, language) {
+  if (language === 'text') {
+    return escape(text);
+  }
+  let g = grammar(language);
+  if (!g) {
+    return null;
+  }
+  // Markdown highlights the code blocks inside it only in languages that are already loaded.
+  if (aliases.get(language) === 'markdown') {
+    for (let [, lang] of text.matchAll(/^\s*(?:```|~~~)\s*([\w-]+)/gm)) {
+      grammar(lang);
+    }
+  }
+  return Prism.highlight(text, g, language);
+}
+
+const CODE = /<code(\s[^>]*)?>([^<]*)<\/code>/g;
+const LANGUAGE = /\sclass="(?:[^"]*\s)?language-([^"\s/]+)(?:\/([^"\s]*))?/;
+
 export function pre(content, attributes) {
   let attrs = Object.entries(attributes)
     .map(([name, value]) => ` ${name}="${escapeAttr(value)}"`)
     .join('');
-  let unchanged = `<pre${attrs}>${content}</pre>`;
 
-  // A code block from markdown: <pre><code class="language-js/1-2">...</code></pre>.
-  let match = content.match(/^\s*<code class="language-([^"\s/]+)(?:\/([^"\s]*))?">([\s\S]*)<\/code>\s*$/);
-  if (!match) {
-    return unchanged;
-  }
-  let [, language, lines, code] = match;
-  let text = unescape(code);
-
-  let html;
-  if (language === 'text') {
-    html = escape(text);
-  } else {
-    let g = grammar(language);
-    if (!g) {
-      return unchanged;
+  // A code block from markdown: <pre><code class="language-js">...</code></pre>, where the language
+  // may specify lines to highlight (e.g. language-js/1-2).
+  let markdown = attrs === '' && content.match(/^\s*<code class="language-([^"\s/]+)(?:\/([^"\s]*))?">([^<]*)<\/code>\s*$/);
+  if (markdown) {
+    let [, language, lines, code] = markdown;
+    let html = highlight(unescape(code), language);
+    if (html == null) {
+      return `<pre>${content}</pre>`;
     }
-    // Markdown highlights the code blocks inside it only in languages that are already loaded.
-    if (aliases.get(language) === 'markdown') {
-      for (let [, lang] of text.matchAll(/^\s*(?:```|~~~)\s*([\w-]+)/gm)) {
-        grammar(lang);
-      }
-    }
-    html = Prism.highlight(text, g, language);
+    html = lines != null ? wrapLines(html, lines) : html.replace(/\n$/, '').split('\n').join('<br>');
+    return `<pre class="language-${language}"><code class="language-${language}">${html}</code></pre>`;
   }
 
-  html = lines != null ? wrapLines(html, lines) : html.replace(/\n$/, '').split('\n').join('<br>');
-  return `<pre class="language-${language}"><code class="language-${language}">${html}</code></pre>`;
+  // Hand-written HTML (e.g. the home page) keeps its markup, and each <code class="language-...">
+  // in the <pre> is highlighted in place. A <code> without a language is left as is.
+  content = content.replace(CODE, (code, codeAttrs = '', text) => {
+    let language = codeAttrs.match(LANGUAGE)?.[1];
+    let html = language && highlight(unescape(text), language);
+    return html == null ? code : `<code${codeAttrs}>${html}</code>`;
+  });
+  return `<pre${attrs}>${content}</pre>`;
 }

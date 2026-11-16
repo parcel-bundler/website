@@ -64,7 +64,7 @@
           </div>
           <h1 id="parcel" class="text-red-400 h-10 lg:h-16">
             <span class="sr-only">Parcel</span>
-            <include src="assets/logo.svg"></include>
+            <parcel:include src="assets/logo.svg"></parcel:include>
           </h1>
         </div>
         <div class="flex flex-col lg:flex-row px-safe">
@@ -171,7 +171,7 @@
               <div class="bg-yellow-500 rounded-full w-3 h-3 mr-2"></div>
               <div class="bg-green-500 rounded-full w-3 h-3"></div>
             </div>
-          <pre class="text-xs p-0 bg-transparent text-black dark:text-gray-200 font-semibold"><code prism-ignore><span class="font-normal" id="heroPrompt">$ </span><span class="w-2 h-3 align-middle inline-block bg-gray-500" style="margin-top: -2px" id="heroCursor"></span>
+          <pre class="text-xs p-0 bg-transparent text-black dark:text-gray-200 font-semibold"><code><span class="font-normal" id="heroPrompt">$ </span><span class="w-2 h-3 align-middle inline-block bg-gray-500" style="margin-top: -2px" id="heroCursor"></span>
 <span class="text-blue-600 dark:text-blue-500" id="heroServer" hidden>Server running at <span class="underline">http://localhost:1234</span></span>
 <span class="text-green-600 dark:text-green-500 font-bold" id="heroStatus" hidden>✨ Built in 48ms</code></pre>
           </div>
@@ -279,12 +279,12 @@
       </nav>
     </header>
     <main class="px-safe">
-      <include src="dev-server.html"></include>
-      <include src="perf.html"></include>
-      <include src="optimization.html"></include>
-      <include src="targets.html"></include>
-      <include src="scalable.html"></include>
-      <include src="open-source.html"></include>
+      <parcel:include src="dev-server.html"></parcel:include>
+      <parcel:include src="perf.html"></parcel:include>
+      <parcel:include src="optimization.html"></parcel:include>
+      <parcel:include src="targets.html"></parcel:include>
+      <parcel:include src="scalable.html"></parcel:include>
+      <parcel:include src="open-source.html"></parcel:include>
     </main>
     <footer class="max-w-screen-lg mx-auto px-6 md:px-8 mt-32 dark:text-gray-300">
       <div class="flex flex-wrap mb-10 gap-x-20 gap-y-10 justify-start px-safe">

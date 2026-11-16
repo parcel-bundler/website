@@ -20,8 +20,8 @@
     </div>
     <pre role="tabpanel" id="native-rust-tabpanel" aria-labelledby="native-rust-tab" x-show="tab === 'native-rust'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1"><code class="language-rust text-xs">struct MyTransformer;
 impl Plugin for MyTransformer {
-  fn transform(&self, asset: &mut Asset, _: &Options) -> Result<(), Diagnostic> {
-    let code = compile(&asset.content()?);
+  fn transform(&amp;self, asset: &amp;mut Asset, _: &amp;Options) -&gt; Result&lt;(), Diagnostic&gt; {
+    let code = compile(&amp;asset.content()?);
     asset.set_content(code);
     Ok(())
   }
