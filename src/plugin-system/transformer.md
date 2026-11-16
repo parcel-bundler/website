@@ -6,9 +6,9 @@ Transformers can be written in JavaScript, or as [native plugins](/plugin-system
 
 ## Transforming assets
 
-A transformer implements one method: {% api js="transform", rust="transform", go="Transform", swift="transform(_:options:)" %}. It receives an asset, which represents a file. The transformer reads the asset's content, along with any associated source map ([see below](#source-maps)), transforms it in some way, and sets the compiled result back on the asset.
+A transformer implements one method: <api-name js="transform" rust="transform" go="Transform" swift="transform(_:options:)"></api-name>. It receives an asset, which represents a file. The transformer reads the asset's content, along with any associated source map ([see below](#source-maps)), transforms it in some way, and sets the compiled result back on the asset.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Transformer } from "@parcel/plugin";
@@ -105,7 +105,7 @@ struct MyTransformer: Transformer {
 #parcelPlugin(MyTransformer.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `transform` method.
 
@@ -113,7 +113,7 @@ See [Native plugins](/plugin-system/native-plugins/) for how to build native plu
 
 Configuration for a Transformer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `transform` method, and native plugins receive it as JSON when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Transformer } from "@parcel/plugin";
@@ -199,19 +199,19 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 <p-note>
 
-**Note**: Parcel rebuilds an asset when a file its transformer read changes. Files that JavaScript plugins read with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically. Native plugins must read files through the `Options` object instead (see [File system](/plugin-system/native-plugins/#file-system)). Use {% api js="resolve()", rust="asset.resolve()", go="asset.Resolve()", swift="asset.resolve(_:from:)" %} to resolve other files the same way Parcel resolves dependencies. See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
+**Note**: Parcel rebuilds an asset when a file its transformer read changes. Files that JavaScript plugins read with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically. Native plugins must read files through the `Options` object instead (see [File system](/plugin-system/native-plugins/#file-system)). Use <api-name js="resolve()" rust="asset.resolve()" go="asset.Resolve()" swift="asset.resolve(_:from:)"></api-name> to resolve other files the same way Parcel resolves dependencies. See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
 
 </p-note>
 
 ## Changing the asset type
 
-Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's type to the new file type (e.g. `js`) with {% api js="asset.type", rust="asset.set_type()", go="asset.SetType()", swift="asset.type" %}. The asset will then be processed by the pipeline matching the new type. See [Transformers](/features/plugins/#transformers) in the Parcel configuration docs for details.
+Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's type to the new file type (e.g. `js`) with <api-name js="asset.type" rust="asset.set_type()" go="asset.SetType()" swift="asset.type"></api-name>. The asset will then be processed by the pipeline matching the new type. See [Transformers](/features/plugins/#transformers) in the Parcel configuration docs for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/8
 import {Transformer} from '@parcel/plugin';
@@ -266,13 +266,13 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## The environment
 
-Assets are associated with a target, available as {% api js="asset.target", rust="asset.target()", go="asset.Target()", swift="asset.target" %}, which describes the environment the asset should be compiled for. The same asset may be processed multiple times with different targets, for example, when building for both browsers and Node. If possible, Transformer plugins should take the target into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](/features/targets/) for details.
+Assets are associated with a target, available as <api-name js="asset.target" rust="asset.target()" go="asset.Target()" swift="asset.target"></api-name>, which describes the environment the asset should be compiled for. The same asset may be processed multiple times with different targets, for example, when building for both browsers and Node. If possible, Transformer plugins should take the target into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](/features/targets/) for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/6-8
 import {Transformer} from '@parcel/plugin';
@@ -342,7 +342,7 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 In JavaScript, see the [`Target`](/plugin-system/api/#Target) API docs for details on the available properties. In native plugins, the target provides the environment, output format, source type, engines, public URL, and dist directory. JavaScript plugins receive the target's browsers as a [browserslist](https://github.com/browserslist/browserslist) query, while native plugins receive the minimum version of each browser that the query resolves to.
 
@@ -350,9 +350,9 @@ In JavaScript, see the [`Target`](/plugin-system/api/#Target) API docs for detai
 
 In addition to transforming the contents of an asset, Transformer plugins are also responsible for discovering dependencies in the code so that they may also be processed by Parcel. Some transformers don’t need to worry about this, because another transformer will run afterward and do it (e.g. the default JavaScript transformer). If you’re adding support for a new language that doesn’t compile to one of the existing languages supported by Parcel, or otherwise introduces dependencies outside the compiled code, you’ll need to add them to the asset.
 
-Dependencies can be added to an asset using {% api js="asset.addDependency()", rust="asset.add_dependency()", go="asset.AddDependency()", swift="asset.addDependency()" %}. The only required option is the specifier, which is a string describing the location of the dependency. The specifier type describes how the specifier should be interpreted, and defaults to ESM. See [Dependency resolution](/features/dependency-resolution/) for details.
+Dependencies can be added to an asset using <api-name js="asset.addDependency()" rust="asset.add_dependency()" go="asset.AddDependency()" swift="asset.addDependency()"></api-name>. The only required option is the specifier, which is a string describing the location of the dependency. The specifier type describes how the specifier should be interpreted, and defaults to ESM. See [Dependency resolution](/features/dependency-resolution/) for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/8-11
 import {Transformer} from '@parcel/plugin';
@@ -422,7 +422,7 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ### Influencing bundling
 
@@ -467,9 +467,9 @@ export default new Transformer({
 
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Transformer plugins should add a source map to assets when transforming their content if possible. Since assets may be processed by multiple Transformers, you should also transform the existing source map included with the asset in addition to its content.
 
-Source maps are passed to and from plugins as JSON in the standard [source map format](https://tc39.es/ecma426/) (version 3), so they can usually be passed to and from other tools directly. JavaScript plugins receive them as plain objects, and native plugins as JSON strings. {% api js="asset.getMap()", rust="asset.source_map()", go="asset.SourceMap()", swift="asset.sourceMap" %} returns the asset's current source map, or nothing if it doesn't have one, and {% api js="asset.setCode(code, map)", rust="asset.set_content_with_map()", go="asset.SetContentWithMap()", swift="asset.setContent(_:sourceMap:)" %} sets new content along with a source map. See [Source Maps](/plugin-system/source-maps/) for more details.
+Source maps are passed to and from plugins as JSON in the standard [source map format](https://tc39.es/ecma426/) (version 3), so they can usually be passed to and from other tools directly. JavaScript plugins receive them as plain objects, and native plugins as JSON strings. <api-name js="asset.getMap()" rust="asset.source_map()" go="asset.SourceMap()" swift="asset.sourceMap"></api-name> returns the asset's current source map, or nothing if it doesn't have one, and <api-name js="asset.setCode(code, map)" rust="asset.set_content_with_map()" go="asset.SetContentWithMap()" swift="asset.setContent(_:sourceMap:)"></api-name> sets new content along with a source map. See [Source Maps](/plugin-system/source-maps/) for more details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Transformer } from "@parcel/plugin";
@@ -532,13 +532,13 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Binary data
 
-In addition to textual source code, Transformers can handle binary content. {% api js="asset.getBuffer()", rust="asset.content_bytes()", go="asset.ContentBytes()", swift="asset.contentBytes()" %} returns the contents of the asset as bytes, and {% api js="asset.setBuffer()", rust="asset.set_content_bytes()", go="asset.SetContentBytes()", swift="asset.setContent(_:)" %} replaces them. In JavaScript, bytes are represented as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) (or a [Buffer](https://nodejs.org/api/buffer.html)).
+In addition to textual source code, Transformers can handle binary content. <api-name js="asset.getBuffer()" rust="asset.content_bytes()" go="asset.ContentBytes()" swift="asset.contentBytes()"></api-name> returns the contents of the asset as bytes, and <api-name js="asset.setBuffer()" rust="asset.set_content_bytes()" go="asset.SetContentBytes()" swift="asset.setContent(_:)"></api-name> replaces them. In JavaScript, bytes are represented as a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) (or a [Buffer](https://nodejs.org/api/buffer.html)).
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/4,7
 import {Transformer} from '@parcel/plugin';
@@ -589,13 +589,13 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Query parameters
 
-An asset may be referenced by a dependency with [query parameters](/features/dependency-resolution/#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](/recipes/image/) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters. Read the query from {% api js="asset.url", rust="asset.query()", go="asset.Query()", swift="asset.query" %}. In JavaScript, it is part of the asset's URL. Native plugins receive it as a string, without the leading `?`.
+An asset may be referenced by a dependency with [query parameters](/features/dependency-resolution/#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](/recipes/image/) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters. Read the query from <api-name js="asset.url" rust="asset.query()" go="asset.Query()" swift="asset.query"></api-name>. In JavaScript, it is part of the asset's URL. Native plugins receive it as a string, without the leading `?`.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/5,11-12
 import {Transformer} from '@parcel/plugin';
@@ -673,19 +673,19 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Custom content
 
-Normally, an asset's content is a string or bytes. [Native](/plugin-system/native-plugins/) transformers can also store a custom value as the content of an asset, e.g. an AST, using {% api rust="asset.set_custom_content()", go="asset.SetCustomContent()", swift="asset.setCustomContent(_:)" %}. This avoids converting the value back to code after each transformer, and lets the plugin control how the asset is packaged into a bundle. Custom content is not supported in JavaScript plugins.
+Normally, an asset's content is a string or bytes. [Native](/plugin-system/native-plugins/) transformers can also store a custom value as the content of an asset, e.g. an AST, using <api-name rust="asset.set_custom_content()" go="asset.SetCustomContent()" swift="asset.setCustomContent(_:)"></api-name>. This avoids converting the value back to code after each transformer, and lets the plugin control how the asset is packaged into a bundle. Custom content is not supported in JavaScript plugins.
 
 The value must implement `AssetContent`, which has:
 
 - A stable type id, unique to the plugin. Parcel uses it to group assets when packaging, and includes it in bundle ids, so it must not change between builds. In Go, the id is derived from the name of the type, or from its `ContentTypeName` method if it has one.
-- A {% api rust="read", go="Read", swift="read()" %} method, which returns the content as a string or bytes when Parcel or another plugin needs it before packaging.
-- A {% api rust="package", go="Package", swift="package(_:in:options:)" %} method, which is called to produce the final contents of a bundle that contains the asset. It receives the bundle graph and the bundle, so it can find the other assets in the bundle and the bundles they reference.
+- A <api-name rust="read" go="Read" swift="read()"></api-name> method, which returns the content as a string or bytes when Parcel or another plugin needs it before packaging.
+- A <api-name rust="package" go="Package" swift="package(_:in:options:)"></api-name> method, which is called to produce the final contents of a bundle that contains the asset. It receives the bundle graph and the bundle, so it can find the other assets in the bundle and the bundles they reference.
 
-{% codetabs %}
+<code-tabs>
 
 ```rust
 use parcel_plugin::{AssetContent, Bundle, BundleGraph, ContentBuffer, Diagnostic, Options};
@@ -773,9 +773,9 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
-Later transformers, and the {% api rust="package", go="Package", swift="package(_:in:options:)" %} method of other assets in the bundle graph, can access the value with {% api rust="custom_content::<T>()", go="CustomContent()", swift="customContent(as:)" %}. Reading the asset's content as a string or bytes calls {% api rust="read", go="Read", swift="read()" %} instead.
+Later transformers, and the <api-name rust="package" go="Package" swift="package(_:in:options:)"></api-name> method of other assets in the bundle graph, can access the value with <api-name rust="custom_content::&lt;T>()" go="CustomContent()" swift="customContent(as:)"></api-name>. Reading the asset's content as a string or bytes calls <api-name rust="read" go="Read" swift="read()"></api-name> instead.
 
 See the custom content example for [Rust](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples/custom-content-transformer), [Go](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples/custom-content-transformer), or [Swift](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources/CustomContentTransformer) for more details.
 

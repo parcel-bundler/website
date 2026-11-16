@@ -74,8 +74,8 @@ Plugins can also be written in TypeScript. Files with a `.ts` or `.tsx` extensio
 
 Plugins can accept configuration from the user's project. This is specified in the `.parcelrc` file, by using an object with `plugin` and `config` properties in place of the plugin name:
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -93,8 +93,8 @@ Plugins can accept configuration from the user's project. This is specified in t
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The config is passed to every plugin method as the `config` option. It is `undefined` if no config was provided.
 

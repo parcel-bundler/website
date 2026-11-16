@@ -8,8 +8,8 @@ Parcel automatically transpiles TypeScript whenever you use a `.ts` or `.tsx` fi
 
 A `tsconfig.json` file can be used to configure some aspects of the transpilation. Currently, JSX options are supported (`jsx`, `jsxFactory`, `jsxFragmentFactory`, and `jsxImportSource`), as well as the `experimentalDecorators` and `useDefineForClassFields` options. If `useDefineForClassFields` is not set, it defaults to `true` when `target` is `ES2022` or higher. Settings from tsconfigs referenced via `extends` are also applied. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for details.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -20,15 +20,15 @@ A `tsconfig.json` file can be used to configure some aspects of the transpilatio
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### `isolatedModules`
 
 Because Parcel processes each file individually, it implicitly enables the [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) option. This means that some TypeScript features like `const enum` that require cross-file type information to compile will not work. To be warned about usages of these features in your IDE and during type checking, you should enable this option in your `tsconfig.json`.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -38,8 +38,8 @@ Because Parcel processes each file individually, it implicitly enables the [`iso
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Resolution
 
@@ -49,8 +49,8 @@ Parcel supports the `baseUrl`, `paths`, and `moduleSuffixes` options in `tsconfi
 
 By default, Parcel does not perform any type checking. The recommended way to type check is by using an editor with TypeScript support (such as VSCode), and using `tsc` to type check your code in CI. You can configure this using npm scripts to run alongside your build, tests, and linting.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json/5
 {
@@ -64,5 +64,5 @@ By default, Parcel does not perform any type checking. The recommended way to ty
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

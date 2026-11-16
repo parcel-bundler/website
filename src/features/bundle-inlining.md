@@ -52,8 +52,8 @@ shadowRoot.adoptedStyleSheets = [sheet];
 
 In the Parcel config, it looks like the following. The `"..."` in each pipeline tells Parcel to run the normal transformers that match the file first, and then run `@parcel/transformer-inline`.
 
-{% sample %}
-{% samplefile "@parcel/config-default" %}
+<code-sample>
+<code-file name="@parcel/config-default">
 
 ```json
 {
@@ -67,8 +67,8 @@ In the Parcel config, it looks like the following. The `"..."` in each pipeline 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 You can create your own named pipelines to customize inlining however you’d like, reusing the above plugins or creating custom ones. See [Parcel configuration](/features/plugins/) for more details.
 

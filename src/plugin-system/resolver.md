@@ -6,9 +6,9 @@ Resolvers can be written in JavaScript, or as [native plugins](/plugin-system/na
 
 ## Example
 
-This example overrides the resolution of `special-module`, and otherwise returns {% api js="null", rust="ResolveResult::None", go="parcel.ResolveResult{}", swift=".unresolved" %} to allow the next resolver in the pipeline to handle the dependency. See [Resolvers](/features/plugins/#resolvers) in the Parcel configuration docs for details on how this works.
+This example overrides the resolution of `special-module`, and otherwise returns <api-name js="null" rust="ResolveResult::None" go="parcel.ResolveResult{}" swift=".unresolved"></api-name> to allow the next resolver in the pipeline to handle the dependency. See [Resolvers](/features/plugins/#resolvers) in the Parcel configuration docs for details on how this works.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Resolver } from "@parcel/plugin";
@@ -113,7 +113,7 @@ struct MyResolver: Resolver {
 #parcelPlugin(MyResolver.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `resolve` method.
 
@@ -147,13 +147,13 @@ export default new Resolver({
 
 ## Dependency metadata
 
-In addition to the specifier, Resolver plugins also receive the full [dependency](/plugin-system/transformer/#Dependency), which includes additional metadata. The specifier type, {% api js="dependency.specifierType", rust="dependency.specifier_type()", go="dependency.SpecifierType()", swift="dependency.specifierType" %}, indicates how the specifier should be interpreted (e.g. ESM, CommonJS, URL, etc.). {% api js="dependency.resolveFrom", rust="dependency.resolve_from()", go="dependency.ResolveFrom()", swift="dependency.resolveFrom" %} is the path of the file the dependency should be resolved from (e.g. if the specifier is a relative path).
+In addition to the specifier, Resolver plugins also receive the full [dependency](/plugin-system/transformer/#Dependency), which includes additional metadata. The specifier type, <api-name js="dependency.specifierType" rust="dependency.specifier_type()" go="dependency.SpecifierType()" swift="dependency.specifierType"></api-name>, indicates how the specifier should be interpreted (e.g. ESM, CommonJS, URL, etc.). <api-name js="dependency.resolveFrom" rust="dependency.resolve_from()" go="dependency.ResolveFrom()" swift="dependency.resolveFrom"></api-name> is the path of the file the dependency should be resolved from (e.g. if the specifier is a relative path).
 
 If the specifier starts with a [named pipeline](/features/plugins/#named-pipelines) defined in `.parcelrc` (e.g. `url:./image.png`), the pipeline name is passed to the resolver separately, and removed from the specifier.
 
 This example resolves relative URLs and paths depending on the specifier type.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Resolver } from "@parcel/plugin";
@@ -233,13 +233,13 @@ struct MyResolver: Resolver {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Excluding modules
 
-A resolver can indicate that a module should be excluded from the build by returning {% api js="isExcluded: true", rust="ResolveResult::Excluded", go="parcel.Excluded()", swift=".excluded" %}, or that it is external by returning {% api js="isExternal: true", rust="ResolveResult::External", go="parcel.External()", swift=".external" %}, which leaves it out of the bundle to be loaded at runtime instead. This example excludes `aws-sdk` which is included in the AWS hosting environment automatically and does not need to be bundled.
+A resolver can indicate that a module should be excluded from the build by returning <api-name js="isExcluded: true" rust="ResolveResult::Excluded" go="parcel.Excluded()" swift=".excluded"></api-name>, or that it is external by returning <api-name js="isExternal: true" rust="ResolveResult::External" go="parcel.External()" swift=".external"></api-name>, which leaves it out of the bundle to be loaded at runtime instead. This example excludes `aws-sdk` which is included in the AWS hosting environment automatically and does not need to be bundled.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/5
 import {Resolver} from '@parcel/plugin';
@@ -297,13 +297,13 @@ struct MyResolver: Resolver {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Cache invalidation
 
 The results of Resolver plugins are cached by Parcel automatically. Parcel tracks the files a resolver reads during resolution, and rebuilds when they are changed or created. JavaScript plugins can read files with the `fs` module. Native plugins must read files through the `Options` object instead (see [File system](/plugin-system/native-plugins/#file-system)). See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/8,12
 import {Resolver} from '@parcel/plugin';
@@ -392,7 +392,7 @@ struct MyResolver: Resolver {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Diagnostics
 

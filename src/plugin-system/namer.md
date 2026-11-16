@@ -6,11 +6,11 @@ Namers can be written in JavaScript, or as [native plugins](/plugin-system/nativ
 
 ## Overriding names for specific bundles
 
-A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. A namer implements one method, {% api js="name", rust="name", go="Name", swift="name(_:in:options:)" %}, which receives the bundle along with the bundle graph. Namers may return nothing ({% api js="null", rust="None", go='""', swift="nil" %}) when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](/features/plugins/#namers) in the Parcel configuration docs for details on how this works.
+A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. A namer implements one method, <api-name js="name" rust="name" go="Name" swift="name(_:in:options:)"></api-name>, which receives the bundle along with the bundle graph. Namers may return nothing (<api-name js="null" rust="None" go="&quot;&quot;" swift="nil"></api-name>) when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](/features/plugins/#namers) in the Parcel configuration docs for details on how this works.
 
 This example places all `png` and `jpg` files into an `images` folder with the same name as their original filename.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
 import { Namer } from "@parcel/plugin";
@@ -120,7 +120,7 @@ struct MyNamer: Namer {
 #parcelPlugin(MyNamer.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `name` method.
 
@@ -134,11 +134,11 @@ See [Native plugins](/plugin-system/native-plugins/) for how to build native plu
 
 Including a hash of a bundle’s contents is an important optimization for production builds that enables browsers to cache loaded files indefinitely. When the contents of a bundle changes, so does its filename, which acts as a cache invalidation mechanism. See the [Content hashing](/features/production/#content-hashing) docs for details about this.
 
-At the point bundles are being named, the final contents is not yet known, so Parcel provides a hash reference for each bundle, available as {% api js="bundle.hashReference", rust="bundle.hash_reference()", go="bundle.HashReference()", swift="bundle.hashReference" %}. This is an opaque placeholder value that will later on be replaced with the actual hash when writing the final bundles. Use this in returned bundle names to include a content hash. The hash reference must appear exactly once in the file name (not in a directory name) for it to be replaced. Bundles whose names don't include it are not content hashed.
+At the point bundles are being named, the final contents is not yet known, so Parcel provides a hash reference for each bundle, available as <api-name js="bundle.hashReference" rust="bundle.hash_reference()" go="bundle.HashReference()" swift="bundle.hashReference"></api-name>. This is an opaque placeholder value that will later on be replaced with the actual hash when writing the final bundles. Use this in returned bundle names to include a content hash. The hash reference must appear exactly once in the file name (not in a directory name) for it to be replaced. Bundles whose names don't include it are not content hashed.
 
-Make sure to check whether the bundle needs a stable name, using {% api js="bundle.needsStableName", rust="BundleFlags::NEEDS_STABLE_NAME", go="parcel.BundleFlagNeedsStableName", swift=".needsStableName" %}, before including a hash. When it does, a dependency is expecting the filename of the bundle to remain consistent over time. For example, service workers require their URLs never to change, and users expect visible URLs like HTML pages to be human readable and remain consistent.
+Make sure to check whether the bundle needs a stable name, using <api-name js="bundle.needsStableName" rust="BundleFlags::NEEDS_STABLE_NAME" go="parcel.BundleFlagNeedsStableName" swift=".needsStableName"></api-name>, before including a hash. When it does, a dependency is expecting the filename of the bundle to remain consistent over time. For example, service workers require their URLs never to change, and users expect visible URLs like HTML pages to be human readable and remain consistent.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/5-7
 import {Namer} from '@parcel/plugin';
@@ -195,7 +195,7 @@ struct MyNamer: Namer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 <p-note>
 
@@ -207,7 +207,7 @@ Content hashing is also not applied to inline bundles, or to bundles built for s
 
 ## Targets
 
-Namer plugins should also respect the target associated with a bundle, available as {% api js="bundle.target", rust="bundle.target()", go="bundle.Target()", swift="bundle.target" %}. For example, the target's environment and output format may affect the file extension to use. [Targets](/features/targets/) also allow users to configure the output filenames of entry bundles in `package.json` (e.g. using [`exports`](/features/targets/#library-targets) for libraries). Parcel uses these filenames directly, and does not call Namer plugins for these bundles.
+Namer plugins should also respect the target associated with a bundle, available as <api-name js="bundle.target" rust="bundle.target()" go="bundle.Target()" swift="bundle.target"></api-name>. For example, the target's environment and output format may affect the file extension to use. [Targets](/features/targets/) also allow users to configure the output filenames of entry bundles in `package.json` (e.g. using [`exports`](/features/targets/#library-targets) for libraries). Parcel uses these filenames directly, and does not call Namer plugins for these bundles.
 
 ## Loading configuration
 

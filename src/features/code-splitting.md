@@ -8,8 +8,8 @@ Code splitting is controlled by use of the dynamic `import()` syntax, which work
 
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
-{% sample %}
-{% samplefile "pages/index.js" %}
+<code-sample>
+<code-file name="pages/index.js">
 
 ```js
 import("./pages/about").then(function (page) {
@@ -18,8 +18,8 @@ import("./pages/about").then(function (page) {
 });
 ```
 
-{% endsamplefile %}
-{% samplefile "pages/about.js" %}
+</code-file>
+<code-file name="pages/about.js">
 
 ```js
 export function render() {
@@ -27,13 +27,13 @@ export function render() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Because `import()` returns a Promise, you can also use async/await syntax.
 
-{% sample %}
-{% samplefile "pages/index.js" %}
+<code-sample>
+<code-file name="pages/index.js">
 
 ```js
 async function load() {
@@ -44,8 +44,8 @@ async function load() {
 load();
 ```
 
-{% endsamplefile %}
-{% samplefile "pages/about.js" %}
+</code-file>
+<code-file name="pages/about.js">
 
 ```js
 export function render() {
@@ -53,8 +53,8 @@ export function render() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Tree shaking
 
@@ -66,42 +66,42 @@ When Parcel can determine which exports of a dynamically imported module you use
 
 </p-note>
 
-{% sample null, "column" %}
+<code-sample layout="column">
 
-{% samplefile %}
+<code-file>
 
 ```js
 let { x: y } = await import("./b.js");
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile %}
+<code-file>
 
 ```js
 let ns = await import("./b.js");
 console.log(ns.x);
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile %}
+<code-file>
 
 ```js
 import("./b.js").then((ns) => console.log(ns.x));
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile %}
+<code-file>
 
 ```js
 import("./b.js").then(({ x: y }) => console.log(y));
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% endsample %}
+</code-sample>
 
 ## Shared bundles
 
@@ -109,8 +109,8 @@ When multiple parts of your application depend on the same common modules, they 
 
 For example, if your application has multiple pages with `<script>` tags that depend on the same common modules, those modules will be split out into a "shared bundle”. This way, if a user navigates from one page to another, they only need to download the new code for that page, and not the common dependencies between the pages.
 
-{% sample %}
-{% samplefile "home.html" %}
+<code-sample>
+<code-file name="home.html">
 
 ```html
 <!DOCTYPE html>
@@ -118,8 +118,8 @@ For example, if your application has multiple pages with `<script>` tags that de
 <script type="module" src="home.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "home.js" %}
+</code-file>
+<code-file name="home.js">
 
 ```jsx
 import { createRoot } from "react-dom";
@@ -127,8 +127,8 @@ import { createRoot } from "react-dom";
 createRoot(app).render(<h1>Home</h1>, app);
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.html" %}
+</code-file>
+<code-file name="profile.html">
 
 ```html
 <!DOCTYPE html>
@@ -136,8 +136,8 @@ createRoot(app).render(<h1>Home</h1>, app);
 <script type="module" src="profile.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.js" %}
+</code-file>
+<code-file name="profile.js">
 
 ```jsx
 import { createRoot } from "react-dom";
@@ -145,13 +145,13 @@ import { createRoot } from "react-dom";
 createRoot(app).render(<h1>Profile</h1>, app);
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled HTML:
 
-{% sample %}
-{% samplefile "home.html" %}
+<code-sample>
+<code-file name="home.html">
 
 ```html
 <!DOCTYPE html>
@@ -160,8 +160,8 @@ Compiled HTML:
 <script type="module" src="home-fac9ed1a.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.html" %}
+</code-file>
+<code-file name="profile.html">
 
 ```html
 <!DOCTYPE html>
@@ -170,8 +170,8 @@ Compiled HTML:
 <script type="module" src="profile-9fc67e2c.js"></script>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, both `home.js` and `profile.js` depend on `react-dom`, so it is split out into a separate bundle and loaded in parallel by adding an extra `<script>` tag to both HTML pages.
 
@@ -191,8 +191,8 @@ Parcel also has a maximum parallel request limit to avoid overloading the browse
 
 By default, these parameters have been tuned for HTTP/2 with brotli compression. However, you can adjust these options to raise or lower them for your application. You can do this by configuring `@parcel/bundler-default` in the `.parcelrc` in your project root.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -207,8 +207,8 @@ By default, these parameters have been tuned for HTTP/2 with brotli compression.
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The available options are:
 
@@ -264,8 +264,8 @@ Manual Shared Bundles can be specified in the `@parcel/bundler-default` config i
 
 This example creates a vendor bundle which includes all JS assets from `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -284,8 +284,8 @@ This example creates a vendor bundle which includes all JS assets from `node_mod
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The full list of options are as follows:
 

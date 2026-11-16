@@ -40,8 +40,8 @@ npm install --save-dev parcel@next
 
 Now that Parcel is installed, let’s create some source files for our app. Parcel accepts any type of file as an entry point, but an HTML file is a good place to start. Parcel will follow all of your dependencies from there to build your app.
 
-{% sample %}
-{% samplefile "src/index.html" %}
+<code-sample>
+<code-file name="src/index.html">
 
 ```html
 <!DOCTYPE html>
@@ -56,8 +56,8 @@ Now that Parcel is installed, let’s create some source files for our app. Parc
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Parcel has a development server built in, which will automatically rebuild your app as you make changes. To start it, run the `parcel serve` command pointing to your entry file:
 
@@ -75,8 +75,8 @@ Now open [http://localhost:1234/](http://localhost:1234/) in your browser to see
 
 Next, you can start adding dependencies to your HTML file, such as a JavaScript or CSS file. For example, you could create a `styles.css` file and reference it from your `index.html` file with a `<link>` tag, and an `app.js` file referenced with a `<script>` tag.
 
-{% sample %}
-{% samplefile "src/styles.css" %}
+<code-sample>
+<code-file name="src/styles.css">
 
 ```css
 h1 {
@@ -85,15 +85,15 @@ h1 {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/app.js" %}
+</code-file>
+<code-file name="src/app.js">
 
 ```javascript
 console.log("Hello world!");
 ```
 
-{% endsamplefile %}
-{% samplefile "src/index.html" %}
+</code-file>
+<code-file name="src/index.html">
 
 ```html/5-6
 <!doctype html>
@@ -110,8 +110,8 @@ console.log("Hello world!");
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 As you make changes, you should see your app automatically update in the browser without even refreshing the page!
 
@@ -121,8 +121,8 @@ In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but
 
 So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command. Finally, you can also declare your [entries](/features/targets/#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -138,8 +138,8 @@ So far, we’ve been running the `parcel` CLI directly, but it can be useful to 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Now you can run `yarn build` to build your project for production and `yarn start` to start the development server.
 
@@ -147,8 +147,8 @@ Now you can run `yarn build` to build your project for production and `yarn star
 
 By default Parcel does not perform any code transpilation. This means that if you write your code using modern language features, that’s what Parcel will output. You can declare your app’s supported browsers using the `browserslist` field. When this field is declared, Parcel will transpile your code accordingly to ensure compatibility with your supported browsers.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json/3
 {
@@ -165,8 +165,8 @@ By default Parcel does not perform any code transpilation. This means that if yo
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 You can learn more about targets on the [Targets](/features/targets/) page.
 

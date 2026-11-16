@@ -4,8 +4,8 @@ Parcel supports importing YAML files (`.yaml` or `.yml`) from JavaScript out of 
 
 ## Example usage
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```js
 import data from "./data.yaml";
@@ -13,8 +13,8 @@ console.log(data.hello[0]);
 // => "world"
 ```
 
-{% endsamplefile %}
-{% samplefile "data.yaml" %}
+</code-file>
+<code-file name="data.yaml">
 
 ```yaml
 hello:
@@ -22,7 +22,7 @@ hello:
   - computer
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 YAML files are only converted to JavaScript when imported from JavaScript. When referenced from anywhere else, such as from an HTML file or as a [URL dependency](/languages/javascript/#url-dependencies) in JavaScript, they are copied to the output directory as is.

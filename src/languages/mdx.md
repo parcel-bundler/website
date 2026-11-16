@@ -6,8 +6,8 @@
 
 You can import a `.mdx` file into your JavaScript and render it using React:
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
 import Hello from "./hello.mdx";
@@ -17,8 +17,8 @@ export function App() {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "hello.mdx" %}
+</code-file>
+<code-file name="hello.mdx">
 
 ```md
 # Hello, MDX!
@@ -26,8 +26,8 @@ export function App() {
 This is an MDX file.
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Dependencies
 
@@ -61,8 +61,8 @@ The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 Parcel supports customizing how code blocks are rendered by specifying your own `CodeBlock` component. This allows you to implement syntax highlighting and other features.
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
 import Hello from "./hello.mdx";
@@ -88,8 +88,8 @@ function syntaxHighlight() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### CodeBlock props
 
@@ -144,8 +144,8 @@ Rendered JSX expressions and components are updated in place with React Fast Ref
 
 MDX files also export a `tableOfContents` array, which contains the headings in the document. Each entry has a `title`, the heading `level` (1–6), and an array of `children` containing nested headings. This can be used to render a navigation sidebar, for example.
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
 import Hello, { tableOfContents } from "./hello.mdx";
@@ -173,5 +173,5 @@ function Toc({ items }) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

@@ -26,8 +26,8 @@ Native plugins are called from multiple threads at once, so they must be thread 
 
 The `parcel-plugin` crate is the Rust SDK for native plugins. Create a new library crate, and configure it to build a `cdylib`:
 
-{% sample %}
-{% samplefile "Cargo.toml" %}
+<code-sample>
+<code-file name="Cargo.toml">
 
 ```toml
 [package]
@@ -43,15 +43,15 @@ parcel-plugin = "0.1.0"
 serde_json = "1"
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 <!-- TODO(v3): parcel-plugin is not published to crates.io yet (the examples in plugin-rs/examples use a path dependency). Confirm the recommended dependency spec (crates.io version, or git + branch). -->
 
 A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The trait has one method for each plugin type (`transform`, `resolve`, `name`, and `optimize`), and one for each type of event a reporter receives (`build_start`, `build_success`, `build_failure`, and `log`). Implement the ones your plugin supports. The default implementations return an error, except for the reporter methods, which do nothing. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
 
-{% sample %}
-{% samplefile "src/lib.rs" %}
+<code-sample>
+<code-file name="src/lib.rs">
 
 ```rust
 use parcel_plugin::{Asset, Diagnostic, Options, Plugin, register_plugin};
@@ -86,8 +86,8 @@ impl Plugin for TxtTransformer {
 register_plugin!(TxtTransformer);
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Build it with `cargo build`, which produces `target/debug/libparcel_transformer_txt.dylib` (or `.so` or `.dll`).
 
@@ -103,8 +103,8 @@ go get github.com/parcel-bundler/parcel/plugin-go/v3@v{{ parcel.version }}
 
 A plugin is a `main` package that registers a plugin in an `init` function. The plugin implements one or more of the `Transformer`, `Resolver`, `Namer`, and `Optimizer` interfaces, each of which has one method: `Transform`, `Resolve`, `Name`, or `Optimize`. A reporter implements an interface for each type of event it receives: `BuildStartReporter`, `BuildSuccessReporter`, `BuildFailureReporter`, or `LogReporter`. The function passed to `RegisterPlugin` is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
 
-{% sample %}
-{% samplefile "main.go" %}
+<code-sample>
+<code-file name="main.go">
 
 ```go
 package main
@@ -152,8 +152,8 @@ func init() {
 func main() {}
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Build it as a C shared library. This requires cgo, and therefore a C compiler.
 
@@ -167,8 +167,8 @@ Return an error, e.g. a `*parcel.Diagnostic`, to fail a call (see [Diagnostics](
 
 The Swift SDK lives in the [`plugin-swift`](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift) directory of the Parcel repo, and provides the `ParcelPlugin` library. It requires Swift 6.2 or later, and macOS 15 or later at runtime. Declare a dynamic library product in your `Package.swift`:
 
-{% sample %}
-{% samplefile "Package.swift" %}
+<code-sample>
+<code-file name="Package.swift">
 
 ```swift
 // swift-tools-version: 6.2
@@ -187,13 +187,13 @@ let package = Package(
 )
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 A plugin conforms to one or more of the `Transformer`, `Resolver`, `Namer`, `Optimizer`, and `Reporter` protocols, and is exported with the `#parcelPlugin` macro. The plugin is created once for each entry in the `.parcelrc` that refers to it, and its `Config` is decoded from that entry's `config` using `JSONDecoder`. This allows the same plugin to be used multiple times with different configuration. Plugins without config declare `init(config: NoConfig)`.
 
-{% sample %}
-{% samplefile "Sources/TxtTransformer/TxtTransformer.swift" %}
+<code-sample>
+<code-file name="Sources/TxtTransformer/TxtTransformer.swift">
 
 ```swift
 import Foundation
@@ -222,8 +222,8 @@ struct TxtTransformer: Transformer {
 #parcelPlugin(TxtTransformer.self)
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Build it with `swift build -c release`, which produces `.build/release/libTxtTransformer.dylib`.
 
@@ -233,9 +233,9 @@ Throw an error, e.g. a `Diagnostic`, to fail a call (see [Diagnostics](/plugin-s
 
 Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](/plugin-system/logging/#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while transforming or resolving.
 
-{% api rust="read_file()", go="ReadFile()", swift="fileSystem.read(_:)" %} reads a file, {% api rust="file_kind()", go="FileKind()", swift="fileSystem.kind(of:)" %} returns whether a path is a file, directory, or does not exist, and {% api rust="canonicalize()", go="Canonicalize()", swift="fileSystem.canonicalize(_:)" %} resolves symlinks.
+<api-name rust="read_file()" go="ReadFile()" swift="fileSystem.read(_:)"></api-name> reads a file, <api-name rust="file_kind()" go="FileKind()" swift="fileSystem.kind(of:)"></api-name> returns whether a path is a file, directory, or does not exist, and <api-name rust="canonicalize()" go="Canonicalize()" swift="fileSystem.canonicalize(_:)"></api-name> resolves symlinks.
 
-{% codetabs %}
+<code-tabs>
 
 ```rust
 let config = options
@@ -254,7 +254,7 @@ if err != nil {
 let config = try options.fileSystem.readString("/path/to/tool.config.json")
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## C ABI
 
@@ -268,8 +268,8 @@ Plugins don't link against any Parcel symbols. Instead, all calls into Parcel go
 
 For example, this transformer converts a file into a JavaScript module that exports its number of lines. Copy `plugin.h` into your project, and include it:
 
-{% sample %}
-{% samplefile "plugin.c" %}
+<code-sample>
+<code-file name="plugin.c">
 
 ```c
 #include <stdio.h>
@@ -321,8 +321,8 @@ void parcel_plugin_transform(Asset asset, Options options, void *state,
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Then build it as a shared library with your C compiler, e.g. `cc -shared -fPIC -o plugin.dylib plugin.c`.
 
@@ -332,8 +332,8 @@ The ABI is versioned with `PARCEL_ABI_VERSION`. A plugin built against a differe
 
 While developing a native plugin, you can reference the built library by its relative path in `.parcelrc`. Paths ending in `.dylib`, `.so`, or `.dll` are loaded as native plugins.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -351,13 +351,13 @@ While developing a native plugin, you can reference the built library by its rel
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Native plugins can also be referenced by package name, the same way they are when they are installed from npm. To do this, set the `parcel.devLibrary` field in the plugin's `package.json` (alongside `parcel.artifacts`, described [below](#publishing)) to the path of your local build. The file extension may be omitted, in which case Parcel appends the extension for the current platform. This way, the same entry works on every platform.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -374,8 +374,8 @@ Native plugins can also be referenced by package name, the same way they are whe
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When `devLibrary` is set, it is always used instead of the published binaries. If the file does not exist, the build fails. `devLibrary` is removed when the plugin is published using the workflow described below.
 
@@ -385,8 +385,8 @@ Native plugins are published to npm, and installed and referenced in `.parcelrc`
 
 A native plugin is published as one package per platform, each containing the shared library for that platform, along with a main package that only contains metadata. The main package's `package.json` lists the package for each platform under `parcel.artifacts`, keyed by Rust target triple, and declares the ABI version the plugin was built against in `parcel.abi`. The platform packages are listed as `optionalDependencies`, so npm only installs the one matching the user's platform. Each platform package names its library in `parcel.library`.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -408,15 +408,15 @@ A native plugin is published as one package per platform, each containing the sh
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 An artifact may also be a relative path to a library inside the main package itself, e.g. `"./plugin-darwin-arm64.dylib"`. This ships all platforms in a single package, which is simpler for small plugins, at the cost of every user downloading every binary.
 
 Parcel provides a reusable GitHub Actions workflow that builds a Rust, Go, or Swift plugin for every platform listed in `parcel.artifacts`, generates the platform packages, and publishes everything to npm using [trusted publishing](https://docs.npmjs.com/trusted-publishers).
 
-{% sample %}
-{% samplefile ".github/workflows/release.yml" %}
+<code-sample>
+<code-file name=".github/workflows/release.yml">
 
 ```yaml
 name: release
@@ -436,7 +436,7 @@ jobs:
       publish: true
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When called with `publish: false` (the default), it builds the plugin and uploads the packages as workflow artifacts without publishing, which is useful as a check on pull requests. See the [workflow documentation](https://github.com/parcel-bundler/parcel/blob/v3/.github/scripts/native-plugin/README.md) for all of the options and supported platforms.

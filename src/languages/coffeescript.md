@@ -8,8 +8,8 @@ Parcel supports CoffeeScript using the `@parcel/transformer-coffeescript` plugin
 yarn add @parcel/transformer-coffeescript@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -20,26 +20,26 @@ yarn add @parcel/transformer-coffeescript@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](/languages/javascript/).
 
 ## Example usage
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html
 <script type="module" src="app.coffee"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "app.coffee" %}
+</code-file>
+<code-file name="app.coffee">
 
 ```coffeescript
 console.log 'Hello world!'
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

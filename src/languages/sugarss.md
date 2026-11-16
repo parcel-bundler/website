@@ -6,8 +6,8 @@
 yarn add @parcel/transformer-sugarss@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -18,8 +18,8 @@ yarn add @parcel/transformer-sugarss@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled SugarSS files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.sss` extension.
 

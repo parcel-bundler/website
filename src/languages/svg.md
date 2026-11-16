@@ -12,8 +12,8 @@ File names are resolved relative to the current SVG file, but you can also use [
 
 External stylesheets can be referenced via the `xml-stylesheet` processing instruction in an SVG document. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](/languages/sass/), [Less](/languages/less/), or [Stylus](/languages/stylus).
 
-{% sample %}
-{% samplefile "example.svg" %}
+<code-sample>
+<code-file name="example.svg">
 
 ```xml/0
 <?xml-stylesheet href="style.css" ?>
@@ -22,8 +22,8 @@ External stylesheets can be referenced via the `xml-stylesheet` processing instr
 </svg>
 ```
 
-{% endsamplefile %}
-{% samplefile "style.css" %}
+</code-file>
+<code-file name="style.css">
 
 ```css
 text {
@@ -31,8 +31,8 @@ text {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 See the [CSS](/languages/css/) docs for details on how CSS is processed by Parcel.
 
@@ -48,8 +48,8 @@ The `type="module"` attribute should be used to indicate that a file is an [ES m
 
 </p-note>
 
-{% sample %}
-{% samplefile "example.svg" %}
+<code-sample>
+<code-file name="example.svg">
 
 ```xml/2
 <svg viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +58,8 @@ The `type="module"` attribute should be used to indicate that a file is an [ES m
 </svg>
 ```
 
-{% endsamplefile %}
-{% samplefile "interactions.js" %}
+</code-file>
+<code-file name="interactions.js">
 
 ```javascript
 let circle = document.querySelector("circle");
@@ -68,8 +68,8 @@ circle.addEventListener("click", () => {
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script) for the `<script>` element for more info, and the [JavaScript](/languages/javascript/) docs for details on how Parcel processes JavaScript.
 
@@ -132,8 +132,8 @@ External resources referenced via the `url()` function in presentation attribute
 
 `<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the SVG file. Use the `type="module"` attribute as described above to enable importing other modules from an inline script.
 
-{% sample %}
-{% samplefile "example.svg" %}
+<code-sample>
+<code-file name="example.svg">
 
 ```xml/3,6-8
 <svg viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
@@ -149,8 +149,8 @@ External resources referenced via the `url()` function in presentation attribute
 </svg>
 ```
 
-{% endsamplefile %}
-{% samplefile "style.scss" %}
+</code-file>
+<code-file name="style.scss">
 
 ```scss
 $fill: blue;
@@ -160,8 +160,8 @@ circle {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "interactions.ts" %}
+</code-file>
+<code-file name="interactions.ts">
 
 ```typescript
 export function setup(element: SVGElement) {
@@ -171,8 +171,8 @@ export function setup(element: SVGElement) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 CSS files referenced via `@import`, and JavaScript referenced via `import` will be bundled into the compiled SVG file. See [Stylesheets](#stylesheets) and [Scripts](#scripts) for how to reference an external file.
 
@@ -299,8 +299,8 @@ This plugin is built into Parcel, but it is not used by the default config, so y
 
 You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a named pipeline to create a URL scheme that you can reference from a JavaScript import statement. This approach allows SVG files referenced from JavaScript to be converted to JSX, but SVGs referenced elsewhere to be kept as SVG files.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -311,8 +311,8 @@ You can either configure your `.parcelrc` to convert all SVGs to JSX, or use a n
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "example.jsx" %}
+</code-file>
+<code-file name="example.jsx">
 
 ```jsx/0
 import Icon from "jsx:./icon.svg";
@@ -320,13 +320,13 @@ import Icon from "jsx:./icon.svg";
 export const App = () => <Icon />;
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 SVG to JSX can be configured in your `.parcelrc`, following the options documented by [SVGR](https://react-svgr.com/docs/options/). The supported options are `icon`, `dimensions`, `expandProps`, `ref`, `memo`, `svgProps`, `replaceAttrValues`, `titleProp`, `descProp`, `svgo`, and `svgoConfig`. The `svgoConfig` option accepts the same options as the `optimize` object of the [SVG minifier](#minification).
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -347,13 +347,13 @@ SVG to JSX can be configured in your `.parcelrc`, following the options document
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The `template` option customizes the JavaScript module that is generated for the component. Unlike SVGR's template function, it is a string containing an ES module written in plain JavaScript. The first `$ICON` identifier used as an expression in the template is replaced with the component, which is wrapped in `forwardRef` or `memo` if the `ref` or `memo` options are enabled. The template must export the component itself, and imports within it are resolved relative to the SVG file.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -371,8 +371,8 @@ The `template` option customizes the JavaScript module that is generated for the
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Production
 
@@ -382,15 +382,15 @@ In production mode, Parcel includes optimizations to reduce the file size of you
 
 SVG files are often used as sprite sheets containing many icons, which are referenced by fragment from other files. In production builds, Parcel tracks these references and removes the elements that aren't used. Only the referenced elements are kept, along with anything they reference in turn, such as gradients, masks, and other `<use>` elements.
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html
 <svg width="24" height="24"><use href="icons.svg#home" /></svg>
 ```
 
-{% endsamplefile %}
-{% samplefile "icons.svg" %}
+</code-file>
+<code-file name="icons.svg">
 
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg">
@@ -404,8 +404,8 @@ SVG files are often used as sprite sheets containing many icons, which are refer
 </svg>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this example, only the `home` symbol is used, so the `search` symbol is removed from the output. The `fade` gradient is kept because the `home` symbol references it.
 
@@ -425,8 +425,8 @@ In production mode, Parcel automatically minifies your code to reduce the file s
 
 Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and the value is either `true` or `false` to enable or disable it, or an object of options for the plugin. Plugins from SVGO's `preset-default` are enabled by default (except `cleanupIds`). Set `"default": false` to disable them, and only run the plugins you list.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -447,5 +447,5 @@ Each key is the name of an [SVGO plugin](https://svgo.dev/docs/plugins/), and th
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

@@ -10,8 +10,8 @@ Let's walk through a couple basic steps to upgrade from Parcel 2 to Parcel 3.
 
 Update the `parcel` dependency in your `package.json` to the latest version.
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/2
 {
@@ -21,8 +21,8 @@ Update the `parcel` dependency in your `package.json` to the latest version.
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "package.json" %}
+</code-file>
+<code-file name="package.json">
 
 ```json/2
 {
@@ -32,15 +32,15 @@ Update the `parcel` dependency in your `package.json` to the latest version.
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 You should also remove any `@parcel/*` plugin packages from Parcel 2 that are now built into Parcel, or that are no longer supported. See [Plugins](#plugins) below for details.
 
 If you'd like to try Parcel 3 before switching over entirely, it is also published as `@parcel/parcel3`. This package installs a `parcel3` command instead of `parcel`, so it can be installed alongside Parcel 2 in the same project. Use `parcel3` in place of `parcel` when running the commands on this page, and pass a different `--dist-dir` so the two versions don't overwrite each other's output.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json/3,7
 {
@@ -55,15 +55,15 @@ If you'd like to try Parcel 3 before switching over entirely, it is also publish
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Commands
 
 In Parcel 2, running `parcel` with a list of entries and no command started the development server. Parcel 3 always requires a command, so you'll need to update your package scripts to use `parcel serve`.
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/3
 {
@@ -75,8 +75,8 @@ In Parcel 2, running `parcel` with a list of entries and no command started the 
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "package.json" %}
+</code-file>
+<code-file name="package.json">
 
 ```json/3
 {
@@ -88,8 +88,8 @@ In Parcel 2, running `parcel` with a list of entries and no command started the 
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 Parcel 3 also adds a new [`parcel run`](/features/cli/#parcel-run-%3Centries%3E) command, which builds and runs a Node.js entry with hot module replacement. This replaces running `parcel watch` alongside a tool like `nodemon`.
 
@@ -97,23 +97,23 @@ Parcel 3 also adds a new [`parcel run`](/features/cli/#parcel-run-%3Centries%3E)
 
 Parcel 3 is fast enough that it no longer writes a cache to disk. You can delete the `.parcel-cache` directory and remove it from your `.gitignore`.
 
-{% migration %}
-{% samplefile ".gitignore" %}
+<code-migration>
+<code-file name=".gitignore">
 
 ```text/1
 dist
 .parcel-cache
 ```
 
-{% endsamplefile %}
-{% samplefile ".gitignore" %}
+</code-file>
+<code-file name=".gitignore">
 
 ```text/0
 dist
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 ### Installing dependencies
 
@@ -129,8 +129,8 @@ Parcel 2 automatically installed plugins and other dependencies it needed when t
 
 In Parcel 2, many plugins were configured using a key in your `package.json` named after the plugin, or using a tool-specific config file. In Parcel 3, plugin options are specified in your `.parcelrc` instead, by replacing the plugin name with an object containing a `plugin` and a `config`. See [Plugin configuration](/features/plugins/#plugin-configuration) for details.
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/1-6
 {
@@ -143,8 +143,8 @@ In Parcel 2, many plugins were configured using a key in your `package.json` nam
 }
 ```
 
-{% endsamplefile %}
-{% samplefile ".parcelrc" %}
+</code-file>
+<code-file name=".parcelrc">
 
 ```json/2-10
 {
@@ -161,8 +161,8 @@ In Parcel 2, many plugins were configured using a key in your `package.json` nam
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 The following table lists where configuration that was previously read from `package.json` or other config files now lives.
 
@@ -206,8 +206,8 @@ For example, to use Sass:
 yarn add @parcel/transformer-sass@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -218,8 +218,8 @@ yarn add @parcel/transformer-sass@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In particular, Parcel no longer runs Babel or PostCSS automatically when it finds a config file in your project.
 
@@ -253,8 +253,8 @@ The following plugins are no longer needed, since their functionality is built i
 
 In Parcel 2, libraries were configured using the `main`, `module`, `browser`, and `types` fields in `package.json`, along with the `targets` field. Parcel 3 uses the `exports` field instead. Add a `source` condition to each export to reference the source file, and Parcel will build each of the other conditions. The output format is determined by the file extension, or the `"type"` field in your `package.json`. See [Library targets](/features/targets/#library-targets) for details.
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/2-4
 {
@@ -265,8 +265,8 @@ In Parcel 2, libraries were configured using the `main`, `module`, `browser`, an
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "package.json" %}
+</code-file>
+<code-file name="package.json">
 
 ```json/2-6
 {
@@ -279,8 +279,8 @@ In Parcel 2, libraries were configured using the `main`, `module`, `browser`, an
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 Parcel 3 also builds libraries differently than Parcel 2. Each module is written to a separate output file rather than concatenated into a single bundle, which allows consumers of your library to tree shake it more effectively. `dependencies` and `peerDependencies` are not bundled, but `devDependencies` are.
 
@@ -308,43 +308,43 @@ Differential bundling has been removed: Parcel no longer generates `<script nomo
 
 Glob specifiers still require adding `@parcel/resolver-glob` to your `.parcelrc`, but the plugin is now built into Parcel. Globs now resolve to a default export, and the values are the default export of each file rather than a namespace object. To load each file lazily, use the `?async=true` query parameter instead of a dynamic `import()`. Glob imports of files in npm packages (e.g. `@company/pkg/i18n/*.js`) are not supported yet. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for details.
 
-{% migration %}
-{% samplefile "app.js" %}
+<code-migration>
+<code-file name="app.js">
 
 ```js/0
 import * as files from './files/*.js';
 ```
 
-{% endsamplefile %}
-{% samplefile "app.js" %}
+</code-file>
+<code-file name="app.js">
 
 ```js/0
 import files from './files/*.js';
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 ### Worklets
 
 The `worklet:` URL scheme has been replaced by [import attributes](/languages/javascript/#import-attributes). To import a URL to a web audio worklet, use the `url` type along with `env: 'worklet'`. See [Worklets](/languages/javascript/#worklets) for details.
 
-{% migration %}
-{% samplefile "app.js" %}
+<code-migration>
+<code-file name="app.js">
 
 ```js/0
 import workletUrl from 'worklet:./worklet.js';
 ```
 
-{% endsamplefile %}
-{% samplefile "app.js" %}
+</code-file>
+<code-file name="app.js">
 
 ```js/0
 import workletUrl from './worklet.js' with {type: 'url', env: 'worklet'};
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 ### Macros
 

@@ -6,8 +6,8 @@
 yarn add @parcel/transformer-pug@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -18,8 +18,8 @@ yarn add @parcel/transformer-pug@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Pug is compiled to HTML and processed as described in the [HTML docs](/languages/html/).
 
@@ -60,15 +60,15 @@ Pug can be configured for `@parcel/transformer-pug` in your `.parcelrc`. See the
 
 You can define a `locals` object in your Pug config, and this will be provided to your Pug templates when rendering.
 
-{% sample %}
-{% samplefile "index.pug" %}
+<code-sample>
+<code-file name="index.pug">
 
 ```pug
 h1 Hello, #{name}!
 ```
 
-{% endsamplefile %}
-{% samplefile ".parcelrc" %}
+</code-file>
+<code-file name=".parcelrc">
 
 ```json/6-8
 {
@@ -86,5 +86,5 @@ h1 Hello, #{name}!
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

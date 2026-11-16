@@ -4,8 +4,8 @@ Parcel supports importing JSON and [JSON5](https://json5.org) files into JavaScr
 
 ## Example usage
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```js
 import data from "./data.json";
@@ -13,8 +13,8 @@ console.log(data.hello[0]);
 // => "world"
 ```
 
-{% endsamplefile %}
-{% samplefile "data.json" %}
+</code-file>
+<code-file name="data.json">
 
 ```json
 {
@@ -22,7 +22,7 @@ console.log(data.hello[0]);
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 JSON files are only converted to JavaScript when imported from JavaScript. When referenced from anywhere else, such as from an HTML file or as a [URL dependency](/languages/javascript/#url-dependencies) in JavaScript, they are copied to the output directory as is.

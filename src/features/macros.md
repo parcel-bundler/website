@@ -85,8 +85,8 @@ const result = myMacro({name});
 
 Macros can return any JavaScript value, including objects, strings, booleans, numbers, and even functions. These are converted into an AST and replace the original function call in your code.
 
-{% sample %}
-{% samplefile "index.ts" %}
+<code-sample>
+<code-file name="index.ts">
 
 ```ts
 import {getRandomNumber} from './macro.ts' with {type: 'macro'};
@@ -94,8 +94,8 @@ import {getRandomNumber} from './macro.ts' with {type: 'macro'};
 console.log(getRandomNumber());
 ```
 
-{% endsamplefile %}
-{% samplefile "macro.ts" %}
+</code-file>
+<code-file name="macro.ts">
 
 ```ts
 export function getRandomNumber() {
@@ -103,8 +103,8 @@ export function getRandomNumber() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The bundled output of this example looks like this:
 
@@ -116,8 +116,8 @@ console.log(0.006024956627355804);
 
 Macros can also return promises that resolve to any supported value. For example, you could read a file asynchronously at build time, and inline the result into the bundle as a string.
 
-{% sample %}
-{% samplefile "index.ts" %}
+<code-sample>
+<code-file name="index.ts">
 
 ```ts
 import {readText} from './macro.ts' with {type: 'macro'};
@@ -125,8 +125,8 @@ import {readText} from './macro.ts' with {type: 'macro'};
 console.log(readText('message.txt'));
 ```
 
-{% endsamplefile %}
-{% samplefile "macro.ts" %}
+</code-file>
+<code-file name="macro.ts">
 
 ```ts
 import fs from "fs/promises";
@@ -136,8 +136,8 @@ export async function readText(filePath: string) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Generating functions
 
@@ -145,8 +145,8 @@ Macros can return functions, which allows you to generate code at build time. Us
 
 This example uses the [micromatch](https://github.com/micromatch/micromatch) library to compile a glob matching function at build time.
 
-{% sample %}
-{% samplefile "index.ts" %}
+<code-sample>
+<code-file name="index.ts">
 
 ```ts
 import {compileGlob} from './glob.ts' with {type: 'macro'};
@@ -154,8 +154,8 @@ import {compileGlob} from './glob.ts' with {type: 'macro'};
 const isMatch = compileGlob('foo/**/bar.js');
 ```
 
-{% endsamplefile %}
-{% samplefile "glob.ts" %}
+</code-file>
+<code-file name="glob.ts">
 
 ```ts
 import micromatch from "micromatch";
@@ -166,8 +166,8 @@ export function compileGlob(glob) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The bundled output of this example looks like this:
 
@@ -187,8 +187,8 @@ Within a macro function, `this` is an object with Parcel-provided methods. To cr
 
 This example accepts a string of CSS and returns a generated class name. The CSS is added as an asset and bundled into a CSS file, and the JavaScript bundle only includes the generated class name as a static string.
 
-{% sample %}
-{% samplefile "index.ts" %}
+<code-sample>
+<code-file name="index.ts">
 
 ```tsx
 import {css} from './css.ts' with {type: 'macro'};
@@ -198,8 +198,8 @@ import {css} from './css.ts' with {type: 'macro'};
 </div>
 ```
 
-{% endsamplefile %}
-{% samplefile "css.ts" %}
+</code-file>
+<code-file name="css.ts">
 
 ```ts/6-10
 import type {MacroContext} from '@parcel/macros';
@@ -217,20 +217,20 @@ export async function css(this: MacroContext | void, code: string) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The bundled output of the above example would look like this:
 
-{% sample %}
-{% samplefile "index.js" %}
+<code-sample>
+<code-file name="index.js">
 
 ```tsx
 <div className="ax63jk4">Hello!</div>
 ```
 
-{% endsamplefile %}
-{% samplefile "index.css" %}
+</code-file>
+<code-file name="index.css">
 
 ```css
 .ax63jk4 {
@@ -241,8 +241,8 @@ The bundled output of the above example would look like this:
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Caching
 
@@ -250,8 +250,8 @@ By default, Parcel caches the result of a macro until the file that calls it cha
 
 For example, whenever `message.txt` is edited, `index.ts` will be recompiled and the `readFile` macro will be called again.
 
-{% sample %}
-{% samplefile "index.ts" %}
+<code-sample>
+<code-file name="index.ts">
 
 ```tsx
 import {readFile} from './macro.ts' with {type: 'macro'};
@@ -259,8 +259,8 @@ import {readFile} from './macro.ts' with {type: 'macro'};
 console.log(readFile('message.txt'))
 ```
 
-{% endsamplefile %}
-{% samplefile "macro.ts" %}
+</code-file>
+<code-file name="macro.ts">
 
 ```ts
 import fs from "fs";
@@ -270,15 +270,15 @@ export function readFile(filePath: string) {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "message.txt" %}
+</code-file>
+<code-file name="message.txt">
 
 ```
 hello world!
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Runtime environment
 
@@ -301,8 +301,8 @@ TypeScript supports import attributes out of the box as of version 5.3, and auto
 
 The [`@babel/plugin-syntax-import-attributes`](https://babeljs.io/docs/babel-plugin-syntax-import-attributes) plugin enables Babel to parse import attributes. If you're using `@babel/preset-env`, enabling the [`shippedProposals`](https://babeljs.io/docs/babel-preset-env#shippedproposals) option also enables import attributes to be parsed.
 
-{% sample %}
-{% samplefile "babel.config.json" %}
+<code-sample>
+<code-file name="babel.config.json">
 
 ```json/5
 {
@@ -317,15 +317,15 @@ The [`@babel/plugin-syntax-import-attributes`](https://babeljs.io/docs/babel-plu
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### ESLint
 
 ESLint supports import attributes when using a parser such as Babel or TypeScript that supports them.
 
-{% sample %}
-{% samplefile ".eslintrc.js" %}
+<code-sample>
+<code-file name=".eslintrc.js">
 
 ```js/1
 module.exports = {
@@ -333,15 +333,15 @@ module.exports = {
 };
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Unit testing
 
 Unit testing macros is just like testing any other JavaScript function. One caveat is if your macro uses the `this` context described in the above sections. If you are testing a macro itself, you can mock the `this` argument to verify it is called as expected.
 
-{% sample %}
-{% samplefile "css.test.ts" %}
+<code-sample>
+<code-file name="css.test.ts">
 
 ```ts
 import { css } from "../src/css.ts";
@@ -364,8 +364,8 @@ it("should generate css", () => {
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When testing code that indirectly uses a macro, the macro function will be called as a normal function at runtime rather than by Parcel at compile time. In this case, the macro context that would normally be provided by Parcel won't be available. That's why the `this` argument is typed as `MacroContext | void` in the above examples and we do a runtime check to see if `this` exists. When the context isn't available, code that uses it such as `this?.addAsset` won't run, but the function should return a value as normal.
 

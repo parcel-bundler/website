@@ -14,8 +14,8 @@ ES module syntax is the standard way to import and export values between files i
 
 This example imports a `multiply` function from `math.js`, and uses it to implement a `square` function.
 
-{% sample %}
-{% samplefile "square.js" %}
+<code-sample>
+<code-file name="square.js">
 
 ```javascript
 import { multiply } from "./math.js";
@@ -25,8 +25,8 @@ export function square(x) {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 export function multiply(a, b) {
@@ -34,8 +34,8 @@ export function multiply(a, b) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 To learn more about ES modules, see the documentation on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
@@ -45,8 +45,8 @@ CommonJS is a legacy module system supported in Node, and widely used by librari
 
 This example uses `require` to load the `math.js` module, and uses the `multiply` function on its exports object to implement a `square` function.
 
-{% sample %}
-{% samplefile "square.js" %}
+<code-sample>
+<code-file name="square.js">
 
 ```javascript
 let math = require("./math");
@@ -56,8 +56,8 @@ exports.square = function (x) {
 };
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 exports.multiply = function (a, b) {
@@ -65,8 +65,8 @@ exports.multiply = function (a, b) {
 };
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In addition to `require` and `exports`, Parcel also supports `module.exports`, as well as the `__dirname` and `__filename` module globals, and `process.env` for access to environment variables. See the [Node emulation](/features/node-emulation/) docs for more details.
 
@@ -263,8 +263,8 @@ The correct JSX pragma is also automatically inferred based on the library you u
 
 JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json` file. This allows overriding the runtime, pragma, and other options. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for more information.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -275,15 +275,15 @@ JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### React Compiler
 
 [React Compiler](https://react.dev/learn/react-compiler) automatically memoizes your React components and hooks. It can be enabled using the `reactCompiler` option of `@parcel/transformer-js` in your `.parcelrc`. React Compiler runs on JavaScript and TypeScript files in your project, but not on files in `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -301,8 +301,8 @@ JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Instead of `true`, `reactCompiler` can also be set to an object with the following options. See the [React Compiler docs](https://react.dev/reference/react-compiler/configuration) for details.
 
@@ -325,8 +325,8 @@ See [TypeScript](/languages/typescript/).
 
 By default Parcel does not perform any transpilation of JavaScript syntax for older browsers. This means that if you write your code using modern language features, that’s what Parcel will output. You can declare your app’s supported browsers using the `browserslist` field in your package.json. When this field is declared, Parcel will transpile your code accordingly to ensure compatibility with your supported browsers.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -334,8 +334,8 @@ By default Parcel does not perform any transpilation of JavaScript syntax for ol
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 See the [Targets](/features/targets/) docs for more details on how to configure this.
 
@@ -347,8 +347,8 @@ yarn add @swc/helpers
 
 By default, Parcel supports all standard JavaScript features, as well as proposals that have shipped in one or more browsers. You can also enable support for future proposals using a `tsconfig.json` or `jsconfig.json` file. Currently, the only supported proposal is [decorators](https://github.com/tc39/proposal-decorators), which you may be using through TypeScript.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -358,8 +358,8 @@ By default, Parcel supports all standard JavaScript features, as well as proposa
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 More experimental features can be enabled using [Babel](#babel).
 
@@ -371,8 +371,8 @@ More experimental features can be enabled using [Babel](#babel).
 yarn add @parcel/transformer-babel@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -383,8 +383,8 @@ yarn add @parcel/transformer-babel@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Using Babel with Parcel then works the same way as using it standalone or with other build tools. Create a Babel config file such as `.babelrc` and Parcel will pick it up automatically. If no Babel config file is found, the file is not processed by Babel.
 
@@ -392,8 +392,8 @@ Parcel supports both project wide config files such as `babel.config.json`, as w
 
 Alternatively, Babel options can be specified in your `.parcelrc`. In this case, Babel config files are ignored, and the options apply to all files matched by the glob, including files in `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -412,8 +412,8 @@ Alternatively, Babel options can be specified in your `.parcelrc`. In this case,
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 #### Default presets
 
@@ -425,8 +425,8 @@ If you have an existing project with a Babel config containing only the above pr
 
 If you have custom Babel presets or plugins beyond the ones listed above, you can configure Babel to only include these custom plugins and omit the standard presets. This will improve build performance by allowing Babel to do less work and letting Parcel handle the default transformations.
 
-{% sample %}
-{% samplefile "babel.config.json" %}
+<code-sample>
+<code-file name="babel.config.json">
 
 ```json
 {
@@ -434,8 +434,8 @@ If you have custom Babel presets or plugins beyond the ones listed above, you ca
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Babel runs before Parcel's builtin transpiler, so it still needs to be able to parse any JSX or TypeScript syntax in your code. If you omit the standard presets, add the corresponding syntax plugins (e.g. `@babel/plugin-syntax-jsx` or `@babel/plugin-syntax-typescript`) to your Babel config.
 

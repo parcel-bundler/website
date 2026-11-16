@@ -6,8 +6,8 @@ Parcel supports [Stylus](https://stylus-lang.com/) files using the `@parcel/tran
 yarn add @parcel/transformer-stylus@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -18,8 +18,8 @@ yarn add @parcel/transformer-stylus@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled Stylus files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.styl` extension.
 
@@ -49,8 +49,8 @@ parcel build style.styl
 
 Stylus can be configured for `@parcel/transformer-stylus` in your `.parcelrc`. To see the available options to configure stylus see the official [Stylus documentation](https://stylus-lang.com/docs/js.html). Directories listed in the `paths` option are relative to your project root.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/6-7
 {
@@ -67,5 +67,5 @@ Stylus can be configured for `@parcel/transformer-stylus` in your `.parcelrc`. T
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

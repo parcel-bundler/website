@@ -39,6 +39,20 @@
         }
       }
     ],
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "macros": {
+            "code-sample": "src/_includes/samples.mjs#sample",
+            "code-migration": "src/_includes/samples.mjs#migration",
+            "code-file": "src/_includes/samples.mjs#file",
+            "code-tabs": "src/_includes/samples.mjs#codeTabs",
+            "api-name": "src/_includes/samples.mjs#apiName"
+          }
+        }
+      }
+    ],
     "*.css": [
       "@parcel/transformer-tailwind",
       {

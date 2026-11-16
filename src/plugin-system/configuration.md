@@ -6,8 +6,8 @@ Parcel configuration can be shared between projects by publishing a [`.parcelrc`
 
 This example shows how a company might distribute a shared Parcel configuration to be used between projects. It extends `@parcel/config-default` and adds several additional plugins.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -20,8 +20,8 @@ This example shows how a company might distribute a shared Parcel configuration 
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "index.json" %}
+</code-file>
+<code-file name="index.json">
 
 ```json
 {
@@ -34,8 +34,8 @@ This example shows how a company might distribute a shared Parcel configuration 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Multi-plugin packages
 
@@ -47,8 +47,8 @@ In addition to sharing configuration between projects, Parcel config packages ar
 
 </p-note>
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -61,8 +61,8 @@ In addition to sharing configuration between projects, Parcel config packages ar
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "index.json" %}
+</code-file>
+<code-file name="index.json">
 
 ```json
 {
@@ -75,13 +75,13 @@ In addition to sharing configuration between projects, Parcel config packages ar
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Once published, users can now consume `parcel-config-xyz` in their projects by extending it in addition to the default config of their choice.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -89,5 +89,5 @@ Once published, users can now consume `parcel-config-xyz` in their projects by e
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

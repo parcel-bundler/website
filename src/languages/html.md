@@ -12,8 +12,8 @@ File names are resolved relative to the current HTML file, but you can also use 
 
 The `<link rel="stylesheet">` element can be used to reference stylesheets from HTML. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](/languages/sass/), [Less](/languages/less/), or [Stylus](/languages/stylus).
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html/3
 <!DOCTYPE html>
@@ -27,8 +27,8 @@ The `<link rel="stylesheet">` element can be used to reference stylesheets from 
 </html>
 ```
 
-{% endsamplefile %}
-{% samplefile "style.less" %}
+</code-file>
+<code-file name="style.less">
 
 ```less
 h1 {
@@ -36,8 +36,8 @@ h1 {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 See the [CSS](/languages/css/) docs for details on how CSS is processed by Parcel.
 
@@ -45,8 +45,8 @@ See the [CSS](/languages/css/) docs for details on how CSS is processed by Parce
 
 The `<script>` element can be used to reference a script file from HTML. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](/languages/typescript/), [JSX](/languages/javascript/#jsx), or [CoffeeScript](/languages/coffeescript/).
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html/3
 <!DOCTYPE html>
@@ -60,15 +60,15 @@ The `<script>` element can be used to reference a script file from HTML. You can
 </html>
 ```
 
-{% endsamplefile %}
-{% samplefile "app.ts" %}
+</code-file>
+<code-file name="app.ts">
 
 ```js
 console.log("Hello world!");
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The `type="module"` attribute should be used to indicate that a file is an [ES module](/languages/javascript/#es-modules) or [CommonJS](/languages/javascript/#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](/languages/javascript/#classic-scripts) for more information about this.
 
@@ -177,8 +177,8 @@ The `<link rel="manifest">` element is supported to reference a [Web manifest](h
 
 `<script>` and `<style>` tags with text content are also processed just like standalone files, and the generated bundles are inserted back into the HTML file. The `type="module"` attribute on script tags works just as described above for external scripts. However, if some of your browser targets don't support ES modules natively, Parcel will compile inline scripts to a non-module script and will not output a `<script type="module">`.
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html/4,7-8
 <!DOCTYPE html>
@@ -195,8 +195,8 @@ The `<link rel="manifest">` element is supported to reference a [Web manifest](h
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 <p-warning>
 
@@ -232,8 +232,8 @@ Parcel supports [inline SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Tu
 
 When referencing a script or style, sometimes Parcel will need to insert another dependent file into the compiled HTML file. For example, when referencing a JavaScript file which imports a CSS file, Parcel will insert a `<link>` element before the `<script>` to load this stylesheet in parallel with the JavaScript.
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html
 <!DOCTYPE html>
@@ -247,8 +247,8 @@ When referencing a script or style, sometimes Parcel will need to insert another
 </html>
 ```
 
-{% endsamplefile %}
-{% samplefile "app.js" %}
+</code-file>
+<code-file name="app.js">
 
 ```javascript
 import "./app.css";
@@ -259,8 +259,8 @@ app.textContent = "My Parcel app!";
 root.appendChild(app);
 ```
 
-{% endsamplefile %}
-{% samplefile "app.css" %}
+</code-file>
+<code-file name="app.css">
 
 ```css
 .app {
@@ -268,8 +268,8 @@ root.appendChild(app);
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled HTML:
 
@@ -298,8 +298,8 @@ yarn add @parcel/transformer-posthtml@next posthtml-doctype --dev
 
 Then, add it to your `.parcelrc` so that it runs before Parcel's builtin HTML transformer:
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -310,15 +310,15 @@ Then, add it to your `.parcelrc` so that it runs before Parcel's builtin HTML tr
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 You can configure PostHTML by creating a configuration file using one of these names: `.posthtmlrc` (JSON), `.posthtmlrc.json`, `.posthtmlrc.js`, `.posthtmlrc.mjs`, `.posthtmlrc.cjs`, `posthtml.config.js`, `posthtml.config.mjs`, or `posthtml.config.cjs`. A `posthtml` key in `package.json` is also supported.
 
 For example, create a config file:
 
-{% sample %}
-{% samplefile ".posthtmlrc" %}
+<code-sample>
+<code-file name=".posthtmlrc">
 
 ```json
 {
@@ -328,15 +328,15 @@ For example, create a config file:
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Plugins are specified in the plugins object as keys, and options are defined using object values. If there are no options for a plugin, just set it to an empty object instead.
 
 Alternatively, PostHTML options can be specified inline in your `.parcelrc`. When present, this takes precedence over any PostHTML config file.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -357,13 +357,13 @@ Alternatively, PostHTML options can be specified inline in your `.parcelrc`. Whe
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 This example uses [posthtml-include](https://github.com/posthtml/posthtml-include) to inline another HTML file.
 
-{% sample %}
-{% samplefile ".posthtmlrc" %}
+<code-sample>
+<code-file name=".posthtmlrc">
 
 ```json
 {
@@ -373,8 +373,8 @@ This example uses [posthtml-include](https://github.com/posthtml/posthtml-includ
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "index.html" %}
+</code-file>
+<code-file name="index.html">
 
 ```html
 <html>
@@ -388,15 +388,15 @@ This example uses [posthtml-include](https://github.com/posthtml/posthtml-includ
 </html>
 ```
 
-{% endsamplefile %}
-{% samplefile "header.html" %}
+</code-file>
+<code-file name="header.html">
 
 ```html
 <header>This is my header</header>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### posthtml.config.js
 
@@ -408,8 +408,8 @@ This example uses [posthtml-shorten](https://github.com/Rebelmail/posthtml-short
 yarn add posthtml-shorten --dev
 ```
 
-{% sample %}
-{% samplefile "posthtml.config.js" %}
+<code-sample>
+<code-file name="posthtml.config.js">
 
 ```js
 module.exports = {
@@ -429,8 +429,8 @@ module.exports = {
 };
 ```
 
-{% endsamplefile %}
-{% samplefile "index.html" %}
+</code-file>
+<code-file name="index.html">
 
 ```html
 <html>
@@ -443,8 +443,8 @@ module.exports = {
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Production
 
@@ -458,8 +458,8 @@ To configure it, set the `optimize` option of `@parcel/transformer-html` in your
 
 For example to retain HTML comments
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -479,13 +479,13 @@ For example to retain HTML comments
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 or to not minify SVG elements.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -505,7 +505,7 @@ or to not minify SVG elements.
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The following options are supported, and are all enabled by default: `collapseAttributeWhitespace`, `collapseWhitespace`, `deduplicateAttributeValues`, `removeComments`, `removeEmptyAttributes`, `minifyJson`, `removeRedundantAttributes`, `collapseBooleanAttributes`, `normalizeAttributeValues`, and `sortAttributesWithLists`. The `minifySvg` option can also be set to an object of options for the [SVG minifier](/languages/svg/#minification).

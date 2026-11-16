@@ -6,8 +6,8 @@ Parcel supports [Sass](https://sass-lang.com/) files using the `@parcel/transfor
 yarn add @parcel/transformer-sass@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -18,8 +18,8 @@ yarn add @parcel/transformer-sass@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled Sass files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.scss` extension.
 
@@ -51,8 +51,8 @@ Sass can be configured for `@parcel/transformer-sass` in your `.parcelrc`. The `
 
 <!-- TODO(v3): v2 read any Sass option from .sassrc/.sassrc.json/.sassrc.js and passed it to the sass npm package. The v3 native plugin (crates/sass/src/lib.rs, compiled with the `sasso` Rust crate) only accepts `loadPaths` from its .parcelrc config; no .sassrc support and no other options (e.g. style, quietDeps, silenceDeprecations, includePaths alias). Intentional? -->
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/6
 {
@@ -68,7 +68,7 @@ Sass can be configured for `@parcel/transformer-sass` in your `.parcelrc`. The `
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Imports that cannot be found relative to the containing file or in `loadPaths` are resolved using Parcel's [dependency resolution](/features/dependency-resolution/), so stylesheets can be imported from npm packages (including via the `sass` and `style` [package exports](/features/dependency-resolution/#conditional-exports) conditions).

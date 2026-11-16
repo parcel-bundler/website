@@ -140,7 +140,7 @@ void parcel_asset_set_type(Asset asset, const uint8_t *ty, uintptr_t ty_len);
 
 C is the lingua franca of programming languages: it is low level, has a stable ABI, and many higher level languages are interoperable with it. We've built SDKs for [Rust](/plugin-system/native-plugins/#rust), [Go](/plugin-system/native-plugins/#go), and [Swift](/plugin-system/native-plugins/#swift), as well as a reusable [GitHub Actions workflow](/plugin-system/native-plugins/#publishing) to manage cross-compilation and publishing to npm.
 
-{% codetabs %}
+<code-tabs>
 
 ```rust
 use parcel_plugin::{Asset, Diagnostic, Options, Plugin, register_plugin};
@@ -205,7 +205,7 @@ struct MyTransformer: Transformer {
 #parcelPlugin(MyTransformer.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## JavaScript plugins
 

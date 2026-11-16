@@ -8,8 +8,8 @@ In production builds, Parcel statically analyzes the imports and exports of each
 
 Parcel’s implementation of tree shaking works by analyzing the imports and exports of each module independently and in parallel. Once all modules have been compiled, Parcel determines which exports of each module are actually used, and removes the unused exports. Any code that is no longer referenced is then removed by the minifier.
 
-{% sample %}
-{% samplefile "index.js" %}
+<code-sample>
+<code-file name="index.js">
 
 ```javascript
 import { add } from "./math";
@@ -17,8 +17,8 @@ import { add } from "./math";
 console.log(add(2, 3));
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 export function add(a, b) {
@@ -30,8 +30,8 @@ export function square(a) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this example, only the `add` function is used, so the `square` function is removed from the output.
 
@@ -234,8 +234,8 @@ The `sideEffects` field supports the following values:
 
 When a file is marked as side effect free, Parcel is able to skip the entire file if it does not have any used exports. This can reduce bundle sizes significantly, especially if the module calls helper functions during its initialization.
 
-{% sample null, "column" %}
-{% samplefile "app.js" %}
+<code-sample layout="column">
+<code-file name="app.js">
 
 ```js
 import { add } from "math";
@@ -243,9 +243,9 @@ import { add } from "math";
 console.log(add(2, 3));
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile "node_modules/math/package.json" %}
+<code-file name="node_modules/math/package.json">
 
 ```json
 {
@@ -254,9 +254,9 @@ console.log(add(2, 3));
 }
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile "node_modules/math/index.js" %}
+<code-file name="node_modules/math/index.js">
 
 ```js
 export { add } from "./add.js";
@@ -268,8 +268,8 @@ export function elapsed() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this case, only the `add` function from the `math` library is used. `multiply` and `elapsed` are unused. Normally, the `loaded` variable would still be needed because it includes a side effect that runs during the module's initialization. However, because the `package.json` includes the `sideEffects` field, the `index.js` module can be entirely skipped.
 
