@@ -49,7 +49,8 @@
             "code-file": "src/_includes/samples.mjs#file",
             "code-tabs": "src/_includes/samples.mjs#codeTabs",
             "api-name": "src/_includes/samples.mjs#apiName",
-            "pre": "src/_includes/highlight.mjs#pre"
+            "pre": "src/_includes/highlight.mjs#pre",
+            "table": "src/_includes/tables.mjs#table"
           }
         }
       }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../feed.xml" rel="alternate" type="application/atom+xml" title="Parcel Blog" />
+    <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="Parcel Blog" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link href="/assets/styles/doc-styles.css" rel="stylesheet" />
     <script type="module" blocking="render">
@@ -56,7 +56,7 @@
       </div>
       <nav class="section-picker">
         <a href="/docs/">Docs</a>
-        <a href="../blog/index.html">Blog</a>
+        <parcel:macro src="posts.mjs#latestLink">Blog</parcel:macro>
         <script>
         let node = document.currentScript.previousElementSibling;
         if (location.pathname.startsWith('/blog/')) {
@@ -115,16 +115,19 @@
           </a>
           <script>
             // Link to the page's source. The layout is shared by every page, so this can't be done at
-            // build time. Pages are built to the same path as their source, e.g. features/cli.md to
-            // features/cli.html, apart from the few written in HTML.
+            // build time. Pages are served at their path in src, e.g. /features/cli/ from
+            // features/cli.md, and blog posts from a directory of the same name (blog/v2/v2.md).
             {
-              let html = { "plugin-browser/index": "src/plugin-browser/index.html" };
+              let html = {
+                docs: "src/docs.html",
+                "plugin-browser": "src/plugin-browser/index.html",
+              };
               let page = decodeURIComponent(location.pathname)
                 .replace(/^\//, "")
-                .replace(/\.html$/, "")
-                .replace(/\/$/, "/index");
+                .replace(/(\/index)?\.html$|\/$/, "");
+              let source = html[page] ?? page.replace(/^blog\/([^/]+)$/, "blog/$1/$1");
               document.currentScript.previousElementSibling.href +=
-                "/blob/v2/" + (html[page] ?? `src/${page}.md`);
+                "/blob/v2/" + (source.startsWith("src/") ? source : `src/${source}.md`);
             }
           </script>
         </footer>

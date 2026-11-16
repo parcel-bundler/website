@@ -2,9 +2,9 @@
 
 <header parcel:slot="header">
   <h1>Announcing Parcel 3 alpha</h1>
-  <p class="summary">
+  <div class="summary">
     <time datetime="2026-11-04" class="entry-date js-replace-date">2026-11-04</time>
-  </p>
+  </div>
 </header>
 
 Today we're releasing the first alpha of Parcel 3, a ground up rewrite of Parcel in Rust. It is up to 100x faster than v2, and supports native plugins written in Rust, Go, Swift, or C, as well as a custom runtime for JavaScript and TypeScript plugins. It also includes improved automatic code splitting, library mode, tree shaking, centralized configuration, and much more.

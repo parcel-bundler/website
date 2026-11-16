@@ -2,9 +2,9 @@
 
 <header parcel:slot="header">
   <h1>Parcel 2 RC</h1>
-  <p class="summary">
+  <div class="summary">
     <time datetime="2021-08-03" class="entry-date js-replace-date">2021-08-03</time>
-  </p>
+  </div>
 </header>
 
 The Parcel team is very excited to announce the first Parcel 2 release candidate! This release includes many improvements, including new features, better performance, API consistency, and lots of bug fixes and stability improvements.

@@ -1,6 +1,7 @@
-// Blog post metadata, read from each post's source. The title is its <title> if it has one (e.g. a
-// shorter one than its heading), or otherwise its first <h1>, like the markdown transformer's `title`
-// option. The date is its article:published_time.
+// Blog post metadata, read from each post's source. The title is its <title> if it has one, or
+// otherwise its first <h1>, like the markdown transformer's `title` option. The navigation shows a
+// shorter label instead if the <h1> has a data-nav-title attribute. The date is its
+// article:published_time.
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -27,20 +28,31 @@ export function getPosts() {
     .globSync('*/*.md', { cwd: blogDir })
     .map((file) => {
       let source = fs.readFileSync(path.join(blogDir, file), 'utf8');
+      let title = getTitle(source) ?? file;
       return {
         path: file,
-        title: getTitle(source) ?? file,
+        url: `/blog/${path.dirname(file)}/`,
+        title,
         date: source.match(/<meta property="article:published_time" content="([^"]+)"/)?.[1] ?? '',
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path));
 }
 
-/** Blog navigation list items. Links are relative to _includes, where the macro is called. */
+/** Blog navigation list items. */
 export function nav() {
   return getPosts()
-    .map((post) => `<li><a href="../blog/${escape(post.path)}">${escape(post.title)}</a></li>`)
+    .map((post) => `<li><a href="${escape(post.url)}">${escape(post.title)}</a></li>`)
     .join('\n');
+}
+
+/** A link to the newest post, e.g. for the Blog section of the header. */
+export function latestLink(content, attributes) {
+  let [post] = getPosts();
+  let attrs = Object.entries(attributes)
+    .map(([name, value]) => ` ${name}="${escape(value)}"`)
+    .join('');
+  return `<a href="${escape(post.url)}"${attrs}>${content}</a>`;
 }
 
 const SITE_URL = 'https://parceljs.org';
@@ -53,24 +65,24 @@ const SITE_URL = 'https://parceljs.org';
 export function feed() {
   let posts = getPosts();
   let toRfc3339 = (date) => `${date}T00:00:00Z`;
-  let entries = posts.map((post) => {
-    let dir = path.dirname(post.path);
+  // Oldest first, like the previous feed. Readers sort entries by date anyway.
+  let entries = [...posts].reverse().map((post) => {
     let content = `<parcel:include src="fragment:blog/${escape(post.path)}"></parcel:include>`;
     return `<entry>
     <title>${escape(post.title)}</title>
-    <link href="blog/${escape(post.path)}"/>
+    <link href="${SITE_URL}${escape(post.url)}"/>
     <updated>${toRfc3339(post.date)}</updated>
-    <id>${SITE_URL}/blog/${escape(dir)}/</id>
+    <id>${SITE_URL}${escape(post.url)}</id>
     <content type="html">${escape(content)}</content>
   </entry>`;
   });
   return `<updated>${toRfc3339(posts[0].date)}</updated>\n  ${entries.join('\n  ')}`;
 }
 
-/** Redirects /blog/ to the newest post. Paths are relative to src/blog, where the macro is called. */
+/** Redirects /blog/ to the newest post. */
 export function redirect() {
   let [post] = getPosts();
-  let href = escape(post.path);
+  let href = escape(post.url);
   return `<meta http-equiv="refresh" content="0; url=${href}">
 <p>Redirecting to <a href="${href}">${escape(post.title)}</a>…</p>`;
 }

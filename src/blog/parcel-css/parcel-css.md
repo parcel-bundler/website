@@ -1,11 +1,10 @@
-<title>Announcing Parcel CSS</title>
 <meta property="article:published_time" content="2022-01-12">
 
 <header parcel:slot="header">
   <h1>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</h1>
-  <p class="summary">
+  <div class="summary">
     <time datetime="2022-01-12" class="entry-date js-replace-date">2022-01-12</time>
-  </p>
+  </div>
 </header>
 
 I'm very excited to announce <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">@parcel/css</a>, a new CSS parser, compiler, and minifier written in Rust! Check it out <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">on GitHub</a>, or try a <a href="https://parcel-css.vercel.app" target="_blank">live demo</a> right in your browser.

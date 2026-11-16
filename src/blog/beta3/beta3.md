@@ -2,9 +2,9 @@
 
 <header parcel:slot="header">
   <h1>Parcel 2 beta 3</h1>
-  <p class="summary">
+  <div class="summary">
     <time datetime="2021-05-18" class="entry-date js-replace-date">2021-05-18</time>
-  </p>
+  </div>
 </header>
 
 The Parcel team is excited to release Parcel 2 beta 3! **This release includes a ground up rewrite of our JavaScript compiler in Rust, which improves overall build performance by up to 10x.** In addition, this post will cover some other improvements we’ve made to Parcel since our last update, along with our roadmap to a stable Parcel 2 release.

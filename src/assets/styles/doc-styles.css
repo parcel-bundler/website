@@ -777,7 +777,7 @@ p-error {
     }
   }
 
-  &.docs-home h3 {
+  .docs-home & h3 {
     @apply mt-10;
   }
 
