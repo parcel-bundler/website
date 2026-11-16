@@ -4,11 +4,11 @@ Macros are JavaScript functions that run at build time. The value returned by a 
 
 Macros are imported using an [import attribute](https://github.com/tc39/proposal-import-attributes) to indicate that they should run at build time rather than being bundled into the output. You can import any JavaScript or TypeScript module as a macro, including built-in Node modules and packages from npm.
 
-{% warning %}
+<p-warning>
 
 **Note**: for security reasons, macros cannot be called from inside `node_modules`.
 
-{% endwarning %}
+</p-warning>
 
 This example uses the [regexgen](https://github.com/devongovett/regexgen) library to generate an optimized regular expression from a set of strings at build time.
 

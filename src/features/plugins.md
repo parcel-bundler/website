@@ -254,11 +254,11 @@ When compiling an asset, its file type may change. For example, when compiling T
 {% endsamplefile %}
 {% endsample %}
 
-{% warning %}
+<p-warning>
 
 Once a transformer changes the asset type so that it no longer matches the current pipeline, the asset will be put into a different pipeline. If there is no matching pipeline for the new asset type, then transformation is finished. Transformers defined later in the current pipeline will not be run.
 
-{% endwarning %}
+</p-warning>
 
 ### Resolvers
 

@@ -64,7 +64,7 @@ Referenced files should be [relative](/features/dependency-resolution/#relative-
 }
 ```
 
-{% warning %}
+<p-warning>
 
 **Note**: Only [absolute paths](/features/dependency-resolution/#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
 
@@ -94,7 +94,7 @@ body {
 
 In the above example, the relative path `images/logo.png` would resolve to `/src/home/images/logo.png` rather than `/src/images/logo.png` as you might expect, because it is referenced in `/src/home/header.css`. The absolute path `/src/images/logo.png` resolves consistently no matter which file `var(--logo)` is used in.
 
-{% endwarning %}
+</p-warning>
 
 ## CSS modules
 
@@ -130,7 +130,7 @@ As you can see in the above example, only the `.button` class is used, so the un
 
 This also works with other unused CSS rules such as `@keyframes` and `@counter-style`, as well as CSS custom properties (when the [`dashedIdents`](#local-css-variables) option is enabled).
 
-{% warning %}
+<p-warning>
 
 **Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import, or a `require` call. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import or `require`, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
 
@@ -144,7 +144,7 @@ should be replaced with:
 import * as styles from "./styles.module.css";
 ```
 
-{% endwarning %}
+</p-warning>
 
 ### Local CSS variables
 
@@ -262,7 +262,7 @@ The following placeholders are currently supported:
 - `[content-hash]` - A hash of the file contents.
 - `[local]` - The original class name or identifier.
 
-{% warning %}
+<p-warning>
 
 **Note**: CSS grid line names can be ambiguous due to automatic postfixing done by the browser, which generates line names ending with `-start` and `-end` for each grid template area. When using CSS grid, your `"pattern"` configuration must end with the `[local]` placeholder so that these references work correctly.
 
@@ -307,7 +307,7 @@ The following placeholders are currently supported:
 {% endsamplefile %}
 {% endsample %}
 
-{% endwarning %}
+</p-warning>
 
 ### Enabling CSS modules globally
 

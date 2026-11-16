@@ -86,11 +86,11 @@ See [Native plugins](/plugin-system/native-plugins/) for how to build native plu
 
 Each event includes its properties, along with Parcel's options. JavaScript reporters also receive the plugin's `config` from `.parcelrc` with each event, and native reporters receive it when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details. Reporters cannot affect the result of a build. If a reporter fails with an error, it is logged, and the build continues.
 
-{% note %}
+<p-note>
 
 **Note**: Messages logged by JavaScript reporters using `console` methods (or `process.stdout`/`process.stderr`) are sent as log events to all reporters, including Parcel's built-in CLI reporter, which prints them. To prevent infinite loops, messages logged while handling a log event may be discarded. Native reporters write to stdout and stderr directly. See [Logging](/plugin-system/logging/) for more details.
 
-{% endnote %}
+</p-note>
 
 <!-- TODO(v3): JS reporters cannot write files (the plugin fs is read-only) or write directly to stdout (process.stdout.write is routed to console.log as an info-level log, so it is filtered by --log-level and formatted by the CLI reporter). v2 reporters commonly did both (e.g. bundle analyzers, build metrics). Native reporters can use println!/std::fs. -->
 

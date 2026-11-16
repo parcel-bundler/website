@@ -174,11 +174,11 @@ Dependency specifiers may also include query parameters, which specify transform
 
 See the [Image transformer](/recipes/image/) docs for more details on images. You can also use query parameters in custom [Transformer](/plugin-system/transformer/) plugins.
 
-{% note %}
+<p-note>
 
 **Note**: Query parameters are not supported for CommonJS specifiers (created by the `require` function).
 
-{% endnote %}
+</p-note>
 
 ### URL schemes
 
@@ -329,11 +329,11 @@ If a package exports multiple modules, the `"exports"` field can provide mapping
 
 With the above package, a user may import `"foo"`, which resolves to `node_modules/foo/dist/index.js`, or `"foo/bar"`, which resolves to `node_modules/foo/dist/bar.js`.
 
-{% warning %}
+<p-warning>
 
 Any subpath that is not explicitly exported by a package containing the `"exports"` field will not be accessible by a consumer. For example, attempting to import `"foo/abc"` in the above package would result in a build time error.
 
-{% endwarning %}
+</p-warning>
 
 The `*` character may be used within an exports mapping as a wildcard. Only one `*` may appear in the lefthand side of the mapping, and the matched string is replaced into each instance in the righthand side. This allows you to avoid manually listing every file you want to export.
 
@@ -441,11 +441,11 @@ Parcel supports the following exports conditions:
 - `"production"` – Package was loaded in a production build.
 - `"default"` – The default condition in case no other conditions matched.
 
-{% note %}
+<p-note>
 
 The order that exports conditions are resolved follows the order they are defined in the package.json, not the order they are listed above.
 
-{% endnote %}
+</p-note>
 
 ### More examples
 

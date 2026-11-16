@@ -194,11 +194,11 @@ navigator.serviceWorker.register(
 );
 ```
 
-{% note %}
+<p-note>
 
 **Note**: dynamic `import()` is not supported in service workers.
 
-{% endnote %}
+</p-note>
 
 <!-- TODO(v3): Removed the `@parcel/service-worker` section (manifest/version of bundle URLs). Nothing in v3 (crates/, packages-v3/) implements `@parcel/service-worker`. Restore if it gets ported. -->
 

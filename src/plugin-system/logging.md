@@ -195,11 +195,11 @@ JavaScript plugins log messages using the standard `console` methods. Parcel col
 
 These log levels specify the severity of log messages, which is useful for formatting and filtering. For example, the [`--log-level`](/features/cli/#parameters) CLI option can be used to choose which messages you want to see.
 
-{% note %}
+<p-note>
 
 **Note**: When watching or using the dev server, Parcel only re-runs plugins for the assets affected by a change. This means any logs or warnings that a plugin emits will only be shown when the plugin actually runs, and not on every rebuild.
 
-{% endnote %}
+</p-note>
 
 ### Log levels
 

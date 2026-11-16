@@ -124,11 +124,11 @@ struct MyNamer: Namer {
 
 See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `name` method.
 
-{% error %}
+<p-error>
 
 **Note**: This example does not ensure that all filenames are unique. If two images had the same filename in different directories, the build would fail.
 
-{% enderror %}
+</p-error>
 
 ## Content hashing
 
@@ -197,13 +197,13 @@ struct MyNamer: Namer {
 
 {% endcodetabs %}
 
-{% note %}
+<p-note>
 
 Hashes are also a good way to ensure that returned bundle names are unique, even when content hashing is disabled (e.g. in development, or with `--no-content-hash`). In this case, the hash reference is left in the name as is. It is a stable identifier for the bundle, which will not change when the bundle's contents change.
 
 Content hashing is also not applied to inline bundles, or to bundles built for server environments (e.g. Node) or library targets, even if their names include the hash reference.
 
-{% endnote %}
+</p-note>
 
 ## Targets
 

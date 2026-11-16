@@ -60,11 +60,11 @@ export function render() {
 
 When Parcel can determine which exports of a dynamically imported module you use, it will tree shake the unused exports from that module. This works with static property accesses or destructuring, with either `await` or Promise `.then` syntax.
 
-{% note %}
+<p-note>
 
 **Note:** For the `await` cases, unused exports can unfortunately only be removed when `await` is not transpilied away (i.e. with a modern browserslist config).
 
-{% endnote %}
+</p-note>
 
 {% sample null, "column" %}
 
@@ -245,11 +245,11 @@ If a dynamically imported module has a dependency that is already available in a
 
 ## Manual shared bundles
 
-{% warning %}
+<p-warning>
 
 **Note**: Manual shared bundles are currently experimental and subject to change.
 
-{% endwarning %}
+</p-warning>
 
 By default, Parcel automatically splits commonly used modules into "shared bundles" and creates bundles in the scenarios listed above. However, in certain cases, you may want to specify exactly what goes into a bundle and who can request that bundle.
 
@@ -294,10 +294,10 @@ The full list of options are as follows:
 
 <!-- TODO(v3): the v2 `name`, `root` and `split` options are not implemented by v3's DefaultBundler (crates/parcel/src/bundler.rs ManualSharedBundle only has `assets` and `types`; unknown keys are silently ignored rather than rejected). Removed from the docs; confirm whether they are planned. -->
 
-{% warning %}
+<p-warning>
 
 **Be careful!**
 
 Manual shared bundles apply to your **entire** code base, **including** `node_modules`, and the matched assets are excluded from the automatic code splitting normally done by Parcel. A manual shared bundle is loaded everywhere any of its assets are needed, which may result in over-fetching. Be mindful of the globs you use.
 
-{% endwarning %}
+</p-warning>

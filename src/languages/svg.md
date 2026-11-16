@@ -42,11 +42,11 @@ The `<script>` element can be used to reference a script file from SVG. You can 
 
 The `type="module"` attribute should be used to indicate that a file is an [ES module](/languages/javascript/#es-modules) or [CommonJS](/languages/javascript/#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](/languages/javascript/#classic-scripts) for more information about this. ES modules are not yet supported natively in SVG, so Parcel compiles all JavaScript to classic scripts even if authored as a module.
 
-{% note %}
+<p-note>
 
 **Note**: SVG uses the `href` attribute rather than the `src` attribute for `<script>` elements.
 
-{% endnote %}
+</p-note>
 
 {% sample %}
 {% samplefile "example.svg" %}
@@ -87,11 +87,11 @@ Parcel’s image transformer can also be used to resize and convert images by us
 <image href="image.jpg?as=webp" width="100" height="50" />
 ```
 
-{% note %}
+<p-note>
 
 **Note**: SVGs referenced via the `<image>` element do not load external resources such as stylesheets, fonts, and other images, and scripting and interactivity is disabled.
 
-{% endnote %}
+</p-note>
 
 See the [Image](/recipes/image/) docs for details on how Parcel processes images.
 

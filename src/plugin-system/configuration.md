@@ -41,11 +41,11 @@ This example shows how a company might distribute a shared Parcel configuration 
 
 In addition to sharing configuration between projects, Parcel config packages are also useful to distribute multiple plugins that are required to work together. For example, a transformer and optimizer combination may be needed for a new file format.
 
-{% note %}
+<p-note>
 
 **Note**: In this case, it's best to not extend the default Parcel config and allow users of your config package to choose which default to extend from.
 
-{% endnote %}
+</p-note>
 
 {% sample %}
 {% samplefile "package.json" %}

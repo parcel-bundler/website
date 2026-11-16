@@ -5,8 +5,8 @@
   </p>
 </header>
 
-{% note %}
+<p-note>
 The most important data types are listed on the page of the relevant plugin type.
-{% endnote %}
+</p-note>
 
 {% include "../../api/index.html" %}

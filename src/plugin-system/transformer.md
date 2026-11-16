@@ -201,11 +201,11 @@ struct MyTransformer: Transformer {
 
 {% endcodetabs %}
 
-{% note %}
+<p-note>
 
 **Note**: Parcel rebuilds an asset when a file its transformer read changes. Files that JavaScript plugins read with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically. Native plugins must read files through the `Options` object instead (see [File system](/plugin-system/native-plugins/#file-system)). Use {% api js="resolve()", rust="asset.resolve()", go="asset.Resolve()", swift="asset.resolve(_:from:)" %} to resolve other files the same way Parcel resolves dependencies. See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
 
-{% endnote %}
+</p-note>
 
 ## Changing the asset type
 

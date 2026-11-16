@@ -76,11 +76,11 @@ doSomething(math);
 
 Parcel supports tree shaking dynamic imports with static property accesses or destructuring. This is supported with both `await` and Promise `then` syntax. However, if the Promise returned from `import()` is accessed in any other way, Parcel must preserve all exports of the resolved module.
 
-{% note %}
+<p-note>
 
 **Note:** For the `await` cases, unused exports can unfortunately only be removed when `await` is not transpilied away (i.e. with a modern browserslist config).
 
-{% endnote %}
+</p-note>
 
 ```swift
 // ✅ Destructuring await

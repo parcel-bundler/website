@@ -198,11 +198,11 @@ The `<link rel="manifest">` element is supported to reference a [Web manifest](h
 {% endsamplefile %}
 {% endsample %}
 
-{% warning %}
+<p-warning>
 
 **Note**: Use this sparingly, as big inline scripts/styles can be detrimental to the (perceived) load speed.
 
-{% endwarning %}
+</p-warning>
 
 ## Inline `style` attribute
 

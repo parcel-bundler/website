@@ -51,6 +51,64 @@ html.dark {
   }
 }
 
+/* Callouts in markdown: <p-note>, <p-warning>, and <p-error>. */
+p-note,
+p-warning,
+p-error {
+  display: block;
+  position: relative;
+  margin: 1rem;
+  padding: 0.5rem;
+  /* Tints the accent color set by the background. */
+  --callout-overlay: rgb(255 255 255 / 0.8);
+  background-image: linear-gradient(var(--callout-overlay), var(--callout-overlay));
+  @apply bg-blue-600 dark:bg-blue-700 border-l-4 border-blue-500 dark:border-blue-700 rounded-md;
+  @apply loaded-transition-colors;
+
+  @variant dark {
+    --callout-overlay: rgb(0 0 0 / 0.7);
+  }
+
+  /* Scoped to outrank the article's paragraph margins. */
+  .main-content & > :first-child {
+    margin-top: 0;
+  }
+
+  .main-content & > :last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    content: "ℹ️";
+    position: absolute;
+    padding: 0.5rem;
+    top: 0;
+    right: -2.5rem;
+  }
+
+  /* e.g. a code sample within a warning. */
+  .well {
+    @apply bg-transparent border-none;
+    .assets {
+      @apply bg-white/10 dark:bg-black/10 rounded-md;
+    }
+  }
+}
+
+p-warning {
+  @apply bg-yellow-400 border-yellow-500 dark:bg-yellow-400 dark:border-yellow-500;
+  &::before {
+    content: "⚠️";
+  }
+}
+
+p-error {
+  @apply bg-red-500 border-red-500 dark:bg-red-500 dark:border-red-500;
+  &::before {
+    content: "🚨";
+  }
+}
+
 .well {
   position: relative;
   margin: 1rem;
@@ -83,13 +141,6 @@ html.dark {
     @apply bg-yellow-400 border-l-4 border-yellow-500;
     &::before {
       content: "⚠️";
-    }
-  }
-
-  &.error {
-    @apply bg-red-500 border-l-4 border-red-500;
-    &::before {
-      content: "🚨";
     }
   }
 
@@ -129,16 +180,6 @@ html.dark {
 
     pre {
       @apply border-gray-200 dark:border-gray-800 my-2;
-    }
-  }
-
-  &.warning,
-  &.error {
-    .well {
-      @apply bg-transparent border-none;
-      .assets {
-        @apply bg-white/10 dark:bg-black/10 rounded-md;
-      }
     }
   }
 

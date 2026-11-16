@@ -2,11 +2,11 @@
 
 React Server Components are a new type of component that renders ahead of time, on the server or at build time. Parcel supports React Server Components out of the box.
 
-{% warning %}
+<p-warning>
 
 **React Server Components support is currently in beta.** If you experience bugs, please report them [on GitHub](https://github.com/parcel-bundler/parcel/issues).
 
-{% endwarning %}
+</p-warning>
 
 ## Examples
 
@@ -20,11 +20,11 @@ The [rsc-examples](https://github.com/parcel-bundler/rsc-examples) repo includes
 npm install react react-dom @parcel/rsc@next
 ```
 
-{% note %}
+<p-note>
 
 **Note**: Server Components require `react` and `react-dom` v19.1.0 or later.
 
-{% endnote %}
+</p-note>
 
 ## Client rendering
 
@@ -618,11 +618,11 @@ window.addEventListener("popstate", (e) => {
 {% endsamplefile %}
 {% endsample %}
 
-{% note %}
+<p-note>
 
 This example re-renders the entire page during client navigation. In a real app, it might be beneficial to load only the part of the page that changed (e.g. excluding common parts such as a sidebar). Router libraries with support for nested routes make this easier.
 
-{% endnote %}
+</p-note>
 
 ### Server functions
 
