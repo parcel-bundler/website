@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
   "browserslist": [
     "last 2 Safari versions",
     "last 2 Chrome versions",
@@ -13,7 +10,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md' --public-url $(node public-url.js)",
-    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/release/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
+    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/debug/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
     "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel ./api",
     "generate-api-docs:watch": "nodemon -w ../parcel/packages-v3/plugin/src -w generate-api-docs -e js,ts -x yarn generate-api-docs"

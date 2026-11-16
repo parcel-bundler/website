@@ -56,5 +56,19 @@
       "@parcel/transformer-css"
     ]
   },
-  "namers": ["parcel-namer-website", "..."]
+  "namers": [
+    {
+      "plugin": "@parcel/namer-default",
+      "config": {
+        "rules": {
+          "src/home/index.html": "index.html",
+          "src/404.md": "404.html",
+          "src/blog/*/*.md": "blog/$1/index.html",
+          "src/**/index.html": "$1/index.html",
+          "src/**/*.md": "$1/$2/index.html",
+          "src/**/*.html": "$1/$2/index.html"
+        }
+      }
+    }
+  ]
 }

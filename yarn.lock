@@ -240,13 +240,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/plugin@npm:^3.0.0-alpha.2":
-  version: 3.0.0-alpha.2
-  resolution: "@parcel/plugin@npm:3.0.0-alpha.2"
-  checksum: bd405b1fa3010af83f432b9254ecf0fefb3f7395c2b758bdebd6822241dcfa228e24a33025cc3c8c280e14cb3a630f6b3eff8181e9e0333f3a0915e95fe138ca
-  languageName: node
-  linkType: hard
-
 "@types/js-cookie@npm:^2.2.6":
   version: 2.2.7
   resolution: "@types/js-cookie@npm:2.2.7"
@@ -1093,14 +1086,6 @@ __metadata:
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
   languageName: node
   linkType: hard
-
-"parcel-namer-website@workspace:packages/parcel-namer-website":
-  version: 0.0.0-use.local
-  resolution: "parcel-namer-website@workspace:packages/parcel-namer-website"
-  dependencies:
-    "@parcel/plugin": ^3.0.0-alpha.2
-  languageName: unknown
-  linkType: soft
 
 "parcel-website@workspace:.":
   version: 0.0.0-use.local
