@@ -110,9 +110,23 @@
         <parcel:slot></parcel:slot>
 
         <footer>
-          <a href="https://github.com/parcel-bundler/website/blob/v2/{{ page.inputPath }}">
+          <a href="https://github.com/parcel-bundler/website">
             Edit this page on GitHub
           </a>
+          <script>
+            // Link to the page's source. The layout is shared by every page, so this can't be done at
+            // build time. Pages are built to the same path as their source, e.g. features/cli.md to
+            // features/cli.html, apart from the few written in HTML.
+            {
+              let html = { "plugin-browser/index": "src/plugin-browser/index.html" };
+              let page = decodeURIComponent(location.pathname)
+                .replace(/^\//, "")
+                .replace(/\.html$/, "")
+                .replace(/\/$/, "/index");
+              document.currentScript.previousElementSibling.href +=
+                "/blob/v2/" + (html[page] ?? `src/${page}.md`);
+            }
+          </script>
         </footer>
       </article>
       <aside>
