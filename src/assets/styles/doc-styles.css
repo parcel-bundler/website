@@ -846,13 +846,13 @@ p-error {
 
   p > code,
   p > .api-name > code,
-  a code,
+  p a code,
   li > code,
   td code {
     @apply text-base sm:text-sm;
   }
 
-  a code {
+  p a code {
     @apply text-blue-700 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200 transition-colors;
     text-decoration: underline;
   }
