@@ -157,7 +157,7 @@ You can also define your own named pipelines. For example, you could define an `
 <code-file name="src/example.js">
 
 ```javascript
-import buffer from "arraybuffer:./file.png";
+import buffer from 'arraybuffer:./file.png';
 ```
 
 </code-file>

@@ -9,15 +9,15 @@ Parcel supports inlining environment variables in JavaScript. This can be used t
 To access an environment variable, read the corresponding property from the `process.env` object.
 
 ```js
-if (process.env.NODE_ENV === "development") {
-  console.log("Happy developing!");
+if (process.env.NODE_ENV === 'development') {
+  console.log('Happy developing!');
 }
 ```
 
 You can also use destructuring syntax to access multiple properties at once.
 
 ```js
-let { NODE_ENV, API_TOKEN } = process.env;
+let {NODE_ENV, API_TOKEN} = process.env;
 ```
 
 Accessing `process.env` in any non-static ways (e.g. dynamic property lookups) is not supported.

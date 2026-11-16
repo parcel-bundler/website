@@ -309,14 +309,14 @@ Now create the following files:
 <code-file name="config/babelTransform.js">
 
 ```js
-const babelJest = require("babel-jest").default;
+const babelJest = require('babel-jest').default;
 
 module.exports = babelJest.createTransformer({
   presets: [
     [
-      require.resolve("babel-preset-react-app"),
+      require.resolve('babel-preset-react-app'),
       {
-        runtime: "automatic",
+        runtime: 'automatic',
       },
     ],
   ],
@@ -329,7 +329,7 @@ module.exports = babelJest.createTransformer({
 <code-file name="config/fileTransform.js">
 
 ```js
-const path = require("path").default;
+const path = require('path').default;
 
 module.exports = {
   process(src, filename) {

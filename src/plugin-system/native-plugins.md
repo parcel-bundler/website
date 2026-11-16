@@ -423,7 +423,7 @@ name: release
 
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
 
 jobs:
   release:

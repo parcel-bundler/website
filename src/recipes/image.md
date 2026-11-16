@@ -42,7 +42,7 @@ To reference an image from JavaScript, use the `URL` constructor. For more detai
 <code-file name="main.js">
 
 ```js
-const imageUrl = new URL("image.jpeg?as=webp&width=250", import.meta.url);
+const imageUrl = new URL('image.jpeg?as=webp&width=250', import.meta.url);
 ```
 
 </code-file>

@@ -45,10 +45,10 @@ Most Parcel apps start with an HTML file. Parcel follows the dependencies (such 
 <code-file name="src/index.js">
 
 ```jsx
-import { createRoot } from "react-dom/client";
-import { App } from "./App";
+import {createRoot} from 'react-dom/client';
+import {App} from './App';
 
-const container = document.getElementById("app");
+const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(<App />);
 ```
@@ -275,9 +275,9 @@ Now, you can render elements with CSS-in-JS:
 <code-file name="Button.js">
 
 ```jsx
-import { css } from "@emotion/react";
+import {css} from '@emotion/react';
 
-export function Button({ children }) {
+export function Button({children}) {
   return (
     <button
       css={css`
@@ -324,7 +324,7 @@ Next, add the Tailwind plugin to your `.parcelrc`, and import Tailwind from your
 <code-file name="styles.css">
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 </code-file>
@@ -336,7 +336,7 @@ Finally, you can reference Tailwind classes from any files [scanned by Tailwind]
 <code-file name="Button.js">
 
 ```jsx
-export function Button({ children }) {
+export function Button({children}) {
   return (
     <button className="p-2 rounded bg-blue-500 hover:bg-blue-600 transition">
       {children}
@@ -395,7 +395,7 @@ Now, you can import SVGs from your component files and render them just like any
 <code-file name="AddButton.js">
 
 ```jsx
-import AddIcon from "./AddIcon.svg";
+import AddIcon from './AddIcon.svg';
 
 export function AddButton() {
   return (
@@ -423,9 +423,9 @@ This example lazily loads a `Profile` component when a user clicks a button. Whe
 <code-file name="Home.js">
 
 ```jsx
-import React, { Suspense } from "react";
+import React, {Suspense} from 'react';
 
-const Profile = React.lazy(() => import("./Profile"));
+const Profile = React.lazy(() => import('./Profile'));
 
 export function Home() {
   let [showProfile, setShowProfile] = React.useState(false);

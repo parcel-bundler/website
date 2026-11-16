@@ -1,7 +1,7 @@
-@import "tailwindcss" source("../..");
-@import "./theme.css";
-@import "./highlight.css";
-@import "./search.css";
+@import 'tailwindcss' source("../..");
+@import './theme.css';
+@import './highlight.css';
+@import './search.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -82,7 +82,7 @@ p-error {
   }
 
   &::before {
-    content: "ℹ️";
+    content: 'ℹ️';
     position: absolute;
     padding: 0.5rem;
     top: 0;
@@ -101,14 +101,14 @@ p-error {
 p-warning {
   @apply bg-yellow-400 border-yellow-500 dark:bg-yellow-400 dark:border-yellow-500;
   &::before {
-    content: "⚠️";
+    content: '⚠️';
   }
 }
 
 p-error {
   @apply bg-red-500 border-red-500 dark:bg-red-500 dark:border-red-500;
   &::before {
-    content: "🚨";
+    content: '🚨';
   }
 }
 
@@ -133,7 +133,7 @@ p-error {
   }
 
   &::before {
-    content: "ℹ️";
+    content: 'ℹ️';
     position: absolute;
     padding: 0.5rem;
     top: 0;
@@ -143,7 +143,7 @@ p-error {
   &.warning {
     @apply bg-yellow-400 border-l-4 border-yellow-500;
     &::before {
-      content: "⚠️";
+      content: '⚠️';
     }
   }
 
@@ -188,7 +188,7 @@ p-error {
 
   &.migration {
     &::before {
-      content: "🚚";
+      content: '🚚';
     }
     & .arrow {
       clip-path: polygon(
@@ -448,7 +448,7 @@ p-error {
   z-index: 1;
 
   display: grid;
-  grid-template-areas: "logo picker . search social";
+  grid-template-areas: 'logo picker . search social';
   grid-template-columns: auto auto 1fr auto auto;
   align-items: center;
   box-sizing: border-box;
@@ -568,7 +568,9 @@ p-error {
     visibility: hidden;
     z-index: 100;
     .loaded & {
-      transition: transform 200ms, visibility 0s 200ms;
+      transition:
+        transform 200ms,
+        visibility 0s 200ms;
     }
 
     &.visible {
@@ -592,7 +594,7 @@ p-error {
     display: none;
   }
 
-  a[aria-current="page"] {
+  a[aria-current='page'] {
     @apply bg-sky-500/20 hover:bg-sky-500/30 dark:bg-sky-900/75 dark:hover:bg-sky-900/70 text-gray-900 dark:text-gray-50;
   }
 
@@ -649,7 +651,7 @@ p-error {
     left: 0;
     width: 100%;
     height: 100%;
-    content: "";
+    content: '';
     z-index: 99;
     @apply bg-gray-900/80;
     opacity: 0;
@@ -750,11 +752,11 @@ p-error {
 
   /* Heading anchors: the markdown transformer wraps each heading's contents in a link to itself.
      A # appears beside the heading on hover. */
-  :is(h2, h3, h4, h5, h6)[id] > a[href^="#"]:only-child {
+  :is(h2, h3, h4, h5, h6)[id] > a[href^='#']:only-child {
     color: inherit;
 
     &::before {
-      content: "#";
+      content: '#';
       position: absolute;
       transform: translateX(-100%);
       @apply pr-2 text-gray-400 dark:text-gray-500 opacity-0 transition;
@@ -926,17 +928,17 @@ p-error {
     }
 
     a[href]:after {
-      content: " (" attr(href) ")";
+      content: ' (' attr(href) ')';
     }
 
     abbr[title]:after {
-      content: " (" attr(title) ")";
+      content: ' (' attr(title) ')';
     }
 
     .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-      content: "";
+    a[href^='javascript:']:after,
+    a[href^='#']:after {
+      content: '';
     }
 
     pre,
@@ -1022,7 +1024,7 @@ p-error {
 .entry-date {
   display: block;
   &::before {
-    content: "📆\00a0";
+    content: '📆\00a0';
   }
 }
 
@@ -1040,11 +1042,11 @@ p-error {
     --tab-selected-border-color: var(--color-blue-400);
   }
 
-  [role="tablist"] {
+  [role='tablist'] {
     @apply flex gap-1 overflow-x-auto overflow-y-hidden border-b border-gray-200 dark:border-gray-700;
   }
 
-  [role="tab"] {
+  [role='tab'] {
     @apply -mb-px px-3 py-1.5 text-sm font-medium whitespace-nowrap border-b-2 cursor-default focus:outline-hidden;
     @apply loaded-transition-colors;
     color: var(--tab-color);
@@ -1054,7 +1056,7 @@ p-error {
       color: var(--tab-hover-color);
     }
 
-    &[aria-selected="true"] {
+    &[aria-selected='true'] {
       color: var(--tab-selected-color);
       border-color: var(--tab-selected-border-color);
     }
@@ -1070,11 +1072,11 @@ p-error {
   }
 
   /* Apply the stored language before code-tabs.js has run (see code-tabs-init.js). */
-  html[data-code-language="js"] &[data-langs~="js"],
-  html[data-code-language="rust"] &[data-langs~="rust"],
-  html[data-code-language="go"] &[data-langs~="go"],
-  html[data-code-language="swift"] &[data-langs~="swift"] {
-    [role="tab"] {
+  html[data-code-language='js'] &[data-langs~='js'],
+  html[data-code-language='rust'] &[data-langs~='rust'],
+  html[data-code-language='go'] &[data-langs~='go'],
+  html[data-code-language='swift'] &[data-langs~='swift'] {
+    [role='tab'] {
       color: var(--tab-color);
       border-color: transparent;
 
@@ -1083,47 +1085,47 @@ p-error {
       }
     }
 
-    [role="tabpanel"] {
+    [role='tabpanel'] {
       display: none;
     }
   }
 
-  html[data-code-language="js"] &[data-langs~="js"] [data-lang="js"],
-  html[data-code-language="rust"] &[data-langs~="rust"] [data-lang="rust"],
-  html[data-code-language="go"] &[data-langs~="go"] [data-lang="go"],
-  html[data-code-language="swift"] &[data-langs~="swift"] [data-lang="swift"] {
-    &[role="tab"] {
+  html[data-code-language='js'] &[data-langs~='js'] [data-lang='js'],
+  html[data-code-language='rust'] &[data-langs~='rust'] [data-lang='rust'],
+  html[data-code-language='go'] &[data-langs~='go'] [data-lang='go'],
+  html[data-code-language='swift'] &[data-langs~='swift'] [data-lang='swift'] {
+    &[role='tab'] {
       color: var(--tab-selected-color);
       border-color: var(--tab-selected-border-color);
     }
 
-    &[role="tabpanel"] {
+    &[role='tabpanel'] {
       display: block;
     }
   }
 }
 
 /* Apply the stored language before code-tabs.js has run (see code-tabs-init.js). */
-html[data-code-language="js"] .api-name[data-langs~="js"],
-html[data-code-language="rust"] .api-name[data-langs~="rust"],
-html[data-code-language="go"] .api-name[data-langs~="go"],
-html[data-code-language="swift"] .api-name[data-langs~="swift"] {
+html[data-code-language='js'] .api-name[data-langs~='js'],
+html[data-code-language='rust'] .api-name[data-langs~='rust'],
+html[data-code-language='go'] .api-name[data-langs~='go'],
+html[data-code-language='swift'] .api-name[data-langs~='swift'] {
   > code {
     display: none;
   }
 }
 
-html[data-code-language="js"]
-  .api-name[data-langs~="js"]
-  > code[data-lang="js"],
-html[data-code-language="rust"]
-  .api-name[data-langs~="rust"]
-  > code[data-lang="rust"],
-html[data-code-language="go"]
-  .api-name[data-langs~="go"]
-  > code[data-lang="go"],
-html[data-code-language="swift"]
-  .api-name[data-langs~="swift"]
-  > code[data-lang="swift"] {
+html[data-code-language='js']
+  .api-name[data-langs~='js']
+  > code[data-lang='js'],
+html[data-code-language='rust']
+  .api-name[data-langs~='rust']
+  > code[data-lang='rust'],
+html[data-code-language='go']
+  .api-name[data-langs~='go']
+  > code[data-lang='go'],
+html[data-code-language='swift']
+  .api-name[data-langs~='swift']
+  > code[data-lang='swift'] {
   display: inline;
 }

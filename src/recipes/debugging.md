@@ -26,9 +26,9 @@ Assuming that source maps are enabled, no extra configuration is required. For e
 <code-file name="src/index.ts">
 
 ```ts
-const variable: string = "Hello, World!";
+const variable: string = 'Hello, World!';
 
-document.getElementById("greeting").innerHTML = variable;
+document.getElementById('greeting').innerHTML = variable;
 ```
 
 </code-file>

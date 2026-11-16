@@ -109,7 +109,7 @@ For Node.js and other targets, the `engines` field in package.json can be used t
 When one file depends on another, the environment is inherited from its parent. But how you depend on the asset can change some properties of the environment. For example, when depending on a service worker, the environment is automatically changed into a service worker context so that the code is compiled appropriately.
 
 ```javascript
-navigator.serviceWorker.register(new URL("service-worker.js", import.meta.url));
+navigator.serviceWorker.register(new URL('service-worker.js', import.meta.url));
 ```
 
 ## Multiple targets
@@ -300,15 +300,15 @@ See [Building a library with Parcel](../getting-started/library.md) for an intro
 ### `context`
 
 ```javascript
-"node" |
-  "browser" |
-  "web-worker" |
-  "service-worker" |
-  "worklet" |
-  "electron-main" |
-  "electron-renderer" |
-  "react-client" |
-  "react-server";
+'node' |
+  'browser' |
+  'web-worker' |
+  'service-worker' |
+  'worklet' |
+  'electron-main' |
+  'electron-renderer' |
+  'react-client' |
+  'react-server';
 ```
 
 The `context` property defines what type of environment to build for. This tells Parcel what environment-specific APIs are available, e.g. the DOM, Node filesystem APIs, etc. The `react-server` and `react-client` contexts are used to build apps with [React Server Components](../recipes/rsc.md).
@@ -341,7 +341,7 @@ Overrides the engines defined in the top-level `package.json#engines` and `brows
 ### `outputFormat`
 
 ```javascript
-"global" | "esmodule" | "commonjs";
+'global' | 'esmodule' | 'commonjs';
 ```
 
 Defines what type of module to output.

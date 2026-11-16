@@ -64,7 +64,7 @@ The `<script>` element can be used to reference a script file from HTML. You can
 <code-file name="app.ts">
 
 ```js
-console.log("Hello world!");
+console.log('Hello world!');
 ```
 
 </code-file>
@@ -251,11 +251,11 @@ When referencing a script or style, sometimes Parcel will need to insert another
 <code-file name="app.js">
 
 ```javascript
-import "./app.css";
+import './app.css';
 
-let app = document.createElement("div");
-app.className = "app";
-app.textContent = "My Parcel app!";
+let app = document.createElement('div');
+app.className = 'app';
+app.textContent = 'My Parcel app!';
 root.appendChild(app);
 ```
 
@@ -323,7 +323,7 @@ For example, create a config file:
 ```json
 {
   "plugins": {
-    "posthtml-doctype": { "doctype": "HTML 5" }
+    "posthtml-doctype": {"doctype": "HTML 5"}
   }
 }
 ```
@@ -347,7 +347,7 @@ Alternatively, PostHTML options can be specified inline in your `.parcelrc`. Whe
         "plugin": "@parcel/transformer-posthtml",
         "config": {
           "plugins": {
-            "posthtml-doctype": { "doctype": "HTML 5" }
+            "posthtml-doctype": {"doctype": "HTML 5"}
           }
         }
       },
@@ -414,16 +414,16 @@ yarn add posthtml-shorten --dev
 ```js
 module.exports = {
   plugins: {
-    "posthtml-shorten": {
+    'posthtml-shorten': {
       shortener: {
         process: function (url) {
           return new Promise((resolve, reject) => {
-            resolve(url.replace(".html", ""));
+            resolve(url.replace('.html', ''));
           });
         },
       },
-      tag: ["a"], // Allowed tags for URL shortening
-      attribute: ["href"], // Attributes to replace on the elements
+      tag: ['a'], // Allowed tags for URL shortening
+      attribute: ['href'], // Attributes to replace on the elements
     },
   },
 };

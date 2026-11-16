@@ -34,7 +34,7 @@ Referencing a SugarSS file in an HTML file:
 Importing a SugarSS file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes from "./style.module.sss";
+import * as classes from './style.module.sss';
 
 document.body.className = classes.body;
 ```

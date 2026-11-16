@@ -11,17 +11,17 @@ A transformer implements one method: <api-name js="transform" rust="transform" g
 <code-tabs>
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     // Retrieve the asset's source code and source map.
     let source = asset.getCode();
     let sourceMap = asset.getMap();
 
     // Run it through some compiler, and set the results
     // on the asset.
-    let { code, map } = compile(source, sourceMap);
+    let {code, map} = compile(source, sourceMap);
     asset.setCode(code, map);
   },
 });
@@ -116,11 +116,11 @@ Configuration for a Transformer plugin is specified in the user's `.parcelrc`. J
 <code-tabs>
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset, config }) {
-    let prefix = config?.prefix ?? "";
+  async transform({asset, config}) {
+    let prefix = config?.prefix ?? '';
     asset.setCode(prefix + asset.getCode());
   },
 });
@@ -472,10 +472,10 @@ Source maps are passed to and from plugins as JSON in the standard [source map f
 <code-tabs>
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     let source = asset.getCode();
     let sourceMap = asset.getMap();
 

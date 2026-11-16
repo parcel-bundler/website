@@ -18,7 +18,7 @@ This example imports a `multiply` function from `math.js`, and uses it to implem
 <code-file name="square.js">
 
 ```javascript
-import { multiply } from "./math.js";
+import {multiply} from './math.js';
 
 export function square(x) {
   return multiply(x, x);
@@ -49,7 +49,7 @@ This example uses `require` to load the `math.js` module, and uses the `multiply
 <code-file name="square.js">
 
 ```javascript
-let math = require("./math");
+let math = require('./math');
 
 exports.square = function (x) {
   return math.multiply(x, x);
@@ -79,7 +79,7 @@ Both the ES module `import` statement and CommonJS `require` function load depen
 The dynamic [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) function can be used to load dependencies _asynchronously_. This allows loading code lazily, on demand, and is a good technique for reducing the file size of the initial page load of your app. `import()` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which notifies you when the dependency has been loaded.
 
 ```javascript
-import("./pages/about").then(function (page) {
+import('./pages/about').then(function (page) {
   page.render();
 });
 ```
@@ -91,7 +91,7 @@ See the [code splitting](../features/code-splitting.md) docs for more details on
 [Top-level `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await) can be used in ES modules to wait for a Promise before the module finishes evaluating, e.g. to load data or initialize a WebAssembly module. Modules that import an async module, directly or indirectly, wait for it to finish before they run.
 
 ```javascript
-let res = await fetch("/config.json");
+let res = await fetch('/config.json');
 export const config = await res.json();
 ```
 
@@ -127,7 +127,7 @@ For example, when loading a library like jQuery, a `$` variable is available glo
 <script src="jquery.js"></script>
 <script>
   // The $ variable is now available globally.
-  $(".banner").show();
+  $('.banner').show();
 </script>
 ```
 
@@ -174,7 +174,7 @@ Web workers are the most general type of worker. They allow you to run arbitrary
 To use ES module or CommonJS syntax in a worker, use the `type: 'module'` option as described in [Classic scripts](#classic-scripts) above. Parcel will compile your worker to a non-module worker if necessary, depending on your [targets](../features/targets.md) and current browser support.
 
 ```javascript
-new Worker(new URL("worker.js", import.meta.url), { type: "module" });
+new Worker(new URL('worker.js', import.meta.url), {type: 'module'});
 ```
 
 Parcel also supports the [`SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/SharedWorker) constructor, which creates a worker that can be accessed in different browser windows or iframes. It supports the same options as described above for `Worker`.
@@ -189,8 +189,8 @@ To use ES module or CommonJS syntax in a service worker, use the `type: 'module'
 
 ```javascript
 navigator.serviceWorker.register(
-  new URL("service-worker.js", import.meta.url),
-  { type: "module" }
+  new URL('service-worker.js', import.meta.url),
+  {type: 'module'},
 );
 ```
 
@@ -212,16 +212,16 @@ The following examples show patterns that are supported and unsupported.
 
 ```javascript
 // ✅ absolute URL
-importScripts("http://some-cdn.com/worker.js");
+importScripts('http://some-cdn.com/worker.js');
 
 // ✅ computed URL
-importScripts(location.origin + "/worker.js");
+importScripts(location.origin + '/worker.js');
 
 // 🚫 relative path
-importScripts("worker.js");
+importScripts('worker.js');
 
 // 🚫 absolute path
-importScripts("/worker.js");
+importScripts('/worker.js');
 ```
 
 ### Worklets
@@ -231,7 +231,7 @@ Parcel also supports worklets, including [CSS Houdini paint worklets](https://de
 Paint worklets are detected automatically using the following syntax:
 
 ```javascript
-CSS.paintWorklet.addModule(new URL("worklet.js", import.meta.url));
+CSS.paintWorklet.addModule(new URL('worklet.js', import.meta.url));
 ```
 
 Web audio worklets are not statically analyzable, so for these you can import a URL to the worklet file using the `url` [import attribute](#import-attributes). The `env: 'worklet'` attribute compiles it for the correct environment.

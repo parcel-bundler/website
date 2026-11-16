@@ -75,18 +75,18 @@ When the `/comments` route is requested, we'll render a Server Component to an R
 <code-file name="server/server.js">
 
 ```jsx
-import express from "express";
-import cors from "cors";
-import { renderRSC } from "@parcel/rsc/node";
-import { Comments } from "./Comments";
+import express from 'express';
+import cors from 'cors';
+import {renderRSC} from '@parcel/rsc/node';
+import {Comments} from './Comments';
 
 const app = express();
 app.use(cors());
 
-app.get("/comments", (req, res) => {
+app.get('/comments', (req, res) => {
   // Render the server component to an RSC payload.
   let stream = renderRSC(<Comments />);
-  res.set("Content-Type", "text/x-component");
+  res.set('Content-Type', 'text/x-component');
   stream.pipe(res);
 });
 
@@ -108,13 +108,13 @@ Now we need to implement the `Comments` component rendered above. This is a Reac
 <code-file name="server/Comments.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
 export async function Comments() {
   // Load data from a database...
   let comments = await db.getComments();
 
-  return comments.map((comment) => (
+  return comments.map(comment => (
     <article key={comment.id}>
       <p>Posted by: {comment.user}</p>
       {renderMarkdown(comment.body)}
@@ -219,19 +219,19 @@ This example renders different components depending whether it is a text, image,
 <code-file name="server/Comment.js">
 
 ```jsx
-import { lazy } from "react";
+import {lazy} from 'react';
 
-const TextComment = lazy(() => import("./TextComment"));
-const ImageComment = lazy(() => import("./ImageComment"));
-const VideoComment = lazy(() => import("./VideoComment"));
+const TextComment = lazy(() => import('./TextComment'));
+const ImageComment = lazy(() => import('./ImageComment'));
+const VideoComment = lazy(() => import('./VideoComment'));
 
-function Comment({ comment }) {
+function Comment({comment}) {
   switch (comment.type) {
-    case "text":
+    case 'text':
       return <TextComment comment={comment} />;
-    case "image":
+    case 'image':
       return <ImageComment comment={comment} />;
-    case "video":
+    case 'video':
       return <VideoComment comment={comment} />;
   }
 }
@@ -297,17 +297,17 @@ This setup needs to be done once, and then all additional Server Functions will 
 <code-file name="src/App.js">
 
 ```js
-import { setServerCallback, fetchRSC } from "@parcel/rsc/client";
+import {setServerCallback, fetchRSC} from '@parcel/rsc/client';
 
 // ...
 
 // Setup a callback to perform server actions.
 // This sends a POST request to the server and updates the page.
 setServerCallback(async (id, args) => {
-  let result = await fetchRSC("/action", {
-    method: "POST",
+  let result = await fetchRSC('/action', {
+    method: 'POST',
     headers: {
-      "rsc-action-id": id,
+      'rsc-action-id': id,
     },
     body: args,
   });
@@ -324,15 +324,15 @@ On the server, we'll need to handle POST requests and call the original server f
 <code-file name="server/server.js">
 
 ```jsx
-import { renderRSC, callAction } from "@parcel/rsc/node";
+import {renderRSC, callAction} from '@parcel/rsc/node';
 
 // ...
 
-app.post("/action", async (req, res) => {
-  let id = req.get("rsc-action-id");
-  let { result } = await callAction(req, id);
+app.post('/action', async (req, res) => {
+  let id = req.get('rsc-action-id');
+  let {result} = await callAction(req, id);
   let stream = renderRSC(result);
-  res.set("Content-Type", "text/x-component");
+  res.set('Content-Type', 'text/x-component');
   stream.pipe(res);
 });
 ```
@@ -420,17 +420,17 @@ Create a [target](../features/targets.md) with the `"react-server"` context in y
 <code-file name="src/server.js">
 
 ```jsx
-import express from "express";
-import { renderRequest } from "@parcel/rsc/node";
-import { Page } from "./Page";
+import express from 'express';
+import {renderRequest} from '@parcel/rsc/node';
+import {Page} from './Page';
 
 // Create an Express app and serve the dist folder.
 const app = express();
-app.use("/client", express.static("dist/client"));
+app.use('/client', express.static('dist/client'));
 
 // Create a route for the home page.
-app.get("/", async (req, res) => {
-  await renderRequest(req, res, <Page />, { component: Page });
+app.get('/', async (req, res) => {
+  await renderRequest(req, res, <Page />, {component: Page});
 });
 
 app.listen(3000);
@@ -440,7 +440,7 @@ app.listen(3000);
 <code-file name="src/Page.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
 export function Page() {
   return (
@@ -475,9 +475,9 @@ To hydrate the page, create a new `src/client.js` file, and mark it as a client 
 <code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate } from "@parcel/rsc/client";
+import {hydrate} from '@parcel/rsc/client';
 
 hydrate();
 ```
@@ -551,9 +551,9 @@ app.get('/about', async (req, res) => {
 <code-file name="src/About.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
-import "./client";
+import './client';
 
 export function About() {
   return (
@@ -585,9 +585,9 @@ As a simple example, we can intercept the `click` event on links to trigger clie
 <code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate, fetchRSC } from "@parcel/rsc/client";
+import {hydrate, fetchRSC} from '@parcel/rsc/client';
 
 let updateRoot = hydrate();
 
@@ -595,14 +595,14 @@ async function navigate(pathname, push = false) {
   let root = await fetchRSC(pathname);
   updateRoot(root, () => {
     if (push) {
-      history.pushState(null, "", pathname);
+      history.pushState(null, '', pathname);
     }
   });
 }
 
 // Intercept link clicks to perform RSC navigation.
-document.addEventListener("click", (e) => {
-  let link = e.target.closest("a");
+document.addEventListener('click', e => {
+  let link = e.target.closest('a');
   if (link) {
     e.preventDefault();
     navigate(link.pathname, true);
@@ -610,7 +610,7 @@ document.addEventListener("click", (e) => {
 });
 
 // When the user clicks the back button, navigate with RSC.
-window.addEventListener("popstate", (e) => {
+window.addEventListener('popstate', e => {
   navigate(location.pathname);
 });
 ```
@@ -634,18 +634,18 @@ The server may also want to re-render the page when a Server Function is called.
 <code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate, fetchRSC } from "@parcel/rsc/client";
+import {hydrate, fetchRSC} from '@parcel/rsc/client';
 
 let updateRoot = hydrate({
   // Setup a callback to perform server actions.
   // This sends a POST request to the server and updates the page.
   async callServer(id, args) {
-    let { result, root } = await fetchRSC("/", {
-      method: "POST",
+    let {result, root} = await fetchRSC('/', {
+      method: 'POST',
       headers: {
-        "rsc-action-id": id,
+        'rsc-action-id': id,
       },
       body: args,
     });
@@ -661,18 +661,18 @@ let updateRoot = hydrate({
 <code-file name="src/server.js">
 
 ```jsx
-import { renderRequest, callAction } from "@parcel/rsc/node";
+import {renderRequest, callAction} from '@parcel/rsc/node';
 
 // ...
 
-app.post("/", async (req, res) => {
-  let id = req.get("rsc-action-id");
-  let { result } = await callAction(req, id);
+app.post('/', async (req, res) => {
+  let id = req.get('rsc-action-id');
+  let {result} = await callAction(req, id);
   let root = <Page />;
   if (id) {
-    root = { result, root };
+    root = {result, root};
   }
-  await renderRequest(req, res, root, { component: Page });
+  await renderRequest(req, res, root, {component: Page});
 });
 ```
 

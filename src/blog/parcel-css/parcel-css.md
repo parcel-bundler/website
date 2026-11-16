@@ -48,18 +48,18 @@ Even if you use `postcss-value-parser`, a separate library used by many PostCSS 
 ```javascript
 [
   {
-    type: "function",
-    value: "url",
-    nodes: [{ type: "word", value: "img.png" }],
+    type: 'function',
+    value: 'url',
+    nodes: [{type: 'word', value: 'img.png'}],
   },
-  { type: "space", value: " " },
-  { type: "word", value: "20px" },
-  { type: "space", value: " " },
-  { type: "word", value: "10px" },
-  { type: "div", value: "/" },
-  { type: "word", value: "50px" },
-  { type: "space", value: " " },
-  { type: "word", value: "100px" },
+  {type: 'space', value: ' '},
+  {type: 'word', value: '20px'},
+  {type: 'space', value: ' '},
+  {type: 'word', value: '10px'},
+  {type: 'div', value: '/'},
+  {type: 'word', value: '50px'},
+  {type: 'space', value: ' '},
+  {type: 'word', value: '100px'},
 ];
 ```
 

@@ -9,10 +9,10 @@ A Reporter plugin implements a method for each type of event it wants to receive
 <code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildSuccess({ bundleGraph, buildTime }) {
+  buildSuccess({bundleGraph, buildTime}) {
     let bundles = bundleGraph.getBundles();
     console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
   },
@@ -101,11 +101,11 @@ The build start event is emitted when a build is started. In watch mode, it is e
 <code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
   buildStart() {
-    console.log("Started build!");
+    console.log('Started build!');
   },
 });
 ```
@@ -145,10 +145,10 @@ The build success event is emitted when a build completes successfully. It inclu
 <code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildSuccess({ changedAssets, buildTime }) {
+  buildSuccess({changedAssets, buildTime}) {
     console.log(`✨ Rebuilt ${changedAssets.length} assets in ${buildTime}ms!`);
   },
 });
@@ -187,10 +187,10 @@ The build failure event is emitted when a build completes with errors. It includ
 <code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildFailure({ diagnostics }) {
+  buildFailure({diagnostics}) {
     console.log(`🚨 Build failed with ${diagnostics.length} errors.`);
   },
 });
@@ -229,12 +229,12 @@ All logging in Parcel is routed through Reporter plugins. The level of each log 
 <code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  log({ level, message, diagnostics }) {
+  log({level, message, diagnostics}) {
     let messages =
-      message != null ? [message] : diagnostics.map((d) => d.message);
+      message != null ? [message] : diagnostics.map(d => d.message);
 
     for (let message of messages) {
       sendToLogService(level, message);

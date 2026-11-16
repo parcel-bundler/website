@@ -10,7 +10,7 @@ You can import a `.mdx` file into your JavaScript and render it using React:
 <code-file name="app.js">
 
 ```jsx
-import Hello from "./hello.mdx";
+import Hello from './hello.mdx';
 
 export function App() {
   return <Hello />;
@@ -65,15 +65,15 @@ Parcel supports customizing how code blocks are rendered by specifying your own 
 <code-file name="app.js">
 
 ```jsx
-import Hello from "./hello.mdx";
+import Hello from './hello.mdx';
 
-const components = { CodeBlock };
+const components = {CodeBlock};
 
 export function App() {
   return <Hello components={components} />;
 }
 
-function CodeBlock({ lang, children }) {
+function CodeBlock({lang, children}) {
   return (
     <pre>
       <code className={lang ? `language-${lang}` : null}>
@@ -148,7 +148,7 @@ MDX files also export a `tableOfContents` array, which contains the headings in 
 <code-file name="app.js">
 
 ```jsx
-import Hello, { tableOfContents } from "./hello.mdx";
+import Hello, {tableOfContents} from './hello.mdx';
 
 export function App() {
   return (
@@ -159,10 +159,10 @@ export function App() {
   );
 }
 
-function Toc({ items }) {
+function Toc({items}) {
   return (
     <ul>
-      {items.map((item) => (
+      {items.map(item => (
         <li key={item.title}>
           {item.title}
           {item.children.length > 0 && <Toc items={item.children} />}

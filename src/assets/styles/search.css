@@ -57,8 +57,11 @@
 }
 
 .loaded body .algolia-autocomplete .ds-dropdown-menu::before {
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
-    border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+  transition:
+    background 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    text-decoration-color 0.2s ease-in-out;
 }
 
 body .algolia-autocomplete {
@@ -67,7 +70,7 @@ body .algolia-autocomplete {
       @apply bg-gray-700 border-gray-500;
     }
 
-    [class^="ds-dataset-"] {
+    [class^='ds-dataset-'] {
       @apply loaded-transition-colors;
       @apply bg-gray-700 border-gray-500;
     }

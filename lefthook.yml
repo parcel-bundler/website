@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    format:
+      glob: "*.{md,css,js,json}"
+      run: yarn oxfmt {staged_files}
+      stage_fixed: true

@@ -99,10 +99,10 @@ Plugins can accept configuration from the user's project. This is specified in t
 The config is passed to every plugin method as the `config` option. It is `undefined` if no config was provided.
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset, config }) {
+  async transform({asset, config}) {
     if (config?.bar) {
       // ...
     }
@@ -119,15 +119,15 @@ Some plugins wrap a compiler or tool which has its own config loading mechanism 
 When a transformer needs to resolve a dependency itself (e.g. to inline an imported file), use the `resolve` function passed to `transform`. This resolves a specifier using the resolvers configured in `.parcelrc`, exactly as a dependency of the asset would be, and only invalidates the asset being transformed when the result would change. Like a dependency, it accepts an `importType` option describing how the file will be used. A file resolved as `javascript` (the default) must have a transformer that turns it into JavaScript, so pass `importType: 'url'` to resolve any file, e.g. one you will read yourself. It returns `{filePath, pipeline, query, sideEffects}`, `{isExternal: true}` or `{isExcluded: true}`, or `null` when no resolver resolves the specifier, and rejects with the resolvers' diagnostics when one fails.
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
-import fs from "fs";
+import {Transformer} from '@parcel/plugin';
+import fs from 'fs';
 
 export default new Transformer({
-  async transform({ asset, resolve }) {
-    let { filePath } = await resolve(asset.filePath, "./included.txt", {
-      importType: "url",
+  async transform({asset, resolve}) {
+    let {filePath} = await resolve(asset.filePath, './included.txt', {
+      importType: 'url',
     });
-    let contents = fs.readFileSync(filePath, "utf8");
+    let contents = fs.readFileSync(filePath, 'utf8');
     // ...
   },
 });

@@ -13,12 +13,12 @@ This example places all `png` and `jpg` files into an `images` folder with the s
 <code-tabs>
 
 ```javascript
-import { Namer } from "@parcel/plugin";
-import path from "path";
+import {Namer} from '@parcel/plugin';
+import path from 'path';
 
 export default new Namer({
-  name({ bundle }) {
-    if (bundle.type === "png" || bundle.type === "jpg") {
+  name({bundle}) {
+    if (bundle.type === 'png' || bundle.type === 'jpg') {
       let filePath = bundle.getMainEntry().filePath;
       return `images/${path.basename(filePath)}`;
     }

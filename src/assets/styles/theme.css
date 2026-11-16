@@ -1,5 +1,5 @@
 /* Shared Tailwind configuration for the docs and home page stylesheets. */
-@import "tailwindcss-safe-area";
+@import 'tailwindcss-safe-area';
 
 @theme {
   --breakpoint-xs: 375px;
@@ -77,8 +77,11 @@
 /* Transitions are only enabled once the page has loaded (see the `loaded` class), to avoid animating the initial color scheme. */
 @utility loaded-transition-colors {
   .loaded & {
-    transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
-      border-color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
+    transition:
+      background 0.2s ease-in-out,
+      color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out,
+      text-decoration-color 0.2s ease-in-out;
   }
 }
 
@@ -108,7 +111,7 @@
   }
 
   button:not(:disabled),
-  [role="button"]:not(:disabled) {
+  [role='button']:not(:disabled) {
     cursor: pointer;
   }
 }

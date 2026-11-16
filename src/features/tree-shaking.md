@@ -12,7 +12,7 @@ Parcel’s implementation of tree shaking works by analyzing the imports and exp
 <code-file name="index.js">
 
 ```javascript
-import { add } from "./math";
+import {add} from './math';
 
 console.log(add(2, 3));
 ```
@@ -50,7 +50,7 @@ parcel build src/app.html --log-level verbose
 Parcel can statically resolve member accesses that are known at build time, but when a dynamic property access is used, all exports of the module must be included in the build.
 
 ```javascript
-import * as math from "./math";
+import * as math from './math';
 
 // ✅ Static property access
 console.log(math.add(2, 3));
@@ -62,7 +62,7 @@ console.log(math[op](2, 3));
 In addition, Parcel does not track re-assignments of a namespace object to another variable. Any usage of an import namespace other than a static property access will cause all exports to be included.
 
 ```javascript
-import * as math from "./math";
+import * as math from './math';
 
 // 🚫 Reassignment of import namespace
 let utils = math;
@@ -150,21 +150,21 @@ On the importing side, Parcel supports destructuring and static property accesse
 
 ```javascript
 // ✅ Static destructuring
-const { add } = require("./math");
+const {add} = require('./math');
 
 // ✅ Static property assignment
-const add = require("./math").add;
+const add = require('./math').add;
 
 // ✅ Static property access of require result
-const math = require("./math");
+const math = require('./math');
 console.log(math.add(2, 3));
-console.log(require("./math").add(2, 3));
+console.log(require('./math').add(2, 3));
 
 // 🚫 Dynamic property access of require result
 console.log(math[name](2, 3));
 
 // 🚫 Unknown require result usage
-doSomething(require("./math"));
+doSomething(require('./math'));
 doSomething(math);
 ```
 
@@ -176,7 +176,7 @@ The `eval` function executes arbitrary JavaScript code in a string within the cu
 let x = 2;
 
 // 🚫 Eval disables tree shaking and minification
-eval("x = 4");
+eval('x = 4');
 ```
 
 If you need to run JavaScript code from a string, you may be able to use the [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function) constructor instead.
@@ -216,7 +216,7 @@ Unlike ES module `import` statements which are only allowed at the top-level of 
 ```javascript
 // 🚫 Conditional requires disable tree shaking of the resolved module
 if (someCondition) {
-  const { add } = require("./math");
+  const {add} = require('./math');
 }
 ```
 
@@ -238,7 +238,7 @@ When a file is marked as side effect free, Parcel is able to skip the entire fil
 <code-file name="app.js">
 
 ```js
-import { add } from "math";
+import {add} from 'math';
 
 console.log(add(2, 3));
 ```
@@ -259,8 +259,8 @@ console.log(add(2, 3));
 <code-file name="node_modules/math/index.js">
 
 ```js
-export { add } from "./add.js";
-export { multiply } from "./multiply.js";
+export {add} from './add.js';
+export {multiply} from './multiply.js';
 
 let loaded = Date.now();
 export function elapsed() {

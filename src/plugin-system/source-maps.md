@@ -23,10 +23,10 @@ An example of how this would work:
 <code-tabs>
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     let compilationResult = someCompiler(asset.getCode(), {
       // Only generate a source map when source maps are enabled.
       sourceMaps: asset.target.sourceMap != null,
@@ -106,11 +106,11 @@ The difference with optimizers is that the map is not provided as part of an ass
 <code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
   // The contents and map are passed separately
-  async optimize({ bundle, contents, map }) {
+  async optimize({bundle, contents, map}) {
     let result = someMinifier(new TextDecoder().decode(contents), {
       inputMap: map,
     });

@@ -9,10 +9,10 @@ The `bundle-text:` scheme can be used to inline the contents of a bundle as plai
 This could be used in many ways. For example, you could inline a compiled CSS bundle and use the result to inject a style tag at runtime. This might be useful in cases where you need to control where the style tag is inserted, e.g. into a Shadow DOM root.
 
 ```javascript
-import cssText from "bundle-text:./test.css";
+import cssText from 'bundle-text:./test.css';
 
 // inject <style> tag
-let style = document.createElement("style");
+let style = document.createElement('style');
 style.textContent = cssText;
 shadowRoot.appendChild(style);
 ```
@@ -79,9 +79,9 @@ See the [Plugin system](../plugin-system/overview.md) docs for more details on w
 In JavaScript, it’s possible to inline the contents of a file without running it through Parcel transformers first. This can be done using the `fs` Node module, which Parcel statically analyzes. It can be inlined as a string in a number of different encodings, or as a [Buffer](https://nodejs.org/api/buffer.html). See the [Node emulation](node-emulation.md) docs for more details.
 
 ```javascript
-import fs from "fs";
+import fs from 'fs';
 
-const sourceCode = fs.readFileSync(__dirname + "/foo.js", "utf8");
+const sourceCode = fs.readFileSync(__dirname + '/foo.js', 'utf8');
 ```
 
 In the above example, the `sourceCode` variable would be the contents of `foo.js` _without_ being compiled, i.e. the original source code rather than the bundled result.

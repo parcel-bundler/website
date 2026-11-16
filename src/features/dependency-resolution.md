@@ -16,8 +16,8 @@ Relative specifiers start with `.` or `..`, and resolve a file relative to the i
 <code-file name="/path/to/project/src/client.js">
 
 ```javascript
-import "./utils.js";
-import "../constants.js";
+import './utils.js';
+import '../constants.js';
 ```
 
 </code-file>
@@ -37,8 +37,8 @@ The following example resolves to the same files as above.
 <code-file name="/path/to/project/src/client.js">
 
 ```javascript
-import "./utils";
-import "../constants";
+import './utils';
+import '../constants';
 ```
 
 </code-file>
@@ -56,7 +56,7 @@ In JavaScript, Typescript, and other JS-based languages, dependency specifiers m
 <code-file name="/path/to/project/src/app.js">
 
 ```javascript
-import "./client";
+import './client';
 ```
 
 </code-file>
@@ -72,7 +72,7 @@ Bare specifiers start with any character except `.`, `/`, `~`, or `#`. In JavaSc
 <code-file name="/path/to/project/src/client/index.js">
 
 ```javascript
-import "react";
+import 'react';
 ```
 
 </code-file>
@@ -93,7 +93,7 @@ Once a module directory is found, the package entry is resolved. See [Package en
 Bare specifiers may also specify a sub-path within a package. For example, a package may publish multiple entry points rather than only a single one.
 
 ```javascript
-import "lodash/clone";
+import 'lodash/clone';
 ```
 
 The above example resolves `lodash` within a `node_modules` directory as described above, and then resolves the `clone` module within the package rather than its main entrypoint. This could be a `node_modules/lodash/clone.js` file, for example.
@@ -111,7 +111,7 @@ When building for an Electron environment, the `electron` module is also conside
 Absolute specifiers start with `/`, and resolve a file relative to the project root. The **project root** is the base directory of your project, which would typically contain a package manager lock file (e.g. `yarn.lock` or `package-lock.json`), or a source control directory (e.g. `.git`). Absolute specifiers could be useful to avoid very long relative paths in deeply nested hierarchies.
 
 ```javascript
-import "/src/client.js";
+import '/src/client.js';
 ```
 
 The above example could be placed in any file, at any point in your project’s directory structure, and will always resolve to `/path/to/project/src/client.js`.
@@ -124,7 +124,7 @@ Tilde specifiers start with `~`, and resolve relative to the nearest package roo
 <code-file name="/path/to/project/packages/frontend/src/client/index.js">
 
 ```javascript
-import "~/src/utils.js";
+import '~/src/utils.js';
 ```
 
 </code-file>
@@ -156,7 +156,7 @@ The `"imports"` field in `package.json` can be used to define private mappings t
 <code-file name="/path/to/project/src/index.js">
 
 ```javascript
-import "#dep";
+import '#dep';
 ```
 
 </code-file>
@@ -214,14 +214,14 @@ Parcel supports importing multiple files at once via globs, however, since glob 
 Once enabled, you can import multiple files using a specifier like `./files/*.js`. This returns an object with keys corresponding to the files names. Glob specifiers can be relative, [absolute](#absolute-specifiers), or [tilde](#tilde-specifiers) paths, which are resolved in the same way as other specifiers.
 
 ```javascript
-import files from "./files/*.js";
+import files from './files/*.js';
 ```
 
 is equivalent to:
 
 ```javascript
-import foo from "./files/foo.js";
-import bar from "./files/bar.js";
+import foo from './files/foo.js';
+import bar from './files/bar.js';
 
 let files = {
   foo,
@@ -232,7 +232,7 @@ let files = {
 Specifically, the dynamic parts of the glob pattern become keys of the object. If there are multiple dynamic parts, a nested object will be returned. For example, if a `pages/profile/index.js` file existed, the following would match it.
 
 ```javascript
-import pages from "./pages/*/*.js";
+import pages from './pages/*/*.js';
 
 console.log(pages.profile.index);
 ```
@@ -240,15 +240,15 @@ console.log(pages.profile.index);
 To use the relative path of each file as the key instead, add the `flat=true` query parameter. This returns a flat object rather than a nested one.
 
 ```javascript
-import pages from "./pages/**/*.js?flat=true";
+import pages from './pages/**/*.js?flat=true';
 
-console.log(pages["./pages/profile/index.js"]);
+console.log(pages['./pages/profile/index.js']);
 ```
 
 Globs can also be used with URL schemes like `bundle-text:`. To load each file on demand rather than all up-front, add the `async=true` query parameter. The resulting object will include a mapping of filenames to functions. Each function can be called to load the resolved module via dynamic import.
 
 ```javascript
-import files from "./files/*.js?async=true";
+import files from './files/*.js?async=true';
 
 async function doSomething() {
   let foo = await files.foo();
@@ -260,14 +260,14 @@ async function doSomething() {
 Glob imports also work with CSS:
 
 ```css
-@import "./components/*.css";
+@import './components/*.css';
 ```
 
 is equivalent to:
 
 ```css
-@import "./components/button.css";
-@import "./components/dropdown.css";
+@import './components/button.css';
+@import './components/dropdown.css';
 ```
 
 Globs are not supported in other URL dependencies, such as `url()` in CSS or `<script src>` in HTML.
@@ -617,7 +617,7 @@ The `baseUrl` field defines the base directory from which to resolve [bare speci
 <code-file name="src/App.js">
 
 ```js
-import "Home";
+import 'Home';
 ```
 
 </code-file>
@@ -649,8 +649,8 @@ File paths referenced in the `paths` field are relative to the `baseUrl` if defi
 <code-file name="src/App.js">
 
 ```js
-import "jquery";
-import "app/foo";
+import 'jquery';
+import 'app/foo';
 ```
 
 </code-file>
@@ -677,7 +677,7 @@ The `moduleSuffixes` field allows you to specify the file name suffixes to searc
 <code-file name="src/App.js">
 
 ```js
-import "./foo";
+import './foo';
 ```
 
 </code-file>
@@ -718,7 +718,7 @@ Support for [URL schemes](#url-schemes) can also be enabled by creating an [ambi
 <code-file name="parcel.d.ts">
 
 ```typescript
-declare module "bundle-text:*" {
+declare module 'bundle-text:*' {
   const value: string;
   export default value;
 }

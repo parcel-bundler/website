@@ -9,11 +9,11 @@ An optimizer implements one method: <api-name js="optimize" rust="optimize" go="
 <code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
-  async optimize({ contents, map }) {
-    let { code, sourceMap } = minify(contents, map);
+  async optimize({contents, map}) {
+    let {code, sourceMap} = minify(contents, map);
     return {
       contents: code,
       map: sourceMap,
@@ -252,10 +252,10 @@ Parcel takes care of inserting a reference to the source map into the bundle con
 <code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
-  async optimize({ contents, map }) {
+  async optimize({contents, map}) {
     let result = minify(new TextDecoder().decode(contents), map);
     return {
       contents: result.code,

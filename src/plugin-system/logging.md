@@ -17,13 +17,13 @@ type Diagnostic = {
     url: string | null;
     language: string | null;
     codeHighlights: Array<{
-      start: { line: number; column: number };
-      end: { line: number; column: number };
+      start: {line: number; column: number};
+      end: {line: number; column: number};
       message: string | null;
     }>;
   }>;
   hints: Array<string>;
-  severity: "error" | "warning" | "sourceError" | "info";
+  severity: 'error' | 'warning' | 'sourceError' | 'info';
   documentationURL: string | null;
 };
 ```
@@ -35,7 +35,7 @@ Line and column numbers are 1-based. The `url` of a code frame is a `file:` URL 
 When an error is thrown (or a promise is rejected) within a JavaScript plugin, the build fails, and Parcel converts the error into a diagnostic. The error's `message` becomes the message of the diagnostic. Native plugins fail by returning an error in Rust and Go, or throwing one in Swift. In Go and Swift, errors other than diagnostics are converted using their message as well.
 
 ```js
-throw new Error("An error occurred");
+throw new Error('An error occurred');
 ```
 
 To attach context about the error, use a `Diagnostic`. In JavaScript, the [`Diagnostic`](api.md#Diagnostic) class exported by `@parcel/plugin` extends the `Error` object, and accepts the properties described above, all of which are optional except for `message` (see [`DiagnosticOptions`](api.md#DiagnosticOptions)). Each native SDK has its own `Diagnostic` type. Parcel will automatically attach your plugin name, as written in `.parcelrc`, as the origin of the diagnostic.
@@ -43,10 +43,10 @@ To attach context about the error, use a `Diagnostic`. In JavaScript, the [`Diag
 <code-tabs>
 
 ```js
-import { Diagnostic } from "@parcel/plugin";
+import {Diagnostic} from '@parcel/plugin';
 
 throw new Diagnostic({
-  message: "An error occurred",
+  message: 'An error occurred',
 });
 ```
 
@@ -93,7 +93,7 @@ throw new Diagnostic({
             line: 2,
             column: 3,
           },
-          message: "Expected a string but got a number",
+          message: 'Expected a string but got a number',
         },
       ],
     },
@@ -140,7 +140,7 @@ throw Diagnostic(
 When a regular `Error` is thrown by a JavaScript plugin, Parcel can also display a code frame. If the error thrown by your plugin has `filename` (or `fileName`), `line`, and `column` properties, Parcel uses them to display a code frame pointing at that location. Otherwise, the location is taken from the top frame of the error's stack. Line and column numbers are 1-based. Many compilers already attach these properties to the errors they throw, so they can often be rethrown as is.
 
 ```js
-let error = new Error("Expected a string but got a number");
+let error = new Error('Expected a string but got a number');
 error.fileName = asset.filePath;
 error.line = 1;
 error.column = 5;
@@ -157,9 +157,9 @@ Diagnostics can also include hints about how to fix a problem, and a link to doc
 
 ```js
 throw new Diagnostic({
-  message: "Could not find a config file",
-  hints: ["Create a tool.config.json file in the project root."],
-  documentationURL: "http://example.com/",
+  message: 'Could not find a config file',
+  hints: ['Create a tool.config.json file in the project root.'],
+  documentationURL: 'http://example.com/',
 });
 ```
 
@@ -219,14 +219,14 @@ This example shows how to log a warning from a transformer.
 <code-tabs>
 
 ```js
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     // ...
 
     console.warn(
-      `${asset.filePath} uses a deprecated feature. Please use this other feature instead.`
+      `${asset.filePath} uses a deprecated feature. Please use this other feature instead.`,
     );
   },
 });
@@ -281,15 +281,15 @@ To log a message with a code frame, hints, or a documentation URL, log a diagnos
 <code-tabs>
 
 ```js
-import { Transformer, Diagnostic } from "@parcel/plugin";
+import {Transformer, Diagnostic} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     // ...
 
     console.warn(
       new Diagnostic({
-        message: "This feature is deprecated.",
+        message: 'This feature is deprecated.',
         codeFrames: [
           {
             filePath: asset.filePath,
@@ -308,9 +308,9 @@ export default new Transformer({
             ],
           },
         ],
-        hints: ["Please use this other feature instead."],
-        documentationURL: "http://example.com/",
-      })
+        hints: ['Please use this other feature instead.'],
+        documentationURL: 'http://example.com/',
+      }),
     );
   },
 });

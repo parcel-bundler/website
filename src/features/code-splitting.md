@@ -12,7 +12,7 @@ The following example shows how you might use dynamic imports to load a sub-page
 <code-file name="pages/index.js">
 
 ```js
-import("./pages/about").then(function (page) {
+import('./pages/about').then(function (page) {
   // Render page
   page.render();
 });
@@ -37,7 +37,7 @@ Because `import()` returns a Promise, you can also use async/await syntax.
 
 ```js
 async function load() {
-  const page = await import("./pages/about");
+  const page = await import('./pages/about');
   // Render page
   page.render();
 }
@@ -71,7 +71,7 @@ When Parcel can determine which exports of a dynamically imported module you use
 <code-file>
 
 ```js
-let { x: y } = await import("./b.js");
+let {x: y} = await import('./b.js');
 ```
 
 </code-file>
@@ -79,7 +79,7 @@ let { x: y } = await import("./b.js");
 <code-file>
 
 ```js
-let ns = await import("./b.js");
+let ns = await import('./b.js');
 console.log(ns.x);
 ```
 
@@ -88,7 +88,7 @@ console.log(ns.x);
 <code-file>
 
 ```js
-import("./b.js").then((ns) => console.log(ns.x));
+import('./b.js').then(ns => console.log(ns.x));
 ```
 
 </code-file>
@@ -96,7 +96,7 @@ import("./b.js").then((ns) => console.log(ns.x));
 <code-file>
 
 ```js
-import("./b.js").then(({ x: y }) => console.log(y));
+import('./b.js').then(({x: y}) => console.log(y));
 ```
 
 </code-file>
@@ -122,7 +122,7 @@ For example, if your application has multiple pages with `<script>` tags that de
 <code-file name="home.js">
 
 ```jsx
-import { createRoot } from "react-dom";
+import {createRoot} from 'react-dom';
 
 createRoot(app).render(<h1>Home</h1>, app);
 ```
@@ -140,7 +140,7 @@ createRoot(app).render(<h1>Home</h1>, app);
 <code-file name="profile.js">
 
 ```jsx
-import { createRoot } from "react-dom";
+import {createRoot} from 'react-dom';
 
 createRoot(app).render(<h1>Profile</h1>, app);
 ```
@@ -226,8 +226,8 @@ When multiple dynamic imports are awaited together using `Promise.all` with an a
 
 ```js
 let [editor, toolbar] = await Promise.all([
-  import("./editor"),
-  import("./toolbar"),
+  import('./editor'),
+  import('./toolbar'),
 ]);
 ```
 

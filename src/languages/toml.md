@@ -8,7 +8,7 @@ Parcel supports importing TOML files from JavaScript out of the box.
 <code-file name="app.js">
 
 ```js
-import data from "./data.toml";
+import data from './data.toml';
 console.log(data.hello[0]);
 // => "world"
 ```
@@ -17,10 +17,7 @@ console.log(data.hello[0]);
 <code-file name="data.toml">
 
 ```toml
-hello = [
-  "world",
-  "computer"
-]
+hello = ["world", "computer"]
 ```
 
 </code-file>

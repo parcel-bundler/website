@@ -8,7 +8,7 @@ Parcel supports importing YAML files (`.yaml` or `.yml`) from JavaScript out of 
 <code-file name="app.js">
 
 ```js
-import data from "./data.yaml";
+import data from './data.yaml';
 console.log(data.hello[0]);
 // => "world"
 ```

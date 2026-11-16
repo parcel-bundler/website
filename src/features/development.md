@@ -51,7 +51,7 @@ if (module.hot) {
   module.hot.accept(function (getParents) {
     // module or one of its dependencies was just updated.
     // data stored in `dispose` is available in `module.hot.data`
-    let { updated } = module.hot.data;
+    let {updated} = module.hot.data;
   });
 }
 ```
@@ -59,12 +59,12 @@ if (module.hot) {
 `module.hot.accept` can also accept updates to specific dependencies instead of the module itself. Pass a dependency specifier, or an array of specifiers, as the first argument. When one of these dependencies is updated, it is re-evaluated, but the accepting module is not. Instead, the callback is called with the ids of the updated dependencies, and you can use the new versions through your imports.
 
 ```javascript
-import { render } from "./render";
+import {render} from './render';
 
 render();
 
 if (module.hot) {
-  module.hot.accept("./render", function () {
+  module.hot.accept('./render', function () {
     // ./render.js was just updated. `render` now refers to the new version.
     render();
   });

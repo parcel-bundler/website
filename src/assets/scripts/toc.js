@@ -9,8 +9,13 @@ for (let link of tocLinks) {
 
 function updateToc() {
   for (let header of headers) {
-    if ((header.header.offsetTop + header.header.getBoundingClientRect().height) > document.documentElement.scrollTop) {
-      let currentSelection = document.querySelector('main aside nav a[aria-current]');
+    if (
+      header.header.offsetTop + header.header.getBoundingClientRect().height >
+      document.documentElement.scrollTop
+    ) {
+      let currentSelection = document.querySelector(
+        'main aside nav a[aria-current]',
+      );
       if (currentSelection) {
         currentSelection.removeAttribute('aria-current');
       }

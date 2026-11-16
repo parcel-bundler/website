@@ -8,7 +8,7 @@ Parcel supports importing JSON and [JSON5](https://json5.org) files into JavaScr
 <code-file name="app.js">
 
 ```js
-import data from "./data.json";
+import data from './data.json';
 console.log(data.hello[0]);
 // => "world"
 ```

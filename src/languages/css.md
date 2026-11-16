@@ -9,7 +9,7 @@ Parcel includes support for CSS out of the box. To add a CSS file, either refere
 or import it from a JavaScript file:
 
 ```javascript
-import "./index.css";
+import './index.css';
 ```
 
 ## Dependencies
@@ -21,25 +21,25 @@ CSS assets can contain dependencies referenced by `@import` syntax, as well as r
 The [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) at-rule can be used to inline another CSS file into the same CSS bundle as the containing file. This means that at runtime a separate network request will not be needed to load the dependency.
 
 ```css
-@import "other.css";
+@import 'other.css';
 ```
 
 Referenced files should be [relative](../features/dependency-resolution.md#relative-specifiers) to the containing CSS file. You can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](../features/dependency-resolution.md#url-schemes).
 
 ```css
-@import "npm:bootstrap/bootstrap.css";
+@import 'npm:bootstrap/bootstrap.css';
 ```
 
 When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](../features/dependency-resolution.md#glob-specifiers) for more details.
 
 ```css
-@import "./components/*.css";
+@import './components/*.css';
 ```
 
 `@import` rules may also include [cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), `supports()`, and media query conditions. Parcel wraps the inlined rules in the corresponding `@layer`, `@supports`, and `@media` blocks.
 
 ```css
-@import "theme.css" layer(base) supports(display: grid) (min-width: 500px);
+@import 'theme.css' layer(base) supports(display: grid) (min-width: 500px);
 ```
 
 ### Cascade order
@@ -60,7 +60,7 @@ Referenced files should be [relative](../features/dependency-resolution.md#relat
 
 ```css
 .logo {
-  background: url("data-url:./logo.png");
+  background: url('data-url:./logo.png');
 }
 ```
 
@@ -105,7 +105,7 @@ CSS modules treat the classes defined in each file as unique. Each class name or
 To use CSS modules, create a file with the `.module.css` extension, and import it from a JavaScript file with a [namespace import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents). Then, you can access each of the classes defined in the CSS file as an export from the module.
 
 ```javascript
-import * as classes from "./styles.module.css";
+import * as classes from './styles.module.css';
 
 document.body.className = classes.body;
 ```
@@ -135,13 +135,13 @@ This also works with other unused CSS rules such as `@keyframes` and `@counter-s
 **Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import, or a `require` call. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import or `require`, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
 
 ```javascript
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 ```
 
 should be replaced with:
 
 ```javascript
-import * as styles from "./styles.module.css";
+import * as styles from './styles.module.css';
 ```
 
 </p-warning>
@@ -374,7 +374,7 @@ compiles to:
 ```css
 .logo {
   background: -webkit-image-set(url(logo.png) 2x, url(logo.png) 1x);
-  background: image-set("logo.png" 2x, "logo.png");
+  background: image-set('logo.png' 2x, 'logo.png');
 }
 ```
 
@@ -624,7 +624,7 @@ Then, enable the Tailwind transformer for CSS files in your `.parcelrc`, and imp
 <code-file name="styles.css">
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 </code-file>
@@ -737,7 +737,7 @@ In these cases, you can use [`postcss-import`](https://github.com/postcss/postcs
 <code-file name="app.css">
 
 ```css
-@import "./config/index.css";
+@import './config/index.css';
 
 html {
   background-color: var(--varColor);
@@ -756,7 +756,7 @@ html {
 ```css
 :root {
   --varColor: red;
-  --varIcon: url("../icon.svg");
+  --varIcon: url('../icon.svg');
 }
 ```
 

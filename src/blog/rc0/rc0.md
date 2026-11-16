@@ -55,7 +55,7 @@ Parcel has supported web workers and service workers for a long time, and in thi
 To create a worker that uses ES module syntax such as `import` and `export`, the `type: 'module'` option is now required when constructing the worker. In addition, the `URL` constructor is now required to create a worker rather than passing a string literal. These changes improve Parcel's compatibility with both native browser behavior as well as other tools in the ecosystem.
 
 ```js
-new Worker(new URL("worker.js", import.meta.url), { type: "module" });
+new Worker(new URL('worker.js', import.meta.url), {type: 'module'});
 ```
 
 In addition, in module workers, `importScripts` is no longer supported, and should be replaced by an `import` statement or dynamic `import()`.
@@ -71,13 +71,13 @@ In addition to web workers and service workers, Parcel also now supports worklet
 Paint worklets are detected automatically using the following syntax:
 
 ```js
-CSS.paintWorklet.addModule(new URL("worklet.js", import.meta.url));
+CSS.paintWorklet.addModule(new URL('worklet.js', import.meta.url));
 ```
 
 Web audio worklets are not statically analyzable, so for these you can use the `worklet:` named pipeline to get a URL to the worklet file compiled for the correct environment.
 
 ```js
-import workletUrl from "worklet:./worklet.js";
+import workletUrl from 'worklet:./worklet.js';
 
 context.audioWorklet.addModule(workletUrl);
 ```
@@ -93,7 +93,7 @@ Parcel now supports the `.mjs` and `.cjs` file extensions used by Node.js to ind
 In addition, when you use workers or URL dependencies in your code, Parcel will now produce statically analyzable output when building a library. This enables your library to be bundled by Parcel or another bundler later when used in an app. URL dependencies compile to the `URL` constructor, which is supported both natively in Node and the browser as well as by many bundlers.
 
 ```js
-new URL("some-code.js", import.meta.url);
+new URL('some-code.js', import.meta.url);
 ```
 
 Finally, we have improved our diagnostics for many cases related to libraries. For example, you’ll get a diagnostic when scope hoisting is disabled for library builds, or an unsupported output format is used. Another useful diagnostic we added lets you know when you have an external dependency in your code that is not declared in your package.json. This helps prevent shipping code that will break when your library is used by a downstream consumer.
@@ -107,9 +107,9 @@ Finally, we have improved our diagnostics for many cases related to libraries. F
 Previously, it was impossible to use multiple types of dependencies on the same specifier within a single file. For example, a file could not have both a static import and a dynamic import with the same specifier. This is now supported correctly.
 
 ```js
-import something from "./foo";
+import something from './foo';
 
-import("./foo");
+import('./foo');
 ```
 
 ### Destructuring process.env
@@ -117,7 +117,7 @@ import("./foo");
 Using destructuring syntax on process.env is now possible.
 
 ```js
-let { NODE_ENV, API_TOKEN } = process.env;
+let {NODE_ENV, API_TOKEN} = process.env;
 ```
 
 ### Support for standalone import.meta
@@ -135,7 +135,7 @@ console.log(import.meta.url);
 In addition, `import.meta.url` can be used as a self-reference when constructing a worker in cases where you want the file that starts the worker to also be the worker itself.
 
 ```js
-new Worker(import.meta.url, { type: "module" });
+new Worker(import.meta.url, {type: 'module'});
 ```
 
 ## Glob resolver plugin
@@ -143,7 +143,7 @@ new Worker(import.meta.url, { type: "module" });
 Parcel 2 now has a glob resolver plugin that works similarly to the glob importing support in Parcel 1. This allows you to import multiple files at a time, and get back an object with keys corresponding to the files.
 
 ```js
-import * as files from "./files/*.js";
+import * as files from './files/*.js';
 
 console.log(files.foo);
 ```
@@ -151,8 +151,8 @@ console.log(files.foo);
 Is equivalent to:
 
 ```js
-import * as foo from "./files/foo.js";
-import * as bar from "./files/bar.js";
+import * as foo from './files/foo.js';
+import * as bar from './files/bar.js';
 
 let files = {
   foo,
@@ -163,7 +163,7 @@ let files = {
 This also works with pipelines like `url:`, as well as with dynamic import.
 
 ```js
-let files = import("./files/*.js");
+let files = import('./files/*.js');
 
 async function doSomething() {
   let foo = await files.foo();

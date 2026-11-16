@@ -1,6 +1,6 @@
-@import "tailwindcss" source("..");
-@import "../assets/styles/theme.css";
-@import "../assets/styles/search.css";
+@import 'tailwindcss' source("..");
+@import '../assets/styles/theme.css';
+@import '../assets/styles/search.css';
 
 @layer base {
   pre {
@@ -83,31 +83,31 @@
   font-style: italic;
 }
 
-[role="tab"] {
+[role='tab'] {
   @apply text-xs text-gray-600 p-2 xl:px-3 border-l border-gray-300 dark:border-gray-800 outline-hidden focus-visible:ring-3 focus-visible:ring-orange-400 focus-visible:ring-inset focus-visible:z-10 cursor-default select-none;
 }
 
-[role="tab"][aria-selected="true"] {
+[role='tab'][aria-selected='true'] {
   @apply text-gray-500 bg-gray-200 dark:bg-gray-800 border-gray-200 dark:border-gray-800;
 }
 
-[role="tab"][aria-selected="true"] + [role="tab"] {
+[role='tab'][aria-selected='true'] + [role='tab'] {
   @apply border-gray-200 dark:border-gray-800;
 }
 
-[role="tab"]:first-child {
+[role='tab']:first-child {
   @apply border-none;
 }
 
-[role="radio"] {
+[role='radio'] {
   @apply text-gray-600 dark:text-rose-200 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-hidden focus-visible:ring-4 focus-visible:ring-orange-500/50 transition-all mb-2 text-xl;
 }
 
-[role="radio"][aria-checked="true"] {
+[role='radio'][aria-checked='true'] {
   @apply lg:bg-orange-200 lg:text-orange-700 lg:dark:bg-orange-400/75 lg:dark:text-rose-900;
 }
 
-[role="radio"][aria-checked="true"] p:last-child {
+[role='radio'][aria-checked='true'] p:last-child {
   @apply lg:text-orange-800 lg:dark:text-rose-900;
 }
 

@@ -89,7 +89,7 @@ h1 {
 <code-file name="src/app.js">
 
 ```javascript
-console.log("Hello world!");
+console.log('Hello world!');
 ```
 
 </code-file>

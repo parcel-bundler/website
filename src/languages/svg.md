@@ -62,9 +62,9 @@ The `type="module"` attribute should be used to indicate that a file is an [ES m
 <code-file name="interactions.js">
 
 ```javascript
-let circle = document.querySelector("circle");
-circle.addEventListener("click", () => {
-  circle.setAttribute("fill", "blue");
+let circle = document.querySelector('circle');
+circle.addEventListener('click', () => {
+  circle.setAttribute('fill', 'blue');
 });
 ```
 
@@ -165,8 +165,8 @@ circle {
 
 ```typescript
 export function setup(element: SVGElement) {
-  element.addEventListener("click", () => {
-    element.setAttribute("fill", "red");
+  element.addEventListener('click', () => {
+    element.setAttribute('fill', 'red');
   });
 }
 ```
@@ -209,10 +209,10 @@ The [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/objec
 This also allows you to get access to the SVG DOM via the `getSVGDocument()` method on the `<object>` element.
 
 ```javascript
-let object = document.querySelector("object");
+let object = document.querySelector('object');
 let svg = object.getSVGDocument();
-let circle = svg.querySelector("circle");
-circle.setAttribute("fill", "red");
+let circle = svg.querySelector('circle');
+circle.setAttribute('fill', 'red');
 ```
 
 However, SVGs embedded using the `<object>` element cannot be styled by CSS on the HTML page.
@@ -247,7 +247,7 @@ SVG can be referenced from CSS files using the `url()` function. As with the `<i
 
 ```css
 .logo {
-  background: url("logo.svg");
+  background: url('logo.svg');
 }
 ```
 
@@ -255,7 +255,7 @@ You can also embed small SVGs in a CSS file using data URLs. Use the `data-url:`
 
 ```css
 .logo {
-  background: url("data-url:logo.svg");
+  background: url('data-url:logo.svg');
 }
 ```
 

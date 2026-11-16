@@ -35,7 +35,7 @@ Macro arguments are evaluated statically, which means their value must be known 
 import {myMacro} from './macro.ts' with {type: 'macro'};
 
 const result = myMacro({
-  name: 'Devon'
+  name: 'Devon',
 });
 ```
 
@@ -129,10 +129,10 @@ console.log(readText('message.txt'));
 <code-file name="macro.ts">
 
 ```ts
-import fs from "fs/promises";
+import fs from 'fs/promises';
 
 export async function readText(filePath: string) {
-  return fs.readFile(filePath, "utf8");
+  return fs.readFile(filePath, 'utf8');
 }
 ```
 
@@ -158,11 +158,11 @@ const isMatch = compileGlob('foo/**/bar.js');
 <code-file name="glob.ts">
 
 ```ts
-import micromatch from "micromatch";
+import micromatch from 'micromatch';
 
 export function compileGlob(glob) {
   let regex = micromatch.makeRe(glob);
-  return new Function("string", `return ${regex}.test(string)`);
+  return new Function('string', `return ${regex}.test(string)`);
 }
 ```
 
@@ -174,7 +174,7 @@ The bundled output of this example looks like this:
 ```js
 const isMatch = function (string) {
   return /^(?:foo(?:\/(?!\.)(?:(?:(?!(?:^|\/)\.).)*?)\/|\/|$)bar\.js)$/.test(
-    string
+    string,
   );
 };
 ```
@@ -193,9 +193,7 @@ This example accepts a string of CSS and returns a generated class name. The CSS
 ```tsx
 import {css} from './css.ts' with {type: 'macro'};
 
-<div className={css('color: red; &:hover { color: green }')}>
-  Hello!
-</div>
+<div className={css('color: red; &:hover { color: green }')}>Hello!</div>;
 ```
 
 </code-file>
@@ -256,17 +254,17 @@ For example, whenever `message.txt` is edited, `index.ts` will be recompiled and
 ```tsx
 import {readFile} from './macro.ts' with {type: 'macro'};
 
-console.log(readFile('message.txt'))
+console.log(readFile('message.txt'));
 ```
 
 </code-file>
 <code-file name="macro.ts">
 
 ```ts
-import fs from "fs";
+import fs from 'fs';
 
 export function readFile(filePath: string) {
-  return fs.readFileSync(filePath, "utf8");
+  return fs.readFileSync(filePath, 'utf8');
 }
 ```
 
@@ -344,23 +342,23 @@ Unit testing macros is just like testing any other JavaScript function. One cave
 <code-file name="css.test.ts">
 
 ```ts
-import { css } from "../src/css.ts";
+import {css} from '../src/css.ts';
 
-it("should generate css", () => {
+it('should generate css', () => {
   let addAsset = jest.fn();
   let className = css.call(
     {
       addAsset,
       // ...
     },
-    "color: red"
+    'color: red',
   );
 
   expect(addAsset).toHaveBeenCalledWith({
-    type: "css",
-    content: ".ax63jk4 { color: red }",
+    type: 'css',
+    content: '.ax63jk4 { color: red }',
   });
-  expect(className).toBe("ax63jk4");
+  expect(className).toBe('ax63jk4');
 });
 ```
 

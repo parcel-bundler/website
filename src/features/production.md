@@ -29,7 +29,7 @@ In production builds, Parcel statically analyzes the imports and exports of each
 You can take advantage of this feature in your own code as well. For example, you could use an if statement to check the `NODE_ENV` environment variable.
 
 ```javascript
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   // Only runs in development and will be stripped in production builds.
 }
 ```

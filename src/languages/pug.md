@@ -47,7 +47,7 @@ parcel serve index.pug
 Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](../features/bundle-inlining.md) for details.
 
 ```js
-import html from "bundle-text:./index.pug";
+import html from 'bundle-text:./index.pug';
 
 document.body.innerHTML = html;
 ```

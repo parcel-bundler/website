@@ -10,19 +10,15 @@
   ],
   "scripts": {
     "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md' --public-url $(node public-url.js)",
-    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/debug/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
-    "lint": "prettier --write 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
-    "generate-api-docs": "node generate-api-docs/ ../parcel ./api",
-    "generate-api-docs:watch": "nodemon -w ../parcel/packages-v3/plugin/src -w generate-api-docs -e js,ts -x yarn generate-api-docs"
+    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/release/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
+    "lint": "oxfmt 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
+    "generate-api-docs": "node generate-api-docs/ ../parcel ./api"
   },
   "devDependencies": {
-    "@babel/generator": "^7.20.1",
     "@babel/parser": "^7.20.1",
-    "@babel/traverse": "^7.20.1",
-    "husky": "^4.3.6",
-    "lint-staged": "^10.5.3",
+    "lefthook": "latest",
+    "oxfmt": "latest",
     "parcel": "^3.0.0-alpha.2",
-    "prettier": "2.7.1",
     "prismjs": "^1.26.0",
     "process": "^0.11.10",
     "tailwindcss": "^4.3.5",
@@ -33,15 +29,6 @@
     "alpinejs": "^3.10.5",
     "marked": "^2.0.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-use": "^17.3.1"
-  },
-  "lint-staged": {
-    "*.{md,css,js,json}": "prettier --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "react-dom": "^17.0.2"
   }
 }

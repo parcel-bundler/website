@@ -11,14 +11,14 @@ This example overrides the resolution of `special-module`, and otherwise returns
 <code-tabs>
 
 ```javascript
-import { Resolver } from "@parcel/plugin";
-import path from "path";
+import {Resolver} from '@parcel/plugin';
+import path from 'path';
 
 export default new Resolver({
-  async resolve({ specifier }) {
-    if (specifier === "special-module") {
+  async resolve({specifier}) {
+    if (specifier === 'special-module') {
       return {
-        filePath: path.join(__dirname, "special-module.js"),
+        filePath: path.join(__dirname, 'special-module.js'),
       };
     }
 
@@ -156,17 +156,17 @@ This example resolves relative URLs and paths depending on the specifier type.
 <code-tabs>
 
 ```javascript
-import { Resolver } from "@parcel/plugin";
-import path from "path";
-import { fileURLToPath, pathToFileURL } from "url";
+import {Resolver} from '@parcel/plugin';
+import path from 'path';
+import {fileURLToPath, pathToFileURL} from 'url';
 
 export default new Resolver({
-  async resolve({ specifier, dependency }) {
+  async resolve({specifier, dependency}) {
     return {
       filePath:
-        dependency.specifierType === "url"
+        dependency.specifierType === 'url'
           ? fileURLToPath(
-              new URL(specifier, pathToFileURL(dependency.resolveFrom))
+              new URL(specifier, pathToFileURL(dependency.resolveFrom)),
             )
           : path.resolve(path.dirname(dependency.resolveFrom), specifier),
     };
