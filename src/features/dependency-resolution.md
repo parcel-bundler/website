@@ -102,7 +102,7 @@ The above example resolves `lodash` within a `node_modules` directory as describ
 
 When a dependency specifier references a builtin Node.js module, e.g. `path` or `node:path`, the builtin module is preferred over any module installed in `node_modules` with the same name. When building for a node environment or a library, builtin modules are excluded from the bundle. See the [Node docs](https://nodejs.org/api/) for a full list of builtin modules.
 
-When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](/features/node-emulation/#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
+When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](node-emulation.md#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
 
 When building for an Electron environment, the `electron` module is also considered a builtin and excluded from the bundle.
 
@@ -172,7 +172,7 @@ Dependency specifiers may also include query parameters, which specify transform
 }
 ```
 
-See the [Image transformer](/recipes/image/) docs for more details on images. You can also use query parameters in custom [Transformer](/plugin-system/transformer/) plugins.
+See the [Image transformer](../recipes/image.md) docs for more details on images. You can also use query parameters in custom [Transformer](../plugin-system/transformer.md) plugins.
 
 <p-note>
 
@@ -182,7 +182,7 @@ See the [Image transformer](/recipes/image/) docs for more details on images. Yo
 
 ### URL schemes
 
-Dependency specifiers may use URL schemes to target [Named pipelines](/features/plugins/#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](/features/bundle-inlining/) for more details.
+Dependency specifiers may use URL schemes to target [Named pipelines](plugins.md#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](bundle-inlining.md) for more details.
 
 There are a few reserved URL schemes that may not be used for named pipelines, and have builtin behavior.
 
@@ -278,7 +278,7 @@ When resolving a package directory, the `package.json` file is consulted to dete
 
 - `source` – If the module is behind a symlink (e.g. in a monorepo, or via `npm link`), then Parcel uses the `source` field to compile the module from source. The `source` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `exports` – [Package exports](#package-exports), see below for details.
-- `browser` – A browser-specific version of a package. If building for a [browser environment](/features/targets/#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
+- `browser` – A browser-specific version of a package. If building for a [browser environment](targets.md#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `module` – An ES module version of the package.
 - `main` – A CommonJS version of the package.
 
@@ -356,7 +356,7 @@ In the above example, all `.js` files in the `dist` directory are exported from 
 
 ### Conditional exports
 
-The `"exports"` field may also define different mappings for the same specifier in different [environments](/features/targets/#environments) or other conditions. For example, a package may provide different entrypoints for ES modules and CommonJS, or for Node and browsers.
+The `"exports"` field may also define different mappings for the same specifier in different [environments](targets.md#environments) or other conditions. For example, a package may provide different entrypoints for ES modules and CommonJS, or for Node and browsers.
 
 <code-sample>
 <code-file name="package.json">

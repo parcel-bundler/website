@@ -2,7 +2,7 @@
 
 Parcel includes support for rich diagnostics that are used to describe errors and warnings in a format-agnostic way. It also includes a built in logging system that allows Reporter plugins to handle all logs and errors and present them to the user.
 
-Diagnostics and logging work in both JavaScript and [native plugins](/plugin-system/native-plugins/). Choose a language above any example to switch the examples and API names throughout the page.
+Diagnostics and logging work in both JavaScript and [native plugins](native-plugins.md). Choose a language above any example to switch the examples and API names throughout the page.
 
 ## Diagnostics
 
@@ -28,7 +28,7 @@ type Diagnostic = {
 };
 ```
 
-Line and column numbers are 1-based. The `url` of a code frame is a `file:` URL for files on disk. [Reporter](/plugin-system/reporter/) plugins receive diagnostics in this format, and have complete freedom over how they are formatted and displayed.
+Line and column numbers are 1-based. The `url` of a code frame is a `file:` URL for files on disk. [Reporter](reporter.md) plugins receive diagnostics in this format, and have complete freedom over how they are formatted and displayed.
 
 ### Throwing errors
 
@@ -38,7 +38,7 @@ When an error is thrown (or a promise is rejected) within a JavaScript plugin, t
 throw new Error("An error occurred");
 ```
 
-To attach context about the error, use a `Diagnostic`. In JavaScript, the [`Diagnostic`](/plugin-system/api/#Diagnostic) class exported by `@parcel/plugin` extends the `Error` object, and accepts the properties described above, all of which are optional except for `message` (see [`DiagnosticOptions`](/plugin-system/api/#DiagnosticOptions)). Each native SDK has its own `Diagnostic` type. Parcel will automatically attach your plugin name, as written in `.parcelrc`, as the origin of the diagnostic.
+To attach context about the error, use a `Diagnostic`. In JavaScript, the [`Diagnostic`](api.md#Diagnostic) class exported by `@parcel/plugin` extends the `Error` object, and accepts the properties described above, all of which are optional except for `message` (see [`DiagnosticOptions`](api.md#DiagnosticOptions)). Each native SDK has its own `Diagnostic` type. Parcel will automatically attach your plugin name, as written in `.parcelrc`, as the origin of the diagnostic.
 
 <code-tabs>
 
@@ -191,9 +191,9 @@ throw Diagnostic(
 
 ## Logger
 
-JavaScript plugins log messages using the standard `console` methods. Parcel collects these messages and sends them to [Reporter](/plugin-system/reporter/) plugins, which decide how to display them. When `console` methods are called with anything other than a single string or [diagnostics](#diagnostics), each argument is formatted using `util.inspect`. Native plugins log messages using <api-name rust="options.log()" go="options.Log()" swift="options.log(_:level:)"></api-name>, passing a log level.
+JavaScript plugins log messages using the standard `console` methods. Parcel collects these messages and sends them to [Reporter](reporter.md) plugins, which decide how to display them. When `console` methods are called with anything other than a single string or [diagnostics](#diagnostics), each argument is formatted using `util.inspect`. Native plugins log messages using <api-name rust="options.log()" go="options.Log()" swift="options.log(_:level:)"></api-name>, passing a log level.
 
-These log levels specify the severity of log messages, which is useful for formatting and filtering. For example, the [`--log-level`](/features/cli/#parameters) CLI option can be used to choose which messages you want to see.
+These log levels specify the severity of log messages, which is useful for formatting and filtering. For example, the [`--log-level`](../features/cli.md#parameters) CLI option can be used to choose which messages you want to see.
 
 <p-note>
 
@@ -203,8 +203,8 @@ These log levels specify the severity of log messages, which is useful for forma
 
 ### Log levels
 
-| Level   | When to use                                                                                                                              | API                                                                                                   |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Level   | When to use                                                                                                                              | API                                                                                                            |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | verbose | Use this when you want to log anything that can be used for debugging issues, while not being particularly interesting for normal usage. | <api-name js="console.debug(...)" rust="LogLevel::Verbose" go="parcel.LogVerbose" swift=".verbose"></api-name> |
 | info    | Use this to log any information that is not related to a problem.                                                                        | <api-name js="console.info(...)" rust="LogLevel::Info" go="parcel.LogInfo" swift=".info"></api-name>           |
 | warning | Use this to log anything related to a problem that is not critical.                                                                      | <api-name js="console.warn(...)" rust="LogLevel::Warn" go="parcel.LogWarn" swift=".warn"></api-name>           |
@@ -276,7 +276,7 @@ struct MyTransformer: Transformer {
 
 </code-tabs>
 
-To log a message with a code frame, hints, or a documentation URL, log a diagnostic using <api-name js="console.warn()" rust="options.log_diagnostic()" go="options.LogDiagnostic()" swift="options.log(_:)"></api-name>. In JavaScript, a [`Diagnostic`](/plugin-system/api/#Diagnostic) can be passed to any `console` method, and is logged at the level of the method unless it sets a `severity`. In native plugins, the level comes from the diagnostic's severity. This example shows how to log a warning, complete with a code frame, hints, and a documentation URL, without failing the build.
+To log a message with a code frame, hints, or a documentation URL, log a diagnostic using <api-name js="console.warn()" rust="options.log_diagnostic()" go="options.LogDiagnostic()" swift="options.log(_:)"></api-name>. In JavaScript, a [`Diagnostic`](api.md#Diagnostic) can be passed to any `console` method, and is logged at the level of the method unless it sets a `severity`. In native plugins, the level comes from the diagnostic's severity. This example shows how to log a warning, complete with a code frame, hints, and a documentation URL, without failing the build.
 
 <code-tabs>
 

@@ -7,20 +7,20 @@
 
 In addition to JavaScript, Parcel plugins can be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. Native plugins are compiled to a dynamic library (`.dylib` on macOS, `.so` on Linux, or `.dll` on Windows), which Parcel loads directly into its process.
 
-Native plugins can act as [transformers](/plugin-system/transformer/), [resolvers](/plugin-system/resolver/), [namers](/plugin-system/namer/), [optimizers](/plugin-system/optimizer/), and [reporters](/plugin-system/reporter/). A single library can implement any combination of these. The same rules described in [Authoring Plugins](/plugin-system/authoring-plugins/) apply: plugins should be stateless and pure.
+Native plugins can act as [transformers](transformer.md), [resolvers](resolver.md), [namers](namer.md), [optimizers](optimizer.md), and [reporters](reporter.md). A single library can implement any combination of these. The same rules described in [Authoring Plugins](authoring-plugins.md) apply: plugins should be stateless and pure.
 
 ## When to use native plugins
 
-[JavaScript plugins](/plugin-system/authoring-plugins/) are the easiest way to extend Parcel, and can use the huge ecosystem of existing compilers and tools on npm. However, they run in an embedded JavaScript engine, which is plenty fast for many types of infrequently used or simple plugins, but generally slower than native plugins for CPU-intensive work.
+[JavaScript plugins](authoring-plugins.md) are the easiest way to extend Parcel, and can use the huge ecosystem of existing compilers and tools on npm. However, they run in an embedded JavaScript engine, which is plenty fast for many types of infrequently used or simple plugins, but generally slower than native plugins for CPU-intensive work.
 
 Native plugins are a good fit when:
 
 - Performance matters, e.g. for a transformer that runs on many files.
 - You want to wrap a compiler or library that is written in Rust, Go, Swift, C, or C++.
 - You need access to the system that is not available to JavaScript plugins.
-- You want to store a custom representation of an asset's content (e.g. an AST) and control how it is packaged. See [Custom content](/plugin-system/transformer/#custom-content).
+- You want to store a custom representation of an asset's content (e.g. an AST) and control how it is packaged. See [Custom content](transformer.md#custom-content).
 
-Native plugins are called from multiple threads at once, so they must be thread safe. Errors returned by a plugin are reported as [diagnostics](/plugin-system/logging/#diagnostics).
+Native plugins are called from multiple threads at once, so they must be thread safe. Errors returned by a plugin are reported as [diagnostics](logging.md#diagnostics).
 
 ## Rust
 
@@ -91,7 +91,7 @@ register_plugin!(TxtTransformer);
 
 Build it with `cargo build`, which produces `target/debug/libparcel_transformer_txt.dylib` (or `.so` or `.dll`).
 
-Return a `Diagnostic` to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Panics are caught and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples) for a plugin of each type.
+Return a `Diagnostic` to fail a call (see [Diagnostics](logging.md#diagnostics)). Panics are caught and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-rs/examples) for a plugin of each type.
 
 ## Go
 
@@ -161,7 +161,7 @@ Build it as a C shared library. This requires cgo, and therefore a C compiler.
 go build -buildmode=c-shared -o plugin.dylib .
 ```
 
-Return an error, e.g. a `*parcel.Diagnostic`, to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Panics are recovered and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples) for a plugin of each type.
+Return an error, e.g. a `*parcel.Diagnostic`, to fail a call (see [Diagnostics](logging.md#diagnostics)). Panics are recovered and reported as errors rather than crashing Parcel. See the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go/examples) for a plugin of each type.
 
 ## Swift
 
@@ -227,11 +227,11 @@ struct TxtTransformer: Transformer {
 
 Build it with `swift build -c release`, which produces `.build/release/libTxtTransformer.dylib`.
 
-Throw an error, e.g. a `Diagnostic`, to fail a call (see [Diagnostics](/plugin-system/logging/#diagnostics)). Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources) for a plugin of each type.
+Throw an error, e.g. a `Diagnostic`, to fail a call (see [Diagnostics](logging.md#diagnostics)). Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources) for a plugin of each type.
 
 ## File system
 
-Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](/plugin-system/logging/#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while transforming or resolving.
+Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](logging.md#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while transforming or resolving.
 
 <api-name rust="read_file()" go="ReadFile()" swift="fileSystem.read(_:)"></api-name> reads a file, <api-name rust="file_kind()" go="FileKind()" swift="fileSystem.kind(of:)"></api-name> returns whether a path is a file, directory, or does not exist, and <api-name rust="canonicalize()" go="Canonicalize()" swift="fileSystem.canonicalize(_:)"></api-name> resolves symlinks.
 
@@ -381,7 +381,7 @@ When `devLibrary` is set, it is always used instead of the published binaries. I
 
 ## Publishing
 
-Native plugins are published to npm, and installed and referenced in `.parcelrc` just like JavaScript plugins. They follow the same [naming conventions](/plugin-system/authoring-plugins/#naming).
+Native plugins are published to npm, and installed and referenced in `.parcelrc` just like JavaScript plugins. They follow the same [naming conventions](authoring-plugins.md#naming).
 
 A native plugin is published as one package per platform, each containing the shared library for that platform, along with a main package that only contains metadata. The main package's `package.json` lists the package for each platform under `parcel.artifacts`, keyed by Rust target triple, and declares the ABI version the plugin was built against in `parcel.abi`. The platform packages are listed as `optionalDependencies`, so npm only installs the one matching the user's platform. Each platform package names its library in `parcel.library`.
 

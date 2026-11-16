@@ -55,7 +55,7 @@ Images can be referenced using the Markdown image syntax, or the HTML [`<img>`](
 
 ### Video, audio, and other assets
 
-The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
+The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](../features/production.md#content-hashing).
 
 ## Code blocks
 
@@ -138,7 +138,7 @@ The provided `CodeBlock` component can choose where to display the rendered valu
 <div>Hello world!</div>
 ```
 
-Rendered JSX expressions and components are updated in place with React Fast Refresh (see [Hot reloading](/features/development/#hot-reloading)) when you edit the MDX file during development.
+Rendered JSX expressions and components are updated in place with React Fast Refresh (see [Hot reloading](../features/development.md#hot-reloading)) when you edit the MDX file during development.
 
 ## Table of contents
 

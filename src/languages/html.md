@@ -6,11 +6,11 @@ Parcel includes first-class support for HTML out of the box. HTML files are ofte
 
 Parcel detects most references in HTML to other files (such as `<script>`, `<img>`, `<video>` or `<meta property="og:image">`) and processes them as well. These references are rewritten so that they link to the correct output files.
 
-File names are resolved relative to the current HTML file, but you can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. See [Dependency resolution](/features/dependency-resolution/) for details.
+File names are resolved relative to the current HTML file, but you can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. See [Dependency resolution](../features/dependency-resolution.md) for details.
 
 ### Stylesheets
 
-The `<link rel="stylesheet">` element can be used to reference stylesheets from HTML. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](/languages/sass/), [Less](/languages/less/), or [Stylus](/languages/stylus).
+The `<link rel="stylesheet">` element can be used to reference stylesheets from HTML. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](sass.md), [Less](less.md), or [Stylus](stylus.md).
 
 <code-sample>
 <code-file name="index.html">
@@ -39,11 +39,11 @@ h1 {
 </code-file>
 </code-sample>
 
-See the [CSS](/languages/css/) docs for details on how CSS is processed by Parcel.
+See the [CSS](css.md) docs for details on how CSS is processed by Parcel.
 
 ### Scripts
 
-The `<script>` element can be used to reference a script file from HTML. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](/languages/typescript/), [JSX](/languages/javascript/#jsx), or [CoffeeScript](/languages/coffeescript/).
+The `<script>` element can be used to reference a script file from HTML. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](typescript.md), [JSX](javascript.md#jsx), or [CoffeeScript](coffeescript.md).
 
 <code-sample>
 <code-file name="index.html">
@@ -70,7 +70,7 @@ console.log("Hello world!");
 </code-file>
 </code-sample>
 
-The `type="module"` attribute should be used to indicate that a file is an [ES module](/languages/javascript/#es-modules) or [CommonJS](/languages/javascript/#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](/languages/javascript/#classic-scripts) for more information about this.
+The `type="module"` attribute should be used to indicate that a file is an [ES module](javascript.md#es-modules) or [CommonJS](javascript.md#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](javascript.md#classic-scripts) for more information about this.
 
 When a `<script type="module">` is used and some of your browser targets do not support ES modules, Parcel compiles it to a classic script with the `defer` attribute instead.
 
@@ -78,7 +78,7 @@ Parcel also supports the `async` and `defer` attributes of the `<script>` elemen
 
 The `defer` attribute has a similar effect as `async` (non render-blocking), but guarentees that scripts are executed in the order they are defined in the HTML file. When using `<script type="module">`, `defer` is automatically enabled and does not need to be declared.
 
-See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) for the `<script>` element for more info, and the [JavaScript](/languages/javascript/) docs for details on how Parcel processes JavaScript.
+See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) for the `<script>` element for more info, and the [JavaScript](javascript.md) docs for details on how Parcel processes JavaScript.
 
 ### Images
 
@@ -96,7 +96,7 @@ Parcel also supports the [`srcset`](https://developer.mozilla.org/en-US/docs/Web
 
 In addition, Parcel supports the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element, which allows even more flexibility for providing multiple alternative images via the [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) element.
 
-Parcel’s [image transformer](/recipes/image/) can also be used to generate multiple versions of an image from a single source file. This is done using [query parameters](/features/dependency-resolution/#query-parameters) to provide the width, height, and format to convert and resize the source image.
+Parcel’s [image transformer](../recipes/image.md) can also be used to generate multiple versions of an image from a single source file. This is done using [query parameters](../features/dependency-resolution.md#query-parameters) to provide the width, height, and format to convert and resize the source image.
 
 ```html
 <picture>
@@ -126,15 +126,15 @@ The [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ifram
 <iframe src="iframe.html"></iframe>
 ```
 
-While other assets referenced from an HTML file will include a [content hash](/features/production/#content-hashing) in their compiled filename by default, files referenced by an `<a>` or `<iframe>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be overridden by [Namer plugins](/plugin-system/namer/).
+While other assets referenced from an HTML file will include a [content hash](../features/production.md#content-hashing) in their compiled filename by default, files referenced by an `<a>` or `<iframe>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be overridden by [Namer plugins](../plugin-system/namer.md).
 
 ### Video, audio, and other assets
 
-The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
+The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](../features/production.md#content-hashing).
 
 ### Open Graph and Schema.org metadata
 
-Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup), [VK](https://vk.com/dev/publications), [Schema.org](https://schema.org), and [Microsoft pinned site](<https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/dn255024(v=vs.85)?redirectedfrom=MSDN>) metadata defined using the [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) tag. Images and other URLs referenced in these elements are processed by Parcel and rewritten to link to the correct output files. Since these URLs are often cached by external services, most of them do not include a [content hash](/features/production/#content-hashing).
+Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup), [VK](https://vk.com/dev/publications), [Schema.org](https://schema.org), and [Microsoft pinned site](<https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/dn255024(v=vs.85)?redirectedfrom=MSDN>) metadata defined using the [`<meta>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) tag. Images and other URLs referenced in these elements are processed by Parcel and rewritten to link to the correct output files. Since these URLs are often cached by external services, most of them do not include a [content hash](../features/production.md#content-hashing).
 
 ```html
 <meta property="og:image" content="100x100.png" />
@@ -142,7 +142,7 @@ Parcel supports [Open Graph](https://ogp.me), [Twitter Cards](https://developer.
 
 ### JSON-LD
 
-Parcel supports [JSON-LD](https://json-ld.org) metadata embedded in HTML via `<script>` tags. Images and other URLs referenced in JSON-LD are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing). This is handled by the `@parcel/transformer-jsonld` plugin, which is included in Parcel's default config.
+Parcel supports [JSON-LD](https://json-ld.org) metadata embedded in HTML via `<script>` tags. Images and other URLs referenced in JSON-LD are processed by Parcel and rewritten to include a [content hash](../features/production.md#content-hashing). This is handled by the `@parcel/transformer-jsonld` plugin, which is included in Parcel's default config.
 
 In this example, the image referenced from the `logo` object will be processed by Parcel.
 
@@ -286,7 +286,7 @@ Compiled HTML:
 </html>
 ```
 
-This may also occur with scripts. For example, if two pages depend on the same JavaScript library (e.g. React or Lodash), it may be split out into its own bundle and loaded separately. Parcel will insert a `<script>` tag into the compiled HTML to load this "shared bundle" in parallel. See [Code Splitting](/features/code-splitting/) for more details.
+This may also occur with scripts. For example, if two pages depend on the same JavaScript library (e.g. React or Lodash), it may be split out into its own bundle and loaded separately. Parcel will insert a `<script>` tag into the compiled HTML to load this "shared bundle" in parallel. See [Code Splitting](../features/code-splitting.md) for more details.
 
 ## PostHTML
 
@@ -448,7 +448,7 @@ module.exports = {
 
 ## Production
 
-In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
+In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](../features/production.md) for more details about how this works.
 
 ### Minification
 
@@ -508,4 +508,4 @@ or to not minify SVG elements.
 </code-file>
 </code-sample>
 
-The following options are supported, and are all enabled by default: `collapseAttributeWhitespace`, `collapseWhitespace`, `deduplicateAttributeValues`, `removeComments`, `removeEmptyAttributes`, `minifyJson`, `removeRedundantAttributes`, `collapseBooleanAttributes`, `normalizeAttributeValues`, and `sortAttributesWithLists`. The `minifySvg` option can also be set to an object of options for the [SVG minifier](/languages/svg/#minification).
+The following options are supported, and are all enabled by default: `collapseAttributeWhitespace`, `collapseWhitespace`, `deduplicateAttributeValues`, `removeComments`, `removeEmptyAttributes`, `minifyJson`, `removeRedundantAttributes`, `collapseBooleanAttributes`, `normalizeAttributeValues`, and `sortAttributesWithLists`. The `minifySvg` option can also be set to an object of options for the [SVG minifier](svg.md#minification).

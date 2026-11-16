@@ -51,18 +51,19 @@ function git(cmd) {
 const PARCEL_REV = git("rev-parse HEAD");
 const PARCEL_URL = `https://github.com/parcel-bundler/parcel/blob/${PARCEL_REV}`;
 
-// Each section's types are written to `<file>.html` (default: the section
-// name), and linked to at `<link>#<TypeName>`. The file must be included by
-// the page at `link`, e.g. `{% include "../../api/transformer.html" %}`.
+// Each section's types are written to `api/<file>.html` (default: the section
+// name), and linked to at `<link>#<TypeName>`, the page's source relative to api/.
+// The file must be included by that page, e.g.
+// `<parcel:include src="../../api/transformer.html"></parcel:include>`.
 const SECTION_TO_URL = {
-  index: { link: "/plugin-system/api/" },
+  index: { link: "../src/plugin-system/api.md" },
   // There is no bundler plugin page; Bundle and BundleGraph go on the API page.
-  bundler: { link: "/plugin-system/api/", file: "index" },
-  transformer: { link: "/plugin-system/transformer/" },
-  resolver: { link: "/plugin-system/resolver/" },
-  namer: { link: "/plugin-system/namer/" },
-  optimizer: { link: "/plugin-system/optimizer/" },
-  reporter: { link: "/plugin-system/reporter/" },
+  bundler: { link: "../src/plugin-system/api.md", file: "index" },
+  transformer: { link: "../src/plugin-system/transformer.md" },
+  resolver: { link: "../src/plugin-system/resolver.md" },
+  namer: { link: "../src/plugin-system/namer.md" },
+  optimizer: { link: "../src/plugin-system/optimizer.md" },
+  reporter: { link: "../src/plugin-system/reporter.md" },
 };
 
 const GENERATED_MARKER =

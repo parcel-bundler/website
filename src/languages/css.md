@@ -24,13 +24,13 @@ The [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) at-rul
 @import "other.css";
 ```
 
-Referenced files should be [relative](/features/dependency-resolution/#relative-specifiers) to the containing CSS file. You can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](/features/dependency-resolution/#url-schemes).
+Referenced files should be [relative](../features/dependency-resolution.md#relative-specifiers) to the containing CSS file. You can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](../features/dependency-resolution.md#url-schemes).
 
 ```css
 @import "npm:bootstrap/bootstrap.css";
 ```
 
-When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for more details.
+When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](../features/dependency-resolution.md#glob-specifiers) for more details.
 
 ```css
 @import "./components/*.css";
@@ -44,7 +44,7 @@ When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to im
 
 ### Cascade order
 
-Since the order in which stylesheets are applied affects the CSS cascade, Parcel preserves the order of your `@import` rules and CSS imports from JavaScript, even when CSS is split across multiple bundles (e.g. via [code splitting](/features/code-splitting/)). If different entries or bundles import the same stylesheets in conflicting orders, Parcel duplicates those stylesheets so that each one is applied in the correct order, and emits a warning. Import stylesheets in a consistent order to allow them to be shared.
+Since the order in which stylesheets are applied affects the CSS cascade, Parcel preserves the order of your `@import` rules and CSS imports from JavaScript, even when CSS is split across multiple bundles (e.g. via [code splitting](../features/code-splitting.md)). If different entries or bundles import the same stylesheets in conflicting orders, Parcel duplicates those stylesheets so that each one is applied in the correct order, and emits a warning. Import stylesheets in a consistent order to allow them to be shared.
 
 ### `url()`
 
@@ -56,7 +56,7 @@ body {
 }
 ```
 
-Referenced files should be [relative](/features/dependency-resolution/#relative-specifiers) to the containing CSS file. You can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. The `data-url:` scheme can also be used to inline a file as a data URL. See [Bundle inlining](/features/bundle-inlining/) for more details.
+Referenced files should be [relative](../features/dependency-resolution.md#relative-specifiers) to the containing CSS file. You can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. The `data-url:` scheme can also be used to inline a file as a data URL. See [Bundle inlining](../features/bundle-inlining.md) for more details.
 
 ```css
 .logo {
@@ -66,7 +66,7 @@ Referenced files should be [relative](/features/dependency-resolution/#relative-
 
 <p-warning>
 
-**Note**: Only [absolute paths](/features/dependency-resolution/#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
+**Note**: Only [absolute paths](../features/dependency-resolution.md#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
 
 <code-sample>
 <code-file name="/src/index.css">
@@ -124,7 +124,7 @@ CSS modules also work with other languages that compile to CSS, such as SASS, Le
 
 Using CSS modules also has the benefit of making dependencies on specific class names explicit in your code. This enables unused CSS classes to be automatically removed.
 
-![Example of tree shaking CSS modules](/blog/beta3/tree-shaking-css-modules.jpg)
+![Example of tree shaking CSS modules](../blog/beta3/tree-shaking-css-modules.jpg)
 
 As you can see in the above example, only the `.button` class is used, so the unused `.cta` class is removed from the compiled CSS file.
 
@@ -357,7 +357,7 @@ By default Parcel does not perform any transpilation of CSS syntax for older bro
 </code-file>
 </code-sample>
 
-See the [Targets](/features/targets/) docs for more details on how to configure this.
+See the [Targets](../features/targets.md) docs for more details on how to configure this.
 
 ### Vendor prefixing
 
@@ -765,7 +765,7 @@ html {
 
 ## Production
 
-In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
+In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](../features/production.md) for more details about how this works.
 
 ### Minification
 

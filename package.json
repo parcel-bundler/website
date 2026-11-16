@@ -46,9 +46,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "alias": {
-    "./assets/**": "./src/assets/$1",
-    "./plugin-browser/**": "./src/plugin-browser/$1"
   }
 }

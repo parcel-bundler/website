@@ -1,6 +1,6 @@
 # Configuration
 
-Parcel configuration can be shared between projects by publishing a [`.parcelrc`](/features/plugins/) file in a package on npm. This also allows multiple plugins to be distributed together.
+Parcel configuration can be shared between projects by publishing a [`.parcelrc`](../features/plugins.md) file in a package on npm. This also allows multiple plugins to be distributed together.
 
 ## Shared configuration
 

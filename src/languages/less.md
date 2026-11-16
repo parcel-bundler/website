@@ -21,7 +21,7 @@ yarn add @parcel/transformer-less@next --dev
 </code-file>
 </code-sample>
 
-Compiled Less files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.less` extension.
+Compiled Less files are also processed the same way as [CSS](css.md), which means it is compiled for your browser targets, and any [PostCSS](css.md#postcss) plugins are also applied. [CSS modules](css.md#css-modules) can also be used by naming your file with the `.module.less` extension.
 
 ## Example usage
 

@@ -34,7 +34,7 @@ React Server Components can be integrated into an existing client-rendered SPA. 
 
 <!-- TODO(v3): this setup doesn't work in v3. Per-target `source` is not supported (crates/core/src/entry.rs only reads the top-level `source` field and `source` inside `exports`), top-level fields named after targets (`"client": "dist/index.html"`) are not supported, and every target in package.json applies to every entry, whether passed on the CLI or listed in the top-level `source`. Per-target `context`, `engines` and `distDir` now work, but `parcel build src/index.html server/server.js` with these targets still builds both entries in both the react-client and react-server contexts (fails resolving `http` for the browser). I couldn't find a supported way to give the HTML entry and the server entry different contexts in one build. One thing that does build: no targets, `"engines": {"node": ...}` so server.js is a Node entry, and server.js importing a module that renders RSC with `import {handler} from './rsc' with {env: 'react-server'}`. I only checked that it builds, not that it runs in a browser. -->
 
-First, create two [targets](/features/targets/) in your `package.json`. The `client` target will point at your app's existing `index.html`. The `server` target will point at your server.
+First, create two [targets](../features/targets.md) in your `package.json`. The `client` target will point at your app's existing `index.html`. The `server` target will point at your server.
 
 <code-sample>
 <code-file name="package.json">
@@ -102,7 +102,7 @@ The `@parcel/rsc` library used above is a small wrapper around lower-level React
 
 Now we need to implement the `Comments` component rendered above. This is a React [Server Component](https://react.dev/reference/rsc/server-components). It _only_ runs on the server (not in the browser), and has full access to server resources like the file system or a database.
 
-`"use server-entry"` is a Parcel-specific directive that marks a server component as the entry point of a page or route, creating a code splitting boundary. Any dependencies referenced by this route will be optimally bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](/features/code-splitting/#shared-bundles).
+`"use server-entry"` is a Parcel-specific directive that marks a server component as the entry point of a page or route, creating a code splitting boundary. Any dependencies referenced by this route will be optimally bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](../features/code-splitting.md#shared-bundles).
 
 <code-sample>
 <code-file name="server/Comments.js">
@@ -394,7 +394,7 @@ Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See b
 
 You can use any Node.js libraries or frameworks to create your server. In this example we'll use [Express](https://expressjs.com). This is similar to the [example above](#create-a-server) but uses `renderRequest` from `@parcel/rsc` instead of `renderRSC`. This renders HTML instead of an RSC Payload. The [server entry](#server-entries) renders the root `<html>` element for the page.
 
-Create a [target](/features/targets/) with the `"react-server"` context in your `package.json`, and pass your server as the entry when running Parcel. The `parcel run` command builds your server and runs it with Node. Express is excluded from the bundle using the [includeNodeModules](/features/targets/#includenodemodules) option, so it is loaded from `node_modules` at runtime.
+Create a [target](../features/targets.md) with the `"react-server"` context in your `package.json`, and pass your server as the entry when running Parcel. The `parcel run` command builds your server and runs it with Node. Express is excluded from the bundle using the [includeNodeModules](../features/targets.md#includenodemodules) option, so it is loaded from `node_modules` at runtime.
 
 <code-sample>
 <code-file name="package.json">
@@ -461,7 +461,7 @@ export function Page() {
 
 Start the development server with `npm start`, and open [http://localhost:3000](http://localhost:3000) to see the rendered page.
 
-Parcel builds the server into `dist/server`, and client code into `dist/client`. When you make a change, Parcel rebuilds your app and applies the update to the running server using [hot module replacement](/features/development/#hot-reloading). If the server can't apply the update, Parcel restarts it. In development, Parcel also serves source maps for your server code, so server stack traces that React shows in the browser point at your original source code.
+Parcel builds the server into `dist/server`, and client code into `dist/client`. When you make a change, Parcel rebuilds your app and applies the update to the running server using [hot module replacement](../features/development.md#hot-reloading). If the server can't apply the update, Parcel restarts it. In development, Parcel also serves source maps for your server code, so server stack traces that React shows in the browser point at your original source code.
 
 To run the production build, build it with `npm run build`, and run `node dist/server/server.js`.
 

@@ -1,6 +1,6 @@
 import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
-import "/assets/scripts/search";
+import "../assets/scripts/search";
 
 Alpine.plugin(intersect);
 Alpine.start();

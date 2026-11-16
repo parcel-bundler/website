@@ -38,7 +38,7 @@ The assets are grouped into bundles in the **bundling** phase. The output filena
 
 Then, the **packaging** and **optimizing** phases work together to generate the final contents of every bundle, in parallel.
 
-The **packaging** phase merges the assets in each bundle together into output files. Packaging is built into Parcel: each asset's content knows how to package itself, based on its type (e.g. JavaScript, CSS, or HTML). [Native plugins](/plugin-system/native-plugins/) can provide custom asset content that packages itself in its own way.
+The **packaging** phase merges the assets in each bundle together into output files. Packaging is built into Parcel: each asset's content knows how to package itself, based on its type (e.g. JavaScript, CSS, or HTML). [Native plugins](native-plugins.md) can provide custom asset content that packages itself in its own way.
 
 The **optimizing** phase transforms the contents of each bundle. When this is done, Parcel determines the content hashes of each bundle, which are applied to the final output filenames.
 
@@ -64,19 +64,19 @@ separate bundles. For example, if your `index.html` file links to an
 
 ### Complete List of Plugin Types
 
-Plugins can be written in JavaScript or TypeScript, or as [native plugins](/plugin-system/native-plugins/) in Rust, Go, Swift, or any language that can export a C ABI.
+Plugins can be written in JavaScript or TypeScript, or as [native plugins](native-plugins.md) in Rust, Go, Swift, or any language that can export a C ABI.
 
-- [Transformer](/plugin-system/transformer): Converts an asset (into another asset) <br>
+- [Transformer](transformer.md): Converts an asset (into another asset) <br>
   _Example: convert Typescript to JavaScript (per file)_
-- [Resolver](/plugin-system/resolver): Turns dependency requests into absolute paths (or exclude them) <br>
+- [Resolver](resolver.md): Turns dependency requests into absolute paths (or exclude them) <br>
   _Example: add your own syntax for imports, e.g. `import "^/foo"`_
-- [Namer](/plugin-system/namer): Generates a filename (or filepath) for a bundle <br>
+- [Namer](namer.md): Generates a filename (or filepath) for a bundle <br>
   _Example: place output bundles in a hierarchical file structure, omit hashes in bundle names_
-- [Optimizer](/plugin-system/optimizer): Applies modifications to the finished bundle (similar to a transformer) <br>
+- [Optimizer](optimizer.md): Applies modifications to the finished bundle (similar to a transformer) <br>
   _Example: run a minifier or convert into a data-url for inline usage_
-- [Config](/features/plugins/): A reuseable '.parcelrc' package <br>
+- [Config](../features/plugins.md): A reuseable '.parcelrc' package <br>
   _Example: provide a tailor-made parcel config for your boilerplate_ <br>
-- [Reporter](/plugin-system/reporter): Listens to events of the build <br>
+- [Reporter](reporter.md): Listens to events of the build <br>
   _Example: generate a bundle report, notify another tool when a build completes_
 
 <!-- TODO(v3): the bundler is not pluggable in v3 – only the built-in "@parcel/bundler-default" and "@parcel/bundler-library" can be named in .parcelrc (crates/parcel/src/plugin_factory.rs), so Bundler was removed from this list. Confirm this is intended for the alpha. -->

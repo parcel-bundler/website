@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Parcel</title>
     <meta name="description" content="The batteries-included build tool for the web.">
-    <link href="/feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link href="../feed.xml" rel="alternate" type="application/rss+xml" title="Blog RSS" />
+    <link rel="shortcut icon" href="../assets/favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
     <script type="module" src="libs.js"></script>
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/assets/home-og.png?as=jpeg" />
+    <meta name="twitter:image" content="../assets/home-og.png?as=jpeg" />
     <meta name="twitter:site" content="@parceljs" />
     <meta name="twitter:creator" content="@parceljs" />
     <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://parceljs.org" />
     <meta property="og:title" content="Parcel – The batteries-included build tool for the web." />
     <meta property="og:description" content="Parcel combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production application." />
-    <meta property="og:image" content="/assets/home-og.png?as=jpeg" />
+    <meta property="og:image" content="../assets/home-og.png?as=jpeg" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -30,7 +30,7 @@
     </script>
   </head>
   <body class="bg-white dark:bg-gray-800 overflow-x-hidden">
-    <a href="/blog/v3-alpha/" class="group relative block bg-gray-900 dark:bg-black text-white text-sm md:text-base text-center py-2.5 px-4 hover:bg-gray-800 dark:hover:bg-gray-900 transition-colors">
+    <a href="../blog/v3-alpha/v3-alpha.md" class="group relative block bg-gray-900 dark:bg-black text-white text-sm md:text-base text-center py-2.5 px-4 hover:bg-gray-800 dark:hover:bg-gray-900 transition-colors">
       <span class="px-safe">
         <span aria-hidden="true">🎉</span>
         <strong class="font-semibold text-yellow-300">Parcel 3 alpha is here!</strong>
@@ -253,7 +253,7 @@
           </script>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-none md:grid-flow-col gap-4 gap-y-8 justify-center md:justify-start items-center px-safe" style="grid-auto-columns: auto auto 1fr;">
-          <a href="/docs/" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100/10">Get started</a>
+          <a href="../docs.html" class="bg-green-400 dark:bg-green-600 text-green-900 hover:text-green-800 dark:hover:text-green-50 dark:text-green-50 dark:hover:bg-green-500 hover:bg-green-300 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100/10">Get started</a>
           <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener" class="bg-purple-200 dark:bg-purple-300 text-purple-700 hover:bg-purple-100 dark:hover:bg-purple-200 transition-colors font-semibold text-lg md:w-48 text-center py-4 rounded-xl border border-gray-100/10">GitHub</a>
           <button type="button" class="col-span-2 justify-self-center md:justify-self-end text-purple-200 hover:text-purple-50 transition-colors cursor-pointer border-white/20 border py-2 px-6 rounded-xl text-left flex" style="-webkit-tap-highlight-color: transparent" onclick="navigator.clipboard.writeText(this.firstElementChild.textContent.slice(2))" x-data="{copied: false}" @click="copied = true" x-effect="copied ? setTimeout(() => copied = false, 3000) : null">
             <code>$ yarn add parcel@next</code>
@@ -274,8 +274,8 @@
           </svg>
           <input type="text" id="search-input" aria-label="Search" placeholder="Search..." />
         </div>
-        <a href="/docs/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Docs</a>
-        <a href="/blog/" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Blog</a>
+        <a href="../docs.html" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Docs</a>
+        <a href="../blog/index.html" class="hover:text-pink-100 dark:hover:text-pink-200 transition">Blog</a>
       </nav>
     </header>
     <main class="px-safe">
@@ -291,35 +291,35 @@
         <nav class="text-white">
           <h3>Getting Started</h3>
           <ul>
-            <li><a href="/getting-started/webapp/">🌐 Web app</a></li>
-            <li><a href="/getting-started/library/">📔 Library</a></li>
-            <li><a href="/getting-started/migration/">🚚 Migration</a></li>
+            <li><a href="../getting-started/webapp.md">🌐 Web app</a></li>
+            <li><a href="../getting-started/library.md">📔 Library</a></li>
+            <li><a href="../getting-started/migration.md">🚚 Migration</a></li>
           </ul>
         </nav>
         <nav class="grid grid-cols-2 gap-x-16">
           <h3 class="col-span-2">Features</h3>
           <ul>
-            <li><a href="/features/development/">🧑‍💻 Development</a></li>
-            <li><a href="/features/code-splitting/">✂️ Code Splitting</a></li>
-            <li><a href="/features/dependency-resolution/">📔 Dependency resolution</a></li>
-            <li><a href="/features/bundle-inlining/">🪆 Bundle inlining</a></li>
-            <li><a href="/features/targets/">🎯 Targets</a></li>
+            <li><a href="../features/development.md">🧑‍💻 Development</a></li>
+            <li><a href="../features/code-splitting.md">✂️ Code Splitting</a></li>
+            <li><a href="../features/dependency-resolution.md">📔 Dependency resolution</a></li>
+            <li><a href="../features/bundle-inlining.md">🪆 Bundle inlining</a></li>
+            <li><a href="../features/targets.md">🎯 Targets</a></li>
           </ul>
           <ul>
-            <li><a href="/features/production/">🚀 Production</a></li>
-            <li><a href="/features/tree-shaking/">🌳 Tree Shaking</a></li>
-            <li><a href="/features/node-emulation/">🐢 Node Emulation</a></li>
-            <li><a href="/features/cli/">⌨️ CLI</a></li>
+            <li><a href="../features/production.md">🚀 Production</a></li>
+            <li><a href="../features/tree-shaking.md">🌳 Tree Shaking</a></li>
+            <li><a href="../features/node-emulation.md">🐢 Node Emulation</a></li>
+            <li><a href="../features/cli.md">⌨️ CLI</a></li>
           </ul>
         </nav>
         <nav>
           <h3>Plugin system</h3>
           <ul>
-            <li><a href="/features/plugins/">Using Plugins</a></li>
-            <li><a href="/plugin-system/overview/">Plugin System</a></li>
-            <li><a href="/plugin-system/authoring-plugins/">Authoring Plugins</a></li>
-            <li><a href="/plugin-system/logging/">Diagnostics</a></li>
-            <li><a href="/plugin-system/source-maps/">Source Maps</a></li>
+            <li><a href="../features/plugins.md">Using Plugins</a></li>
+            <li><a href="../plugin-system/overview.md">Plugin System</a></li>
+            <li><a href="../plugin-system/authoring-plugins.md">Authoring Plugins</a></li>
+            <li><a href="../plugin-system/logging.md">Diagnostics</a></li>
+            <li><a href="../plugin-system/source-maps.md">Source Maps</a></li>
           </ul>
         </nav>
         <nav>

@@ -1102,14 +1102,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"parcel-resolver-website@workspace:packages/parcel-resolver-website":
-  version: 0.0.0-use.local
-  resolution: "parcel-resolver-website@workspace:packages/parcel-resolver-website"
-  dependencies:
-    "@parcel/plugin": ^3.0.0-alpha.2
-  languageName: unknown
-  linkType: soft
-
 "parcel-website@workspace:.":
   version: 0.0.0-use.local
   resolution: "parcel-website@workspace:."

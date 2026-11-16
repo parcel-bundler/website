@@ -82,13 +82,13 @@ struct MyReporter: Reporter {
 
 </code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the method for each event.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the method for each event.
 
-Each event includes its properties, along with Parcel's options. JavaScript reporters also receive the plugin's `config` from `.parcelrc` with each event, and native reporters receive it when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details. Reporters cannot affect the result of a build. If a reporter fails with an error, it is logged, and the build continues.
+Each event includes its properties, along with Parcel's options. JavaScript reporters also receive the plugin's `config` from `.parcelrc` with each event, and native reporters receive it when they are created. See [Configuration](authoring-plugins.md#configuration) for details. Reporters cannot affect the result of a build. If a reporter fails with an error, it is logged, and the build continues.
 
 <p-note>
 
-**Note**: Messages logged by JavaScript reporters using `console` methods (or `process.stdout`/`process.stderr`) are sent as log events to all reporters, including Parcel's built-in CLI reporter, which prints them. To prevent infinite loops, messages logged while handling a log event may be discarded. Native reporters write to stdout and stderr directly. See [Logging](/plugin-system/logging/) for more details.
+**Note**: Messages logged by JavaScript reporters using `console` methods (or `process.stdout`/`process.stderr`) are sent as log events to all reporters, including Parcel's built-in CLI reporter, which prints them. To prevent infinite loops, messages logged while handling a log event may be discarded. Native reporters write to stdout and stderr directly. See [Logging](logging.md) for more details.
 
 </p-note>
 
@@ -182,7 +182,7 @@ struct MyReporter: Reporter {
 
 ## Build failure
 
-The build failure event is emitted when a build completes with errors. It includes a list of [diagnostics](/plugin-system/logging/#diagnostics) describing the errors. See [Diagnostics](/plugin-system/logging/#diagnostics) for details.
+The build failure event is emitted when a build completes with errors. It includes a list of [diagnostics](logging.md#diagnostics) describing the errors. See [Diagnostics](logging.md#diagnostics) for details.
 
 <code-tabs>
 
@@ -224,7 +224,7 @@ struct MyReporter: Reporter {
 
 ## Logging
 
-All logging in Parcel is routed through Reporter plugins. The level of each log event is one of error, warn, info, or verbose. Each event includes either a message string, or a list of [diagnostics](/plugin-system/logging/#diagnostics), which provide detail about the context of the log. Only messages allowed by the [`--log-level`](/features/cli/#parameters) CLI option are sent to reporters.
+All logging in Parcel is routed through Reporter plugins. The level of each log event is one of error, warn, info, or verbose. Each event includes either a message string, or a list of [diagnostics](logging.md#diagnostics), which provide detail about the context of the log. Only messages allowed by the [`--log-level`](../features/cli.md#parameters) CLI option are sent to reporters.
 
 <code-tabs>
 

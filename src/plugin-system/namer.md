@@ -1,12 +1,12 @@
 # Namer
 
-Namer plugins determine the output filename for a bundle. Namers run in a pipeline until one of them returns a result. Returned file paths should be relative to the target's dist directory. See [Targets](/features/targets/) for details about this.
+Namer plugins determine the output filename for a bundle. Namers run in a pipeline until one of them returns a result. Returned file paths should be relative to the target's dist directory. See [Targets](../features/targets.md) for details about this.
 
-Namers can be written in JavaScript, or as [native plugins](/plugin-system/native-plugins/) in Rust, Go, or Swift. Choose a language above any example to switch the examples and API names throughout the page.
+Namers can be written in JavaScript, or as [native plugins](native-plugins.md) in Rust, Go, or Swift. Choose a language above any example to switch the examples and API names throughout the page.
 
 ## Overriding names for specific bundles
 
-A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. A namer implements one method, <api-name js="name" rust="name" go="Name" swift="name(_:in:options:)"></api-name>, which receives the bundle along with the bundle graph. Namers may return nothing (<api-name js="null" rust="None" go="&quot;&quot;" swift="nil"></api-name>) when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](/features/plugins/#namers) in the Parcel configuration docs for details on how this works.
+A common use case for a Namer plugin is to override Parcel’s default naming scheme for specific bundles. A namer implements one method, <api-name js="name" rust="name" go="Name" swift="name(_:in:options:)"></api-name>, which receives the bundle along with the bundle graph. Namers may return nothing (<api-name js="null" rust="None" go="&quot;&quot;" swift="nil"></api-name>) when they don't handle a bundle to allow the next namer in the pipeline to handle it instead. See [Namers](../features/plugins.md#namers) in the Parcel configuration docs for details on how this works.
 
 This example places all `png` and `jpg` files into an `images` folder with the same name as their original filename.
 
@@ -122,7 +122,7 @@ struct MyNamer: Namer {
 
 </code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `name` method.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `name` method.
 
 <p-error>
 
@@ -132,7 +132,7 @@ See [Native plugins](/plugin-system/native-plugins/) for how to build native plu
 
 ## Content hashing
 
-Including a hash of a bundle’s contents is an important optimization for production builds that enables browsers to cache loaded files indefinitely. When the contents of a bundle changes, so does its filename, which acts as a cache invalidation mechanism. See the [Content hashing](/features/production/#content-hashing) docs for details about this.
+Including a hash of a bundle’s contents is an important optimization for production builds that enables browsers to cache loaded files indefinitely. When the contents of a bundle changes, so does its filename, which acts as a cache invalidation mechanism. See the [Content hashing](../features/production.md#content-hashing) docs for details about this.
 
 At the point bundles are being named, the final contents is not yet known, so Parcel provides a hash reference for each bundle, available as <api-name js="bundle.hashReference" rust="bundle.hash_reference()" go="bundle.HashReference()" swift="bundle.hashReference"></api-name>. This is an opaque placeholder value that will later on be replaced with the actual hash when writing the final bundles. Use this in returned bundle names to include a content hash. The hash reference must appear exactly once in the file name (not in a directory name) for it to be replaced. Bundles whose names don't include it are not content hashed.
 
@@ -207,11 +207,11 @@ Content hashing is also not applied to inline bundles, or to bundles built for s
 
 ## Targets
 
-Namer plugins should also respect the target associated with a bundle, available as <api-name js="bundle.target" rust="bundle.target()" go="bundle.Target()" swift="bundle.target"></api-name>. For example, the target's environment and output format may affect the file extension to use. [Targets](/features/targets/) also allow users to configure the output filenames of entry bundles in `package.json` (e.g. using [`exports`](/features/targets/#library-targets) for libraries). Parcel uses these filenames directly, and does not call Namer plugins for these bundles.
+Namer plugins should also respect the target associated with a bundle, available as <api-name js="bundle.target" rust="bundle.target()" go="bundle.Target()" swift="bundle.target"></api-name>. For example, the target's environment and output format may affect the file extension to use. [Targets](../features/targets.md) also allow users to configure the output filenames of entry bundles in `package.json` (e.g. using [`exports`](../features/targets.md#library-targets) for libraries). Parcel uses these filenames directly, and does not call Namer plugins for these bundles.
 
 ## Loading configuration
 
-Configuration for a Namer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `name` method, and native plugins receive it as JSON when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details, and [Loading configuration](/plugin-system/transformer/#loading-configuration) in the Transformer docs for an example in each language.
+Configuration for a Namer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `name` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details, and [Loading configuration](transformer.md#loading-configuration) in the Transformer docs for an example in each language.
 
 ## Relevant API
 

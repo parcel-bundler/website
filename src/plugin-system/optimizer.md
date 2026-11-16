@@ -94,11 +94,11 @@ struct MyOptimizer: Optimizer {
 
 </code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `optimize` method.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `optimize` method.
 
 ## Loading configuration
 
-Configuration for an Optimizer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `optimize` method, and native plugins receive it as JSON when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details.
+Configuration for an Optimizer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `optimize` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details.
 
 ## Conditional optimization
 
@@ -243,7 +243,7 @@ struct MyOptimizer: Optimizer {
 
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Optimizer plugins should transform the provided source map in addition to the contents of the bundle.
 
-The optimizer receives the bundle's source map as JSON in the standard [source map format](https://tc39.es/ecma426/), or nothing if the bundle doesn't have a source map. JavaScript plugins receive it as an object, and native plugins as JSON text. Optimizers should return the transformed source map along with the contents. In JavaScript, it may be returned as a JSON object, a JSON string, or a `Uint8Array` of UTF-8 encoded JSON. If an Optimizer doesn't return a source map, the bundle's source map is removed. See [Source Maps](/plugin-system/source-maps/) for more details.
+The optimizer receives the bundle's source map as JSON in the standard [source map format](https://tc39.es/ecma426/), or nothing if the bundle doesn't have a source map. JavaScript plugins receive it as an object, and native plugins as JSON text. Optimizers should return the transformed source map along with the contents. In JavaScript, it may be returned as a JSON object, a JSON string, or a `Uint8Array` of UTF-8 encoded JSON. If an Optimizer doesn't return a source map, the bundle's source map is removed. See [Source Maps](source-maps.md) for more details.
 
 If an optimizer doesn't change the existing lines of the bundle, e.g. because it only appends a license comment to the end, it can return the source map it received unchanged.
 

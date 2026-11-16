@@ -43,14 +43,14 @@
 <div class="type">
 <h4 class="title">
   <span id="DependencyOptions">DependencyOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L257"><i>packages-v3/plugin/src/types.ts:257</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L275"><i>packages-v3/plugin/src/types.ts:275</i></a>
 </h4>
-<p>Used when creating a <a href="/plugin-system/transformer/#Dependency">Dependency</a>, see that.</p>
+<p>Used when creating a <a href="../src/plugin-system/transformer.md#Dependency">Dependency</a>, see that.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a> = {</code></pre>
-<pre class="interface"><code>  readonly specifier: <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>;</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/transformer.md#DependencyOptions">DependencyOptions</a> = {</code></pre>
+<pre class="interface"><code>  readonly specifier: <a href="../src/plugin-system/api.md#DependencySpecifier">DependencySpecifier</a>;</code></pre>
 <div class="inline-method"><p>The specifier used to resolve the dependency.</p>
-</div><pre class="interface"><code>  readonly specifierType?: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a> | null;</code></pre>
+</div><pre class="interface"><code>  readonly specifierType?: <a href="../src/plugin-system/api.md#SpecifierType">SpecifierType</a> | null;</code></pre>
 <div class="inline-method"><p>How the specifier should be interpreted.</p>
 <ul>
 <li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
@@ -58,7 +58,7 @@
 <li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
 <li>custom: A custom specifier. Must be handled by a custom resolver plugin.</li>
 </ul>
-<p>Default value: <code>'esm'</code></p></div><pre class="interface"><code>  readonly priority?: <a href="/plugin-system/api/#DependencyPriority">DependencyPriority</a> | null;</code></pre>
+<p>Default value: <code>'esm'</code></p></div><pre class="interface"><code>  readonly priority?: <a href="../src/plugin-system/api.md#DependencyPriority">DependencyPriority</a> | null;</code></pre>
 <div class="inline-method"><p>When the dependency should be loaded.</p>
 <ul>
 <li>sync: The dependency should be resolvable synchronously. The resolved asset will be placed
@@ -67,7 +67,7 @@
   with the current bundle.</li>
 <li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
 </ul>
-<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  readonly bundleBehavior?: <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a> | 'none' | null;</code></pre>
+<p>Default value: <code>'sync'</code></p></div><pre class="interface"><code>  readonly bundleBehavior?: <a href="../src/plugin-system/api.md#BundleBehavior">BundleBehavior</a> | 'none' | null;</code></pre>
 <div class="inline-method"><p>Controls the behavior of the bundle the resolved asset is placed into. Use in combination with <code>priority</code>
 to determine when the bundle is loaded.</p>
 <ul>
@@ -76,7 +76,7 @@ to determine when the bundle is loaded.</p>
 <li>isolated: The resolved asset will be isolated from its parents in a separate bundle.
   Shared assets will be duplicated.</li>
 </ul>
-</div><pre class="interface"><code>  readonly importType?: <a href="/plugin-system/api/#ImportType">ImportType</a> | null;</code></pre>
+</div><pre class="interface"><code>  readonly importType?: <a href="../src/plugin-system/api.md#ImportType">ImportType</a> | null;</code></pre>
 <div class="inline-method"><p>How the resolved asset is used by the importing asset.</p>
 <p>Default value: <code>'javascript'</code></p></div><pre class="interface"><code>  readonly needsStableName?: boolean | null;</code></pre>
 <div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
@@ -92,40 +92,39 @@ over time.</p>
 <div class="inline-method"><p>Whether the dependency has side effects.</p>
 </div><pre class="interface"><code>  readonly loc?: {
     readonly filePath?: string | null;
-    readonly start: <a href="/plugin-system/api/#Location">Location</a>;
-    readonly end: <a href="/plugin-system/api/#Location">Location</a>;
+    readonly start: <a href="../src/plugin-system/api.md#Location">Location</a>;
+    readonly end: <a href="../src/plugin-system/api.md#Location">Location</a>;
   } | null;</code></pre>
 <div class="inline-method"><p>The location within the source file where the dependency was found.
 <code>filePath</code> may be an absolute path or a URL, and defaults to the asset&#39;s.</p>
-</div><pre class="interface"><code>  readonly target?: <a href="/plugin-system/api/#Target">Target</a> | null;</code></pre>
-<div class="inline-method"><p>The target to resolve the dependency in. Must be a <a href="/plugin-system/api/#Target">Target</a> obtained from Parcel,
+</div><pre class="interface"><code>  readonly target?: <a href="../src/plugin-system/api.md#Target">Target</a> | null;</code></pre>
+<div class="inline-method"><p>The target to resolve the dependency in. Must be a <a href="../src/plugin-system/api.md#Target">Target</a> obtained from Parcel,
 e.g. from an asset or dependency. Defaults to the asset&#39;s target.</p>
-</div><pre class="interface"><code>  readonly packageConditions?: Array&lt;<a href="/plugin-system/api/#PackageCondition">PackageCondition</a>&gt; | null;</code></pre>
-<div class="inline-method"><p>A list of package.json &quot;exports&quot; and &quot;imports&quot; conditions to use when resolving the dependency.
-An unsupported condition throws.</p>
+</div><pre class="interface"><code>  readonly packageConditions?: Array&lt;<a href="../src/plugin-system/api.md#PackageConditionName">PackageConditionName</a>&gt; | null;</code></pre>
+<div class="inline-method"><p>A list of package.json &quot;exports&quot; and &quot;imports&quot; conditions to use when resolving the dependency.</p>
 </div><pre class="interface"><code>  readonly pipeline?: string | null;</code></pre>
 <div class="inline-method"><p>The pipeline defined in .parcelrc that the dependency should be processed with.</p>
 </div><pre class="interface"><code>  readonly resolveFrom?: string | null;</code></pre>
 <div class="inline-method"><p>The absolute file path or URL where the dependency should be resolved from.
 By default, this is the source file where the dependency was specified.</p>
-</div><pre class="interface"><code>  readonly range?: <a href="/plugin-system/api/#SemverRange">SemverRange</a> | null;</code></pre>
+</div><pre class="interface"><code>  readonly range?: <a href="../src/plugin-system/api.md#SemverRange">SemverRange</a> | null;</code></pre>
 <div class="inline-method"><p>The semver version range expected for the dependency.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>
+<a href="../src/plugin-system/transformer.md#MutableAsset">MutableAsset</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="Dependency">Dependency</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L357"><i>packages-v3/plugin/src/types.ts:357</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L372"><i>packages-v3/plugin/src/types.ts:372</i></a>
 </h4>
-<p>A <a href="/plugin-system/transformer/#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).</p>
+<p>A <a href="../src/plugin-system/transformer.md#Dependency">Dependency</a> denotes a connection between two assets (likely some effect from the importee is expected - be it a side effect or a value is being imported).</p>
 
-<pre class="interface"><code>interface <a href="/plugin-system/transformer/#Dependency">Dependency</a> {</code></pre>
-<pre class="interface"><code>  readonly specifier: <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>;</code></pre>
+<pre class="interface"><code>interface <a href="../src/plugin-system/transformer.md#Dependency">Dependency</a> {</code></pre>
+<pre class="interface"><code>  readonly specifier: <a href="../src/plugin-system/api.md#DependencySpecifier">DependencySpecifier</a>;</code></pre>
 <div class="inline-method"><p>The specifier used to resolve the dependency.</p>
-</div><pre class="interface"><code>  readonly specifierType: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a>;</code></pre>
+</div><pre class="interface"><code>  readonly specifierType: <a href="../src/plugin-system/api.md#SpecifierType">SpecifierType</a>;</code></pre>
 <div class="inline-method"><p>How the specifier should be interpreted.</p>
 <ul>
 <li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
@@ -133,7 +132,7 @@ By default, this is the source file where the dependency was specified.</p>
 <li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
 <li>custom: A custom specifier. Must be handled by a custom resolver plugin.</li>
 </ul>
-</div><pre class="interface"><code>  readonly priority: <a href="/plugin-system/api/#DependencyPriority">DependencyPriority</a>;</code></pre>
+</div><pre class="interface"><code>  readonly priority: <a href="../src/plugin-system/api.md#DependencyPriority">DependencyPriority</a>;</code></pre>
 <div class="inline-method"><p>When the dependency should be loaded.</p>
 <ul>
 <li>sync: The dependency should be resolvable synchronously. The resolved asset will be placed
@@ -142,7 +141,7 @@ By default, this is the source file where the dependency was specified.</p>
   with the current bundle.</li>
 <li>lazy: The dependency should be placed in a separate bundle that&#39;s loaded later.</li>
 </ul>
-</div><pre class="interface"><code>  readonly bundleBehavior: <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a> | undefined;</code></pre>
+</div><pre class="interface"><code>  readonly bundleBehavior: <a href="../src/plugin-system/api.md#BundleBehavior">BundleBehavior</a> | undefined;</code></pre>
 <div class="inline-method"><p>Controls the behavior of the bundle the resolved asset is placed into. Use in combination with <code>priority</code>
 to determine when the bundle is loaded.</p>
 <ul>
@@ -151,7 +150,7 @@ to determine when the bundle is loaded.</p>
 <li>isolated: The resolved asset will be isolated from its parents in a separate bundle.
   Shared assets will be duplicated.</li>
 </ul>
-</div><pre class="interface"><code>  readonly importType: <a href="/plugin-system/api/#ImportType">ImportType</a>;</code></pre>
+</div><pre class="interface"><code>  readonly importType: <a href="../src/plugin-system/api.md#ImportType">ImportType</a>;</code></pre>
 <div class="inline-method"><p>How the resolved asset is used by the importing asset.</p>
 </div><pre class="interface"><code>  readonly needsStableName: boolean;</code></pre>
 <div class="inline-method"><p>When the dependency is a bundle entry (priority is &quot;parallel&quot; or &quot;lazy&quot;), this controls the naming
@@ -165,15 +164,16 @@ over time.</p>
 <div class="inline-method"><p>Whether the dependency is an entry.</p>
 </div><pre class="interface"><code>  readonly sideEffects: boolean;</code></pre>
 <div class="inline-method"><p>Whether the dependency has side effects.</p>
-</div><pre class="interface"><code>  readonly loc: <a href="/plugin-system/api/#SourceLocation">SourceLocation</a> | undefined;</code></pre>
+</div><pre class="interface"><code>  readonly loc: <a href="../src/plugin-system/api.md#SourceLocation">SourceLocation</a> | undefined;</code></pre>
 <div class="inline-method"><p>The location within the source file where the dependency was found.</p>
-</div><pre class="interface"><code>  readonly target: <a href="/plugin-system/api/#Target">Target</a>;</code></pre>
+</div><pre class="interface"><code>  readonly target: <a href="../src/plugin-system/api.md#Target">Target</a>;</code></pre>
 <div class="inline-method"><p>The target the dependency is resolved in.</p>
-</div><pre class="interface"><code>  readonly packageConditions: Array&lt;<a href="/plugin-system/api/#PackageCondition">PackageCondition</a>&gt;;</code></pre>
+</div><pre class="interface"><code>  readonly packageConditions: Array&lt;<a href="../src/plugin-system/api.md#PackageConditionName">PackageConditionName</a>&gt;;</code></pre>
 <div class="inline-method"><p>The package.json &quot;exports&quot; and &quot;imports&quot; conditions used to resolve the dependency.</p>
-</div><pre class="interface"><code>  readonly resolveFrom: string | undefined;</code></pre>
-<div class="inline-method"><p>The URL the dependency is resolved from. Files on disk use <code>file:</code> URLs.</p>
-</div><pre class="interface"><code>  readonly range: <a href="/plugin-system/api/#SemverRange">SemverRange</a> | undefined;</code></pre>
+</div><pre class="interface"><code>  readonly resolveFrom: <a href="../src/plugin-system/api.md#FilePath">FilePath</a> | undefined;</code></pre>
+<div class="inline-method"><p>The path of the file the dependency is resolved from: the <code>resolveFrom</code> it was created with,
+or else the file it was found in. <code>undefined</code> when that is not a file on disk.</p>
+</div><pre class="interface"><code>  readonly range: <a href="../src/plugin-system/api.md#SemverRange">SemverRange</a> | undefined;</code></pre>
 <div class="inline-method"><p>The semver version range expected for the dependency.</p>
 </div><pre class="interface"><code>  readonly placeholder: string | undefined;</code></pre>
 <div class="inline-method"><p>A unique string that a transformer can embed in the asset&#39;s content to refer to the
@@ -181,32 +181,32 @@ dependency. It is replaced with the resolved bundle URL or module id during pack
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#Asset">Asset</a>, <a href="/plugin-system/api/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, <a href="/plugin-system/api/#DependencySpecifier">DependencySpecifier</a>, <a href="/plugin-system/resolver/#Resolver">Resolver</a>
+<a href="../src/plugin-system/transformer.md#Asset">Asset</a>, <a href="../src/plugin-system/api.md#BundleGraph">BundleGraph</a>, <a href="../src/plugin-system/transformer.md#DependencyOptions">DependencyOptions</a>, <a href="../src/plugin-system/api.md#DependencySpecifier">DependencySpecifier</a>, <a href="../src/plugin-system/resolver.md#Resolver">Resolver</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="Asset">Asset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L442"><i>packages-v3/plugin/src/types.ts:442</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L460"><i>packages-v3/plugin/src/types.ts:460</i></a>
 </h4>
 <p>An asset represents a file or part of a file. It may represent any data type, including source code,
 binary data, etc. Assets may exist in the file system or may be virtual.</p>
 <p>Assets passed to namers, optimizers and reporters are read-only, and can only be
 accessed during the plugin call they were passed to.</p>
 
-<pre class="interface"><code>interface <a href="/plugin-system/transformer/#Asset">Asset</a> {</code></pre>
+<pre class="interface"><code>interface <a href="../src/plugin-system/transformer.md#Asset">Asset</a> {</code></pre>
 <pre class="interface"><code>  readonly url: string;</code></pre>
 <div class="inline-method"><p>The URL of the asset, including its query. Files on disk use <code>file:</code> URLs.</p>
-</div><pre class="interface"><code>  readonly filePath: <a href="/plugin-system/api/#FilePath">FilePath</a>;</code></pre>
+</div><pre class="interface"><code>  readonly filePath: <a href="../src/plugin-system/api.md#FilePath">FilePath</a>;</code></pre>
 <div class="inline-method"><p>The file path of the asset.</p>
 </div><pre class="interface"><code>  readonly type: string;</code></pre>
 <div class="inline-method"><p>The asset&#39;s type. This initially corresponds to the source file extension,
 but it may be changed during transformation.</p>
-</div><pre class="interface"><code>  readonly target: <a href="/plugin-system/api/#Target">Target</a>;</code></pre>
+</div><pre class="interface"><code>  readonly target: <a href="../src/plugin-system/api.md#Target">Target</a>;</code></pre>
 <div class="inline-method"><p>The target of the asset.</p>
 </div><pre class="interface"><code>  readonly isSource: boolean;</code></pre>
 <div class="inline-method"><p>Whether this asset is part of the project, and not an external dependency (e.g. in node_modules).
 This indicates that transformation using the project&#39;s configuration should be applied.</p>
-</div><pre class="interface"><code>  readonly bundleBehavior: <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a> | undefined;</code></pre>
+</div><pre class="interface"><code>  readonly bundleBehavior: <a href="../src/plugin-system/api.md#BundleBehavior">BundleBehavior</a> | undefined;</code></pre>
 <div class="inline-method"><p>Controls which bundle the asset is placed into.</p>
 <ul>
 <li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
@@ -214,44 +214,39 @@ This indicates that transformation using the project&#39;s configuration should 
 <li>isolated: The asset will be isolated from its parents in a separate bundle. Shared assets
   will be duplicated.</li>
 </ul>
-</div><pre class="interface"><code>  readonly isBundleSplittable: boolean;</code></pre>
-<div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
-into multiple, or whether all of the dependencies must be placed in a single bundle.</p>
 </div><pre class="interface"><code>  readonly sideEffects: boolean;</code></pre>
 <div class="inline-method"><p>Whether this asset can be omitted if none of its exports are being used.
 This is initially set by the resolver, but can be overridden by transformers.</p>
 </div><pre class="interface"><code>  readonly uniqueKey: string | undefined;</code></pre>
-<div class="inline-method"><p>When a transformer returns multiple assets, it can give them unique keys to identify them.
-This can be used to find assets during packaging, or to create dependencies between multiple
-assets returned by a transformer by using the unique key as the dependency specifier.</p>
+<div class="inline-method"><p>A key that identifies the asset, set by a transformer.</p>
 </div><pre class="interface"><code>  readonly pipeline: string | undefined;</code></pre>
 <div class="inline-method"><p>The pipeline defined in .parcelrc that the asset should be processed with.</p>
 </div><pre class="interface"><code>  getCode(): string;</code></pre>
 <div class="inline-method"><p>Returns the asset contents as a string.</p>
 </div><pre class="interface"><code>  getBuffer(): Uint8Array;</code></pre>
 <div class="inline-method"><p>Returns the asset contents as bytes.</p>
-</div><pre class="interface"><code>  getMap(): <a href="/plugin-system/api/#SourceMapJSON">SourceMapJSON</a> | null;</code></pre>
+</div><pre class="interface"><code>  getMap(): <a href="../src/plugin-system/api.md#SourceMapJSON">SourceMapJSON</a> | null;</code></pre>
 <div class="inline-method"><p>Returns a copy of the source map for the asset, if available.</p>
-</div><pre class="interface"><code>  getDependencies(): Array&lt;<a href="/plugin-system/transformer/#Dependency">Dependency</a>&gt;;</code></pre>
+</div><pre class="interface"><code>  getDependencies(): Array&lt;<a href="../src/plugin-system/transformer.md#Dependency">Dependency</a>&gt;;</code></pre>
 <div class="inline-method"><p>Returns a snapshot of the asset&#39;s dependencies.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/api/#Bundle">Bundle</a>, <a href="/plugin-system/api/#BundleGraph">BundleGraph</a>, <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>, <a href="/plugin-system/resolver/#ResolveResult">ResolveResult</a>
+<a href="../src/plugin-system/reporter.md#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="../src/plugin-system/api.md#Bundle">Bundle</a>, <a href="../src/plugin-system/api.md#BundleGraph">BundleGraph</a>, <a href="../src/plugin-system/transformer.md#MutableAsset">MutableAsset</a>, <a href="../src/plugin-system/resolver.md#ResolveResult">ResolveResult</a>, <a href="../src/plugin-system/transformer.md#ResolvedFile">ResolvedFile</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="MutableAsset">MutableAsset</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L512"><i>packages-v3/plugin/src/types.ts:512</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L520"><i>packages-v3/plugin/src/types.ts:520</i></a>
 </h4>
-<p>A mutable <a href="/plugin-system/transformer/#Asset">Asset</a>, available during transformation.</p>
+<p>A mutable <a href="../src/plugin-system/transformer.md#Asset">Asset</a>, available during transformation.</p>
 
-<pre class="interface"><code>interface <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a> extends <a href="/plugin-system/transformer/#Asset">Asset</a> {</code></pre>
+<pre class="interface"><code>interface <a href="../src/plugin-system/transformer.md#MutableAsset">MutableAsset</a> extends <a href="../src/plugin-system/transformer.md#Asset">Asset</a> {</code></pre>
 <pre class="interface"><code>  type: string;</code></pre>
 <div class="inline-method"><p>The asset&#39;s type. This initially corresponds to the source file extension,
 but it may be changed during transformation.</p>
-</div><pre class="interface"><code>  get bundleBehavior(): <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a> | undefined;
-  set bundleBehavior(value: <a href="/plugin-system/api/#BundleBehavior">BundleBehavior</a> | 'none' | null | undefined);</code></pre>
+</div><pre class="interface"><code>  get bundleBehavior(): <a href="../src/plugin-system/api.md#BundleBehavior">BundleBehavior</a> | undefined;
+  set bundleBehavior(value: <a href="../src/plugin-system/api.md#BundleBehavior">BundleBehavior</a> | 'none' | null | undefined);</code></pre>
 <div class="inline-method"><p>Controls which bundle the asset is placed into.</p>
 <ul>
 <li>inline: The asset will be placed into a new inline bundle. Inline bundles are not written
@@ -259,48 +254,45 @@ but it may be changed during transformation.</p>
 <li>isolated: The asset will be isolated from its parents in a separate bundle. Shared assets
   will be duplicated.</li>
 </ul>
-</div><pre class="interface"><code>  isBundleSplittable: boolean;</code></pre>
-<div class="inline-method"><p>If the asset is used as a bundle entry, this controls whether that bundle can be split
-into multiple, or whether all of the dependencies must be placed in a single bundle.</p>
-<p>Default value: <code>true</code></p></div><pre class="interface"><code>  sideEffects: boolean;</code></pre>
+<p>Setting any other value throws a TypeError.</p>
+</div><pre class="interface"><code>  sideEffects: boolean;</code></pre>
 <div class="inline-method"><p>Whether this asset can be omitted if none of its exports are being used.
 This is initially set by the resolver, but can be overridden by transformers.</p>
 </div><pre class="interface"><code>  get uniqueKey(): string | undefined;
   set uniqueKey(value: string | null | undefined);</code></pre>
-<div class="inline-method"><p>When a transformer returns multiple assets, it can give them unique keys to identify them.
-This can be used to find assets during packaging, or to create dependencies between multiple
-assets returned by a transformer by using the unique key as the dependency specifier.
-It can only be set once.</p>
+<div class="inline-method"><p>A key that identifies the asset. It can only be set once.</p>
 </div><pre class="interface"><code>  get pipeline(): string | undefined;
   set pipeline(value: string | null | undefined);</code></pre>
 <div class="inline-method"><p>The pipeline defined in .parcelrc that the asset should be processed with.</p>
-</div><pre class="interface"><code>  addDependency(options: <a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>): string;</code></pre>
+</div><pre class="interface"><code>  addDependency(options: <a href="../src/plugin-system/transformer.md#DependencyOptions">DependencyOptions</a>): string;</code></pre>
 <div class="inline-method"><p>Adds a dependency to the asset. Returns the dependency&#39;s placeholder, which can be
 embedded in the asset&#39;s content to refer to the resolved dependency.</p>
 </div><pre class="interface"><code>  addURLDependency(
     url: string,
-    options?: Partial&lt;Omit&lt;<a href="/plugin-system/transformer/#DependencyOptions">DependencyOptions</a>, 'specifier'&gt;&gt;,
+    options?: Partial&lt;Omit&lt;<a href="../src/plugin-system/transformer.md#DependencyOptions">DependencyOptions</a>, 'specifier'&gt;&gt;,
   ): string;</code></pre>
 <div class="inline-method"><p>Adds a url dependency to the asset.
 This is a shortcut for addDependency that defaults the specifierType and importType
 to &#39;url&#39; and the priority to &#39;lazy&#39;. Returns the dependency&#39;s placeholder.</p>
-</div><pre class="interface"><code>  setCode(code: string, map?: <a href="/plugin-system/api/#SourceMapJSON">SourceMapJSON</a> | null): void;</code></pre>
-<div class="inline-method"><p>Sets the asset contents as a string, and optionally its source map.</p>
-</div><pre class="interface"><code>  setBuffer(buffer: Uint8Array, map?: <a href="/plugin-system/api/#SourceMapJSON">SourceMapJSON</a> | null): void;</code></pre>
-<div class="inline-method"><p>Sets the asset contents as bytes, and optionally its source map.</p>
+</div><pre class="interface"><code>  setCode(code: string, map?: <a href="../src/plugin-system/api.md#SourceMapInput">SourceMapInput</a> | null): void;</code></pre>
+<div class="inline-method"><p>Sets the asset contents as a string, and optionally its source map. A map that isn&#39;t a JSON
+object throws a TypeError.</p>
+</div><pre class="interface"><code>  setBuffer(buffer: Uint8Array, map?: <a href="../src/plugin-system/api.md#SourceMapInput">SourceMapInput</a> | null): void;</code></pre>
+<div class="inline-method"><p>Sets the asset contents as bytes, and optionally its source map. A map that isn&#39;t a JSON
+object throws a TypeError.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="../src/plugin-system/transformer.md#Transformer">Transformer</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="ResolveOptions">ResolveOptions</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L687"><i>packages-v3/plugin/src/types.ts:687</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L691"><i>packages-v3/plugin/src/types.ts:691</i></a>
 </h4>
 
-<pre class="interface"><code>type <a href="/plugin-system/transformer/#ResolveOptions">ResolveOptions</a> = {</code></pre>
-<pre class="interface"><code>  readonly specifierType?: <a href="/plugin-system/api/#SpecifierType">SpecifierType</a>;</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/transformer.md#ResolveOptions">ResolveOptions</a> = {</code></pre>
+<pre class="interface"><code>  readonly specifierType?: <a href="../src/plugin-system/api.md#SpecifierType">SpecifierType</a>;</code></pre>
 <div class="inline-method"><p>How the specifier should be interpreted.</p>
 <ul>
 <li>esm: An ES module specifier. It is parsed as a URL, but bare specifiers are treated as node_modules.</li>
@@ -308,46 +300,90 @@ to &#39;url&#39; and the priority to &#39;lazy&#39;. Returns the dependency&#39;
 <li>url: A URL that works as in a browser. Bare specifiers are treated as relative URLs.</li>
 <li>custom: A specifier only a resolver plugin knows how to interpret.</li>
 </ul>
-<p>Default value: <code>'esm'</code></p></div><pre class="interface"><code>  readonly packageConditions?: Array&lt;string&gt;;</code></pre>
-<div class="inline-method"><p>A list of custom conditions to use when resolving package.json &quot;exports&quot; and &quot;imports&quot;.</p>
+<p>Default value: <code>'esm'</code></p></div><pre class="interface"><code>  readonly importType?: <a href="../src/plugin-system/api.md#ImportType">ImportType</a>;</code></pre>
+<div class="inline-method"><p>How the resolved file is used, as for a dependency. A file resolved as <code>javascript</code> must have a
+transformer that turns it into JavaScript, or resolving it fails. Use <code>url</code> to resolve any file,
+e.g. to read it yourself.</p>
+<p>Default value: <code>'javascript'</code></p></div><pre class="interface"><code>  readonly packageConditions?: Array&lt;<a href="../src/plugin-system/api.md#PackageConditionName">PackageConditionName</a>&gt;;</code></pre>
+<div class="inline-method"><p>A list of conditions to use when resolving package.json &quot;exports&quot; and &quot;imports&quot;.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>
+<a href="../src/plugin-system/transformer.md#ResolveFn">ResolveFn</a>
+</div>
+<div class="type">
+<h4 class="title">
+  <span id="ResolvedFile">ResolvedFile</span>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L718"><i>packages-v3/plugin/src/types.ts:718</i></a>
+</h4>
+<p>What a <code><a href="../src/plugin-system/transformer.md#ResolveFn">ResolveFn</a></code> resolved a specifier to: a file, or an external or excluded dependency.</p>
+
+<h5>Property Descriptions</h5>
+<ul><li><b><code>filePath</code></b>: <p>The absolute path of the resolved file.</p>
+</li>
+<li><b><code>pipeline</code></b>: <p>The named pipeline the resolver chose for the file, if any.</p>
+</li>
+<li><b><code>query</code></b>: <p>The query the resolver gave the file, if any.</p>
+</li>
+<li><b><code>sideEffects</code></b>: <p>Corresponds to <a href="../src/plugin-system/transformer.md#Asset">Asset</a>&#39;s <code>sideEffects</code>.</p>
+</li></ul>
+<h5>Type</h5>
+<pre><code>type <a href="../src/plugin-system/transformer.md#ResolvedFile">ResolvedFile</a> =
+  | {
+      readonly filePath: <a href="../src/plugin-system/api.md#FilePath">FilePath</a>;
+      readonly pipeline: string | null;
+      readonly query: string | null;
+      readonly sideEffects: boolean;
+      readonly isExternal?: undefined;
+      readonly isExcluded?: undefined;
+    }
+  | {
+      readonly isExternal: true;
+      readonly filePath?: undefined;
+      readonly isExcluded?: undefined;
+    }
+  | {
+      readonly isExcluded: true;
+      readonly filePath?: undefined;
+      readonly isExternal?: undefined;
+    };</code></pre>
+<h5>Referenced by:</h5>
+<a href="../src/plugin-system/transformer.md#ResolveFn">ResolveFn</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="ResolveFn">ResolveFn</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L708"><i>packages-v3/plugin/src/types.ts:708</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L749"><i>packages-v3/plugin/src/types.ts:749</i></a>
 </h4>
 <p>Resolves <code>specifier</code> from the file <code>from</code> with the resolvers configured in .parcelrc, exactly as
-a dependency of the asset would be, and returns the absolute path of the resolved file. Rejects
-when it does not resolve to a file. Every file the resolvers read invalidates the asset.</p>
+a dependency of the asset would be. Returns <code>null</code> when no resolver resolves it. Rejects with a
+<code><a href="../src/plugin-system/api.md#Diagnostic">Diagnostic</a></code> carrying the resolvers&#39; diagnostics when one fails, which reports them unchanged
+if thrown. Every file the resolvers read invalidates the asset.</p>
 
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a> = (
-  from: <a href="/plugin-system/api/#FilePath">FilePath</a>,
+<pre><code>type <a href="../src/plugin-system/transformer.md#ResolveFn">ResolveFn</a> = (
+  from: <a href="../src/plugin-system/api.md#FilePath">FilePath</a>,
   specifier: string,
-  options?: <a href="/plugin-system/transformer/#ResolveOptions">ResolveOptions</a>,
-) =&gt; Promise&lt;<a href="/plugin-system/api/#FilePath">FilePath</a>&gt;;</code></pre>
+  options?: <a href="../src/plugin-system/transformer.md#ResolveOptions">ResolveOptions</a>,
+) =&gt; Promise&lt;<a href="../src/plugin-system/transformer.md#ResolvedFile">ResolvedFile</a> | null&gt;;</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/transformer/#Transformer">Transformer</a>
+<a href="../src/plugin-system/transformer.md#ResolvedFile">ResolvedFile</a>, <a href="../src/plugin-system/transformer.md#Transformer">Transformer</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="Transformer">Transformer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L720"><i>packages-v3/plugin/src/types.ts:720</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L761"><i>packages-v3/plugin/src/types.ts:761</i></a>
 </h4>
 <p>The methods for a transformer plugin.</p>
 <p><code>config</code> is the configuration given for the plugin in .parcelrc, if any.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/transformer/#Transformer">Transformer</a>&lt;ConfigType&gt; = {</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/transformer.md#Transformer">Transformer</a>&lt;ConfigType&gt; = {</code></pre>
 <pre class="interface"><code>  transform(args: {
-    asset: <a href="/plugin-system/transformer/#MutableAsset">MutableAsset</a>;
+    asset: <a href="../src/plugin-system/transformer.md#MutableAsset">MutableAsset</a>;
     config: ConfigType;
-    resolve: <a href="/plugin-system/transformer/#ResolveFn">ResolveFn</a>;
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>;
-  }): <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;;</code></pre>
+    resolve: <a href="../src/plugin-system/transformer.md#ResolveFn">ResolveFn</a>;
+    options: <a href="../src/plugin-system/api.md#PluginOptions">PluginOptions</a>;
+  }): <a href="../src/plugin-system/api.md#Async">Async</a>&lt;void&gt;;</code></pre>
 <div class="inline-method"><p>Transform the asset in place.</p>
 </div><pre class="interface"><code>}</code></pre>
 

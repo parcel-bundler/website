@@ -6,11 +6,11 @@ SVG is a vector-based 2D graphics format based on XML, with support for interact
 
 Parcel detects most references in SVG to other files (such as `<script>`, `<image>`, and `<use>`) and processes them as well. These references are rewritten so that they link to the correct output files.
 
-File names are resolved relative to the current SVG file, but you can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. See [Dependency resolution](/features/dependency-resolution/) for details.
+File names are resolved relative to the current SVG file, but you can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. See [Dependency resolution](../features/dependency-resolution.md) for details.
 
 ### Stylesheets
 
-External stylesheets can be referenced via the `xml-stylesheet` processing instruction in an SVG document. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](/languages/sass/), [Less](/languages/less/), or [Stylus](/languages/stylus).
+External stylesheets can be referenced via the `xml-stylesheet` processing instruction in an SVG document. You can reference a CSS file, or any other file that compiles to CSS such as [SASS](sass.md), [Less](less.md), or [Stylus](stylus.md).
 
 <code-sample>
 <code-file name="example.svg">
@@ -34,13 +34,13 @@ text {
 </code-file>
 </code-sample>
 
-See the [CSS](/languages/css/) docs for details on how CSS is processed by Parcel.
+See the [CSS](css.md) docs for details on how CSS is processed by Parcel.
 
 ### Scripts
 
-The `<script>` element can be used to reference a script file from SVG. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](/languages/typescript/), [JSX](/languages/javascript/#jsx), or [CoffeeScript](/languages/coffeescript/).
+The `<script>` element can be used to reference a script file from SVG. You can reference a JavaScript file, or any other file that compiles to JavaScript such as [TypeScript](typescript.md), [JSX](javascript.md#jsx), or [CoffeeScript](coffeescript.md).
 
-The `type="module"` attribute should be used to indicate that a file is an [ES module](/languages/javascript/#es-modules) or [CommonJS](/languages/javascript/#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](/languages/javascript/#classic-scripts) for more information about this. ES modules are not yet supported natively in SVG, so Parcel compiles all JavaScript to classic scripts even if authored as a module.
+The `type="module"` attribute should be used to indicate that a file is an [ES module](javascript.md#es-modules) or [CommonJS](javascript.md#commonjs) file. If it is omitted, then the referenced file is treated as a classic script. See [Classic scripts](javascript.md#classic-scripts) for more information about this. ES modules are not yet supported natively in SVG, so Parcel compiles all JavaScript to classic scripts even if authored as a module.
 
 <p-note>
 
@@ -71,7 +71,7 @@ circle.addEventListener("click", () => {
 </code-file>
 </code-sample>
 
-See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script) for the `<script>` element for more info, and the [JavaScript](/languages/javascript/) docs for details on how Parcel processes JavaScript.
+See the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/script) for the `<script>` element for more info, and the [JavaScript](javascript.md) docs for details on how Parcel processes JavaScript.
 
 ### Images
 
@@ -81,7 +81,7 @@ Raster images or other SVGs can be embedded in an SVG file using the [`<image>`]
 <image href="image.jpg" width="100" height="50" />
 ```
 
-Parcel’s image transformer can also be used to resize and convert images by using [Query parameters](/features/dependency-resolution/#query-parameters).
+Parcel’s image transformer can also be used to resize and convert images by using [Query parameters](../features/dependency-resolution.md#query-parameters).
 
 ```xml
 <image href="image.jpg?as=webp" width="100" height="50" />
@@ -93,7 +93,7 @@ Parcel’s image transformer can also be used to resize and convert images by us
 
 </p-note>
 
-See the [Image](/recipes/image/) docs for details on how Parcel processes images.
+See the [Image](../recipes/image.md) docs for details on how Parcel processes images.
 
 ### Links
 
@@ -105,7 +105,7 @@ SVG files can link to other web pages or files using the [`<a>`](https://develop
 </a>
 ```
 
-While other assets referenced from an SVG file will include a [content hash](/features/production/#content-hashing) in their compiled filename by default, files referenced by an `<a>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be overridden by [Namer plugins](/plugin-system/namer/).
+While other assets referenced from an SVG file will include a [content hash](../features/production.md#content-hashing) in their compiled filename by default, files referenced by an `<a>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be overridden by [Namer plugins](../plugin-system/namer.md).
 
 ### External references
 
@@ -251,7 +251,7 @@ SVG can be referenced from CSS files using the `url()` function. As with the `<i
 }
 ```
 
-You can also embed small SVGs in a CSS file using data URLs. Use the `data-url:` scheme to do this, and Parcel will build the SVG and inline the result into the compiled CSS. See [Bundle inlining](/features/bundle-inlining/) for more details.
+You can also embed small SVGs in a CSS file using data URLs. Use the `data-url:` scheme to do this, and Parcel will build the SVG and inline the result into the compiled CSS. See [Bundle inlining](../features/bundle-inlining.md) for more details.
 
 ```css
 .logo {
@@ -275,7 +275,7 @@ export function Logo() {
 }
 ```
 
-See [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScript docs for more details.
+See [URL dependencies](javascript.md#url-dependencies) in the JavaScript docs for more details.
 
 ### Inlining as a string
 
@@ -289,7 +289,7 @@ logo.innerHTML = svg;
 document.body.appendChild(logo);
 ```
 
-See [Bundle inlining](/features/bundle-inlining/) for more details.
+See [Bundle inlining](../features/bundle-inlining.md) for more details.
 
 ### Importing as a React component
 
@@ -376,7 +376,7 @@ The `template` option customizes the JavaScript module that is generated for the
 
 ## Production
 
-In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
+In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](../features/production.md) for more details about how this works.
 
 ### Tree shaking
 

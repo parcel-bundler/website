@@ -25,4 +25,4 @@ console.log(data.hello[0]);
 </code-file>
 </code-sample>
 
-JSON files are only converted to JavaScript when imported from JavaScript. When referenced from anywhere else, such as from an HTML file or as a [URL dependency](/languages/javascript/#url-dependencies) in JavaScript, they are copied to the output directory as is.
+JSON files are only converted to JavaScript when imported from JavaScript. When referenced from anywhere else, such as from an HTML file or as a [URL dependency](javascript.md#url-dependencies) in JavaScript, they are copied to the output directory as is.

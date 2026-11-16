@@ -17,8 +17,8 @@ npm start
 Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. The following templates are supported:
 
 - `vanilla` – a Vanilla JS + HTML app (shown above)
-- `react-client` – a TypeScript + React client only app. See [Parcel's React docs](/recipes/react/).
-- `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](/recipes/rsc/).
+- `react-client` – a TypeScript + React client only app. See [Parcel's React docs](../recipes/react.md).
+- `react-server` – a TypeScript + React Server Components app. See [Parcel's React Server Components docs](../recipes/rsc.md).
 
 See below for a deep dive.
 
@@ -115,11 +115,11 @@ console.log("Hello world!");
 
 As you make changes, you should see your app automatically update in the browser without even refreshing the page!
 
-In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but Parcel also works with many common web frameworks and languages like [React](/recipes/react/) and [TypeScript](/languages/typescript/) out of the box. Check out the Recipes and Languages sections of the docs to learn more.
+In this example, we’ve shown how to use vanilla HTML, CSS, and JavaScript, but Parcel also works with many common web frameworks and languages like [React](../recipes/react.md) and [TypeScript](../languages/typescript.md) out of the box. Check out the Recipes and Languages sections of the docs to learn more.
 
 ## Package scripts
 
-So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](/features/production/) using the `parcel build` command. Finally, you can also declare your [entries](/features/targets/#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
+So far, we’ve been running the `parcel` CLI directly, but it can be useful to create some scripts in your `package.json` file to make this easier. We'll also setup a script to build your app for [production](../features/production.md) using the `parcel build` command. Finally, you can also declare your [entries](../features/targets.md#entries) in a single place using the `source` field so you don't need to duplicate them in each `parcel` command.
 
 <code-sample>
 <code-file name="package.json">
@@ -168,8 +168,8 @@ By default Parcel does not perform any code transpilation. This means that if yo
 </code-file>
 </code-sample>
 
-You can learn more about targets on the [Targets](/features/targets/) page.
+You can learn more about targets on the [Targets](../features/targets.md) page.
 
 ## Next steps
 
-Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [development](/features/development/) and [production](/features/production/), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.
+Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [development](../features/development.md) and [production](../features/production.md), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.

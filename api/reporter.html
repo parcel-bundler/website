@@ -43,34 +43,34 @@
 <div class="type">
 <h4 class="title">
   <span id="ReporterContext">ReporterContext</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L817"><i>packages-v3/plugin/src/types.ts:817</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L865"><i>packages-v3/plugin/src/types.ts:865</i></a>
 </h4>
 <p>Passed to every reporter method alongside the event&#39;s own fields.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/reporter/#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; = {</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/reporter.md#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; = {</code></pre>
 <pre class="interface"><code>  readonly config: ConfigType;</code></pre>
-<pre class="interface"><code>  readonly options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>;</code></pre>
+<pre class="interface"><code>  readonly options: <a href="../src/plugin-system/api.md#PluginOptions">PluginOptions</a>;</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a>, <a href="/plugin-system/reporter/#BuildStartEvent">BuildStartEvent</a>, <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="/plugin-system/reporter/#LogEvent">LogEvent</a>
+<a href="../src/plugin-system/reporter.md#BuildFailureEvent">BuildFailureEvent</a>, <a href="../src/plugin-system/reporter.md#BuildStartEvent">BuildStartEvent</a>, <a href="../src/plugin-system/reporter.md#BuildSuccessEvent">BuildSuccessEvent</a>, <a href="../src/plugin-system/reporter.md#LogEvent">LogEvent</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="BuildStartEvent">BuildStartEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L826"><i>packages-v3/plugin/src/types.ts:826</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L874"><i>packages-v3/plugin/src/types.ts:874</i></a>
 </h4>
 <p>The build just started.</p>
 
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/reporter/#BuildStartEvent">BuildStartEvent</a>&lt;ConfigType&gt; = <a href="/plugin-system/reporter/#ReporterContext">ReporterContext</a>&lt;ConfigType&gt;;</code></pre>
+<pre><code>type <a href="../src/plugin-system/reporter.md#BuildStartEvent">BuildStartEvent</a>&lt;ConfigType&gt; = <a href="../src/plugin-system/reporter.md#ReporterContext">ReporterContext</a>&lt;ConfigType&gt;;</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#Reporter">Reporter</a>
+<a href="../src/plugin-system/reporter.md#Reporter">Reporter</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="BuildSuccessEvent">BuildSuccessEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L832"><i>packages-v3/plugin/src/types.ts:832</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L880"><i>packages-v3/plugin/src/types.ts:880</i></a>
 </h4>
 <p>The build was successful.</p>
 
@@ -80,38 +80,38 @@
 <li><b><code>changedAssets</code></b>: <p>The assets transformed by this build. On a full build, that is every asset.</p>
 </li></ul>
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>&lt;ConfigType&gt; = <a href="/plugin-system/reporter/#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
-  readonly bundleGraph: <a href="/plugin-system/api/#BundleGraph">BundleGraph</a>;
+<pre><code>type <a href="../src/plugin-system/reporter.md#BuildSuccessEvent">BuildSuccessEvent</a>&lt;ConfigType&gt; = <a href="../src/plugin-system/reporter.md#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
+  readonly bundleGraph: <a href="../src/plugin-system/api.md#BundleGraph">BundleGraph</a>;
   readonly buildTime: number;
-  readonly changedAssets: Array&lt;<a href="/plugin-system/transformer/#Asset">Asset</a>&gt;;
+  readonly changedAssets: Array&lt;<a href="../src/plugin-system/transformer.md#Asset">Asset</a>&gt;;
 };</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#Reporter">Reporter</a>
+<a href="../src/plugin-system/reporter.md#Reporter">Reporter</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="BuildFailureEvent">BuildFailureEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L844"><i>packages-v3/plugin/src/types.ts:844</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L892"><i>packages-v3/plugin/src/types.ts:892</i></a>
 </h4>
 <p>The build failed.</p>
 
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a>&lt;ConfigType&gt; = <a href="/plugin-system/reporter/#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
-  readonly diagnostics: Array&lt;<a href="/plugin-system/api/#DiagnosticOptions">DiagnosticOptions</a>&gt;;
+<pre><code>type <a href="../src/plugin-system/reporter.md#BuildFailureEvent">BuildFailureEvent</a>&lt;ConfigType&gt; = <a href="../src/plugin-system/reporter.md#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
+  readonly diagnostics: Array&lt;<a href="../src/plugin-system/api.md#DiagnosticOptions">DiagnosticOptions</a>&gt;;
 };</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#Reporter">Reporter</a>
+<a href="../src/plugin-system/reporter.md#Reporter">Reporter</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="LogEvent">LogEvent</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L852"><i>packages-v3/plugin/src/types.ts:852</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L900"><i>packages-v3/plugin/src/types.ts:900</i></a>
 </h4>
 <p>A message was logged, either as text or as diagnostics.</p>
 
 <h5>Type</h5>
-<pre><code>type <a href="/plugin-system/reporter/#LogEvent">LogEvent</a>&lt;ConfigType&gt; = <a href="/plugin-system/reporter/#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
-  readonly level: Exclude&lt;<a href="/plugin-system/api/#LogLevel">LogLevel</a>, 'none'&gt;;
+<pre><code>type <a href="../src/plugin-system/reporter.md#LogEvent">LogEvent</a>&lt;ConfigType&gt; = <a href="../src/plugin-system/reporter.md#ReporterContext">ReporterContext</a>&lt;ConfigType&gt; &amp; {
+  readonly level: Exclude&lt;<a href="../src/plugin-system/api.md#LogLevel">LogLevel</a>, 'none'&gt;;
 } &amp; (
     | {
         readonly message: string;
@@ -119,25 +119,25 @@
       }
     | {
         readonly message?: undefined;
-        readonly diagnostics: Array&lt;<a href="/plugin-system/api/#DiagnosticOptions">DiagnosticOptions</a>&gt;;
+        readonly diagnostics: Array&lt;<a href="../src/plugin-system/api.md#DiagnosticOptions">DiagnosticOptions</a>&gt;;
       }
   );</code></pre>
 <h5>Referenced by:</h5>
-<a href="/plugin-system/reporter/#Reporter">Reporter</a>
+<a href="../src/plugin-system/reporter.md#Reporter">Reporter</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="Reporter">Reporter</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L871"><i>packages-v3/plugin/src/types.ts:871</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L919"><i>packages-v3/plugin/src/types.ts:919</i></a>
 </h4>
 <p>A reporter must implement at least one of these methods.</p>
 <p><code>config</code> is the configuration given for the plugin in .parcelrc, if any.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/reporter/#Reporter">Reporter</a>&lt;ConfigType&gt; = {</code></pre>
-<pre class="interface"><code>  buildStart?: (event: <a href="/plugin-system/reporter/#BuildStartEvent">BuildStartEvent</a>&lt;ConfigType&gt;) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;;</code></pre>
-<pre class="interface"><code>  buildSuccess?: (event: <a href="/plugin-system/reporter/#BuildSuccessEvent">BuildSuccessEvent</a>&lt;ConfigType&gt;) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;;</code></pre>
-<pre class="interface"><code>  buildFailure?: (event: <a href="/plugin-system/reporter/#BuildFailureEvent">BuildFailureEvent</a>&lt;ConfigType&gt;) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;;</code></pre>
-<pre class="interface"><code>  log?: (event: <a href="/plugin-system/reporter/#LogEvent">LogEvent</a>&lt;ConfigType&gt;) =&gt; <a href="/plugin-system/api/#Async">Async</a>&lt;void&gt;;</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/reporter.md#Reporter">Reporter</a>&lt;ConfigType&gt; = {</code></pre>
+<pre class="interface"><code>  buildStart?: (event: <a href="../src/plugin-system/reporter.md#BuildStartEvent">BuildStartEvent</a>&lt;ConfigType&gt;) =&gt; <a href="../src/plugin-system/api.md#Async">Async</a>&lt;void&gt;;</code></pre>
+<pre class="interface"><code>  buildSuccess?: (event: <a href="../src/plugin-system/reporter.md#BuildSuccessEvent">BuildSuccessEvent</a>&lt;ConfigType&gt;) =&gt; <a href="../src/plugin-system/api.md#Async">Async</a>&lt;void&gt;;</code></pre>
+<pre class="interface"><code>  buildFailure?: (event: <a href="../src/plugin-system/reporter.md#BuildFailureEvent">BuildFailureEvent</a>&lt;ConfigType&gt;) =&gt; <a href="../src/plugin-system/api.md#Async">Async</a>&lt;void&gt;;</code></pre>
+<pre class="interface"><code>  log?: (event: <a href="../src/plugin-system/reporter.md#LogEvent">LogEvent</a>&lt;ConfigType&gt;) =&gt; <a href="../src/plugin-system/api.md#Async">Async</a>&lt;void&gt;;</code></pre>
 <pre class="interface"><code>}</code></pre>
 
 

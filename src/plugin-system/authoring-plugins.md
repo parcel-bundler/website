@@ -44,7 +44,7 @@ If something you need is not being passed through `opts`, please come talk to
 the Parcel team about it. Avoid trying to get information yourself from other
 sources, especially from the file system.
 
-Plugins can also be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. See [Native plugins](/plugin-system/native-plugins/) for details.
+Plugins can also be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. See [Native plugins](native-plugins.md) for details.
 
 ## JavaScript runtime
 
@@ -181,7 +181,7 @@ resolve them. If someone made a better version of your plugin, please consider
 giving the better package name over, have them make a major version bump, and
 redirect people to the new tool.
 
-See [Local plugins](/features/plugins/#local-plugins) for recommendations on using
+See [Local plugins](../features/plugins.md#local-plugins) for recommendations on using
 plugins in your project without publishing them.
 
 ## Versioning
@@ -227,5 +227,5 @@ Parcel (e.g. `3.0.0-alpha.1`) only match ranges that include a prerelease, so us
 `^3.0.0-0` rather than `^3.0.0` or `3.x` to support them.
 
 Native plugins are also checked against the ABI version declared in their
-`parcel.abi` field. See [Native plugins](/plugin-system/native-plugins/#publishing)
+`parcel.abi` field. See [Native plugins](native-plugins.md#publishing)
 for details.

@@ -71,13 +71,13 @@ if (module.hot) {
 }
 ```
 
-Hot reloading also works in Node.js when using the `parcel run` command, which applies updates inside the running process, and restarts it when an update is not accepted. See the [CLI](/features/cli/) docs for more details.
+Hot reloading also works in Node.js when using the `parcel run` command, which applies updates inside the running process, and restarts it when an update is not accepted. See the [CLI](cli.md) docs for more details.
 
 ## Development target
 
-In development, Parcel builds the same [targets](/features/targets/) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
+In development, Parcel builds the same [targets](targets.md) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
 
-See the [Targets](/features/targets/) documentation for more information.
+See the [Targets](targets.md) documentation for more information.
 
 ## HTTPS
 

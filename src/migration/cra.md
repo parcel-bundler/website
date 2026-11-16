@@ -95,7 +95,7 @@ Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It
 
 ### 3. Migrate SVG imports
 
-If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](/languages/svg/#importing-as-a-react-component).
+If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](../languages/svg.md#importing-as-a-react-component).
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -168,7 +168,7 @@ npm install @parcel/transformer-babel@next babel-plugin-macros @babel/plugin-syn
 
 <!-- TODO(v3): @parcel/transformer-babel (packages-v3/babel) passes the user's Babel config through as-is, so JSX/TypeScript files fail to parse without syntax plugins (verified: "Support for the experimental syntax 'jsx' isn't currently enabled"). v2 added these syntax plugins automatically. TypeScript projects would also need @babel/plugin-syntax-typescript (with isTSX for .tsx) in an override. If this is fixed in the transformer, drop the syntax plugin here. -->
 
-Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](/languages/javascript/#transpilation) for more information.
+Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](../languages/javascript.md#transpilation) for more information.
 
 ### 5. Migrate CSS
 
@@ -176,7 +176,7 @@ Parcel includes support for CSS, CSS modules, and autoprefixing out of the box.
 
 <!-- TODO(v3): autoprefixing and JS transpilation depend on browser targets, but CRA's default package.json uses the environment-keyed object form of browserslist (`{"production": [...], "development": [...]}`). v3 only reads a string or array `browserslist` (package_engines in crates/core/src/entry.rs), so the object form is silently ignored (verified: `chrome 70` as a string transpiles `?.`, but the same query in the object form doesn't). .browserslistrc files don't seem to be read either. Either support these or add a migration step to flatten browserslist into an array. -->
 
-If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelrc`. See [SASS](/languages/sass/) for details.
+If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelrc`. See [SASS](../languages/sass.md) for details.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -219,7 +219,7 @@ If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-
 </code-file>
 </code-sample>
 
-Additionally, if you use Tailwind CSS, you'll need to add the built-in `@parcel/transformer-tailwind` plugin to your `.parcelrc`. See [the documentation](/recipes/react/#tailwind-css) for more details.
+Additionally, if you use Tailwind CSS, you'll need to add the built-in `@parcel/transformer-tailwind` plugin to your `.parcelrc`. See [the documentation](../recipes/react.md#tailwind-css) for more details.
 
 ### 6. Migrate tests
 

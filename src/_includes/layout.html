@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="Parcel Blog" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" />
-    <link href="/assets/styles/doc-styles.css" rel="stylesheet" />
+    <link href="../feed.xml" rel="alternate" type="application/atom+xml" title="Parcel Blog" />
+    <link rel="shortcut icon" href="../assets/favicon.ico" />
+    <link href="../assets/styles/doc-styles.css" rel="stylesheet" />
     <script type="module" blocking="render">
       import "./darkmode.js";
       import "./code-tabs-init.js";
     </script>
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-    <script type="module" src="/assets/scripts/docs.js"></script>
+    <script type="module" src="../assets/scripts/docs.js"></script>
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="/assets/og.png" />
+    <meta name="twitter:image" content="../assets/og.png" />
     <meta name="twitter:site" content="@parceljs" />
     <meta name="twitter:creator" content="@parceljs" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="/assets/og.png" />
+    <meta property="og:image" content="../assets/og.png" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -36,18 +36,18 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <a class="logo" href="/">
+        <a class="logo" href="../home/index.html">
           <img
             class="parcel"
-            src="/assets/parcel.png"
-            srcset="/assets/parcel@2x.png 2x"
+            src="../assets/parcel.png"
+            srcset="../assets/parcel@2x.png 2x"
             width="38"
             height="30"
             alt=""
           />
           <img
             class="parcel-text"
-            src="/assets/logo.svg"
+            src="../assets/logo.svg"
             alt="Parcel"
             width="120"
             height="25"
@@ -55,7 +55,7 @@
         </a>
       </div>
       <nav class="section-picker">
-        <a href="/docs/">Docs</a>
+        <a href="../docs.html">Docs</a>
         <parcel:macro src="posts.mjs#latestLink">Blog</parcel:macro>
         <script>
         let node = document.currentScript.previousElementSibling;

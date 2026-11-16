@@ -23,7 +23,7 @@ yarn add @parcel/transformer-coffeescript@next --dev
 </code-file>
 </code-sample>
 
-CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](/languages/javascript/).
+CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](javascript.md).
 
 ## Example usage
 

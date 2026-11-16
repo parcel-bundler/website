@@ -4,7 +4,7 @@
 
 ## Transpilation
 
-Parcel automatically transpiles TypeScript whenever you use a `.ts` or `.tsx` file. In addition to stripping the types to convert TypeScript to JavaScript, Parcel also compiles modern language features like classes and async await as necessary, [according to your browser targets](/languages/javascript/#browser-compatibility). It also transpiles [JSX](/languages/javascript/#jsx) automatically. See the [Transpilation](/languages/javascript/#transpilation) section of the JavaScript docs for more details.
+Parcel automatically transpiles TypeScript whenever you use a `.ts` or `.tsx` file. In addition to stripping the types to convert TypeScript to JavaScript, Parcel also compiles modern language features like classes and async await as necessary, [according to your browser targets](javascript.md#browser-compatibility). It also transpiles [JSX](javascript.md#jsx) automatically. See the [Transpilation](javascript.md#transpilation) section of the JavaScript docs for more details.
 
 A `tsconfig.json` file can be used to configure some aspects of the transpilation. Currently, JSX options are supported (`jsx`, `jsxFactory`, `jsxFragmentFactory`, and `jsxImportSource`), as well as the `experimentalDecorators` and `useDefineForClassFields` options. If `useDefineForClassFields` is not set, it defaults to `true` when `target` is `ES2022` or higher. Settings from tsconfigs referenced via `extends` are also applied. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for details.
 
@@ -43,7 +43,7 @@ Because Parcel processes each file individually, it implicitly enables the [`iso
 
 ## Resolution
 
-Parcel supports the `baseUrl`, `paths`, and `moduleSuffixes` options in `tsconfig.json`, which are TypeScript specific resolution extensions. See [TSConfig](/features/dependency-resolution/#tsconfig) in the dependency resolution docs for more details. You can also use Parcel's [tilde](/features/dependency-resolution/#tilde-specifiers) or [absolute](/features/dependency-resolution/#absolute-specifiers) specifiers. See [Configuring other tools](/features/dependency-resolution/#configuring-other-tools) for information about how to configure TypeScript to support these.
+Parcel supports the `baseUrl`, `paths`, and `moduleSuffixes` options in `tsconfig.json`, which are TypeScript specific resolution extensions. See [TSConfig](../features/dependency-resolution.md#tsconfig) in the dependency resolution docs for more details. You can also use Parcel's [tilde](../features/dependency-resolution.md#tilde-specifiers) or [absolute](../features/dependency-resolution.md#absolute-specifiers) specifiers. See [Configuring other tools](../features/dependency-resolution.md#configuring-other-tools) for information about how to configure TypeScript to support these.
 
 ## Type checking
 

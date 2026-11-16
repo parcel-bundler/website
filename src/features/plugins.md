@@ -38,7 +38,7 @@ You may also extend multiple configs by passing an array. Configs are merged in 
 </code-file>
 </code-sample>
 
-Other configs are resolved like dependencies, relative to the config file that extends them. This means you can extend configs published as npm packages (see [Configuration](/plugin-system/configuration/)), or reference another config in your project using a relative path.
+Other configs are resolved like dependencies, relative to the config file that extends them. This means you can extend configs published as npm packages (see [Configuration](../plugin-system/configuration.md)), or reference another config in your project using a relative path.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -125,7 +125,7 @@ Since `@parcel/transformer-svg` is included in the default config, the above exa
 
 In addition to glob-based pipelines, Parcel supports **named pipelines**, which enable you to import a the same file in multiple ways. Named pipelines are defined in `.parcelrc` just like normal pipelines, but include a URL scheme at the start of the glob.
 
-For example, by default, importing an image normally returns a URL to an external file, but you could use the `data-url:` named pipeline defined in the default Parcel config to inline it as a data URL instead. See [Bundle inlining](/features/bundle-inlining/) for details.
+For example, by default, importing an image normally returns a URL to an external file, but you could use the `data-url:` named pipeline defined in the default Parcel config to inline it as a data URL instead. See [Bundle inlining](bundle-inlining.md) for details.
 
 <code-sample>
 <code-file name="src/example.css">
@@ -210,17 +210,17 @@ Some plugins accept configuration options. To pass options to a plugin, use an o
 
 To configure a plugin that is included in the default config, define a pipeline for the same files that includes the plugin along with its config, as in the above example. Don't add `"..."` in this case, otherwise the default pipeline will also run the plugin with its default options.
 
-The available options are documented for each plugin. For example, see [JavaScript](/languages/javascript/), [CSS](/languages/css/), [SVG](/languages/svg/), and [Code splitting](/features/code-splitting/) for options supported by the built-in transformers and bundler.
+The available options are documented for each plugin. For example, see [JavaScript](../languages/javascript.md), [CSS](../languages/css.md), [SVG](../languages/svg.md), and [Code splitting](code-splitting.md) for options supported by the built-in transformers and bundler.
 
 ## Plugins
 
-Parcel supports many different kinds of plugins which perform a specific task as part of your build. Plugins are referenced in your `.parcelrc` using their NPM package names. Plugins may be written in JavaScript, or as native plugins written in languages like Rust, Go, or Swift. Both kinds of plugins are installed and referenced in the same way. See [Authoring plugins](/plugin-system/authoring-plugins/) for details.
+Parcel supports many different kinds of plugins which perform a specific task as part of your build. Plugins are referenced in your `.parcelrc` using their NPM package names. Plugins may be written in JavaScript, or as native plugins written in languages like Rust, Go, or Swift. Both kinds of plugins are installed and referenced in the same way. See [Authoring plugins](../plugin-system/authoring-plugins.md) for details.
 
 ### Transformers
 
-<a href="/plugin-browser/?type=%22transformer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Transformer plugins</a>
+<a href="../plugin-browser/index.html?type=%22transformer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="../assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Transformer plugins</a>
 
-[Transformer](/plugin-system/transformer/) plugins transform a single asset to compile it, discover dependencies, or convert it to a different format. They are configured using a [glob map](#glob-maps) in `.parcelrc`. Multiple transformers may run in series over the same asset using [pipelines](#pipelines), and [named pipelines](#named-pipelines) are supported to allow compiling the same file in multiple different ways within the same project. The `"..."` syntax can be used to extend the default transformers for a file.
+[Transformer](../plugin-system/transformer.md) plugins transform a single asset to compile it, discover dependencies, or convert it to a different format. They are configured using a [glob map](#glob-maps) in `.parcelrc`. Multiple transformers may run in series over the same asset using [pipelines](#pipelines), and [named pipelines](#named-pipelines) are supported to allow compiling the same file in multiple different ways within the same project. The `"..."` syntax can be used to extend the default transformers for a file.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -262,9 +262,9 @@ Once a transformer changes the asset type so that it no longer matches the curre
 
 ### Resolvers
 
-<a href="/plugin-browser/?type=%22resolver%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Resolver plugins</a>
+<a href="../plugin-browser/index.html?type=%22resolver%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="../assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Resolver plugins</a>
 
-[Resolver](/plugin-system/resolver/) plugins are responsible for turning a dependency specifier into a full file path that will be processed by transformers. See [Dependency resolution](/features/dependency-resolution/) for details on how this works. Resolvers are configured using an array of plugin names in `.parcelrc`. Resolution proceeds through the list of plugins until one of them returns a result.
+[Resolver](../plugin-system/resolver.md) plugins are responsible for turning a dependency specifier into a full file path that will be processed by transformers. See [Dependency resolution](dependency-resolution.md) for details on how this works. Resolvers are configured using an array of plugin names in `.parcelrc`. Resolution proceeds through the list of plugins until one of them returns a result.
 
 The `"..."` syntax can be used to extend the default resolvers. This allows you to override the resolution for certain dependencies, but fall back to the default for others. Generally, you'll want to add your custom resolvers before running the default ones.
 
@@ -285,7 +285,7 @@ If `"..."` is omitted, your resolver must be able to handle all dependencies or 
 
 ### Bundler
 
-The bundler is responsible for grouping assets together into bundles. Parcel includes two bundlers: `@parcel/bundler-default`, which is used by default, and `@parcel/bundler-library`, which is designed for building libraries (see [Building a library with Parcel](/getting-started/library/)). The bundler can be configured by specifying a plugin name in `.parcelrc`.
+The bundler is responsible for grouping assets together into bundles. Parcel includes two bundlers: `@parcel/bundler-default`, which is used by default, and `@parcel/bundler-library`, which is designed for building libraries (see [Building a library with Parcel](../getting-started/library.md)). The bundler can be configured by specifying a plugin name in `.parcelrc`.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -300,13 +300,13 @@ The bundler is responsible for grouping assets together into bundles. Parcel inc
 </code-file>
 </code-sample>
 
-See [Code splitting](/features/code-splitting/) for the options supported by `@parcel/bundler-default`.
+See [Code splitting](code-splitting.md) for the options supported by `@parcel/bundler-default`.
 
 ### Namers
 
-<a href="/plugin-browser/?type=%22namer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Namer plugins</a>
+<a href="../plugin-browser/index.html?type=%22namer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="../assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Namer plugins</a>
 
-[Namer](/plugin-system/namer/) plugins determine the output filename for a bundle. They are configured using an array of plugin names in `.parcelrc`. Naming proceeds through the list of namers until one of them returns a result.
+[Namer](../plugin-system/namer.md) plugins determine the output filename for a bundle. They are configured using an array of plugin names in `.parcelrc`. Naming proceeds through the list of namers until one of them returns a result.
 
 The `"..."` syntax can be used to extend the default namers. This allows you to override naming of certain bundles, but fall back to the default for others. Generally, you'll want to add your custom namers before running the default ones.
 
@@ -327,9 +327,9 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 
 ### Optimizers
 
-<a href="/plugin-browser/?type=%22optimizer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Optimizer plugins</a>
+<a href="../plugin-browser/index.html?type=%22optimizer%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="../assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Optimizer plugins</a>
 
-[Optimizer](/plugin-system/optimizer/) plugins are similar to transformers but they accept a bundle instead of a single asset. They are configured using a [glob map](#glob-maps) in `.parcelrc`. Multiple optimizers may run in series over the same bundle using [pipelines](#pipelines), and [named pipelines](#named-pipelines) are supported to allow compiling the same bundle in multiple different ways within the same project. The `"..."` syntax can be used to extend the default optimizers for a bundle.
+[Optimizer](../plugin-system/optimizer.md) plugins are similar to transformers but they accept a bundle instead of a single asset. They are configured using a [glob map](#glob-maps) in `.parcelrc`. Multiple optimizers may run in series over the same bundle using [pipelines](#pipelines), and [named pipelines](#named-pipelines) are supported to allow compiling the same bundle in multiple different ways within the same project. The `"..."` syntax can be used to extend the default optimizers for a bundle.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -348,9 +348,9 @@ If `"..."` is omitted, your namer must be able to handle naming all bundles or t
 
 ### Reporters
 
-<a href="/plugin-browser/?type=%22reporter%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="/assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Reporter plugins</a>
+<a href="../plugin-browser/index.html?type=%22reporter%22&page=0&filter=%22%22&includeOfficial=false" class="npm text-sm text-gray-800 bg-red-50 hover:bg-red-100 transition group rounded-sm px-2 py-1"><img src="../assets/npm.svg" class="h-3 inline pr-2 cursor-pointer">Find Reporter plugins</a>
 
-[Reporter](/plugin-system/reporter/) plugins receive events from Parcel as they happen throughout the build process. For example, reporters may write status information to stdout, or generate a bundle analysis report at the end of a build. Reporters are configured using an array of package names in `.parcelrc`. All reporters in this list are run for each build event. The `"..."` syntax can be used to extend the default reporters.
+[Reporter](../plugin-system/reporter.md) plugins receive events from Parcel as they happen throughout the build process. For example, reporters may write status information to stdout, or generate a bundle analysis report at the end of a build. Reporters are configured using an array of package names in `.parcelrc`. All reporters in this list are run for each build event. The `"..."` syntax can be used to extend the default reporters.
 
 <code-sample>
 <code-file name=".parcelrc">
@@ -488,4 +488,4 @@ Native plugin packages normally load a prebuilt shared library from a separate p
 </code-file>
 </code-sample>
 
-The `devLibrary` field must not be included in published packages. Parcel’s native plugin publishing workflow removes it automatically. See [Authoring plugins](/plugin-system/authoring-plugins/) for details on building and publishing native plugins.
+The `devLibrary` field must not be included in published packages. Parcel’s native plugin publishing workflow removes it automatically. See [Authoring plugins](../plugin-system/authoring-plugins.md) for details on building and publishing native plugins.

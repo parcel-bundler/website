@@ -36,7 +36,7 @@ For more guidance on choosing the right image formats, see the guide on [web.dev
 
 ### JavaScript
 
-To reference an image from JavaScript, use the `URL` constructor. For more details, see [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScript docs.
+To reference an image from JavaScript, use the `URL` constructor. For more details, see [URL dependencies](../languages/javascript.md#url-dependencies) in the JavaScript docs.
 
 <code-sample>
 <code-file name="main.js">
@@ -50,7 +50,7 @@ const imageUrl = new URL("image.jpeg?as=webp&width=250", import.meta.url);
 
 ### HTML
 
-To reference an image from HTML, use the `<img>` or `<picture>` element. The same image can be referenced multiple times with different query parameters to create multiple versions in different formats or sizes. See the [HTML docs](/languages/html/#images) for more details.
+To reference an image from HTML, use the `<img>` or `<picture>` element. The same image can be referenced multiple times with different query parameters to create multiple versions in different formats or sizes. See the [HTML docs](../languages/html.md#images) for more details.
 
 <code-sample>
 <code-file name="index.html">

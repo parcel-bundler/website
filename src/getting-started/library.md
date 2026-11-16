@@ -18,7 +18,7 @@ npm install --save-dev parcel@next
 
 ## Project setup
 
-Now that Parcel is installed, let’s setup a `package.json` file for our library. We'll use the `exports` field to declare the output file of our build, and a `source` field within it to reference our source files. This will be consumed by other tools that use our library (e.g. bundlers or Node.js). See [Library targets](/features/targets/#library-targets) for more details.
+Now that Parcel is installed, let’s setup a `package.json` file for our library. We'll use the `exports` field to declare the output file of our build, and a `source` field within it to reference our source files. This will be consumed by other tools that use our library (e.g. bundlers or Node.js). See [Library targets](../features/targets.md#library-targets) for more details.
 
 <code-sample>
 <code-file name="package.json">
@@ -174,10 +174,10 @@ Parcel also supports building libraries written in TypeScript. The `source` fiel
 
 ## Dependencies and tree shaking
 
-Parcel does not bundle packages listed in the `dependencies` or `peerDependencies` fields of your `package.json` into your library. These will be installed alongside your library by its consumers. Packages listed in `devDependencies` are bundled. This can be customized using the [`includeNodeModules`](/features/targets/#includenodemodules) option.
+Parcel does not bundle packages listed in the `dependencies` or `peerDependencies` fields of your `package.json` into your library. These will be installed alongside your library by its consumers. Packages listed in `devDependencies` are bundled. This can be customized using the [`includeNodeModules`](../features/targets.md#includenodemodules) option.
 
 Rather than combining your whole library into a single file, Parcel outputs a separate file for each module in your library, preserving the structure of your source code. This improves tree shaking in end applications when you have many exports that may be used independently.
 
 ## Next steps
 
-Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [Targets](/features/targets/), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.
+Now that you’ve set up your project, you're ready to learn about some more advanced features of Parcel. Check out the documentation about [Targets](../features/targets.md), and see the Recipes and Languages sections for more in-depth guides using popular web frameworks and tools.

@@ -2,7 +2,7 @@
 
 Transformer plugins transform a single asset to compile it, discover dependencies, or convert it to a different format. Many transformers are wrappers around other tools such as compilers and preprocessors, and are responsible for integrating them with Parcel.
 
-Transformers can be written in JavaScript, or as [native plugins](/plugin-system/native-plugins/) in Rust, Go, or Swift. Choose a language above any example to switch the examples and API names throughout the page.
+Transformers can be written in JavaScript, or as [native plugins](native-plugins.md) in Rust, Go, or Swift. Choose a language above any example to switch the examples and API names throughout the page.
 
 ## Transforming assets
 
@@ -107,11 +107,11 @@ struct MyTransformer: Transformer {
 
 </code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `transform` method.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `transform` method.
 
 ## Loading configuration
 
-Configuration for a Transformer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `transform` method, and native plugins receive it as JSON when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details.
+Configuration for a Transformer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `transform` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details.
 
 <code-tabs>
 
@@ -203,13 +203,13 @@ struct MyTransformer: Transformer {
 
 <p-note>
 
-**Note**: Parcel rebuilds an asset when a file its transformer read changes. Files that JavaScript plugins read with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically. Native plugins must read files through the `Options` object instead (see [File system](/plugin-system/native-plugins/#file-system)). Use <api-name js="resolve()" rust="asset.resolve()" go="asset.Resolve()" swift="asset.resolve(_:from:)"></api-name> to resolve other files the same way Parcel resolves dependencies. See [Invalidation](/plugin-system/authoring-plugins/#invalidation) for details.
+**Note**: Parcel rebuilds an asset when a file its transformer read changes. Files that JavaScript plugins read with the `fs` module (e.g. a config file loaded by the compiler it wraps) are tracked automatically. Native plugins must read files through the `Options` object instead (see [File system](native-plugins.md#file-system)). Use <api-name js="resolve()" rust="asset.resolve()" go="asset.Resolve()" swift="asset.resolve(_:from:)"></api-name> to resolve other files the same way Parcel resolves dependencies. See [Invalidation](authoring-plugins.md#invalidation) for details.
 
 </p-note>
 
 ## Changing the asset type
 
-Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's type to the new file type (e.g. `js`) with <api-name js="asset.type" rust="asset.set_type()" go="asset.SetType()" swift="asset.type"></api-name>. The asset will then be processed by the pipeline matching the new type. See [Transformers](/features/plugins/#transformers) in the Parcel configuration docs for details.
+Transformers may transform an asset from one format to another, for example from TypeScript to JavaScript. To do this, set the asset's type to the new file type (e.g. `js`) with <api-name js="asset.type" rust="asset.set_type()" go="asset.SetType()" swift="asset.type"></api-name>. The asset will then be processed by the pipeline matching the new type. See [Transformers](../features/plugins.md#transformers) in the Parcel configuration docs for details.
 
 <code-tabs>
 
@@ -270,7 +270,7 @@ struct MyTransformer: Transformer {
 
 ## The environment
 
-Assets are associated with a target, available as <api-name js="asset.target" rust="asset.target()" go="asset.Target()" swift="asset.target"></api-name>, which describes the environment the asset should be compiled for. The same asset may be processed multiple times with different targets, for example, when building for both browsers and Node. If possible, Transformer plugins should take the target into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](/features/targets/) for details.
+Assets are associated with a target, available as <api-name js="asset.target" rust="asset.target()" go="asset.Target()" swift="asset.target"></api-name>, which describes the environment the asset should be compiled for. The same asset may be processed multiple times with different targets, for example, when building for both browsers and Node. If possible, Transformer plugins should take the target into account when compiling code to ensure that the result works in and is optimized for the target. See [Targets](../features/targets.md) for details.
 
 <code-tabs>
 
@@ -344,13 +344,13 @@ struct MyTransformer: Transformer {
 
 </code-tabs>
 
-In JavaScript, see the [`Target`](/plugin-system/api/#Target) API docs for details on the available properties. In native plugins, the target provides the environment, output format, source type, engines, public URL, and dist directory. JavaScript plugins receive the target's browsers as a [browserslist](https://github.com/browserslist/browserslist) query, while native plugins receive the minimum version of each browser that the query resolves to.
+In JavaScript, see the [`Target`](api.md#Target) API docs for details on the available properties. In native plugins, the target provides the environment, output format, source type, engines, public URL, and dist directory. JavaScript plugins receive the target's browsers as a [browserslist](https://github.com/browserslist/browserslist) query, while native plugins receive the minimum version of each browser that the query resolves to.
 
 ## Adding dependencies
 
 In addition to transforming the contents of an asset, Transformer plugins are also responsible for discovering dependencies in the code so that they may also be processed by Parcel. Some transformers don’t need to worry about this, because another transformer will run afterward and do it (e.g. the default JavaScript transformer). If you’re adding support for a new language that doesn’t compile to one of the existing languages supported by Parcel, or otherwise introduces dependencies outside the compiled code, you’ll need to add them to the asset.
 
-Dependencies can be added to an asset using <api-name js="asset.addDependency()" rust="asset.add_dependency()" go="asset.AddDependency()" swift="asset.addDependency()"></api-name>. The only required option is the specifier, which is a string describing the location of the dependency. The specifier type describes how the specifier should be interpreted, and defaults to ESM. See [Dependency resolution](/features/dependency-resolution/) for details.
+Dependencies can be added to an asset using <api-name js="asset.addDependency()" rust="asset.add_dependency()" go="asset.AddDependency()" swift="asset.addDependency()"></api-name>. The only required option is the specifier, which is a string describing the location of the dependency. The specifier type describes how the specifier should be interpreted, and defaults to ESM. See [Dependency resolution](../features/dependency-resolution.md) for details.
 
 <code-tabs>
 
@@ -426,9 +426,9 @@ struct MyTransformer: Transformer {
 
 ### Influencing bundling
 
-The way a dependency is specified can influence how it is bundled. By default, dependencies are bundled together into the same output file. The priority of a dependency can specify that it should be loaded lazily or in parallel with the asset that depends on it. For example, dynamic `import()` in JavaScript loads dependencies with lazy priority. See [Code splitting](/features/code-splitting/).
+The way a dependency is specified can influence how it is bundled. By default, dependencies are bundled together into the same output file. The priority of a dependency can specify that it should be loaded lazily or in parallel with the asset that depends on it. For example, dynamic `import()` in JavaScript loads dependencies with lazy priority. See [Code splitting](../features/code-splitting.md).
 
-The bundle behavior further controls how a dependency is bundled. For example, dependencies may be separated into a new bundle but inlined into the parent by setting the bundle behavior to inline. See [Bundle inlining](/features/bundle-inlining/).
+The bundle behavior further controls how a dependency is bundled. For example, dependencies may be separated into a new bundle but inlined into the parent by setting the bundle behavior to inline. See [Bundle inlining](../features/bundle-inlining.md).
 
 See [`DependencyOptions`](#DependencyOptions) for more details on each of the available options.
 
@@ -467,7 +467,7 @@ export default new Transformer({
 
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Transformer plugins should add a source map to assets when transforming their content if possible. Since assets may be processed by multiple Transformers, you should also transform the existing source map included with the asset in addition to its content.
 
-Source maps are passed to and from plugins as JSON in the standard [source map format](https://tc39.es/ecma426/) (version 3), so they can usually be passed to and from other tools directly. JavaScript plugins receive them as plain objects, and native plugins as JSON strings. <api-name js="asset.getMap()" rust="asset.source_map()" go="asset.SourceMap()" swift="asset.sourceMap"></api-name> returns the asset's current source map, or nothing if it doesn't have one, and <api-name js="asset.setCode(code, map)" rust="asset.set_content_with_map()" go="asset.SetContentWithMap()" swift="asset.setContent(_:sourceMap:)"></api-name> sets new content along with a source map. See [Source Maps](/plugin-system/source-maps/) for more details.
+Source maps are passed to and from plugins as JSON in the standard [source map format](https://tc39.es/ecma426/) (version 3), so they can usually be passed to and from other tools directly. JavaScript plugins receive them as plain objects, and native plugins as JSON strings. <api-name js="asset.getMap()" rust="asset.source_map()" go="asset.SourceMap()" swift="asset.sourceMap"></api-name> returns the asset's current source map, or nothing if it doesn't have one, and <api-name js="asset.setCode(code, map)" rust="asset.set_content_with_map()" go="asset.SetContentWithMap()" swift="asset.setContent(_:sourceMap:)"></api-name> sets new content along with a source map. See [Source Maps](source-maps.md) for more details.
 
 <code-tabs>
 
@@ -593,7 +593,7 @@ struct MyTransformer: Transformer {
 
 ## Query parameters
 
-An asset may be referenced by a dependency with [query parameters](/features/dependency-resolution/#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](/recipes/image/) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters. Read the query from <api-name js="asset.url" rust="asset.query()" go="asset.Query()" swift="asset.query"></api-name>. In JavaScript, it is part of the asset's URL. Native plugins receive it as a string, without the leading `?`.
+An asset may be referenced by a dependency with [query parameters](../features/dependency-resolution.md#query-parameters). These specify options for the transformer to use when compiling or transforming the asset. For example, the Parcel [image transformer](../recipes/image.md) uses query parameters to allow users to specify the width, height, and format to convert images to. The same asset may be compiled multiple times with different query parameters. Read the query from <api-name js="asset.url" rust="asset.query()" go="asset.Query()" swift="asset.query"></api-name>. In JavaScript, it is part of the asset's URL. Native plugins receive it as a string, without the leading `?`.
 
 <code-tabs>
 
@@ -677,7 +677,7 @@ struct MyTransformer: Transformer {
 
 ## Custom content
 
-Normally, an asset's content is a string or bytes. [Native](/plugin-system/native-plugins/) transformers can also store a custom value as the content of an asset, e.g. an AST, using <api-name rust="asset.set_custom_content()" go="asset.SetCustomContent()" swift="asset.setCustomContent(_:)"></api-name>. This avoids converting the value back to code after each transformer, and lets the plugin control how the asset is packaged into a bundle. Custom content is not supported in JavaScript plugins.
+Normally, an asset's content is a string or bytes. [Native](native-plugins.md) transformers can also store a custom value as the content of an asset, e.g. an AST, using <api-name rust="asset.set_custom_content()" go="asset.SetCustomContent()" swift="asset.setCustomContent(_:)"></api-name>. This avoids converting the value back to code after each transformer, and lets the plugin control how the asset is packaged into a bundle. Custom content is not supported in JavaScript plugins.
 
 The value must implement `AssetContent`, which has:
 

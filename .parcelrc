@@ -1,6 +1,5 @@
 {
   "extends": "@parcel/config-default",
-  "resolvers": ["parcel-resolver-website", "..."],
   "transformers": {
     "src/blog/**/*.md": [
       {
@@ -47,7 +46,8 @@
             "api-name": "src/_includes/samples.mjs#apiName",
             "pre": "src/_includes/highlight.mjs#pre",
             "table": "src/_includes/tables.mjs#table"
-          }
+          },
+          "directoryIndex": "index.html"
         }
       }
     ],

@@ -21,7 +21,7 @@ yarn add @parcel/transformer-pug@next --dev
 </code-file>
 </code-sample>
 
-Pug is compiled to HTML and processed as described in the [HTML docs](/languages/html/).
+Pug is compiled to HTML and processed as described in the [HTML docs](html.md).
 
 ## Example usage
 
@@ -44,7 +44,7 @@ Pug may be used as an entry to Parcel just like HTML:
 parcel serve index.pug
 ```
 
-Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](/features/bundle-inlining/) for details.
+Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](../features/bundle-inlining.md) for details.
 
 ```js
 import html from "bundle-text:./index.pug";

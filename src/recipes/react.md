@@ -67,17 +67,17 @@ export function App() {
 
 As you can see, we’ve referenced `index.js` from a `<script>` element in our HTML file. This imported `react-dom` and used it to render our `App` component into the `<div id="app">` element in our page.
 
-See [Building a web app with Parcel](/getting-started/webapp/) for more details on getting started with a new project.
+See [Building a web app with Parcel](../getting-started/webapp.md) for more details on getting started with a new project.
 
 ## JSX
 
 Parcel supports JSX automatically when it detects you are using React. If you’re using React 17 or later, it also automatically enables the [modern JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html), which means you don't even need to import React for JSX to work, as you can see in `App.js` in the above example.
 
-To learn more about JSX, see [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html) and [JSX In Depth](https://reactjs.org/docs/jsx-in-depth.html) in the React docs, and the [JSX](/languages/javascript/#jsx) section from Parcel's JavaScript docs for details on how you can configure some details of how it's handled.
+To learn more about JSX, see [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html) and [JSX In Depth](https://reactjs.org/docs/jsx-in-depth.html) in the React docs, and the [JSX](../languages/javascript.md#jsx) section from Parcel's JavaScript docs for details on how you can configure some details of how it's handled.
 
 ## Fast Refresh
 
-Parcel has first-class support for [React Fast Refresh](https://reactnative.dev/docs/fast-refresh), which gives you quick feedback as you edit your code without needing to reload the page. In most cases, it can preserve component state as code is edited, even if you make an error. See the [Hot reloading](/features/development#hot-reloading) docs for details on how this works.
+Parcel has first-class support for [React Fast Refresh](https://reactnative.dev/docs/fast-refresh), which gives you quick feedback as you edit your code without needing to reload the page. In most cases, it can preserve component state as code is edited, even if you make an error. See the [Hot reloading](../features/development.md#hot-reloading) docs for details on how this works.
 
 ### Tips
 
@@ -122,7 +122,7 @@ By default, React Compiler targets React 19. If the `react` dependency in your `
 yarn add react-compiler-runtime
 ```
 
-See [React Compiler](/languages/javascript/#react-compiler) in the JavaScript docs for the other options you can set. To see why React Compiler skipped a function, run Parcel with `--log-level verbose`.
+See [React Compiler](../languages/javascript.md#react-compiler) in the JavaScript docs for the other options you can set. To see why React Compiler skipped a function, run Parcel with `--log-level verbose`.
 
 ## TypeScript
 
@@ -134,13 +134,13 @@ To add TypeScript definitions for React, install the following packages into you
 yarn add @types/react @types/react-dom --dev
 ```
 
-See the [TypeScript](/languages/typescript/) docs for more details on using TypeScript with Parcel.
+See the [TypeScript](../languages/typescript.md) docs for more details on using TypeScript with Parcel.
 
 ## Flow
 
 [Flow](https://flow.org/) types are not stripped by Parcel's builtin transpiler. To use Flow, install `@parcel/transformer-babel` and `@babel/preset-flow`, add `@parcel/transformer-babel` to your `.parcelrc`, and add `@babel/preset-flow` to your Babel config. Since Babel runs before Parcel's builtin transpiler, you'll also need to add `@babel/plugin-syntax-jsx` to your Babel config so that it can parse JSX.
 
-See the [Flow](/languages/javascript/#flow) docs for more details on using Flow with Parcel.
+See the [Flow](../languages/javascript.md#flow) docs for more details on using Flow with Parcel.
 
 ## Styling
 
@@ -179,7 +179,7 @@ export function Button({ children }) {
 
 You can also load CSS using a standard `<link rel="stylesheet">` element in your HTML file, but referencing CSS from your components helps make it clear which components depend on which CSS. This can also help with code splitting because only the CSS necessary for the components that you render will be loaded.
 
-Parcel also supports CSS languages like [SASS](/languages/sass/), [Less](/languages/less/), and [Stylus](/languages/stylus/). See [CSS](/languages/css/) for more details on how CSS is processed by Parcel.
+Parcel also supports CSS languages like [SASS](../languages/sass.md), [Less](../languages/less.md), and [Stylus](../languages/stylus.md). See [CSS](../languages/css.md) for more details on how CSS is processed by Parcel.
 
 ### CSS modules
 
@@ -216,11 +216,11 @@ export function Button({ children }) {
 </code-file>
 </code-sample>
 
-See [CSS modules](/languages/css/#css-modules) to learn more about how Parcel handles CSS modules.
+See [CSS modules](../languages/css.md#css-modules) to learn more about how Parcel handles CSS modules.
 
 ### CSS-in-JS
 
-CSS-in-JS libraries like [Styled Components](https://styled-components.com), [Emotion](https://emotion.sh/docs/introduction), and many others work well with Parcel. Some may require build configuration, such as a [Babel](/languages/javascript/#babel) plugin. To enable it, install `@parcel/transformer-babel`, add it to your `.parcelrc`, and create a Babel configuration in your project.
+CSS-in-JS libraries like [Styled Components](https://styled-components.com), [Emotion](https://emotion.sh/docs/introduction), and many others work well with Parcel. Some may require build configuration, such as a [Babel](../languages/javascript.md#babel) plugin. To enable it, install `@parcel/transformer-babel`, add it to your `.parcelrc`, and create a Babel configuration in your project.
 
 For example, to use Emotion, install the Babel plugin, add `@parcel/transformer-babel` to your `.parcelrc`, and create a `.babelrc` in your project:
 
@@ -350,7 +350,7 @@ export function Button({ children }) {
 
 ## Images
 
-You can reference external images from JSX using the `URL` constructor. Parcel also supports using [query parameters](/features/dependency-resolution/#query-parameters) to resize and convert images to a different format. It also handles image optimization, and includes a [content hash](/features/production/#content-hashing) in output filenames for long term browser caching.
+You can reference external images from JSX using the `URL` constructor. Parcel also supports using [query parameters](../features/dependency-resolution.md#query-parameters) to resize and convert images to a different format. It also handles image optimization, and includes a [content hash](../features/production.md#content-hashing) in output filenames for long term browser caching.
 
 <code-sample>
 <code-file name="Logo.js">
@@ -366,7 +366,7 @@ export function Logo() {
 </code-file>
 </code-sample>
 
-See [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScript docs for more details about this syntax, and the [Image](/recipes/image/) docs for more information about how Parcel handles images.
+See [URL dependencies](../languages/javascript.md#url-dependencies) in the JavaScript docs for more details about this syntax, and the [Image](image.md) docs for more information about how Parcel handles images.
 
 ### SVG
 
@@ -409,9 +409,9 @@ export function AddButton() {
 </code-file>
 </code-sample>
 
-The above example showed how to convert every SVG file to JSX, but you may want to be more selective in some cases. See [Importing as a React component](/languages/svg/#importing-as-a-react-component) in the SVG docs for more details.
+The above example showed how to convert every SVG file to JSX, but you may want to be more selective in some cases. See [Importing as a React component](../languages/svg.md#importing-as-a-react-component) in the SVG docs for more details.
 
-See the [SVG](/languages/svg/) docs for more about how Parcel transforms and optimizes SVG files.
+See the [SVG](../languages/svg.md) docs for more about how Parcel transforms and optimizes SVG files.
 
 ## Code splitting
 
@@ -456,4 +456,4 @@ export default function Profile() {
 </code-file>
 </code-sample>
 
-See the [Code Splitting](/features/code-splitting/) docs for more details about code splitting in Parcel, and [Code Splitting](https://reactjs.org/docs/code-splitting.html) in the React docs for more about `Suspense` and `React.lazy`.
+See the [Code Splitting](../features/code-splitting.md) docs for more details about code splitting in Parcel, and [Code Splitting](https://reactjs.org/docs/code-splitting.html) in the React docs for more about `Suspense` and `React.lazy`.

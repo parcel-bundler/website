@@ -22,7 +22,11 @@ function getTitle(source) {
   return source.match(/^# (.+)$/m)?.[1].trim();
 }
 
-/** All blog posts, newest first. `path` is relative to the blog directory. */
+/**
+ * All blog posts, newest first. `path` is relative to the blog directory, and links to a post
+ * reference its source (relative to where the macro is called), which Parcel rewrites to its URL.
+ * `url` is the post's public URL, for the feed.
+ */
 export function getPosts() {
   return fs
     .globSync('*/*.md', { cwd: blogDir })
@@ -42,7 +46,7 @@ export function getPosts() {
 /** Blog navigation list items. */
 export function nav() {
   return getPosts()
-    .map((post) => `<li><a href="${escape(post.url)}">${escape(post.title)}</a></li>`)
+    .map((post) => `<li><a href="../blog/${escape(post.path)}">${escape(post.title)}</a></li>`)
     .join('\n');
 }
 
@@ -52,7 +56,7 @@ export function latestLink(content, attributes) {
   let attrs = Object.entries(attributes)
     .map(([name, value]) => ` ${name}="${escape(value)}"`)
     .join('');
-  return `<a href="${escape(post.url)}"${attrs}>${content}</a>`;
+  return `<a href="../blog/${escape(post.path)}"${attrs}>${content}</a>`;
 }
 
 const SITE_URL = 'https://parceljs.org';
@@ -82,7 +86,7 @@ export function feed() {
 /** Redirects /blog/ to the newest post. */
 export function redirect() {
   let [post] = getPosts();
-  let href = escape(post.url);
+  let href = escape(post.path);
   return `<meta http-equiv="refresh" content="0; url=${href}">
 <p>Redirecting to <a href="${href}">${escape(post.title)}</a>…</p>`;
 }
