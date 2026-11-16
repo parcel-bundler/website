@@ -97,9 +97,13 @@ Return a `Diagnostic` to fail a call (see [Diagnostics](/plugin-system/logging/#
 
 The Go SDK lives in the [`plugin-go`](https://github.com/parcel-bundler/parcel/tree/v3/plugin-go) directory of the Parcel repo, as the `github.com/parcel-bundler/parcel/plugin-go/v3` module:
 
+<with-version>
+
 ```shell
-go get github.com/parcel-bundler/parcel/plugin-go/v3@v{{ parcel.version }}
+go get github.com/parcel-bundler/parcel/plugin-go/v3@v3.0.0-alpha.2
 ```
+
+</with-version>
 
 A plugin is a `main` package that registers a plugin in an `init` function. The plugin implements one or more of the `Transformer`, `Resolver`, `Namer`, and `Optimizer` interfaces, each of which has one method: `Transform`, `Resolve`, `Name`, or `Optimize`. A reporter implements an interface for each type of event it receives: `BuildStartReporter`, `BuildSuccessReporter`, `BuildFailureReporter`, or `LogReporter`. The function passed to `RegisterPlugin` is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
 
@@ -170,6 +174,8 @@ The Swift SDK lives in the [`plugin-swift`](https://github.com/parcel-bundler/pa
 <code-sample>
 <code-file name="Package.swift">
 
+<with-version>
+
 ```swift
 // swift-tools-version: 6.2
 import PackageDescription
@@ -178,7 +184,7 @@ let package = Package(
   name: "TxtTransformer",
   platforms: [.macOS(.v15)],
   products: [.library(name: "TxtTransformer", type: .dynamic, targets: ["TxtTransformer"])],
-  dependencies: [.package(url: "https://github.com/parcel-bundler/parcel", exact: "{{ parcel.version }}")],
+  dependencies: [.package(url: "https://github.com/parcel-bundler/parcel", exact: "3.0.0-alpha.2")],
   targets: [
     .target(
       name: "TxtTransformer",
@@ -186,6 +192,8 @@ let package = Package(
   ]
 )
 ```
+
+</with-version>
 
 </code-file>
 </code-sample>
@@ -418,6 +426,8 @@ Parcel provides a reusable GitHub Actions workflow that builds a Rust, Go, or Sw
 <code-sample>
 <code-file name=".github/workflows/release.yml">
 
+<with-version>
+
 ```yaml
 name: release
 
@@ -430,11 +440,13 @@ jobs:
     permissions:
       contents: read
       id-token: write # required for npm trusted publishing
-    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@v{{ parcel.version }}
+    uses: parcel-bundler/parcel/.github/workflows/native-plugin.yml@v3.0.0-alpha.2
     with:
       paths: .
       publish: true
 ```
+
+</with-version>
 
 </code-file>
 </code-sample>

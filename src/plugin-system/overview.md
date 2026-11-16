@@ -6,7 +6,7 @@
 </header>
 
 <figure class="plugin-diagram">
-{% include "plugin-system-diagram.svg" %}
+  <parcel:include src="../_includes/plugin-system-diagram.svg"></parcel:include>
 </figure>
 
 ## Parcel Architecture

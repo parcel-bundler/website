@@ -9,4 +9,6 @@
 The most important data types are listed on the page of the relevant plugin type.
 </p-note>
 
-{% include "../../api/index.html" %}
+<section>
+  <parcel:include src="../../api/index.html"></parcel:include>
+</section

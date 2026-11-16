@@ -305,4 +305,6 @@ The API reference below covers JavaScript plugins. For native plugins, see the [
 
 <!-- TODO(v3): link to the generated docs for each SDK (docs.rs, pkg.go.dev, DocC) once they are published. -->
 
-{% include "../../api/reporter.html" %}
+<section>
+  <parcel:include src="../../api/reporter.html"></parcel:include>
+</section
