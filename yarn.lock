@@ -260,13 +260,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-tokens@npm:^3.0.0 || ^4.0.0":
-  version: 4.0.0
-  resolution: "js-tokens@npm:4.0.0"
-  checksum: 8a95213a5a77deb6cbe94d86340e8d9ace2b93bc367790b260101d2f36a2eaf4e4e22d9fa9cf459b38af3a32fb4190e638024cf82ec95ef708680e405ea7cc78
-  languageName: node
-  linkType: hard
-
 "lefthook-android-arm64@npm:2.2.2":
   version: 2.2.2
   resolution: "lefthook-android-arm64@npm:2.2.2"
@@ -388,30 +381,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.1.0":
-  version: 1.4.0
-  resolution: "loose-envify@npm:1.4.0"
-  dependencies:
-    js-tokens: ^3.0.0 || ^4.0.0
-  bin:
-    loose-envify: cli.js
-  checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
-  languageName: node
-  linkType: hard
-
 "marked@npm:^2.0.7":
   version: 2.1.3
   resolution: "marked@npm:2.1.3"
   bin:
     marked: bin/marked
   checksum: 21a5ecd4941bc760aba21dfd97185853ec3b464cf707ad971e3ddb3aeb2f44d0deeb36b0889932afdb6f734975a994d92f18815dd0fabadbd902bdaff997cc5b
-  languageName: node
-  linkType: hard
-
-"object-assign@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "object-assign@npm:4.1.1"
-  checksum: fcc6e4ea8c7fe48abfbb552578b1c53e0d194086e2e6bbbf59e0a536381a292f39943c6e9628af05b5528aa5e3318bb30d6b2e53cadaf5b8fe9e12c4b69af23f
   languageName: node
   linkType: hard
 
@@ -506,10 +481,9 @@ __metadata:
     marked: ^2.0.7
     oxfmt: latest
     parcel: ^3.0.0-alpha.2
+    preact: ^10.5.0
     prismjs: ^1.26.0
     process: ^0.11.10
-    react: ^17.0.2
-    react-dom: ^17.0.2
     tailwindcss: ^4.3.5
     tailwindcss-safe-area: ^1.3.0
   languageName: unknown
@@ -550,6 +524,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"preact@npm:^10.5.0":
+  version: 10.29.8
+  resolution: "preact@npm:10.29.8"
+  peerDependencies:
+    preact-render-to-string: ">=5"
+  peerDependenciesMeta:
+    preact-render-to-string:
+      optional: true
+  checksum: 5a4774e8bce4ef5ebef5a3ef2358b47be6cd8b9b30132b1543d359efc90f8005a13506a75bfac6e9a044a614fa2a9def5f32fefd2c068f05221cf737283f1397
+  languageName: node
+  linkType: hard
+
 "prismjs@npm:^1.26.0":
   version: 1.29.0
   resolution: "prismjs@npm:1.29.0"
@@ -561,39 +547,6 @@ __metadata:
   version: 0.11.10
   resolution: "process@npm:0.11.10"
   checksum: bfcce49814f7d172a6e6a14d5fa3ac92cc3d0c3b9feb1279774708a719e19acd673995226351a082a9ae99978254e320ccda4240ddc474ba31a76c79491ca7c3
-  languageName: node
-  linkType: hard
-
-"react-dom@npm:^17.0.2":
-  version: 17.0.2
-  resolution: "react-dom@npm:17.0.2"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    scheduler: ^0.20.2
-  peerDependencies:
-    react: 17.0.2
-  checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
-  languageName: node
-  linkType: hard
-
-"react@npm:^17.0.2":
-  version: 17.0.2
-  resolution: "react@npm:17.0.2"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.20.2":
-  version: 0.20.2
-  resolution: "scheduler@npm:0.20.2"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
   languageName: node
   linkType: hard
 

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState} from 'preact/hooks';
 import {useDebounce, useSearch, useHashState} from './hooks.js';
 
 const dateFormatter = new Intl.RelativeTimeFormat(navigator.language, {
@@ -117,7 +117,7 @@ export default function App() {
             <input
               type="text"
               value={filter}
-              onChange={e => setState({filter: e.target.value, page: 0})}
+              onInput={e => setState({filter: e.target.value, page: 0})}
               className={`bg-white dark:bg-gray-800 rounded-full pr-2 pl-8 py-1 w-48 transition border-gray-300 dark:border-gray-600 border ${FOCUS_STYLES}`}
             />
           </div>

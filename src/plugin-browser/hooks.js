@@ -1,4 +1,4 @@
-import {useMemo, useEffect, useCallback, useRef, useState} from 'react';
+import {useMemo, useEffect, useCallback, useRef, useState} from 'preact/hooks';
 
 export function useSearch({type, page, filter, includeOfficial}) {
   let [result, setResult] = useState();
