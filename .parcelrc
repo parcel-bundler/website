@@ -53,14 +53,7 @@
     ],
     "*.css": [
       "@parcel/transformer-tailwind",
-      {
-        "plugin": "@parcel/transformer-css",
-        "config": {
-          "pseudoClasses": {
-            "focusVisible": "focus-visible"
-          }
-        }
-      }
+      "@parcel/transformer-css"
     ]
   },
   "namers": ["parcel-namer-website", "..."]
