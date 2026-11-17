@@ -483,7 +483,7 @@ The returned HTML is processed as if it were written in the page. Dependencies s
 
 ### Custom elements
 
-Macros can also be called using custom elements. The `<parcel:import>` element defines an element name that calls a macro. These elements receive their content and attributes just like `<parcel:macro>`. Place `<parcel:import>` before the elements that use it, such as in the `<head>`. df
+Macros can also be called using custom elements. The `<parcel:define>` element defines an element name that calls a macro. These elements receive their content and attributes just like `<parcel:macro>`. Place `<parcel:define>` before the elements that use it, such as in the `<head>`. df
 
 <code-sample>
 <code-file name="index.html">
@@ -491,7 +491,7 @@ Macros can also be called using custom elements. The `<parcel:import>` element d
 ```html/2,5-7
 <html>
   <head>
-    <parcel:import name="x-card" src="card.js"></parcel:import>
+    <parcel:define name="x-card" src="card.js"></parcel:define>
   </head>
   <body>
     <x-card title="Getting started">
