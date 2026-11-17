@@ -126,7 +126,41 @@ The [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ifram
 <iframe src="iframe.html"></iframe>
 ```
 
-While other assets referenced from an HTML file will include a [content hash](../features/production.md#content-hashing) in their compiled filename by default, files referenced by an `<a>` or `<iframe>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be overridden by [Namer plugins](../plugin-system/namer.md).
+While other assets referenced from an HTML file will include a [content hash](../features/production.md#content-hashing) in their compiled filename by default, files referenced by an `<a>` or `<iframe>` element will not. That's because these URLs are typically human readable, and need to have a stable name over time. Bundle naming can be customized with [naming rules](../features/targets.md#naming-rules), or overridden by [Namer plugins](../plugin-system/namer.md).
+
+Links to URLs without a file extension, such as `/docs/` or `/api/users`, are left as is. These usually refer to routes handled by a server rather than files, so Parcel does not try to resolve them.
+
+The [`<meta http-equiv="refresh">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/http-equiv#refresh) element is also supported. This redirects to another page after a delay, and the URL is processed just like a link.
+
+```html
+<meta http-equiv="refresh" content="0; url=new-page.html" />
+```
+
+#### Directory indexes
+
+Static file servers typically respond to a request for a directory with its `index.html` file, so that a page written to `docs/index.html` can be served at `/docs/`. The `directoryIndex` option of `@parcel/transformer-html` makes links to these pages use the shorter URL.
+
+<code-sample>
+<code-file name=".parcelrc">
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "directoryIndex": "index.html"
+        }
+      }
+    ]
+  }
+}
+```
+
+</code-file>
+</code-sample>
 
 ### Video, audio, and other assets
 
@@ -288,6 +322,226 @@ Compiled HTML:
 
 This may also occur with scripts. For example, if two pages depend on the same JavaScript library (e.g. React or Lodash), it may be split out into its own bundle and loaded separately. Parcel will insert a `<script>` tag into the compiled HTML to load this "shared bundle" in parallel. See [Code Splitting](../features/code-splitting.md) for more details.
 
+## Includes
+
+The `<parcel:include>` element inserts the compiled contents of another file into an HTML page. This is useful for sharing common parts of a site, such as headers, footers, and navigation, between multiple pages.
+
+<code-sample>
+<code-file name="index.html">
+
+```html/6
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <parcel:include src="header.html"></parcel:include>
+    <main>My content</main>
+  </body>
+</html>
+```
+
+</code-file>
+<code-file name="header.html">
+
+```html
+<header>
+  <img src="logo.svg" alt="My site" />
+  <a href="about.html">About</a>
+</header>
+```
+
+</code-file>
+</code-sample>
+
+The included file is compiled on its own, and then inserted in place of the `<parcel:include>` element. URLs within it are resolved relative to the included file, so the same file can be included from pages in different directories. Any file that compiles to HTML can be included, such as [Markdown](markdown.md).
+
+Metadata elements in included content, such as `<title>`, `<meta>`, and `<link>`, are moved into the page's `<head>`. This allows an included file to contribute stylesheets or metadata to the pages that use it.
+
+### Slots
+
+An included file can define placeholders with the `<parcel:slot>` element. The children of the `<parcel:include>` element are inserted into these slots. Elements with a `parcel:slot` attribute are placed into the slot with that name, and all other content is placed into the slot without a name.
+
+<code-sample>
+<code-file name="index.html">
+
+```html
+<parcel:include src="card.html">
+  <h2 parcel:slot="title">Getting started</h2>
+  <p>Learn how to set up a new project.</p>
+</parcel:include>
+```
+
+</code-file>
+<code-file name="card.html">
+
+```html
+<div class="card">
+  <parcel:slot name="title"></parcel:slot>
+  <parcel:slot></parcel:slot>
+</div>
+```
+
+</code-file>
+</code-sample>
+
+Compiled HTML:
+
+```html
+<div class="card">
+  <h2>Getting started</h2>
+  <p>Learn how to set up a new project.</p>
+</div>
+```
+
+If a slot does not receive any content, the children of the `<parcel:slot>` element are used as a fallback. Content for a slot that does not exist is removed.
+
+## Layouts
+
+Layouts are the inverse of includes: rather than inserting another file into a page, a page is inserted into a layout. The `<parcel:layout>` element wraps the page's content in the referenced layout, and the content fills the layout's [slots](#slots).
+
+<code-sample>
+<code-file name="about.html">
+
+```html
+<parcel:layout src="layout.html">
+  <title>About us</title>
+  <h1 parcel:slot="header">About us</h1>
+  <p>We make websites.</p>
+</parcel:layout>
+```
+
+</code-file>
+<code-file name="layout.html">
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My site</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <parcel:slot name="header"></parcel:slot>
+    </header>
+    <main>
+      <parcel:slot></parcel:slot>
+    </main>
+  </body>
+</html>
+```
+
+</code-file>
+</code-sample>
+
+The layout becomes the compiled page, and is processed just like any other HTML file. Like includes, URLs within a layout are resolved relative to the layout file.
+
+Elements in the page's `<head>` are added to the layout's `<head>`, replacing equivalent elements. In the example above, the page's `<title>` replaces the layout's. Attributes on the page's `<html>` and `<body>` elements are copied to the layout, and the `class` attribute is combined. This allows each page to customize the layout as needed.
+
+Layouts may also use other layouts. Any `<parcel:slot>` elements within the page content are passed through to be filled by the page using the layout.
+
+Layouts are especially useful with [Markdown](markdown.md#layouts), which can specify a layout for all pages in your `.parcelrc`.
+
+## Macros
+
+[Macros](../features/macros.md) are JavaScript functions that run at build time. In HTML, the `<parcel:macro>` element calls a macro, and is replaced with the HTML it returns. This allows you to generate content at build time without any custom plugins, e.g. a list of blog posts read from the file system.
+
+<code-sample>
+<code-file name="index.html">
+
+```html
+<ul>
+  <parcel:macro src="posts.js#postList" limit="5"></parcel:macro>
+</ul>
+```
+
+</code-file>
+<code-file name="posts.js">
+
+```js
+import fs from 'fs';
+import path from 'path';
+
+export function postList(content, {limit}) {
+  return fs
+    .readdirSync(path.join(__dirname, 'posts'))
+    .slice(0, Number(limit))
+    .map(file => `<li><a href="posts/${file}">${file}</a></li>`)
+    .join('');
+}
+```
+
+</code-file>
+</code-sample>
+
+The `src` attribute specifies the file containing the macro, and the name of the export to call after a `#`. If no export is specified, the default export is called. A macro receives two arguments: the content of the `<parcel:macro>` element as an HTML string, and an object containing the element's other attributes. It must return a string of HTML.
+
+The returned HTML is processed as if it were written in the page. Dependencies such as links, images, and scripts are resolved relative to the file that called the macro, and macros and includes within it are expanded as well.
+
+### Custom elements
+
+Macros can also be called using custom elements. The `<parcel:import>` element defines an element name that calls a macro. These elements receive their content and attributes just like `<parcel:macro>`. Place `<parcel:import>` before the elements that use it, such as in the `<head>`. df
+
+<code-sample>
+<code-file name="index.html">
+
+```html/2,5-7
+<html>
+  <head>
+    <parcel:import name="x-card" src="card.js"></parcel:import>
+  </head>
+  <body>
+    <x-card title="Getting started">
+      <p>Learn how to set up a new project.</p>
+    </x-card>
+  </body>
+</html>
+```
+
+</code-file>
+<code-file name="card.js">
+
+```js
+export default function card(content, {title}) {
+  return `<div class="card"><h2>${title}</h2>${content}</div>`;
+}
+```
+
+</code-file>
+</code-sample>
+
+Custom elements may also be defined for every HTML file using the `macros` option of `@parcel/transformer-html` in your `.parcelrc`. Each key is an element name, and each value is the file and export to call, relative to the `.parcelrc`.
+
+<code-sample>
+<code-file name=".parcelrc">
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "macros": {
+            "x-card": "src/macros/card.js",
+            "pre": "src/macros/highlight.js#highlight"
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+</code-file>
+</code-sample>
+
+As the `pre` example shows, built-in elements can be replaced by macros as well, e.g. to add syntax highlighting to all code blocks. A macro may return the same element it replaces (e.g. a `<pre>`) without calling itself again.
+
 ## PostHTML
 
 [PostHTML](https://github.com/posthtml/posthtml) is a tool for transforming HTML with plugins. PostHTML support is provided by the `@parcel/transformer-posthtml` plugin, which is not included in the default Parcel config. Install it along with any PostHTML plugins you need:
@@ -360,7 +614,7 @@ Alternatively, PostHTML options can be specified inline in your `.parcelrc`. Whe
 </code-file>
 </code-sample>
 
-This example uses [posthtml-include](https://github.com/posthtml/posthtml-include) to inline another HTML file.
+This example uses [posthtml-include](https://github.com/posthtml/posthtml-include) to inline another HTML file. Note that Parcel also supports this natively via [`<parcel:include>`](#includes).
 
 <code-sample>
 <code-file name=".posthtmlrc">

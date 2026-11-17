@@ -2,6 +2,8 @@
 
 Namer plugins determine the output filename for a bundle. Namers run in a pipeline until one of them returns a result. Returned file paths should be relative to the target's dist directory. See [Targets](../features/targets.md) for details about this.
 
+For many use cases, such as placing bundles in folders or changing output file names based on their source paths, you may not need a custom namer. See [Naming rules](../features/targets.md#naming-rules) to configure the default namer instead.
+
 Namers can be written in JavaScript, or as [native plugins](native-plugins.md) in Rust, Go, or Swift. Choose a language above any example to switch the examples and API names throughout the page.
 
 ## Overriding names for specific bundles

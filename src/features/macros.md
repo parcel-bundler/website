@@ -27,6 +27,8 @@ console.log(/foo(?:zap?|ba[rz])/);
 
 As you can see, the `regexgen` library has been completely compiled away, and we are left with a static regular expression!
 
+Macros can also be called from HTML, Markdown, and XML files to generate content. See [HTML macros](../languages/html.md#macros) for details.
+
 ## Arguments
 
 Macro arguments are evaluated statically, which means their value must be known at build time. You can pass any JavaScript literal value, including strings, numbers, booleans, objects, etc. Simple expressions such as string concatenation, arithmetic, and comparison operators are supported as well.

@@ -409,3 +409,66 @@ Determines whether to bundle `node_modules` or treat them as external. The defau
 Sets the location where compiled bundles in this target will be written, relative to package.json. By default, this is `dist` if only a single target is given, or `dist/${targetName}` for multiple targets. When specified, `distDir` overrides the `--dist-dir` CLI option. See [Targets](#targets) and [Multiple targets](#multiple-targets) for more details.
 
 For library targets, the output location is determined by the file paths in `exports` instead.
+
+## Naming rules
+
+By default, entry bundles are named after their source file, relative to the common directory of all entries. Other bundles are named after their source file with a [content hash](production.md#content-hashing). Shared bundles are named after their content hash alone.
+
+Use the `rules` option of `@parcel/namer-default` to customize these naming rules. These map globs matching the source file of a bundle to an output file name, patterns such as `$1` to access the captured glob matches.
+
+<code-sample>
+<code-file name=".parcelrc">
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "namers": [
+    {
+      "plugin": "@parcel/namer-default",
+      "config": {
+        "rules": {
+          "src/home/index.html": "index.html",
+          "src/blog/*/post.md": "blog/$1/index.html",
+          "src/**/*.md": "$1/$2/index.html",
+          "src/images/**/*.{png,jpg}": "images/$1/$2-[hash].[ext]"
+        }
+      }
+    }
+  ]
+}
+```
+
+</code-file>
+</code-sample>
+
+- Globs are matched against the path of the bundle's main entry asset, relative to the `.parcelrc` file. Rules are checked in the order they are written, and the first matching rule is used.
+- Output file names are relative to the [dist directory](targets.md). The `[ext]` placeholder inserts the file extension of the bundle, and `[hash]` inserts the content hash.
+- A file name with a specific extension only applies to bundles of that type. Other bundles with the same source file fall through to the next matching rule. Use `[ext]` to apply a rule to all types.
+
+[Shared bundles](code-splitting.md#shared-bundles) are named using the `shared` option instead. For example, this places shared JavaScript and CSS bundles in separate folders, and all other shared bundles in an `assets` folder.
+
+<code-sample>
+<code-file name=".parcelrc">
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "namers": [
+    {
+      "plugin": "@parcel/namer-default",
+      "config": {
+        "shared": {
+          "*.{js,mjs,cjs}": "js/[hash].[ext]",
+          "*.css": "css/[hash].[ext]",
+          "*": "assets/[hash].[ext]"
+        }
+      }
+    }
+  ]
+}
+```
+
+</code-file>
+</code-sample>
+
+For more control, you can write a custom [Namer plugin](../plugin-system/namer.md).
