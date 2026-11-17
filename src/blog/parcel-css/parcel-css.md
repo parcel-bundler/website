@@ -1,3 +1,4 @@
+<title>Announcing Parcel CSS</title>
 <meta property="article:published_time" content="2022-01-12">
 
 <header parcel:slot="header">
