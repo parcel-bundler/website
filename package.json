@@ -9,7 +9,7 @@
     "last 2 Firefox versions"
   ],
   "scripts": {
-    "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md' --public-url $(node public-url.js)",
+    "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
     "start": "parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
     "lint": "oxfmt 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel ./api"
