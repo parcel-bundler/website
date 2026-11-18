@@ -3,7 +3,7 @@
 <header parcel:slot="header">
   <h1>Parcel 3 alpha 3: Static sites</h1>
   <div class="summary">
-    <time datetime="2026-11-16" class="entry-date js-replace-date">2026-11-16</time>
+    <time datetime="2026-11-18" class="entry-date js-replace-date">2026-11-18</time>
   </div>
 </header>
 
