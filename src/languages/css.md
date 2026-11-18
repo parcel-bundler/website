@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: CSS
-eleventyNavigation:
-  key: languages-css
-  title: <img src="/assets/lang-icons/postcss.svg" alt=""/> CSS
-  order: 2
----
+# CSS
 
 Parcel includes support for CSS out of the box. To add a CSS file, either reference it with a `<link>` tag in an HTML file:
 
@@ -16,7 +9,7 @@ Parcel includes support for CSS out of the box. To add a CSS file, either refere
 or import it from a JavaScript file:
 
 ```javascript
-import "./index.css";
+import './index.css';
 ```
 
 ## Dependencies
@@ -28,30 +21,30 @@ CSS assets can contain dependencies referenced by `@import` syntax, as well as r
 The [`@import`](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) at-rule can be used to inline another CSS file into the same CSS bundle as the containing file. This means that at runtime a separate network request will not be needed to load the dependency.
 
 ```css
-@import "other.css";
+@import 'other.css';
 ```
 
-Referenced files should be [relative](/features/dependency-resolution/#relative-specifiers) to the containing CSS file. You can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](/features/dependency-resolution/#url-schemes).
+Referenced files should be [relative](../features/dependency-resolution.md#relative-specifiers) to the containing CSS file. You can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. To import a CSS file from npm, use the `npm:` [scheme](../features/dependency-resolution.md#url-schemes).
 
 ```css
-@import "npm:bootstrap/bootstrap.css";
+@import 'npm:bootstrap/bootstrap.css';
 ```
 
-When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](/features/dependency-resolution/#glob-specifiers) for more details.
+When the `@parcel/resolver-glob` plugin is enabled, you can also use globs to import multiple CSS files at once. See [Glob specifiers](../features/dependency-resolution.md#glob-specifiers) for more details.
 
 ```css
-@import "./components/*.css";
+@import './components/*.css';
 ```
 
 `@import` rules may also include [cascade layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), `supports()`, and media query conditions. Parcel wraps the inlined rules in the corresponding `@layer`, `@supports`, and `@media` blocks.
 
 ```css
-@import "theme.css" layer(base) supports(display: grid) (min-width: 500px);
+@import 'theme.css' layer(base) supports(display: grid) (min-width: 500px);
 ```
 
 ### Cascade order
 
-Since the order in which stylesheets are applied affects the CSS cascade, Parcel preserves the order of your `@import` rules and CSS imports from JavaScript, even when CSS is split across multiple bundles (e.g. via [code splitting](/features/code-splitting/)). If different entries or bundles import the same stylesheets in conflicting orders, Parcel duplicates those stylesheets so that each one is applied in the correct order, and emits a warning. Import stylesheets in a consistent order to allow them to be shared.
+Since the order in which stylesheets are applied affects the CSS cascade, Parcel preserves the order of your `@import` rules and CSS imports from JavaScript, even when CSS is split across multiple bundles (e.g. via [code splitting](../features/code-splitting.md)). If different entries or bundles import the same stylesheets in conflicting orders, Parcel duplicates those stylesheets so that each one is applied in the correct order, and emits a warning. Import stylesheets in a consistent order to allow them to be shared.
 
 ### `url()`
 
@@ -63,20 +56,20 @@ body {
 }
 ```
 
-Referenced files should be [relative](/features/dependency-resolution/#relative-specifiers) to the containing CSS file. You can also use [absolute](/features/dependency-resolution/#absolute-specifiers) and [tilde](/features/dependency-resolution/#tilde-specifiers) specifiers. The `data-url:` scheme can also be used to inline a file as a data URL. See [Bundle inlining](/features/bundle-inlining/) for more details.
+Referenced files should be [relative](../features/dependency-resolution.md#relative-specifiers) to the containing CSS file. You can also use [absolute](../features/dependency-resolution.md#absolute-specifiers) and [tilde](../features/dependency-resolution.md#tilde-specifiers) specifiers. The `data-url:` scheme can also be used to inline a file as a data URL. See [Bundle inlining](../features/bundle-inlining.md) for more details.
 
 ```css
 .logo {
-  background: url("data-url:./logo.png");
+  background: url('data-url:./logo.png');
 }
 ```
 
-{% warning %}
+<p-warning>
 
-**Note**: Only [absolute paths](/features/dependency-resolution/#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
+**Note**: Only [absolute paths](../features/dependency-resolution.md#absolute-specifiers) may be used within CSS custom properties, not relative paths. This is because `url()` references in custom properties are resolved from the location where the `var()` is used, not where the custom property is defined. This means that the custom property could resolve to different URLs depending on which file it is used in. To resolve this ambiguity, use absolute paths when referencing URLs in custom properties.
 
-{% sample %}
-{% samplefile "/src/index.css" %}
+<code-sample>
+<code-file name="/src/index.css">
 
 ```css
 body {
@@ -87,8 +80,8 @@ body {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "/src/home/header.css" %}
+</code-file>
+<code-file name="/src/home/header.css">
 
 ```css
 .logo {
@@ -96,12 +89,12 @@ body {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, the relative path `images/logo.png` would resolve to `/src/home/images/logo.png` rather than `/src/images/logo.png` as you might expect, because it is referenced in `/src/home/header.css`. The absolute path `/src/images/logo.png` resolves consistently no matter which file `var(--logo)` is used in.
 
-{% endwarning %}
+</p-warning>
 
 ## CSS modules
 
@@ -112,7 +105,7 @@ CSS modules treat the classes defined in each file as unique. Each class name or
 To use CSS modules, create a file with the `.module.css` extension, and import it from a JavaScript file with a [namespace import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents). Then, you can access each of the classes defined in the CSS file as an export from the module.
 
 ```javascript
-import * as classes from "./styles.module.css";
+import * as classes from './styles.module.css';
 
 document.body.className = classes.body;
 ```
@@ -131,34 +124,34 @@ CSS modules also work with other languages that compile to CSS, such as SASS, Le
 
 Using CSS modules also has the benefit of making dependencies on specific class names explicit in your code. This enables unused CSS classes to be automatically removed.
 
-![Example of tree shaking CSS modules](/blog/beta3/tree-shaking-css-modules.jpg)
+![Example of tree shaking CSS modules](../blog/beta3/tree-shaking-css-modules.jpg)
 
 As you can see in the above example, only the `.button` class is used, so the unused `.cta` class is removed from the compiled CSS file.
 
 This also works with other unused CSS rules such as `@keyframes` and `@counter-style`, as well as CSS custom properties (when the [`dashedIdents`](#local-css-variables) option is enabled).
 
-{% warning %}
+<p-warning>
 
 **Note**: Tree shaking only works when you reference classes using either a [namespace](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_an_entire_modules_contents) or [named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) import, or a `require` call. Tree shaking does not work with [default imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#importing_defaults). When using a namespace import or `require`, classes must be accessed using static property accesses (e.g. `styles.button`) rather than dynamic ones (e.g. `styles[name]`).
 
 ```javascript
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 ```
 
 should be replaced with:
 
 ```javascript
-import * as styles from "./styles.module.css";
+import * as styles from './styles.module.css';
 ```
 
-{% endwarning %}
+</p-warning>
 
 ### Local CSS variables
 
 By default, class names, id selectors, and the names of `@keyframes`, `@counter-style`, and CSS grid lines and areas are scoped to the module they are defined in. Scoping for CSS variables and other [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) names can also be enabled using the `dashedIdents` option. This is configured for `@parcel/transformer-css` in your `.parcelrc`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/8
 {
@@ -178,15 +171,15 @@ By default, class names, id selectors, and the names of `@keyframes`, `@counter-
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When enabled, CSS variables will be renamed so they don't conflict with variable names defined in other files. Referencing a variable uses the standard `var()` syntax, which Parcel will update to match the locally scoped variable name.
 
 You can also reference variables defined in other files using the `from` keyword:
 
-{% sample %}
-{% samplefile "style.module.css" %}
+<code-sample>
+<code-file name="style.module.css">
 
 ```css/1
 .button {
@@ -194,9 +187,9 @@ You can also reference variables defined in other files using the `from` keyword
 }
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile "vars.module.css" %}
+<code-file name="vars.module.css">
 
 ```css
 :root {
@@ -204,13 +197,13 @@ You can also reference variables defined in other files using the `from` keyword
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Global variables may be referenced using the `from global` syntax, however, they currently must be defined in a non-CSS module file.
 
-{% sample %}
-{% samplefile "style.module.css" %}
+<code-sample>
+<code-file name="style.module.css">
 
 ```css/1
 @import "vars.css";
@@ -220,8 +213,8 @@ Global variables may be referenced using the `from global` syntax, however, they
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "vars.css" %}
+</code-file>
+<code-file name="vars.css">
 
 ```css
 :root {
@@ -229,8 +222,8 @@ Global variables may be referenced using the `from global` syntax, however, they
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The same syntax also applies to other CSS values that use the [`<dashed-ident>`](https://www.w3.org/TR/css-values-4/#dashed-idents) syntax. For example, the [@font-palette-values](https://drafts.csswg.org/css-fonts-4/#font-palette-values) rule and [font-palette](https://drafts.csswg.org/css-fonts-4/#propdef-font-palette) property use the `<dashed-ident>` syntax to define and refer to custom font color palettes, and will be scoped and referenced the same way as CSS variables.
 
@@ -238,8 +231,8 @@ The same syntax also applies to other CSS values that use the [`<dashed-ident>`]
 
 By default, Parcel prepends the hash of the filename to each class name and identifier in a CSS file. You can configure this naming pattern using the `"pattern"` option in your `.parcelrc`. This accepts a string with placeholders that will be filled in by Parcel, allowing you to add custom prefixes or adjust the naming convention for scoped classes.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/8
 {
@@ -259,8 +252,8 @@ By default, Parcel prepends the hash of the filename to each class name and iden
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The following placeholders are currently supported:
 
@@ -269,12 +262,12 @@ The following placeholders are currently supported:
 - `[content-hash]` - A hash of the file contents.
 - `[local]` - The original class name or identifier.
 
-{% warning %}
+<p-warning>
 
 **Note**: CSS grid line names can be ambiguous due to automatic postfixing done by the browser, which generates line names ending with `-start` and `-end` for each grid template area. When using CSS grid, your `"pattern"` configuration must end with the `[local]` placeholder so that these references work correctly.
 
-{% sample %}
-{% samplefile "grid.module.css" %}
+<code-sample>
+<code-file name="grid.module.css">
 
 ```css/5
 .grid {
@@ -286,8 +279,8 @@ The following placeholders are currently supported:
 }
 ```
 
-{% endsamplefile %}
-{% samplefile ".parcelrc" %}
+</code-file>
+<code-file name=".parcelrc">
 
 ```json5/10
 {
@@ -311,17 +304,17 @@ The following placeholders are currently supported:
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-{% endwarning %}
+</p-warning>
 
 ### Enabling CSS modules globally
 
 By default, CSS modules are only enabled for files whose name ends with `.module.css`. All other CSS files are treated as global CSS by default. However, this can be overridden to enable CSS modules for other files by configuring `@parcel/transformer-css` in your `.parcelrc`. For example, this enables CSS modules for all CSS files in your `src` directory (but not in `node_modules`):
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3-10
 {
@@ -339,8 +332,8 @@ By default, CSS modules are only enabled for files whose name ends with `.module
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When using a configuration object with other options such as `"pattern"` or `"dashedIdents"`, CSS modules are also enabled for the matching files.
 
@@ -352,8 +345,8 @@ Parcel includes support for transpiling modern CSS syntax to support older brows
 
 By default Parcel does not perform any transpilation of CSS syntax for older browsers. This means that if you write your code using modern syntax or without vendor prefixes, that’s what Parcel will output. You can declare your app’s supported browsers using the `browserslist` field in your package.json. When this field is declared, Parcel will transpile your code accordingly to ensure compatibility with your supported browsers.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -361,10 +354,10 @@ By default Parcel does not perform any transpilation of CSS syntax for older bro
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-See the [Targets](/features/targets/) docs for more details on how to configure this.
+See the [Targets](../features/targets.md) docs for more details on how to configure this.
 
 ### Vendor prefixing
 
@@ -381,7 +374,7 @@ compiles to:
 ```css
 .logo {
   background: -webkit-image-set(url(logo.png) 2x, url(logo.png) 1x);
-  background: image-set("logo.png" 2x, "logo.png");
+  background: image-set('logo.png' 2x, 'logo.png');
 }
 ```
 
@@ -517,8 +510,8 @@ is equivalent to:
 
 Because custom media queries are a draft, they are not enabled by default. To use them, enable the `customMedia` feature by configuring `@parcel/transformer-css` in your `.parcelrc`. Since this overrides the default pipelines, make sure to also enable `cssModules` for `.module.css` files if you use CSS modules.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -549,8 +542,8 @@ Because custom media queries are a draft, they are not enabled by default. To us
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Pseudo class replacement
 
@@ -558,8 +551,8 @@ Parcel supports replacing CSS pseudo classes such as `:focus-visible` with norma
 
 Pseudo class mappings can be configured for `@parcel/transformer-css` in your `.parcelrc`. Since this overrides the default pipelines, make sure to also enable `cssModules` for `.module.css` files if you use CSS modules.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -590,8 +583,8 @@ Pseudo class mappings can be configured for `@parcel/transformer-css` in your `.
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The above configuration will result in the `:focus-visible` pseudo class in all selectors being replaced with the `.focus-visible` class. This enables you to use a JavaScript [polyfill](https://github.com/WICG/focus-visible), which will apply the `.focus-visible` class as appropriate.
 
@@ -615,8 +608,8 @@ yarn add tailwindcss --dev
 
 Then, enable the Tailwind transformer for CSS files in your `.parcelrc`, and import Tailwind in your CSS. The `"..."` syntax runs Parcel's default CSS transformer after Tailwind.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -627,15 +620,15 @@ Then, enable the Tailwind transformer for CSS files in your `.parcelrc`, and imp
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "styles.css" %}
+</code-file>
+<code-file name="styles.css">
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Tailwind generates CSS for the class names used in your source files. By default, the files in the directory containing your CSS file are scanned. You can use the `source()` function and `@source` directive to [customize which files are scanned](https://tailwindcss.com/docs/detecting-classes-in-source-files).
 
@@ -651,8 +644,8 @@ yarn add @parcel/transformer-postcss@next postcss-pxtorem --dev
 
 Then, add `@parcel/transformer-postcss` to your `.parcelrc`. The `"..."` syntax runs Parcel's default CSS transformer after PostCSS.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -663,13 +656,13 @@ Then, add `@parcel/transformer-postcss` to your `.parcelrc`. The `"..."` syntax 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Finally, create a PostCSS configuration file using one of these names: `.postcssrc`, `.postcssrc.json`, `.postcssrc.js`, `.postcssrc.mjs`, `.postcssrc.cjs`, `postcss.config.js`, `postcss.config.mjs`, or `postcss.config.cjs`. A `"postcss"` key in `package.json` is also supported. Plugins are specified in the `plugins` object as keys, and options are defined using object values. If there are no options for a plugin, just set it to `true` instead.
 
-{% sample %}
-{% samplefile ".postcssrc" %}
+<code-sample>
+<code-file name=".postcssrc">
 
 ```json
 {
@@ -681,13 +674,13 @@ Finally, create a PostCSS configuration file using one of these names: `.postcss
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 PostCSS config files only apply to your own source files, not to files in `node_modules`. Alternatively, the PostCSS config can be specified directly in your `.parcelrc`, in which case it applies to all files matched by the pipeline.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/5-12
 {
@@ -710,8 +703,8 @@ PostCSS config files only apply to your own source files, not to files in `node_
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Default plugins
 
@@ -727,8 +720,8 @@ By default, Parcel transforms each CSS file with PostCSS independently. However,
 
 In these cases, you can use [`postcss-import`](https://github.com/postcss/postcss-import) to run PostCSS over the whole bundle at once instead. [`postcss-url`](https://github.com/postcss/postcss-url) should also be used to ensure `url()` references are resolved correctly when imported files are inlined.
 
-{% sample %}
-{% samplefile ".postcssrc" %}
+<code-sample>
+<code-file name=".postcssrc">
 
 ```json
 {
@@ -740,11 +733,11 @@ In these cases, you can use [`postcss-import`](https://github.com/postcss/postcs
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "app.css" %}
+</code-file>
+<code-file name="app.css">
 
 ```css
-@import "./config/index.css";
+@import './config/index.css';
 
 html {
   background-color: var(--varColor);
@@ -757,22 +750,22 @@ html {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "config/index.css" %}
+</code-file>
+<code-file name="config/index.css">
 
 ```css
 :root {
   --varColor: red;
-  --varIcon: url("../icon.svg");
+  --varIcon: url('../icon.svg');
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Production
 
-In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
+In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](../features/production.md) for more details about how this works.
 
 ### Minification
 

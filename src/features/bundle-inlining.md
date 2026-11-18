@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Bundle inlining
-eleventyNavigation:
-  key: features-bundle-inlining
-  title: 🪆 Bundle inlining
-  order: 4
----
+# Bundle inlining
 
 Parcel includes several ways to inline the compiled contents of one bundle inside another bundle.
 
@@ -16,10 +9,10 @@ The `bundle-text:` scheme can be used to inline the contents of a bundle as plai
 This could be used in many ways. For example, you could inline a compiled CSS bundle and use the result to inject a style tag at runtime. This might be useful in cases where you need to control where the style tag is inserted, e.g. into a Shadow DOM root.
 
 ```javascript
-import cssText from "bundle-text:./test.css";
+import cssText from 'bundle-text:./test.css';
 
 // inject <style> tag
-let style = document.createElement("style");
+let style = document.createElement('style');
 style.textContent = cssText;
 shadowRoot.appendChild(style);
 ```
@@ -55,12 +48,12 @@ shadowRoot.adoptedStyleSheets = [sheet];
 
 ## Under the hood
 
-`bundle-text:` and `data-url:` are implemented in the default Parcel config using [Named pipelines](/features/plugins/#named-pipelines). The `@parcel/transformer-inline` [Transformer](/plugin-system/transformer/) plugin marks the compiled asset as inline, which tells Parcel not to write the bundle to disk and instead inline it into the parent bundle. To implement data URLs, the `@parcel/optimizer-data-url` [Optimizer](/plugin-system/optimizer/) plugin is used to convert the compiled bundle to a data url.
+`bundle-text:` and `data-url:` are implemented in the default Parcel config using [Named pipelines](plugins.md#named-pipelines). The `@parcel/transformer-inline` [Transformer](../plugin-system/transformer.md) plugin marks the compiled asset as inline, which tells Parcel not to write the bundle to disk and instead inline it into the parent bundle. To implement data URLs, the `@parcel/optimizer-data-url` [Optimizer](../plugin-system/optimizer.md) plugin is used to convert the compiled bundle to a data url.
 
 In the Parcel config, it looks like the following. The `"..."` in each pipeline tells Parcel to run the normal transformers that match the file first, and then run `@parcel/transformer-inline`.
 
-{% sample %}
-{% samplefile "@parcel/config-default" %}
+<code-sample>
+<code-file name="@parcel/config-default">
 
 ```json
 {
@@ -74,25 +67,25 @@ In the Parcel config, it looks like the following. The `"..."` in each pipeline 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-You can create your own named pipelines to customize inlining however you’d like, reusing the above plugins or creating custom ones. See [Parcel configuration](/features/plugins/) for more details.
+You can create your own named pipelines to customize inlining however you’d like, reusing the above plugins or creating custom ones. See [Parcel configuration](plugins.md) for more details.
 
-See the [Plugin system](/plugin-system/overview/) docs for more details on writing custom plugins.
+See the [Plugin system](../plugin-system/overview.md) docs for more details on writing custom plugins.
 
 ## Inlining without transforming
 
-In JavaScript, it’s possible to inline the contents of a file without running it through Parcel transformers first. This can be done using the `fs` Node module, which Parcel statically analyzes. It can be inlined as a string in a number of different encodings, or as a [Buffer](https://nodejs.org/api/buffer.html). See the [Node emulation](/features/node-emulation/) docs for more details.
+In JavaScript, it’s possible to inline the contents of a file without running it through Parcel transformers first. This can be done using the `fs` Node module, which Parcel statically analyzes. It can be inlined as a string in a number of different encodings, or as a [Buffer](https://nodejs.org/api/buffer.html). See the [Node emulation](node-emulation.md) docs for more details.
 
 ```javascript
-import fs from "fs";
+import fs from 'fs';
 
-const sourceCode = fs.readFileSync(__dirname + "/foo.js", "utf8");
+const sourceCode = fs.readFileSync(__dirname + '/foo.js', 'utf8');
 ```
 
 In the above example, the `sourceCode` variable would be the contents of `foo.js` _without_ being compiled, i.e. the original source code rather than the bundled result.
 
 ## Integration with other tools
 
-Since bundle inlining is a Parcel-specific feature, you’ll need to configure other tools such as TypeScript or Flow to support it. See the [Configuring other tools](/features/dependency-resolution/#configuring-other-tools) section in the dependency resolution docs for details on how to do this.
+Since bundle inlining is a Parcel-specific feature, you’ll need to configure other tools such as TypeScript or Flow to support it. See the [Configuring other tools](dependency-resolution.md#configuring-other-tools) section in the dependency resolution docs for details on how to do this.

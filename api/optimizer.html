@@ -43,36 +43,36 @@
 <div class="type">
 <h4 class="title">
   <span id="OptimizerResult">OptimizerResult</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L791"><i>packages-v3/plugin/src/types.ts:791</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L839"><i>packages-v3/plugin/src/types.ts:839</i></a>
 </h4>
 
-<pre class="interface"><code>type <a href="/plugin-system/optimizer/#OptimizerResult">OptimizerResult</a> = {</code></pre>
-<pre class="interface"><code>  readonly contents: Uint8Array;</code></pre>
-<pre class="interface"><code>  readonly map?: Uint8Array | null;</code></pre>
-<div class="inline-method"><p>The source map for the optimized contents, as UTF-8 encoded JSON.</p>
+<pre class="interface"><code>type <a href="../src/plugin-system/optimizer.md#OptimizerResult">OptimizerResult</a> = {</code></pre>
+<pre class="interface"><code>  readonly contents: string | Uint8Array;</code></pre>
+<pre class="interface"><code>  readonly map?: <a href="../src/plugin-system/api.md#SourceMapInput">SourceMapInput</a> | null;</code></pre>
+<div class="inline-method"><p>The source map for the optimized contents.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 <h5>Referenced by:</h5>
-<a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>
+<a href="../src/plugin-system/optimizer.md#Optimizer">Optimizer</a>
 </div>
 <div class="type">
 <h4 class="title">
   <span id="Optimizer">Optimizer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L801"><i>packages-v3/plugin/src/types.ts:801</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L849"><i>packages-v3/plugin/src/types.ts:849</i></a>
 </h4>
 <p><code>config</code> is the configuration given for the plugin in .parcelrc, if any.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/optimizer/#Optimizer">Optimizer</a>&lt;ConfigType&gt; = {</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/optimizer.md#Optimizer">Optimizer</a>&lt;ConfigType&gt; = {</code></pre>
 <pre class="interface"><code>  optimize(args: {
-    bundle: <a href="/plugin-system/api/#Bundle">Bundle</a>;
-    bundleGraph: <a href="/plugin-system/api/#BundleGraph">BundleGraph</a>;
+    bundle: <a href="../src/plugin-system/api.md#Bundle">Bundle</a>;
+    bundleGraph: <a href="../src/plugin-system/api.md#BundleGraph">BundleGraph</a>;
     contents: Uint8Array;
-    map: Uint8Array | null;
+    map: <a href="../src/plugin-system/api.md#SourceMapJSON">SourceMapJSON</a> | null;
     config: ConfigType;
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>;
-  }): <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/optimizer/#OptimizerResult">OptimizerResult</a>&gt;;</code></pre>
+    options: <a href="../src/plugin-system/api.md#PluginOptions">PluginOptions</a>;
+  }): <a href="../src/plugin-system/api.md#Async">Async</a>&lt;<a href="../src/plugin-system/optimizer.md#OptimizerResult">OptimizerResult</a>&gt;;</code></pre>
 <div class="inline-method"><b>Params:</b>
-<ul><li><b><code>args.map</code></b>: <p>The source map for the bundle, as UTF-8 encoded JSON.</p>
+<ul><li><b><code>args.map</code></b>: <p>The source map for the bundle.</p>
 </li></ul></div><pre class="interface"><code>}</code></pre>
 
 

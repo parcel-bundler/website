@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Production
-eleventyNavigation:
-  key: features-production
-  title: 🚀 Production
-  order: 6
----
+# Production
 
 Parcel’s production mode automatically bundles and optimizes your application for production. It can be run using the `parcel build` command:
 
@@ -23,7 +16,7 @@ Parcel includes minifiers for JavaScript, CSS, HTML, and SVG out of the box. Min
 
 By default, minification is enabled when using the `parcel build` command. You can use the `--no-optimize` CLI flag to disable minification and other optimizations if needed.
 
-Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure the HTML and SVG minifiers using the `optimize` option of `@parcel/transformer-html` and `@parcel/transformer-svg` in your `.parcelrc`. See the docs for [JavaScript](/languages/javascript/), [CSS](/languages/css/), [HTML](/languages/html), and [SVG](/languages/svg/) for more details.
+Parcel uses [SWC](https://swc.rs) to minify JavaScript, [lightningcss](https://lightningcss.dev) for CSS, and [oxvg](https://github.com/noahbald/oxvg) for SVG, and a builtin HTML minifier. If needed, you can configure the HTML and SVG minifiers using the `optimize` option of `@parcel/transformer-html` and `@parcel/transformer-svg` in your `.parcelrc`. See the docs for [JavaScript](../languages/javascript.md), [CSS](../languages/css.md), [HTML](../languages/html.md), and [SVG](../languages/svg.md) for more details.
 
 ### Tree shaking
 
@@ -36,12 +29,12 @@ In production builds, Parcel statically analyzes the imports and exports of each
 You can take advantage of this feature in your own code as well. For example, you could use an if statement to check the `NODE_ENV` environment variable.
 
 ```javascript
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   // Only runs in development and will be stripped in production builds.
 }
 ```
 
-See the [Node emulation docs](/features/node-emulation/) for more details on environment variable inlining.
+See the [Node emulation docs](node-emulation.md) for more details on environment variable inlining.
 
 ### Image optimization
 
@@ -61,7 +54,7 @@ Parcel supports resizing, converting, and optimizing images. You can use query p
 </picture>
 ```
 
-Resizing and converting images occurs both in development and production mode, so you can test with the correct image dimensions and formats as well. See the [Image transformer](/recipes/image/) docs for more details.
+Resizing and converting images occurs both in development and production mode, so you can test with the correct image dimensions and formats as well. See the [Image transformer](../recipes/image.md) docs for more details.
 
 Parcel also includes lossless image optimization for JPEGs and PNGs by default in production mode, which reduces the size of images without affecting their quality. This does not require any query parameters or configuration to use. However, since the optimization is lossless, the size reduction possible may be less than if you use the `quality` query param, or use a modern format such as WebP or AVIF.
 
@@ -75,7 +68,7 @@ Parcel automatically includes content hashes in the names of all output files, w
 
 By default, all bundles include a content hash except entries and certain dependency types that require names to be stable. For example, service workers require a stable file name to work properly, and `<a>` tags in HTML reference user readable URLs. Bundles built for server environments such as Node.js, and for library targets, are not content hashed either.
 
-You can also disable content hashing using the `--no-content-hash` CLI flag. Note that the name will still include a hash, but it will not change on each build. You can customize bundle naming completely using [Namer](/plugin-system/namer/) plugins.
+You can also disable content hashing using the `--no-content-hash` CLI flag. Note that the name will still include a hash, but it will not change on each build. You can customize bundle naming completely using [Namer](../plugin-system/namer.md) plugins.
 
 ### Cascading invalidation
 
@@ -87,7 +80,7 @@ In production builds, Parcel automatically optimizes the bundle graph in your ap
 
 For example, if multiple pages in your app depend on `react` and `lodash`, they might be moved into a separate bundle rather than duplicated in each page. This way, when a user navigates from one page to another, they only need to download the additional code for that page rather than re-downloading those libraries which are already cached.
 
-See the [Code splitting](/features/code-splitting/) docs for more details on how to configure this.
+See the [Code splitting](code-splitting.md) docs for more details on how to configure this.
 
 ## Analyzing bundle sizes
 
@@ -107,4 +100,4 @@ parcel build src/index.html --analyze
 
 This generates a `parcel-bundle-reports/index.html` file in your project root, and opens it in your browser:
 
-![A screenshot of the bundle analyzer output](/assets/bundle-analyzer.png)
+![A screenshot of the bundle analyzer output](../assets/bundle-analyzer.png)

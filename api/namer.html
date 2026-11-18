@@ -43,19 +43,20 @@
 <div class="type">
 <h4 class="title">
   <span id="Namer">Namer</span>
-  <a href="https://github.com/parcel-bundler/parcel/blob/cef5d22c8f14a20a4079572bae5766f89b66d09d/packages-v3/plugin/src/types.ts#L775"><i>packages-v3/plugin/src/types.ts:775</i></a>
+  <a href="https://github.com/parcel-bundler/parcel/blob/e4fdbf7fe13bc819181073b628373195c95af936/packages-v3/plugin/src/types.ts#L822"><i>packages-v3/plugin/src/types.ts:822</i></a>
 </h4>
 <p><code>config</code> is the configuration given for the plugin in .parcelrc, if any.</p>
 
-<pre class="interface"><code>type <a href="/plugin-system/namer/#Namer">Namer</a>&lt;ConfigType&gt; = {</code></pre>
+<pre class="interface"><code>type <a href="../src/plugin-system/namer.md#Namer">Namer</a>&lt;ConfigType&gt; = {</code></pre>
 <pre class="interface"><code>  name(args: {
-    bundle: <a href="/plugin-system/api/#Bundle">Bundle</a>;
-    bundleGraph: <a href="/plugin-system/api/#BundleGraph">BundleGraph</a>;
+    bundle: <a href="../src/plugin-system/api.md#Bundle">Bundle</a>;
+    bundleGraph: <a href="../src/plugin-system/api.md#BundleGraph">BundleGraph</a>;
     config: ConfigType;
-    options: <a href="/plugin-system/api/#PluginOptions">PluginOptions</a>;
-  }): <a href="/plugin-system/api/#Async">Async</a>&lt;<a href="/plugin-system/api/#FilePath">FilePath</a> | null | undefined&gt;;</code></pre>
+    options: <a href="../src/plugin-system/api.md#PluginOptions">PluginOptions</a>;
+  }): <a href="../src/plugin-system/api.md#Async">Async</a>&lt;<a href="../src/plugin-system/api.md#FilePath">FilePath</a> | null | undefined&gt;;</code></pre>
 <div class="inline-method"><p>Return a file path for <code>bundle</code>, relative to its target&#39;s <code>distDir</code>,
-or nullish to leave it to the next namer plugin.</p>
+or nullish or <code>&quot;&quot;</code> to leave it to the next namer plugin. A path that leaves the
+<code>distDir</code>, e.g. an absolute one, fails the build.</p>
 </div><pre class="interface"><code>}</code></pre>
 
 

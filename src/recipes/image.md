@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Image
-eleventyNavigation:
-  key: recipes-image
-  title: <img src="/assets/lang-icons/image.svg" alt=""/> Image
-  order: 2
----
+# Image
 
 Parcel has built in support for resizing, converting, and optimizing images. Images can be referenced from HTML, CSS, JavaScript, or any other file type.
 
@@ -43,24 +36,24 @@ For more guidance on choosing the right image formats, see the guide on [web.dev
 
 ### JavaScript
 
-To reference an image from JavaScript, use the `URL` constructor. For more details, see [URL dependencies](/languages/javascript/#url-dependencies) in the JavaScript docs.
+To reference an image from JavaScript, use the `URL` constructor. For more details, see [URL dependencies](../languages/javascript.md#url-dependencies) in the JavaScript docs.
 
-{% sample %}
-{% samplefile "main.js" %}
+<code-sample>
+<code-file name="main.js">
 
 ```js
-const imageUrl = new URL("image.jpeg?as=webp&width=250", import.meta.url);
+const imageUrl = new URL('image.jpeg?as=webp&width=250', import.meta.url);
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### HTML
 
-To reference an image from HTML, use the `<img>` or `<picture>` element. The same image can be referenced multiple times with different query parameters to create multiple versions in different formats or sizes. See the [HTML docs](/languages/html/#images) for more details.
+To reference an image from HTML, use the `<img>` or `<picture>` element. The same image can be referenced multiple times with different query parameters to create multiple versions in different formats or sizes. See the [HTML docs](../languages/html.md#images) for more details.
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html
 <!DOCTYPE html>
@@ -80,8 +73,8 @@ To reference an image from HTML, use the `<img>` or `<picture>` element. The sam
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Image optimization
 
@@ -91,8 +84,8 @@ Parcel also includes lossless image optimization for JPEGs and PNGs by default i
 
 To disable the default image optimization for JPEGs and PNGs in production mode, replace the image transformer for these files with `@parcel/transformer-raw` in your .parcelrc configuration file. Note that this also disables resizing and converting these images with query parameters.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -103,5 +96,5 @@ To disable the default image optimization for JPEGs and PNGs in production mode,
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

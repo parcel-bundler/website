@@ -3,12 +3,11 @@ node_modules/
 .idea/
 .DS_Store
 package-lock.json
-_site/
 .now
-.parcel-cache
 
 .yarn/*
 !.yarn/releases
+!.yarn/patches
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions

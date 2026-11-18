@@ -1,11 +1,12 @@
----
-layout: layout.njk
-title: 'Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!'
-eleventyNavigation:
-  key: blog-parcel-css
-  title: Announcing Parcel CSS
-date: 2022-01-12
----
+<title>Announcing Parcel CSS</title>
+<meta property="article:published_time" content="2022-01-12">
+
+<header parcel:slot="header">
+  <h1>Announcing Parcel CSS: A new CSS parser, compiler, and minifier written in Rust!</h1>
+  <div class="summary">
+    <time datetime="2022-01-12" class="entry-date js-replace-date">2022-01-12</time>
+  </div>
+</header>
 
 I'm very excited to announce <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">@parcel/css</a>, a new CSS parser, compiler, and minifier written in Rust! Check it out <a href="https://github.com/parcel-bundler/parcel-css" target="_blank">on GitHub</a>, or try a <a href="https://parcel-css.vercel.app" target="_blank">live demo</a> right in your browser.
 
@@ -17,11 +18,15 @@ It can be used with Parcel, as a standalone library from JavaScript or Rust, or 
 
 Parcel CSS is extremely fast. It is over 100x faster than CSSNano for minification, and over 3x faster than ESBuild. It can minify over 2.7 million lines of code per second on a single thread. This example shows a benchmark that minifies Bootstrap 4, which is about 10,000 lines.
 
-{% include "./performance.svg" %}
+<figure>
+  <parcel:include src="./performance.svg"></parcel:include>
+</figure>
 
 Even though it is extremely fast, Parcel CSS does not compromise on size. It can produce much smaller output than other tools in many cases thanks to the ability to convert legacy CSS syntax used in many libraries to smaller modern syntax, as well as its full understanding of every individual CSS property.
 
-{% include "./size.svg" %}
+<figure>
+  <parcel:include src="./size.svg"></parcel:include>
+</figure>
 
 Parcel CSS is fast not only because it is written in a native language, but because it was designed from the start with performance in mind. It is designed to be efficient in the way it uses memory, including optimizations such as representing vendor prefixes using single byte bit flags, and parsing all CSS properties into structured data rather than representing them as strings that need to be re-parsed each time they are used.
 
@@ -46,17 +51,17 @@ Even if you use `postcss-value-parser`, a separate library used by many PostCSS 
   {
     type: 'function',
     value: 'url',
-    nodes: [ { type: 'word', value: 'img.png' } ]
+    nodes: [{type: 'word', value: 'img.png'}],
   },
-  { type: 'space', value: ' ' },
-  { type: 'word', value: '20px' },
-  { type: 'space', value: ' ' },
-  { type: 'word', value: '10px' },
-  { type: 'div', value: '/' },
-  { type: 'word', value: '50px' },
-  { type: 'space', value: ' ' },
-  { type: 'word', value: '100px' }
-]
+  {type: 'space', value: ' '},
+  {type: 'word', value: '20px'},
+  {type: 'space', value: ' '},
+  {type: 'word', value: '10px'},
+  {type: 'div', value: '/'},
+  {type: 'word', value: '50px'},
+  {type: 'space', value: ' '},
+  {type: 'word', value: '100px'},
+];
 ```
 
 While a bit more structured and easier to deal with than a string, it's not clear that `20px` is the value for `background-position-x` and `50px` is the value for the background width. This must be interpreted by the user.

@@ -1,5 +1,5 @@
 // Mark the current section in the table of contents with aria-current when scrolled into view.
-let tocLinks = document.querySelectorAll('main aside nav a');
+let tocLinks = document.querySelectorAll('main aside ol a');
 let headers = [];
 for (let link of tocLinks) {
   let headerId = link.hash.slice(1);
@@ -9,8 +9,13 @@ for (let link of tocLinks) {
 
 function updateToc() {
   for (let header of headers) {
-    if ((header.header.offsetTop + header.header.getBoundingClientRect().height) > document.documentElement.scrollTop) {
-      let currentSelection = document.querySelector('main aside nav a[aria-current]');
+    if (
+      header.header.offsetTop + header.header.getBoundingClientRect().height >
+      document.documentElement.scrollTop
+    ) {
+      let currentSelection = document.querySelector(
+        'main aside ol a[aria-current]',
+      );
       if (currentSelection) {
         currentSelection.removeAttribute('aria-current');
       }

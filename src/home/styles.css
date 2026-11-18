@@ -1,14 +1,15 @@
-@import "/assets/styles/search.scss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source("..");
+@import '../assets/styles/theme.css';
+@import '../assets/styles/search.css';
 
-pre {
-  @apply rounded-md;
-  @apply p-4;
-  @apply text-gray-200;
-  @apply bg-gray-800;
-  @apply dark:bg-gray-900;
+@layer base {
+  pre {
+    @apply rounded-md;
+    @apply p-4;
+    @apply text-gray-200;
+    @apply bg-gray-800;
+    @apply dark:bg-gray-900;
+  }
 }
 
 .token.comment,
@@ -23,7 +24,7 @@ pre {
 }
 
 .namespace {
-	opacity: .7;
+  opacity: 0.7;
 }
 
 .token.property,
@@ -54,7 +55,7 @@ pre {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  @apply text-gray-200
+  @apply text-gray-200;
 }
 
 .token.atrule,
@@ -75,37 +76,71 @@ pre {
 
 .token.important,
 .token.bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .token.italic {
-	font-style: italic;
+  font-style: italic;
 }
 
-[role="tab"] {
-  @apply text-xs text-gray-600 p-2 xl:px-3 border-l border-gray-300 dark:border-gray-800 outline-none focus-visible:ring focus-visible:ring-orange-400 focus-visible:ring-inset focus-visible:z-10 cursor-default select-none;
+[role='tab'] {
+  @apply text-xs text-gray-600 p-2 xl:px-3 border-l border-gray-300 dark:border-gray-800 outline-hidden focus-visible:ring-3 focus-visible:ring-orange-400 focus-visible:ring-inset focus-visible:z-10 cursor-default select-none;
 }
 
-[role="tab"][aria-selected="true"] {
+[role='tab'][aria-selected='true'] {
   @apply text-gray-500 bg-gray-200 dark:bg-gray-800 border-gray-200 dark:border-gray-800;
 }
 
-[role="tab"][aria-selected="true"] + [role="tab"] {
+[role='tab'][aria-selected='true'] + [role='tab'] {
   @apply border-gray-200 dark:border-gray-800;
 }
 
-[role="tab"]:first-child {
+[role='tab']:first-child {
   @apply border-none;
 }
 
-[role="radio"] {
-  @apply bg-opacity-0 text-gray-600 dark:text-rose-200 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-none focus-visible:ring-4 focus-visible:ring-orange-500 focus-visible:ring-opacity-50 transition-all mb-2 text-xl;
+[role='radio'] {
+  @apply text-gray-600 dark:text-rose-200 lg:hover:text-gray-700 lg:dark:text-rose-300 lg:dark:hover:text-gray-100 py-1 px-4 rounded-md lg:cursor-pointer outline-hidden focus-visible:ring-4 focus-visible:ring-orange-500/50 transition-all mb-2 text-xl;
 }
 
-[role="radio"][aria-checked="true"] {
-  @apply lg:bg-orange-200 lg:text-orange-700 lg:dark:bg-orange-400 lg:dark:text-rose-900 lg:dark:bg-opacity-75;
+[role='radio'][aria-checked='true'] {
+  @apply lg:bg-orange-200 lg:text-orange-700 lg:dark:bg-orange-400/75 lg:dark:text-rose-900;
 }
 
-[role="radio"][aria-checked="true"] p:last-child {
+[role='radio'][aria-checked='true'] p:last-child {
   @apply lg:text-orange-800 lg:dark:text-rose-900;
+}
+
+footer nav h3 {
+  @apply uppercase font-semibold text-xs pb-2 text-gray-500 dark:text-gray-400;
+}
+
+footer ul li {
+  @apply py-1 text-sm;
+}
+
+footer a {
+  @apply text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 transition;
+}
+
+/* Tree shaking demo (optimization/tree-shaking.html) */
+.unusedCode,
+.unusedCode > * {
+  animation: fade-out 500ms ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fade-out {
+  to {
+    color: var(--color-gray-600);
+  }
+}
+
+/* Config demo (scalability/config.html) */
+code.code-plugin * {
+  @apply transition-colors!;
+}
+
+code.inactive * {
+  @apply lg:text-gray-600!;
 }

@@ -1,25 +1,19 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-optimizer
-  title: Optimizer
-  order: 9
----
+# Optimizer
 
 Optimizer plugins are similar to transformers but they accept a bundle instead of a single asset. Optimizers are commonly used to implement minification, tree shaking/dead code elimination, and other size reduction techniques that need a full bundle to be effective. However, Optimizers can also be used for any type of bundle transformation, such as prepending license headers, converting inline bundles to base 64, etc.
 
 ## Example
 
-An optimizer implements one method: {% api js="optimize", rust="optimize", go="Optimize", swift="optimize(_:in:contents:sourceMap:options:)" %}. It receives the contents of a bundle and its source map, along with the bundle and the bundle graph, and returns transformed versions of the contents and source map. The contents are passed as bytes, and may be returned as bytes or a string. Multiple Optimizer plugins may run in series, and the result of each Optimizer is passed to the next. See [below](#source-maps) for more info about source maps.
+An optimizer implements one method: <api-name js="optimize" rust="optimize" go="Optimize" swift="optimize(_:in:contents:sourceMap:options:)"></api-name>. It receives the contents of a bundle and its source map, along with the bundle and the bundle graph, and returns transformed versions of the contents and source map. The contents are passed as bytes, and may be returned as bytes or a string. Multiple Optimizer plugins may run in series, and the result of each Optimizer is passed to the next. See [below](#source-maps) for more info about source maps.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
-  async optimize({ contents, map }) {
-    let { code, sourceMap } = minify(contents, map);
+  async optimize({contents, map}) {
+    let {code, sourceMap} = minify(contents, map);
     return {
       contents: code,
       map: sourceMap,
@@ -30,13 +24,14 @@ export default new Optimizer({
 
 ```rust
 use parcel_plugin::{
-  Bundle, BundleGraph, ContentBuffer, Diagnostic, OptimizeResult, Options, Plugin, register_plugin,
+  Bundle, BundleGraph, Config, ContentBuffer, Diagnostic, OptimizeResult, Options, Plugin,
+  register_plugin,
 };
 
 struct MyOptimizer;
 
 impl Plugin for MyOptimizer {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyOptimizer)
   }
 
@@ -72,7 +67,7 @@ func (o *MyOptimizer) Optimize(_ *parcel.BundleGraph, _ *parcel.Bundle, contents
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyOptimizer{}, nil
 	})
 }
@@ -84,7 +79,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyOptimizer: Optimizer {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func optimize(
     _ bundle: OutputBundle, in bundleGraph: BundleGraph, contents: [UInt8], sourceMap: [UInt8]?,
@@ -98,19 +93,19 @@ struct MyOptimizer: Optimizer {
 #parcelPlugin(MyOptimizer.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `optimize` method.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the `optimize` method.
 
 ## Loading configuration
 
-Configuration for an Optimizer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `optimize` method, and native plugins receive it as JSON when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details.
+Configuration for an Optimizer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `optimize` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details.
 
 ## Conditional optimization
 
-Optimizer plugins are always run by Parcel, even in development or when the `--no-optimize` option is specified. This is because Optimizers can be used for any kind of bundle transformation, not just compression. If your Optimizer plugin is performing minification or should generally only run in production builds, you should check whether optimization is enabled for the bundle's target using {% api js="bundle.target.shouldOptimize", rust="EnvironmentFlags::SHOULD_OPTIMIZE", go="parcel.EnvFlagShouldOptimize", swift=".shouldOptimize" %}, and return the original contents if it isn't.
+Optimizer plugins are always run by Parcel, even in development or when the `--no-optimize` option is specified. This is because Optimizers can be used for any kind of bundle transformation, not just compression. If your Optimizer plugin is performing minification or should generally only run in production builds, you should check whether optimization is enabled for the bundle's target using <api-name js="bundle.target.shouldOptimize" rust="EnvironmentFlags::SHOULD_OPTIMIZE" go="parcel.EnvFlagShouldOptimize" swift=".shouldOptimize"></api-name>, and return the original contents if it isn't.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/5-8
 import {Optimizer} from '@parcel/plugin';
@@ -183,13 +178,13 @@ struct MyOptimizer: Optimizer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Binary content
 
 The contents passed to an Optimizer are always bytes, for both source code and binary content. Decode them as UTF-8 to work with source code as a string. In JavaScript, the contents are a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array), which can be decoded using [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder). The result can be returned as either a string or bytes.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript/5,7
 import {Optimizer} from '@parcel/plugin';
@@ -243,25 +238,25 @@ struct MyOptimizer: Optimizer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Source maps
 
 Source maps help developers when debugging compiled and bundled code in the browser by mapping locations in the compiled code back to the original source code. Optimizer plugins should transform the provided source map in addition to the contents of the bundle.
 
-The optimizer receives the bundle's source map as JSON in the standard [source map format](https://tc39.es/ecma426/), or nothing if the bundle doesn't have a source map. JavaScript plugins receive it as an object, and native plugins as JSON text. Optimizers should return the transformed source map along with the contents. In JavaScript, it may be returned as a JSON object, a JSON string, or a `Uint8Array` of UTF-8 encoded JSON. If an Optimizer doesn't return a source map, the bundle's source map is removed. See [Source Maps](/plugin-system/source-maps/) for more details.
+The optimizer receives the bundle's source map as JSON in the standard [source map format](https://tc39.es/ecma426/), or nothing if the bundle doesn't have a source map. JavaScript plugins receive it as an object, and native plugins as JSON text. Optimizers should return the transformed source map along with the contents. In JavaScript, it may be returned as a JSON object, a JSON string, or a `Uint8Array` of UTF-8 encoded JSON. If an Optimizer doesn't return a source map, the bundle's source map is removed. See [Source Maps](source-maps.md) for more details.
 
 If an optimizer doesn't change the existing lines of the bundle, e.g. because it only appends a license comment to the end, it can return the source map it received unchanged.
 
 Parcel takes care of inserting a reference to the source map into the bundle contents after all Optimizers have run, so Optimizers should not add a `sourceMappingURL` comment themselves.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
-  async optimize({ contents, map }) {
+  async optimize({contents, map}) {
     let result = minify(new TextDecoder().decode(contents), map);
     return {
       contents: result.code,
@@ -310,7 +305,7 @@ struct MyOptimizer: Optimizer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Relevant API
 
@@ -318,4 +313,6 @@ The API reference below covers JavaScript plugins. For native plugins, see the [
 
 <!-- TODO(v3): link to the generated docs for each SDK (docs.rs, pkg.go.dev, DocC) once they are published. -->
 
-{% include "../../api/optimizer.html" %}
+<section>
+  <parcel:include src="../../api/optimizer.html"></parcel:include>
+</section

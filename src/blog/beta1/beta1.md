@@ -1,11 +1,12 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: blog-beta-1
-  title: Parcel 2 beta 1
-date: 2020-06-19
-summary: 📦 Parcel 2 beta 1 - improved stability, tree shaking, source map performance, and more! 🚀
----
+<meta property="article:published_time" content="2020-06-19">
+
+<header parcel:slot="header">
+  <h1>Parcel 2 beta 1</h1>
+  <div class="summary">
+    <span>📦 Parcel 2 beta 1 - improved stability, tree shaking, source map performance, and more! 🚀</span>
+    <time datetime="2020-06-19" class="entry-date js-replace-date">2020-06-19</time>
+  </div>
+</header>
 
 The Parcel team is super excited to release the first beta of Parcel 2 today! This marks the first Parcel 2 release that’s more stable than our nightly and alpha releases, and our commitment to avoid changing most user facing APIs. Please try it out and give us your feedback on GitHub!
 
@@ -87,7 +88,7 @@ Upgrading from the previous alpha release of Parcel 2 should be fairly straightf
 
 ## Documentation
 
-We’ve been working on a [new documentation website](/) for Parcel 2! It’s still very much a work in progress, but we plan to cover everything from getting started with building a basic application or library with Parcel, to more advanced features, recipes, and building your own plugins. Please check it out and give us your feedback!
+We’ve been working on a [new documentation website](../../home/index.html) for Parcel 2! It’s still very much a work in progress, but we plan to cover everything from getting started with building a basic application or library with Parcel, to more advanced features, recipes, and building your own plugins. Please check it out and give us your feedback!
 
 ## Stability
 

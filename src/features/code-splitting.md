@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Code Splitting
-eleventyNavigation:
-  key: features-code-splitting
-  title: ✂️ Code Splitting
-  order: 2
----
+# Code Splitting
 
 Parcel supports zero configuration code splitting out of the box. This allows you to split your application code into separate bundles which can be loaded on demand, resulting in smaller initial bundle sizes and faster load times.
 
@@ -15,18 +8,18 @@ Code splitting is controlled by use of the dynamic `import()` syntax, which work
 
 The following example shows how you might use dynamic imports to load a sub-page of your application on demand.
 
-{% sample %}
-{% samplefile "pages/index.js" %}
+<code-sample>
+<code-file name="pages/index.js">
 
 ```js
-import("./pages/about").then(function (page) {
+import('./pages/about').then(function (page) {
   // Render page
   page.render();
 });
 ```
 
-{% endsamplefile %}
-{% samplefile "pages/about.js" %}
+</code-file>
+<code-file name="pages/about.js">
 
 ```js
 export function render() {
@@ -34,25 +27,25 @@ export function render() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Because `import()` returns a Promise, you can also use async/await syntax.
 
-{% sample %}
-{% samplefile "pages/index.js" %}
+<code-sample>
+<code-file name="pages/index.js">
 
 ```js
 async function load() {
-  const page = await import("./pages/about");
+  const page = await import('./pages/about');
   // Render page
   page.render();
 }
 load();
 ```
 
-{% endsamplefile %}
-{% samplefile "pages/about.js" %}
+</code-file>
+<code-file name="pages/about.js">
 
 ```js
 export function render() {
@@ -60,55 +53,55 @@ export function render() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Tree shaking
 
 When Parcel can determine which exports of a dynamically imported module you use, it will tree shake the unused exports from that module. This works with static property accesses or destructuring, with either `await` or Promise `.then` syntax.
 
-{% note %}
+<p-note>
 
 **Note:** For the `await` cases, unused exports can unfortunately only be removed when `await` is not transpilied away (i.e. with a modern browserslist config).
 
-{% endnote %}
+</p-note>
 
-{% sample null, "column" %}
+<code-sample layout="column">
 
-{% samplefile %}
+<code-file>
 
 ```js
-let { x: y } = await import("./b.js");
+let {x: y} = await import('./b.js');
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile %}
+<code-file>
 
 ```js
-let ns = await import("./b.js");
+let ns = await import('./b.js');
 console.log(ns.x);
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile %}
-
-```js
-import("./b.js").then((ns) => console.log(ns.x));
-```
-
-{% endsamplefile %}
-
-{% samplefile %}
+<code-file>
 
 ```js
-import("./b.js").then(({ x: y }) => console.log(y));
+import('./b.js').then(ns => console.log(ns.x));
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% endsample %}
+<code-file>
+
+```js
+import('./b.js').then(({x: y}) => console.log(y));
+```
+
+</code-file>
+
+</code-sample>
 
 ## Shared bundles
 
@@ -116,8 +109,8 @@ When multiple parts of your application depend on the same common modules, they 
 
 For example, if your application has multiple pages with `<script>` tags that depend on the same common modules, those modules will be split out into a "shared bundle”. This way, if a user navigates from one page to another, they only need to download the new code for that page, and not the common dependencies between the pages.
 
-{% sample %}
-{% samplefile "home.html" %}
+<code-sample>
+<code-file name="home.html">
 
 ```html
 <!DOCTYPE html>
@@ -125,17 +118,17 @@ For example, if your application has multiple pages with `<script>` tags that de
 <script type="module" src="home.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "home.js" %}
+</code-file>
+<code-file name="home.js">
 
 ```jsx
-import { createRoot } from "react-dom";
+import {createRoot} from 'react-dom';
 
 createRoot(app).render(<h1>Home</h1>, app);
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.html" %}
+</code-file>
+<code-file name="profile.html">
 
 ```html
 <!DOCTYPE html>
@@ -143,22 +136,22 @@ createRoot(app).render(<h1>Home</h1>, app);
 <script type="module" src="profile.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.js" %}
+</code-file>
+<code-file name="profile.js">
 
 ```jsx
-import { createRoot } from "react-dom";
+import {createRoot} from 'react-dom';
 
 createRoot(app).render(<h1>Profile</h1>, app);
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Compiled HTML:
 
-{% sample %}
-{% samplefile "home.html" %}
+<code-sample>
+<code-file name="home.html">
 
 ```html
 <!DOCTYPE html>
@@ -167,8 +160,8 @@ Compiled HTML:
 <script type="module" src="home-fac9ed1a.js"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "profile.html" %}
+</code-file>
+<code-file name="profile.html">
 
 ```html
 <!DOCTYPE html>
@@ -177,8 +170,8 @@ Compiled HTML:
 <script type="module" src="profile-9fc67e2c.js"></script>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, both `home.js` and `profile.js` depend on `react-dom`, so it is split out into a separate bundle and loaded in parallel by adding an extra `<script>` tag to both HTML pages.
 
@@ -198,8 +191,8 @@ Parcel also has a maximum parallel request limit to avoid overloading the browse
 
 By default, these parameters have been tuned for HTTP/2 with brotli compression. However, you can adjust these options to raise or lower them for your application. You can do this by configuring `@parcel/bundler-default` in the `.parcelrc` in your project root.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -214,8 +207,8 @@ By default, these parameters have been tuned for HTTP/2 with brotli compression.
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The available options are:
 
@@ -233,8 +226,8 @@ When multiple dynamic imports are awaited together using `Promise.all` with an a
 
 ```js
 let [editor, toolbar] = await Promise.all([
-  import("./editor"),
-  import("./toolbar"),
+  import('./editor'),
+  import('./toolbar'),
 ]);
 ```
 
@@ -252,11 +245,11 @@ If a dynamically imported module has a dependency that is already available in a
 
 ## Manual shared bundles
 
-{% warning %}
+<p-warning>
 
 **Note**: Manual shared bundles are currently experimental and subject to change.
 
-{% endwarning %}
+</p-warning>
 
 By default, Parcel automatically splits commonly used modules into "shared bundles" and creates bundles in the scenarios listed above. However, in certain cases, you may want to specify exactly what goes into a bundle and who can request that bundle.
 
@@ -271,8 +264,8 @@ Manual Shared Bundles can be specified in the `@parcel/bundler-default` config i
 
 This example creates a vendor bundle which includes all JS assets from `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -291,8 +284,8 @@ This example creates a vendor bundle which includes all JS assets from `node_mod
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The full list of options are as follows:
 
@@ -301,10 +294,10 @@ The full list of options are as follows:
 
 <!-- TODO(v3): the v2 `name`, `root` and `split` options are not implemented by v3's DefaultBundler (crates/parcel/src/bundler.rs ManualSharedBundle only has `assets` and `types`; unknown keys are silently ignored rather than rejected). Removed from the docs; confirm whether they are planned. -->
 
-{% warning %}
+<p-warning>
 
 **Be careful!**
 
 Manual shared bundles apply to your **entire** code base, **including** `node_modules`, and the matched assets are excluded from the automatic code splitting normally done by Parcel. A manual shared bundle is loaded everywhere any of its assets are needed, which may result in over-fetching. Be mindful of the globs you use.
 
-{% endwarning %}
+</p-warning>

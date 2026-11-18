@@ -1,19 +1,12 @@
----
-layout: layout.njk
-title: React Server Components
-eleventyNavigation:
-  key: recipes-rsc
-  title: <img src="/assets/lang-icons/react.svg" alt=""/> React Server Components
-  order: 4
----
+# React Server Components
 
 React Server Components are a new type of component that renders ahead of time, on the server or at build time. Parcel supports React Server Components out of the box.
 
-{% warning %}
+<p-warning>
 
 **React Server Components support is currently in beta.** If you experience bugs, please report them [on GitHub](https://github.com/parcel-bundler/parcel/issues).
 
-{% endwarning %}
+</p-warning>
 
 ## Examples
 
@@ -27,11 +20,11 @@ The [rsc-examples](https://github.com/parcel-bundler/rsc-examples) repo includes
 npm install react react-dom @parcel/rsc@next
 ```
 
-{% note %}
+<p-note>
 
 **Note**: Server Components require `react` and `react-dom` v19.1.0 or later.
 
-{% endnote %}
+</p-note>
 
 ## Client rendering
 
@@ -41,10 +34,10 @@ React Server Components can be integrated into an existing client-rendered SPA. 
 
 <!-- TODO(v3): this setup doesn't work in v3. Per-target `source` is not supported (crates/core/src/entry.rs only reads the top-level `source` field and `source` inside `exports`), top-level fields named after targets (`"client": "dist/index.html"`) are not supported, and every target in package.json applies to every entry, whether passed on the CLI or listed in the top-level `source`. Per-target `context`, `engines` and `distDir` now work, but `parcel build src/index.html server/server.js` with these targets still builds both entries in both the react-client and react-server contexts (fails resolving `http` for the browser). I couldn't find a supported way to give the HTML entry and the server entry different contexts in one build. One thing that does build: no targets, `"engines": {"node": ...}` so server.js is a Node entry, and server.js importing a module that renders RSC with `import {handler} from './rsc' with {env: 'react-server'}`. I only checked that it builds, not that it runs in a browser. -->
 
-First, create two [targets](/features/targets/) in your `package.json`. The `client` target will point at your app's existing `index.html`. The `server` target will point at your server.
+First, create two [targets](../features/targets.md) in your `package.json`. The `client` target will point at your app's existing `index.html`. The `server` target will point at your server.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -67,8 +60,8 @@ First, create two [targets](/features/targets/) in your `package.json`. The `cli
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Parcel will build both the client and server together.
 
@@ -78,30 +71,30 @@ Next, create a server. You can use any Node.js libraries or frameworks to do thi
 
 When the `/comments` route is requested, we'll render a Server Component to an RSC Payload, which is a serialized representation of the React component tree. You can think of this like JSON, but specialized for components.
 
-{% sample %}
-{% samplefile "server/server.js" %}
+<code-sample>
+<code-file name="server/server.js">
 
 ```jsx
-import express from "express";
-import cors from "cors";
-import { renderRSC } from "@parcel/rsc/node";
-import { Comments } from "./Comments";
+import express from 'express';
+import cors from 'cors';
+import {renderRSC} from '@parcel/rsc/node';
+import {Comments} from './Comments';
 
 const app = express();
 app.use(cors());
 
-app.get("/comments", (req, res) => {
+app.get('/comments', (req, res) => {
   // Render the server component to an RSC payload.
   let stream = renderRSC(<Comments />);
-  res.set("Content-Type", "text/x-component");
+  res.set('Content-Type', 'text/x-component');
   stream.pipe(res);
 });
 
 app.listen(3000);
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The `@parcel/rsc` library used above is a small wrapper around lower-level React APIs.
 
@@ -109,19 +102,19 @@ The `@parcel/rsc` library used above is a small wrapper around lower-level React
 
 Now we need to implement the `Comments` component rendered above. This is a React [Server Component](https://react.dev/reference/rsc/server-components). It _only_ runs on the server (not in the browser), and has full access to server resources like the file system or a database.
 
-`"use server-entry"` is a Parcel-specific directive that marks a server component as the entry point of a page or route, creating a code splitting boundary. Any dependencies referenced by this route will be optimally bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](/features/code-splitting/#shared-bundles).
+`"use server-entry"` is a Parcel-specific directive that marks a server component as the entry point of a page or route, creating a code splitting boundary. Any dependencies referenced by this route will be optimally bundled together, including client components, CSS, etc. Shared dependencies between pages, such as common libraries, will be automatically placed in a [shared bundle](../features/code-splitting.md#shared-bundles).
 
-{% sample %}
-{% samplefile "server/Comments.js" %}
+<code-sample>
+<code-file name="server/Comments.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
 export async function Comments() {
   // Load data from a database...
   let comments = await db.getComments();
 
-  return comments.map((comment) => (
+  return comments.map(comment => (
     <article key={comment.id}>
       <p>Posted by: {comment.user}</p>
       {renderMarkdown(comment.body)}
@@ -130,8 +123,8 @@ export async function Comments() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this example, we load comments from a database and render each comment to a React component tree. Rendering Markdown on the server means we don't need to load a large parsing library in the browser.
 
@@ -139,8 +132,8 @@ In this example, we load comments from a database and render each comment to a R
 
 To load Server Components on the client, fetch the RSC Payload from the server and render it in a [Suspense](https://react.dev/reference/react/Suspense) boundary. `@parcel/rsc` includes a small `fetch` wrapper to make this easy.
 
-{% sample %}
-{% samplefile "src/App.js" %}
+<code-sample>
+<code-file name="src/App.js">
 
 ```jsx/7-9,18
 import {Suspense} from 'react';
@@ -166,15 +159,15 @@ function Comments() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Client components
 
 Server Components can import Client Components to add interactivity, using React Hooks such as `useState` to update the UI. Client components are marked using the standard React [`"use client"`](https://react.dev/reference/rsc/use-client) directive. This example adds a like button to each comment.
 
-{% sample %}
-{% samplefile "server/LikeButton.js" %}
+<code-sample>
+<code-file name="server/LikeButton.js">
 
 ```jsx/0
 "use client";
@@ -190,8 +183,8 @@ export function LikeButton({likes = 0}) {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "server/Comments.js" %}
+</code-file>
+<code-file name="server/Comments.js">
 
 ```jsx/2,11
 "use server-entry";
@@ -211,8 +204,8 @@ export async function Comments() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Code splitting
 
@@ -222,30 +215,30 @@ Code splitting works the same way in Server Components as in Client Components. 
 
 This example renders different components depending whether it is a text, image, or video comment. Only the resources needed to render the comment types in the response will be loaded.
 
-{% sample %}
-{% samplefile "server/Comment.js" %}
+<code-sample>
+<code-file name="server/Comment.js">
 
 ```jsx
-import { lazy } from "react";
+import {lazy} from 'react';
 
-const TextComment = lazy(() => import("./TextComment"));
-const ImageComment = lazy(() => import("./ImageComment"));
-const VideoComment = lazy(() => import("./VideoComment"));
+const TextComment = lazy(() => import('./TextComment'));
+const ImageComment = lazy(() => import('./ImageComment'));
+const VideoComment = lazy(() => import('./VideoComment'));
 
-function Comment({ comment }) {
+function Comment({comment}) {
   switch (comment.type) {
-    case "text":
+    case 'text':
       return <TextComment comment={comment} />;
-    case "image":
+    case 'image':
       return <ImageComment comment={comment} />;
-    case "video":
+    case 'video':
       return <VideoComment comment={comment} />;
   }
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Server functions
 
@@ -257,8 +250,8 @@ Server functions can be imported from Client Components and called like normal f
 
 In this example, we'll update the `LikeButton` component to store the like count in a database.
 
-{% sample %}
-{% samplefile "server/actions.js" %}
+<code-sample>
+<code-file name="server/actions.js">
 
 ```js/0
 "use server";
@@ -269,8 +262,8 @@ export async function likeComment(id) {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "server/LikeButton.js" %}
+</code-file>
+<code-file name="server/LikeButton.js">
 
 ```jsx/3,8-11
 "use client";
@@ -293,28 +286,28 @@ export function LikeButton({id, likes = 0}) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The last step is "connecting" the client and server by making an HTTP request when an action is called. The `setServerCallback` function in `@parcel/rsc/client` defines a function to be called when a Server Function is called from the client. Each Server Function has an id generated by Parcel, and arguments that it was called with. These should be sent as part of an HTTP request to the server.
 
 This setup needs to be done once, and then all additional Server Functions will be handled the same way.
 
-{% sample %}
-{% samplefile "src/App.js" %}
+<code-sample>
+<code-file name="src/App.js">
 
 ```js
-import { setServerCallback, fetchRSC } from "@parcel/rsc/client";
+import {setServerCallback, fetchRSC} from '@parcel/rsc/client';
 
 // ...
 
 // Setup a callback to perform server actions.
 // This sends a POST request to the server and updates the page.
 setServerCallback(async (id, args) => {
-  let result = await fetchRSC("/action", {
-    method: "POST",
+  let result = await fetchRSC('/action', {
+    method: 'POST',
     headers: {
-      "rsc-action-id": id,
+      'rsc-action-id': id,
     },
     body: args,
   });
@@ -322,30 +315,30 @@ setServerCallback(async (id, args) => {
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 On the server, we'll need to handle POST requests and call the original server function. This will read the id of the server action passed as an HTTP header, and call the associated action. It will respond with the function's result, serialized as an RSC payload.
 
-{% sample %}
-{% samplefile "server/server.js" %}
+<code-sample>
+<code-file name="server/server.js">
 
 ```jsx
-import { renderRSC, callAction } from "@parcel/rsc/node";
+import {renderRSC, callAction} from '@parcel/rsc/node';
 
 // ...
 
-app.post("/action", async (req, res) => {
-  let id = req.get("rsc-action-id");
-  let { result } = await callAction(req, id);
+app.post('/action', async (req, res) => {
+  let id = req.get('rsc-action-id');
+  let {result} = await callAction(req, id);
   let stream = renderRSC(result);
-  res.set("Content-Type", "text/x-component");
+  res.set('Content-Type', 'text/x-component');
   stream.pipe(res);
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Now, when a user clicks the like button, the server will be called to update the database, and the client will re-render with the updated like count.
 
@@ -401,10 +394,10 @@ Replace `npm` with `yarn` or `pnpm` to use your preferred package manager. See b
 
 You can use any Node.js libraries or frameworks to create your server. In this example we'll use [Express](https://expressjs.com). This is similar to the [example above](#create-a-server) but uses `renderRequest` from `@parcel/rsc` instead of `renderRSC`. This renders HTML instead of an RSC Payload. The [server entry](#server-entries) renders the root `<html>` element for the page.
 
-Create a [target](/features/targets/) with the `"react-server"` context in your `package.json`, and pass your server as the entry when running Parcel. The `parcel run` command builds your server and runs it with Node. Express is excluded from the bundle using the [includeNodeModules](/features/targets/#includenodemodules) option, so it is loaded from `node_modules` at runtime.
+Create a [target](../features/targets.md) with the `"react-server"` context in your `package.json`, and pass your server as the entry when running Parcel. The `parcel run` command builds your server and runs it with Node. Express is excluded from the bundle using the [includeNodeModules](../features/targets.md#includenodemodules) option, so it is loaded from `node_modules` at runtime.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -423,31 +416,31 @@ Create a [target](/features/targets/) with the `"react-server"` context in your 
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/server.js" %}
+</code-file>
+<code-file name="src/server.js">
 
 ```jsx
-import express from "express";
-import { renderRequest } from "@parcel/rsc/node";
-import { Page } from "./Page";
+import express from 'express';
+import {renderRequest} from '@parcel/rsc/node';
+import {Page} from './Page';
 
 // Create an Express app and serve the dist folder.
 const app = express();
-app.use("/client", express.static("dist/client"));
+app.use('/client', express.static('dist/client'));
 
 // Create a route for the home page.
-app.get("/", async (req, res) => {
-  await renderRequest(req, res, <Page />, { component: Page });
+app.get('/', async (req, res) => {
+  await renderRequest(req, res, <Page />, {component: Page});
 });
 
 app.listen(3000);
 ```
 
-{% endsamplefile %}
-{% samplefile "src/Page.js" %}
+</code-file>
+<code-file name="src/Page.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
 export function Page() {
   return (
@@ -463,12 +456,12 @@ export function Page() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Start the development server with `npm start`, and open [http://localhost:3000](http://localhost:3000) to see the rendered page.
 
-Parcel builds the server into `dist/server`, and client code into `dist/client`. When you make a change, Parcel rebuilds your app and applies the update to the running server using [hot module replacement](/features/development/#hot-reloading). If the server can't apply the update, Parcel restarts it. In development, Parcel also serves source maps for your server code, so server stack traces that React shows in the browser point at your original source code.
+Parcel builds the server into `dist/server`, and client code into `dist/client`. When you make a change, Parcel rebuilds your app and applies the update to the running server using [hot module replacement](../features/development.md#hot-reloading). If the server can't apply the update, Parcel restarts it. In development, Parcel also serves source maps for your server code, so server stack traces that React shows in the browser point at your original source code.
 
 To run the production build, build it with `npm run build`, and run `node dist/server/server.js`.
 
@@ -478,24 +471,24 @@ React Server Components seamlessly integrate client and server code in one unifi
 
 To hydrate the page, create a new `src/client.js` file, and mark it as a client entry with the Parcel-specific `"use client-entry"` directive. This tells Parcel that it should run _only_ in the browser, and not on the server, and that it should run immediately on page load. The `@parcel/rsc/client` library can be used to hydrate the page, using data injected into the HTML by `@parcel/rsc/node` on the server.
 
-{% sample %}
-{% samplefile "src/client.js" %}
+<code-sample>
+<code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate } from "@parcel/rsc/client";
+import {hydrate} from '@parcel/rsc/client';
 
 hydrate();
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Finally, import `client.js` from the Page component, along with any Client Components:
 
-{% sample %}
-{% samplefile "src/Page.js" %}
+<code-sample>
+<code-file name="src/Page.js">
 
 ```jsx/2,10
 "use server-entry";
@@ -515,8 +508,8 @@ export function Page() {
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/Counter.js" %}
+</code-file>
+<code-file name="src/Counter.js">
 
 ```jsx/0
 "use client";
@@ -532,8 +525,8 @@ export function Counter() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The page now loads a `<script>` including the `Counter` component, which updates client state on click.
 
@@ -541,8 +534,8 @@ The page now loads a `<script>` including the `Counter` component, which updates
 
 So far, we only have one page. To add another, create a new route in the server code, along with a new component to render.
 
-{% sample %}
-{% samplefile "src/server.js" %}
+<code-sample>
+<code-file name="src/server.js">
 
 ```jsx/4-6
 import {About} from './About';
@@ -554,13 +547,13 @@ app.get('/about', async (req, res) => {
 });
 ```
 
-{% endsamplefile %}
-{% samplefile "src/About.js" %}
+</code-file>
+<code-file name="src/About.js">
 
 ```jsx
-"use server-entry";
+'use server-entry';
 
-import "./client";
+import './client';
 
 export function About() {
   return (
@@ -577,8 +570,8 @@ export function About() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Now you should be able to load <a href="http://localhost:3000/about">http://localhost:3000/about</a>.
 
@@ -588,13 +581,13 @@ However, you may notice that when clicking the "Home" link, the browser does a f
 
 As a simple example, we can intercept the `click` event on links to trigger client side navigation. The browser `history.pushState` API can be used to update the browser's URL bar once the page is finished loading.
 
-{% sample %}
-{% samplefile "src/client.js" %}
+<code-sample>
+<code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate, fetchRSC } from "@parcel/rsc/client";
+import {hydrate, fetchRSC} from '@parcel/rsc/client';
 
 let updateRoot = hydrate();
 
@@ -602,14 +595,14 @@ async function navigate(pathname, push = false) {
   let root = await fetchRSC(pathname);
   updateRoot(root, () => {
     if (push) {
-      history.pushState(null, "", pathname);
+      history.pushState(null, '', pathname);
     }
   });
 }
 
 // Intercept link clicks to perform RSC navigation.
-document.addEventListener("click", (e) => {
-  let link = e.target.closest("a");
+document.addEventListener('click', e => {
+  let link = e.target.closest('a');
   if (link) {
     e.preventDefault();
     navigate(link.pathname, true);
@@ -617,19 +610,19 @@ document.addEventListener("click", (e) => {
 });
 
 // When the user clicks the back button, navigate with RSC.
-window.addEventListener("popstate", (e) => {
+window.addEventListener('popstate', e => {
   navigate(location.pathname);
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-{% note %}
+<p-note>
 
 This example re-renders the entire page during client navigation. In a real app, it might be beneficial to load only the part of the page that changed (e.g. excluding common parts such as a sidebar). Router libraries with support for nested routes make this easier.
 
-{% endnote %}
+</p-note>
 
 ### Server functions
 
@@ -637,22 +630,22 @@ In a server-rendered app, React Server Functions work similarly to the [example 
 
 The server may also want to re-render the page when a Server Function is called. In this example, it returns the new page alongside the function's return value. The client updates the page accordingly.
 
-{% sample %}
-{% samplefile "src/client.js" %}
+<code-sample>
+<code-file name="src/client.js">
 
 ```js
-"use client-entry";
+'use client-entry';
 
-import { hydrate, fetchRSC } from "@parcel/rsc/client";
+import {hydrate, fetchRSC} from '@parcel/rsc/client';
 
 let updateRoot = hydrate({
   // Setup a callback to perform server actions.
   // This sends a POST request to the server and updates the page.
   async callServer(id, args) {
-    let { result, root } = await fetchRSC("/", {
-      method: "POST",
+    let {result, root} = await fetchRSC('/', {
+      method: 'POST',
       headers: {
-        "rsc-action-id": id,
+        'rsc-action-id': id,
       },
       body: args,
     });
@@ -664,26 +657,26 @@ let updateRoot = hydrate({
 // ...
 ```
 
-{% endsamplefile %}
-{% samplefile "src/server.js" %}
+</code-file>
+<code-file name="src/server.js">
 
 ```jsx
-import { renderRequest, callAction } from "@parcel/rsc/node";
+import {renderRequest, callAction} from '@parcel/rsc/node';
 
 // ...
 
-app.post("/", async (req, res) => {
-  let id = req.get("rsc-action-id");
-  let { result } = await callAction(req, id);
+app.post('/', async (req, res) => {
+  let id = req.get('rsc-action-id');
+  let {result} = await callAction(req, id);
   let root = <Page />;
   if (id) {
-    root = { result, root };
+    root = {result, root};
   }
-  await renderRequest(req, res, root, { component: Page });
+  await renderRequest(req, res, root, {component: Page});
 });
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 <!-- TODO(v3): removed the "Static rendering" section (react-static target, .rsc output files, PageProps, MDX layouts with tableOfContents/exports, mixing static and dynamic). v3 has no static rendering: nothing in crates/ or packages-v3 handles a "react-static" target (v2 used @parcel/packager-react-static), though packages-v3/rsc still ships the PageProps/TocNode types in src/ssg.d.ts. Restore the section from the v2 docs once it's implemented. -->

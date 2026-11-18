@@ -1,30 +1,24 @@
----
-layout: layout.njk
-title: Tree shaking
-description: In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called "tree shaking".
-eleventyNavigation:
-  key: features-tree-shaking
-  title: 🌳 Tree shaking
-  order: 7
----
+<meta name="description" content="In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called &quot;tree shaking&quot;.">
 
-In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called **"tree shaking"** or **"dead code elimination".** Tree shaking is supported for both static and [dynamic import](/features/code-splitting/#tree-shaking), [CommonJS](/languages/javascript/#commonjs) and [ES modules](/languages/javascript/#es-modules), and even across languages with [CSS modules](/languages/css/#tree-shaking) and [SVG](/languages/svg/#tree-shaking).
+# Tree shaking
+
+In production builds, Parcel statically analyzes the imports and exports of each module, and removes everything that isn't used. This is called **"tree shaking"** or **"dead code elimination".** Tree shaking is supported for both static and [dynamic import](code-splitting.md#tree-shaking), [CommonJS](../languages/javascript.md#commonjs) and [ES modules](../languages/javascript.md#es-modules), and even across languages with [CSS modules](../languages/css.md#tree-shaking) and [SVG](../languages/svg.md#tree-shaking).
 
 ## How tree shaking works
 
 Parcel’s implementation of tree shaking works by analyzing the imports and exports of each module independently and in parallel. Once all modules have been compiled, Parcel determines which exports of each module are actually used, and removes the unused exports. Any code that is no longer referenced is then removed by the minifier.
 
-{% sample %}
-{% samplefile "index.js" %}
+<code-sample>
+<code-file name="index.js">
 
 ```javascript
-import { add } from "./math";
+import {add} from './math';
 
 console.log(add(2, 3));
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 export function add(a, b) {
@@ -36,8 +30,8 @@ export function square(a) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this example, only the `add` function is used, so the `square` function is removed from the output.
 
@@ -56,7 +50,7 @@ parcel build src/app.html --log-level verbose
 Parcel can statically resolve member accesses that are known at build time, but when a dynamic property access is used, all exports of the module must be included in the build.
 
 ```javascript
-import * as math from "./math";
+import * as math from './math';
 
 // ✅ Static property access
 console.log(math.add(2, 3));
@@ -68,7 +62,7 @@ console.log(math[op](2, 3));
 In addition, Parcel does not track re-assignments of a namespace object to another variable. Any usage of an import namespace other than a static property access will cause all exports to be included.
 
 ```javascript
-import * as math from "./math";
+import * as math from './math';
 
 // 🚫 Reassignment of import namespace
 let utils = math;
@@ -82,11 +76,11 @@ doSomething(math);
 
 Parcel supports tree shaking dynamic imports with static property accesses or destructuring. This is supported with both `await` and Promise `then` syntax. However, if the Promise returned from `import()` is accessed in any other way, Parcel must preserve all exports of the resolved module.
 
-{% note %}
+<p-note>
 
 **Note:** For the `await` cases, unused exports can unfortunately only be removed when `await` is not transpilied away (i.e. with a modern browserslist config).
 
-{% endnote %}
+</p-note>
 
 ```swift
 // ✅ Destructuring await
@@ -156,21 +150,21 @@ On the importing side, Parcel supports destructuring and static property accesse
 
 ```javascript
 // ✅ Static destructuring
-const { add } = require("./math");
+const {add} = require('./math');
 
 // ✅ Static property assignment
-const add = require("./math").add;
+const add = require('./math').add;
 
 // ✅ Static property access of require result
-const math = require("./math");
+const math = require('./math');
 console.log(math.add(2, 3));
-console.log(require("./math").add(2, 3));
+console.log(require('./math').add(2, 3));
 
 // 🚫 Dynamic property access of require result
 console.log(math[name](2, 3));
 
 // 🚫 Unknown require result usage
-doSomething(require("./math"));
+doSomething(require('./math'));
 doSomething(math);
 ```
 
@@ -182,7 +176,7 @@ The `eval` function executes arbitrary JavaScript code in a string within the cu
 let x = 2;
 
 // 🚫 Eval disables tree shaking and minification
-eval("x = 4");
+eval('x = 4');
 ```
 
 If you need to run JavaScript code from a string, you may be able to use the [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function) constructor instead.
@@ -222,7 +216,7 @@ Unlike ES module `import` statements which are only allowed at the top-level of 
 ```javascript
 // 🚫 Conditional requires disable tree shaking of the resolved module
 if (someCondition) {
-  const { add } = require("./math");
+  const {add} = require('./math');
 }
 ```
 
@@ -240,18 +234,18 @@ The `sideEffects` field supports the following values:
 
 When a file is marked as side effect free, Parcel is able to skip the entire file if it does not have any used exports. This can reduce bundle sizes significantly, especially if the module calls helper functions during its initialization.
 
-{% sample null, "column" %}
-{% samplefile "app.js" %}
+<code-sample layout="column">
+<code-file name="app.js">
 
 ```js
-import { add } from "math";
+import {add} from 'math';
 
 console.log(add(2, 3));
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile "node_modules/math/package.json" %}
+<code-file name="node_modules/math/package.json">
 
 ```json
 {
@@ -260,13 +254,13 @@ console.log(add(2, 3));
 }
 ```
 
-{% endsamplefile %}
+</code-file>
 
-{% samplefile "node_modules/math/index.js" %}
+<code-file name="node_modules/math/index.js">
 
 ```js
-export { add } from "./add.js";
-export { multiply } from "./multiply.js";
+export {add} from './add.js';
+export {multiply} from './multiply.js';
 
 let loaded = Date.now();
 export function elapsed() {
@@ -274,8 +268,8 @@ export function elapsed() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In this case, only the `add` function from the `math` library is used. `multiply` and `elapsed` are unused. Normally, the `loaded` variable would still be needed because it includes a side effect that runs during the module's initialization. However, because the `package.json` includes the `sideEffects` field, the `index.js` module can be entirely skipped.
 

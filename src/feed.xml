@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:parcel="http://parceljs.org">
+  <title>Parcel Blog</title>
+  <subtitle>Blog for the blazing fast, zero configuration web application bundler</subtitle>
+  <link href="https://parceljs.org/feed.xml" rel="self"/>
+  <link href="https://parceljs.org"/>
+  <id>https://parceljs.org</id>
+  <author>
+    <name>Devon Govett</name>
+    <email>devongovett@gmail.com</email>
+  </author>
+  <parcel:macro src="_includes/posts.mjs#feed"/>
+</feed>

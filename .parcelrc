@@ -1,11 +1,74 @@
 {
   "extends": "@parcel/config-default",
-  "resolvers": ["...", "parcel-resolver-website"],
   "transformers": {
-    "*.{js,mjs,jsm,jsx,es6,cjs,ts,tsx}": [
-      "@parcel/transformer-js",
-      "@parcel/transformer-react-refresh-wrap"
+    "src/blog/**/*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "layout": "src/_includes/blog-layout.html",
+          "gfm": true,
+          "title": true,
+          "description": true,
+          "anchors": true
+        }
+      }
+    ],
+    "fragment:*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "gfm": true
+        }
+      }
+    ],
+    "*.md": [
+      {
+        "plugin": "@parcel/transformer-markdown",
+        "config": {
+          "layout": "src/_includes/layout.html",
+          "gfm": true,
+          "title": true,
+          "description": true,
+          "toc": true,
+          "anchors": true
+        }
+      }
+    ],
+    "*.html": [
+      {
+        "plugin": "@parcel/transformer-html",
+        "config": {
+          "macros": {
+            "code-sample": "src/_includes/samples.mjs#sample",
+            "code-migration": "src/_includes/samples.mjs#migration",
+            "code-file": "src/_includes/samples.mjs#file",
+            "code-tabs": "src/_includes/samples.mjs#codeTabs",
+            "api-name": "src/_includes/samples.mjs#apiName",
+            "pre": "src/_includes/highlight.mjs#pre",
+            "table": "src/_includes/tables.mjs#table"
+          },
+          "directoryIndex": "index.html"
+        }
+      }
+    ],
+    "*.css": [
+      "@parcel/transformer-tailwind",
+      "@parcel/transformer-css"
     ]
   },
-  "namers": ["parcel-namer-website", "..."]
+  "namers": [
+    {
+      "plugin": "@parcel/namer-default",
+      "config": {
+        "rules": {
+          "src/home/index.html": "index.html",
+          "src/404.md": "404.html",
+          "src/blog/*/*.md": "blog/$1/index.html",
+          "src/**/index.html": "$1/index.html",
+          "src/**/*.md": "$1/$2/index.html",
+          "src/**/*.html": "$1/$2/index.html"
+        }
+      }
+    }
+  ]
 }

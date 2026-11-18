@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Development
-eleventyNavigation:
-  key: features-development
-  title: 🧑‍💻 Development
-  order: 1
----
+# Development
 
 Parcel includes a development server out of the box supporting hot reloading, HTTPS, single page app routing, and more.
 
@@ -58,7 +51,7 @@ if (module.hot) {
   module.hot.accept(function (getParents) {
     // module or one of its dependencies was just updated.
     // data stored in `dispose` is available in `module.hot.data`
-    let { updated } = module.hot.data;
+    let {updated} = module.hot.data;
   });
 }
 ```
@@ -66,25 +59,25 @@ if (module.hot) {
 `module.hot.accept` can also accept updates to specific dependencies instead of the module itself. Pass a dependency specifier, or an array of specifiers, as the first argument. When one of these dependencies is updated, it is re-evaluated, but the accepting module is not. Instead, the callback is called with the ids of the updated dependencies, and you can use the new versions through your imports.
 
 ```javascript
-import { render } from "./render";
+import {render} from './render';
 
 render();
 
 if (module.hot) {
-  module.hot.accept("./render", function () {
+  module.hot.accept('./render', function () {
     // ./render.js was just updated. `render` now refers to the new version.
     render();
   });
 }
 ```
 
-Hot reloading also works in Node.js when using the `parcel run` command, which applies updates inside the running process, and restarts it when an update is not accepted. See the [CLI](/features/cli/) docs for more details.
+Hot reloading also works in Node.js when using the `parcel run` command, which applies updates inside the running process, and restarts it when an update is not accepted. See the [CLI](cli.md) docs for more details.
 
 ## Development target
 
-In development, Parcel builds the same [targets](/features/targets/) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
+In development, Parcel builds the same [targets](targets.md) as in production builds. This means that if you have a `browserslist` in your package.json, your source code is transpiled for those browsers in development too, so you can test in older browsers. Optimizations such as minification are disabled by default in development.
 
-See the [Targets](/features/targets/) documentation for more information.
+See the [Targets](targets.md) documentation for more information.
 
 ## HTTPS
 

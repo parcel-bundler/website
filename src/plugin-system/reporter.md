@@ -1,24 +1,18 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-reporter
-  title: Reporter
-  order: 11
----
+# Reporter
 
 Reporter plugins receive events from Parcel as they happen throughout the build process. For example, reporters may log status information, or statistics about the bundles at the end of a build.
 
 ## Example
 
-A Reporter plugin implements a method for each type of event it wants to receive: {% api js="buildStart", rust="build_start", go="BuildStart", swift="buildStart" %}, {% api js="buildSuccess", rust="build_success", go="BuildSuccess", swift="buildSuccess" %}, {% api js="buildFailure", rust="build_failure", go="BuildFailure", swift="buildFailure" %}, and {% api js="log", rust="log", go="Log", swift="log" %}. At least one of these methods must be implemented, and events without one are skipped. In Go, each method has its own interface, e.g. `parcel.BuildSuccessReporter`. This example logs the number of bundles and build time when a build is successful.
+A Reporter plugin implements a method for each type of event it wants to receive: <api-name js="buildStart" rust="build_start" go="BuildStart" swift="buildStart"></api-name>, <api-name js="buildSuccess" rust="build_success" go="BuildSuccess" swift="buildSuccess"></api-name>, <api-name js="buildFailure" rust="build_failure" go="BuildFailure" swift="buildFailure"></api-name>, and <api-name js="log" rust="log" go="Log" swift="log"></api-name>. At least one of these methods must be implemented, and events without one are skipped. In Go, each method has its own interface, e.g. `parcel.BuildSuccessReporter`. This example logs the number of bundles and build time when a build is successful.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildSuccess({ bundleGraph, buildTime }) {
+  buildSuccess({bundleGraph, buildTime}) {
     let bundles = bundleGraph.getBundles();
     console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
   },
@@ -26,12 +20,12 @@ export default new Reporter({
 ```
 
 ```rust
-use parcel_plugin::{BuildSuccess, Diagnostic, Options, Plugin, register_plugin};
+use parcel_plugin::{BuildSuccess, Config, Diagnostic, Options, Plugin, register_plugin};
 
 struct MyReporter;
 
 impl Plugin for MyReporter {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyReporter)
   }
 
@@ -63,7 +57,7 @@ func (r *MyReporter) BuildSuccess(event *parcel.BuildSuccess, _ *parcel.Options)
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyReporter{}, nil
 	})
 }
@@ -75,7 +69,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyReporter: Reporter {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func buildSuccess(_ event: BuildSuccess, options: Options) async throws {
     let bundles = event.bundleGraph.bundleCount
@@ -86,17 +80,17 @@ struct MyReporter: Reporter {
 #parcelPlugin(MyReporter.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
-See [Native plugins](/plugin-system/native-plugins/) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the method for each event.
+See [Native plugins](native-plugins.md) for how to build native plugins and use them in a project. The rest of the examples on this page omit the setup code, and only show the method for each event.
 
-Each event includes its properties, along with Parcel's options. JavaScript reporters also receive the plugin's `config` from `.parcelrc` with each event, and native reporters receive it when they are created. See [Configuration](/plugin-system/authoring-plugins/#configuration) for details. Reporters cannot affect the result of a build. If a reporter fails with an error, it is logged, and the build continues.
+Each event includes its properties, along with Parcel's options. JavaScript reporters also receive the plugin's `config` from `.parcelrc` with each event, and native reporters receive it when they are created. See [Configuration](authoring-plugins.md#configuration) for details. Reporters cannot affect the result of a build. If a reporter fails with an error, it is logged, and the build continues.
 
-{% note %}
+<p-note>
 
-**Note**: Messages logged by JavaScript reporters using `console` methods (or `process.stdout`/`process.stderr`) are sent as log events to all reporters, including Parcel's built-in CLI reporter, which prints them. To prevent infinite loops, messages logged while handling a log event may be discarded. Native reporters write to stdout and stderr directly. See [Logging](/plugin-system/logging/) for more details.
+**Note**: Messages logged by JavaScript reporters using `console` methods (or `process.stdout`/`process.stderr`) are sent as log events to all reporters, including Parcel's built-in CLI reporter, which prints them. To prevent infinite loops, messages logged while handling a log event may be discarded. Native reporters write to stdout and stderr directly. See [Logging](logging.md) for more details.
 
-{% endnote %}
+</p-note>
 
 <!-- TODO(v3): JS reporters cannot write files (the plugin fs is read-only) or write directly to stdout (process.stdout.write is routed to console.log as an info-level log, so it is filtered by --log-level and formatted by the CLI reporter). v2 reporters commonly did both (e.g. bundle analyzers, build metrics). Native reporters can use println!/std::fs. -->
 
@@ -104,14 +98,14 @@ Each event includes its properties, along with Parcel's options. JavaScript repo
 
 The build start event is emitted when a build is started. In watch mode, it is emitted at the start of each rebuild.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
   buildStart() {
-    console.log("Started build!");
+    console.log('Started build!');
   },
 });
 ```
@@ -140,21 +134,21 @@ struct MyReporter: Reporter {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Build success
 
 The build success event is emitted when a build completes successfully. It includes the full bundle graph that was built, the build time, and a list of the assets that changed. On a full build, the changed assets include every asset, and on rebuilds they include the assets that were transformed again. The build time is a number of milliseconds in JavaScript, and a duration in native plugins. Native plugins receive the changed assets as indices, which can be looked up in the bundle graph.
 
-{% api js="bundle.filePath", rust="bundle.dist_path()", go="bundle.DistPath()", swift="bundle.distPath" %} returns the absolute path that each bundle in the bundle graph was written to, or nothing for inline bundles.
+<api-name js="bundle.filePath" rust="bundle.dist_path()" go="bundle.DistPath()" swift="bundle.distPath"></api-name> returns the absolute path that each bundle in the bundle graph was written to, or nothing for inline bundles.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildSuccess({ changedAssets, buildTime }) {
+  buildSuccess({changedAssets, buildTime}) {
     console.log(`✨ Rebuilt ${changedAssets.length} assets in ${buildTime}ms!`);
   },
 });
@@ -184,19 +178,19 @@ struct MyReporter: Reporter {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Build failure
 
-The build failure event is emitted when a build completes with errors. It includes a list of [diagnostics](/plugin-system/logging/#diagnostics) describing the errors. See [Diagnostics](/plugin-system/logging/#diagnostics) for details.
+The build failure event is emitted when a build completes with errors. It includes a list of [diagnostics](logging.md#diagnostics) describing the errors. See [Diagnostics](logging.md#diagnostics) for details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  buildFailure({ diagnostics }) {
+  buildFailure({diagnostics}) {
     console.log(`🚨 Build failed with ${diagnostics.length} errors.`);
   },
 });
@@ -226,21 +220,21 @@ struct MyReporter: Reporter {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Logging
 
-All logging in Parcel is routed through Reporter plugins. The level of each log event is one of error, warn, info, or verbose. Each event includes either a message string, or a list of [diagnostics](/plugin-system/logging/#diagnostics), which provide detail about the context of the log. Only messages allowed by the [`--log-level`](/features/cli/#parameters) CLI option are sent to reporters.
+All logging in Parcel is routed through Reporter plugins. The level of each log event is one of error, warn, info, or verbose. Each event includes either a message string, or a list of [diagnostics](logging.md#diagnostics), which provide detail about the context of the log. Only messages allowed by the [`--log-level`](../features/cli.md#parameters) CLI option are sent to reporters.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Reporter } from "@parcel/plugin";
+import {Reporter} from '@parcel/plugin';
 
 export default new Reporter({
-  log({ level, message, diagnostics }) {
+  log({level, message, diagnostics}) {
     let messages =
-      message != null ? [message] : diagnostics.map((d) => d.message);
+      message != null ? [message] : diagnostics.map(d => d.message);
 
     for (let message of messages) {
       sendToLogService(level, message);
@@ -303,7 +297,7 @@ struct MyReporter: Reporter {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## Relevant API
 
@@ -311,4 +305,6 @@ The API reference below covers JavaScript plugins. For native plugins, see the [
 
 <!-- TODO(v3): link to the generated docs for each SDK (docs.rs, pkg.go.dev, DocC) once they are published. -->
 
-{% include "../../api/reporter.html" %}
+<section>
+  <parcel:include src="../../api/reporter.html"></parcel:include>
+</section

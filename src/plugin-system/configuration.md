@@ -1,19 +1,13 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-configuration
-  title: Configuration
-  order: 13
----
+# Configuration
 
-Parcel configuration can be shared between projects by publishing a [`.parcelrc`](/features/plugins/) file in a package on npm. This also allows multiple plugins to be distributed together.
+Parcel configuration can be shared between projects by publishing a [`.parcelrc`](../features/plugins.md) file in a package on npm. This also allows multiple plugins to be distributed together.
 
 ## Shared configuration
 
 This example shows how a company might distribute a shared Parcel configuration to be used between projects. It extends `@parcel/config-default` and adds several additional plugins.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -26,8 +20,8 @@ This example shows how a company might distribute a shared Parcel configuration 
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "index.json" %}
+</code-file>
+<code-file name="index.json">
 
 ```json
 {
@@ -40,21 +34,21 @@ This example shows how a company might distribute a shared Parcel configuration 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Multi-plugin packages
 
 In addition to sharing configuration between projects, Parcel config packages are also useful to distribute multiple plugins that are required to work together. For example, a transformer and optimizer combination may be needed for a new file format.
 
-{% note %}
+<p-note>
 
 **Note**: In this case, it's best to not extend the default Parcel config and allow users of your config package to choose which default to extend from.
 
-{% endnote %}
+</p-note>
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -67,8 +61,8 @@ In addition to sharing configuration between projects, Parcel config packages ar
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "index.json" %}
+</code-file>
+<code-file name="index.json">
 
 ```json
 {
@@ -81,13 +75,13 @@ In addition to sharing configuration between projects, Parcel config packages ar
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Once published, users can now consume `parcel-config-xyz` in their projects by extending it in addition to the default config of their choice.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -95,5 +89,5 @@ Once published, users can now consume `parcel-config-xyz` in their projects by e
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

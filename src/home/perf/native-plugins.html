@@ -2,7 +2,7 @@
   <div class="mb-4 md:mb-8 text-lg md:text-xl font-medium text-gray-600 dark:text-blue-300">
     <p class="mb-4"><strong class="font-medium text-gray-800 dark:text-blue-100">Write plugins in Rust, Go, Swift, or any language with a C ABI.</strong> Native plugins are a great fit for performance critical transformers, and run in parallel across all of your cores.</p>
     <p class="text-base md:text-lg">And of course, JavaScript and TypeScript plugins work too, running in a custom multi-core runtime built on QuickJS.</p>
-    <a class="mt-8 block text-lg font-medium text-orange-600 dark:text-yellow-500 hover:underline" href="/plugin-system/native-plugins/">Learn more →</a>
+    <a class="mt-8 block text-lg font-medium text-orange-600 dark:text-yellow-500 hover:underline" href="../../plugin-system/native-plugins.md">Learn more →</a>
   </div>
   <div x-data="{shown: false}" x-intersect:enter="shown = true" x-intersect:leave="shown = false" class="bg-gray-800 dark:bg-gray-900 text-black dark:text-white rounded-md border-gray-200 dark:border-gray-700 border-solid border shadow-xl flex flex-col overflow-hidden w-full transition duration-700 ease-out delay-100" :class="{'translate-y-0 opacity-100': shown, 'motion-safe:translate-y-3 opacity-70': !shown}">
     <div class="flex flex-row justify-center relative bg-gray-200 dark:bg-gray-800 p-2">
@@ -20,8 +20,8 @@
     </div>
     <pre role="tabpanel" id="native-rust-tabpanel" aria-labelledby="native-rust-tab" x-show="tab === 'native-rust'" class="pt-0 mt-4 bg-transparent overflow-auto flex-1"><code class="language-rust text-xs">struct MyTransformer;
 impl Plugin for MyTransformer {
-  fn transform(&self, asset: &mut Asset, _: &Options) -> Result<(), Diagnostic> {
-    let code = compile(&asset.content()?);
+  fn transform(&amp;self, asset: &amp;mut Asset, _: &amp;Options) -&gt; Result&lt;(), Diagnostic&gt; {
+    let code = compile(&amp;asset.content()?);
     asset.set_content(code);
     Ok(())
   }

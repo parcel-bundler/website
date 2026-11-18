@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: MDX
-eleventyNavigation:
-  key: languages-mdx
-  title: <img src="/assets/lang-icons/mdx.svg" alt=""/> MDX
-  order: 5
----
+# MDX
 
 [MDX](https://mdxjs.com) is a variant of [Markdown](https://daringfireball.net/projects/markdown/) that compiles to JSX, and supports embedding interactive components inside Markdown documents. Parcel supports MDX out of the box.
 
@@ -13,19 +6,19 @@ eleventyNavigation:
 
 You can import a `.mdx` file into your JavaScript and render it using React:
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
-import Hello from "./hello.mdx";
+import Hello from './hello.mdx';
 
 export function App() {
   return <Hello />;
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "hello.mdx" %}
+</code-file>
+<code-file name="hello.mdx">
 
 ```md
 # Hello, MDX!
@@ -33,8 +26,8 @@ export function App() {
 This is an MDX file.
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## Dependencies
 
@@ -62,25 +55,25 @@ Images can be referenced using the Markdown image syntax, or the HTML [`<img>`](
 
 ### Video, audio, and other assets
 
-The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](/features/production/#content-hashing).
+The [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), and [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) elements are supported. The referenced URLs are processed by Parcel and rewritten to include a [content hash](../features/production.md#content-hashing).
 
 ## Code blocks
 
 Parcel supports customizing how code blocks are rendered by specifying your own `CodeBlock` component. This allows you to implement syntax highlighting and other features.
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
-import Hello from "./hello.mdx";
+import Hello from './hello.mdx';
 
-const components = { CodeBlock };
+const components = {CodeBlock};
 
 export function App() {
   return <Hello components={components} />;
 }
 
-function CodeBlock({ lang, children }) {
+function CodeBlock({lang, children}) {
   return (
     <pre>
       <code className={lang ? `language-${lang}` : null}>
@@ -95,8 +88,8 @@ function syntaxHighlight() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### CodeBlock props
 
@@ -145,17 +138,17 @@ The provided `CodeBlock` component can choose where to display the rendered valu
 <div>Hello world!</div>
 ```
 
-Rendered JSX expressions and components are updated in place with React Fast Refresh (see [Hot reloading](/features/development/#hot-reloading)) when you edit the MDX file during development.
+Rendered JSX expressions and components are updated in place with React Fast Refresh (see [Hot reloading](../features/development.md#hot-reloading)) when you edit the MDX file during development.
 
 ## Table of contents
 
 MDX files also export a `tableOfContents` array, which contains the headings in the document. Each entry has a `title`, the heading `level` (1–6), and an array of `children` containing nested headings. This can be used to render a navigation sidebar, for example.
 
-{% sample %}
-{% samplefile "app.js" %}
+<code-sample>
+<code-file name="app.js">
 
 ```jsx
-import Hello, { tableOfContents } from "./hello.mdx";
+import Hello, {tableOfContents} from './hello.mdx';
 
 export function App() {
   return (
@@ -166,10 +159,10 @@ export function App() {
   );
 }
 
-function Toc({ items }) {
+function Toc({items}) {
   return (
     <ul>
-      {items.map((item) => (
+      {items.map(item => (
         <li key={item.title}>
           {item.title}
           {item.children.length > 0 && <Toc items={item.children} />}
@@ -180,5 +173,5 @@ function Toc({ items }) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

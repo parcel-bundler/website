@@ -1,10 +1,11 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: blog-beta-3
-  title: Parcel 2 beta 3
-date: 2021-05-18
----
+<meta property="article:published_time" content="2021-05-18">
+
+<header parcel:slot="header">
+  <h1>Parcel 2 beta 3</h1>
+  <div class="summary">
+    <time datetime="2021-05-18" class="entry-date js-replace-date">2021-05-18</time>
+  </div>
+</header>
 
 The Parcel team is excited to release Parcel 2 beta 3! **This release includes a ground up rewrite of our JavaScript compiler in Rust, which improves overall build performance by up to 10x.** In addition, this post will cover some other improvements we’ve made to Parcel since our last update, along with our roadmap to a stable Parcel 2 release.
 
@@ -66,7 +67,7 @@ We also now have support for tree shaking CSS modules. When you import a CSS mod
 
 In development, it can be frustrating to wait for your entire app to build before the dev server starts up. This is especially true when working on large apps with many pages. If you’re only working on one feature, why do you need to wait for all of the others to build unless you actually navigate to them?
 
-Parcel now supports a `--lazy` CLI flag when using the dev server. When enabled, Parcel only builds files that are requested on demand, which can significantly reduce development build times. The server starts instantly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand.  If you navigate back to a page that was previously built, it loads instantly.
+Parcel now supports a `--lazy` CLI flag when using the dev server. When enabled, Parcel only builds files that are requested on demand, which can significantly reduce development build times. The server starts instantly, and when you navigate to a page for the first time, Parcel builds only the files necessary for that page. When you navigate to another page, that page will be built on demand. If you navigate back to a page that was previously built, it loads instantly.
 
 <video src="lazy.mp4" playsinline loop autoplay muted></video>
 

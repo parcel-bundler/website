@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Stylus
-eleventyNavigation:
-  key: languages-stylus
-  title: <img src="/assets/lang-icons/stylus.svg" class="dark-invert" alt=""/> Stylus
-  order: 7
----
+# Stylus
 
 Parcel supports [Stylus](https://stylus-lang.com/) files using the `@parcel/transformer-stylus` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
@@ -13,8 +6,8 @@ Parcel supports [Stylus](https://stylus-lang.com/) files using the `@parcel/tran
 yarn add @parcel/transformer-stylus@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -25,10 +18,10 @@ yarn add @parcel/transformer-stylus@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-Compiled Stylus files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.styl` extension.
+Compiled Stylus files are also processed the same way as [CSS](css.md), which means it is compiled for your browser targets, and any [PostCSS](css.md#postcss) plugins are also applied. [CSS modules](css.md#css-modules) can also be used by naming your file with the `.module.styl` extension.
 
 ## Example usage
 
@@ -41,7 +34,7 @@ Referencing a Stylus file in an HTML file:
 Importing a Stylus file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes from "./style.module.styl";
+import * as classes from './style.module.styl';
 
 document.body.className = classes.body;
 ```
@@ -56,8 +49,8 @@ parcel build style.styl
 
 Stylus can be configured for `@parcel/transformer-stylus` in your `.parcelrc`. To see the available options to configure stylus see the official [Stylus documentation](https://stylus-lang.com/docs/js.html). Directories listed in the `paths` option are relative to your project root.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/6-7
 {
@@ -74,5 +67,5 @@ Stylus can be configured for `@parcel/transformer-stylus` in your `.parcelrc`. T
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

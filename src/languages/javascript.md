@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: JavaScript
-eleventyNavigation:
-  key: languages-js
-  title: <img src="/assets/lang-icons/javascript.svg" alt=""/> JavaScript
-  order: 0
----
+# JavaScript
 
 Parcel includes first-class support for JavaScript, including ES modules and CommonJS, many types of dependencies, automatic transpilation for browser targets, JSX and TypeScript support, and much more.
 
@@ -13,7 +6,7 @@ Parcel includes first-class support for JavaScript, including ES modules and Com
 
 Modules allow you to break up your code into different files, and share functionality between them by importing and exporting values. This can help you structure your code into independent parts, with well-defined interfaces for communicating between them.
 
-Parcel includes support for both ES modules and CommonJS syntax. Module specifiers are resolved as described in [Dependency resolution](/features/dependency-resolution/).
+Parcel includes support for both ES modules and CommonJS syntax. Module specifiers are resolved as described in [Dependency resolution](../features/dependency-resolution.md).
 
 ### ES modules
 
@@ -21,19 +14,19 @@ ES module syntax is the standard way to import and export values between files i
 
 This example imports a `multiply` function from `math.js`, and uses it to implement a `square` function.
 
-{% sample %}
-{% samplefile "square.js" %}
+<code-sample>
+<code-file name="square.js">
 
 ```javascript
-import { multiply } from "./math.js";
+import {multiply} from './math.js';
 
 export function square(x) {
   return multiply(x, x);
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 export function multiply(a, b) {
@@ -41,8 +34,8 @@ export function multiply(a, b) {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 To learn more about ES modules, see the documentation on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
@@ -52,19 +45,19 @@ CommonJS is a legacy module system supported in Node, and widely used by librari
 
 This example uses `require` to load the `math.js` module, and uses the `multiply` function on its exports object to implement a `square` function.
 
-{% sample %}
-{% samplefile "square.js" %}
+<code-sample>
+<code-file name="square.js">
 
 ```javascript
-let math = require("./math");
+let math = require('./math');
 
 exports.square = function (x) {
   return math.multiply(x, x);
 };
 ```
 
-{% endsamplefile %}
-{% samplefile "math.js" %}
+</code-file>
+<code-file name="math.js">
 
 ```javascript
 exports.multiply = function (a, b) {
@@ -72,10 +65,10 @@ exports.multiply = function (a, b) {
 };
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-In addition to `require` and `exports`, Parcel also supports `module.exports`, as well as the `__dirname` and `__filename` module globals, and `process.env` for access to environment variables. See the [Node emulation](/features/node-emulation/) docs for more details.
+In addition to `require` and `exports`, Parcel also supports `module.exports`, as well as the `__dirname` and `__filename` module globals, and `process.env` for access to environment variables. See the [Node emulation](../features/node-emulation.md) docs for more details.
 
 To learn more about CommonJS, see the [Node.js docs](https://nodejs.org/dist/latest-v16.x/docs/api/modules.html).
 
@@ -86,23 +79,23 @@ Both the ES module `import` statement and CommonJS `require` function load depen
 The dynamic [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) function can be used to load dependencies _asynchronously_. This allows loading code lazily, on demand, and is a good technique for reducing the file size of the initial page load of your app. `import()` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which notifies you when the dependency has been loaded.
 
 ```javascript
-import("./pages/about").then(function (page) {
+import('./pages/about').then(function (page) {
   page.render();
 });
 ```
 
-See the [code splitting](/features/code-splitting/) docs for more details on how to use dynamic imports.
+See the [code splitting](../features/code-splitting.md) docs for more details on how to use dynamic imports.
 
 ### Top-level await
 
 [Top-level `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await) can be used in ES modules to wait for a Promise before the module finishes evaluating, e.g. to load data or initialize a WebAssembly module. Modules that import an async module, directly or indirectly, wait for it to finish before they run.
 
 ```javascript
-let res = await fetch("/config.json");
+let res = await fetch('/config.json');
 export const config = await res.json();
 ```
 
-Since `require` is synchronous, a module that uses top-level await (or imports a module that does) cannot be loaded with `require`. Use `import` or dynamic `import()` instead. When [building a library](/getting-started/library/), top-level await is only supported with ES module output.
+Since `require` is synchronous, a module that uses top-level await (or imports a module that does) cannot be loaded with `require`. Use `import` or dynamic `import()` instead. When [building a library](../getting-started/library.md), top-level await is only supported with ES module output.
 
 ### Import attributes
 
@@ -134,15 +127,15 @@ For example, when loading a library like jQuery, a `$` variable is available glo
 <script src="jquery.js"></script>
 <script>
   // The $ variable is now available globally.
-  $(".banner").show();
+  $('.banner').show();
 </script>
 ```
 
-In addition, classic scripts do not support synchronous imports or exports via either ES modules or CommonJS, and [Node emulation](/features/node-emulation/) is disabled. However, dynamic `import()` _is_ supported to load a module from within a classic script.
+In addition, classic scripts do not support synchronous imports or exports via either ES modules or CommonJS, and [Node emulation](../features/node-emulation.md) is disabled. However, dynamic `import()` _is_ supported to load a module from within a classic script.
 
 Parcel matches browser behavior for classic scripts and modules. If you wish to use imports or exports within your code, you’ll need to use `<script type="module">` to reference your JavaScript from an HTML file. For workers, use the `{type: 'module'}` option (see below). If this is missing, you'll see a diagnostic like the one below.
 
-![Screenshot of an error message showing "Browser scripts cannot have imports or exports. Add the type='module' attribute to the script tag."](/blog/rc0/script-module-error.png)
+![Screenshot of an error message showing "Browser scripts cannot have imports or exports. Add the type='module' attribute to the script tag."](../blog/rc0/script-module-error.png)
 
 ## `import.meta`
 
@@ -168,7 +161,7 @@ img.src = new URL('hero.jpg', import.meta.url);
 document.body.appendChild(img);
 ```
 
-Parcel will process any files referenced by a URL dependency as it does any other dependency. For example, images will be processed by the image transformer, and you can use [query parameters](/features/dependency-resolution/#query-parameters) to specify options to resize and convert them. If no transformers are configured for a particular file type, then the file will be copied into the dist directory unmodified. The resulting file names will also include a [content hash](/features/production/#content-hashing) for long term cacheability in the browser.
+Parcel will process any files referenced by a URL dependency as it does any other dependency. For example, images will be processed by the image transformer, and you can use [query parameters](../features/dependency-resolution.md#query-parameters) to specify options to resize and convert them. If no transformers are configured for a particular file type, then the file will be copied into the dist directory unmodified. The resulting file names will also include a [content hash](../features/production.md#content-hashing) for long term cacheability in the browser.
 
 ## Workers
 
@@ -178,10 +171,10 @@ Parcel has built in support for web workers, service workers, and worklets, whic
 
 Web workers are the most general type of worker. They allow you to run arbitrary CPU-heavy work in a background thread to avoid blocking the user interface. Workers are created using the [`Worker`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/Worker) constructor, and referencing another JavaScript file using the `URL` constructor as described above.
 
-To use ES module or CommonJS syntax in a worker, use the `type: 'module'` option as described in [Classic scripts](#classic-scripts) above. Parcel will compile your worker to a non-module worker if necessary, depending on your [targets](/features/targets/) and current browser support.
+To use ES module or CommonJS syntax in a worker, use the `type: 'module'` option as described in [Classic scripts](#classic-scripts) above. Parcel will compile your worker to a non-module worker if necessary, depending on your [targets](../features/targets.md) and current browser support.
 
 ```javascript
-new Worker(new URL("worker.js", import.meta.url), { type: "module" });
+new Worker(new URL('worker.js', import.meta.url), {type: 'module'});
 ```
 
 Parcel also supports the [`SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/SharedWorker) constructor, which creates a worker that can be accessed in different browser windows or iframes. It supports the same options as described above for `Worker`.
@@ -192,20 +185,20 @@ To learn more about web workers, see the docs on [MDN](https://developer.mozilla
 
 Service workers run in the background and provide features like offline caching, background sync, and push notifications. They are created using the [`navigator.serviceWorker.register`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register) function, and using the `URL` constructor to reference another JavaScript file.
 
-To use ES module or CommonJS syntax in a service worker, use the `type: 'module'` option as described in [Classic scripts](#classic-scripts) above. Parcel will compile your service worker to a non-module worker if necessary, depending on your [targets](/features/targets/) and current browser support.
+To use ES module or CommonJS syntax in a service worker, use the `type: 'module'` option as described in [Classic scripts](#classic-scripts) above. Parcel will compile your service worker to a non-module worker if necessary, depending on your [targets](../features/targets.md) and current browser support.
 
 ```javascript
 navigator.serviceWorker.register(
-  new URL("service-worker.js", import.meta.url),
-  { type: "module" }
+  new URL('service-worker.js', import.meta.url),
+  {type: 'module'},
 );
 ```
 
-{% note %}
+<p-note>
 
 **Note**: dynamic `import()` is not supported in service workers.
 
-{% endnote %}
+</p-note>
 
 <!-- TODO(v3): Removed the `@parcel/service-worker` section (manifest/version of bundle URLs). Nothing in v3 (crates/, packages-v3/) implements `@parcel/service-worker`. Restore if it gets ported. -->
 
@@ -219,16 +212,16 @@ The following examples show patterns that are supported and unsupported.
 
 ```javascript
 // ✅ absolute URL
-importScripts("http://some-cdn.com/worker.js");
+importScripts('http://some-cdn.com/worker.js');
 
 // ✅ computed URL
-importScripts(location.origin + "/worker.js");
+importScripts(location.origin + '/worker.js');
 
 // 🚫 relative path
-importScripts("worker.js");
+importScripts('worker.js');
 
 // 🚫 absolute path
-importScripts("/worker.js");
+importScripts('/worker.js');
 ```
 
 ### Worklets
@@ -238,7 +231,7 @@ Parcel also supports worklets, including [CSS Houdini paint worklets](https://de
 Paint worklets are detected automatically using the following syntax:
 
 ```javascript
-CSS.paintWorklet.addModule(new URL("worklet.js", import.meta.url));
+CSS.paintWorklet.addModule(new URL('worklet.js', import.meta.url));
 ```
 
 Web audio worklets are not statically analyzable, so for these you can import a URL to the worklet file using the `url` [import attribute](#import-attributes). The `env: 'worklet'` attribute compiles it for the correct environment.
@@ -270,8 +263,8 @@ The correct JSX pragma is also automatically inferred based on the library you u
 
 JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json` file. This allows overriding the runtime, pragma, and other options. See the [TSConfig reference](https://www.typescriptlang.org/tsconfig) for more information.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -282,15 +275,15 @@ JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### React Compiler
 
 [React Compiler](https://react.dev/learn/react-compiler) automatically memoizes your React components and hooks. It can be enabled using the `reactCompiler` option of `@parcel/transformer-js` in your `.parcelrc`. React Compiler runs on JavaScript and TypeScript files in your project, but not on files in `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -308,8 +301,8 @@ JSX compilation can also be configured using a `tsconfig.json` or `jsconfig.json
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Instead of `true`, `reactCompiler` can also be set to an object with the following options. See the [React Compiler docs](https://react.dev/reference/react-compiler/configuration) for details.
 
@@ -326,14 +319,14 @@ By default, React Compiler targets React 19. If the version of `react` listed in
 
 ### TypeScript
 
-See [TypeScript](/languages/typescript/).
+See [TypeScript](typescript.md).
 
 ### Browser compatibility
 
 By default Parcel does not perform any transpilation of JavaScript syntax for older browsers. This means that if you write your code using modern language features, that’s what Parcel will output. You can declare your app’s supported browsers using the `browserslist` field in your package.json. When this field is declared, Parcel will transpile your code accordingly to ensure compatibility with your supported browsers.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -341,10 +334,10 @@ By default Parcel does not perform any transpilation of JavaScript syntax for ol
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-See the [Targets](/features/targets/) docs for more details on how to configure this.
+See the [Targets](../features/targets.md) docs for more details on how to configure this.
 
 When transpiling, Parcel may insert imports of helper functions from the [`@swc/helpers`](https://www.npmjs.com/package/@swc/helpers) package (e.g. for classes or async functions when targeting older browsers, or for decorators). If your code needs these helpers, you'll need to install `@swc/helpers` as a dependency of your project.
 
@@ -354,8 +347,8 @@ yarn add @swc/helpers
 
 By default, Parcel supports all standard JavaScript features, as well as proposals that have shipped in one or more browsers. You can also enable support for future proposals using a `tsconfig.json` or `jsconfig.json` file. Currently, the only supported proposal is [decorators](https://github.com/tc39/proposal-decorators), which you may be using through TypeScript.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -365,8 +358,8 @@ By default, Parcel supports all standard JavaScript features, as well as proposa
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 More experimental features can be enabled using [Babel](#babel).
 
@@ -378,8 +371,8 @@ More experimental features can be enabled using [Babel](#babel).
 yarn add @parcel/transformer-babel@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -390,8 +383,8 @@ yarn add @parcel/transformer-babel@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Using Babel with Parcel then works the same way as using it standalone or with other build tools. Create a Babel config file such as `.babelrc` and Parcel will pick it up automatically. If no Babel config file is found, the file is not processed by Babel.
 
@@ -399,8 +392,8 @@ Parcel supports both project wide config files such as `babel.config.json`, as w
 
 Alternatively, Babel options can be specified in your `.parcelrc`. In this case, Babel config files are ignored, and the options apply to all files matched by the glob, including files in `node_modules`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -419,8 +412,8 @@ Alternatively, Babel options can be specified in your `.parcelrc`. In this case,
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 #### Default presets
 
@@ -432,8 +425,8 @@ If you have an existing project with a Babel config containing only the above pr
 
 If you have custom Babel presets or plugins beyond the ones listed above, you can configure Babel to only include these custom plugins and omit the standard presets. This will improve build performance by allowing Babel to do less work and letting Parcel handle the default transformations.
 
-{% sample %}
-{% samplefile "babel.config.json" %}
+<code-sample>
+<code-file name="babel.config.json">
 
 ```json
 {
@@ -441,14 +434,14 @@ If you have custom Babel presets or plugins beyond the ones listed above, you ca
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Babel runs before Parcel's builtin transpiler, so it still needs to be able to parse any JSX or TypeScript syntax in your code. If you omit the standard presets, add the corresponding syntax plugins (e.g. `@babel/plugin-syntax-jsx` or `@babel/plugin-syntax-typescript`) to your Babel config.
 
 If you use Flow, you'll need to keep `@babel/preset-flow` in your Babel config along with any custom plugins, since Parcel's builtin transpiler does not strip Flow types. Other Babel presets listed above can be removed.
 
-`@babel/preset-env` and `@babel/plugin-transform-runtime` are not aware of Parcel's [Targets](/features/targets/). This will likely result in unnecessary transpilation and larger bundle sizes. These are not necessary, since transpilation for your browser targets is handled automatically by Parcel.
+`@babel/preset-env` and `@babel/plugin-transform-runtime` are not aware of Parcel's [Targets](../features/targets.md). This will likely result in unnecessary transpilation and larger bundle sizes. These are not necessary, since transpilation for your browser targets is handled automatically by Parcel.
 
 #### Usage with other tools
 
@@ -456,7 +449,7 @@ While Parcel includes transpilation by default, you may still need to use Babel 
 
 ## Production
 
-In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](/features/production/) for more details about how this works.
+In production mode, Parcel includes optimizations to reduce the file size of your code. See [Production](../features/production.md) for more details about how this works.
 
 ### Minification
 

@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: SugarSS
-eleventyNavigation:
-  key: languages-sugarss
-  title: <img src="/assets/lang-icons/sugarss.svg" alt=""/> SugarSS
-  order: 9
----
+# SugarSS
 
 [SugarSS](https://github.com/postcss/sugarss) is an indent-based CSS syntax for [PostCSS](https://github.com/postcss/postcss). Parcel supports SugarSS using the `@parcel/transformer-sugarss` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
@@ -13,8 +6,8 @@ eleventyNavigation:
 yarn add @parcel/transformer-sugarss@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -25,10 +18,10 @@ yarn add @parcel/transformer-sugarss@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-Compiled SugarSS files are also processed the same way as [CSS](/languages/css/), which means it is compiled for your browser targets, and any [PostCSS](/languages/css/#postcss) plugins are also applied. [CSS modules](/languages/css/#css-modules) can also be used by naming your file with the `.module.sss` extension.
+Compiled SugarSS files are also processed the same way as [CSS](css.md), which means it is compiled for your browser targets, and any [PostCSS](css.md#postcss) plugins are also applied. [CSS modules](css.md#css-modules) can also be used by naming your file with the `.module.sss` extension.
 
 ## Example usage
 
@@ -41,7 +34,7 @@ Referencing a SugarSS file in an HTML file:
 Importing a SugarSS file as a CSS module in JavaScript or TypeScript:
 
 ```js
-import * as classes from "./style.module.sss";
+import * as classes from './style.module.sss';
 
 document.body.className = classes.body;
 ```

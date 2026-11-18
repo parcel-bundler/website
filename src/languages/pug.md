@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Pug
-eleventyNavigation:
-  key: languages-pug
-  title: <img src="/assets/lang-icons/pug.svg" alt=""/> Pug
-  order: 15
----
+# Pug
 
 [Pug](https://pugjs.org) is a templating language that compiles to HTML. Parcel supports Pug using the `@parcel/transformer-pug` plugin. To use it, install it into your app and add it to your `.parcelrc`.
 
@@ -13,8 +6,8 @@ eleventyNavigation:
 yarn add @parcel/transformer-pug@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -25,10 +18,10 @@ yarn add @parcel/transformer-pug@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-Pug is compiled to HTML and processed as described in the [HTML docs](/languages/html/).
+Pug is compiled to HTML and processed as described in the [HTML docs](html.md).
 
 ## Example usage
 
@@ -51,10 +44,10 @@ Pug may be used as an entry to Parcel just like HTML:
 parcel serve index.pug
 ```
 
-Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](/features/bundle-inlining/) for details.
+Pug may also be referenced anywhere a URL is allowed, e.g. in an HTML file, or from a JS file. To inline the compiled HTML into a JavaScript file, use the `bundle-text:` scheme. See [Bundle inlining](../features/bundle-inlining.md) for details.
 
 ```js
-import html from "bundle-text:./index.pug";
+import html from 'bundle-text:./index.pug';
 
 document.body.innerHTML = html;
 ```
@@ -67,15 +60,15 @@ Pug can be configured for `@parcel/transformer-pug` in your `.parcelrc`. See the
 
 You can define a `locals` object in your Pug config, and this will be provided to your Pug templates when rendering.
 
-{% sample %}
-{% samplefile "index.pug" %}
+<code-sample>
+<code-file name="index.pug">
 
 ```pug
 h1 Hello, #{name}!
 ```
 
-{% endsamplefile %}
-{% samplefile ".parcelrc" %}
+</code-file>
+<code-file name=".parcelrc">
 
 ```json/6-8
 {
@@ -93,5 +86,5 @@ h1 Hello, #{name}!
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

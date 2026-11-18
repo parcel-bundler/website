@@ -1,4 +1,4 @@
-let KEY = "nav-scrollTop";
+let KEY = 'nav-scrollTop';
 let sidebar = document.querySelector('.docs-navigation');
 
 let value = sessionStorage.getItem(KEY);

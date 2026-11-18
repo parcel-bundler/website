@@ -1,11 +1,12 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: blog-alpha-1
-  title: Parcel 2 alpha 1 is here!
-date: 2019-09-13
-summary: Parcel 2.0.0-alpha.1 is here!
----
+<meta property="article:published_time" content="2019-09-13">
+
+<header parcel:slot="header">
+  <h1>Parcel 2 alpha 1 is here!</h1>
+  <div class="summary">
+    <span>Parcel 2.0.0-alpha.1 is here!</span>
+    <time datetime="2019-09-13" class="entry-date js-replace-date">2019-09-13</time>
+  </div>
+</header>
 
 Today I’m incredibly excited to release the first alpha version of Parcel 2! Please try it out and help us take Parcel 2 to the finish line. Check it out on GitHub!
 

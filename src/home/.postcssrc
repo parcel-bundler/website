@@ -1,7 +1,0 @@
-{
-  "plugins": {
-    "tailwindcss": {
-      "config": "./src/home/tailwind.config.js"
-    }
-  }
-}

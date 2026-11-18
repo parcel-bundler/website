@@ -1,17 +1,17 @@
----
-layout: layout.njk
-title: Announcing Parcel 3 alpha
-eleventyNavigation:
-  key: blog-parcel-3-alpha
-  title: Announcing Parcel 3 alpha
-date: 2026-11-04
----
+<meta property="article:published_time" content="2026-11-04">
+
+<header parcel:slot="header">
+  <h1>Announcing Parcel 3 alpha</h1>
+  <div class="summary">
+    <time datetime="2026-11-04" class="entry-date js-replace-date">2026-11-04</time>
+  </div>
+</header>
 
 Today we're releasing the first alpha of Parcel 3, a ground up rewrite of Parcel in Rust. It is up to 100x faster than v2, and supports native plugins written in Rust, Go, Swift, or C, as well as a custom runtime for JavaScript and TypeScript plugins. It also includes improved automatic code splitting, library mode, tree shaking, centralized configuration, and much more.
 
 ## Why a rewrite?
 
-In Parcel v2, we rewrote several individual pieces of Parcel in Rust. First was our [JavaScript compiler](/blog/beta3/), built on top of SWC. Then, we built [Lightning CSS](https://lightningcss.dev/). Later, we [rebuilt](/blog/v2-15-0/) our HTML and SVG transformer and optimizers. However, Parcel's core was still written in JavaScript. This limited our maximum possible performance due to lack of shared memory between threads, high memory usage, garbage collection, and the cost of serializing values between workers and languages.
+In Parcel v2, we rewrote several individual pieces of Parcel in Rust. First was our [JavaScript compiler](../beta3/beta3.md), built on top of SWC. Then, we built [Lightning CSS](https://lightningcss.dev/). Later, we [rebuilt](../v2-15-0/v2-15-0.md) our HTML and SVG transformer and optimizers. However, Parcel's core was still written in JavaScript. This limited our maximum possible performance due to lack of shared memory between threads, high memory usage, garbage collection, and the cost of serializing values between workers and languages.
 
 Parcel v3 is an entirely self-contained Rust binary, with no dependency on Node at all. Everything from the CLI and dev server, to the transformers, bundler, optimizers, and everything in between is now fully native. This enables us to efficiently take full advantage of modern multi-core hardware. The results speak for themselves: up to **100x faster builds** using the same underlying compilers as v2, only changing the core.
 
@@ -19,9 +19,9 @@ Parcel v3 is an entirely self-contained Rust binary, with no dependency on Node 
 
 Let's cut to the benchmarks. Here's a comparison of cold development builds between v2 and v3 for [React Spectrum](https://github.com/adobe/react-spectrum), a large TypeScript monorepo. For reference:
 
-* **Storybook**: ~100 entries, JS [macros](/features/macros/), custom plugins [ported](https://github.com/parcel-bundler/storybook/tree/parcel3/crates) to Rust for Parcel 3.
-* **Docs website**: ~340 pages, React Server Components, MDX, Tailwind, custom plugins.
-* **Library build**: ~160 packages, TSX, macros, CSS modules, SVG icons. Outputs over 14,000 files.
+- **Storybook**: ~100 entries, JS [macros](../../features/macros.md), custom plugins [ported](https://github.com/parcel-bundler/storybook/tree/parcel3/crates) to Rust for Parcel 3.
+- **Docs website**: ~340 pages, React Server Components, MDX, Tailwind, custom plugins.
+- **Library build**: ~160 packages, TSX, macros, CSS modules, SVG icons. Outputs over 14,000 files.
 
 ### Development build time
 
@@ -115,7 +115,7 @@ Parcel 3 uses a significantly simpler architecture, optimizing for the fastest p
 
 In Parcel 2, we split each piece into plugins as individual npm packages. This was a very modular architecture, but resulted in hundreds of dependencies that you needed to upgrade and maintain.
 
-In Parcel 3, support for most common web languages are included out of the box in a single binary, including HTML, CSS, JavaScript, TypeScript, SVG, image conversion and optimization, RSS and Atom feeds, web manifests, and more. Newly added is native support for Tailwind (without PostCSS), React Compiler, MDX, SVG  → JSX, and glob imports.
+In Parcel 3, support for most common web languages are included out of the box in a single binary, including HTML, CSS, JavaScript, TypeScript, SVG, image conversion and optimization, RSS and Atom feeds, web manifests, and more. Newly added is native support for Tailwind (without PostCSS), React Compiler, MDX, SVG → JSX, and glob imports.
 
 The Parcel development experience has major improvements too. It includes support for trusted HTTPS via a local certificate authority that integrates with your operating system, an improved `--open` option that reuses your existing browser tab on macOS via Apple Events, and a built-in bundle analyzer that shows why each module is included, which bundles load others, and much more.
 
@@ -127,7 +127,7 @@ Even with all of these features as well as an entire built-in JavaScript runtime
 
 ## Native plugins
 
-Aside from these built-in features, Parcel 3 is extensible via [native plugins](/plugin-system/native-plugins/) written in Rust, Go, Swift, or any language that supports the C [ABI](https://en.wikipedia.org/wiki/Application_binary_interface). This enables anyone to extend Parcel to support new languages, customize module resolution, optimize bundles, etc., all with native performance.
+Aside from these built-in features, Parcel 3 is extensible via [native plugins](../../plugin-system/native-plugins.md) written in Rust, Go, Swift, or any language that supports the C [ABI](https://en.wikipedia.org/wiki/Application_binary_interface). This enables anyone to extend Parcel to support new languages, customize module resolution, optimize bundles, etc., all with native performance.
 
 Native Parcel plugins are [dynamic libraries](https://en.wikipedia.org/wiki/Dynamic_library) loaded into the Parcel process at runtime. Parcel exposes a stable C ABI with functions plugins can call to get and set asset content, read the bundle graph, and [much more](https://github.com/parcel-bundler/parcel/blob/v3/crates/parcel-plugin-abi/plugin.h).
 
@@ -138,9 +138,9 @@ void parcel_asset_set_type(Asset asset, const uint8_t *ty, uintptr_t ty_len);
 // ...
 ```
 
-C is the lingua franca of programming languages: it is low level, has a stable ABI, and many higher level languages are interoperable with it. We've built SDKs for [Rust](/plugin-system/native-plugins/#rust), [Go](/plugin-system/native-plugins/#go), and [Swift](/plugin-system/native-plugins/#swift), as well as a reusable [GitHub Actions workflow](/plugin-system/native-plugins/#publishing) to manage cross-compilation and publishing to npm.
+C is the lingua franca of programming languages: it is low level, has a stable ABI, and many higher level languages are interoperable with it. We've built SDKs for [Rust](../../plugin-system/native-plugins.md#rust), [Go](../../plugin-system/native-plugins.md#go), and [Swift](../../plugin-system/native-plugins.md#swift), as well as a reusable [GitHub Actions workflow](../../plugin-system/native-plugins.md#publishing) to manage cross-compilation and publishing to npm.
 
-{% codetabs %}
+<code-tabs>
 
 ```rust
 use parcel_plugin::{Asset, Diagnostic, Options, Plugin, register_plugin};
@@ -205,15 +205,15 @@ struct MyTransformer: Transformer {
 #parcelPlugin(MyTransformer.self)
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 ## JavaScript plugins
 
 Native plugins are great for high performance, but for simple or infrequently called plugins, Parcel 3 supports plugins written in JavaScript or TypeScript as well. However, since Parcel 3 is a standalone native binary with no dependency on Node, we took a different approach.
 
-Parcel 3 has a custom embedded JavaScript runtime for plugins and [macros](/features/macros/) built on top of the [QuickJS](https://bellard.org/quickjs/) engine. It includes partial Node compatibility for [most features](/plugin-system/authoring-plugins/#javascript-runtime) commonly used by build plugins, but intentionally lacks things like network access. While its peak performance is not on par with v8, QuickJS starts up very quickly, has a small memory footprint, and can be easily embedded and run on multiple threads in parallel.
+Parcel 3 has a custom embedded JavaScript runtime for plugins and [macros](../../features/macros.md) built on top of the [QuickJS](https://bellard.org/quickjs/) engine. It includes partial Node compatibility for [most features](../../plugin-system/authoring-plugins.md#javascript-runtime) commonly used by build plugins, but intentionally lacks things like network access. While its peak performance is not on par with v8, QuickJS starts up very quickly, has a small memory footprint, and can be easily embedded and run on multiple threads in parallel.
 
-When maximum performance is needed, we recommend writing native plugins. For plugins that run infrequently (e.g. only on a few files), QuickJS is plenty fast. JavaScript plugins are mostly compatible with Parcel v2, but there are some minor API differences. See the [migration guide](/migration/parcel-2/#plugins-1) for more details.
+When maximum performance is needed, we recommend writing native plugins. For plugins that run infrequently (e.g. only on a few files), QuickJS is plenty fast. JavaScript plugins are mostly compatible with Parcel v2, but there are some minor API differences. See the [migration guide](../../migration/parcel-2.md#plugins-1) for more details.
 
 ## Centralized configuration
 
@@ -240,10 +240,10 @@ In Parcel 3, we're centralizing plugin configuration in `.parcelrc` as well. Thi
 
 In Parcel 3, we've also significantly improved our bundling algorithm, which is responsible for creating optimal code split chunks. Compared with v2 on a site with 450 pages:
 
-* 64% fewer HTTP requests per page
-* 10% less transferred bytes per page
+- 64% fewer HTTP requests per page
+- 10% less transferred bytes per page
 
-This is achieved through an improved bundle merging cost model, which balances parallel request count, Brotli compressed size, and cache reuse within a user session and between builds. These parameters are also [tunable](/features/code-splitting/#configuration) for your specific application's needs. We'll write more about how this works in a future post.
+This is achieved through an improved bundle merging cost model, which balances parallel request count, Brotli compressed size, and cache reuse within a user session and between builds. These parameters are also [tunable](../../features/code-splitting.md#configuration) for your specific application's needs. We'll write more about how this works in a future post.
 
 Parcel 3 is also much more careful about CSS ordering correctness than before. CSS code splitting is challenging because extracting a shared CSS file changes the cascade order. Parcel 3 now only does this when it is provably safe to do so through whole application analysis. You'll see a warning if stylesheets are imported in conflicting orders.
 
@@ -279,6 +279,6 @@ TypeScript `.d.ts` generation is not yet supported but will be returning in a fu
 
 ## Try it out
 
-Install `parcel@next` to try out Parcel v3! You can also try it side-by-side with Parcel 2 by installing `@parcel/parcel3` and using the `parcel3` command. See the [migration guide](/migration/parcel-2/) for details on what you'll need to update in your project.
+Install `parcel@next` to try out Parcel v3! You can also try it side-by-side with Parcel 2 by installing `@parcel/parcel3` and using the `parcel3` command. See the [migration guide](../../migration/parcel-2.md) for details on what you'll need to update in your project.
 
 There are still a few features we're working on including compressor plugins, `.d.ts` generation, custom bundler plugins, a programmatic JavaScript API, and known issues. Please send your feedback on [GitHub](https://github.com/parcel-bundler/parcel/issues).

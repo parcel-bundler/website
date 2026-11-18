@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Migration from Create React App
-eleventyNavigation:
-  key: migration-cra
-  title: <img src="/assets/lang-icons/react.svg" alt=""/> Create React App
-  order: 1
----
+# Migration from Create React App
 
 This page covers how to migrate from [Create React App](https://create-react-app.dev) to Parcel.
 
@@ -36,8 +29,8 @@ npm install parcel --save-dev
 
 Next, in your `package.json`, replace `react-scripts start` with `parcel serve` and `react-scripts build` with `parcel build`, passing `public/index.html` as the entrypoint of your application. You can remove the `"eject"` script entirely.
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/2-4
 {
@@ -49,8 +42,8 @@ Next, in your `package.json`, replace `react-scripts start` with `parcel serve` 
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "package.json" %}
+</code-file>
+<code-file name="package.json">
 
 ```json/2-3
 {
@@ -61,34 +54,34 @@ Next, in your `package.json`, replace `react-scripts start` with `parcel serve` 
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 ### 2. Update public/index.html
 
 Replace the template variable `%PUBLIC_URL%` with `.` in `public/index.html` to point to the files directly.
 
-{% migration %}
-{% samplefile "public/index.html" %}
+<code-migration>
+<code-file name="public/index.html">
 
 ```html/0
 <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 ```
 
-{% endsamplefile %}
-{% samplefile "public/index.html" %}
+</code-file>
+<code-file name="public/index.html">
 
 ```html/0
 <link rel="icon" href="./favicon.ico" />
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It should be placed just before the closing `</body>` element.
 
-{% sample %}
-{% samplefile "public/index.html" %}
+<code-sample>
+<code-file name="public/index.html">
 
 ```html/1
   <!-- ... -->
@@ -97,15 +90,15 @@ Next, add a `<script>` tag pointing at `src/index.js` to `public/index.html`. It
 </html>
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### 3. Migrate SVG imports
 
-If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](/languages/svg/#importing-as-a-react-component).
+If you use Create React App's [svg component import](https://create-react-app.dev/docs/adding-images-fonts-and-files#adding-svgs) feature, add `@parcel/transformer-svg-jsx` to your `.parcelrc` following [these instructions](../languages/svg.md#importing-as-a-react-component).
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3-4
 {
@@ -117,27 +110,27 @@ If you use Create React App's [svg component import](https://create-react-app.de
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Then, convert import statements to use the `jsx:` prefix:
 
-{% migration %}
-{% samplefile "src/SomeComponent.jsx" %}
+<code-migration>
+<code-file name="src/SomeComponent.jsx">
 
 ```jsx/0
 import { ReactComponent as Logo } from './logo.svg';
 ```
 
-{% endsamplefile %}
-{% samplefile "public/index.html" %}
+</code-file>
+<code-file name="public/index.html">
 
 ```jsx/0
 import Logo from 'jsx:./logo.svg';
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 Importing SVGs without the `jsx:` prefix will return a URL instead of a component, just like in Create React App.
 
@@ -149,8 +142,8 @@ If you use Create React App's [GraphQL import](https://create-react-app.dev/docs
 npm install @parcel/transformer-babel@next babel-plugin-macros @babel/plugin-syntax-jsx --save-dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -161,8 +154,8 @@ npm install @parcel/transformer-babel@next babel-plugin-macros @babel/plugin-syn
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "babel.config.json" %}
+</code-file>
+<code-file name="babel.config.json">
 
 ```json/1
 {
@@ -170,12 +163,12 @@ npm install @parcel/transformer-babel@next babel-plugin-macros @babel/plugin-syn
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 <!-- TODO(v3): @parcel/transformer-babel (packages-v3/babel) passes the user's Babel config through as-is, so JSX/TypeScript files fail to parse without syntax plugins (verified: "Support for the experimental syntax 'jsx' isn't currently enabled"). v2 added these syntax plugins automatically. TypeScript projects would also need @babel/plugin-syntax-typescript (with isTSX for .tsx) in an override. If this is fixed in the transformer, drop the syntax plugin here. -->
 
-Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](/languages/javascript/#transpilation) for more information.
+Parcel includes support for other JavaScript transpilation features (e.g. JSX, TypeScript, and Preset Env) out of the box, so they are not needed in your Babel config file. [See the documentation](../languages/javascript.md#transpilation) for more information.
 
 ### 5. Migrate CSS
 
@@ -183,10 +176,10 @@ Parcel includes support for CSS, CSS modules, and autoprefixing out of the box.
 
 <!-- TODO(v3): autoprefixing and JS transpilation depend on browser targets, but CRA's default package.json uses the environment-keyed object form of browserslist (`{"production": [...], "development": [...]}`). v3 only reads a string or array `browserslist` (package_engines in crates/core/src/entry.rs), so the object form is silently ignored (verified: `chrome 70` as a string transpiles `?.`, but the same query in the object form doesn't). .browserslistrc files don't seem to be read either. Either support these or add a migration step to flatten browserslist into an array. -->
 
-If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelrc`. See [SASS](/languages/sass/) for details.
+If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelrc`. See [SASS](../languages/sass.md) for details.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -197,13 +190,13 @@ If you use SASS, install `@parcel/transformer-sass` and add it to your `.parcelr
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-reset) feature of Create React App, you'll need to install `@parcel/transformer-postcss`, add it to your `.parcelrc`, and add `postcss-normalize` to your `.postcssrc` configuration.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -214,8 +207,8 @@ If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-
 }
 ```
 
-{% endsamplefile %}
-{% samplefile ".postcssrc" %}
+</code-file>
+<code-file name=".postcssrc">
 
 ```json/3-4
 {
@@ -223,10 +216,10 @@ If you use the [@import-normalize](https://create-react-app.dev/docs/adding-css-
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-Additionally, if you use Tailwind CSS, you'll need to add the built-in `@parcel/transformer-tailwind` plugin to your `.parcelrc`. See [the documentation](/recipes/react/#tailwind-css) for more details.
+Additionally, if you use Tailwind CSS, you'll need to add the built-in `@parcel/transformer-tailwind` plugin to your `.parcelrc`. See [the documentation](../recipes/react.md#tailwind-css) for more details.
 
 ### 6. Migrate tests
 
@@ -238,8 +231,8 @@ npm install jest jest-watch-typeahead babel-jest babel-preset-react-app identity
 
 Then, update the `"test"` script in your `package.json`:
 
-{% migration %}
-{% samplefile "package.json" %}
+<code-migration>
+<code-file name="package.json">
 
 ```json/2
 {
@@ -249,8 +242,8 @@ Then, update the `"test"` script in your `package.json`:
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "package.json" %}
+</code-file>
+<code-file name="package.json">
 
 ```json/2
 {
@@ -260,13 +253,13 @@ Then, update the `"test"` script in your `package.json`:
 }
 ```
 
-{% endsamplefile %}
-{% endmigration %}
+</code-file>
+</code-migration>
 
 Now create the following files:
 
-{% sample %}
-{% samplefile "jest.config.json" %}
+<code-sample>
+<code-file name="jest.config.json">
 
 ```json
 {
@@ -312,18 +305,18 @@ Now create the following files:
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "config/babelTransform.js" %}
+</code-file>
+<code-file name="config/babelTransform.js">
 
 ```js
-const babelJest = require("babel-jest").default;
+const babelJest = require('babel-jest').default;
 
 module.exports = babelJest.createTransformer({
   presets: [
     [
-      require.resolve("babel-preset-react-app"),
+      require.resolve('babel-preset-react-app'),
       {
-        runtime: "automatic",
+        runtime: 'automatic',
       },
     ],
   ],
@@ -332,11 +325,11 @@ module.exports = babelJest.createTransformer({
 });
 ```
 
-{% endsamplefile %}
-{% samplefile "config/fileTransform.js" %}
+</code-file>
+<code-file name="config/fileTransform.js">
 
 ```js
-const path = require("path").default;
+const path = require('path').default;
 
 module.exports = {
   process(src, filename) {
@@ -346,8 +339,8 @@ module.exports = {
 };
 ```
 
-{% endsamplefile %}
-{% samplefile "config/SvgComponent.js" %}
+</code-file>
+<code-file name="config/SvgComponent.js">
 
 ```js
 export function SvgComponent() {
@@ -355,8 +348,8 @@ export function SvgComponent() {
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### 7. Setup eslint
 
@@ -370,8 +363,8 @@ npm install eslint eslint-config-react-app --save-dev
 
 Then, add a `"lint"` script to your package.json:
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json/2
 {
@@ -381,8 +374,8 @@ Then, add a `"lint"` script to your package.json:
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 To run the linter, run `npm run lint`.
 

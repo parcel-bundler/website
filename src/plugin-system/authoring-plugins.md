@@ -1,11 +1,9 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-authoring-plugins
-  title: Authoring Plugins
-  order: 2
-summary: "What to keep in mind when authoring a plugin"
----
+<header>
+  <h1>Authoring Plugins</h1>
+  <p class="summary">
+    <span>What to keep in mind when authoring a plugin</span>
+  </p>
+</header>
 
 ## Plugin APIs
 
@@ -46,7 +44,7 @@ If something you need is not being passed through `opts`, please come talk to
 the Parcel team about it. Avoid trying to get information yourself from other
 sources, especially from the file system.
 
-Plugins can also be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. See [Native plugins](/plugin-system/native-plugins/) for details.
+Plugins can also be written in Rust, Go, Swift, or any other language that can produce a shared library with a C ABI. See [Native plugins](native-plugins.md) for details.
 
 ## JavaScript runtime
 
@@ -76,8 +74,8 @@ Plugins can also be written in TypeScript. Files with a `.ts` or `.tsx` extensio
 
 Plugins can accept configuration from the user's project. This is specified in the `.parcelrc` file, by using an object with `plugin` and `config` properties in place of the plugin name:
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -95,16 +93,16 @@ Plugins can accept configuration from the user's project. This is specified in t
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The config is passed to every plugin method as the `config` option. It is `undefined` if no config was provided.
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset, config }) {
+  async transform({asset, config}) {
     if (config?.bar) {
       // ...
     }
@@ -121,15 +119,15 @@ Some plugins wrap a compiler or tool which has its own config loading mechanism 
 When a transformer needs to resolve a dependency itself (e.g. to inline an imported file), use the `resolve` function passed to `transform`. This resolves a specifier using the resolvers configured in `.parcelrc`, exactly as a dependency of the asset would be, and only invalidates the asset being transformed when the result would change. Like a dependency, it accepts an `importType` option describing how the file will be used. A file resolved as `javascript` (the default) must have a transformer that turns it into JavaScript, so pass `importType: 'url'` to resolve any file, e.g. one you will read yourself. It returns `{filePath, pipeline, query, sideEffects}`, `{isExternal: true}` or `{isExcluded: true}`, or `null` when no resolver resolves the specifier, and rejects with the resolvers' diagnostics when one fails.
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
-import fs from "fs";
+import {Transformer} from '@parcel/plugin';
+import fs from 'fs';
 
 export default new Transformer({
-  async transform({ asset, resolve }) {
-    let { filePath } = await resolve(asset.filePath, "./included.txt", {
-      importType: "url",
+  async transform({asset, resolve}) {
+    let {filePath} = await resolve(asset.filePath, './included.txt', {
+      importType: 'url',
     });
-    let contents = fs.readFileSync(filePath, "utf8");
+    let contents = fs.readFileSync(filePath, 'utf8');
     // ...
   },
 });
@@ -183,7 +181,7 @@ resolve them. If someone made a better version of your plugin, please consider
 giving the better package name over, have them make a major version bump, and
 redirect people to the new tool.
 
-See [Local plugins](/features/plugins/#local-plugins) for recommendations on using
+See [Local plugins](../features/plugins.md#local-plugins) for recommendations on using
 plugins in your project without publishing them.
 
 ## Versioning
@@ -229,5 +227,5 @@ Parcel (e.g. `3.0.0-alpha.1`) only match ranges that include a prerelease, so us
 `^3.0.0-0` rather than `^3.0.0` or `3.x` to support them.
 
 Native plugins are also checked against the ABI version declared in their
-`parcel.abi` field. See [Native plugins](/plugin-system/native-plugins/#publishing)
+`parcel.abi` field. See [Native plugins](native-plugins.md#publishing)
 for details.

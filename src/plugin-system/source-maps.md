@@ -1,22 +1,16 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: plugin-system-source-maps
-  title: Source Maps
-  order: 16
----
+# Source Maps
 
 Parcel generates source maps for every bundle by default, mapping the final output back to your original source code. Source maps are processed in Rust within Parcel's core and built-in plugins, and plugins exchange them with Parcel as standard [source map](https://tc39.es/ecma426/) JSON (version 3). This means you can use the source maps produced by most compilers directly, without converting them first.
 
 Source maps from each plugin are combined as an asset moves through its pipeline. Parcel's built-in transformers (e.g. for JavaScript and CSS) map their output through the source map set by earlier transformers, and Parcel concatenates the source maps of all assets when packaging bundles.
 
-Plugins can be written in JavaScript, or as [native plugins](/plugin-system/native-plugins/) in Rust, Go, or Swift. JavaScript plugins exchange source maps as objects, and native plugins as JSON text. Choose a language above any example to switch the examples and API names throughout the page.
+Plugins can be written in JavaScript, or as [native plugins](native-plugins.md) in Rust, Go, or Swift. JavaScript plugins exchange source maps as objects, and native plugins as JSON text. Choose a language above any example to switch the examples and API names throughout the page.
 
 ## Transformations/Manipulations
 
-If your plugin does any code manipulations, you should ensure that it creates correct mappings to the original source code to guarantee that we still end up creating an accurate source map at the end of the bundling process. To do this, set a source map along with the asset's content in a [Transformer](/plugin-system/transformer/) plugin, using {% api js="asset.setCode(code, map)", rust="asset.set_content_with_map()", go="asset.SetContentWithMap()", swift="asset.setContent()" %}. Binary content can be set along with a source map as well, using {% api js="asset.setBuffer(buffer, map)", rust="asset.set_content_bytes_with_map()", go="asset.SetContentBytesWithMap()", swift="asset.setContent(_:sourceMap:)" %}.
+If your plugin does any code manipulations, you should ensure that it creates correct mappings to the original source code to guarantee that we still end up creating an accurate source map at the end of the bundling process. To do this, set a source map along with the asset's content in a [Transformer](transformer.md) plugin, using <api-name js="asset.setCode(code, map)" rust="asset.set_content_with_map()" go="asset.SetContentWithMap()" swift="asset.setContent()"></api-name>. Binary content can be set along with a source map as well, using <api-name js="asset.setBuffer(buffer, map)" rust="asset.set_content_bytes_with_map()" go="asset.SetContentBytesWithMap()" swift="asset.setContent(_:sourceMap:)"></api-name>.
 
-We also provide the source map from the previous transform to ensure you map to the original source code and not just the output of the previous transform. {% api js="asset.getMap()", rust="asset.source_map()", go="asset.SourceMap()", swift="asset.sourceMap" %} returns the current source map of the asset exactly as it was set by an earlier transformer, or nothing if it doesn't have one.
+We also provide the source map from the previous transform to ensure you map to the original source code and not just the output of the previous transform. <api-name js="asset.getMap()" rust="asset.source_map()" go="asset.SourceMap()" swift="asset.sourceMap"></api-name> returns the current source map of the asset exactly as it was set by an earlier transformer, or nothing if it doesn't have one.
 
 The `sources` in a source map may be absolute paths, `file:` URLs, or paths relative to the asset's directory (taking the map's `sourceRoot` into account).
 
@@ -26,13 +20,13 @@ An example of how this would work:
 
 <!-- TODO(v3): native plugins can't check whether source maps are enabled for the target. JS has `asset.target.sourceMap`, but the native Target has no equivalent (EnvironmentFlags only has IS_LIBRARY, SHOULD_OPTIMIZE, SHOULD_SCOPE_HOIST, MODULE_TYPE_EXTENSION in crates/parcel-plugin-abi/src/target.rs), so the native examples always generate a map. -->
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Transformer } from "@parcel/plugin";
+import {Transformer} from '@parcel/plugin';
 
 export default new Transformer({
-  async transform({ asset }) {
+  async transform({asset}) {
     let compilationResult = someCompiler(asset.getCode(), {
       // Only generate a source map when source maps are enabled.
       sourceMaps: asset.target.sourceMap != null,
@@ -95,7 +89,7 @@ struct MyTransformer: Transformer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
 In JavaScript, a source map is only generated when source maps are enabled for the asset's target. Native plugins can't check this yet.
 
@@ -107,16 +101,16 @@ Setting new content does not combine its source map with the existing one. If a 
 
 Using source maps in optimizers is similar to how you use it in transformers. You get one file as input and are expected to return that same file as output, but optimized.
 
-The difference with optimizers is that the map is not provided as part of an asset but rather as a separate argument, as you can see in the code snippet below. The contents are passed as bytes, and the map as source map JSON, or nothing if there is no source map. An optimizer returns the new contents as a string or bytes, along with the new source map. If an optimizer doesn't return a source map, the bundle's source map is removed. In JavaScript, the contents are a `Uint8Array`, and the map may be returned as a JSON object, a JSON string, or a `Uint8Array`. See [Optimizer](/plugin-system/optimizer/#source-maps) for more details.
+The difference with optimizers is that the map is not provided as part of an asset but rather as a separate argument, as you can see in the code snippet below. The contents are passed as bytes, and the map as source map JSON, or nothing if there is no source map. An optimizer returns the new contents as a string or bytes, along with the new source map. If an optimizer doesn't return a source map, the bundle's source map is removed. In JavaScript, the contents are a `Uint8Array`, and the map may be returned as a JSON object, a JSON string, or a `Uint8Array`. See [Optimizer](optimizer.md#source-maps) for more details.
 
-{% codetabs %}
+<code-tabs>
 
 ```javascript
-import { Optimizer } from "@parcel/plugin";
+import {Optimizer} from '@parcel/plugin';
 
 export default new Optimizer({
   // The contents and map are passed separately
-  async optimize({ bundle, contents, map }) {
+  async optimize({bundle, contents, map}) {
     let result = someMinifier(new TextDecoder().decode(contents), {
       inputMap: map,
     });
@@ -174,6 +168,6 @@ struct MyOptimizer: Optimizer {
 }
 ```
 
-{% endcodetabs %}
+</code-tabs>
 
-Plugins that implement the [C ABI](/plugin-system/native-plugins/#c-abi) directly read an asset's source map with `parcel_asset_get_map`, and set it along with the content using `parcel_asset_set_content`.
+Plugins that implement the [C ABI](native-plugins.md#c-abi) directly read an asset's source map with `parcel_asset_get_map`, and set it along with the content using `parcel_asset_set_content`.

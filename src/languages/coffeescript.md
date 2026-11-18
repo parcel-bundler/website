@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: CoffeeScript
-eleventyNavigation:
-  key: languages-coffee
-  title: <img src="/assets/lang-icons/coffeescript.svg" class="dark-invert" alt=""/> CoffeeScript
-  order: 16
----
+# CoffeeScript
 
 [CoffeeScript](https://coffeescript.org) is a language that transpiles to JavaScript, which allows you to use a shorter syntax and other features like [the existential operator](https://coffeescript.org/#existential-operator), [shorter array-splicing syntax](https://coffeescript.org/#slices), [block regular expressions](https://coffeescript.org/#regexes) and more.
 
@@ -15,8 +8,8 @@ Parcel supports CoffeeScript using the `@parcel/transformer-coffeescript` plugin
 yarn add @parcel/transformer-coffeescript@next --dev
 ```
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json/3
 {
@@ -27,26 +20,26 @@ yarn add @parcel/transformer-coffeescript@next --dev
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
-CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](/languages/javascript/).
+CoffeeScript is compiled to JavaScript and processed as described in the [JavaScript docs](javascript.md).
 
 ## Example usage
 
-{% sample %}
-{% samplefile "index.html" %}
+<code-sample>
+<code-file name="index.html">
 
 ```html
 <script type="module" src="app.coffee"></script>
 ```
 
-{% endsamplefile %}
-{% samplefile "app.coffee" %}
+</code-file>
+<code-file name="app.coffee">
 
 ```coffeescript
 console.log 'Hello world!'
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

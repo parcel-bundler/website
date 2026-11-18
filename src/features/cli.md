@@ -1,31 +1,24 @@
----
-layout: layout.njk
-title: CLI
-eleventyNavigation:
-  key: features-cli
-  title: ⌨️ CLI
-  order: 9
----
+# CLI
 
 The `parcel` CLI is the most common way to use Parcel. It supports several different commands: `serve`, `watch`, `run`, and `build`, as well as `targets`, `trust`, and `help`.
 
 ## `parcel serve <entries>`
 
-The `serve` command starts a development server, which will automatically rebuild your app as you change files, and supports [hot reloading](/features/development/#hot-reloading). It accepts one or more file paths or globs as [entries](#entries).
+The `serve` command starts a development server, which will automatically rebuild your app as you change files, and supports [hot reloading](development.md#hot-reloading). It accepts one or more file paths or globs as [entries](#entries).
 
 ```bash
 parcel serve src/index.html
 ```
 
-{% warning %}
+<p-warning>
 
 **Note**: If you have specified multiple HTML entry points and none of them has the output path `/index.html`, the dev server will respond to `http://localhost:1234/` with a 404 page listing the pages in the build, since Parcel doesn't know which HTML bundle is the index.
 
 In this case, load the file directly, e.g. `http://localhost:1234/a.html` and `http://localhost:1234/b.html`.
 
-{% endwarning %}
+</p-warning>
 
-See [Development](/features/development/) for more details.
+See [Development](development.md) for more details.
 
 ## `parcel watch <entries>`
 
@@ -39,9 +32,9 @@ parcel watch src/index.html
 
 ## `parcel run <entries>`
 
-The `run` command builds a Node.js entry in development mode, runs it with `node`, and automatically rebuilds it as you make changes. It supports [hot reloading](/features/development/#hot-reloading) inside the running process: updates are applied in place when they are accepted via the `module.hot` API, and the process is restarted otherwise. With `--no-hmr`, the process is restarted whenever the code it runs changes. Code that is also loaded in the browser, such as client components rendered by the server, is hot reloaded in the browser as well.
+The `run` command builds a Node.js entry in development mode, runs it with `node`, and automatically rebuilds it as you make changes. It supports [hot reloading](development.md#hot-reloading) inside the running process: updates are applied in place when they are accepted via the `module.hot` API, and the process is restarted otherwise. With `--no-hmr`, the process is restarted whenever the code it runs changes. Code that is also loaded in the browser, such as client components rendered by the server, is hot reloaded in the browser as well.
 
-The entry must be built for a Node.js environment, e.g. by specifying `engines.node` in your package.json. See [Targets](/features/targets/) for details.
+The entry must be built for a Node.js environment, e.g. by specifying `engines.node` in your package.json. See [Targets](targets.md) for details.
 
 ```bash
 parcel run src/server.js
@@ -59,7 +52,7 @@ The `build` command performs a single production build and exits. This enables t
 parcel build src/index.html
 ```
 
-See [Production](/features/production/) for more details.
+See [Production](production.md) for more details.
 
 ## `parcel targets <entries>`
 
@@ -71,7 +64,7 @@ parcel targets
 
 ## `parcel trust`
 
-The `trust` command adds the local certificate authority that Parcel uses to sign certificates for `--https` to your system's trust stores, so that browsers trust them. Parcel also offers to do this the first time you use `--https`. Use `--remove` to remove it from the trust stores and delete it. See [HTTPS](/features/development/#https) for more details.
+The `trust` command adds the local certificate authority that Parcel uses to sign certificates for `--https` to your system's trust stores, so that browsers trust them. Parcel also offers to do this the first time you use `--https`. Use `--remove` to remove it from the trust stores and delete it. See [HTTPS](development.md#https) for more details.
 
 ```bash
 parcel trust
@@ -83,13 +76,13 @@ The `help` command shows help for all commands, or for a specific command. You c
 
 ## Entries
 
-All Parcel commands accept one or more entries. Entries may be relative or absolute paths, or globs. They may also be directories containing a `package.json` with a `source` field. If entries are omitted entirely, the `source` field in the `package.json` in the current working directory is used. See [Entries](/features/targets/#entries) in the Targets documentation for more details.
+All Parcel commands accept one or more entries. Entries may be relative or absolute paths, or globs. They may also be directories containing a `package.json` with a `source` field. If entries are omitted entirely, the `source` field in the `package.json` in the current working directory is used. See [Entries](targets.md#entries) in the Targets documentation for more details.
 
-{% warning %}
+<p-warning>
 
 **Note**: Be sure to wrap globs in single quotes to ensure that they are not resolved by your shell and are passed to Parcel directly. This ensures that Parcel can automatically pick up newly created files matching globs without needing to restart.
 
-{% endwarning %}
+</p-warning>
 
 ```bash
 # Single file
@@ -115,45 +108,45 @@ parcel serve
 
 These parameters are supported by all Parcel commands.
 
-| Format                                       | Description                                                                                                                                                                 |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--dist-dir <dir>`                           | Output directory to write to when unspecified by package.json. Defaults to `dist` in the project root.                                                                      |
-| `--public-url <url>`                         | The path prefix for absolute urls.                                                                                                                                          |
-| `--no-source-maps`                           | Disables sourcemaps.                                                                                                                                                        |
-| `--optimize`                                 | Enables optimizations such as minification, even in development. See [Production](/features/production/).                                                                   |
-| `--no-optimize`                              | Disables optimizations such as minification. See [Production](/features/production/).                                                                                       |
-| `--config <path>`                            | Specify which Parcel config file to use. <br> Defaults to the `.parcelrc` in the project root, or `@parcel/config-default`. See [Parcel configuration](/features/plugins/). |
-| `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                         |
-| `-h, --help`                                 | Outputs help for the command.                                                                                                                                               |
-| `-V, --version`                              | Outputs the version number.                                                                                                                                                 |
+| Format                                       | Description                                                                                                                                                         |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--dist-dir <dir>`                           | Output directory to write to when unspecified by package.json. Defaults to `dist` in the project root.                                                              |
+| `--public-url <url>`                         | The path prefix for absolute urls.                                                                                                                                  |
+| `--no-source-maps`                           | Disables sourcemaps.                                                                                                                                                |
+| `--optimize`                                 | Enables optimizations such as minification, even in development. See [Production](production.md).                                                                   |
+| `--no-optimize`                              | Disables optimizations such as minification. See [Production](production.md).                                                                                       |
+| `--config <path>`                            | Specify which Parcel config file to use. <br> Defaults to the `.parcelrc` in the project root, or `@parcel/config-default`. See [Parcel configuration](plugins.md). |
+| `--log-level (none/error/warn/info/verbose)` | Sets the log level.                                                                                                                                                 |
+| `-h, --help`                                 | Outputs help for the command.                                                                                                                                       |
+| `-V, --version`                              | Outputs the version number.                                                                                                                                         |
 
 ### Parameters specific to `serve` and `run`
 
-| Format          | Description                                                                                         |
-| --------------- | --------------------------------------------------------------------------------------------------- |
-| `--host <host>` | Sets the host to listen on, defaults to listening on all interfaces.                                |
-| `--https`       | Runs the dev server and HMR server over [HTTPS](/features/development/#https), in addition to HTTP. |
-| `--cert <path>` | Path to a certificate to use. See [HTTPS](/features/development/#https).                            |
-| `--key <path>`  | Path to a private key to use. See [HTTPS](/features/development/#https).                            |
-| `--no-hmr`      | Disables [hot reloading](/features/development/#hot-reloading).                                     |
+| Format          | Description                                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------- |
+| `--host <host>` | Sets the host to listen on, defaults to listening on all interfaces.                        |
+| `--https`       | Runs the dev server and HMR server over [HTTPS](development.md#https), in addition to HTTP. |
+| `--cert <path>` | Path to a certificate to use. See [HTTPS](development.md#https).                            |
+| `--key <path>`  | Path to a private key to use. See [HTTPS](development.md#https).                            |
+| `--no-hmr`      | Disables [hot reloading](development.md#hot-reloading).                                     |
 
 ### Parameters specific to `serve`
 
-| Format              | Description                                                                                                                                                                                                                                   |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-p, --port <port>` | The port for the dev server and HMR (the default port is `process.env.PORT` or 1234). See [Dev server](/features/development/#dev-server).                                                                                                    |
-| `--open [browser]`  | Automatically opens the entry in your browser. Defaults to the default browser. Use `--open=<app>` for browsers other than common ones such as `chrome`, `firefox`, `safari`, or `edge`. See [Dev server](/features/development/#dev-server). |
+| Format              | Description                                                                                                                                                                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-p, --port <port>` | The port for the dev server and HMR (the default port is `process.env.PORT` or 1234). See [Dev server](development.md#dev-server).                                                                                                    |
+| `--open [browser]`  | Automatically opens the entry in your browser. Defaults to the default browser. Use `--open=<app>` for browsers other than common ones such as `chrome`, `firefox`, `safari`, or `edge`. See [Dev server](development.md#dev-server). |
 
 ### Parameters specific to `run`
 
-| Format              | Description                                                                                                       |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `--hmr-port <port>` | The port for the HMR server (defaults to a free port). See [Hot reloading](/features/development/#hot-reloading). |
+| Format              | Description                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| `--hmr-port <port>` | The port for the HMR server (defaults to a free port). See [Hot reloading](development.md#hot-reloading). |
 
 ### Parameters specific to `build`
 
-| Format                      | Description                                                                                                                                                                                      |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](/features/production/#content-hashing). |
-| `--detailed-report [count]` | Displays the largest 10 (number configurable with `count`) assets per bundle in the CLI report. See [Detailed report](/features/production/#detailed-report).                                    |
-| `--analyze`                 | Writes an interactive analysis of bundle sizes to `parcel-bundle-reports/index.html`. See [Bundle analyzer](/features/production/#bundle-analyzer).                                              |
+| Format                      | Description                                                                                                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--no-content-hash`         | Disables content hashing of output file names. <br> Bundle names may still include hashes, but they will not change on each build. See [Content hashing](production.md#content-hashing). |
+| `--detailed-report [count]` | Displays the largest 10 (number configurable with `count`) assets per bundle in the CLI report. See [Detailed report](production.md#detailed-report).                                    |
+| `--analyze`                 | Writes an interactive analysis of bundle sizes to `parcel-bundle-reports/index.html`. See [Bundle analyzer](production.md#bundle-analyzer).                                              |

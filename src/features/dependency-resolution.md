@@ -1,11 +1,4 @@
----
-layout: layout.njk
-title: Dependency resolution
-eleventyNavigation:
-  key: features-dependency-resolution
-  title: 📔 Dependency resolution
-  order: 3
----
+# Dependency resolution
 
 As Parcel builds your source code, it discovers **dependencies**, which allow code to be broken into separate files and reused in multiple places. Dependencies describe where to find the file containing the code you rely on, as well as metadata about how to build it.
 
@@ -19,16 +12,16 @@ Parcel implements an enhanced version of the [Node module resolution algorithm](
 
 Relative specifiers start with `.` or `..`, and resolve a file relative to the importing file.
 
-{% sample %}
-{% samplefile "/path/to/project/src/client.js" %}
+<code-sample>
+<code-file name="/path/to/project/src/client.js">
 
 ```javascript
-import "./utils.js";
-import "../constants.js";
+import './utils.js';
+import '../constants.js';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, the first import would resolve to `/path/to/project/src/utils.js` and the second would resolve to `/path/to/project/constants.js`.
 
@@ -40,16 +33,16 @@ That said, for compatibility with CommonJS in Node, and with TypeScript, Parcel 
 
 The following example resolves to the same files as above.
 
-{% sample %}
-{% samplefile "/path/to/project/src/client.js" %}
+<code-sample>
+<code-file name="/path/to/project/src/client.js">
 
 ```javascript
-import "./utils";
-import "../constants";
+import './utils';
+import '../constants';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Note that these may only be omitted when importing from a JavaScript or TypeScript file. File extensions are always required for dependencies defined in other file types like HTML and CSS.
 
@@ -59,15 +52,15 @@ In TypeScript files, Parcel will also try replacing JavaScript extensions includ
 
 In JavaScript, Typescript, and other JS-based languages, dependency specifiers may resolve to a directory rather than a file. If the directory contains a `package.json` file, the main entry will be resolved as described in the [Package entries](#package-entries) section. If no `package.json` is present, it will attempt to resolve to an index file within the directory, such as `index.js` or `index.ts`. All extensions listed above are supported for index files.
 
-{% sample %}
-{% samplefile "/path/to/project/src/app.js" %}
+<code-sample>
+<code-file name="/path/to/project/src/app.js">
 
 ```javascript
-import "./client";
+import './client';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 For example, if `/path/to/project/src/client` were a directory, the above specifier could resolve to `/path/to/project/src/client/index.js`.
 
@@ -75,15 +68,15 @@ For example, if `/path/to/project/src/client` were a directory, the above specif
 
 Bare specifiers start with any character except `.`, `/`, `~`, or `#`. In JavaScript, TypeScript, and other JS-based languages, they resolve to a package in `node_modules`. For other types of files, such as HTML and CSS, bare specifiers are treated the same way as [relative specifiers](#relative-specifiers).
 
-{% sample %}
-{% samplefile "/path/to/project/src/client/index.js" %}
+<code-sample>
+<code-file name="/path/to/project/src/client/index.js">
 
 ```javascript
-import "react";
+import 'react';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, `react` may resolve to something like `/path/to/project/node_modules/react/index.js`. The exact location will depend on the location of the `node_modules` directory, as well as configuration within the package.
 
@@ -100,7 +93,7 @@ Once a module directory is found, the package entry is resolved. See [Package en
 Bare specifiers may also specify a sub-path within a package. For example, a package may publish multiple entry points rather than only a single one.
 
 ```javascript
-import "lodash/clone";
+import 'lodash/clone';
 ```
 
 The above example resolves `lodash` within a `node_modules` directory as described above, and then resolves the `clone` module within the package rather than its main entrypoint. This could be a `node_modules/lodash/clone.js` file, for example.
@@ -109,7 +102,7 @@ The above example resolves `lodash` within a `node_modules` directory as describ
 
 When a dependency specifier references a builtin Node.js module, e.g. `path` or `node:path`, the builtin module is preferred over any module installed in `node_modules` with the same name. When building for a node environment or a library, builtin modules are excluded from the bundle. See the [Node docs](https://nodejs.org/api/) for a full list of builtin modules.
 
-When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](/features/node-emulation/#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
+When building for other environments, such as browsers, Parcel replaces many builtin modules with a polyfill from npm, e.g. `path-browserify` for `path`. These packages are not included with Parcel, so you'll need to install the ones your code (or its dependencies) uses into your project. Builtin modules without a polyfill, such as `fs`, are replaced with an empty module. See [Node emulation](node-emulation.md#polyfilling-%26-excluding-builtin-node-modules) for the full list of polyfills.
 
 When building for an Electron environment, the `electron` module is also considered a builtin and excluded from the bundle.
 
@@ -118,7 +111,7 @@ When building for an Electron environment, the `electron` module is also conside
 Absolute specifiers start with `/`, and resolve a file relative to the project root. The **project root** is the base directory of your project, which would typically contain a package manager lock file (e.g. `yarn.lock` or `package-lock.json`), or a source control directory (e.g. `.git`). Absolute specifiers could be useful to avoid very long relative paths in deeply nested hierarchies.
 
 ```javascript
-import "/src/client.js";
+import '/src/client.js';
 ```
 
 The above example could be placed in any file, at any point in your project’s directory structure, and will always resolve to `/path/to/project/src/client.js`.
@@ -127,15 +120,15 @@ The above example could be placed in any file, at any point in your project’s 
 
 Tilde specifiers start with `~`, and resolve relative to the nearest package root from the importing file. A **package root** is a directory with a `package.json` file, which would typically be found in `node_modules`, or as the root of a package in a monorepo. Tilde specifiers are useful for similar purposes as absolute specifiers, but are more useful when you have more than one package.
 
-{% sample %}
-{% samplefile "/path/to/project/packages/frontend/src/client/index.js" %}
+<code-sample>
+<code-file name="/path/to/project/packages/frontend/src/client/index.js">
 
 ```javascript
-import "~/src/utils.js";
+import '~/src/utils.js';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The above example would resolve to `/path/to/project/packages/frontend/src/utils.js`.
 
@@ -145,8 +138,8 @@ Hash specifiers start with the `#` character, and the behavior depends on the fi
 
 The `"imports"` field in `package.json` can be used to define private mappings that apply to import specifiers in JavaScript or TypeScript files within the package. This allows a package to define conditional imports depending on the environment, as documented [below](#package-exports) and in the [Node.js docs](https://nodejs.org/dist/latest/docs/api/packages.html#subpath-imports).
 
-{% sample %}
-{% samplefile "/path/to/project/package.json" %}
+<code-sample>
+<code-file name="/path/to/project/package.json">
 
 ```json
 {
@@ -159,15 +152,15 @@ The `"imports"` field in `package.json` can be used to define private mappings t
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "/path/to/project/src/index.js" %}
+</code-file>
+<code-file name="/path/to/project/src/index.js">
 
 ```javascript
-import "#dep";
+import '#dep';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Query parameters
 
@@ -179,17 +172,17 @@ Dependency specifiers may also include query parameters, which specify transform
 }
 ```
 
-See the [Image transformer](/recipes/image/) docs for more details on images. You can also use query parameters in custom [Transformer](/plugin-system/transformer/) plugins.
+See the [Image transformer](../recipes/image.md) docs for more details on images. You can also use query parameters in custom [Transformer](../plugin-system/transformer.md) plugins.
 
-{% note %}
+<p-note>
 
 **Note**: Query parameters are not supported for CommonJS specifiers (created by the `require` function).
 
-{% endnote %}
+</p-note>
 
 ### URL schemes
 
-Dependency specifiers may use URL schemes to target [Named pipelines](/features/plugins/#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](/features/bundle-inlining/) for more details.
+Dependency specifiers may use URL schemes to target [Named pipelines](plugins.md#named-pipelines). These allow you to specify a different pipeline to compile a file with than the default one. For example, the `bundle-text:` scheme can be used to inline a compiled bundle as text. See [Bundle inlining](bundle-inlining.md) for more details.
 
 There are a few reserved URL schemes that may not be used for named pipelines, and have builtin behavior.
 
@@ -205,8 +198,8 @@ There are a few reserved URL schemes that may not be used for named pipelines, a
 
 Parcel supports importing multiple files at once via globs, however, since glob imports are non-standard, they are not included in the default Parcel config. To enable them, add `@parcel/resolver-glob` to your `.parcelrc`.
 
-{% sample %}
-{% samplefile ".parcelrc" %}
+<code-sample>
+<code-file name=".parcelrc">
 
 ```json
 {
@@ -215,20 +208,20 @@ Parcel supports importing multiple files at once via globs, however, since glob 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Once enabled, you can import multiple files using a specifier like `./files/*.js`. This returns an object with keys corresponding to the files names. Glob specifiers can be relative, [absolute](#absolute-specifiers), or [tilde](#tilde-specifiers) paths, which are resolved in the same way as other specifiers.
 
 ```javascript
-import files from "./files/*.js";
+import files from './files/*.js';
 ```
 
 is equivalent to:
 
 ```javascript
-import foo from "./files/foo.js";
-import bar from "./files/bar.js";
+import foo from './files/foo.js';
+import bar from './files/bar.js';
 
 let files = {
   foo,
@@ -239,7 +232,7 @@ let files = {
 Specifically, the dynamic parts of the glob pattern become keys of the object. If there are multiple dynamic parts, a nested object will be returned. For example, if a `pages/profile/index.js` file existed, the following would match it.
 
 ```javascript
-import pages from "./pages/*/*.js";
+import pages from './pages/*/*.js';
 
 console.log(pages.profile.index);
 ```
@@ -247,15 +240,15 @@ console.log(pages.profile.index);
 To use the relative path of each file as the key instead, add the `flat=true` query parameter. This returns a flat object rather than a nested one.
 
 ```javascript
-import pages from "./pages/**/*.js?flat=true";
+import pages from './pages/**/*.js?flat=true';
 
-console.log(pages["./pages/profile/index.js"]);
+console.log(pages['./pages/profile/index.js']);
 ```
 
 Globs can also be used with URL schemes like `bundle-text:`. To load each file on demand rather than all up-front, add the `async=true` query parameter. The resulting object will include a mapping of filenames to functions. Each function can be called to load the resolved module via dynamic import.
 
 ```javascript
-import files from "./files/*.js?async=true";
+import files from './files/*.js?async=true';
 
 async function doSomething() {
   let foo = await files.foo();
@@ -267,14 +260,14 @@ async function doSomething() {
 Glob imports also work with CSS:
 
 ```css
-@import "./components/*.css";
+@import './components/*.css';
 ```
 
 is equivalent to:
 
 ```css
-@import "./components/button.css";
-@import "./components/dropdown.css";
+@import './components/button.css';
+@import './components/dropdown.css';
 ```
 
 Globs are not supported in other URL dependencies, such as `url()` in CSS or `<script src>` in HTML.
@@ -285,7 +278,7 @@ When resolving a package directory, the `package.json` file is consulted to dete
 
 - `source` – If the module is behind a symlink (e.g. in a monorepo, or via `npm link`), then Parcel uses the `source` field to compile the module from source. The `source` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `exports` – [Package exports](#package-exports), see below for details.
-- `browser` – A browser-specific version of a package. If building for a [browser environment](/features/targets/#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
+- `browser` – A browser-specific version of a package. If building for a [browser environment](targets.md#environments), the browser field overrides other fields. The `browser` field can also be used as an alias mapping if a package has multiple entry points – see [Aliases](#aliases) below for details.
 - `module` – An ES module version of the package.
 - `main` – A CommonJS version of the package.
 
@@ -299,8 +292,8 @@ The `"exports"` field in `package.json` can be used to define the publically acc
 
 If a package has only a single exported module, the `"exports"` field may be defined as a string:
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -309,8 +302,8 @@ If a package has only a single exported module, the `"exports"` field may be def
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 When a user imports the `"foo"` package in the above example, the `node_modules/foo/dist/index.js` module will be resolved.
 
@@ -318,8 +311,8 @@ When a user imports the `"foo"` package in the above example, the `node_modules/
 
 If a package exports multiple modules, the `"exports"` field can provide mappings defining where to find each of these exports. The `"."` export defines the main entry point, and other entries are defined as subpaths.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -331,21 +324,21 @@ If a package exports multiple modules, the `"exports"` field can provide mapping
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 With the above package, a user may import `"foo"`, which resolves to `node_modules/foo/dist/index.js`, or `"foo/bar"`, which resolves to `node_modules/foo/dist/bar.js`.
 
-{% warning %}
+<p-warning>
 
 Any subpath that is not explicitly exported by a package containing the `"exports"` field will not be accessible by a consumer. For example, attempting to import `"foo/abc"` in the above package would result in a build time error.
 
-{% endwarning %}
+</p-warning>
 
 The `*` character may be used within an exports mapping as a wildcard. Only one `*` may appear in the lefthand side of the mapping, and the matched string is replaced into each instance in the righthand side. This allows you to avoid manually listing every file you want to export.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -356,17 +349,17 @@ The `*` character may be used within an exports mapping as a wildcard. Only one 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, all `.js` files in the `dist` directory are exported from the package, without their extension. For example, importing `"foo/bar"` would resolve to `node_modules/foo/dist/bar.js`.
 
 ### Conditional exports
 
-The `"exports"` field may also define different mappings for the same specifier in different [environments](/features/targets/#environments) or other conditions. For example, a package may provide different entrypoints for ES modules and CommonJS, or for Node and browsers.
+The `"exports"` field may also define different mappings for the same specifier in different [environments](targets.md#environments) or other conditions. For example, a package may provide different entrypoints for ES modules and CommonJS, or for Node and browsers.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -378,15 +371,15 @@ The `"exports"` field may also define different mappings for the same specifier 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, if a consumer imports the `"foo"` module from a Node environment, it will resolve to `node_modules/foo/dist/node.js`, otherwise it will resolve to `node_modules/foo/default.js`.
 
 Conditional exports may also be nested within subpath mappings.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -400,15 +393,15 @@ Conditional exports may also be nested within subpath mappings.
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 This allows importing `"foo/bar"` to resolve to a different file for Node and other environments.
 
 Conditional exports may also be nested within each other to create more complex logic.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -423,8 +416,8 @@ Conditional exports may also be nested within each other to create more complex 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 The above example defines different versions of the module depending on whether the package is loaded via ESM `import` or CommonJS `require` within a Node environment.
 
@@ -448,11 +441,11 @@ Parcel supports the following exports conditions:
 - `"production"` – Package was loaded in a production build.
 - `"default"` – The default condition in case no other conditions matched.
 
-{% note %}
+<p-note>
 
 The order that exports conditions are resolved follows the order they are defined in the package.json, not the order they are listed above.
 
-{% endnote %}
+</p-note>
 
 ### More examples
 
@@ -468,8 +461,8 @@ Aliases are defined via the `alias` field in package.json. They can be defined e
 
 Package aliases map a `node_modules` dependency to a different package, or to a local file within your project. For example, to replace `react` and `react-dom` with Preact across both files in your project as well as any other libraries in `node_modules`, you could define a global alias in the `package.json` in your project root directory.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -480,13 +473,13 @@ Package aliases map a `node_modules` dependency to a different package, or to a 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 You can also map a module to a file within your project by using a relative path from the `package.json` in which the alias is defined.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -496,13 +489,13 @@ You can also map a module to a file within your project by using a relative path
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Aliasing only certain [sub-paths](#package-sub-paths) of a module is also supported. This example will alias `lodash/clone` to `tiny-clone`. Other imports within the `lodash` package will be unaffected.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -512,8 +505,8 @@ Aliasing only certain [sub-paths](#package-sub-paths) of a module is also suppor
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 This also works the other way: if an entire module is aliased, then any sub-path imports of that package will be resolved within the aliased module. For example, if you aliased `lodash` to `my-lodash` and imported `lodash/clone`, this would resolve to `my-lodash/clone`.
 
@@ -523,8 +516,8 @@ Aliases can also be defined as relative paths to replace a specific file within 
 
 For example, to replace a certain file with a browser-specific version, you could use the `browser` field.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -534,8 +527,8 @@ For example, to replace a certain file with a browser-specific version, you coul
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Now, if `my-module/fs.js` is imported in a browser environment, they'll actually get `my-module/fs-browser.js`. This applies both to imports from outside (e.g. [package sub-paths](#package-sub-paths)), as well as internally within the module.
 
@@ -545,8 +538,8 @@ File aliases can also be defined using globs, which allows replacing many files 
 
 For example, you could use the `source` field to provide a mapping between compiled code in a package and the original source code. When the module is symlinked, or within a monorepo, this will allow Parcel to compile the module from source rather than use the pre-compiled version.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -556,8 +549,8 @@ For example, you could use the `source` field to provide a mapping between compi
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Now, any time a file in the `dist` directory is imported, the corresponding file in the `src` folder will be loaded instead.
 
@@ -565,8 +558,8 @@ Now, any time a file in the `dist` directory is imported, the corresponding file
 
 Files or packages can be aliased to `false` to be excluded from the build, and replaced with an empty module. This could be useful to exclude certain modules from browser builds that only work in Node.js, for example.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -576,8 +569,8 @@ Files or packages can be aliased to `false` to be excluded from the build, and r
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Global aliases
 
@@ -585,8 +578,8 @@ Files or packages may also be aliased to global variables that will be defined a
 
 This can be done by creating an alias to an object with a `global` property. The following example aliases the `jquery` dependency specifier to the global variable `$`.
 
-{% sample %}
-{% samplefile "package.json" %}
+<code-sample>
+<code-file name="package.json">
 
 ```json
 {
@@ -598,8 +591,8 @@ This can be done by creating an alias to an object with a `global` property. The
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ## TSConfig
 
@@ -609,8 +602,8 @@ Parcel supports some settings defined in TypeScript's `tsconfig.json` config fil
 
 The `baseUrl` field defines the base directory from which to resolve [bare specifiers](#bare-specifiers).
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -620,15 +613,15 @@ The `baseUrl` field defines the base directory from which to resolve [bare speci
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/App.js" %}
+</code-file>
+<code-file name="src/App.js">
 
 ```js
-import "Home";
+import 'Home';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, `Home` will resolve to `src/Home.js` if it exists. Otherwise, it will fall back to `node_modules/Home`, for example.
 
@@ -638,8 +631,8 @@ The `paths` field can be used to define mappings from [bare specifiers](#bare-sp
 
 File paths referenced in the `paths` field are relative to the `baseUrl` if defined, otherwise to the directory containing the `tsconfig.json` file.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -652,16 +645,16 @@ File paths referenced in the `paths` field are relative to the `baseUrl` if defi
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/App.js" %}
+</code-file>
+<code-file name="src/App.js">
 
 ```js
-import "jquery";
-import "app/foo";
+import 'jquery';
+import 'app/foo';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, `jquery` resolves to `./vendor/jquery/dist/jquery.js`, and `app/foo` resolves to `./src/app/foo.js`.
 
@@ -669,8 +662,8 @@ In the above example, `jquery` resolves to `./vendor/jquery/dist/jquery.js`, and
 
 The `moduleSuffixes` field allows you to specify the file name suffixes to search for when resolving a module.
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -680,15 +673,15 @@ The `moduleSuffixes` field allows you to specify the file name suffixes to searc
 }
 ```
 
-{% endsamplefile %}
-{% samplefile "src/App.js" %}
+</code-file>
+<code-file name="src/App.js">
 
 ```js
-import "./foo";
+import './foo';
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 In the above example, Parcel will look for `./foo.ios.ts`, `./foo.native.ts`, and `./foo.ts` (in addition to other extensions like `.tsx`, `.js`, etc.).
 
@@ -702,8 +695,8 @@ TypeScript will need to be configured to support Parcel features like absolute a
 
 For example, to map tilde paths to the root directory, this configuration could be used:
 
-{% sample %}
-{% samplefile "tsconfig.json" %}
+<code-sample>
+<code-file name="tsconfig.json">
 
 ```json
 {
@@ -716,23 +709,23 @@ For example, to map tilde paths to the root directory, this configuration could 
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 Support for [URL schemes](#url-schemes) can also be enabled by creating an [ambient module](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules) declaration in your project. For example, to map dependencies loaded with the `bundle-text:` scheme to a string, you could use the following declaration. This can be placed in a file such as `parcel.d.ts` anywhere in your project.
 
-{% sample %}
-{% samplefile "parcel.d.ts" %}
+<code-sample>
+<code-file name="parcel.d.ts">
 
 ```typescript
-declare module "bundle-text:*" {
+declare module 'bundle-text:*' {
   const value: string;
   export default value;
 }
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 ### Flow
 
@@ -740,21 +733,21 @@ Flow needs to be configured to support absolute and tilde specifiers, and aliase
 
 For example, to map absolute specifiers to resolve from the project root, this configuration could be used:
 
-{% sample %}
-{% samplefile ".flowconfig" %}
+<code-sample>
+<code-file name=".flowconfig">
 
 ```
 [options]
 module.name_mapper='^\/\(.*\)$' -> '<PROJECT_ROOT>/\1'
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>
 
 To enable [URL schemes](#url-schemes), you'll need to create a mapping to a `.flow` [declaration file](https://flow.org/en/docs/declarations/) which exports the expected type. For example, to map dependencies loaded with the `bundle-text:` scheme to a string, you could create a file called `bundle-text.js.flow` and map all dependencies referencing the scheme to it.
 
-{% sample %}
-{% samplefile "bundle-text.js.flow" %}
+<code-sample>
+<code-file name="bundle-text.js.flow">
 
 ```javascript
 // @flow
@@ -762,13 +755,13 @@ declare var value: string;
 export default value;
 ```
 
-{% endsamplefile %}
-{% samplefile ".flowconfig" %}
+</code-file>
+<code-file name=".flowconfig">
 
 ```
 [options]
 module.name_mapper='^bundle-text:.*$' -> '<PROJECT_ROOT>/bundle-text.js'
 ```
 
-{% endsamplefile %}
-{% endsample %}
+</code-file>
+</code-sample>

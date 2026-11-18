@@ -1,10 +1,11 @@
----
-layout: layout.njk
-eleventyNavigation:
-  key: blog-rc-0
-  title: Parcel 2 RC
-date: 2021-08-03
----
+<meta property="article:published_time" content="2021-08-03">
+
+<header parcel:slot="header">
+  <h1>Parcel 2 RC</h1>
+  <div class="summary">
+    <time datetime="2021-08-03" class="entry-date js-replace-date">2021-08-03</time>
+  </div>
+</header>
 
 The Parcel team is very excited to announce the first Parcel 2 release candidate! This release includes many improvements, including new features, better performance, API consistency, and lots of bug fixes and stability improvements.
 
@@ -54,10 +55,7 @@ Parcel has supported web workers and service workers for a long time, and in thi
 To create a worker that uses ES module syntax such as `import` and `export`, the `type: 'module'` option is now required when constructing the worker. In addition, the `URL` constructor is now required to create a worker rather than passing a string literal. These changes improve Parcel's compatibility with both native browser behavior as well as other tools in the ecosystem.
 
 ```js
-new Worker(
-  new URL('worker.js', import.meta.url),
-  {type: 'module'}
-);
+new Worker(new URL('worker.js', import.meta.url), {type: 'module'});
 ```
 
 In addition, in module workers, `importScripts` is no longer supported, and should be replaced by an `import` statement or dynamic `import()`.
@@ -95,7 +93,7 @@ Parcel now supports the `.mjs` and `.cjs` file extensions used by Node.js to ind
 In addition, when you use workers or URL dependencies in your code, Parcel will now produce statically analyzable output when building a library. This enables your library to be bundled by Parcel or another bundler later when used in an app. URL dependencies compile to the `URL` constructor, which is supported both natively in Node and the browser as well as by many bundlers.
 
 ```js
-new URL('some-code.js', import.meta.url)
+new URL('some-code.js', import.meta.url);
 ```
 
 Finally, we have improved our diagnostics for many cases related to libraries. For example, you’ll get a diagnostic when scope hoisting is disabled for library builds, or an unsupported output format is used. Another useful diagnostic we added lets you know when you have an external dependency in your code that is not declared in your package.json. This helps prevent shipping code that will break when your library is used by a downstream consumer.
@@ -158,7 +156,7 @@ import * as bar from './files/bar.js';
 
 let files = {
   foo,
-  bar
+  bar,
 };
 ```
 
@@ -185,7 +183,7 @@ Since glob imports are non-standard, they are not included in the default Parcel
 
 ## Performance improvements
 
-In our last release, we [announced](/blog/beta3/) our new JavaScript compiler written in Rust that improves performance by up to 10x. This release continues our work on improving performance, and is overall **~38% faster** than the previous beta. There have been many small changes that add up, but some of the highlights are described below.
+In our last release, we [announced](../beta3/beta3.md) our new JavaScript compiler written in Rust that improves performance by up to 10x. This release continues our work on improving performance, and is overall **~38% faster** than the previous beta. There have been many small changes that add up, but some of the highlights are described below.
 
 ### LMDB
 

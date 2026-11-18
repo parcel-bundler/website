@@ -3,14 +3,14 @@
     <p class="mb-4">Parcel transpiles your JavaScript and CSS for your target browsers automatically! Just declare a <code class="font-semibold text-gray-800 dark:text-gray-200">browserslist</code> in your <code class="text-gray-800 dark:text-gray-200">package.json</code>, and Parcel takes care of transpiling only what's needed.</p>
     <p class="mb-4 text-base lg:text-lg">In addition to standard JavaScript, Parcel automatically handles <strong class="font-semibold text-gray-800 dark:text-gray-200">JSX</strong>, and <strong class="font-semibold text-gray-800 dark:text-gray-200">TypeScript</strong>, along with Node.js features like <strong class="font-semibold text-gray-800 dark:text-gray-200">process.env</strong> and <strong class="font-semibold text-gray-800 dark:text-gray-200">fs.readFileSync</strong> – no configuration needed!</p>
     <p class="mb-4 text-base lg:text-lg">When it comes to CSS, Parcel supports transpiling modern syntax features like <code class="font-semibold text-gray-800 dark:text-gray-200">lab()</code> colors, logical properties, and CSS nesting syntax, as well as automatically adding the necessary vendor prefixes for your browser targets.</p>
-    <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-400 hover:underline" href="/languages/javascript/#transpilation">Learn more →</a>
+    <a class="mt-8 block text-lg font-medium text-pink-700 dark:text-pink-400 hover:underline" href="../../languages/javascript.md#transpilation">Learn more →</a>
   </div>
   <div class="w-full max-w-md lg:max-w-full mx-auto">
     <pre class="text-xs lg:text-sm mb-2 whitespace-pre-wrap overflow-auto"><code class="language-jsx">function DogName(props) {
   return (
-    <span>
+    &lt;span&gt;
       {props.dog?.name ?? 'Buddy'}
-    </span>
+    &lt;/span&gt;
   );
 }</code></pre>
     <svg height="35" width="100%" viewBox="0 0 13 35">
@@ -21,7 +21,7 @@
   return /*#__PURE__*/ React.createElement(
     "span",
     null,
-    (ref1 = (ref = props.dog) === null || ref === void 0 ? void 0 : ref.name) !== null && ref1 !== void 0 ? ref1 : "Buddy"
+    (ref1 = (ref = props.dog) === null || ref === void 0 ? void 0 : ref.name) !== null &amp;&amp; ref1 !== void 0 ? ref1 : "Buddy"
   );
 }</code></pre>
   </div>
