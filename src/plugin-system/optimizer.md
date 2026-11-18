@@ -24,13 +24,14 @@ export default new Optimizer({
 
 ```rust
 use parcel_plugin::{
-  Bundle, BundleGraph, ContentBuffer, Diagnostic, OptimizeResult, Options, Plugin, register_plugin,
+  Bundle, BundleGraph, Config, ContentBuffer, Diagnostic, OptimizeResult, Options, Plugin,
+  register_plugin,
 };
 
 struct MyOptimizer;
 
 impl Plugin for MyOptimizer {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyOptimizer)
   }
 
@@ -66,7 +67,7 @@ func (o *MyOptimizer) Optimize(_ *parcel.BundleGraph, _ *parcel.Bundle, contents
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyOptimizer{}, nil
 	})
 }
@@ -78,7 +79,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyOptimizer: Optimizer {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func optimize(
     _ bundle: OutputBundle, in bundleGraph: BundleGraph, contents: [UInt8], sourceMap: [UInt8]?,

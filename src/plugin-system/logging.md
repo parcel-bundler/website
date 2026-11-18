@@ -72,8 +72,6 @@ A diagnostic can have one or more code frames attached, which give context about
 
 Code frames should also include the source code for the file the error occurred in. If omitted, Parcel will read the file from the file system. However, in many cases the input source code may have come from another plugin that ran before, so the code will have been modified in some way. Including the code in the code frame avoids this issue.
 
-Diagnostics created by native plugins can include one code frame with a single highlight. Parcel reads the code for it from the file system.
-
 <code-tabs>
 
 ```js
@@ -103,35 +101,57 @@ throw new Diagnostic({
 
 ```rust
 return Err(
-  Diagnostic::new(format!("Could not parse {}", asset.file_path().display()))
-    .with_file(asset.file_path())
-    .at(1, 5)
-    .to(2, 3)
-    .with_highlight_message("Expected a string but got a number"),
+  Diagnostic::new(format!("Could not parse {}", asset.file_path().display())).with_code_frame(
+    CodeFrame::file(asset.file_path())
+      .with_code(asset.content()?)
+      .with_highlight(
+        CodeHighlight::at(1, 5)
+          .to(2, 3)
+          .with_message("Expected a string but got a number"),
+      ),
+  ),
 );
 ```
 
 ```go
+code, err := asset.Content()
+if err != nil {
+	return err
+}
 return &parcel.Diagnostic{
-	Message:          fmt.Sprintf("Could not parse %s", asset.FilePath()),
-	FilePath:         asset.FilePath(),
-	Line:             1,
-	Column:           5,
-	EndLine:          2,
-	EndColumn:        3,
-	HighlightMessage: "Expected a string but got a number",
+	Message: fmt.Sprintf("Could not parse %s", asset.FilePath()),
+	CodeFrames: []parcel.CodeFrame{{
+		FilePath: asset.FilePath(),
+		Code:     code,
+		Highlights: []parcel.CodeHighlight{{
+			StartLine:   1,
+			StartColumn: 5,
+			EndLine:     2,
+			EndColumn:   3,
+			Message:     "Expected a string but got a number",
+		}},
+	}},
 }
 ```
 
 ```swift
 throw Diagnostic(
   "Could not parse \(asset.filePath)",
-  filePath: asset.filePath,
-  line: 1,
-  column: 5,
-  endLine: 2,
-  endColumn: 3,
-  highlightMessage: "Expected a string but got a number"
+  codeFrames: [
+    CodeFrame(
+      filePath: asset.filePath,
+      code: try asset.content(),
+      highlights: [
+        CodeHighlight(
+          startLine: 1,
+          startColumn: 5,
+          endLine: 2,
+          endColumn: 3,
+          message: "Expected a string but got a number"
+        )
+      ]
+    )
+  ]
 )
 ```
 
@@ -151,7 +171,7 @@ In this case, Parcel reads the source code for the code frame from the file syst
 
 ### Hints
 
-Diagnostics can also include hints about how to fix a problem, and a link to documentation for users to learn more. JavaScript diagnostics can include multiple hints, and native diagnostics can include one.
+Diagnostics can also include hints about how to fix a problem, and a link to documentation for users to learn more. A diagnostic can include multiple hints.
 
 <code-tabs>
 
@@ -174,7 +194,7 @@ return Err(
 ```go
 return &parcel.Diagnostic{
 	Message:          "Could not find a config file",
-	Hint:             "Create a tool.config.json file in the project root.",
+	Hints:            []string{"Create a tool.config.json file in the project root."},
 	DocumentationURL: "http://example.com/",
 }
 ```
@@ -182,7 +202,7 @@ return &parcel.Diagnostic{
 ```swift
 throw Diagnostic(
   "Could not find a config file",
-  hint: "Create a tool.config.json file in the project root.",
+  hints: ["Create a tool.config.json file in the project root."],
   documentationURL: "http://example.com/"
 )
 ```
@@ -323,9 +343,9 @@ impl Plugin for MyTransformer {
 
     options.log_diagnostic(
       &Diagnostic::warning("This feature is deprecated.")
-        .with_file(asset.file_path())
-        .at(1, 5)
-        .to(1, 10)
+        .with_code_frame(
+          CodeFrame::file(asset.file_path()).with_highlight(CodeHighlight::at(1, 5).to(1, 10)),
+        )
         .with_hint("Please use this other feature instead.")
         .with_documentation_url("http://example.com/"),
     );
@@ -339,14 +359,18 @@ func (t *MyTransformer) Transform(asset *parcel.Asset, options *parcel.Options) 
 	// ...
 
 	options.LogDiagnostic(&parcel.Diagnostic{
-		Message:          "This feature is deprecated.",
-		Severity:         parcel.SeverityWarning,
-		FilePath:         asset.FilePath(),
-		Line:             1,
-		Column:           5,
-		EndLine:          1,
-		EndColumn:        10,
-		Hint:             "Please use this other feature instead.",
+		Message:  "This feature is deprecated.",
+		Severity: parcel.SeverityWarning,
+		CodeFrames: []parcel.CodeFrame{{
+			FilePath: asset.FilePath(),
+			Highlights: []parcel.CodeHighlight{{
+				StartLine:   1,
+				StartColumn: 5,
+				EndLine:     1,
+				EndColumn:   10,
+			}},
+		}},
+		Hints:            []string{"Please use this other feature instead."},
 		DocumentationURL: "http://example.com/",
 	})
 	return nil
@@ -361,12 +385,13 @@ struct MyTransformer: Transformer {
     options.log(
       .warning(
         "This feature is deprecated.",
-        filePath: asset.filePath,
-        line: 1,
-        column: 5,
-        endLine: 1,
-        endColumn: 10,
-        hint: "Please use this other feature instead.",
+        codeFrames: [
+          .file(
+            asset.filePath,
+            highlights: [CodeHighlight(startLine: 1, startColumn: 5, endLine: 1, endColumn: 10)]
+          )
+        ],
+        hints: ["Please use this other feature instead."],
         documentationURL: "http://example.com/"
       ))
   }

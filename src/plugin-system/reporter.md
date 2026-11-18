@@ -20,12 +20,12 @@ export default new Reporter({
 ```
 
 ```rust
-use parcel_plugin::{BuildSuccess, Diagnostic, Options, Plugin, register_plugin};
+use parcel_plugin::{BuildSuccess, Config, Diagnostic, Options, Plugin, register_plugin};
 
 struct MyReporter;
 
 impl Plugin for MyReporter {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyReporter)
   }
 
@@ -57,7 +57,7 @@ func (r *MyReporter) BuildSuccess(event *parcel.BuildSuccess, _ *parcel.Options)
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyReporter{}, nil
 	})
 }
@@ -69,7 +69,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyReporter: Reporter {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func buildSuccess(_ event: BuildSuccess, options: Options) async throws {
     let bundles = event.bundleGraph.bundleCount

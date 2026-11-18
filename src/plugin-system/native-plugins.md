@@ -48,25 +48,25 @@ serde_json = "1"
 
 <!-- TODO(v3): parcel-plugin is not published to crates.io yet (the examples in plugin-rs/examples use a path dependency). Confirm the recommended dependency spec (crates.io version, or git + branch). -->
 
-A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The trait has one method for each plugin type (`transform`, `resolve`, `name`, and `optimize`), and one for each type of event a reporter receives (`build_start`, `build_success`, `build_failure`, and `log`). Implement the ones your plugin supports. The default implementations return an error, except for the reporter methods, which do nothing. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
+A plugin is a struct that implements the `Plugin` trait, exported with the `register_plugin!` macro. The trait has one method for each plugin type (`transform`, `resolve`, `name`, and `optimize`), and one for each type of event a reporter receives (`build_start`, `build_success`, `build_failure`, and `log`). Implement the ones your plugin supports. The default implementations return an error, except for the reporter methods, which do nothing. The `new` method is called once for each entry in the `.parcelrc` that refers to the plugin. It receives that entry's `Config`, whose `bytes()` are the entry's `config` as UTF-8 encoded JSON (or an empty slice when there is no config), along with the build's `Options`. This allows the same plugin to be used multiple times with different configuration. See [Configuration](#configuration) for how to resolve paths in the config and read other files.
 
 <code-sample>
 <code-file name="src/lib.rs">
 
 ```rust
-use parcel_plugin::{Asset, Diagnostic, Options, Plugin, register_plugin};
+use parcel_plugin::{Asset, Config, Diagnostic, Options, Plugin, register_plugin};
 
 struct TxtTransformer {
   prefix: String,
 }
 
 impl Plugin for TxtTransformer {
-  fn new(config: &[u8]) -> Result<Self, Diagnostic> {
-    let prefix = if config.is_empty() {
+  fn new(config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
+    let prefix = if config.bytes().is_empty() {
       String::new()
     } else {
       let config: serde_json::Value =
-        serde_json::from_slice(config).map_err(|e| Diagnostic::new(e.to_string()))?;
+        serde_json::from_slice(config.bytes()).map_err(|e| Diagnostic::new(e.to_string()))?;
       config["prefix"].as_str().unwrap_or_default().to_owned()
     };
 
@@ -101,7 +101,7 @@ The Go SDK lives in the [`plugin-go`](https://github.com/parcel-bundler/parcel/t
 go get github.com/parcel-bundler/parcel/plugin-go/v3@v3.0.0-alpha.2
 ```
 
-A plugin is a `main` package that registers a plugin in an `init` function. The plugin implements one or more of the `Transformer`, `Resolver`, `Namer`, and `Optimizer` interfaces, each of which has one method: `Transform`, `Resolve`, `Name`, or `Optimize`. A reporter implements an interface for each type of event it receives: `BuildStartReporter`, `BuildSuccessReporter`, `BuildFailureReporter`, or `LogReporter`. The function passed to `RegisterPlugin` is called once for each entry in the `.parcelrc` that refers to the plugin, and receives that entry's `config` as UTF-8 encoded JSON bytes (or an empty slice when there is no config). This allows the same plugin to be used multiple times with different configuration.
+A plugin is a `main` package that registers a plugin in an `init` function. The plugin implements one or more of the `Transformer`, `Resolver`, `Namer`, and `Optimizer` interfaces, each of which has one method: `Transform`, `Resolve`, `Name`, or `Optimize`. A reporter implements an interface for each type of event it receives: `BuildStartReporter`, `BuildSuccessReporter`, `BuildFailureReporter`, or `LogReporter`. The function passed to `RegisterPlugin` is called once for each entry in the `.parcelrc` that refers to the plugin. It receives that entry's `*parcel.Config`, whose `Bytes` are the entry's `config` as UTF-8 encoded JSON (or nil when there is no config), along with the build's `*parcel.Options`. This allows the same plugin to be used multiple times with different configuration. See [Configuration](#configuration) for how to resolve paths in the config and read other files.
 
 <code-sample>
 <code-file name="main.go">
@@ -138,10 +138,10 @@ func (t *TxtTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(config *parcel.Config, _ *parcel.Options) (any, error) {
 		t := &TxtTransformer{}
-		if len(config) > 0 {
-			if err := json.Unmarshal(config, t); err != nil {
+		if len(config.Bytes) > 0 {
+			if err := json.Unmarshal(config.Bytes, t); err != nil {
 				return nil, err
 			}
 		}
@@ -190,7 +190,7 @@ let package = Package(
 </code-file>
 </code-sample>
 
-A plugin conforms to one or more of the `Transformer`, `Resolver`, `Namer`, `Optimizer`, and `Reporter` protocols, and is exported with the `#parcelPlugin` macro. The plugin is created once for each entry in the `.parcelrc` that refers to it, and its `Config` is decoded from that entry's `config` using `JSONDecoder`. This allows the same plugin to be used multiple times with different configuration. Plugins without config declare `init(config: NoConfig)`.
+A plugin conforms to one or more of the `Transformer`, `Resolver`, `Namer`, `Optimizer`, and `Reporter` protocols, and is exported with the `#parcelPlugin` macro. The plugin is created once for each entry in the `.parcelrc` that refers to it, with `init(config:context:)`. Its `Config` is decoded from that entry's `config` using `JSONDecoder`, and the `InitContext` provides the build's `Options`. This allows the same plugin to be used multiple times with different configuration. Plugins without config declare `init(config: NoConfig, context: InitContext)`. See [Configuration](#configuration) for how to resolve paths in the config and read other files.
 
 <code-sample>
 <code-file name="Sources/TxtTransformer/TxtTransformer.swift">
@@ -206,7 +206,7 @@ struct TxtTransformer: Transformer {
 
   let prefix: String
 
-  init(config: Config) {
+  init(config: Config, context: InitContext) {
     prefix = config.prefix ?? ""
   }
 
@@ -229,9 +229,121 @@ Build it with `swift build -c release`, which produces `.build/release/libTxtTra
 
 Throw an error, e.g. a `Diagnostic`, to fail a call (see [Diagnostics](logging.md#diagnostics)). Unlike Rust and Go, Swift cannot recover from a trap (e.g. a failed force unwrap), which crashes Parcel, so throw errors instead. Every plugin method is `async`, and plugins must be `Sendable` since one instance is called from many threads at once. See the [README](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift#readme) for more details about concurrency, and the [examples](https://github.com/parcel-bundler/parcel/tree/v3/plugin-swift/Examples/Sources) for a plugin of each type.
 
+## Configuration
+
+A plugin's config often contains paths, e.g. to a file to read or a directory to search. These are relative to the `.parcelrc` that configured the plugin so that they work no matter where Parcel is run from. <api-name rust="config.resolve_path()" go="config.ResolvePath()" swift="context.resolvePath(_:)"></api-name> resolves a path against the directory of that `.parcelrc`, and <api-name rust="config.path()" go="config.Path" swift="context.configPath"></api-name> returns its absolute path.
+
+A plugin can also read files when it is created, through the `Options` it receives (see [File system](#file-system)). Parcel tracks these files too: when one of them changes, or a missing one is created, Parcel creates the plugins again, and rebuilds the project.
+
+This example reads a banner from a file named in the plugin's config, and prepends it to each asset.
+
+<code-sample>
+<code-file name=".parcelrc">
+
+```json
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.js": [
+      {
+        "plugin": "parcel-transformer-banner",
+        "config": {
+          "file": "./banner.txt"
+        }
+      },
+      "..."
+    ]
+  }
+}
+```
+
+</code-file>
+</code-sample>
+
+<code-tabs>
+
+```rust
+#[derive(serde::Deserialize)]
+struct BannerConfig {
+  file: String,
+}
+
+struct BannerTransformer {
+  banner: String,
+}
+
+impl Plugin for BannerTransformer {
+  fn new(config: &Config, options: &Options) -> Result<Self, Diagnostic> {
+    let BannerConfig { file } =
+      serde_json::from_slice(config.bytes()).map_err(|e| Diagnostic::new(e.to_string()))?;
+    let path = config.resolve_path(file);
+    let banner = options
+      .read_to_string(&path)
+      .map_err(|e| Diagnostic::new(format!("Could not read {}: {e}", path.display())))?;
+    Ok(BannerTransformer { banner })
+  }
+
+  fn transform(&self, asset: &mut Asset, _options: &Options) -> Result<(), Diagnostic> {
+    asset.set_content(format!("{}\n{}", self.banner, asset.content()?));
+    Ok(())
+  }
+}
+```
+
+```go
+type BannerTransformer struct {
+	banner string
+}
+
+func (t *BannerTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error {
+	content, err := asset.Content()
+	if err != nil {
+		return err
+	}
+	asset.SetContent(t.banner + "\n" + content)
+	return nil
+}
+
+func init() {
+	parcel.RegisterPlugin(func(config *parcel.Config, options *parcel.Options) (any, error) {
+		var c struct {
+			File string `json:"file"`
+		}
+		if err := json.Unmarshal(config.Bytes, &c); err != nil {
+			return nil, err
+		}
+		banner, err := options.ReadFile(config.ResolvePath(c.File))
+		if err != nil {
+			return nil, err
+		}
+		return &BannerTransformer{banner: string(banner)}, nil
+	})
+}
+```
+
+```swift
+struct BannerTransformer: Transformer {
+  struct Config: Decodable {
+    var file: String
+  }
+
+  let banner: String
+
+  init(config: Config, context: InitContext) throws {
+    banner = try context.options.fileSystem.readString(context.resolvePath(config.file))
+  }
+
+  func transform(_ asset: Asset, options: Options) async throws {
+    asset.setContent(banner + "\n" + (try asset.content()))
+  }
+}
+```
+
+</code-tabs>
+
 ## File system
 
-Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](logging.md#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while transforming or resolving.
+Every plugin method receives an `Options` object, which provides the project root, environment variables, [logging](logging.md#logger), and access to the file system. Plugins should read files through `Options`, rather than directly with the language's own file system APIs. This way, Parcel knows which files the plugin depends on, and re-runs it when one of them changes or a missing file is created. These methods are available while a plugin is created, and while transforming or resolving.
 
 <api-name rust="read_file()" go="ReadFile()" swift="fileSystem.read(_:)"></api-name> reads a file, <api-name rust="file_kind()" go="FileKind()" swift="fileSystem.kind(of:)"></api-name> returns whether a path is a file, directory, or does not exist, and <api-name rust="canonicalize()" go="Canonicalize()" swift="fileSystem.canonicalize(_:)"></api-name> resolves symlinks.
 
@@ -260,11 +372,11 @@ let config = try options.fileSystem.readString("/path/to/tool.config.json")
 
 All of the SDKs are built on a C ABI, which is defined in [`plugin.h`](https://github.com/parcel-bundler/parcel/blob/v3/crates/parcel-plugin-abi/plugin.h). Plugins in other languages can implement it directly. A plugin library exports the following functions:
 
-- `parcel_plugin_init` (required) – called once per `.parcelrc` entry with a table of host functions, the plugin's config as JSON, and an out parameter for the plugin's state. The plugin must store the table in its `parcel_api` global, and check it with `parcel_api_compatible` before calling anything else.
+- `parcel_plugin_init2` (required) – called once per `.parcelrc` entry with an `InitArgs` struct, and an out parameter for the plugin's state. `InitArgs` holds a table of host functions, the plugin's config as JSON, the path of the `.parcelrc` that configured it, and the build's `Options`. The plugin must store the table in its `parcel_api` global, and check it with `parcel_api_compatible` before calling anything else.
 - `parcel_plugin_deinit` (optional) – called to free the plugin's state.
 - `parcel_plugin_transform`, `parcel_plugin_resolve`, `parcel_plugin_name`, `parcel_plugin_optimize`, and `parcel_plugin_report` – the entry points for each plugin type. Only the ones for the plugin types you use are required.
 
-Plugins don't link against any Parcel symbols. Instead, all calls into Parcel go through the table of host functions passed to `parcel_plugin_init`, which `plugin.h` wraps in inline functions such as `parcel_asset_get_content` and `parcel_asset_set_content`.
+Plugins don't link against any Parcel symbols. Instead, all calls into Parcel go through the table of host functions passed to `parcel_plugin_init2`, which `plugin.h` wraps in inline functions such as `parcel_asset_get_content` and `parcel_asset_set_content`.
 
 For example, this transformer converts a file into a JavaScript module that exports its number of lines. Copy `plugin.h` into your project, and include it:
 
@@ -276,17 +388,16 @@ For example, this transformer converts a file into a JavaScript module that expo
 #include <string.h>
 #include "plugin.h"
 
-// The host functions passed to parcel_plugin_init. The inline
+// The host functions passed to parcel_plugin_init2. The inline
 // functions in plugin.h call through this.
 const struct ParcelApi *parcel_api;
 
-InitStatus parcel_plugin_init(const struct ParcelApi *api, const uint8_t *config,
-                              uintptr_t config_len, void **state,
-                              struct DiagnosticOptions *diagnostic) {
-  if (!parcel_api_compatible(&api->header)) {
+InitStatus parcel_plugin_init2(const struct InitArgs *args, void **state,
+                               struct DiagnosticOptions *diagnostic) {
+  if (!parcel_api_compatible(&args->api->header)) {
     return PARCEL_INIT_INCOMPATIBLE;
   }
-  parcel_api = api;
+  parcel_api = args->api;
   return PARCEL_INIT_OK;
 }
 
@@ -326,7 +437,9 @@ void parcel_plugin_transform(Asset asset, Options options, void *state,
 
 Then build it as a shared library with your C compiler, e.g. `cc -shared -fPIC -o plugin.dylib plugin.c`.
 
-The ABI is versioned with `PARCEL_ABI_VERSION`. A plugin built against a different ABI version than the one Parcel implements is rejected with an error, so it needs to be rebuilt.
+Strings and buffers a plugin passes to Parcel as a pointer and length, whether as arguments or in a struct, are only borrowed for the duration of the call, so they can point at the plugin's own memory. A `Buffer` that Parcel fills in for the plugin must be freed with `parcel_buffer_free`, and a `Buffer` that an entry point returns to Parcel, must be allocated with `parcel_buffer_alloc`, since Parcel frees it.
+
+The ABI is versioned with `PARCEL_ABI_VERSION`. A plugin built against a different ABI version than the one Parcel implements is rejected with an error, so it needs to be rebuilt. Within an ABI version, Parcel only adds new features, so plugins built for earlier versions of Parcel keep working. A plugin that uses newer features, or is built with a newer version of an SDK, may not work with earlier versions of Parcel. Declare the versions your plugin supports in the `package.json#engines.parcel` field (see [Engines](authoring-plugins.md#engines)).
 
 ## Local development
 

@@ -28,12 +28,12 @@ export default new Transformer({
 ```
 
 ```rust
-use parcel_plugin::{Asset, Diagnostic, Options, Plugin, register_plugin};
+use parcel_plugin::{Asset, Config, Diagnostic, Options, Plugin, register_plugin};
 
 struct MyTransformer;
 
 impl Plugin for MyTransformer {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyTransformer)
   }
 
@@ -76,7 +76,7 @@ func (t *MyTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error 
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyTransformer{}, nil
 	})
 }
@@ -88,7 +88,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyTransformer: Transformer {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func transform(_ asset: Asset, options: Options) async throws {
     // Retrieve the asset's source code and source map.
@@ -111,7 +111,7 @@ See [Native plugins](native-plugins.md) for how to build native plugins and use 
 
 ## Loading configuration
 
-Configuration for a Transformer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `transform` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details.
+Configuration for a Transformer plugin is specified in the user's `.parcelrc`. JavaScript plugins receive it as the `config` option of the `transform` method, and native plugins receive it as JSON when they are created. See [Configuration](authoring-plugins.md#configuration) for details, and [Native plugins](native-plugins.md#configuration) for how native plugins resolve paths in their config and read other files.
 
 <code-tabs>
 
@@ -132,13 +132,13 @@ struct MyTransformer {
 }
 
 impl Plugin for MyTransformer {
-  fn new(config: &[u8]) -> Result<Self, Diagnostic> {
-    // `config` is empty if none was provided.
-    let prefix = if config.is_empty() {
+  fn new(config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
+    // `config.bytes()` is empty if none was provided.
+    let prefix = if config.bytes().is_empty() {
       String::new()
     } else {
       let config: serde_json::Value =
-        serde_json::from_slice(config).map_err(|e| Diagnostic::new(e.to_string()))?;
+        serde_json::from_slice(config.bytes()).map_err(|e| Diagnostic::new(e.to_string()))?;
       config["prefix"].as_str().unwrap_or_default().to_owned()
     };
 
@@ -167,11 +167,11 @@ func (t *MyTransformer) Transform(asset *parcel.Asset, _ *parcel.Options) error 
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(config *parcel.Config, _ *parcel.Options) (any, error) {
 		t := &MyTransformer{}
-		// `config` is empty if none was provided.
-		if len(config) > 0 {
-			if err := json.Unmarshal(config, t); err != nil {
+		// `config.Bytes` is empty if none was provided.
+		if len(config.Bytes) > 0 {
+			if err := json.Unmarshal(config.Bytes, t); err != nil {
 				return nil, err
 			}
 		}
@@ -189,7 +189,7 @@ struct MyTransformer: Transformer {
 
   let prefix: String
 
-  init(config: Config) {
+  init(config: Config, context: InitContext) {
     prefix = config.prefix ?? ""
   }
 

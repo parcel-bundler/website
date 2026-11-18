@@ -32,12 +32,12 @@ export default new Namer({
 ```
 
 ```rust
-use parcel_plugin::{Bundle, BundleGraph, Diagnostic, Options, Plugin, register_plugin};
+use parcel_plugin::{Bundle, BundleGraph, Config, Diagnostic, Options, Plugin, register_plugin};
 
 struct MyNamer;
 
 impl Plugin for MyNamer {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyNamer)
   }
 
@@ -89,7 +89,7 @@ func (n *MyNamer) Name(bundleGraph *parcel.BundleGraph, bundle *parcel.Bundle, _
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyNamer{}, nil
 	})
 }
@@ -102,7 +102,7 @@ import Foundation
 import ParcelPlugin
 
 struct MyNamer: Namer {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func name(_ bundle: OutputBundle, in bundleGraph: BundleGraph, options: Options) async throws
     -> String?

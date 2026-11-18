@@ -30,12 +30,14 @@ export default new Resolver({
 ```
 
 ```rust
-use parcel_plugin::{Dependency, Diagnostic, Options, Plugin, ResolveResult, register_plugin};
+use parcel_plugin::{
+  Config, Dependency, Diagnostic, Options, Plugin, ResolveResult, register_plugin,
+};
 
 struct MyResolver;
 
 impl Plugin for MyResolver {
-  fn new(_config: &[u8]) -> Result<Self, Diagnostic> {
+  fn new(_config: &Config, _options: &Options) -> Result<Self, Diagnostic> {
     Ok(MyResolver)
   }
 
@@ -83,7 +85,7 @@ func (r *MyResolver) Resolve(dependency *parcel.Dependency, specifier, pipeline 
 }
 
 func init() {
-	parcel.RegisterPlugin(func(config []byte) (any, error) {
+	parcel.RegisterPlugin(func(_ *parcel.Config, _ *parcel.Options) (any, error) {
 		return &MyResolver{}, nil
 	})
 }
@@ -95,7 +97,7 @@ func main() {}
 import ParcelPlugin
 
 struct MyResolver: Resolver {
-  init(config: NoConfig) {}
+  init(config: NoConfig, context: InitContext) {}
 
   func resolve(
     _ dependency: Dependency, specifier: String, pipeline: String?, options: Options
