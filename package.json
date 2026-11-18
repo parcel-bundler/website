@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist; parcel build src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md' --public-url $(node public-url.js)",
-    "start": "/Users/devongovett/dev/worktrees/parcel/vocal-chasm/parcel/target/release/parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
+    "start": "parcel serve src/home/index.html src/docs.html src/blog/index.html src/plugin-browser/index.html 'src/**/*.md'",
     "lint": "oxfmt 'generate-api-docs/*.js' 'src/**/*.{js,json,md,css}'",
     "generate-api-docs": "node generate-api-docs/ ../parcel ./api"
   },
@@ -18,9 +18,8 @@
     "@babel/parser": "^7.20.1",
     "lefthook": "latest",
     "oxfmt": "latest",
-    "parcel": "^3.0.0-alpha.2",
+    "parcel": "^3.0.0-alpha.3",
     "prismjs": "^1.26.0",
-    "process": "^0.11.10",
     "tailwindcss": "^4.3.5",
     "tailwindcss-safe-area": "^1.3.0"
   },

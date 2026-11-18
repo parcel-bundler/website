@@ -39,7 +39,7 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-parcel-plugin = "0.1.0"
+parcel-plugin = "0.2.0"
 serde_json = "1"
 ```
 
